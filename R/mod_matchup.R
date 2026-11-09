@@ -17,7 +17,7 @@ mod_matchup_ui <- function(id, app_data, initial) {
   htmltools::div(
     class = "page-narrow",
     htmltools::tags$section(
-      class = "card picker-card", `aria-label` = "Choose a matchup",
+      class = "picker-panel", `aria-label` = "Choose a matchup",
       id = ns("pickers"),
       `data-team-a` = ns("team_a"), `data-team-b` = ns("team_b"), `data-site` = ns("site"),
       htmltools::div(
@@ -33,15 +33,12 @@ mod_matchup_ui <- function(id, app_data, initial) {
     ),
     answer_card(ns),
     htmltools::tags$section(
-      class = "card evidence-card", `aria-labelledby` = ns("evidence-title"),
-      htmltools::div(
-        class = "card-body",
-        htmltools::tags$h2(id = ns("evidence-title"), class = "section-title", "Where the models land"),
-        htmltools::tags$p(class = "section-lede",
-                          "Each rating system's margin on one scale. The blend is what we use."),
-        shiny::uiOutput(ns("model_plot")),
-        shiny::uiOutput(ns("model_table"))
-      )
+      class = "evidence", `aria-labelledby` = ns("evidence-title"),
+      htmltools::tags$h2(id = ns("evidence-title"), class = "section-title", "Where the models land"),
+      htmltools::tags$p(class = "section-lede",
+                        "Each rating system's margin on one scale. The blend is what we use."),
+      shiny::uiOutput(ns("model_plot")),
+      shiny::uiOutput(ns("model_table"))
     )
   )
 }
@@ -88,74 +85,100 @@ site_control <- function(id, school_a, school_b, selected) {
   htmltools::div(
     class = "segmented",
     shiny::radioButtons(
-      id, "Where is the game played?", inline = TRUE, width = "100%",
+      id, "Where is it played?", inline = TRUE, width = "100%",
       choiceNames = lapply(SITE_ORDER, label_for), choiceValues = SITE_ORDER,
       selected = selected
     )
   )
 }
 
-#' The answer: headline, win probability, likely range, market, notes.
+#' The answer: the line in words, the two teams' chances, the likely range,
+#' the market, then any notes.
 answer_card <- function(ns) {
   htmltools::tags$section(
-    class = "card answer-card", `aria-label` = "Prediction",
+    class = "answer", `aria-label` = "Prediction",
+    shiny::htmlOutput(ns("headline"), container = function(...) {
+      htmltools::tags$h2(..., class = "headline", `aria-live` = "polite", `aria-atomic` = "true")
+    }),
+    shiny::uiOutput(ns("band")),
     htmltools::div(
-      class = "card-body",
-      htmltools::div(
-        class = "answer-top",
-        htmltools::tags$p(class = "eyebrow", "Our line"),
-        htmltools::tags$button(
-          id = ns("copy"), type = "button", class = "btn btn-copy", `data-summary` = "",
-          svg_icon("copy"), htmltools::span(class = "btn-copy-label", "Copy summary")
-        )
-      ),
-      shiny::textOutput(ns("headline"), container = function(...) {
-        htmltools::tags$h2(..., class = "headline", `aria-live` = "polite", `aria-atomic` = "true")
-      }),
-      shiny::uiOutput(ns("prob_bar")),
-      htmltools::div(
+      class = "answer-facts",
+      htmltools::p(
         class = "range-line",
-        htmltools::span(class = "range-label", "Most likely range"),
+        htmltools::span(class = "fact-label", "Likely range"),
         shiny::textOutput(ns("range"), inline = TRUE),
-        htmltools::span(class = "range-note", "Covers 80% of outcomes")
+        htmltools::span(class = "range-note", "8 games in 10 land in this range.")
       ),
       shiny::uiOutput(ns("market")),
-      shiny::uiOutput(ns("flags"))
+      shiny::uiOutput(ns("flags")),
+      htmltools::tags$button(
+        id = ns("copy"), type = "button", class = "btn btn-copy", `data-summary` = "",
+        svg_icon("copy"), htmltools::span(class = "btn-copy-label", "Copy summary")
+      )
     )
   )
 }
 
 # Pieces built from a prediction ------------------------------------------------
 
-#' Win probability bar in the two team colors, labeled with text on both ends.
-prob_bar <- function(pred, colors) {
+#' The line in two parts: the answer, set large, and the context under it.
+#'
+#' The context places the favorite ("at home", "on the road") instead of
+#' repeating a school name, so it reads the way people say it.
+headline_parts <- function(pred) {
+  name_a <- pred$team_a$school
+  name_b <- pred$team_b$school
+  if (round_half(pred$spread) == 0) {
+    return(list(answer = "Pick'em",
+                context = paste(name_a, "vs", name_b, site_phrase(pred$site, name_a, name_b))))
+  }
+  a_favored <- pred$spread > 0
+  favorite_site <- if (a_favored) "a_home" else "b_home"
+  where <- if (pred$site == "neutral") {
+    "on a neutral field"
+  } else if (pred$site == favorite_site) {
+    "at home"
+  } else {
+    "on the road"
+  }
+  list(answer = format_favorite(pred$spread, name_a, name_b),
+       context = paste("over", if (a_favored) name_b else name_a, where))
+}
+
+# The seam never gets closer to an edge than this (percent), so the smaller
+# side always has room for its number. The printed percentages stay exact.
+BAND_MIN_SHARE <- 22
+
+#' The two teams' chances as one band in their colors, split where the odds
+#' fall. Names sit above it, percentages inside it.
+matchup_band <- function(pred, colors) {
   pct_a <- format_prob(pred$win_prob_a)
   pct_b <- format_prob(1 - pred$win_prob_a)
-  width_a <- as.numeric(sub("%", "", pct_a))
-  label <- sprintf("Win probability: %s %s, %s %s",
+  share <- as.numeric(sub("%", "", pct_a))
+  share <- min(max(share, BAND_MIN_SHARE), 100 - BAND_MIN_SHARE)
+  label <- sprintf("Chance to win: %s %s, %s %s",
                    pred$team_a$school, pct_a, pred$team_b$school, pct_b)
 
-  end <- function(school, pct, color, side) {
+  nameplate <- function(team, side) {
+    htmltools::span(class = paste("band-name", paste0("band-name-", side)),
+                    team_badge(team, "md"), htmltools::span(class = "band-school", team$school))
+  }
+  field <- function(pct, color, side) {
     htmltools::span(
-      class = paste("prob-end", paste0("prob-end-", side)),
-      htmltools::tags$strong(class = "prob-pct", pct),
-      htmltools::span(class = "swatch", style = sprintf("background:%s", color)),
-      htmltools::span(class = "prob-school", school)
+      class = paste("band-side", paste0("band-side-", side)),
+      style = sprintf("background:%s;color:%s", color, readable_text_color(color)),
+      htmltools::span(class = "band-pct", pct)
     )
   }
   htmltools::div(
-    class = "prob",
+    class = "band-wrap",
+    htmltools::div(class = "band-names", `aria-hidden` = "true",
+                   nameplate(pred$team_a, "a"), nameplate(pred$team_b, "b")),
     htmltools::div(
-      class = "prob-labels", `aria-hidden` = "true",
-      end(pred$team_a$school, pct_a, colors[["a"]], "a"),
-      end(pred$team_b$school, pct_b, colors[["b"]], "b")
+      class = "band", role = "img", `aria-label` = label, style = sprintf("--share:%s%%", share),
+      field(pct_a, colors[["a"]], "a"), field(pct_b, colors[["b"]], "b")
     ),
-    htmltools::div(
-      class = "prob-bar", role = "img", `aria-label` = label,
-      htmltools::span(class = "prob-seg", style = sprintf("width:%s%%;background:%s", width_a, colors[["a"]])),
-      htmltools::span(class = "prob-seg", style = sprintf("width:%s%%;background:%s", 100 - width_a, colors[["b"]]))
-    ),
-    htmltools::p(class = "prob-caption", "Chance to win")
+    htmltools::p(class = "band-caption", "Chance to win")
   )
 }
 
@@ -325,14 +348,17 @@ mod_matchup_server <- function(id, app_data) {
     })
     colors <- shiny::reactive(pick_team_colors(ok_pred()$team_a, ok_pred()$team_b))
 
-    output$headline <- shiny::renderText({
+    output$headline <- shiny::renderUI({
       p <- pred()
       if (inherits(p, "error")) {
-        return(paste("We couldn't predict this matchup.", conditionMessage(p)))
+        return(htmltools::span(class = "headline-context",
+                               paste("We couldn't predict this matchup.", conditionMessage(p))))
       }
-      format_headline(p)
+      parts <- headline_parts(p)
+      htmltools::tagList(htmltools::span(class = "headline-answer", parts$answer),
+                         " ", htmltools::span(class = "headline-context", parts$context))
     })
-    output$prob_bar <- shiny::renderUI(prob_bar(ok_pred(), colors()))
+    output$band <- shiny::renderUI(matchup_band(ok_pred(), colors()))
     output$range <- shiny::renderText(format_interval(ok_pred()))
     output$market <- shiny::renderUI({
       text <- describe_market(ok_pred(), app_data$slate)

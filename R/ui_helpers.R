@@ -81,12 +81,12 @@ short_date <- function(date) {
   paste(month.abb[as.integer(format(date, "%m"))], as.integer(format(date, "%d")))
 }
 
-#' Navbar text such as "Ratings: week 11 · Nov 10".
+#' Navbar text such as "Ratings through week 11, Nov 10".
 freshness_label <- function(meta) {
   date <- tryCatch(short_date(meta$ratings_date), error = function(e) NA)
   parts <- c(if (!is.null(meta$week)) paste("week", meta$week), if (!is.na(date)) date)
-  if (length(parts) == 0) return("Ratings: date unknown")
-  paste("Ratings:", paste(parts, collapse = " · "))
+  if (length(parts) == 0) return("Ratings date unknown")
+  paste("Ratings through", paste(parts, collapse = ", "))
 }
 
 #' Notes about the data itself (not the matchup) that apply right now.
@@ -277,9 +277,11 @@ describe_market <- function(pred, slate) {
   name_a <- pred$team_a$school
   name_b <- pred$team_b$school
   market <- market_margin_for_a(game, a_id)
-  sprintf("Market: %s · %s",
-          format_favorite(market, name_a, name_b),
-          market_gap_phrase(pred$spread - market, name_a, name_b))
+  market_line <- format_favorite(market, name_a, name_b)
+  gap <- market_gap_phrase(pred$spread - market, name_a, name_b)
+  sprintf("%s %s%s.",
+          if (market_line == "Pick'em") "The market calls it a pick'em." else sprintf("The market has %s.", market_line),
+          toupper(substr(gap, 1, 1)), substr(gap, 2, nchar(gap)))
 }
 
 # Numbers in tables ------------------------------------------------------------
@@ -401,7 +403,7 @@ data_banner <- function(meta, load_error = NULL) {
 app_footer <- function() {
   htmltools::tags$footer(
     class = "app-footer",
-    "Data: CollegeFootballData.com via cfbfastR · Not betting advice · ",
-    "Made in collaboration with AI (Claude by Anthropic)"
+    "Data from CollegeFootballData.com via cfbfastR. Not betting advice. ",
+    "Made in collaboration with AI (Claude by Anthropic)."
   )
 }

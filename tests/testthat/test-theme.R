@@ -11,11 +11,12 @@ test_that("contrast_ratio matches the WCAG reference values", {
 })
 
 test_that("brand text colors pass AA on the brand backgrounds", {
-  for (bg in c(BRAND$navy, BRAND$navy_2, BRAND$surface)) {
+  for (bg in c(BRAND$page, BRAND$surface)) {
     expect_gte(contrast_ratio(BRAND$text, bg), MIN_TEXT_CONTRAST)
     expect_gte(contrast_ratio(BRAND$muted, bg), MIN_TEXT_CONTRAST)
-    expect_gte(contrast_ratio(BRAND$accent, bg), MIN_TEXT_CONTRAST)
   }
+  # Turquoise is only used on the navy navbar, never as text on the light page.
+  expect_gte(contrast_ratio(BRAND$accent, BRAND$navy), MIN_TEXT_CONTRAST)
 })
 
 test_that("readable_text_color picks the stronger of black and white", {
@@ -28,10 +29,11 @@ test_that("readable_text_color picks the stronger of black and white", {
 })
 
 test_that("usable_team_color falls back from primary to alt to neutral", {
-  bright <- "#38BDF8"
-  expect_equal(usable_team_color(c(bright, "#000000")), bright)
-  expect_equal(usable_team_color(c("#0F172A", bright)), bright)
-  expect_equal(usable_team_color(c("#0F172A", "#111827")), BRAND$neutral)
+  blue <- "#1D4ED8"
+  expect_equal(usable_team_color(c(blue, "#000000")), blue)
+  # A pale primary would vanish on the light page, so the alt is used.
+  expect_equal(usable_team_color(c("#FDE047", blue)), blue)
+  expect_equal(usable_team_color(c("#FDE047", "#FEF3C7")), BRAND$neutral)
   expect_equal(usable_team_color(c(NA, "not a color")), BRAND$neutral)
 })
 
@@ -44,19 +46,19 @@ test_that("color_distance separates alike and different colors", {
 test_that("pick_team_colors keeps distinct colors and fixes clashes", {
   team <- function(color, alt) data.frame(color = color, alt_color = alt, stringsAsFactors = FALSE)
 
-  distinct <- pick_team_colors(team("#38BDF8", "#000000"), team("#FBBF24", "#000000"))
-  expect_equal(unname(distinct), c("#38BDF8", "#FBBF24"))
+  distinct <- pick_team_colors(team("#1D4ED8", "#000000"), team("#BE123C", "#000000"))
+  expect_equal(unname(distinct), c("#1D4ED8", "#BE123C"))
 
   # Same primary: B moves to its alternate.
-  clash <- pick_team_colors(team("#38BDF8", "#FBBF24"), team("#38BDF8", "#F472B6"))
-  expect_equal(clash[["b"]], "#F472B6")
+  clash <- pick_team_colors(team("#1D4ED8", "#BE123C"), team("#1D4ED8", "#166534"))
+  expect_equal(clash[["b"]], "#166534")
 
-  # B's primary is too dark to see, so its alt is used.
-  dark <- pick_team_colors(team("#FBBF24", NA), team("#0F172A", "#38BDF8"))
-  expect_equal(dark[["b"]], "#38BDF8")
+  # B's primary is too pale to see, so its alt is used.
+  pale <- pick_team_colors(team("#BE123C", NA), team("#FDE047", "#1D4ED8"))
+  expect_equal(pale[["b"]], "#1D4ED8")
 
-  # Whatever happens, both colors stay visible on the card background.
-  for (cols in list(distinct, clash, dark)) {
+  # Whatever happens, both colors stay visible on the page.
+  for (cols in list(distinct, clash, pale)) {
     expect_true(all(vapply(cols, contrast_ratio, numeric(1), BRAND$surface) >= MIN_SHAPE_CONTRAST))
   }
 })

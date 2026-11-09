@@ -14,6 +14,9 @@ Rev 2 · Nov 9, 2026 · @tim
 > - Ratings are not snapshotted in the postseason, because CFBD restarts week
 >   numbers there. See the data dictionary.
 > - In "Where the models land", Team A is on the left, matching the pickers.
+> - The app is light, not dark: navy ink on a pale ground with the answer set
+>   large and a band in the two team colors. Brand turquoise is kept for the
+>   navbar and the blend marker. Fonts ship in `www/fonts/`.
 >
 > The README and the other files in `docs/` describe the project as built.
 

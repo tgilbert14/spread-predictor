@@ -1,20 +1,20 @@
 # Look and feel: the bslib theme, brand tokens, and the color math that keeps
-# team colors readable on a dark background.
+# team colors readable on the page.
 #
-# Brand colors are for app chrome. Team colors are only used on team-specific
-# elements, and always next to a text label so color never carries meaning
-# on its own.
+# The page itself is quiet (navy ink on a light ground) so the two team colors
+# can carry each matchup. Team colors are only used on team-specific elements,
+# and always next to a text label so color never carries meaning on its own.
 
 #' Brand tokens. www/styles.css mirrors these as CSS variables.
 BRAND <- list(
-  navy    = "#0a1330",  # page and navbar background
-  navy_2  = "#0b1733",  # body background
-  surface = "#111d40",  # cards; team colors are checked against this
-  border  = "#22305a",
-  text    = "#e8eef8",
-  muted   = "#a3b2cc",
-  accent  = "#5eead4",  # turquoise
-  neutral = "#94a3b8"   # stand-in when a team has no usable color
+  navy    = "#0a1330",  # ink: text and the navbar
+  page    = "#f4f6f8",  # page background
+  surface = "#ffffff",  # inputs and plot grounds; team colors are checked against this
+  border  = "#d5dae3",
+  text    = "#0a1330",
+  muted   = "#566080",
+  accent  = "#5eead4",  # turquoise, used on the navy navbar and the blend marker
+  neutral = "#64748b"   # stand-in when a team has no usable color
 )
 
 # WCAG minimums. Text needs 4.5:1; shapes like bar segments and dots need 3:1.
@@ -24,30 +24,31 @@ MIN_SHAPE_CONTRAST <- 3
 # Below this CIE76 distance two colors are hard to tell apart side by side.
 MIN_TEAM_COLOR_DISTANCE <- 30
 
+# Fonts ship with the app in www/fonts/ (both are open-licensed), so nothing
+# is downloaded at run time.
+FONT_BODY <- "\"Instrument Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif"
+
 #' The app's Bootstrap 5 theme.
 app_theme <- function() {
   bslib::bs_theme(
     version = 5,
-    bg = BRAND$navy_2,
+    bg = BRAND$page,
     fg = BRAND$text,
-    primary = BRAND$accent,
-    secondary = "#1c2a52",
-    success = "#4ade80",
-    warning = "#fbbf24",
-    danger = "#f87171",
-    info = BRAND$accent,
-    "font-family-sans-serif" = paste(
-      "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\",",
-      "\"Noto Sans\", Arial, sans-serif"
-    ),
+    primary = BRAND$navy,
+    secondary = BRAND$muted,
+    success = "#15803d",
+    warning = "#b45309",
+    danger = "#b91c1c",
+    info = BRAND$navy,
+    "font-family-sans-serif" = FONT_BODY,
     "body-secondary-color" = BRAND$muted,
     "border-color" = BRAND$border,
-    "card-bg" = BRAND$surface,
-    "card-border-color" = BRAND$border,
+    "card-bg" = "transparent",
+    "card-border-color" = "transparent",
     "card-cap-bg" = "transparent",
     "navbar-bg" = BRAND$navy,
-    "border-radius" = "0.75rem",
-    "link-decoration" = "none"
+    "border-radius" = "0.25rem",
+    "link-decoration" = "underline"
   )
 }
 
@@ -123,7 +124,7 @@ color_distance <- function(color_1, color_2) {
 #' @return Named character vector: `a` and `b` hex colors.
 pick_team_colors <- function(team_a, team_b, background = BRAND$surface) {
   color_a <- usable_team_color(c(team_a$color, team_a$alt_color), background)
-  candidates_b <- c(team_b$color, team_b$alt_color, BRAND$neutral, "#E2E8F0")
+  candidates_b <- c(team_b$color, team_b$alt_color, BRAND$neutral, "#1F2937")
 
   for (color in normalize_hex(candidates_b)) {
     if (is.na(color) || contrast_ratio(color, background) < MIN_SHAPE_CONTRAST) next

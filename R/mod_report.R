@@ -159,8 +159,8 @@ calibration_plot <- function(calibration) {
   y_low <- min(0.5, floor(min(calibration$actual) * 10) / 10)
   ggplot2::ggplot(calibration, ggplot2::aes(x = predicted, y = actual)) +
     ggplot2::geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = BRAND$muted, linewidth = 0.7) +
-    ggplot2::geom_line(color = BRAND$accent, linewidth = 1) +
-    ggplot2::geom_point(ggplot2::aes(size = n), color = BRAND$accent, fill = BRAND$surface,
+    ggplot2::geom_line(color = BRAND$text, linewidth = 1) +
+    ggplot2::geom_point(ggplot2::aes(size = n), color = BRAND$text, fill = BRAND$accent,
                         shape = 21, stroke = 1.8) +
     ggplot2::scale_x_continuous("Our win chance", limits = c(0.5, 1), labels = percent_label) +
     ggplot2::scale_y_continuous("How often they won", limits = c(y_low, 1), labels = percent_label) +

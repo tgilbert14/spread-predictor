@@ -71,14 +71,15 @@ Next steps:
   1. ", if (has_key) "(done) " else "", "Get a free API key at https://collegefootballdata.com/key and put
      this line in a file named .Renviron in the project root (git ignores it):
        CFBD_API_KEY=your-key
-     Then open a new terminal so R picks it up.
   2. Pull history, once (about 40 API calls of the 1,000 a month free tier):
        Rscript scripts/backfill.R
-  3. Build the database. The first time, this stops and asks you to fit:
-       Rscript scripts/refresh.R --offline
-  4. Fit the model, build the app data, and run the app:
+  3. Fit the model (this builds the database first):
        Rscript scripts/fit.R
-       Rscript scripts/refresh.R --offline
+  4. Take this week's snapshot, build the app data, and run the app:
+       Rscript scripts/refresh.R
        Rscript -e 'shiny::runApp()'
   5. For weekly updates on GitHub, add the same key as a repository secret
-     named CFBD_API_KEY (Settings > Secrets and variables > Actions).")
+     named CFBD_API_KEY (Settings > Secrets and variables > Actions).
+
+In RStudio, open Spread-predictor.Rproj and use source(\"scripts/backfill.R\")
+in place of each Rscript line.")

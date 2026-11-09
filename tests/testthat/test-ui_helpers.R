@@ -52,7 +52,7 @@ test_that("load_app_data fills in a missing slate and coverage", {
 test_that("freshness_label and short_date read naturally", {
   expect_equal(short_date("2026-11-03"), "Nov 3")
   expect_equal(as_utf8(freshness_label(list(week = 11, ratings_date = "2026-11-10"))),
-               "Ratings: week 11 · Nov 10")
+               "Ratings through week 11, Nov 10")
 })
 
 test_that("data_notes flags early season and stale ratings, but not stale demo data", {
@@ -138,7 +138,7 @@ test_that("market_margin_for_a respects the sportsbook sign convention", {
 test_that("describe_market says it in words and only for the real site", {
   pred <- predict_matchup("Ironwood", "Mesquite", "a_home", teams, demo$params)
   text <- as_utf8(describe_market(pred, test_slate))
-  expect_match(text, "^Market: Ironwood by 4.5 · ")
+  expect_match(text, "^The market has Ironwood by 4.5\\. ")
 
   gap <- pred$spread - 4.5
   side <- if (gap > 0) "Ironwood" else "Mesquite"
@@ -146,7 +146,7 @@ test_that("describe_market says it in words and only for the real site", {
 
   # Same game from the other side reads the same way.
   flipped <- predict_matchup("Mesquite", "Ironwood", "b_home", teams, demo$params)
-  expect_match(describe_market(flipped, test_slate), "Market: Ironwood by 4.5")
+  expect_match(describe_market(flipped, test_slate), "The market has Ironwood by 4.5")
 
   # Wrong site, no line, or not on the slate: nothing.
   expect_null(describe_market(predict_matchup("Ironwood", "Mesquite", "neutral", teams, demo$params), test_slate))

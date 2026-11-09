@@ -70,6 +70,9 @@ Rscript scripts/refresh.R
 
 Run the app again. The demo banner is gone and you're looking at real teams.
 
+Prefer RStudio? Open `Spread-predictor.Rproj` and run each script with
+`source()`, for example `source("scripts/backfill.R")`.
+
 ## Keep it up to date
 
 Ratings change every week, and three of the four systems don't publish their
@@ -187,6 +190,8 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
   accessed with the [cfbfastR](https://cfbfastr.sportsdataverse.org/) package.
 - SP+ is by Bill Connelly. FPI is by ESPN. SRS and Elo are as published by
   CollegeFootballData.com.
+- Fonts: Big Shoulders Display and Instrument Sans, both under the SIL Open
+  Font License. The files and licenses are in `www/fonts/`.
 - Made in collaboration with AI (Claude by Anthropic). See
   [CITATION.cff](CITATION.cff) for how to cite this project.
 
