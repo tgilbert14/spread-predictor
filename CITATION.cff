@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Spread Predictor: a neutral-site college football spread predictor"
+message: >-
+  If you use or adapt this project, please cite it using the information
+  below. This app was made in collaboration with AI (Claude by Anthropic).
+type: software
+authors:
+  - name: tgilbert14
+repository-code: "https://github.com/tgilbert14/spread-predictor"
+license: MIT
+version: 0.1.0
+date-released: "2026-11-09"
+keywords:
+  - college football
+  - R
+  - Shiny
+  - sports analytics

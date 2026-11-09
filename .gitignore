@@ -1,0 +1,19 @@
+# Secrets and local R state
+.Renviron
+.Rhistory
+.RData
+.Rproj.user/
+
+# Derived files. Rebuild with: Rscript scripts/refresh.R
+cfb.sqlite
+data/app_data.rds
+
+# renv library (the lockfile is committed, the library is not)
+renv/library/
+renv/staging/
+
+.DS_Store
+
+# Temp files from an interrupted pipeline run
+cfb.sqlite.building
+data/snapshots/**/.writing-*.csv
