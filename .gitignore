@@ -1,5 +1,6 @@
 # Secrets and local R state
 .Renviron
+.Renviron.*
 .Rhistory
 .RData
 .Rproj.user/
