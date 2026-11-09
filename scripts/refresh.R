@@ -4,6 +4,10 @@
 #   Rscript scripts/refresh.R             # pulls this week's snapshot first
 #   Rscript scripts/refresh.R --offline   # uses only the files already on disk
 
+# Pick up the API key from the project's .Renviron, even when R was started
+# somewhere else (for example from RStudio with setwd()).
+if (file.exists(".Renviron")) readRenviron(".Renviron")
+
 for (file in list.files("R", pattern = "\\.R$", full.names = TRUE)) source(file)
 options(warn = 1)
 

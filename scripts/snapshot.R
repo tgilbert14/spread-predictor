@@ -5,6 +5,10 @@
 # Run from the project root:
 #   Rscript scripts/snapshot.R
 
+# Pick up the API key from the project's .Renviron, even when R was started
+# somewhere else (for example from RStudio with setwd()).
+if (file.exists(".Renviron")) readRenviron(".Renviron")
+
 for (file in list.files("R", pattern = "\\.R$", full.names = TRUE)) source(file)
 options(warn = 1)  # show name-matching warnings where they happen
 

@@ -4,6 +4,10 @@
 # Run from the project root:
 #   Rscript scripts/setup.R
 
+# Pick up the API key from the project's .Renviron, even when R was started
+# somewhere else (for example from RStudio with setwd()).
+if (file.exists(".Renviron")) readRenviron(".Renviron")
+
 if (!file.exists("DESCRIPTION")) {
   stop("Run this from the project root, the folder that has the DESCRIPTION file.", call. = FALSE)
 }
