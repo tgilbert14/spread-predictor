@@ -35,40 +35,38 @@ format_utc <- function(time = Sys.time()) {
   format(time, "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
 }
 
-#' Which CFBD week a snapshot taken at `now` belongs to.
+#' Which week a snapshot taken at `now` belongs to.
 #'
-#' A CFBD calendar week is a window that runs Tuesday morning to Tuesday
-#' morning (UTC). Games are played Thursday to Saturday, with the odd Tuesday
-#' or Wednesday night game, so a week is treated as "not started" while more
-#' than `lead_days` of its window are left. The snapshot belongs to the
-#' earliest such week. That gives:
-#'   * Tuesday 13:00 UTC (the cron): the week that has just opened.
-#'   * Monday, or Saturday: the next week, since games may be under way.
-#'   * Before the season: week 1, so the first snapshot is the preseason one.
+#' The answer comes from the schedule itself: it is the week of the next
+#' regular-season kickoff. Ratings pulled now are what the systems say going
+#' into that week's games.
 #'
-#' @param calendar Output of cfbfastR::cfbd_calendar() for one season.
+#' Going by the next kickoff, not the lowest unfinished week number, means a
+#' game postponed from September to December does not drag the label back.
+#'
+#' @param games The season's games snapshot (needs week, season_type and
+#'   start_date).
 #' @param now The time of the snapshot.
-#' @param lead_days Days left in a window below which its games may have
-#'   started. 6.5 puts the cutoff at about Tuesday 19:00 UTC.
-#' @return A list with `season_type` ("regular" or "postseason") and `week`.
-#'   Both are NA in the offseason, when no week is left.
-snapshot_week <- function(calendar, now = Sys.time(), lead_days = 6.5) {
-  cal <- select_columns(
-    calendar,
-    spec = list(
-      week        = "week",
-      season_type = c("season_type", "seasonType"),
-      window_end  = c("last_game_start", "end_date", "lastGameStart", "endDate")
-    ),
-    what = "CFBD calendar"
-  )
-  days_left <- as.numeric(difftime(parse_utc(cal$window_end), now, units = "days"))
-  open <- which(!is.na(days_left) & days_left > lead_days)
-  if (length(open) == 0) {
-    return(list(season_type = NA_character_, week = NA_integer_))
+#' @return A list: `season_type` ("regular" or "postseason"), `week`, and
+#'   `started` (TRUE when that week already has a game under way or played,
+#'   so the ratings may include some of its results). `season_type` and
+#'   `week` are NA in the offseason. `week` is NA in the postseason.
+snapshot_week <- function(games, now = Sys.time()) {
+  kickoff <- as.numeric(parse_utc(games$start_date))
+  now <- as.numeric(now)
+  ahead <- !is.na(kickoff) & kickoff > now
+  regular <- games$season_type == "regular"
+
+  if (any(ahead & regular)) {
+    next_game <- which.min(ifelse(ahead & regular, kickoff, Inf))
+    week <- as.integer(games$week[next_game])
+    in_week <- regular & games$week == week & !is.na(kickoff)
+    return(list(season_type = "regular", week = week, started = any(kickoff[in_week] <= now)))
   }
-  nxt <- open[which.min(days_left[open])]
-  list(season_type = as.character(cal$season_type[nxt]), week = as.integer(cal$week[nxt]))
+  if (any(ahead & !regular)) {
+    return(list(season_type = "postseason", week = NA_integer_, started = FALSE))
+  }
+  list(season_type = NA_character_, week = NA_integer_, started = FALSE)
 }
 
 
@@ -454,7 +452,6 @@ cfbd_fetch <- function(fn, ..., allow_empty = FALSE) {
   as.data.frame(df)
 }
 
-fetch_calendar <- function(season) cfbd_fetch("cfbd_calendar", year = season)
 
 fetch_teams <- function(season) cfbd_fetch("cfbd_teams_fbs", year = season)
 
@@ -575,30 +572,36 @@ run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
 
   season <- current_season(now)
   pulled_at <- format_utc(now)
-  upcoming <- snapshot_week(fetch_calendar(season), now)
-  in_season <- !is.na(upcoming$season_type)
   ok <- c()
 
-  if (!in_season) {
-    message("Offseason: every week of the ", season, " season has started. No ratings to snapshot.")
-  } else {
-    message("Snapshot for the ", season, " season, ", upcoming$season_type, " week ", upcoming$week, ".")
-    ok["teams"] <- run_step(paste(season, "teams"), pull_teams(season, root))
+  # Games first: the schedule is what tells us which week this snapshot is for.
+  games_file <- snapshot_path("games", season, root = root)
+  if (games_unfinished(games_file)) {
+    ok <- c(ok, pull_games_and_lines(season, root, pulled_at, overwrite = TRUE))
   }
+  if (!file.exists(games_file)) {
+    message("No games file for ", season, ", so the week is unknown. No ratings snapshotted.")
+    return(ok)
+  }
+  upcoming <- snapshot_week(read_snapshot(games_file), now)
 
-  if (identical(upcoming$season_type, "regular")) {
+  if (is.na(upcoming$season_type)) {
+    message("Offseason: no ", season, " games are left to play. No ratings to snapshot.")
+  } else if (upcoming$season_type == "postseason") {
+    message("Postseason: weekly ratings are only snapshotted for regular-season weeks.")
+  } else {
+    message("Snapshot for the ", season, " season, going into week ", upcoming$week, ".")
+    if (upcoming$started) {
+      message("Note: week ", upcoming$week, " has already kicked off, so a new ratings file ",
+              "may include some of this week's results.")
+    }
+    ok["teams"] <- run_step(paste(season, "teams"), pull_teams(season, root))
     for (source in RATING_SOURCES) {
       ok[source] <- run_step(
         paste(season, "week", upcoming$week, source),
         pull_ratings(source, season, upcoming$week, root, pulled_at)
       )
     }
-  } else if (in_season) {
-    message("Postseason: weekly ratings are only snapshotted for regular-season weeks.")
-  }
-
-  if (in_season || games_unfinished(snapshot_path("games", season, root = root))) {
-    ok <- c(ok, pull_games_and_lines(season, root, pulled_at, overwrite = TRUE))
   }
   ok
 }

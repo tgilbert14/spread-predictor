@@ -17,19 +17,15 @@ fake_teams_raw <- function() {
   )
 }
 
-# Shaped like the real thing: each week is a Tuesday-to-Tuesday window.
-fake_calendar <- function() {
+# A slice of a season: week 10 played, weeks 11 and 12 to come, one bowl game,
+# and a week 3 game that was postponed to December.
+fake_schedule <- function() {
   data.frame(
-    season = "2026",
-    week = c(1L, 2L, 11L, 12L, 13L, 1L),
+    week = c(10L, 11L, 11L, 12L, 3L, 1L),
     season_type = c(rep("regular", 5), "postseason"),
-    first_game_start = c(
-      "2026-07-25T07:00:00.000Z", "2026-09-01T07:00:00.000Z", "2026-11-03T08:00:00.000Z",
-      "2026-11-10T08:00:00.000Z", "2026-11-17T08:00:00.000Z", "2026-12-08T08:00:00.000Z"
-    ),
-    last_game_start = c(
-      "2026-09-01T06:59:00.000Z", "2026-09-08T06:59:00.000Z", "2026-11-10T07:59:00.000Z",
-      "2026-11-17T07:59:00.000Z", "2026-11-24T07:59:00.000Z", "2027-01-13T07:59:00.000Z"
+    start_date = c(
+      "2026-11-07T20:00:00.000Z", "2026-11-11T00:00:00.000Z", "2026-11-14T20:00:00.000Z",
+      "2026-11-21T20:00:00.000Z", "2026-12-05T20:00:00.000Z", "2026-12-19T20:00:00.000Z"
     ),
     stringsAsFactors = FALSE
   )
@@ -44,35 +40,34 @@ test_that("current_season rolls over in August", {
   expect_equal(current_season(utc("2027-08-01 13:00:00")), 2027L)
 })
 
-test_that("snapshot_week labels the week whose games have not started", {
-  cal <- fake_calendar()
+test_that("snapshot_week is the week of the next regular-season kickoff", {
+  games <- fake_schedule()
 
-  # The Tuesday cron, just after week 12's window opens: week 12.
-  expect_equal(snapshot_week(cal, utc("2026-11-10 13:00:00")), list(season_type = "regular", week = 12L))
+  # The Tuesday cron, after week 10 and before week 11: week 11, not started.
+  expect_equal(snapshot_week(games, utc("2026-11-10 13:00:00")),
+               list(season_type = "regular", week = 11L, started = FALSE))
 
-  # Monday, or Saturday with games under way: the next week.
-  expect_equal(snapshot_week(cal, utc("2026-11-16 13:00:00"))$week, 13L)
-  expect_equal(snapshot_week(cal, utc("2026-11-14 18:00:00"))$week, 13L)
+  # Saturday morning, after the midweek game: still week 11, but flagged.
+  expect_equal(snapshot_week(games, utc("2026-11-14 15:00:00")),
+               list(season_type = "regular", week = 11L, started = TRUE))
 
-  # Preseason, inside week 1's long window: week 1.
-  expect_equal(snapshot_week(cal, utc("2026-08-10 13:00:00"))$week, 1L)
+  # Monday after week 11: week 12.
+  expect_equal(snapshot_week(games, utc("2026-11-16 13:00:00"))$week, 12L)
 
-  # After the regular season ends: postseason.
-  expect_equal(snapshot_week(cal, utc("2026-12-01 13:00:00"))$season_type, "postseason")
+  # Only the postponed week 3 game is left: it is still a regular-season week.
+  expect_equal(snapshot_week(games, utc("2026-12-01 13:00:00"))$week, 3L)
+
+  # Regular season over, bowls ahead: postseason, no week.
+  post <- snapshot_week(games, utc("2026-12-10 13:00:00"))
+  expect_equal(post$season_type, "postseason")
+  expect_true(is.na(post$week))
 
   # Nothing left: offseason, no crash.
-  off <- snapshot_week(cal, utc("2027-01-10 13:00:00"))
+  off <- snapshot_week(games, utc("2027-01-10 13:00:00"))
   expect_true(is.na(off$season_type))
   expect_true(is.na(off$week))
 })
 
-test_that("snapshot_week accepts the raw CFBD calendar column names", {
-  cal <- fake_calendar()
-  names(cal)[names(cal) == "last_game_start"] <- "endDate"
-  names(cal)[names(cal) == "season_type"] <- "seasonType"
-  expect_equal(snapshot_week(cal, utc("2026-11-10 13:00:00"))$week, 12L)
-  expect_error(snapshot_week(cal["week"]), "CFBD calendar.*Columns received: week")
-})
 
 test_that("snapshot_path follows the data dictionary layout", {
   expect_equal(snapshot_path("ratings", 2026, "sp", 11, root = "s"), file.path("s", "ratings", "sp", "2026_wk11.csv"))
@@ -262,13 +257,15 @@ fake_cfbd_fetch <- function(fn, ..., allow_empty = FALSE) {
     df
   }
   switch(fn,
-    cfbd_calendar = fake_calendar(),
     cfbd_teams_fbs = fake_teams_raw(),
+    # Week 10 is played and week 11 is ahead, as seen from November 10.
     cfbd_game_info = data.frame(
-      game_id = year * 10L + 1L, season = year, week = 1L, season_type = "regular",
-      start_date = sprintf("%d-09-01T02:00:00.000Z", year), completed = TRUE, neutral_site = FALSE,
-      home_id = 8L, home_team = "Arizona", home_division = "fbs", home_points = 30L, home_pregame_elo = 1500L,
-      away_id = 2L, away_team = "Arizona State", away_division = "fbs", away_points = 20L, away_pregame_elo = 1520L
+      game_id = year * 10L + 1:3, season = year, week = c(10L, 11L, 1L),
+      season_type = c("regular", "regular", "postseason"),
+      start_date = sprintf(c("%d-11-07T20:00:00.000Z", "%d-11-14T20:00:00.000Z", "%d-12-19T20:00:00.000Z"), year),
+      completed = c(TRUE, FALSE, FALSE), neutral_site = FALSE,
+      home_id = 8L, home_team = "Arizona", home_division = "fbs", home_points = c(30L, NA, NA), home_pregame_elo = 1500L,
+      away_id = 2L, away_team = "Arizona State", away_division = "fbs", away_points = c(20L, NA, NA), away_pregame_elo = 1520L
     ),
     cfbd_betting_lines = data.frame(game_id = year * 10L + 1L, provider = "DraftKings", spread = "-3.5"),
     cfbd_ratings_sp = rbind(ratings("rating"), data.frame(year = year, team = "nationalAverages", conference = NA, rating = 0)),
@@ -305,17 +302,17 @@ test_that("a weekly snapshot pulls each file once and refreshes games and lines"
 
   ok <- suppressMessages(run_snapshot(now = tuesday, root = root))
   expect_true(all(ok))
-  expect_equal(api_calls_made(), 8)  # calendar, teams, 4 ratings, games, lines
+  expect_equal(api_calls_made(), 7)  # games, lines, teams, 4 ratings
   expect_equal(snapshot_files(root), sort(c(
     "games/2026.csv", "lines/2026.csv", "teams/2026.csv",
-    sprintf("ratings/%s/2026_wk12.csv", RATING_SOURCES)
+    sprintf("ratings/%s/2026_wk11.csv", RATING_SOURCES)
   )))
-  expect_equal(nrow(read_snapshot(file.path(root, "ratings/sp/2026_wk12.csv"))), 2)
+  expect_equal(nrow(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))), 2)
 
-  # Same week again: only the calendar, games and lines are called.
+  # Same week again: only games and lines are called.
   suppressMessages(run_snapshot(now = tuesday + 3600, root = root))
-  expect_equal(api_calls_made(), 3)
-  expect_equal(read_snapshot(file.path(root, "ratings/sp/2026_wk12.csv"))$pulled_at[1], "2026-11-10T13:00:00Z")
+  expect_equal(api_calls_made(), 2)
+  expect_equal(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))$pulled_at[1], "2026-11-10T13:00:00Z")
   expect_equal(read_snapshot(file.path(root, "lines/2026.csv"))$pulled_at[1], "2026-11-10T14:00:00Z")
 })
 
@@ -327,9 +324,12 @@ test_that("postseason and offseason snapshots take no ratings", {
   expect_false(any(grepl("^ratings", snapshot_files(root))))
   expect_true(file.exists(file.path(root, "games/2026.csv")))
 
-  # Offseason with a finished games file: only the calendar call.
+  # Offseason with a finished games file: nothing to ask the API for.
+  games <- read_snapshot(file.path(root, "games/2026.csv"))
+  games$completed <- TRUE
+  suppressMessages(write_snapshot(games, file.path(root, "games/2026.csv"), overwrite = TRUE))
   suppressMessages(run_snapshot(now = utc("2027-01-25 13:00:00"), root = root))
-  expect_equal(api_calls_made(), 1)
+  expect_equal(api_calls_made(), 0)
 })
 
 test_that("backfill pulls past seasons in full and skips what is on disk", {
@@ -359,6 +359,6 @@ test_that("one failed step does not stop the others", {
   ok <- suppressMessages(run_snapshot(now = utc("2026-11-10 13:00:00"), root = root))
   expect_false(ok[["fpi"]])
   expect_true(all(ok[names(ok) != "fpi"]))
-  expect_false(file.exists(file.path(root, "ratings/fpi/2026_wk12.csv")))
-  expect_true(file.exists(file.path(root, "ratings/elo/2026_wk12.csv")))
+  expect_false(file.exists(file.path(root, "ratings/fpi/2026_wk11.csv")))
+  expect_true(file.exists(file.path(root, "ratings/elo/2026_wk11.csv")))
 })

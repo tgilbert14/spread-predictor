@@ -203,7 +203,8 @@ plot_limit <- function(margins) {
 model_plot <- function(pred, colors) {
   models <- pred$models
   limit <- plot_limit(c(models$margin, pred$spread))
-  step <- if (limit <= 28) 7 else 14
+  # Close games get field-goal ticks so the axis is never bare.
+  step <- if (limit <= 7) 3 else if (limit <= 28) 7 else 14
   position <- function(margin) 50 - 50 * margin / limit
 
   dot_row <- function(label, margin, row_class = NULL) {

@@ -81,7 +81,8 @@ slate_row <- function(pred, game, open_input_id) {
     } else {
       '<span class="muted">No line</span>'
     }),
-    prob = cell("Home win chance", sprintf("%s %s", esc(home), format_prob(1 - pred$win_prob_a))),
+    # The home team is the second name in the matchup, so the number is enough.
+    prob = cell("Home win chance", format_prob(1 - pred$win_prob_a)),
     open = sprintf(
       '<button type="button" class="btn btn-open" data-game-id="%s" data-input="%s" aria-label="Open %s %s %s in Matchup">Open%s</button>',
       game$game_id, open_input_id, esc(away), joiner, esc(home), as.character(svg_icon("chevron"))
