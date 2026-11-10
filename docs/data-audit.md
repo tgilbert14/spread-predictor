@@ -64,13 +64,13 @@ Neutral-site games per season, so a sudden change stands out.
 | season | season_type | n_neutral | n_games |
 |---|---|---|---|
 | 2021 | postseason | 38 | 38 |
-| 2021 | regular | 21 | 849 |
+| 2021 | regular | 22 | 849 |
 | 2022 | postseason | 42 | 42 |
 | 2022 | regular | 20 | 854 |
 | 2023 | postseason | 40 | 42 |
 | 2023 | regular | 23 | 868 |
 | 2024 | postseason | 41 | 46 |
-| 2024 | regular | 39 | 874 |
+| 2024 | regular | 28 | 874 |
 | 2025 | postseason | 41 | 46 |
 | 2025 | regular | 23 | 888 |
 | 2026 | regular | 11 | 888 |
@@ -146,7 +146,7 @@ Games where sportsbooks disagree by more than 7 points.
 | 401677085 | 2024 | postseason | 1 | 0 | UTSA | Coastal Carolina | 3 | -12.5 | 13.5 | 26 |
 | 401331447 | 2021 | regular | 14 | 1 | Iowa | Michigan | 4 | -12 | 12 | 24 |
 | 401761589 | 2025 | regular | 1 | 1 | Charlotte | App State | 3 | 3 | 19.5 | 16.5 |
-| 401301056 | 2021 | regular | 15 | 0 | Army | Navy | 4 | -7 | 7 | 14 |
+| 401301056 | 2021 | regular | 15 | 1 | Army | Navy | 4 | -7 | 7 | 14 |
 | 401331219 | 2021 | postseason | 1 | 1 | Nevada | Western Michigan | 4 | -6.5 | 7 | 13.5 |
 | 401645331 | 2024 | regular | 5 | 0 | Temple | Army | 3 | 11 | 21.5 | 10.5 |
 | 401551773 | 2023 | postseason | 1 | 1 | Florida State | Georgia | 3 | 13.5 | 23.5 | 10 |
@@ -163,7 +163,7 @@ A provider's spread that matches the other books' line for the other team (home 
 
 | game_id | season | season_type | week | neutral_site | home_team | away_team | home_points | away_points | provider | spread | others_median | closing_line |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 401301056 | 2021 | regular | 15 | 0 | Army | Navy | 13 | 17 | Bovada | -7 | 7 | 7 |
+| 401301056 | 2021 | regular | 15 | 1 | Army | Navy | 13 | 17 | Bovada | -7 | 7 | 7 |
 | 401331219 | 2021 | postseason | 1 | 1 | Nevada | Western Michigan | 24 | 52 | consensus | -6.5 | 6.5 | 6.5 |
 | 401331239 | 2021 | postseason | 1 | 1 | Ohio State | Utah | 48 | 45 | consensus | 4 | -4 | -4 |
 | 401331447 | 2021 | regular | 14 | 1 | Iowa | Michigan | 3 | 42 | Bovada | -12 | 12 | 12 |

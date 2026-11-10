@@ -652,3 +652,45 @@ run_backfill <- function(seasons = TRAINING_SEASONS, now = Sys.time(), root = PA
   }
   ok
 }
+
+# ---- Research data ----------------------------------------------------------
+# Extra tables used only to test ideas in scripts/backtest.R. They are saved
+# as the API returns them (no renaming), under data/snapshots/extras/, so a
+# test never depends on guesses about column names. Nothing in the app or the
+# fit reads them until an idea has earned its place.
+
+# What to pull, and the cfbfastR function that returns one season of it.
+EXTRA_SOURCES <- c(
+  talent    = "cfbd_team_talent",          # roster talent composite, known before the season
+  returning = "cfbd_player_returning",     # share of last year's production coming back
+  advanced  = "cfbd_stats_game_advanced"   # per-game efficiency (success rate, points per play)
+)
+
+#' Keep only plain columns, so the table can be written as CSV.
+flatten_frame <- function(df) {
+  df[, !vapply(df, is.list, logical(1)), drop = FALSE]
+}
+
+#' Pull the research tables for some seasons. Files on disk are skipped.
+#'
+#' @return A named logical vector, one entry per file, TRUE if it worked.
+run_extras <- function(seasons = c(TRAINING_SEASONS, current_season()), root = PATHS$snapshots) {
+  require_cfbd()
+  reset_api_calls()
+  log_api_key_info("start")
+  on.exit({
+    log_api_key_info("end")
+    message("API calls this run: ", api_calls_made())
+  })
+  ok <- c()
+  for (kind in names(EXTRA_SOURCES)) {
+    for (season in seasons) {
+      label <- paste(season, kind)
+      path <- file.path(root, "extras", kind, paste0(season, ".csv"))
+      ok[label] <- run_step(label, pull_snapshot(path, function() {
+        flatten_frame(cfbd_fetch(EXTRA_SOURCES[[kind]], year = season))
+      }))
+    }
+  }
+  ok
+}

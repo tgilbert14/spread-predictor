@@ -39,10 +39,35 @@ fill_db <- function(con, snapshots_dir, schema_path) {
   DBI::dbWithTransaction(con, {
     load_table(con, "teams", read_season_files(file.path(snapshots_dir, "teams"), add_season = TRUE))
     load_table(con, "games", read_season_files(file.path(snapshots_dir, "games")))
+    apply_neutral_overrides(con)
     load_table(con, "lines", read_season_files(file.path(snapshots_dir, "lines")))
     drop_orphan_lines(con)
     load_table(con, "ratings", read_ratings_files(file.path(snapshots_dir, "ratings")))
   })
+}
+
+#' Correct neutral-site flags the source has wrong.
+#'
+#' Snapshot files are never edited, so known mistakes are fixed here, from a
+#' small hand-kept list with a reason for every row. The data audit's
+#' neutral-games-by-season table is how new ones get noticed.
+#'
+#' @param path CSV with game_id, neutral_site (0 or 1) and reason.
+apply_neutral_overrides <- function(con, path = file.path(PATHS$overrides, "neutral_site.csv")) {
+  if (!file.exists(path)) return(invisible(0L))
+  overrides <- utils::read.csv(path, stringsAsFactors = FALSE)
+  if (!all(overrides$neutral_site %in% c(0, 1))) {
+    stop(path, ": neutral_site must be 0 or 1 on every row.", call. = FALSE)
+  }
+  changed <- 0L
+  for (i in seq_len(nrow(overrides))) {
+    changed <- changed + DBI::dbExecute(
+      con, "UPDATE games SET neutral_site = ? WHERE game_id = ? AND neutral_site <> ?",
+      params = list(overrides$neutral_site[i], overrides$game_id[i], overrides$neutral_site[i])
+    )
+  }
+  if (changed > 0) message("Corrected the neutral-site flag on ", changed, " game(s) from ", path, ".")
+  invisible(changed)
 }
 
 #' Drop lines for games we do not track.

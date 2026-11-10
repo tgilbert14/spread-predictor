@@ -10,10 +10,10 @@ Mean absolute error of the predicted home margin, in points. Lower is better.
 
 | Model | CV MAE | Holdout MAE |
 | --- | --- | --- |
-| Elo | 12.952 | 12.867 |
-| Elo with tier correction | 12.627 | 12.369 |
+| Elo | 12.949 | 12.866 |
+| Elo with tier correction | 12.626 | 12.369 |
 | Power | 12.575 | 12.494 |
-| House blend (Elo and Power average) | 12.478 | 12.285 |
+| House blend (Elo and Power average) | 12.476 | 12.285 |
 | Closing line | 12.005 | 11.548 |
 
 ## Candidate factors
@@ -24,9 +24,9 @@ A factor is kept only if the CV interval lies wholly below zero and the holdout 
 
 | Factor | Metric | CV change | 95% interval | Holdout change | Verdict |
 | --- | --- | --- | --- | --- | --- |
-| Bye week or short rest | MAE | +0.002 | [-0.016, +0.018] | -0.019 | rejected |
+| Bye week or short rest | MAE | +0.002 | [-0.016, +0.017] | -0.019 | rejected |
 | Blowout curvature | MAE | +0.002 | [-0.004, +0.008] | -0.008 | rejected |
 | Postseason shift | MAE | -0.004 | [-0.015, +0.008] | +0.002 | rejected |
-| Home field trend by season | MAE | -0.005 | [-0.028, +0.020] | -0.006 | rejected |
-| Home field in conference games | MAE | +0.005 | [-0.005, +0.013] | -0.007 | rejected |
+| Home field trend by season | MAE | -0.005 | [-0.029, +0.020] | -0.005 | rejected |
+| Home field in conference games | MAE | +0.005 | [-0.005, +0.014] | -0.008 | rejected |
 | Separate early-season sigma | log loss | +0.0000 | [-0.0003, +0.0003] | +0.0005 | rejected |

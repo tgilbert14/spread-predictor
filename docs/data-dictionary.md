@@ -72,6 +72,26 @@ both are `fbs` are used for fitting.
 `game_id`, `provider`, `spread`, `pulled_at`. One row per sportsbook. The
 pipeline uses the median across sportsbooks as the closing line.
 
+### Research data (`data/snapshots/extras/`)
+
+`extras/talent/`, `extras/returning/` and `extras/advanced/`, one file per
+season, saved exactly as the API returns them. They exist to test ideas in
+the backtest. The app and the fit do not read them.
+
+## Corrections (`data/overrides/`)
+
+Snapshot files are never edited. When the source has something wrong, the fix
+goes in a small hand-kept file that is applied when the database is built.
+
+| File | Columns | Purpose |
+|---|---|---|
+| `neutral_site.csv` | `game_id`, `neutral_site` (0 or 1), `reason` | Corrects a neutral-site flag. Every row says why. |
+
+Two other clean-ups happen at build time, with a message each time: a team
+listed twice in one ratings file is averaged, and betting lines for games we
+do not track are dropped. When three or more sportsbooks quote a game and one
+has the spread on the wrong team, that one is left out of the closing line.
+
 ## Database (`cfb.sqlite`)
 
 A build artifact, not committed. Tables `teams`, `games`, `lines` and

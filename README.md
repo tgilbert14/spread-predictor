@@ -10,7 +10,17 @@ The number is a blend of five rating systems: four public ones (SP+, FPI, SRS
 and Elo) and our own Power rating, built from game scores. The app shows where
 each one lands, so you can see when they disagree.
 
-![The Matchup tab](docs/img/matchup.png)
+![The Matchup tab: LSU by 2 over Texas, with a band in the two team colors showing each team's chance to win](docs/img/matchup.png)
+
+Under the answer, the app shows where each rating system lands, so
+disagreement is easy to see.
+
+![Where the models land: one dot per rating system on a shared scale, with the blend marked](docs/img/models.png)
+
+The This week tab lists every game, sorted by how far our number is from the
+market's.
+
+![The This week tab: a table of games with our line, the market line and the difference](docs/img/this-week.png)
 
 > This app was made in collaboration with AI (Claude by Anthropic).
 
@@ -112,6 +122,7 @@ calling the API.
 | `scripts/refresh.R` | Snapshot, then rebuild the database and app data | Yes, unless `--offline` |
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
+| `scripts/pull_extras.R` | Pulls research data (talent, returning production, efficiency stats) for testing ideas | Yes, about 18 calls once |
 
 The free API tier allows 1,000 calls a month. Normal use is well under 100.
 

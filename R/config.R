@@ -6,7 +6,8 @@ PATHS <- list(
   database  = "cfb.sqlite",
   schema    = file.path("sql", "schema.sql"),
   params    = file.path("data", "params.json"),
-  app_data  = file.path("data", "app_data.rds")
+  app_data  = file.path("data", "app_data.rds"),
+  overrides = file.path("data", "overrides")
 )
 
 # Seasons to backfill from the API. 2020 is skipped on purpose: the COVID

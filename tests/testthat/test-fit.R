@@ -200,3 +200,15 @@ test_that("the gate report runs and every check gives a clear pass or look", {
   expect_type(checks$pass, "logical")
   expect_false(anyNA(checks$pass))
 })
+
+test_that("a sportsbook with home and away swapped is outvoted, not averaged in", {
+  # Three books say home by 12; one has the same number for the other team.
+  expect_equal(is_flipped_line(c(-12, -12.5, -12, 12)), c(FALSE, FALSE, FALSE, TRUE))
+  lines <- data.frame(game_id = 1L, spread = c(-12, -12.5, 12))
+  expect_equal(median_spread(lines)$spread, -12.25)
+
+  # Two books: no way to tell who is right, so both stay.
+  expect_equal(is_flipped_line(c(-12, 12)), c(FALSE, FALSE))
+  # Near pick'em, books really do disagree on the favorite.
+  expect_equal(is_flipped_line(c(-1, 1, -1.5)), c(FALSE, FALSE, FALSE))
+})

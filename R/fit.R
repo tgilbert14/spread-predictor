@@ -91,8 +91,27 @@ median_spread <- function(lines) {
   if (nrow(lines) == 0) {
     return(data.frame(game_id = integer(), spread = numeric()))
   }
-  spreads <- tapply(lines$spread, lines$game_id, stats::median)
+  spreads <- tapply(lines$spread, lines$game_id, function(s) stats::median(s[!is_flipped_line(s)]))
   data.frame(game_id = as.integer(names(spreads)), spread = as.numeric(spreads))
+}
+
+#' Which of one game's spreads are listed for the wrong team?
+#'
+#' Now and then one sportsbook's line arrives with home and away swapped: the
+#' other books say -12 and it says +12. With three or more books the others
+#' outvote it, so it is left out of the median. With two there is no way to
+#' tell which is right, so both stay.
+#'
+#' @param spreads One game's spreads, one per sportsbook.
+#' @param min_spread Ignore near pick'em games, where a sign flip is normal.
+#' @param tolerance How close to an exact mirror image counts as flipped.
+is_flipped_line <- function(spreads, min_spread = 3, tolerance = 1.5) {
+  if (length(spreads) < 3) return(rep(FALSE, length(spreads)))
+  vapply(seq_along(spreads), function(i) {
+    others <- stats::median(spreads[-i])
+    abs(others) >= min_spread && sign(spreads[i]) == -sign(others) &&
+      abs(spreads[i] + others) <= tolerance
+  }, logical(1))
 }
 
 # ---- Model inputs -----------------------------------------------------------

@@ -160,3 +160,18 @@ test_that("drop_orphan_lines removes lines for games we do not track", {
   expect_equal(dropped, 1)
   expect_equal(DBI::dbGetQuery(con, "SELECT game_id FROM lines ORDER BY game_id")$game_id, 1:2)
 })
+
+test_that("apply_neutral_overrides fixes only the listed games", {
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  withr::defer(DBI::dbDisconnect(con))
+  DBI::dbWriteTable(con, "games", data.frame(game_id = 1:3, neutral_site = c(1L, 0L, 1L)))
+  path <- withr::local_tempfile(fileext = ".csv")
+  write.csv(data.frame(game_id = c(1, 2), neutral_site = c(0, 1), reason = "test"), path, row.names = FALSE)
+
+  expect_message(changed <- apply_neutral_overrides(con, path), "Corrected the neutral-site flag on 2")
+  expect_equal(changed, 2)
+  expect_equal(DBI::dbGetQuery(con, "SELECT neutral_site FROM games ORDER BY game_id")$neutral_site, c(0L, 1L, 1L))
+
+  # No file means nothing to do, not an error.
+  expect_equal(apply_neutral_overrides(con, file.path(tempdir(), "missing.csv")), 0L)
+})

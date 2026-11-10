@@ -9,6 +9,14 @@ on:
   schedule:
     - cron: "0 13 * * 2"
   workflow_dispatch:
+    inputs:
+      task:
+        description: "What to pull"
+        type: choice
+        default: snapshot
+        options:
+          - snapshot   # this week's ratings, games and lines
+          - extras     # research data: talent, returning production, efficiency stats
 
 permissions:
   contents: write
@@ -42,9 +50,15 @@ jobs:
           dependencies: '"hard"'
           extra-packages: any::cfbfastR
 
+      # The scheduled run has no inputs, so it takes the weekly snapshot.
       - name: Take the snapshot
         id: snapshot
-        run: Rscript scripts/snapshot.R
+        run: |
+          if [ "${{ inputs.task }}" = "extras" ]; then
+            Rscript scripts/pull_extras.R
+          else
+            Rscript scripts/snapshot.R
+          fi
 
       # Runs even if one snapshot step failed, so the files that did arrive
       # are kept. Snapshot files are append-only, so this is always safe.
@@ -58,5 +72,5 @@ jobs:
             echo "No snapshot changes to commit."
             exit 0
           fi
-          git commit -m "Weekly snapshot $(date -u +%Y-%m-%d)"
+          git commit -m "Snapshot $(date -u +%Y-%m-%d)"
           git push

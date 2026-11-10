@@ -2,13 +2,13 @@
   "fit_date": "2026-11-09",
   "fit_seasons": [2022, 2023, 2024, 2025],
   "holdout_season": 2026,
-  "k": 26.7681,
-  "elo_tier": 10.5555,
-  "power_scale": 0.9943,
-  "h": 2.8017,
-  "h_elo": 2.872,
-  "h_power": 2.7314,
-  "sigma": 15.7784,
+  "k": 26.7624,
+  "elo_tier": 10.5436,
+  "power_scale": 0.9942,
+  "h": 2.8112,
+  "h_elo": 2.879,
+  "h_power": 2.7435,
+  "sigma": 15.776,
   "power": {
     "team_shrink": 4,
     "conference_shrink": 1,
@@ -31,7 +31,7 @@
       "model": "elo",
       "label": "Elo, power-conference corrected",
       "n": 3174,
-      "mae": 12.6272,
+      "mae": 12.6263,
       "win_rate": 0.7064,
       "brier": 0.1876
     },
@@ -39,23 +39,23 @@
       "model": "power",
       "label": "Power",
       "n": 3174,
-      "mae": 12.5754,
-      "win_rate": 0.7101,
+      "mae": 12.5748,
+      "win_rate": 0.7105,
       "brier": 0.1854
     },
     {
       "model": "house",
       "label": "Elo and Power average",
       "n": 3174,
-      "mae": 12.4777,
-      "win_rate": 0.7187,
+      "mae": 12.4764,
+      "win_rate": 0.7183,
       "brier": 0.1845
     },
     {
       "model": "line",
       "label": "Closing line",
       "n": 3174,
-      "mae": 12.0047,
+      "mae": 12.0046,
       "win_rate": 0.7253,
       "brier": 0.1787
     }
@@ -66,15 +66,15 @@
       "label": "Elo, power-conference corrected",
       "n": 562,
       "mae": 12.3689,
-      "win_rate": 0.726,
+      "win_rate": 0.7278,
       "brier": 0.183
     },
     {
       "model": "power",
       "label": "Power",
       "n": 562,
-      "mae": 12.4938,
-      "win_rate": 0.7117,
+      "mae": 12.4935,
+      "win_rate": 0.71,
       "brier": 0.1847
     },
     {
@@ -82,7 +82,7 @@
       "label": "Elo and Power average",
       "n": 562,
       "mae": 12.2854,
-      "win_rate": 0.7171,
+      "win_rate": 0.7189,
       "brier": 0.1814
     },
     {
@@ -98,92 +98,92 @@
     {
       "bin_low": 0.5,
       "bin_high": 0.6,
-      "n": 864,
-      "predicted": 0.5494,
-      "actual": 0.5637
+      "n": 867,
+      "predicted": 0.5496,
+      "actual": 0.564
     },
     {
       "bin_low": 0.6,
       "bin_high": 0.7,
-      "n": 784,
-      "predicted": 0.6485,
-      "actual": 0.6569
+      "n": 779,
+      "predicted": 0.6486,
+      "actual": 0.6547
     },
     {
       "bin_low": 0.7,
       "bin_high": 0.8,
-      "n": 639,
-      "predicted": 0.7475,
-      "actual": 0.7559
+      "n": 641,
+      "predicted": 0.7476,
+      "actual": 0.7551
     },
     {
       "bin_low": 0.8,
       "bin_high": 0.9,
       "n": 520,
       "predicted": 0.8472,
-      "actual": 0.8558
+      "actual": 0.8577
     },
     {
       "bin_low": 0.9,
       "bin_high": 1,
       "n": 367,
-      "predicted": 0.9454,
+      "predicted": 0.9455,
       "actual": 0.9564
     }
   ],
   "folds": [
     {
       "season": 2022,
-      "k": 26.3398,
-      "elo_tier": 10.4322,
-      "power_scale": 0.9973,
-      "h": 2.9788,
-      "sigma": 15.739,
-      "mae": 12.4468
+      "k": 26.3313,
+      "elo_tier": 10.4156,
+      "power_scale": 0.9972,
+      "h": 2.9908,
+      "sigma": 15.7355,
+      "mae": 12.4474
     },
     {
       "season": 2023,
-      "k": 27.0847,
-      "elo_tier": 10.7845,
-      "power_scale": 0.9914,
-      "h": 2.9396,
-      "sigma": 15.7071,
-      "mae": 12.6233
+      "k": 27.0768,
+      "elo_tier": 10.7686,
+      "power_scale": 0.9913,
+      "h": 2.9516,
+      "sigma": 15.7037,
+      "mae": 12.6235
     },
     {
       "season": 2024,
       "k": 26.4063,
       "elo_tier": 10.2462,
-      "power_scale": 1.002,
-      "h": 2.6811,
+      "power_scale": 1.0019,
+      "h": 2.6814,
       "sigma": 15.7514,
-      "mae": 12.6327
+      "mae": 12.628
     },
     {
       "season": 2025,
-      "k": 27.2538,
-      "elo_tier": 10.7406,
-      "power_scale": 0.9859,
-      "h": 2.6094,
-      "sigma": 15.8791,
-      "mae": 12.2117
+      "k": 27.247,
+      "elo_tier": 10.7254,
+      "power_scale": 0.9858,
+      "h": 2.6225,
+      "sigma": 15.8759,
+      "mae": 12.2104
     }
   ],
   "leaked_diagnostic": [
     {
       "model": "sp",
       "n": 3174,
-      "mae": 10.7519
+      "mae": 10.7481
     },
     {
       "model": "fpi",
       "n": 3174,
-      "mae": 10.553
+      "mae": 10.5474
     },
     {
       "model": "srs",
       "n": 3174,
-      "mae": 10.5127
+      "mae": 10.5103
     }
   ]
 }
