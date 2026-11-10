@@ -1,14 +1,16 @@
-# Build data/app_data.rds, the only file the app reads.
+# Build data/app_data.rds: everything the app shows except the game notes.
 # The shape is set in docs/data-dictionary.md and matches demo_app_data().
 
 #' Build and save the app data.
 #'
 #' The current season is the latest one with weekly snapshots, and the week
-#' is the latest snapshot week in it.
+#' is the latest snapshot week in it. Saved predictions (under
+#' `snapshots_root`) are graded into the scorecard and give the slate its
+#' line movement.
 #'
 #' @return The app data list, invisibly.
 build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
-                           out_path = PATHS$app_data) {
+                           out_path = PATHS$app_data, snapshots_root = PATHS$snapshots) {
   params <- read_params(params_path)
   con <- connect_readonly(db_path)
   on.exit(DBI::dbDisconnect(con))
@@ -21,6 +23,7 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
   season <- max(coverage$season)
   week <- max(coverage$week[coverage$season == season])
   latest <- latest_snapshots(coverage, season)
+  predictions <- load_predictions(snapshots_root)
 
   app_data <- list(
     meta = list(
@@ -32,8 +35,9 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
     ),
     teams = current_teams(con, season, latest),
     params = params,
-    slate = current_slate(con, season, week),
-    coverage = coverage
+    slate = add_line_movement(current_slate(con, season, week), predictions, season, week),
+    coverage = coverage,
+    scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season)
   )
 
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)

@@ -45,7 +45,9 @@ mod_slate_ui <- function(id, app_data) {
 
 #' One display row per slate game, plus numeric keys for sorting.
 #' Games whose teams cannot be predicted are skipped rather than shown broken.
-slate_rows <- function(app_data, open_input_id) {
+#'
+#' @param notes This week's game notes (app_notes()), counted per game.
+slate_rows <- function(app_data, open_input_id, notes = NULL) {
   slate <- app_data$slate
   rows <- lapply(seq_len(nrow(slate)), function(i) {
     game <- slate[i, , drop = FALSE]
@@ -54,13 +56,15 @@ slate_rows <- function(app_data, open_input_id) {
                                      week = app_data$meta$week),
                      error = function(e) NULL)
     if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id)
+    slate_row(pred, game, open_input_id, n_notes = sum(notes$game_id == game$game_id))
   })
   do.call(rbind, rows)
 }
 
 #' A single slate row. Team A is the away team and B the home team.
-slate_row <- function(pred, game, open_input_id) {
+#'
+#' @param n_notes How many game notes this game has, for its marker.
+slate_row <- function(pred, game, open_input_id, n_notes = 0) {
   away <- pred$team_a$school
   home <- pred$team_b$school
   esc <- htmltools::htmlEscape
@@ -72,8 +76,11 @@ slate_row <- function(pred, game, open_input_id) {
   # Each cell carries its own label, shown only when rows stack as cards on phones.
   cell <- function(label, html) sprintf('<span class="cell-label">%s</span>%s', label, html)
   data.frame(
-    matchup = sprintf('<span class="slate-team">%s</span> <span class="slate-at">%s</span> <span class="slate-team">%s</span>',
-                      esc(away), joiner, esc(home)),
+    matchup = paste0(
+      sprintf('<span class="slate-team">%s</span> <span class="slate-at">%s</span> <span class="slate-team">%s</span>',
+              esc(away), joiner, esc(home)),
+      slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes)
+    ),
     our = cell("Our line", esc(format_favorite(pred$spread, away, home))),
     market = cell("Market", if (has_line) esc(format_favorite(market, away, home)) else '<span class="muted">No line</span>'),
     gap = cell("Difference", if (has_line) {
@@ -130,12 +137,13 @@ slate_table <- function(rows) {
   )
 }
 
+#' @param notes This week's game notes (app_notes()).
 #' @param on_open Called with list(a, b, site) to open a game in Matchup, or
 #'   with NULL to just switch to the Matchup tab.
-mod_slate_server <- function(id, app_data, on_open) {
+mod_slate_server <- function(id, app_data, notes, on_open) {
   shiny::moduleServer(id, function(input, output, session) {
     if (nrow(app_data$slate) > 0) {
-      output$table <- DT::renderDT(slate_table(slate_rows(app_data, session$ns("open"))))
+      output$table <- DT::renderDT(slate_table(slate_rows(app_data, session$ns("open"), notes)))
     }
 
     shiny::observeEvent(input$open, {

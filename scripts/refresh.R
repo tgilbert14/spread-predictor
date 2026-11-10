@@ -1,4 +1,5 @@
-# Snapshot, rebuild the database, then rebuild the app's data file.
+# Snapshot, rebuild the database, rebuild the app's data file, save this
+# week's predictions before kickoff, grade the saved ones, and audit the data.
 #
 # Run from the project root:
 #   Rscript scripts/refresh.R             # pulls this week's snapshot first
@@ -31,7 +32,14 @@ if (!file.exists(PATHS$params)) {
        "Run Rscript scripts/fit.R, then run this script again.", call. = FALSE)
 }
 
-build_app_data()
+# Building the app data also grades every saved prediction against the
+# results now in the database (the scorecard).
+app_data <- build_app_data()
+
+# Save this week's predictions, once, before the first kickoff. A new file
+# changes the scorecard and the line movement, so rebuild to include it.
+if (freeze_predictions(app_data)) app_data <- build_app_data()
+message(scorecard_message(app_data$scorecard))
 
 # Check the data every time it changes. Problems are reported, not fatal:
 # the report says which ones matter.

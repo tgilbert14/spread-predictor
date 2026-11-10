@@ -180,3 +180,84 @@ test_that("flag_list and simple_table build markup", {
   html <- as.character(simple_table(data.frame(a = "x", b = "1"), c("A", "B"), numeric = c(FALSE, TRUE)))
   expect_match(html, '<th scope="col" class="num">B</th>', fixed = TRUE)
 })
+
+test_that("old app data with no scorecard or line movement loads as empty", {
+  path <- tempfile(fileext = ".rds")
+  x <- demo_app_data()
+  x$scorecard <- NULL
+  x$slate$market_at_freeze <- NULL
+  x$slate$market_move <- NULL
+  x$meta$is_demo <- FALSE
+  saveRDS(x, path)
+  loaded <- load_app_data(path)
+  expect_null(loaded$error)
+  expect_true(is_scorecard(loaded$data$scorecard))
+  expect_identical(loaded$data$scorecard$season$games, 0L)
+  expect_true(all(is.na(loaded$data$slate$market_move)))
+})
+
+test_that("line_move_note names the team the line moved toward, past the threshold only", {
+  game <- data.frame(market_move = 3)
+  expect_identical(line_move_note(game, "LSU", "Texas", "2026-11-10T13:02:00Z"),
+                   "The line has moved 3 points toward LSU since Tuesday. That usually means news.")
+  game$market_move <- -2.5
+  expect_match(line_move_note(game, "LSU", "Texas", NA), "toward Texas since our prediction was saved")
+  game$market_move <- 2
+  expect_null(line_move_note(game, "LSU", "Texas"))
+  game$market_move <- NA
+  expect_null(line_move_note(game, "LSU", "Texas"))
+  expect_null(line_move_note(NULL, "LSU", "Texas"))
+  expect_identical(weekday_name("2026-11-13T21:00:00Z"), "Friday")
+})
+
+test_that("slate markers are words, not color alone", {
+  expect_identical(slate_markers(NA, 0), "")
+  expect_identical(slate_markers(1, 0), "")
+  expect_match(slate_markers(-3, 0), ">Line moved 3<")
+  expect_match(slate_markers(0, 1), ">1 note<")
+  html <- slate_markers(4, 2)
+  expect_match(html, "Line moved 4")
+  expect_match(html, "2 notes")
+})
+
+test_that("game notes show their source as a safe link that opens a new tab", {
+  notes <- demo_notes(demo)
+  html <- as.character(game_notes(notes, "notes-title"))
+  expect_match(html, "Notes for this game")
+  expect_match(html, 'target="_blank" rel="noopener">Team injury report \\(demo\\)</a>, checked Nov 12')
+  expect_match(html, "Availability, Ironwood|Availability, [A-Za-z]+")
+  expect_match(html, "Conference office \\(demo\\), checked Nov 13")
+  expect_null(game_notes(notes[0, ], "x"))
+
+  # A link with no name shows its site; a non-web link is not made clickable.
+  note <- notes[1, ]
+  note$source <- NA
+  expect_match(as.character(note_source(note)), ">example.com</a>")
+  note$source <- "Tip"
+  note$source_url <- "javascript:alert(1)"
+  expect_false(grepl("<a", as.character(note_source(note))))
+  note$source <- NA
+  note$source_url <- NA
+  expect_match(as.character(note_source(note)), "Checked Nov 12")
+})
+
+test_that("app_notes uses the demo notes in demo mode and keeps only slate games", {
+  notes <- app_notes(demo)
+  expect_identical(nrow(notes), 3L)
+  expect_true(all(notes$game_id %in% demo$slate$game_id))
+
+  real <- demo
+  real$meta$is_demo <- FALSE
+  path <- tempfile(fileext = ".csv")
+  writeLines(c("season,week,game_id,team,category,note,source,source_url,checked_at",
+               sprintf("2026,11,%d,,other,On the slate.,,,", demo$slate$game_id[1]),
+               "2026,11,1,,other,Not on the slate.,,,"), path)
+  expect_identical(app_notes(real, path)$note, "On the slate.")
+})
+
+test_that("slate rows carry markers for moved lines and notes", {
+  rows <- slate_rows(demo, "open", demo_notes(demo))
+  expect_identical(sum(grepl("Line moved", rows$matchup)), 2L)
+  expect_identical(sum(grepl("2 notes", rows$matchup)), 1L)
+  expect_identical(sum(grepl("1 note<", rows$matchup)), 1L)
+})

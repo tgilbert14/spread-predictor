@@ -46,12 +46,35 @@ complete_app_data <- function(x) {
                           away_id = integer(), neutral_site = logical(),
                           market_spread_home = numeric())
   }
+  # App data built before predictions were saved has no line movement or
+  # scorecard. Treat that as nothing saved yet.
+  for (col in setdiff(c("market_at_freeze", "market_move"), names(x$slate))) {
+    x$slate[[col]] <- rep(NA_real_, nrow(x$slate))
+  }
+  if (!is_scorecard(x$scorecard)) x$scorecard <- empty_scorecard(x$meta$season)
   if (!is.data.frame(x$coverage)) {
     x$coverage <- data.frame(source = character(), season = integer(), week = integer(),
                              n_teams = integer(), pulled_at = character())
   }
   x$meta$is_demo <- isTRUE(x$meta$is_demo)
   x
+}
+
+#' TRUE when `x` has every part of a scorecard.
+is_scorecard <- function(x) {
+  parts <- c("games", "weeks", "season", "systems")
+  is.list(x) && all(parts %in% names(x)) && all(vapply(x[parts], is.data.frame, logical(1)))
+}
+
+#' This week's game notes for the slate games: the made-up ones in demo mode,
+#' otherwise read straight from data/notes.csv.
+app_notes <- function(app_data, path = PATHS$notes) {
+  notes <- if (isTRUE(app_data$meta$is_demo)) {
+    demo_notes(app_data)
+  } else {
+    load_notes(path, app_data$meta$season, app_data$meta$week)
+  }
+  notes[notes$game_id %in% app_data$slate$game_id, , drop = FALSE]
 }
 
 #' Load app data, falling back to the demo when the real file is missing or bad.
@@ -282,6 +305,88 @@ describe_market <- function(pred, slate) {
   sprintf("%s %s%s.",
           if (market_line == "Pick'em") "The market calls it a pick'em." else sprintf("The market has %s.", market_line),
           toupper(substr(gap, 1, 1)), substr(gap, 2, nchar(gap)))
+}
+
+# Line movement and notes --------------------------------------------------------
+
+#' The weekday a prediction was saved, such as "Tuesday", or NA.
+#' Uses fixed English names so it does not depend on the locale.
+weekday_name <- function(time) {
+  day <- suppressWarnings(as.integer(format(parse_utc(time), "%u", tz = "UTC")))
+  if (length(day) != 1 || is.na(day)) return(NA_character_)
+  c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")[day]
+}
+
+#' Has this slate game's line moved enough to mention?
+line_moved <- function(move) !is.na(move) & abs(move) >= LINE_MOVE_POINTS
+
+#' A plain note when a slate game's line has moved LINE_MOVE_POINTS or more
+#' since our prediction was saved, or NULL.
+#'
+#' @param game One slate row, with market_move (positive = toward home).
+#' @param frozen_at When the prediction was saved, or NA.
+line_move_note <- function(game, home_name, away_name, frozen_at = NA) {
+  if (is.null(game) || !isTRUE(line_moved(game$market_move))) return(NULL)
+  day <- weekday_name(frozen_at)
+  sprintf("The line has moved %s points toward %s since %s. That usually means news.",
+          format_points(game$market_move), if (game$market_move > 0) home_name else away_name,
+          if (is.na(day)) "our prediction was saved" else day)
+}
+
+#' Compact text markers for a slate row, such as "Line moved 3" and "2 notes".
+#' Returns HTML for the DT cell, or "" when there is nothing to mark.
+slate_markers <- function(move, n_notes) {
+  parts <- c(
+    if (isTRUE(line_moved(move))) paste("Line moved", format_points(move)),
+    if (n_notes > 0) sprintf("%d %s", n_notes, if (n_notes == 1) "note" else "notes")
+  )
+  if (length(parts) == 0) return("")
+  sprintf('<span class="slate-markers">%s</span>',
+          paste(sprintf('<span class="slate-marker">%s</span>', parts), collapse = " "))
+}
+
+NOTE_LABELS <- c(availability = "Availability", weather = "Weather")
+
+#' "ESPN, checked Nov 12": the source as a link that opens in a new tab.
+#' Only http and https links are made clickable.
+note_source <- function(note) {
+  url <- note$source_url
+  name <- if (is.na(note$source)) NA_character_ else note$source
+  linkable <- !is.na(url) && grepl("^https?://", url, ignore.case = TRUE)
+  if (linkable && is.na(name)) name <- sub("^https?://(www\\.)?([^/]+).*$", "\\2", url, ignore.case = TRUE)
+  checked <- tryCatch(short_date(substr(note$checked_at, 1, 10)), error = function(e) NA)
+  if (is.na(name) && is.na(checked)) return(NULL)
+
+  checked_text <- if (is.na(checked)) NULL else paste0(if (!is.na(name)) ", checked " else "Checked ", checked)
+  # .noWS keeps the comma right after the link instead of a space before it.
+  if (!linkable) {
+    return(htmltools::span(class = "note-source", paste0(if (!is.na(name)) name, checked_text)))
+  }
+  link <- htmltools::tags$a(href = url, target = "_blank", rel = "noopener", name, .noWS = "outside")
+  htmltools::span(class = "note-source", link, checked_text, .noWS = "inside")
+}
+
+#' The "Notes for this game" section, or NULL when there are none.
+#'
+#' @param notes Rows from load_notes() for one game.
+#' @param title_id Id for the heading, so the section is labeled by it.
+game_notes <- function(notes, title_id) {
+  if (is.null(notes) || nrow(notes) == 0) return(NULL)
+  items <- lapply(seq_len(nrow(notes)), function(i) {
+    note <- notes[i, , drop = FALSE]
+    kind <- c(unname(NOTE_LABELS[note$category]), note$team)
+    kind <- kind[!is.na(kind)]
+    htmltools::tags$li(
+      if (length(kind) > 0) htmltools::span(class = "note-kind", paste(kind, collapse = ", ")),
+      htmltools::span(class = "note-text", note$note),
+      note_source(note)
+    )
+  })
+  htmltools::tags$section(
+    class = "game-notes", `aria-labelledby` = title_id,
+    htmltools::tags$h3(id = title_id, class = "game-notes-title", "Notes for this game"),
+    htmltools::tags$ul(class = "game-notes-list", items)
+  )
 }
 
 # Numbers in tables ------------------------------------------------------------

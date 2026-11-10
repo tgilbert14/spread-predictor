@@ -439,6 +439,11 @@ table.dataTable td.dataTables_empty { color: var(--muted); text-align: left; pad
   .slate-search input { max-width: none; }
 }
 
+/* Slate markers ------------------------------------------------------------------
+   Small words under a matchup: the line has moved, or the game has notes. */
+.slate-markers { display: flex; flex-wrap: wrap; gap: 0.1rem 0.75rem; margin-top: 0.2rem; }
+.slate-marker { font-size: 0.8rem; font-weight: 600; color: var(--warn); white-space: nowrap; }
+
 /* Empty states ------------------------------------------------------------------ */
 .empty-state { padding: 1rem 0; color: var(--muted); max-width: 60ch; }
 .empty-state-title { font-weight: 700; color: var(--ink); font-size: 1.1rem; margin-bottom: 0.4rem; }
@@ -460,6 +465,39 @@ table.dataTable td.dataTables_empty { color: var(--muted); text-align: left; pad
 .weight-chip { display: inline-flex; gap: 0.3rem; }
 .weight-chip strong { font-weight: 700; }
 .shiny-plot-output img { max-width: 100%; height: auto; }
+
+/* Game notes (Matchup tab) ---------------------------------------------------------
+   A short list under the answer: what kind of note, the note, then its source. */
+.game-notes { margin-top: 1.75rem; padding-top: 0.9rem; border-top: 1px solid var(--rule); max-width: 68ch; }
+.game-notes-title { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1.1; margin: 0 0 0.6rem; }
+.game-notes-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+.note-kind { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.note-source { display: block; font-size: 0.9rem; color: var(--muted); }
+.note-source a { color: var(--ink); text-underline-offset: 3px; }
+.note-source a:hover { color: var(--focus); }
+
+/* Scorecard ------------------------------------------------------------------------
+   The season's answer set large, like the Matchup headline, then figures. */
+.scorecard-headline { margin: 0 0 0.9rem; font-size: 1rem; font-weight: 400; }
+.scorecard-answer {
+  display: block; font-family: var(--display); font-weight: 900;
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 4.75rem); line-height: 0.95; text-wrap: balance;
+}
+.scorecard-summary .report-grid { margin-top: 0.5rem; }
+.data-table tr.is-market td { border-top: 1px solid var(--rule); }
+/* Week by week: headers may wrap on phones so the table fits without scrolling. */
+@media (max-width: 575.98px) {
+  .scorecard-weeks .data-table { font-size: 0.8rem; }
+  .scorecard-weeks .data-table th { white-space: normal; font-size: 0.75rem; }
+  .scorecard-weeks .data-table th, .scorecard-weeks .data-table td { padding-inline: 0.2rem; }
+}
+/* Graded games reuse the This week table, but rows do not open anything. */
+table.dataTable.scorecard-table tbody tr { cursor: default; }
+table.dataTable.scorecard-table tbody tr:hover td { background: transparent; }
+@media (max-width: 575.98px) {
+  table.dataTable.scorecard-table tbody td:last-child { position: static; grid-column: 1 / -1; }
+  table.dataTable.scorecard-table tbody td:first-child { padding-right: 0 !important; }
+}
 
 /* Footer -------------------------------------------------------------------------- */
 .app-footer {

@@ -12,6 +12,8 @@ Get these wrong and every number flips, so they are stated once, here.
 | `predict_matchup()` and the app | `margin = Team A points - Team B points`. Positive means A is favored. |
 | `games` table and fitting | Home-relative. `home_points - away_points`. |
 | `lines.spread` and `slate.market_spread_home` | Home-relative, sportsbook style (the CFBD convention). `-7` means the home team is favored by 7. Expected home margin is `-spread`. |
+| Predictions files and the scorecard | Margins (`sp` ... `blend`, `final_margin`) are home-relative: home points minus away points. `market_spread_home` and `market_at_freeze` are sportsbook style, as above. |
+| `slate.market_move` | Points of expected home margin. Positive means the market moved toward the home team. |
 
 ## Snapshot files (`data/snapshots/`)
 
@@ -28,6 +30,7 @@ can be rebuilt from them.
 | `extras/talent/{season}.csv` | team | Once per season. |
 | `extras/returning/{season}.csv` | team | Once per season. |
 | `extras/advanced/{season}.csv` | team per game | Same rule as games. |
+| `predictions/{season}_wk{WW}.csv` | game | Once per week, before the week's first kickoff. Never overwritten. |
 
 `{source}` is one of `sp`, `fpi`, `srs`, `elo`. The fifth system, Power, is
 computed from game results (`R/power_rating.R`), so it has no snapshot files. `{WW}` is the zero-padded
@@ -93,6 +96,45 @@ Talent and returning production feed the house models early in the season.
 Success rates feed the Power rating. `scripts/pull_extras.R` pulls past
 seasons once; the weekly snapshot keeps the current season up to date.
 
+### Predictions files
+
+Written by `freeze_predictions()` (`R/predictions.R`) on the first refresh of
+the week, for every game on the slate, with the ratings and parameters the app
+was using. Nothing is written if any game of that week has kicked off. Columns,
+in this order:
+
+| Column | Type | Notes |
+|---|---|---|
+| `game_id`, `season`, `week`, `start_date` | | As in the games file |
+| `home_id`, `home_team`, `away_id`, `away_team` | | As in the games file |
+| `neutral_site` | int | 0 or 1 |
+| `sp`, `fpi`, `srs`, `elo`, `power` | num | Each system's home margin, rounded to 0.01. Empty when that system had no rating for one of the teams. |
+| `blend` | num | Our line: the home margin the app showed |
+| `win_prob_home` | num | Home team's chance to win, 0 to 1 |
+| `sigma` | num | Typical miss used for the win chance |
+| `market_spread_home` | num | Median sportsbook spread at the time of saving, sportsbook style. Empty when there was no line. |
+| `fit_date` | chr | `fit_date` from `params.json` |
+| `frozen_at` | chr | ISO 8601 UTC time the file was written |
+
+## Game notes (`data/notes.csv`)
+
+Short, sourced notes about this week's games. A separate weekly check outside
+this code appends rows on Thursdays and Fridays. The app reads this file
+directly at startup (it is not part of `app_data.rds`), and shows a note only
+for a game on this week's slate. Notes never change a prediction.
+
+| Column | Notes |
+|---|---|
+| `season`, `week`, `game_id` | Which game. Rows without a `game_id` are ignored. |
+| `team` | The team the note is about. May be empty. |
+| `category` | `availability`, `weather` or `other`. Anything else is read as `other`. |
+| `note` | The note, in plain words. Rows without one are ignored. |
+| `source`, `source_url` | Where it came from. The url may be empty; only http and https links are clickable. |
+| `checked_at` | When it was checked, ISO 8601 date or time |
+
+The reader (`load_notes()` in `R/notes.R`) tolerates a missing or empty file
+and stray whitespace.
+
 ## Corrections (`data/overrides/`)
 
 Snapshot files are never edited. When the source has something wrong, the fix
@@ -152,17 +194,37 @@ Written by `scripts/fit.R`. Committed, so changes show up in git history.
 
 ## App data (`data/app_data.rds`)
 
-The only file the app reads. A named list written by `build_app_data()`. When
-it is missing, the app uses `demo_app_data()`, which returns the same shape
-with made-up teams.
+What the app shows. A named list written by `build_app_data()`, committed so
+the hosted app has it. The app also reads `data/notes.csv`. When the app data
+is missing, the app uses `demo_app_data()`, which returns the same shape with
+made-up teams, a made-up scorecard and made-up notes. An older file without
+`scorecard` or the line-movement columns loads as if nothing had been saved.
 
 | Element | Type | Contents |
 |---|---|---|
 | `meta` | list | `season`, `week`, `ratings_date`, `built_at`, `is_demo` |
 | `teams` | data frame | One row per FBS team: the teams columns above, plus `sp`, `fpi`, `srs`, `elo`, `power`, their ranks (`sp_rank` and so on), and `tier` (1 for a power team, 0 otherwise, from `is_power_team()`), and `talent_z` and `returning_z` (this season's preseason z-scores among FBS teams, 0 when missing). `power` is centered so the average team is 0. A rating can be `NA`. |
 | `params` | list | The contents of `params.json`. Table-like fields are data frames. |
-| `slate` | data frame | This week's FBS games: `game_id`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `market_spread_home` (can be `NA`) |
+| `slate` | data frame | This week's FBS games: `game_id`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `market_spread_home` (can be `NA`), `market_at_freeze` (the line saved with this week's predictions, `NA` when none), `market_move` (`market_at_freeze - market_spread_home`: points the expected home margin has moved since, positive toward the home team) |
 | `coverage` | data frame | Which snapshots exist: `source`, `season`, `week`, `n_teams`, `pulled_at` |
+| `scorecard` | list | Saved predictions for this season, graded. See below. |
+
+### Scorecard (`app_data$scorecard`)
+
+Built by `build_scorecard()` in `R/predictions.R`.
+
+| Element | Contents |
+|---|---|
+| `games` | One row per saved prediction this season: every predictions-file column, plus `home_points`, `away_points`, `final_margin`, `our_error` (`abs(blend - final_margin)`), `market_error` (`abs(-market_spread_home - final_margin)`), `picked_winner`, `closer` (`"us"`, `"market"` or `"tie"`), `disagreed` (our line and the market's at least `DISAGREE_POINTS` apart) and `our_side` (for a disagreement, did the result land on our side of the market line; `NA` for a push). Games not yet played have `NA` in all of these. |
+| `weeks` | One row per week with a graded game: `season`, `week`, then the summary columns below |
+| `season` | One row: `season`, then the summary columns. `games` is 0 before anything is graded. |
+| `systems` | One row per system (`sp`, `fpi`, `srs`, `elo`, `power`, `blend`, `market`): `system`, `label`, `games`, `avg_miss` |
+
+Summary columns: `games` (graded), `our_miss` (average), `market_games` (graded
+games with a line), `market_miss` (average over those), `winners`,
+`winner_share`, `closer` (games where we beat the market), `ties`,
+`disagree_games` (graded disagreements, pushes left out) and
+`disagree_our_side`.
 
 ## Prediction result
 

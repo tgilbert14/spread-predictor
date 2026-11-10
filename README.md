@@ -22,6 +22,14 @@ market's.
 
 ![The This week tab: a table of games with our line, the market line and the difference](docs/img/this-week.png)
 
+The Scorecard tab keeps the model honest. Every week, before the first
+kickoff, the app's line for every game is saved and never changed. Once the
+games are played, each saved line is graded against the final score and
+against the market line saved with it: how far off we were, how far off the
+market was, how often we picked the winner, and how the games went when we
+disagreed with the market by 3 or more points. It also grades all five rating
+systems on the same games.
+
 > This app was made in collaboration with AI (Claude by Anthropic).
 
 ## Contents
@@ -90,10 +98,11 @@ Prefer RStudio? Open `Spread-predictor.Rproj` and run each script with
 Ratings change every week, and three of the four public systems don't publish their
 history. If a week isn't saved, it's gone. So the repo saves it for you.
 
-### Automatic weekly snapshot (recommended)
+### Automatic refresh (recommended)
 
-A GitHub Action runs every Tuesday morning and commits that week's ratings to
-`data/snapshots/`. Turn it on once:
+A GitHub Action refreshes the data three times a week and commits the
+results: snapshot files, the app data, and the saved predictions. Turn it on
+once:
 
 1. On GitHub, open the repo's **Settings > Secrets and variables > Actions**.
 2. Click **New repository secret**.
@@ -101,6 +110,27 @@ A GitHub Action runs every Tuesday morning and commits that week's ratings to
 
 That's it. To test it right away, open the **Actions** tab, choose
 **Weekly snapshot**, and click **Run workflow**.
+
+The weekly rhythm (times are UTC):
+
+| When | What happens |
+|---|---|
+| Tuesday 13:00 | New ratings, games and lines. This week's predictions are saved before the first kickoff, and last week's are graded. |
+| Thursday and Friday 21:00 | Lines refreshed, so the app shows how far each has moved since Tuesday. Game notes (injuries, weather) are added to `data/notes.csv` on these days by a separate check. |
+
+Each run does the same thing: `Rscript scripts/refresh.R`. It never rewrites
+a saved predictions file, and it only saves one before the week's first game
+kicks off.
+
+**Run workflow** also offers these tasks:
+
+| Task | What it does |
+|---|---|
+| `refresh` | The default, as above |
+| `extras` | Pulls research data: talent, returning production, game stats |
+| `backfill` | Pulls history for every season, plus the research data |
+| `fit` | Refits the model (`data/params.json`), then rebuilds the app data |
+| `manifest` | Writes `manifest.json`, the file list a Posit Connect or shinyapps.io server needs to deploy the app |
 
 ### Updating your local copy
 
@@ -120,12 +150,14 @@ calling the API.
 | `scripts/backfill.R` | One-time pull of past seasons | Yes, about 70 calls |
 | `scripts/fit.R` | Rebuilds the database, fits the model, writes `data/params.json` | No |
 | `scripts/snapshot.R` | Saves this week's ratings, games, lines and game stats (plus the season's talent and returning production the first time) | Yes, about 9 calls (12 the first week of a season) |
-| `scripts/refresh.R` | Snapshot, then rebuild the database and app data | Yes, unless `--offline` |
+| `scripts/refresh.R` | Snapshot, rebuild the database and app data, save this week's predictions before kickoff, grade saved ones, audit | Yes, unless `--offline` |
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
 | `scripts/pull_extras.R` | One-time pull of past seasons' talent, returning production and game stats | Yes, about 30 calls once |
+| `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app (needs the `rsconnect` package) | No |
 
-The free API tier allows 1,000 calls a month. Normal use is well under 100.
+The free API tier allows 1,000 calls a month. The three automatic runs use
+about 20 a week (later runs in a week skip ratings already saved).
 
 ## How the number is made
 
@@ -162,15 +194,18 @@ app.R                 the Shiny app
 R/                    all functions (pipeline, model, app modules)
 scripts/              the commands you run (see the table above)
 sql/                  database schema and queries
-data/snapshots/       weekly ratings, games, lines and extras as CSV. The source of truth.
+data/snapshots/       weekly ratings, games, lines, extras and saved predictions as CSV. The source of truth.
 data/params.json      fitted model parameters
+data/app_data.rds     everything the app shows, built from the files above
+data/notes.csv        game notes (injuries, weather), added during the week
 tests/testthat/       unit tests
 docs/                 deeper documentation
 .github/workflows/    weekly snapshot and test automation
 ```
 
-Files that are built, not stored: `cfb.sqlite` and `data/app_data.rds`. Delete
-them any time. `Rscript scripts/refresh.R --offline` makes them again.
+`cfb.sqlite` is built, not stored. Delete it any time.
+`data/app_data.rds` is built too, but it is committed, because the hosted app
+needs it. `Rscript scripts/refresh.R --offline` makes both again.
 
 Further reading:
 
@@ -200,8 +235,11 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 ## Limits
 
 - FBS teams only.
-- No injuries, weather or roster news. The app knows what the rating systems
-  know.
+- No injuries, weather or roster news in the number. The line is what the
+  rating systems know. Game notes and line movement show news next to it,
+  but never change it.
+- A few weeks on the Scorecard is too little to judge the model. Single games
+  swing by two touchdowns, so give it a season.
 - Early in the season, ratings lean on preseason guesses. The app flags this.
 - Ratings stop updating once bowl season starts. Games and lines still
   refresh.

@@ -1,5 +1,6 @@
 # CFB Spread Predictor: a Shiny app that blends SP+, FPI, SRS, Elo and our own
-# Power rating into a spread and win probability for any two teams.
+# Power rating into a spread and win probability for any two teams, and keeps
+# score of how its saved predictions did.
 #
 # Run from the project root:
 #   Rscript -e 'shiny::runApp(".")'
@@ -12,6 +13,10 @@ library(bslib, warn.conflicts = FALSE)  # bslib::page masks utils::page; harmles
 # to the demo too, with a banner that says what to run.
 loaded <- load_app_data(PATHS$app_data)
 app_data <- loaded$data
+
+# Game notes are read straight from data/notes.csv, not the app data, so
+# notes added during the week show up without a rebuild.
+notes <- app_notes(app_data)
 
 # The UI is a function of the request so a shared link (?a=...&b=...&site=...)
 # opens straight on that matchup, with no flash of the default first.
@@ -41,6 +46,7 @@ ui <- function(request) {
     footer = app_footer(),
     nav_panel("Matchup", value = "matchup", mod_matchup_ui("matchup", app_data, initial)),
     nav_panel("This week", value = "slate", mod_slate_ui("slate", app_data)),
+    nav_panel("Scorecard", value = "scorecard", mod_scorecard_ui("scorecard", app_data)),
     nav_panel("Model report", value = "report", mod_report_ui("report", app_data)),
     nav_spacer(),
     nav_item(span(class = "freshness", freshness_label(app_data$meta)))
@@ -48,7 +54,7 @@ ui <- function(request) {
 }
 
 server <- function(input, output, session) {
-  matchup <- mod_matchup_server("matchup", app_data)
+  matchup <- mod_matchup_server("matchup", app_data, notes)
 
   # Called from inside the slate module, so pass the top-level session
   # explicitly; otherwise the tab id would get the module's namespace.
@@ -56,7 +62,8 @@ server <- function(input, output, session) {
     if (!is.null(game)) matchup$load(game)
     nav_select("tabs", "matchup", session = session)
   }
-  mod_slate_server("slate", app_data, on_open = open_matchup)
+  mod_slate_server("slate", app_data, notes, on_open = open_matchup)
+  mod_scorecard_server("scorecard", app_data)
   mod_report_server("report", app_data)
 }
 

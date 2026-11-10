@@ -14,7 +14,7 @@ built <- build_fixture_app_data()
 app <- built$app
 
 test_that("app data has the shape in the data dictionary", {
-  expect_named(app, c("meta", "teams", "params", "slate", "coverage"))
+  expect_named(app, c("meta", "teams", "params", "slate", "coverage", "scorecard"))
   expect_named(app$meta, c("season", "week", "ratings_date", "built_at", "is_demo"))
   expect_identical(app$meta$season, FIXTURE_SEASON)
   expect_identical(app$meta$week, FIXTURE_WEEK)
@@ -26,7 +26,11 @@ test_that("app data has the shape in the data dictionary", {
                     paste0(names(MODEL_LABELS), "_rank"))
   expect_true(all(team_columns %in% names(app$teams)))
   expect_named(app$slate, c("game_id", "start_date", "home_id", "away_id",
-                            "neutral_site", "market_spread_home"))
+                            "neutral_site", "market_spread_home", "market_at_freeze", "market_move"))
+  expect_named(app$scorecard, c("games", "weeks", "season", "systems"))
+  # No predictions saved in the project's own folder for the fixture season,
+  # so nothing is graded and nothing has moved.
+  expect_identical(nrow(app$scorecard$season), 1L)
   expect_named(app$coverage, c("source", "season", "week", "n_teams", "pulled_at"))
   expect_identical(app$params, read_params(built$params_path))
   expect_identical(readRDS(built$out_path), app)
@@ -133,4 +137,35 @@ test_that("missing inputs fail with a plain next step", {
   no_snapshots <- make_fixture_db(snapshots = FALSE)
   expect_error(with_project_root(build_app_data(no_snapshots, built$params_path, tempfile())),
                "scripts/snapshot.R")
+})
+
+test_that("saved predictions are graded and give the slate its line movement", {
+  root <- tempfile()
+  con <- connect_readonly(built$db)
+  played <- DBI::dbGetQuery(con, "SELECT game_id, start_date, home_id, away_id, neutral_site
+                                  FROM games WHERE season = 2026 AND week = 10")
+  DBI::dbDisconnect(con)
+  played$neutral_site <- played$neutral_site == 1
+  played$market_spread_home <- -3
+  this_week <- app$slate
+  this_week$market_spread_home[this_week$game_id == FIXTURE_LINED_GAME] <- -6
+  suppressMessages({
+    write_snapshot(prediction_rows(played, app$teams, app$params, 2026L, 10L), prediction_path(2026, 10, root))
+    write_snapshot(prediction_rows(this_week, app$teams, app$params, 2026L, 11L), prediction_path(2026, 11, root))
+  })
+
+  again <- suppressMessages(with_project_root(
+    build_app_data(built$db, built$params_path, tempfile(), snapshots_root = root)
+  ))
+  lined <- again$slate[again$slate$game_id == FIXTURE_LINED_GAME, ]
+  expect_identical(lined$market_at_freeze, -6)
+  # From a 6-point home favorite to a 4-point one: 2 points toward the away team.
+  expect_identical(lined$market_move, -2)
+
+  card <- again$scorecard
+  expect_gt(card$season$games, 0)
+  expect_identical(card$weeks$week, 10L)
+  unplayed <- card$games[card$games$week == 11, ]
+  expect_gt(nrow(unplayed), 0)
+  expect_true(all(is.na(unplayed$final_margin)))
 })

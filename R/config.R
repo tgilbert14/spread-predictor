@@ -7,7 +7,8 @@ PATHS <- list(
   schema    = file.path("sql", "schema.sql"),
   params    = file.path("data", "params.json"),
   app_data  = file.path("data", "app_data.rds"),
-  overrides = file.path("data", "overrides")
+  overrides = file.path("data", "overrides"),
+  notes     = file.path("data", "notes.csv")
 )
 
 # Seasons to backfill from the API. More history means tighter answers when
@@ -97,3 +98,18 @@ preseason_fade <- function(week, season_type = "regular") {
   fade[season_type != "regular"] <- 0
   fade
 }
+
+# A game where our line and the market's were at least this many points apart
+# when the prediction was saved counts as a disagreement on the scorecard.
+# Smaller gaps are mostly rounding and noise; 3 points is a field goal, the
+# smallest gap that says the two forecasts really see the game differently.
+DISAGREE_POINTS <- 3
+
+# A market line that has moved this many points since our prediction was
+# saved is flagged in the app. Lines rarely move that far on betting alone;
+# a big move usually means news, such as a quarterback ruled out, that the
+# rating systems do not know about yet.
+LINE_MOVE_POINTS <- 2.5
+
+# Kinds of game notes in data/notes.csv. Anything else is read as "other".
+NOTE_CATEGORIES <- c("availability", "weather", "other")

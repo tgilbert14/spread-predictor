@@ -203,11 +203,60 @@ its paired bootstrap 95% interval on the cross-validated change lies wholly
 below zero and the holdout agrees. The two factors in the model pass; the
 others do not.
 
+## Saving and grading predictions
+
+Backtests say how the model would have done. The Scorecard says how it
+actually did, on predictions made in the open.
+
+**Saving.** On the first refresh of each week (Tuesday), `freeze_predictions()`
+in `R/predictions.R` saves the app's line for every game on the slate to
+`data/snapshots/predictions/{season}_wk{WW}.csv`: each system's margin, the
+blend, the home win chance, and the market line at that moment. It uses the
+same `predict_matchup()` the app does, so the saved line is the line people
+saw.
+
+Two rules keep it honest:
+
+- **Saved before kickoff, or not at all.** If any game of the week has
+  started, nothing is saved. A prediction written after kickoff could have
+  seen part of the result, so it would prove nothing.
+- **Never rewritten.** Later refreshes, a refit or new ratings never touch a
+  saved file. Thursday's and Friday's refreshes find it and leave it alone.
+
+**Grading.** Every refresh joins each saved prediction to its game. Once a
+game is final, it gets:
+
+- our miss: `|blend - final home margin|`
+- the market's miss: `|(-market_spread_home) - final home margin|`, using the
+  line saved with our prediction, so both forecasts had the same information
+- whether we picked the winner, and who was closer (us, the market, or a tie)
+- when our line and the market's were 3 or more points apart
+  (`DISAGREE_POINTS`): whether the result landed on our side of the market
+  line. A result exactly on the line (a push) counts for neither side.
+
+These add up per week and for the season. The per-system table grades SP+,
+FPI, SRS, Elo and Power on the same saved lines. It is the first honest test
+of all five: the backtest can only test Elo and Power, because the others'
+past ratings already include the results.
+
+**Line movement.** The slate keeps the market line from the saved file, so the
+app can show how far the market has moved since. A move of 2.5 points or
+more (`LINE_MOVE_POINTS`) is flagged, because it usually means news, such as a
+quarterback ruled out, that the ratings do not know yet.
+
+**Game notes.** `data/notes.csv` holds short, sourced notes about this week's
+games (availability, weather, other). A separate check outside this code adds
+them on Thursdays and Fridays. The app reads the file directly, so notes show
+up without rebuilding anything. Notes never change the number.
+
+A few weeks of grades is a small sample. One game can swing by two
+touchdowns, so judge the model on a season or more.
+
 ## The pipeline
 
 ```
 CFBD API
-   |  scripts/snapshot.R  (weekly, automated)
+   |  scripts/refresh.R   (three times a week, automated; runs every step below)
    v
 data/snapshots/*.csv        saved forever, committed to git
                             (extras/: talent, returning production, game stats)
@@ -217,12 +266,13 @@ cfb.sqlite                  rebuilt on demand, not committed
    |  scripts/fit.R         (once a season, or when you want)
    v
 data/params.json            k, h, preseason points, sigma, weights, accuracy numbers
-   |  build_app_data()
+   |  build_app_data()      also grades the saved predictions
    v
-data/app_data.rds           the one file the app reads
-   |
+data/app_data.rds           what the app shows, committed for the hosted app
+   |  freeze_predictions()  saves this week's lines once, before kickoff,
+   |                        to data/snapshots/predictions/
    v
-Shiny app
+Shiny app                   reads data/app_data.rds and data/notes.csv
 ```
 
 A few choices worth knowing about:
@@ -232,8 +282,9 @@ A few choices worth knowing about:
   clone.
 - **Weekly files are never overwritten.** If a rating system revises its
   numbers later, we still have what it said at the time.
-- **The app never calls the API or the database.** It reads one small file,
-  which is why it starts fast and why predictions feel instant.
+- **The app never calls the API or the database.** It reads two small files
+  (the app data and the game notes), which is why it starts fast and why
+  predictions feel instant.
 - **SQL lives in `sql/`** as plain files, so the same queries can run on
   DuckDB or Azure SQL with a different connection.
 

@@ -1,8 +1,9 @@
 # Weekly job: snapshot this week's SP+, FPI, SRS and Elo ratings, and
 # refresh the current season's games, lines and game stats. The first run of
-# a season also pulls its teams, talent and returning production. The GitHub
-# Action runs this. About 7 API calls a week (10 the first week of a season),
-# plus 2 to log the key's remaining calls.
+# a season also pulls its teams, talent and returning production.
+# scripts/refresh.R (what the GitHub Action runs) does this as its first
+# step. About 7 API calls a run (10 the first week of a season), plus 2 to log
+# the key's remaining calls.
 #
 # Run from the project root:
 #   Rscript scripts/snapshot.R

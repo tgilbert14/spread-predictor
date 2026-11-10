@@ -6,8 +6,8 @@
 .Rproj.user/
 
 # Derived files. Rebuild with: Rscript scripts/refresh.R
+# (data/app_data.rds is derived too, but it is committed: the hosted app needs it.)
 cfb.sqlite
-data/app_data.rds
 
 # renv library (the lockfile is committed, the library is not)
 renv/library/

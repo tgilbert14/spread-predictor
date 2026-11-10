@@ -151,6 +151,14 @@ demo_app_data <- function(seed = 2026) {
   slate$market_spread_home <- -round_half(model_home_margin + stats::rnorm(nrow(slate), 0, 3))
   slate$market_spread_home[nrow(slate)] <- NA
 
+  # Since our predictions were saved, two lines moved enough to flag and one
+  # moved a little. market_move is positive when the market moved toward home.
+  slate$market_at_freeze <- slate$market_spread_home
+  slate$market_at_freeze[2] <- slate$market_spread_home[2] - 3
+  slate$market_at_freeze[3] <- slate$market_spread_home[3] + 0.5
+  slate$market_at_freeze[5] <- slate$market_spread_home[5] + 4
+  slate$market_move <- slate$market_at_freeze - slate$market_spread_home
+
   coverage <- expand.grid(source = c("sp", "fpi", "srs", "elo"), week = 11L,
                           stringsAsFactors = FALSE)
   coverage$season <- 2026L
@@ -168,6 +176,62 @@ demo_app_data <- function(seed = 2026) {
     teams = teams,
     params = params,
     slate = slate,
-    coverage = coverage[, c("source", "season", "week", "n_teams", "pulled_at")]
+    coverage = coverage[, c("source", "season", "week", "n_teams", "pulled_at")],
+    scorecard = demo_scorecard(teams, params, slate)
+  )
+}
+
+#' A made-up scorecard: three graded weeks (8 to 10) and this week's saved,
+#' unplayed predictions. Graded with the same code as the real one.
+#'
+#' The made-up market sees a little more than we do (its expected margin sits
+#' closer to the truth), so it misses by a bit less, as the real one does.
+demo_scorecard <- function(teams, params, slate) {
+  saved_at <- function(week) format_utc(as.POSIXct("2026-11-10 13:05:00", tz = "UTC") - (11 - week) * 7 * 86400)
+  weeks <- lapply(8:10, function(week) {
+    ids <- sample(teams$team_id)
+    games <- data.frame(
+      game_id = 980000L + week * 100L + seq_len(length(ids) / 2),
+      start_date = format_utc(as.POSIXct(saved_at(week), tz = "UTC") + 4 * 86400 +
+                                sample(0:8, length(ids) / 2, replace = TRUE) * 3600),
+      home_id = ids[c(TRUE, FALSE)], away_id = ids[c(FALSE, TRUE)], neutral_site = FALSE,
+      market_spread_home = NA_real_
+    )
+    saved <- prediction_rows(games, teams, params, 2026L, week, frozen_at = saved_at(week))
+    truth <- saved$blend + stats::rnorm(nrow(saved), 0, 5)
+    saved$market_spread_home <- -round_half(truth + stats::rnorm(nrow(saved), 0, 2))
+    margin <- round(truth + stats::rnorm(nrow(saved), 0, 13))
+    margin[margin == 0] <- 1  # no ties in college football
+    base <- sample(10:24, nrow(saved), replace = TRUE)
+    list(saved = saved, results = data.frame(
+      game_id = saved$game_id, completed = 1L,
+      home_points = base + pmax(margin, 0), away_points = base + pmax(-margin, 0)
+    ))
+  })
+
+  this_week <- slate
+  this_week$market_spread_home <- slate$market_at_freeze
+  saved <- rbind(do.call(rbind, lapply(weeks, `[[`, "saved")),
+                 prediction_rows(this_week, teams, params, 2026L, 11L, frozen_at = saved_at(11)))
+  build_scorecard(saved, do.call(rbind, lapply(weeks, `[[`, "results")), 2026L)
+}
+
+#' Made-up game notes for the demo slate, in the shape load_notes() returns.
+#' The links point at example.com, a domain reserved for examples.
+demo_notes <- function(app_data) {
+  slate <- app_data$slate
+  school <- function(team_id) app_data$teams$school[match(team_id, app_data$teams$team_id)]
+  data.frame(
+    season = 2026L, week = 11L,
+    game_id = slate$game_id[c(2, 5, 5)],
+    team = c(school(slate$home_id[2]), NA, NA),
+    category = c("availability", "weather", "other"),
+    note = c("Starting quarterback listed as out with an ankle injury.",
+             "Wind gusts near 30 mph are forecast for kickoff.",
+             "Kickoff moved three hours earlier because of the forecast."),
+    source = c("Team injury report (demo)", "Weather service (demo)", "Conference office (demo)"),
+    source_url = c("https://example.com/injury-report", "https://example.com/forecast", NA),
+    checked_at = c("2026-11-12", "2026-11-13", "2026-11-13"),
+    stringsAsFactors = FALSE
   )
 }

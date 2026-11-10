@@ -1,28 +1,40 @@
-# Weekly ratings snapshot. Pulls this week's SP+, FPI, SRS and Elo, refreshes
-# the current season's games and lines, and commits any new files in
-# data/snapshots/. Runs Tuesdays at 13:00 UTC, after the weekend's games and
-# before the next week's first kickoff. Can also be started by hand.
+# Scheduled data refresh. Runs scripts/refresh.R: pulls this week's SP+, FPI,
+# SRS and Elo, refreshes the current season's games and lines, rebuilds the
+# database and the app data, saves this week's predictions before kickoff,
+# grades the saved ones, audits the data, and commits what changed.
+#
+# When it runs (UTC):
+#   Tuesday 13:00          after the weekend's games and before the next
+#                          week's first kickoff: new ratings, predictions saved.
+#   Thursday, Friday 21:00 lines refreshed before the weekend, so the app shows
+#                          how far they have moved. Game notes are added to
+#                          data/notes.csv on these days by a separate check.
+# It can also be started by hand, with a choice of task.
 
 name: Weekly snapshot
 
 on:
   schedule:
     - cron: "0 13 * * 2"
+    - cron: "0 21 * * 4"
+    - cron: "0 21 * * 5"
   workflow_dispatch:
     inputs:
       task:
-        description: "What to pull"
+        description: "What to run"
         type: choice
-        default: snapshot
+        default: refresh
         options:
-          - snapshot   # this week's ratings, games and lines
+          - refresh    # snapshot, rebuild, save and grade predictions, audit
           - extras     # research data: talent, returning production, efficiency stats
           - backfill   # history for every season in TRAINING_SEASONS, plus the research data
+          - fit        # refit the model (data/params.json), then rebuild the app data
+          - manifest   # write manifest.json for deploying the app
 
 permissions:
   contents: write
 
-# Never run two snapshots at once: both would try to push.
+# Never run two at once: both would try to push.
 concurrency:
   group: snapshot
   cancel-in-progress: false
@@ -33,7 +45,9 @@ jobs:
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
     steps:
+      # fit and manifest work only with files already in the repo.
       - name: Check for the API key
+        if: ${{ inputs.task != 'fit' && inputs.task != 'manifest' }}
         run: |
           if [ -z "$CFBD_API_KEY" ]; then
             echo "::error::The CFBD_API_KEY secret is not set. Add it under Settings > Secrets and variables > Actions > New repository secret, then re-run this workflow."
@@ -51,30 +65,47 @@ jobs:
           dependencies: '"hard"'
           extra-packages: any::cfbfastR
 
-      # The scheduled run has no inputs, so it takes the weekly snapshot.
-      - name: Take the snapshot
+      # rsconnect is only needed to write the manifest, so it is not a project dependency.
+      - name: Install rsconnect
+        if: ${{ inputs.task == 'manifest' }}
+        run: Rscript -e 'install.packages("rsconnect")'
+
+      # Scheduled runs have no inputs, so they take the refresh.
+      - name: Run the task
         id: snapshot
         run: |
-          if [ "${{ inputs.task }}" = "extras" ]; then
-            Rscript scripts/pull_extras.R
-          elif [ "${{ inputs.task }}" = "backfill" ]; then
-            Rscript scripts/backfill.R
-            Rscript scripts/pull_extras.R
-          else
-            Rscript scripts/snapshot.R
-          fi
+          case "${{ inputs.task }}" in
+            extras)
+              Rscript scripts/pull_extras.R ;;
+            backfill)
+              Rscript scripts/backfill.R
+              Rscript scripts/pull_extras.R ;;
+            fit)
+              Rscript scripts/fit.R
+              Rscript scripts/refresh.R --offline ;;
+            manifest)
+              Rscript scripts/write_manifest.R ;;
+            *)
+              Rscript scripts/refresh.R ;;
+          esac
 
-      # Runs even if one snapshot step failed, so the files that did arrive
-      # are kept. Snapshot files are append-only, so this is always safe.
-      - name: Commit new snapshot files
+      # Runs even if one step failed, so the files that did arrive are kept.
+      # Snapshot and prediction files are append-only, so this is always safe.
+      # Pulls first, so a commit pushed by someone else meanwhile does not
+      # make the push fail.
+      - name: Commit changes
         if: ${{ !cancelled() && steps.snapshot.outcome != 'skipped' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/snapshots
+          for file in data/app_data.rds data/params.json docs/data-audit.md manifest.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
           if git diff --cached --quiet; then
-            echo "No snapshot changes to commit."
+            echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Snapshot $(date -u +%Y-%m-%d)"
+          git commit -m "Data refresh $(date -u +%Y-%m-%d)"
+          git pull --rebase
           git push

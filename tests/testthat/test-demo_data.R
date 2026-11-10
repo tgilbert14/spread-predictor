@@ -1,7 +1,7 @@
 demo <- demo_app_data()
 
 test_that("demo data has every element and column in the data dictionary", {
-  expect_named(demo, c("meta", "teams", "params", "slate", "coverage"))
+  expect_named(demo, c("meta", "teams", "params", "slate", "coverage", "scorecard"))
   expect_named(demo$meta, c("season", "week", "ratings_date", "built_at", "is_demo"))
   expect_true(demo$meta$is_demo)
 
@@ -12,7 +12,7 @@ test_that("demo data has every element and column in the data dictionary", {
   expect_false(anyDuplicated(demo$teams$team_id) > 0)
 
   expect_named(demo$slate, c("game_id", "start_date", "home_id", "away_id",
-                             "neutral_site", "market_spread_home"))
+                             "neutral_site", "market_spread_home", "market_at_freeze", "market_move"))
   expect_named(demo$coverage, c("source", "season", "week", "n_teams", "pulled_at"))
 })
 
@@ -38,4 +38,27 @@ test_that("every demo slate game predicts without error", {
     expect_true(is.finite(pred$spread))
     expect_true(pred$win_prob_a > 0 && pred$win_prob_a < 1)
   }
+})
+
+test_that("the demo scorecard has three graded weeks and this week saved but unplayed", {
+  card <- demo$scorecard
+  expect_true(is_scorecard(card))
+  expect_identical(card$weeks$week, 8:10)
+  expect_identical(card$season$games, sum(card$weeks$games))
+  this_week <- card$games[card$games$week == 11, ]
+  expect_setequal(this_week$game_id, demo$slate$game_id)
+  expect_true(all(is.na(this_week$final_margin)))
+  # Same shape as a real scorecard.
+  expect_identical(lapply(card, names), lapply(empty_scorecard(2026L), names))
+})
+
+test_that("demo lines move enough to flag in two games", {
+  expect_identical(sum(line_moved(demo$slate$market_move)), 2L)
+})
+
+test_that("demo notes have the notes file's columns and point at slate games", {
+  notes <- demo_notes(demo)
+  expect_named(notes, NOTE_COLUMNS)
+  expect_true(all(notes$game_id %in% demo$slate$game_id))
+  expect_true(all(notes$category %in% NOTE_CATEGORIES))
 })

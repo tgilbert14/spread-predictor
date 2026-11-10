@@ -115,7 +115,8 @@ answer_card <- function(ns) {
         id = ns("copy"), type = "button", class = "btn btn-copy", `data-summary` = "",
         svg_icon("copy"), htmltools::span(class = "btn-copy-label", "Copy summary")
       )
-    )
+    ),
+    shiny::uiOutput(ns("notes"))
   )
 }
 
@@ -318,6 +319,16 @@ rating_header <- function(school) {
   htmltools::tagList(school, htmltools::span(class = "hide-sm", " rating (rank)"))
 }
 
+#' The line-movement note for a slate game, with the weekday its
+#' prediction was saved, or NULL.
+slate_line_note <- function(game, app_data) {
+  if (is.null(game)) return(NULL)
+  school <- function(team_id) app_data$teams$school[match(team_id, app_data$teams$team_id)]
+  saved <- app_data$scorecard$games
+  frozen_at <- saved$frozen_at[match(game$game_id, saved$game_id)]
+  line_move_note(game, school(game$home_id), school(game$away_id), frozen_at)
+}
+
 #' The address-bar query for a prediction, using school names so links read well.
 matchup_query <- function(pred) {
   enc <- function(x) utils::URLencode(x, reserved = TRUE)
@@ -327,11 +338,12 @@ matchup_query <- function(pred) {
 # Server ------------------------------------------------------------------------
 
 #' @param app_data See docs/data-dictionary.md.
+#' @param notes This week's game notes (app_notes()).
 #' @return list(load = function(matchup)): opens list(a, b, site) in the tab.
-mod_matchup_server <- function(id, app_data) {
+mod_matchup_server <- function(id, app_data, notes) {
   shiny::moduleServer(id, function(input, output, session) {
     teams <- app_data$teams
-    notes <- data_notes(app_data$meta)
+    data_flags <- data_notes(app_data$meta)
 
     # The single reactive everything else reads. Invalid or half-updated
     # inputs (for example mid-swap) are skipped rather than shown as errors.
@@ -350,6 +362,10 @@ mod_matchup_server <- function(id, app_data) {
       p
     })
     colors <- shiny::reactive(pick_team_colors(ok_pred()$team_a, ok_pred()$team_b))
+    # The real game between these two teams this week, or NULL.
+    slate_game <- shiny::reactive({
+      find_slate_game(app_data$slate, ok_pred()$team_a$team_id, ok_pred()$team_b$team_id)
+    })
 
     output$headline <- shiny::renderUI({
       p <- pred()
@@ -367,7 +383,14 @@ mod_matchup_server <- function(id, app_data) {
       text <- describe_market(ok_pred(), app_data$slate)
       if (!is.null(text)) htmltools::p(class = "market-line", text)
     })
-    output$flags <- shiny::renderUI(flag_list(c(ok_pred()$flags, notes)))
+    output$flags <- shiny::renderUI({
+      flag_list(c(ok_pred()$flags, slate_line_note(slate_game(), app_data), data_flags))
+    })
+    output$notes <- shiny::renderUI({
+      game <- slate_game()
+      if (is.null(game)) return(NULL)
+      game_notes(notes[notes$game_id == game$game_id, , drop = FALSE], session$ns("notes-title"))
+    })
     output$model_plot <- shiny::renderUI(model_plot(ok_pred(), colors()))
     output$model_table <- shiny::renderUI(model_table(ok_pred()))
 
