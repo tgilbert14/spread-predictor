@@ -10,9 +10,10 @@ PATHS <- list(
   overrides = file.path("data", "overrides")
 )
 
-# Seasons to backfill from the API. 2020 is skipped on purpose: the COVID
-# season had odd schedules and empty stadiums.
-TRAINING_SEASONS <- 2021:2025
+# Seasons to backfill from the API. More history means tighter answers when
+# we test an idea. 2020 is pulled so ratings carry across it, but the COVID
+# season (odd schedules, empty stadiums) is never fit or scored on.
+TRAINING_SEASONS <- 2017:2025
 
 # The first season only warms up the Power rating, which needs a season of
 # results before its numbers mean anything. Nothing is fit on it.

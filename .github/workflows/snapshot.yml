@@ -17,6 +17,7 @@ on:
         options:
           - snapshot   # this week's ratings, games and lines
           - extras     # research data: talent, returning production, efficiency stats
+          - backfill   # history for every season in TRAINING_SEASONS, plus the research data
 
 permissions:
   contents: write
@@ -55,6 +56,9 @@ jobs:
         id: snapshot
         run: |
           if [ "${{ inputs.task }}" = "extras" ]; then
+            Rscript scripts/pull_extras.R
+          elif [ "${{ inputs.task }}" = "backfill" ]; then
+            Rscript scripts/backfill.R
             Rscript scripts/pull_extras.R
           else
             Rscript scripts/snapshot.R
