@@ -1,0 +1,897 @@
+"game_id","season","week","season_type","start_date","completed","neutral_site","home_id","home_team","home_class","home_points","home_pregame_elo","away_id","away_team","away_class","away_points","away_pregame_elo"
+401426532,2022,1,"regular","2022-08-27T16:00:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",38,1684,2046,"Austin Peay","fcs",27,
+401405059,2022,1,"regular","2022-08-27T16:30:00.000Z",TRUE,TRUE,77,"Northwestern","fbs",31,1361,158,"Nebraska","fbs",28,1636
+401413256,2022,1,"regular","2022-08-27T19:30:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",52,1300,304,"Idaho State","fcs",21,
+401404146,2022,1,"regular","2022-08-27T20:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",31,1566,41,"UConn","fbs",20,1117
+401405058,2022,1,"regular","2022-08-27T20:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",38,1496,2751,"Wyoming","fbs",6,1497
+401411090,2022,1,"regular","2022-08-27T21:00:00.000Z",TRUE,FALSE,52,"Florida State","fbs",47,1501,2184,"Duquesne","fcs",7,
+401426530,2022,1,"regular","2022-08-27T23:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",43,1427,2429,"Charlotte","fbs",13,1272
+401411091,2022,1,"regular","2022-08-28T00:15:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",56,1555,50,"Florida A&M","fcs",24,
+401426531,2022,1,"regular","2022-08-28T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",13,1360,249,"North Texas","fbs",31,1426
+401409235,2022,1,"regular","2022-08-28T02:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",12,1184,2440,"Nevada","fbs",23,1564
+401403853,2022,1,"regular","2022-08-28T02:30:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",10,1432,238,"Vanderbilt","fbs",63,1222
+401416568,2022,1,"regular","2022-09-01T22:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",30,1096,2598,"Saint Francis","fcs",23,
+401403864,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",59,1640,2050,"Ball State","fbs",10,1410
+401411092,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",38,1667,277,"West Virginia","fbs",31,1490
+401415610,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",56,1569,2569,"South Carolina State","fcs",10,
+401416569,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",58,1775,2117,"Central Michigan","fbs",44,1536
+401426533,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",38,1080,2803,"Bryant","fcs",37,
+401441990,2022,1,"regular","2022-09-01T23:00:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",37,1534,2341,"Long Island University","fcs",0,
+401411093,2022,1,"regular","2022-09-01T23:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",44,1640,2678,"VMI","fcs",10,
+401405064,2022,1,"regular","2022-09-02T00:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",31,1635,213,"Penn State","fbs",35,1670
+401416592,2022,1,"regular","2022-09-02T00:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",34,1376,2197,"Eastern Illinois","fcs",27,
+401426534,2022,1,"regular","2022-09-02T00:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",59,1546,2010,"Alabama A&M","fcs",0,
+401426537,2022,1,"regular","2022-09-02T00:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",52,1404,2348,"Louisiana Tech","fbs",24,1301
+401405060,2022,1,"regular","2022-09-02T01:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",38,1639,166,"New Mexico State","fbs",0,1192
+401403965,2022,1,"regular","2022-09-02T02:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",40,1614,2464,"Northern Arizona","fcs",3,
+401413224,2022,1,"regular","2022-09-02T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",35,1590,13,"Cal Poly","fcs",7,
+401415213,2022,1,"regular","2022-09-02T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",21,1338,2502,"Portland State","fcs",17,
+401416590,2022,1,"regular","2022-09-02T23:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",42,1380,2198,"Eastern Kentucky","fcs",34,
+401416591,2022,1,"regular","2022-09-02T23:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",35,1563,2711,"Western Michigan","fbs",13,1538
+401426330,2022,1,"regular","2022-09-02T23:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",20,1390,259,"Virginia Tech","fbs",17,1412
+401426535,2022,1,"regular","2022-09-02T23:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",24,1206,2729,"William & Mary","fcs",41,
+401411094,2022,1,"regular","2022-09-02T23:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",30,1168,218,"Temple","fbs",0,1101
+401404052,2022,1,"regular","2022-09-03T00:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",56,1194,2635,"Tennessee Tech","fcs",10,
+401405061,2022,1,"regular","2022-09-03T00:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",23,1330,356,"Illinois","fbs",20,1584
+401403966,2022,1,"regular","2022-09-03T02:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",13,1387,2628,"TCU","fbs",38,1436
+401403865,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",31,1708,2534,"Sam Houston","fcs",0,
+401404147,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",28,1117,2115,"Central Connecticut","fcs",3,
+401405062,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",7,1624,2571,"South Dakota State","fcs",3,
+401405066,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",31,1496,2084,"Buffalo","fbs",10,1382
+401405067,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",51,1848,36,"Colorado State","fbs",7,1399
+401405069,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",21,1443,164,"Rutgers","fbs",22,1365
+401411095,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,2026,"App State","fbs",61,1656,153,"North Carolina","fbs",63,1555
+401411096,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",20,1518,152,"NC State","fbs",21,1632
+401415611,2022,1,"regular","2022-09-03T16:00:00.000Z",TRUE,FALSE,2426,"Navy","fbs",7,1403,48,"Delaware","fcs",14,
+401411100,2022,1,"regular","2022-09-03T16:30:00.000Z",TRUE,FALSE,258,"Virginia","fbs",34,1526,257,"Richmond","fcs",17,
+401415209,2022,1,"regular","2022-09-03T17:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",48,1650,2460,"Northern Iowa","fcs",17,
+401404057,2022,1,"regular","2022-09-03T18:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",42,1779,2546,"Southeast Missouri State","fcs",10,
+401403971,2022,1,"regular","2022-09-03T18:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",45,1667,189,"Bowling Green","fbs",17,1210
+401403855,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",31,1626,2132,"Cincinnati","fbs",24,1801
+401403858,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,TRUE,61,"Georgia","fbs",49,1980,2483,"Oregon","fbs",3,1574
+401403967,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",20,1535,12,"Arizona","fbs",38,1306
+401405063,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",38,1623,155,"North Dakota","fcs",17,
+401411097,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",70,1570,2065,"Bethune-Cookman","fcs",13,
+401415015,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",55,1548,2450,"Norfolk State","fcs",3,
+401415211,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",40,1409,202,"Tulsa","fbs",37,1502
+401426541,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",45,1749,2638,"UTEP","fbs",13,1323
+401426542,2022,1,"regular","2022-09-03T19:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",35,1512,248,"Houston","fbs",37,1620
+401403860,2022,1,"regular","2022-09-03T20:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",28,1658,2653,"Troy","fbs",10,1347
+401403968,2022,1,"regular","2022-09-03T20:00:00.000Z",TRUE,FALSE,25,"California","fbs",34,1510,302,"UC Davis","fcs",13,
+401415612,2022,1,"regular","2022-09-03T20:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",21,1284,252,"BYU","fbs",50,1648
+401421116,2022,1,"regular","2022-09-03T21:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",48,1351,2447,"Nicholls","fcs",7,
+401415212,2022,1,"regular","2022-09-03T21:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",38,1556,326,"Texas State","fbs",14,1270
+401420777,2022,1,"regular","2022-09-03T22:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",59,1382,2415,"Morgan State","fcs",7,
+401426536,2022,1,"regular","2022-09-03T22:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",41,1368,2226,"Florida Atlantic","fbs",38,1488
+401426538,2022,1,"regular","2022-09-03T22:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",44,1300,2393,"Middle Tennessee","fbs",7,1445
+401426540,2022,1,"regular","2022-09-03T22:00:00.000Z",TRUE,FALSE,30,"USC","fbs",66,1487,242,"Rice","fbs",14,1245
+401403856,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",42,1632,2382,"Mercer","fcs",16,
+401403857,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",29,1572,254,"Utah","fbs",26,1790
+401403859,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",37,1670,193,"Miami (OH)","fbs",13,1516
+401403866,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",42,1425,2210,"Elon","fcs",31,
+401404056,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",34,1616,233,"South Dakota","fcs",0,
+401404134,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",38,1647,349,"Army","fbs",28,1544
+401404157,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",27,1266,2335,"Liberty","fbs",29,1600
+401405065,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",38,1742,2287,"Illinois State","fcs",0,
+401414778,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",42,1444,113,"Massachusetts","fbs",10,1036
+401421121,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",24,1720,2545,"SE Louisiana","fcs",7,
+401424416,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",69,1690,399,"UAlbany","fcs",10,
+401425418,2022,1,"regular","2022-09-03T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",58,1262,2755,"Grambling","fcs",3,
+401403854,2022,1,"regular","2022-09-03T23:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",55,1979,328,"Utah State","fbs",0,1555
+401403861,2022,1,"regular","2022-09-03T23:30:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",49,1520,235,"Memphis","fbs",23,1490
+401403863,2022,1,"regular","2022-09-03T23:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",35,1486,2247,"Georgia State","fbs",14,1522
+401404124,2022,1,"regular","2022-09-03T23:30:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",21,1932,87,"Notre Dame","fbs",10,1826
+401426539,2022,1,"regular","2022-09-03T23:30:00.000Z",TRUE,FALSE,249,"North Texas","fbs",10,1463,2567,"SMU","fbs",48,1574
+401403970,2022,1,"regular","2022-09-04T00:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",41,1355,2142,"Colgate","fcs",10,
+401404055,2022,1,"regular","2022-09-04T00:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",63,1536,93,"Murray State","fcs",10,
+401404059,2022,1,"regular","2022-09-04T00:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",52,1633,2433,"UL Monroe","fbs",10,1207
+401411099,2022,1,"regular","2022-09-04T00:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",31,1405,97,"Louisville","fbs",7,1568
+401415210,2022,1,"regular","2022-09-04T00:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",41,1229,311,"Maine","fcs",0,
+401403974,2022,1,"regular","2022-09-04T01:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",24,1590,70,"Idaho","fcs",17,
+401403969,2022,1,"regular","2022-09-04T02:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",34,1544,68,"Boise State","fbs",17,1664
+401403973,2022,1,"regular","2022-09-04T02:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",45,1536,2309,"Kent State","fbs",20,1340
+401426543,2022,1,"regular","2022-09-04T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",17,1223,98,"Western Kentucky","fbs",49,1684
+401403867,2022,1,"regular","2022-09-04T23:30:00.000Z",TRUE,TRUE,52,"Florida State","fbs",24,1501,99,"LSU","fbs",23,1538
+401411101,2022,1,"regular","2022-09-06T00:00:00.000Z",TRUE,TRUE,59,"Georgia Tech","fbs",10,1346,228,"Clemson","fbs",41,1766
+401415613,2022,2,"regular","2022-09-09T23:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",14,1569,97,"Louisville","fbs",20,1489
+401415214,2022,2,"regular","2022-09-10T01:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",14,1229,68,"Boise State","fbs",31,1615
+401403868,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",19,1700,333,"Alabama","fbs",20,2089
+401403869,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",44,1646,2579,"South Carolina","fbs",30,1540
+401403876,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",40,1616,142,"Missouri","fbs",12,1465
+401403879,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",25,1431,154,"Wake Forest","fbs",45,1640
+401405071,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",62,1710,2710,"Western Illinois","fcs",10,
+401405073,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",23,1381,150,"Duke","fbs",31,1240
+401405079,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",45,1944,2032,"Arkansas State","fbs",12,1262
+401405080,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",46,1674,195,"Ohio","fbs",10,1371
+401411103,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",28,1468,153,"North Carolina","fbs",35,1563
+401411105,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",30,1570,2572,"Southern Miss","fbs",7,1280
+401426553,2022,2,"regular","2022-09-10T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",38,1534,2636,"UTSA","fbs",41,1515
+401411106,2022,2,"regular","2022-09-10T16:30:00.000Z",TRUE,FALSE,152,"NC State","fbs",55,1630,2127,"Charleston Southern","fcs",3,
+401416597,2022,2,"regular","2022-09-10T17:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",24,1528,6,"South Alabama","fbs",38,1351
+401403982,2022,2,"regular","2022-09-10T17:30:00.000Z",TRUE,FALSE,254,"Utah","fbs",73,1781,253,"Southern Utah","fcs",7,
+401415614,2022,2,"regular","2022-09-10T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",30,1030,322,"Lafayette","fcs",14,
+401416594,2022,2,"regular","2022-09-10T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",30,1294,2711,"Western Michigan","fbs",37,1488
+401404125,2022,2,"regular","2022-09-10T18:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",21,1814,276,"Marshall","fbs",26,1548
+401403877,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",27,1667,2633,"Tennessee","fbs",34,1756
+401403878,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",14,1708,2026,"App State","fbs",17,1648
+401403977,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",41,1650,38,"Colorado","fbs",10,1326
+401403984,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",14,1742,265,"Washington State","fbs",17,1590
+401411102,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",35,1825,231,"Furman","fcs",12,
+401415617,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",13,1403,235,"Memphis","fbs",37,1427
+401415619,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",63,1787,338,"Kennesaw State","fcs",10,
+401426545,2022,2,"regular","2022-09-10T19:30:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",21,1211,120,"Maryland","fbs",56,1534
+401403872,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",33,2087,2535,"Samford","fcs",0,
+401403976,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,25,"California","fbs",20,1510,2439,"UNLV","fbs",14,1300
+401403983,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,264,"Washington","fbs",52,1584,2502,"Portland State","fcs",6,
+401404063,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",33,1536,248,"Houston","fbs",30,1617
+401404064,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",7,1624,66,"Iowa State","fbs",10,1779
+401405070,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",24,1579,258,"Virginia","fbs",3,1526
+401405074,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",56,1628,282,"Indiana State","fcs",0,
+401405078,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",52,1613,2006,"Akron","fbs",0,1096
+401405081,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",66,1370,2681,"Wagner","fcs",7,
+401415177,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",33,1419,2458,"Northern Colorado","fcs",10,
+401416595,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",57,1167,2198,"Eastern Kentucky","fcs",59,
+401420788,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",63,1596,2450,"Norfolk State","fcs",7,
+401426548,2022,2,"regular","2022-09-10T20:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",19,1329,2393,"Middle Tennessee","fbs",34,1318
+401403981,2022,2,"regular","2022-09-10T21:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",45,1710,2011,"Alabama State","fcs",7,
+401415216,2022,2,"regular","2022-09-10T21:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",41,1613,2916,"Incarnate Word","fcs",55,
+401404065,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",42,1490,2305,"Kansas","fbs",55,1194
+401415024,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",39,1522,295,"Old Dominion","fbs",21,1391
+401416596,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",31,1342,107,"Holy Cross","fcs",37,
+401416599,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",31,1469,2523,"Robert Morris","fcs",14,
+401426332,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",31,1658,2241,"Gardner-Webb","fcs",27,
+401426546,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",42,1487,2545,"SE Louisiana","fcs",9,
+401426551,2022,2,"regular","2022-09-10T22:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",21,1586,5,"UAB","fbs",14,1546
+401403871,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",16,1576,96,"Kentucky","fbs",26,1713
+401403874,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",59,1681,2110,"Central Arkansas","fcs",3,
+401404066,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",33,1786,2309,"Kent State","fbs",3,1299
+401404148,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",14,1128,183,"Syracuse","fbs",48,1484
+401411104,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",35,1287,2717,"Western Carolina","fcs",17,
+401414779,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",55,1534,113,"Massachusetts","fbs",10,997
+401415215,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",7,1566,2692,"Weber State","fcs",35,
+401415615,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",52,1501,2016,"Alcorn State","fcs",0,
+401415616,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",45,1684,2320,"Lamar","fcs",16,
+401415618,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",42,1222,47,"Howard","fcs",20,
+401415620,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",38,1500,2459,"Northern Illinois","fbs",35,1376
+401416598,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",49,1720,2199,"Eastern Michigan","fbs",21,1380
+401423439,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",38,1324,2010,"Alabama A&M","fcs",17,
+401426544,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",41,1241,2229,"Florida International","fbs",12,1080
+401426547,2022,2,"regular","2022-09-10T23:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",52,1238,2617,"Stephen F. Austin","fcs",17,
+401403870,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",24,1632,23,"San José State","fbs",16,1338
+401403873,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",65,,2582,"Southern","fcs",17,
+401403975,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",34,1783,9,"Arizona State","fbs",17,1614
+401403980,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,24,"Stanford","fbs",28,1355,30,"USC","fbs",41,1612
+401405072,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",42,1616,290,"Georgia Southern","fbs",45,1382
+401426549,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,249,"North Texas","fbs",59,1361,2640,"Texas Southern","fcs",27,
+401426550,2022,2,"regular","2022-09-10T23:30:00.000Z",TRUE,FALSE,242,"Rice","fbs",52,1111,2377,"McNeese","fcs",10,
+401404067,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",59,1505,2627,"Tarleton State","fcs",17,
+401405075,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",35,1340,70,"Idaho","fcs",22,
+401405077,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",56,1918,62,"Hawai'i","fbs",10,1188
+401411108,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",27,1411,103,"Boston College","fbs",10,1438
+401413257,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",38,1474,304,"Idaho State","fcs",7,
+401421117,2022,2,"regular","2022-09-11T00:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",35,1121,2447,"Nicholls","fcs",7,
+401403978,2022,2,"regular","2022-09-11T00:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",70,1467,331,"Eastern Washington","fcs",14,
+401426552,2022,2,"regular","2022-09-11T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",20,1286,166,"New Mexico State","fbs",13,1140
+401404062,2022,2,"regular","2022-09-11T02:15:00.000Z",TRUE,FALSE,252,"BYU","fbs",26,1685,239,"Baylor","fbs",20,1690
+401403979,2022,2,"regular","2022-09-11T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",32,1590,204,"Oregon State","fbs",35,1593
+401403875,2022,2,"regular","2022-09-11T03:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",17,1377,344,"Mississippi State","fbs",39,1583
+401411109,2022,3,"regular","2022-09-16T23:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",31,1506,52,"Florida State","fbs",35,1504
+401415217,2022,3,"regular","2022-09-17T00:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",17,1411,2005,"Air Force","fbs",14,1695
+401411114,2022,3,"regular","2022-09-17T15:00:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",27,1446,2747,"Wofford","fcs",7,
+401403884,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",31,1731,2754,"Youngstown State","fcs",0,
+401403887,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",34,1405,2000,"Abilene Christian","fcs",17,
+401403888,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",7,1521,61,"Georgia","fbs",48,2070
+401404070,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",14,1596,201,"Oklahoma","fbs",49,1811
+401404071,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",42,1683,326,"Texas State","fbs",7,1299
+401404136,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",49,1527,222,"Villanova","fcs",10,
+401404149,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",59,1961,41,"UConn","fbs",0,1075
+401405083,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",24,1357,79,"Southern Illinois","fcs",31,
+401405084,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",32,1537,2509,"Purdue","fbs",29,1631
+401415623,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,TRUE,193,"Miami (OH)","fbs",17,1473,2132,"Cincinnati","fbs",38,1781
+401416603,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",63,1252,2341,"Long Island University","fcs",10,
+401426563,2022,3,"regular","2022-09-17T16:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",33,1335,98,"Western Kentucky","fbs",30,1719
+401404073,2022,3,"regular","2022-09-17T17:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",65,1442,119,"Towson","fcs",7,
+401416601,2022,3,"regular","2022-09-17T17:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",38,1657,2084,"Buffalo","fbs",26,1344
+401416602,2022,3,"regular","2022-09-17T17:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",41,1483,2083,"Bucknell","fcs",0,
+401403991,2022,3,"regular","2022-09-17T18:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",32,1690,6,"South Alabama","fbs",31,1402
+401404069,2022,3,"regular","2022-09-17T18:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",43,1774,195,"Ohio","fbs",10,1308
+401405089,2022,3,"regular","2022-09-17T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",14,1029,164,"Rutgers","fbs",16,1370
+401411113,2022,3,"regular","2022-09-17T18:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",16,1482,295,"Old Dominion","fbs",14,1363
+401416600,2022,3,"regular","2022-09-17T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",31,1286,93,"Murray State","fcs",0,
+401403987,2022,3,"regular","2022-09-17T18:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",24,1785,25,"California","fbs",17,1507
+401404074,2022,3,"regular","2022-09-17T19:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",10,1671,2655,"Tulane","fbs",17,1483
+401426558,2022,3,"regular","2022-09-17T19:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",58,1303,249,"North Texas","fbs",27,1366
+401403882,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",12,1627,213,"Penn State","fbs",41,1737
+401403886,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",0,1317,145,"Ole Miss","fbs",42,1670
+401403891,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",28,1377,238,"Vanderbilt","fbs",38,1403
+401403988,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",49,1691,38,"Colorado","fbs",7,1281
+401403989,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",41,1484,252,"BYU","fbs",20,1692
+401405085,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",66,1728,166,"New Mexico State","fbs",7,1138
+401414780,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",20,909,2619,"Stony Brook","fcs",3,
+401426333,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",32,1656,2653,"Troy","fbs",28,1335
+401426560,2022,3,"regular","2022-09-17T19:30:00.000Z",TRUE,FALSE,5,"UAB","fbs",35,1539,290,"Georgia Southern","fbs",21,1402
+401403880,2022,3,"regular","2022-09-17T20:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",63,2073,2433,"UL Monroe","fbs",7,1140
+401404068,2022,3,"regular","2022-09-17T20:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",30,1615,2305,"Kansas","fbs",48,1254
+401415218,2022,3,"regular","2022-09-17T20:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",30,1641,2630,"UT Martin","fcs",7,
+401403995,2022,3,"regular","2022-09-17T21:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",38,1604,36,"Colorado State","fbs",7,1293
+401404159,2022,3,"regular","2022-09-17T21:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",37,1668,2335,"Liberty","fbs",36,1593
+401415029,2022,3,"regular","2022-09-17T21:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",34,1187,276,"Marshall","fbs",31,1577
+401403885,2022,3,"regular","2022-09-17T22:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",31,1535,344,"Mississippi State","fbs",16,1617
+401411112,2022,3,"regular","2022-09-17T22:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",49,1264,2448,"North Carolina A&T","fcs",20,
+401415621,2022,3,"regular","2022-09-17T22:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",49,1551,2097,"Campbell","fcs",10,
+401403881,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",38,1667,2623,"Missouri State","fcs",27,
+401403889,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",63,1762,2006,"Akron","fbs",6,1009
+401404072,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",27,1628,2641,"Texas Tech","fbs",14,1538
+401404075,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",63,1809,2029,"Arkansas-Pine Bluff","fcs",7,
+401405088,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",77,1957,2649,"Toledo","fbs",21,1597
+401413216,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",54,1498,55,"Jacksonville State","fcs",17,
+401415032,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",64,1243,2466,"Northwestern State","fcs",10,
+401415622,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",44,1488,2032,"Arkansas State","fbs",32,1249
+401426554,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",41,1462,2429,"Charlotte","fbs",42,1151
+401426557,2022,3,"regular","2022-09-17T23:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",49,1357,2634,"Tennessee State","fcs",6,
+401403883,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,57,"Florida","fbs",31,1567,58,"South Florida","fbs",28,1247
+401403994,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",39,1577,127,"Michigan State","fbs",28,1700
+401405082,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",27,1629,2440,"Nevada","fbs",0,1585
+401405087,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",34,1594,2567,"SMU","fbs",27,1671
+401411110,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,103,"Boston College","fbs",38,1403,311,"Maine","fcs",17,
+401411115,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",13,1487,221,"Pittsburgh","fbs",34,1661
+401426555,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",14,1485,2116,"UCF","fbs",40,1552
+401426559,2022,3,"regular","2022-09-17T23:30:00.000Z",TRUE,FALSE,242,"Rice","fbs",33,1120,309,"Louisiana","fbs",21,1755
+401403990,2022,3,"regular","2022-09-18T00:00:00.000Z",TRUE,TRUE,204,"Oregon State","fbs",68,1599,147,"Montana State","fcs",28,
+401426556,2022,3,"regular","2022-09-18T00:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",48,1795,2348,"Louisiana Tech","fbs",20,1240
+401426561,2022,3,"regular","2022-09-18T00:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",27,1226,2638,"UTEP","fbs",10,1288
+401426562,2022,3,"regular","2022-09-18T00:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",41,1716,2636,"UTSA","fbs",20,1521
+401403890,2022,3,"regular","2022-09-18T01:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",17,1700,2390,"Miami","fbs",9,1596
+401403993,2022,3,"regular","2022-09-18T02:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",35,1786,21,"San Diego State","fbs",7,1464
+401403992,2022,3,"regular","2022-09-18T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",45,1618,278,"Fresno State","fbs",17,1586
+401403985,2022,3,"regular","2022-09-18T03:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",31,1328,2449,"North Dakota State","fcs",28,
+401403986,2022,3,"regular","2022-09-18T03:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",21,1592,2199,"Eastern Michigan","fbs",30,1345
+401415219,2022,3,"regular","2022-09-18T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",24,1110,2184,"Duquesne","fcs",14,
+401411116,2022,4,"regular","2022-09-22T23:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",10,1451,277,"West Virginia","fbs",33,1430
+401426334,2022,4,"regular","2022-09-22T23:30:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",24,1444,324,"Coastal Carolina","fbs",41,1656
+401421129,2022,4,"regular","2022-09-23T00:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",31,1622,236,"Chattanooga","fcs",0,
+401411117,2022,4,"regular","2022-09-23T23:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",22,1539,258,"Virginia","fbs",20,1481
+401415220,2022,4,"regular","2022-09-24T00:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",48,1690,2440,"Nevada","fbs",20,1520
+401426571,2022,4,"regular","2022-09-24T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",27,1245,68,"Boise State","fbs",10,1618
+401403894,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",17,1560,142,"Missouri","fbs",14,1410
+401403895,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",39,2121,2309,"Kent State","fbs",22,1274
+401403899,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",45,1578,189,"Bowling Green","fbs",14,1194
+401404078,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",34,1657,2628,"TCU","fbs",42,1497
+401404079,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",35,1342,150,"Duke","fbs",27,1268
+401404080,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",24,1809,239,"Baylor","fbs",31,1733
+401405097,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",34,2024,120,"Maryland","fbs",27,1608
+401405098,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",33,1804,2117,"Central Michigan","fbs",14,1477
+401411119,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,97,"Louisville","fbs",41,1499,58,"South Florida","fbs",3,1250
+401411121,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",45,1709,227,"Rhode Island","fcs",24,
+401411123,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",45,1667,228,"Clemson","fbs",51,1808
+401416604,2022,4,"regular","2022-09-24T16:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",31,1386,2084,"Buffalo","fbs",50,1345
+401403998,2022,4,"regular","2022-09-24T18:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",17,1212,26,"UCLA","fbs",45,1682
+401414781,2022,4,"regular","2022-09-24T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",28,1044,113,"Massachusetts","fbs",0,934
+401416606,2022,4,"regular","2022-09-24T18:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",59,1251,2230,"Fordham","fcs",52,
+401403901,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",38,1835,57,"Florida","fbs",33,1564
+401404082,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",37,1520,251,"Texas","fbs",34,1746
+401404126,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",32,1569,87,"Notre Dame","fbs",45,1780
+401405092,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",7,1670,135,"Minnesota","fbs",34,1760
+401405096,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",45,1795,84,"Indiana","fbs",24,1342
+401415037,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",28,1650,256,"James Madison","fbs",32,1427
+401415224,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",17,1427,2649,"Toledo","fbs",14,1475
+401426565,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",73,1712,2229,"Florida International","fbs",0,1022
+401426568,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",31,1590,2393,"Middle Tennessee","fbs",45,1354
+401426569,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,235,"Memphis","fbs",44,1492,249,"North Texas","fbs",34,1274
+401426572,2022,4,"regular","2022-09-24T19:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",52,1485,2640,"Texas Southern","fcs",24,
+401403898,2022,4,"regular","2022-09-24T20:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",35,1748,202,"Tulsa","fbs",27,1499
+401403999,2022,4,"regular","2022-09-24T20:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",41,1651,2483,"Oregon","fbs",44,1557
+401411122,2022,4,"regular","2022-09-24T20:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",27,1614,59,"Georgia Tech","fbs",10,1239
+401415221,2022,4,"regular","2022-09-24T20:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",10,1233,16,"Sacramento State","fcs",41,
+401403996,2022,4,"regular","2022-09-24T21:30:00.000Z",TRUE,FALSE,25,"California","fbs",49,1512,12,"Arizona","fbs",31,1343
+401404160,2022,4,"regular","2022-09-24T22:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",21,1594,2006,"Akron","fbs",12,936
+401415624,2022,4,"regular","2022-09-24T22:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",20,1550,2426,"Navy","fbs",23,1342
+401416605,2022,4,"regular","2022-09-24T22:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",34,1385,2050,"Ball State","fbs",23,1295
+401426335,2022,4,"regular","2022-09-24T22:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",29,1364,2032,"Arkansas State","fbs",26,1245
+401426570,2022,4,"regular","2022-09-24T22:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",34,1527,242,"Rice","fbs",27,1204
+401403893,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,TRUE,245,"Texas A&M","fbs",23,1706,8,"Arkansas","fbs",21,1665
+401403896,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",31,1722,2459,"Northern Illinois","fbs",23,1358
+401405091,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",10,1355,2294,"Iowa","fbs",27,1694
+401415040,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",24,1512,2572,"Southern Miss","fbs",27,1254
+401415222,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",24,1445,2439,"UNLV","fbs",34,1395
+401418793,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",34,1232,2277,"Houston Christian","fcs",0,
+401426393,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",16,1341,276,"Marshall","fbs",7,1570
+401426567,2022,4,"regular","2022-09-24T23:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",38,1410,2348,"Louisiana Tech","fbs",14,1227
+401403892,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",55,2121,238,"Vanderbilt","fbs",3,1422
+401403897,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",38,1574,167,"New Mexico","fbs",0,1269
+401404150,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,152,"NC State","fbs",41,1646,41,"UConn","fbs",10,1012
+401405093,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",14,1353,193,"Miami (OH)","fbs",17,1459
+401405095,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",52,2079,275,"Wisconsin","fbs",21,1828
+401426564,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",56,1470,2429,"Charlotte","fbs",20,1169
+401426566,2022,4,"regular","2022-09-24T23:30:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",28,1629,2226,"Florida Atlantic","fbs",26,1423
+401404081,2022,4,"regular","2022-09-25T00:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",34,1884,2306,"Kansas State","fbs",41,1642
+401409237,2022,4,"regular","2022-09-25T00:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",45,1038,62,"Hawai'i","fbs",26,1145
+401411118,2022,4,"regular","2022-09-25T00:00:00.000Z",TRUE,FALSE,52,"Florida State","fbs",44,1511,103,"Boston College","fbs",14,1398
+401426336,2022,4,"regular","2022-09-25T00:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",21,1092,309,"Louisiana","fbs",17,1671
+401404000,2022,4,"regular","2022-09-25T01:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",14,1597,30,"USC","fbs",17,1687
+401415223,2022,4,"regular","2022-09-25T02:15:00.000Z",TRUE,FALSE,252,"BYU","fbs",38,1619,2751,"Wyoming","fbs",24,1416
+401403997,2022,4,"regular","2022-09-25T02:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",13,1551,254,"Utah","fbs",34,1823
+401404001,2022,4,"regular","2022-09-25T02:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",40,1607,24,"Stanford","fbs",22,1349
+401415225,2022,4,"regular","2022-09-25T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",34,1343,2711,"Western Michigan","fbs",6,1453
+401403908,2022,5,"regular","2022-09-29T23:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",50,1546,2569,"South Carolina State","fcs",10,
+401415226,2022,5,"regular","2022-09-30T00:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",38,1630,328,"Utah State","fbs",26,1420
+401415625,2022,5,"regular","2022-09-30T23:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",24,1520,2655,"Tulane","fbs",27,1491
+401426576,2022,5,"regular","2022-09-30T23:30:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",30,1411,2636,"UTSA","fbs",45,1491
+401415228,2022,5,"regular","2022-10-01T00:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",35,1541,21,"San Diego State","fbs",13,1429
+401404007,2022,5,"regular","2022-10-01T02:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",40,1705,264,"Washington","fbs",32,1623
+401415229,2022,5,"regular","2022-10-01T03:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",31,1420,167,"New Mexico","fbs",20,1200
+401403905,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",22,1745,96,"Kentucky","fbs",19,1713
+401404085,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",37,1675,2641,"Texas Tech","fbs",28,1524
+401404086,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",55,1526,201,"Oklahoma","fbs",24,1851
+401404137,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",14,1528,2247,"Georgia State","fbs",31,1424
+401405099,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",10,1775,356,"Illinois","fbs",34,1623
+401405100,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",14,1702,130,"Michigan","fbs",27,2012
+401405101,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",10,1823,2509,"Purdue","fbs",20,1627
+401411124,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",34,1332,97,"Louisville","fbs",33,1575
+401415227,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",13,1743,2426,"Navy","fbs",10,1360
+401415628,2022,5,"regular","2022-10-01T16:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",24,1494,218,"Temple","fbs",3,1104
+401426338,2022,5,"regular","2022-10-01T17:30:00.000Z",TRUE,FALSE,256,"James Madison","fbs",40,1449,326,"Texas State","fbs",13,1249
+401404006,2022,5,"regular","2022-10-01T18:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",42,1847,204,"Oregon State","fbs",16,1598
+401414782,2022,5,"regular","2022-10-01T18:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",20,1334,113,"Massachusetts","fbs",13,874
+401416608,2022,5,"regular","2022-10-01T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",44,1282,2459,"Northern Illinois","fbs",38,1367
+401415626,2022,5,"regular","2022-10-01T18:30:00.000Z",TRUE,TRUE,58,"South Florida","fbs",28,1174,151,"East Carolina","fbs",48,1532
+401403902,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",26,1663,333,"Alabama","fbs",49,2185
+401404083,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,239,"Baylor","fbs",25,1752,197,"Oklahoma State","fbs",36,1805
+401404084,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",14,1349,66,"Iowa State","fbs",11,1790
+401404151,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,41,"UConn","fbs",19,999,278,"Fresno State","fbs",14,1517
+401405103,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",27,1620,127,"Michigan State","fbs",13,1607
+401405104,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",49,2132,164,"Rutgers","fbs",10,1347
+401405105,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",17,1817,77,"Northwestern","fbs",7,1355
+401411127,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",21,1577,154,"Wake Forest","fbs",31,1666
+401411128,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",41,1559,259,"Virginia Tech","fbs",10,1388
+401416607,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",38,1473,2117,"Central Michigan","fbs",17,1464
+401416609,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2006,"Akron","fbs",28,960,189,"Bowling Green","fbs",31,1155
+401416610,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",24,1397,193,"Miami (OH)","fbs",20,1457
+401416611,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",31,1305,195,"Ohio","fbs",24,1273
+401421140,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",49,1633,2643,"The Citadel","fcs",0,
+401426339,2022,5,"regular","2022-10-01T19:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",28,1549,2241,"Gardner-Webb","fcs",7,
+401403906,2022,5,"regular","2022-10-01T20:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",42,1617,245,"Texas A&M","fbs",24,1708
+401426575,2022,5,"regular","2022-10-01T20:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",45,1272,2226,"Florida Atlantic","fbs",28,1425
+401411130,2022,5,"regular","2022-10-01T21:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",59,1539,2681,"Wagner","fcs",0,
+401426341,2022,5,"regular","2022-10-01T21:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",17,1648,6,"South Alabama","fbs",20,1450
+401404004,2022,5,"regular","2022-10-01T21:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",28,1641,25,"California","fbs",9,1536
+401404161,2022,5,"regular","2022-10-01T22:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",24,1363,2335,"Liberty","fbs",38,1570
+401416612,2022,5,"regular","2022-10-01T22:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",44,1377,160,"New Hampshire","fcs",7,
+401426573,2022,5,"regular","2022-10-01T22:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",35,1106,2638,"UTEP","fbs",41,1322
+401403903,2022,5,"regular","2022-10-01T23:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",17,1559,99,"LSU","fbs",21,1643
+401415627,2022,5,"regular","2022-10-01T23:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",21,1502,2132,"Cincinnati","fbs",31,1801
+401426337,2022,5,"regular","2022-10-01T23:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",34,1676,290,"Georgia Southern","fbs",30,1398
+401426340,2022,5,"regular","2022-10-01T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",45,1246,2433,"UL Monroe","fbs",28,1115
+401426578,2022,5,"regular","2022-10-01T23:00:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",27,1844,2653,"Troy","fbs",34,1372
+401403907,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",22,1411,61,"Georgia","fbs",26,2090
+401404087,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",38,1742,277,"West Virginia","fbs",20,1493
+401405102,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",35,1523,84,"Indiana","fbs",21,1336
+401411125,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",30,1809,152,"NC State","fbs",20,1659
+401411126,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",38,1261,258,"Virginia","fbs",17,1481
+401415230,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",16,1405,23,"San José State","fbs",33,1430
+401426577,2022,5,"regular","2022-10-01T23:30:00.000Z",TRUE,FALSE,242,"Rice","fbs",28,1211,5,"UAB","fbs",24,1556
+401411129,2022,5,"regular","2022-10-02T00:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",21,1695,59,"Georgia Tech","fbs",26,1235
+401426574,2022,5,"regular","2022-10-02T00:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",7,1093,2229,"Florida International","fbs",21,890
+401404002,2022,5,"regular","2022-10-02T01:30:00.000Z",TRUE,FALSE,12,"Arizona","fbs",43,1319,38,"Colorado","fbs",20,1189
+401404003,2022,5,"regular","2022-10-02T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",42,1686,9,"Arizona State","fbs",25,1527
+401404005,2022,5,"regular","2022-10-02T03:00:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",45,1567,24,"Stanford","fbs",27,1333
+401403904,2022,5,"regular","2022-10-02T16:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",52,1568,331,"Eastern Washington","fcs",17,
+401415629,2022,6,"regular","2022-10-05T23:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",41,1618,2567,"SMU","fbs",19,1628
+401405111,2022,6,"regular","2022-10-07T23:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",13,1329,158,"Nebraska","fbs",14,1536
+401415630,2022,6,"regular","2022-10-07T23:30:00.000Z",TRUE,FALSE,235,"Memphis","fbs",32,1506,248,"Houston","fbs",33,1514
+401415233,2022,6,"regular","2022-10-08T02:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",14,1467,36,"Colorado State","fbs",17,1246
+401415236,2022,6,"regular","2022-10-08T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",40,1468,2439,"UNLV","fbs",7,1424
+401403910,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",24,1569,142,"Missouri","fbs",17,1443
+401403913,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",13,1644,2633,"Tennessee","fbs",40,1830
+401403914,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",40,1667,8,"Arkansas","fbs",17,1658
+401404089,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",31,1357,2628,"TCU","fbs",38,1656
+401404090,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,TRUE,201,"Oklahoma","fbs",0,1721,251,"Texas","fbs",49,1759
+401405108,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",10,1323,130,"Michigan","fbs",31,2013
+401405109,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",29,1647,2509,"Purdue","fbs",31,1666
+401411136,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",17,1406,97,"Louisville","fbs",34,1568
+401416614,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",23,1366,2199,"Eastern Michigan","fbs",45,1320
+401416617,2022,6,"regular","2022-10-08T16:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",7,1148,2084,"Buffalo","fbs",38,1402
+401416616,2022,6,"regular","2022-10-08T18:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",55,1265,2006,"Akron","fbs",34,967
+401426342,2022,6,"regular","2022-10-08T18:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",41,1476,290,"Georgia Southern","fbs",33,1403
+401415633,2022,6,"regular","2022-10-08T18:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",28,1797,58,"South Florida","fbs",24,1167
+401403911,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",42,2058,2,"Auburn","fbs",10,1558
+401404011,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",42,1712,254,"Utah","fbs",32,1886
+401404091,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",41,1824,2641,"Texas Tech","fbs",31,1519
+401404164,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",24,888,2335,"Liberty","fbs",42,1582
+401405107,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",7,1368,275,"Wisconsin","fbs",42,1692
+401411135,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",45,1650,259,"Virginia Tech","fbs",29,1325
+401415631,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",24,1497,151,"East Carolina","fbs",9,1539
+401415632,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",53,1364,202,"Tulsa","fbs",21,1506
+401416613,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",16,1415,2050,"Ball State","fbs",17,1294
+401416615,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",32,1355,2649,"Toledo","fbs",52,1522
+401416618,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",27,1452,2309,"Kent State","fbs",24,1313
+401426581,2022,6,"regular","2022-10-08T19:30:00.000Z",TRUE,FALSE,5,"UAB","fbs",41,1542,2393,"Middle Tennessee","fbs",14,1384
+401403915,2022,6,"regular","2022-10-08T20:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",28,1358,145,"Ole Miss","fbs",52,1746
+401404009,2022,6,"regular","2022-10-08T20:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",45,1505,264,"Washington","fbs",38,1616
+401405110,2022,6,"regular","2022-10-08T20:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",20,1580,194,"Ohio State","fbs",49,2150
+401411132,2022,6,"regular","2022-10-08T20:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",23,1280,150,"Duke","fbs",20,1336
+401411133,2022,6,"regular","2022-10-08T20:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",24,1533,153,"North Carolina","fbs",27,1622
+401426582,2022,6,"regular","2022-10-08T22:00:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",31,1518,98,"Western Kentucky","fbs",28,1789
+401415231,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",34,1414,2005,"Air Force","fbs",27,1739
+401415234,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",14,1196,2751,"Wyoming","fbs",27,1367
+401426343,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",20,1271,256,"James Madison","fbs",42,1496
+401426345,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",36,1202,2026,"App State","fbs",24,1628
+401426346,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",27,1427,2572,"Southern Miss","fbs",10,1275
+401426579,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",12,943,41,"UConn","fbs",33,1029
+401426580,2022,6,"regular","2022-10-08T23:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",41,1187,2638,"UTEP","fbs",31,1317
+401403912,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",14,1712,2579,"South Carolina","fbs",24,1533
+401404012,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,30,"USC","fbs",30,1708,265,"Washington State","fbs",14,1674
+401404088,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",9,1782,2306,"Kansas State","fbs",10,1680
+401404127,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,TRUE,87,"Notre Dame","fbs",28,1790,252,"BYU","fbs",20,1636
+401404138,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",45,1679,349,"Army","fbs",10,1476
+401405106,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",9,1706,2294,"Iowa","fbs",6,1701
+401411131,2022,6,"regular","2022-10-08T23:30:00.000Z",TRUE,FALSE,103,"Boston College","fbs",3,1339,228,"Clemson","fbs",31,1816
+401403909,2022,6,"regular","2022-10-09T00:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",24,2190,245,"Texas A&M","fbs",20,1658
+401411134,2022,6,"regular","2022-10-09T00:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",19,1652,52,"Florida State","fbs",17,1564
+401426344,2022,6,"regular","2022-10-09T00:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",21,1090,324,"Coastal Carolina","fbs",28,1671
+401404008,2022,6,"regular","2022-10-09T01:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",22,1361,2483,"Oregon","fbs",49,1585
+401415232,2022,6,"regular","2022-10-09T01:45:00.000Z",TRUE,FALSE,68,"Boise State","fbs",40,1582,278,"Fresno State","fbs",20,1487
+401415235,2022,6,"regular","2022-10-09T02:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",16,1388,62,"Hawai'i","fbs",14,1090
+401404010,2022,6,"regular","2022-10-09T03:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",27,1315,204,"Oregon State","fbs",28,1559
+401426347,2022,7,"regular","2022-10-12T23:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",13,1539,309,"Louisiana","fbs",23,1631
+401404092,2022,7,"regular","2022-10-13T23:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",43,1476,239,"Baylor","fbs",40,1733
+401415634,2022,7,"regular","2022-10-13T23:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",70,1672,218,"Temple","fbs",13,1092
+401415635,2022,7,"regular","2022-10-14T23:30:00.000Z",TRUE,FALSE,2567,"SMU","fbs",40,1574,2426,"Navy","fbs",34,1471
+401426584,2022,7,"regular","2022-10-15T00:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",10,899,2636,"UTSA","fbs",30,1523
+401403920,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",48,1766,2,"Auburn","fbs",34,1529
+401404093,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",24,1898,66,"Iowa State","fbs",21,1776
+401404094,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",52,1582,2305,"Kansas","fbs",42,1366
+401404139,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",42,1398,2142,"Colgate","fcs",17,
+401405112,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",26,1707,135,"Minnesota","fbs",14,1784
+401405115,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",41,1999,213,"Penn State","fbs",17,1804
+401416619,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",21,947,2117,"Central Michigan","fbs",28,1408
+401416622,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",17,1092,193,"Miami (OH)","fbs",13,1451
+401426348,2022,7,"regular","2022-10-15T16:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",21,1644,295,"Old Dominion","fbs",49,1351
+401411140,2022,7,"regular","2022-10-15T16:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",14,1319,2390,"Miami","fbs",20,1534
+401414783,2022,7,"regular","2022-10-15T17:00:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",7,908,2084,"Buffalo","fbs",34,1458
+401404014,2022,7,"regular","2022-10-15T18:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",20,1147,25,"California","fbs",13,1503
+401404153,2022,7,"regular","2022-10-15T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",25,1301,41,"UConn","fbs",21,1073
+401403916,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,252,"BYU","fbs",35,1629,8,"Arkansas","fbs",52,1603
+401403918,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",55,2087,238,"Vanderbilt","fbs",0,1338
+401403921,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",52,1881,333,"Alabama","fbs",49,2179
+401404095,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2628,"TCU","fbs",43,1647,197,"Oklahoma State","fbs",40,1821
+401404162,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",21,1609,2241,"Gardner-Webb","fcs",20,
+401405114,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",33,1337,120,"Maryland","fbs",38,1645
+401411139,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",24,1539,152,"NC State","fbs",9,1651
+401416620,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",10,1382,2459,"Northern Illinois","fbs",39,1323
+401416621,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",52,1554,2309,"Kent State","fbs",31,1314
+401416623,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",14,1304,195,"Ohio","fbs",33,1285
+401426352,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",17,1450,326,"Texas State","fbs",14,1263
+401426583,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,5,"UAB","fbs",34,1594,2429,"Charlotte","fbs",20,1111
+401426587,2022,7,"regular","2022-10-15T19:30:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",17,1332,98,"Western Kentucky","fbs",35,1784
+401405116,2022,7,"regular","2022-10-15T20:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",34,1565,275,"Wisconsin","fbs",28,1752
+401415636,2022,7,"regular","2022-10-15T20:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",31,1180,2655,"Tulane","fbs",45,1532
+401426349,2022,7,"regular","2022-10-15T20:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",45,1396,256,"James Madison","fbs",38,1528
+401426586,2022,7,"regular","2022-10-15T20:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",47,1325,2348,"Louisiana Tech","fbs",27,1214
+401404013,2022,7,"regular","2022-10-15T21:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",49,1600,12,"Arizona","fbs",39,1314
+401426585,2022,7,"regular","2022-10-15T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",17,1372,242,"Rice","fbs",14,1225
+401403917,2022,7,"regular","2022-10-15T23:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",35,1572,99,"LSU","fbs",45,1593
+401415238,2022,7,"regular","2022-10-15T23:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",13,1265,328,"Utah State","fbs",17,1444
+401426350,2022,7,"regular","2022-10-15T23:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",41,1467,2433,"UL Monroe","fbs",34,1117
+401426351,2022,7,"regular","2022-10-15T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",20,1252,2032,"Arkansas State","fbs",19,1239
+401403919,2022,7,"regular","2022-10-15T23:30:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",27,1675,344,"Mississippi State","fbs",17,1722
+401404016,2022,7,"regular","2022-10-15T23:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",14,1797,24,"Stanford","fbs",16,1325
+401405113,2022,7,"regular","2022-10-15T23:30:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",43,1668,158,"Nebraska","fbs",37,1528
+401411138,2022,7,"regular","2022-10-15T23:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",28,1565,228,"Clemson","fbs",34,1838
+401415637,2022,7,"regular","2022-10-15T23:30:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",47,1504,235,"Memphis","fbs",45,1505
+401404017,2022,7,"regular","2022-10-16T00:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",43,1856,30,"USC","fbs",42,1739
+401409239,2022,7,"regular","2022-10-16T00:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",21,1040,167,"New Mexico","fbs",9,1183
+401411137,2022,7,"regular","2022-10-16T00:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",35,1334,153,"North Carolina","fbs",38,1621
+401404015,2022,7,"regular","2022-10-16T01:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",24,1549,265,"Washington State","fbs",10,1643
+401415237,2022,7,"regular","2022-10-16T02:30:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",7,1339,2005,"Air Force","fbs",42,1709
+401415239,2022,7,"regular","2022-10-16T02:45:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",17,1450,23,"San José State","fbs",10,1553
+401415240,2022,7,"regular","2022-10-16T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",31,1093,2440,"Nevada","fbs",16,1448
+401426353,2022,8,"regular","2022-10-19T23:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",42,1567,2247,"Georgia State","fbs",17,1483
+401411141,2022,8,"regular","2022-10-20T23:30:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",9,1282,258,"Virginia","fbs",16,1382
+401426354,2022,8,"regular","2022-10-20T23:30:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",6,1458,2653,"Troy","fbs",10,1449
+401415638,2022,8,"regular","2022-10-21T23:30:00.000Z",TRUE,FALSE,218,"Temple","fbs",16,997,202,"Tulsa","fbs",27,1399
+401426592,2022,8,"regular","2022-10-22T00:00:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",20,1784,5,"UAB","fbs",17,1584
+401403926,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",65,1910,2630,"UT Martin","fcs",24,
+401404096,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",35,1728,2305,"Kansas","fbs",23,1364
+401404140,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",48,1404,2433,"UL Monroe","fbs",24,1126
+401405119,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",54,2165,2294,"Iowa","fbs",10,1700
+401405121,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",24,1337,84,"Indiana","fbs",17,1349
+401411142,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",27,1830,183,"Syracuse","fbs",21,1581
+401415640,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,2426,"Navy","fbs",20,1469,248,"Houston","fbs",38,1515
+401415641,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",27,1576,2132,"Cincinnati","fbs",29,1784
+401416628,2022,8,"regular","2022-10-22T16:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",33,1288,2006,"Akron","fbs",27,966
+401411144,2022,8,"regular","2022-10-22T16:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",21,1530,150,"Duke","fbs",45,1346
+401416626,2022,8,"regular","2022-10-22T17:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",34,1470,2649,"Toledo","fbs",27,1580
+401416629,2022,8,"regular","2022-10-22T17:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",18,1389,189,"Bowling Green","fbs",34,1107
+401416624,2022,8,"regular","2022-10-22T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",16,1297,2199,"Eastern Michigan","fbs",20,1293
+401416625,2022,8,"regular","2022-10-22T18:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",24,1334,2459,"Northern Illinois","fbs",17,1412
+401404128,2022,8,"regular","2022-10-22T18:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",44,1765,2439,"UNLV","fbs",21,1285
+401404099,2022,8,"regular","2022-10-22T19:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",48,1522,277,"West Virginia","fbs",10,1481
+401426590,2022,8,"regular","2022-10-22T19:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",41,1179,242,"Rice","fbs",42,1226
+401403923,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",45,1612,145,"Ole Miss","fbs",20,1775
+401404021,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",45,1632,26,"UCLA","fbs",30,1742
+401404098,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",41,1818,251,"Texas","fbs",34,1897
+401404163,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",41,1562,252,"BYU","fbs",14,1585
+401405117,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",35,1735,2509,"Purdue","fbs",24,1668
+401405118,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",31,1633,77,"Northwestern","fbs",24,1308
+401411145,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",43,1751,103,"Boston College","fbs",15,1317
+401415639,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",38,1532,235,"Memphis","fbs",28,1504
+401416627,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",10,1436,2711,"Western Michigan","fbs",16,1255
+401426355,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,256,"James Madison","fbs",12,1511,276,"Marshall","fbs",26,1526
+401426356,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",23,1469,290,"Georgia Southern","fbs",28,1413
+401426588,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",15,1121,2229,"Florida International","fbs",34,910
+401426591,2022,8,"regular","2022-10-22T19:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",31,1512,249,"North Texas","fbs",27,1360
+401403924,2022,8,"regular","2022-10-22T20:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",17,1440,238,"Vanderbilt","fbs",14,1271
+401404018,2022,8,"regular","2022-10-22T20:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",15,1357,9,"Arizona State","fbs",14,1521
+401415242,2022,8,"regular","2022-10-22T20:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",17,1270,62,"Hawai'i","fbs",13,1160
+401426589,2022,8,"regular","2022-10-22T20:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",24,1290,2226,"Florida Atlantic","fbs",21,1371
+401426357,2022,8,"regular","2022-10-22T21:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",38,1644,2032,"Arkansas State","fbs",18,1239
+401426358,2022,8,"regular","2022-10-22T21:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",14,1264,2572,"Southern Miss","fbs",20,1252
+401415243,2022,8,"regular","2022-10-22T22:30:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",9,1148,278,"Fresno State","fbs",41,1466
+401403922,2022,8,"regular","2022-10-22T23:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",30,2174,344,"Mississippi State","fbs",6,1701
+401415241,2022,8,"regular","2022-10-22T23:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",14,1763,68,"Boise State","fbs",19,1619
+401403925,2022,8,"regular","2022-10-22T23:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",30,1570,245,"Texas A&M","fbs",24,1669
+401405120,2022,8,"regular","2022-10-22T23:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",45,1766,135,"Minnesota","fbs",17,1755
+401415642,2022,8,"regular","2022-10-22T23:30:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",34,1505,2116,"UCF","fbs",13,1767
+401404020,2022,8,"regular","2022-10-23T00:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",42,1586,38,"Colorado","fbs",9,1179
+401404097,2022,8,"regular","2022-10-23T00:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",38,1650,2306,"Kansas State","fbs",28,1686
+401411143,2022,8,"regular","2022-10-23T00:00:00.000Z",TRUE,FALSE,97,"Louisville","fbs",24,1592,221,"Pittsburgh","fbs",10,1656
+401415244,2022,8,"regular","2022-10-23T01:45:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",28,1380,328,"Utah State","fbs",14,1439
+401404019,2022,8,"regular","2022-10-23T02:30:00.000Z",TRUE,FALSE,25,"California","fbs",21,1471,264,"Washington","fbs",28,1598
+401415245,2022,8,"regular","2022-10-23T02:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",7,1381,21,"San Diego State","fbs",23,1385
+401411146,2022,9,"regular","2022-10-27T23:30:00.000Z",TRUE,FALSE,152,"NC State","fbs",22,1609,259,"Virginia Tech","fbs",21,1323
+401426359,2022,9,"regular","2022-10-27T23:30:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",39,1264,309,"Louisiana","fbs",24,1652
+401404026,2022,9,"regular","2022-10-28T02:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",17,1606,254,"Utah","fbs",21,1853
+401415645,2022,9,"regular","2022-10-29T00:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",24,1512,151,"East Carolina","fbs",27,1585
+401426594,2022,9,"regular","2022-10-29T00:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",42,982,2348,"Louisiana Tech","fbs",34,1180
+401403927,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",27,1520,8,"Arkansas","fbs",41,1647
+401404100,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",13,1777,201,"Oklahoma","fbs",27,1584
+401404103,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",31,1377,2628,"TCU","fbs",41,1670
+401404129,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",24,1585,87,"Notre Dame","fbs",41,1773
+401404154,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",13,1077,103,"Boston College","fbs",3,1292
+401405126,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",31,1838,194,"Ohio State","fbs",44,2233
+401411147,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,52,"Florida State","fbs",41,1573,59,"Georgia Tech","fbs",16,1276
+401415643,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",42,1554,58,"South Florida","fbs",27,1180
+401416630,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",24,1300,2649,"Toledo","fbs",27,1564
+401416631,2022,9,"regular","2022-10-29T16:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",9,974,193,"Miami (OH)","fbs",27,1411
+401411150,2022,9,"regular","2022-10-29T16:30:00.000Z",TRUE,FALSE,258,"Virginia","fbs",12,1388,2390,"Miami","fbs",14,1443
+401426593,2022,9,"regular","2022-10-29T18:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",23,1225,2429,"Charlotte","fbs",56,1049
+401405123,2022,9,"regular","2022-10-29T18:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",31,1683,164,"Rutgers","fbs",0,1347
+401426361,2022,9,"regular","2022-10-29T19:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",31,1429,295,"Old Dominion","fbs",17,1456
+401403928,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,TRUE,61,"Georgia","fbs",42,2154,57,"Florida","fbs",20,1553
+401404024,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,25,"California","fbs",24,1467,2483,"Oregon","fbs",42,1674
+401404102,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",48,1666,197,"Oklahoma State","fbs",0,1832
+401405122,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",33,1632,77,"Northwestern","fbs",13,1316
+401405124,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",9,1528,356,"Illinois","fbs",26,1736
+401409242,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",13,896,166,"New Mexico State","fbs",23,1075
+401411148,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",48,1626,154,"Wake Forest","fbs",21,1776
+401415644,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",25,1687,2132,"Cincinnati","fbs",21,1776
+401415646,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",27,1430,218,"Temple","fbs",20,1007
+401415647,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",34,1389,2567,"SMU","fbs",45,1584
+401426360,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",42,1647,2523,"Robert Morris","fcs",3,
+401426597,2022,9,"regular","2022-10-29T19:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",13,1782,249,"North Texas","fbs",40,1361
+401403929,2022,9,"regular","2022-10-29T20:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",10,1582,142,"Missouri","fbs",23,1439
+401426363,2022,9,"regular","2022-10-29T20:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",3,1231,6,"South Alabama","fbs",31,1451
+401403930,2022,9,"regular","2022-10-29T23:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",44,1886,96,"Kentucky","fbs",6,1696
+401404022,2022,9,"regular","2022-10-29T23:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",37,1316,30,"USC","fbs",45,1742
+401415246,2022,9,"regular","2022-10-29T23:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",49,1638,36,"Colorado State","fbs",10,1270
+401426362,2022,9,"regular","2022-10-29T23:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",13,1557,324,"Coastal Carolina","fbs",24,1526
+401426595,2022,9,"regular","2022-10-29T23:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",24,1369,5,"UAB","fbs",17,1586
+401403931,2022,9,"regular","2022-10-29T23:30:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",28,1657,145,"Ole Miss","fbs",31,1692
+401404023,2022,9,"regular","2022-10-29T23:30:00.000Z",TRUE,FALSE,38,"Colorado","fbs",34,1137,9,"Arizona State","fbs",42,1516
+401404101,2022,9,"regular","2022-10-29T23:30:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",17,1626,239,"Baylor","fbs",45,1724
+401405125,2022,9,"regular","2022-10-29T23:30:00.000Z",TRUE,FALSE,130,"Michigan","fbs",29,2037,127,"Michigan State","fbs",7,1582
+401411149,2022,9,"regular","2022-10-30T00:00:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",42,1609,221,"Pittsburgh","fbs",24,1622
+401426596,2022,9,"regular","2022-10-30T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",13,1292,2393,"Middle Tennessee","fbs",24,1332
+401404025,2022,9,"regular","2022-10-30T02:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",38,1700,24,"Stanford","fbs",13,1362
+401415248,2022,9,"regular","2022-10-30T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",32,1517,21,"San Diego State","fbs",28,1423
+401415249,2022,9,"regular","2022-10-30T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",35,1537,2440,"Nevada","fbs",28,1343
+401415247,2022,9,"regular","2022-10-30T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",20,1160,2751,"Wyoming","fbs",27,1414
+401416632,2022,10,"regular","2022-11-01T23:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",20,1280,2050,"Ball State","fbs",27,1290
+401416633,2022,10,"regular","2022-11-01T23:30:00.000Z",TRUE,FALSE,195,"Ohio","fbs",45,1348,2084,"Buffalo","fbs",24,1486
+401416634,2022,10,"regular","2022-11-02T23:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",22,1398,2117,"Central Michigan","fbs",35,1319
+401416635,2022,10,"regular","2022-11-02T23:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",13,1177,2711,"Western Michigan","fbs",9,1280
+401426601,2022,10,"regular","2022-11-03T23:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",37,1104,2638,"UTEP","fbs",30,1272
+401426364,2022,10,"regular","2022-11-03T23:30:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",35,1552,2026,"App State","fbs",28,1621
+401404155,2022,10,"regular","2022-11-04T23:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",27,1111,113,"Massachusetts","fbs",10,890
+401411151,2022,10,"regular","2022-11-04T23:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",31,1258,150,"Duke","fbs",38,1433
+401404031,2022,10,"regular","2022-11-05T02:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",24,1602,204,"Oregon State","fbs",21,1628
+401404141,2022,10,"regular","2022-11-05T15:30:00.000Z",TRUE,TRUE,349,"Army","fbs",7,1434,2005,"Air Force","fbs",13,1744
+401403936,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",17,1483,96,"Kentucky","fbs",21,1612
+401403937,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",24,1655,57,"Florida","fbs",41,1552
+401404108,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",34,1667,2641,"Texas Tech","fbs",24,1561
+401405128,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",13,1508,135,"Minnesota","fbs",20,1727
+401405129,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",7,1300,194,"Ohio State","fbs",21,2227
+401405130,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",3,1653,2294,"Iowa","fbs",24,1648
+401405131,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",23,1750,120,"Maryland","fbs",10,1625
+401411156,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",28,1388,153,"North Carolina","fbs",31,1651
+401415649,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",13,1382,2655,"Tulane","fbs",27,1547
+401426598,2022,10,"regular","2022-11-05T16:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",7,1170,98,"Western Kentucky","fbs",59,1648
+401411157,2022,10,"regular","2022-11-05T16:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",27,1331,59,"Georgia Tech","fbs",28,1245
+401415648,2022,10,"regular","2022-11-05T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",54,1019,58,"South Florida","fbs",28,1180
+401426366,2022,10,"regular","2022-11-05T18:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",0,1425,276,"Marshall","fbs",12,1531
+401404104,2022,10,"regular","2022-11-05T19:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",35,1636,239,"Baylor","fbs",38,1789
+401426369,2022,10,"regular","2022-11-05T19:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",14,1334,2247,"Georgia State","fbs",42,1460
+401426600,2022,10,"regular","2022-11-05T19:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",40,1155,2393,"Middle Tennessee","fbs",24,1352
+401403933,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",27,2155,2633,"Tennessee","fbs",13,1970
+401404030,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,38,"Colorado","fbs",10,1150,2483,"Oregon","fbs",49,1697
+401404032,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,24,"Stanford","fbs",14,1335,265,"Washington State","fbs",52,1615
+401404105,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",31,1725,277,"West Virginia","fbs",14,1380
+401404106,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",37,1368,197,"Oklahoma State","fbs",16,1657
+401405127,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",15,1756,127,"Michigan State","fbs",23,1574
+401405132,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",14,1339,213,"Penn State","fbs",45,1844
+401411155,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",19,1580,183,"Syracuse","fbs",9,1563
+401415252,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,328,"Utah State","fbs",27,1405,167,"New Mexico","fbs",10,1097
+401415651,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,235,"Memphis","fbs",28,1489,2116,"UCF","fbs",35,1693
+401426602,2022,10,"regular","2022-11-05T19:30:00.000Z",TRUE,FALSE,5,"UAB","fbs",38,1563,2636,"UTSA","fbs",44,1511
+401403932,2022,10,"regular","2022-11-05T20:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",19,1667,2335,"Liberty","fbs",21,1635
+401415650,2022,10,"regular","2022-11-05T20:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",20,1770,2426,"Navy","fbs",10,1418
+401426365,2022,10,"regular","2022-11-05T20:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",31,1426,6,"South Alabama","fbs",38,1501
+401426599,2022,10,"regular","2022-11-05T20:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",52,1495,2229,"Florida International","fbs",14,1007
+401426367,2022,10,"regular","2022-11-05T21:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",17,1582,2653,"Troy","fbs",23,1456
+401426368,2022,10,"regular","2022-11-05T21:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",31,1096,326,"Texas State","fbs",30,1252
+401403934,2022,10,"regular","2022-11-05T23:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",32,1695,333,"Alabama","fbs",31,2185
+401404107,2022,10,"regular","2022-11-05T23:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",27,1841,251,"Texas","fbs",34,1883
+401415250,2022,10,"regular","2022-11-05T23:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",28,1702,252,"BYU","fbs",31,1512
+401415254,2022,10,"regular","2022-11-05T23:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",14,1423,2439,"UNLV","fbs",10,1277
+401415652,2022,10,"regular","2022-11-05T23:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",77,1591,248,"Houston","fbs",63,1554
+401403935,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",39,1690,2,"Auburn","fbs",33,1500
+401403938,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",27,1272,2579,"South Carolina","fbs",38,1538
+401404027,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,254,"Utah","fbs",45,1844,12,"Arizona","fbs",20,1332
+401404130,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",35,1795,228,"Clemson","fbs",14,1826
+401405133,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",17,1303,130,"Michigan","fbs",52,2045
+401411152,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",34,1715,256,"James Madison","fbs",10,1480
+401411153,2022,10,"regular","2022-11-05T23:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",3,1443,52,"Florida State","fbs",45,1604
+401411154,2022,10,"regular","2022-11-06T00:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",30,1601,154,"Wake Forest","fbs",21,1687
+401404028,2022,10,"regular","2022-11-06T02:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",36,1503,26,"UCLA","fbs",50,1727
+401404029,2022,10,"regular","2022-11-06T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",41,1726,25,"California","fbs",35,1444
+401415251,2022,10,"regular","2022-11-06T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",28,1536,36,"Colorado State","fbs",16,1206
+401415253,2022,10,"regular","2022-11-06T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",55,1517,62,"Hawai'i","fbs",13,1166
+401416637,2022,11,"regular","2022-11-09T00:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",28,973,2199,"Eastern Michigan","fbs",34,1311
+401416638,2022,11,"regular","2022-11-09T00:30:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",21,1412,195,"Ohio","fbs",37,1413
+401416636,2022,11,"regular","2022-11-09T01:00:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",28,1553,2050,"Ball State","fbs",21,1302
+401416639,2022,11,"regular","2022-11-10T00:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",21,1274,2459,"Northern Illinois","fbs",24,1361
+401416640,2022,11,"regular","2022-11-10T00:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",31,1356,2084,"Buffalo","fbs",27,1421
+401416641,2022,11,"regular","2022-11-10T00:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",6,1183,2309,"Kent State","fbs",40,1268
+401415653,2022,11,"regular","2022-11-11T00:30:00.000Z",TRUE,FALSE,235,"Memphis","fbs",26,1491,202,"Tulsa","fbs",10,1366
+401426370,2022,11,"regular","2022-11-11T00:30:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",36,1561,290,"Georgia Southern","fbs",17,1419
+401415654,2022,11,"regular","2022-11-12T01:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",27,1764,151,"East Carolina","fbs",25,1585
+401404033,2022,11,"regular","2022-11-12T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",55,1720,38,"Colorado","fbs",17,1105
+401415259,2022,11,"regular","2022-11-12T03:30:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",30,1278,278,"Fresno State","fbs",37,1593
+401403939,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",10,1662,99,"LSU","fbs",13,1708
+401403942,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",21,1610,238,"Vanderbilt","fbs",24,1271
+401403945,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",66,1957,142,"Missouri","fbs",24,1485
+401404112,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",23,1374,201,"Oklahoma","fbs",20,1640
+401404131,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,TRUE,2426,"Navy","fbs",32,1424,87,"Notre Dame","fbs",35,1848
+401404156,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",36,1128,2335,"Liberty","fbs",33,1640
+401405134,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",24,1725,2509,"Purdue","fbs",31,1599
+401405138,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",27,1605,164,"Rutgers","fbs",21,1290
+401405139,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",56,2184,84,"Indiana","fbs",14,1312
+401411159,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",24,1433,259,"Virginia Tech","fbs",7,1326
+401411163,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",7,1399,221,"Pittsburgh","fbs",37,1596
+401415656,2022,11,"regular","2022-11-12T17:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",23,1094,2567,"SMU","fbs",41,1616
+401426372,2022,11,"regular","2022-11-12T18:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",28,1521,2433,"UL Monroe","fbs",31,1101
+401426374,2022,11,"regular","2022-11-12T18:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",3,1408,256,"James Madison","fbs",37,1446
+401409241,2022,11,"regular","2022-11-12T19:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",51,1100,2320,"Lamar","fcs",14,
+401426607,2022,11,"regular","2022-11-12T19:00:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",45,1742,242,"Rice","fbs",10,1124
+401414784,2022,11,"regular","2022-11-12T20:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",35,1181,113,"Massachusetts","fbs",33,873
+401415655,2022,11,"regular","2022-11-12T20:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",43,1529,218,"Temple","fbs",36,1105
+401403943,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",24,1694,333,"Alabama","fbs",30,2172
+401404035,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",28,1690,9,"Arizona State","fbs",18,1492
+401404110,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",20,1574,66,"Iowa State","fbs",14,1731
+401404142,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",10,1477,349,"Army","fbs",9,1447
+401405135,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",24,1702,275,"Wisconsin","fbs",10,1765
+401405136,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",31,1724,77,"Northwestern","fbs",3,1343
+401405137,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,130,"Michigan","fbs",34,2058,158,"Nebraska","fbs",3,1511
+401405140,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",30,1871,120,"Maryland","fbs",0,1610
+401411158,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",31,1773,97,"Louisville","fbs",16,1749
+401411160,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",14,1250,2390,"Miami","fbs",35,1339
+401411161,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,152,"NC State","fbs",20,1621,103,"Boston College","fbs",21,1258
+401415256,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",35,1731,167,"New Mexico","fbs",3,1087
+401415657,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",31,1563,2116,"UCF","fbs",38,1691
+401426373,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",28,1548,2026,"App State","fbs",21,1607
+401426603,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",24,1298,2429,"Charlotte","fbs",14,1076
+401426605,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",51,1526,2348,"Louisiana Tech","fbs",7,1209
+401426606,2022,11,"regular","2022-11-12T20:30:00.000Z",TRUE,FALSE,5,"UAB","fbs",41,1548,249,"North Texas","fbs",21,1542
+401403941,2022,11,"regular","2022-11-12T21:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",38,1604,2579,"South Carolina","fbs",6,1539
+401426375,2022,11,"regular","2022-11-12T22:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",38,1508,326,"Texas State","fbs",21,1247
+401403944,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",19,1688,61,"Georgia","fbs",45,2168
+401404037,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",34,1742,264,"Washington","fbs",37,1603
+401404109,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",3,1785,2306,"Kansas State","fbs",31,1831
+401404111,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",43,1551,2305,"Kansas","fbs",28,1451
+401415258,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",13,1208,2751,"Wyoming","fbs",14,1408
+401426604,2022,11,"regular","2022-11-13T00:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",7,960,2226,"Florida Atlantic","fbs",52,1392
+401403940,2022,11,"regular","2022-11-13T00:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",13,1502,245,"Texas A&M","fbs",10,1603
+401404113,2022,11,"regular","2022-11-13T00:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",10,1893,2628,"TCU","fbs",17,1677
+401411164,2022,11,"regular","2022-11-13T00:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",34,1667,153,"North Carolina","fbs",36,1640
+401426371,2022,11,"regular","2022-11-13T00:30:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",26,1566,2572,"Southern Miss","fbs",23,1273
+401411162,2022,11,"regular","2022-11-13T01:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",3,1547,52,"Florida State","fbs",38,1708
+401404036,2022,11,"regular","2022-11-13T02:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",38,1627,25,"California","fbs",10,1450
+401404038,2022,11,"regular","2022-11-13T03:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",42,1854,24,"Stanford","fbs",7,1260
+401404034,2022,11,"regular","2022-11-13T03:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",28,1738,12,"Arizona","fbs",34,1322
+401415255,2022,11,"regular","2022-11-13T03:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",3,1344,68,"Boise State","fbs",41,1685
+401415260,2022,11,"regular","2022-11-13T03:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",43,1422,23,"San José State","fbs",27,1534
+401415257,2022,11,"regular","2022-11-13T04:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",34,1090,328,"Utah State","fbs",41,1415
+401416642,2022,12,"regular","2022-11-16T00:00:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",35,1549,189,"Bowling Green","fbs",42,1096
+401416643,2022,12,"regular","2022-11-16T00:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",18,1306,195,"Ohio","fbs",32,1451
+401416644,2022,12,"regular","2022-11-16T23:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",24,1355,2199,"Eastern Michigan","fbs",31,1299
+401416646,2022,12,"regular","2022-11-17T00:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",23,1360,193,"Miami (OH)","fbs",29,1374
+401416645,2022,12,"regular","2022-11-17T01:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",10,1361,2711,"Western Michigan","fbs",12,1275
+401415658,2022,12,"regular","2022-11-18T00:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",59,1560,2567,"SMU","fbs",24,1610
+401415659,2022,12,"regular","2022-11-19T02:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",48,1343,58,"South Florida","fbs",42,1100
+401415264,2022,12,"regular","2022-11-19T02:45:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",10,1072,21,"San Diego State","fbs",34,1467
+401415661,2022,12,"regular","2022-11-19T16:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",14,1694,2426,"Navy","fbs",17,1441
+401403946,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",34,2166,2046,"Austin Peay","fcs",0,
+401403951,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",56,1644,2193,"East Tennessee State","fcs",7,
+401403954,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",20,1601,113,"Massachusetts","fbs",3,877
+401403955,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",31,1298,57,"Florida","fbs",24,1683
+401404114,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",28,1714,2628,"TCU","fbs",29,1708
+401404143,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,349,"Army","fbs",34,1447,41,"UConn","fbs",17,1137
+401404165,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",22,1631,259,"Virginia Tech","fbs",23,1299
+401405142,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",14,1489,275,"Wisconsin","fbs",15,1731
+401405143,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",17,1622,77,"Northwestern","fbs",9,1312
+401405145,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",19,2080,356,"Illinois","fbs",17,1702
+401405146,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",31,1598,84,"Indiana","fbs",39,1295
+401411166,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,52,"Florida State","fbs",49,1788,309,"Louisiana","fbs",17,1590
+401411169,2022,12,"regular","2022-11-19T17:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",28,1655,150,"Duke","fbs",26,1460
+401426611,2022,12,"regular","2022-11-19T18:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",7,1099,2636,"UTSA","fbs",41,1613
+401404039,2022,12,"regular","2022-11-19T19:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",20,1368,265,"Washington State","fbs",31,1693
+401404117,2022,12,"regular","2022-11-19T19:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",31,1379,2306,"Kansas State","fbs",48,1902
+401415660,2022,12,"regular","2022-11-19T19:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",3,1587,248,"Houston","fbs",42,1517
+401415662,2022,12,"regular","2022-11-19T19:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",59,1506,2453,"North Alabama","fcs",0,
+401426378,2022,12,"regular","2022-11-19T19:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",42,1539,2247,"Georgia State","fbs",40,1488
+401404040,2022,12,"regular","2022-11-19T19:15:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",7,1489,204,"Oregon State","fbs",31,1680
+401404132,2022,12,"regular","2022-11-19T19:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",44,1831,103,"Boston College","fbs",0,1279
+401426376,2022,12,"regular","2022-11-19T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",27,1594,295,"Old Dominion","fbs",14,1315
+401403949,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",6,1583,61,"Georgia","fbs",16,2184
+401404116,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",14,1429,251,"Texas","fbs",55,1862
+401405144,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",30,1561,194,"Ohio State","fbs",43,2201
+401405147,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",10,1297,213,"Penn State","fbs",55,1920
+401411165,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",40,1802,2390,"Miami","fbs",10,1383
+401411167,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",25,1720,152,"NC State","fbs",10,1600
+401420863,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,252,"BYU","fbs",52,1525,3101,"Utah Tech","fcs",26,
+401426379,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",20,1276,6,"South Alabama","fbs",27,1522
+401426381,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",34,1477,2433,"UL Monroe","fbs",16,1134
+401426608,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",26,1074,2348,"Louisiana Tech","fbs",21,1122
+401426610,2022,12,"regular","2022-11-19T20:30:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",49,1300,2226,"Florida Atlantic","fbs",21,1470
+401405141,2022,12,"regular","2022-11-19T21:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",10,1755,2294,"Iowa","fbs",13,1736
+401415663,2022,12,"regular","2022-11-19T21:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",3,1117,2132,"Cincinnati","fbs",23,1762
+401426609,2022,12,"regular","2022-11-19T21:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",40,1252,2229,"Florida International","fbs",6,882
+401426613,2022,12,"regular","2022-11-19T21:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",41,1504,98,"Western Kentucky","fbs",17,1767
+401426380,2022,12,"regular","2022-11-19T22:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",16,1233,2032,"Arkansas State","fbs",13,1177
+401404041,2022,12,"regular","2022-11-19T22:30:00.000Z",TRUE,FALSE,25,"California","fbs",27,1397,24,"Stanford","fbs",20,1233
+401411168,2022,12,"regular","2022-11-19T22:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",17,1644,59,"Georgia Tech","fbs",21,1206
+401426377,2022,12,"regular","2022-11-19T23:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",10,1390,276,"Marshall","fbs",23,1561
+401403953,2022,12,"regular","2022-11-20T00:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",63,1460,2633,"Tennessee","fbs",38,2018
+401404115,2022,12,"regular","2022-11-20T00:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",10,1716,2641,"Texas Tech","fbs",14,1573
+401415261,2022,12,"regular","2022-11-20T00:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",17,1400,68,"Boise State","fbs",20,1752
+401403947,2022,12,"regular","2022-11-20T00:30:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",42,1660,145,"Ole Miss","fbs",27,1715
+401403952,2022,12,"regular","2022-11-20T00:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",45,1424,166,"New Mexico State","fbs",14,1081
+401404118,2022,12,"regular","2022-11-20T00:30:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",28,1635,197,"Oklahoma State","fbs",13,1589
+401404044,2022,12,"regular","2022-11-20T01:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",45,1692,30,"USC","fbs",48,1753
+401411171,2022,12,"regular","2022-11-20T01:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",45,1663,183,"Syracuse","fbs",35,1467
+401404042,2022,12,"regular","2022-11-20T02:00:00.000Z",TRUE,FALSE,264,"Washington","fbs",54,1616,38,"Colorado","fbs",7,1072
+401415262,2022,12,"regular","2022-11-20T02:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",24,1746,36,"Colorado State","fbs",12,1216
+401426612,2022,12,"regular","2022-11-20T02:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",41,1710,5,"UAB","fbs",10,1594
+401415265,2022,12,"regular","2022-11-20T02:45:00.000Z",TRUE,FALSE,328,"Utah State","fbs",35,1405,23,"San José State","fbs",31,1489
+401404043,2022,12,"regular","2022-11-20T03:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",20,1729,254,"Utah","fbs",17,1881
+401415263,2022,12,"regular","2022-11-20T03:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",14,1277,278,"Fresno State","fbs",41,1583
+401415266,2022,12,"regular","2022-11-20T04:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",31,1100,2439,"UNLV","fbs",25,1288
+401416648,2022,13,"regular","2022-11-23T00:00:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",18,1384,2050,"Ball State","fbs",17,1288
+401416649,2022,13,"regular","2022-11-23T00:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",38,1469,189,"Bowling Green","fbs",14,1149
+401403956,2022,13,"regular","2022-11-25T00:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",22,1679,344,"Mississippi State","fbs",24,1672
+401404119,2022,13,"regular","2022-11-25T17:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",38,1927,239,"Baylor","fbs",27,1713
+401415269,2022,13,"regular","2022-11-25T17:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",42,1737,328,"Utah State","fbs",23,1411
+401415665,2022,13,"regular","2022-11-25T17:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",24,1749,2655,"Tulane","fbs",27,1665
+401416650,2022,13,"regular","2022-11-25T17:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",38,1317,2117,"Central Michigan","fbs",19,1353
+401416651,2022,13,"regular","2022-11-25T17:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",20,1283,2649,"Toledo","fbs",14,1496
+401404045,2022,13,"regular","2022-11-25T20:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",38,1372,9,"Arizona State","fbs",35,1448
+401403961,2022,13,"regular","2022-11-25T20:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",29,1467,8,"Arkansas","fbs",27,1696
+401411172,2022,13,"regular","2022-11-25T20:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",27,1605,152,"NC State","fbs",30,1579
+401415268,2022,13,"regular","2022-11-25T20:30:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",17,1231,167,"New Mexico","fbs",0,1052
+401405148,2022,13,"regular","2022-11-25T21:00:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",17,1742,158,"Nebraska","fbs",24,1499
+401404046,2022,13,"regular","2022-11-25T21:30:00.000Z",TRUE,FALSE,25,"California","fbs",28,1398,26,"UCLA","fbs",35,1691
+401403958,2022,13,"regular","2022-11-26T00:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",45,1851,57,"Florida","fbs",38,1649
+401415270,2022,13,"regular","2022-11-26T03:00:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",30,1620,2751,"Wyoming","fbs",0,1415
+401403959,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",37,2159,59,"Georgia Tech","fbs",14,1245
+401403962,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",30,1834,2579,"South Carolina","fbs",31,1599
+401404123,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",19,1562,277,"West Virginia","fbs",24,1387
+401404144,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",7,899,349,"Army","fbs",44,1456
+401404166,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",14,1612,166,"New Mexico State","fbs",49,1038
+401405152,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",37,1585,164,"Rutgers","fbs",0,1243
+401405153,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",23,2177,130,"Michigan","fbs",45,2075
+401426383,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",47,1539,324,"Coastal Carolina","fbs",7,1563
+401426389,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",27,1517,295,"Old Dominion","fbs",20,1312
+401426390,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",28,1574,2247,"Georgia State","fbs",23,1488
+401426615,2022,13,"regular","2022-11-26T17:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",31,1375,98,"Western Kentucky","fbs",32,1675
+401415664,2022,13,"regular","2022-11-26T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",46,1130,151,"East Carolina","fbs",49,1459
+401416653,2022,13,"regular","2022-11-26T18:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",27,1397,2309,"Kent State","fbs",30,1337
+401416652,2022,13,"regular","2022-11-26T18:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",12,1350,2006,"Akron","fbs",44,1004
+401426617,2022,13,"regular","2022-11-26T19:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",21,1496,242,"Rice","fbs",17,1064
+401403960,2022,13,"regular","2022-11-26T20:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",26,1608,97,"Louisville","fbs",13,1741
+401403957,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",49,2151,2,"Auburn","fbs",27,1596
+401404047,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",38,1721,2483,"Oregon","fbs",34,1732
+401405149,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",3,1318,356,"Illinois","fbs",41,1707
+401405150,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",16,1721,135,"Minnesota","fbs",23,1749
+401405151,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",16,1338,2509,"Purdue","fbs",30,1616
+401411174,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",34,1462,154,"Wake Forest","fbs",31,1667
+401415271,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",27,1483,62,"Hawai'i","fbs",14,1117
+401415666,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,2567,"SMU","fbs",34,1505,235,"Memphis","fbs",31,1514
+401426384,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",19,1177,2653,"Troy","fbs",48,1486
+401426616,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",27,1115,5,"UAB","fbs",37,1525
+401426618,2022,13,"regular","2022-11-26T20:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",34,1648,2638,"UTEP","fbs",31,1301
+401404048,2022,13,"regular","2022-11-26T21:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",21,1004,254,"Utah","fbs",63,1878
+401404120,2022,13,"regular","2022-11-26T21:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",62,1709,66,"Iowa State","fbs",14,1700
+401405154,2022,13,"regular","2022-11-26T21:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",35,1974,127,"Michigan State","fbs",16,1555
+401426385,2022,13,"regular","2022-11-26T22:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",10,1125,2572,"Southern Miss","fbs",20,1281
+401426386,2022,13,"regular","2022-11-26T22:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",13,1233,309,"Louisiana","fbs",41,1527
+401415272,2022,13,"regular","2022-11-26T23:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",27,1271,2440,"Nevada","fbs",22,1240
+401426382,2022,13,"regular","2022-11-26T23:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",51,1377,2026,"App State","fbs",48,1597
+401426614,2022,13,"regular","2022-11-26T23:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",28,833,2393,"Middle Tennessee","fbs",33,1395
+401403963,2022,13,"regular","2022-11-27T00:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",38,1579,99,"LSU","fbs",23,1779
+401415667,2022,13,"regular","2022-11-27T00:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",39,1104,2116,"UCF","fbs",46,1673
+401403964,2022,13,"regular","2022-11-27T00:30:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",0,1332,2633,"Tennessee","fbs",56,1879
+401404122,2022,13,"regular","2022-11-27T00:30:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",51,1589,201,"Oklahoma","fbs",48,1662
+401404133,2022,13,"regular","2022-11-27T00:30:00.000Z",TRUE,FALSE,30,"USC","fbs",38,1754,87,"Notre Dame","fbs",27,1889
+401411173,2022,13,"regular","2022-11-27T00:30:00.000Z",TRUE,FALSE,103,"Boston College","fbs",23,1221,183,"Syracuse","fbs",32,1463
+401415668,2022,13,"regular","2022-11-27T00:30:00.000Z",TRUE,FALSE,248,"Houston","fbs",30,1645,202,"Tulsa","fbs",37,1339
+401404121,2022,13,"regular","2022-11-27T01:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",47,1894,2305,"Kansas","fbs",27,1364
+401411175,2022,13,"regular","2022-11-27T01:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",16,1351,221,"Pittsburgh","fbs",42,1653
+401415267,2022,13,"regular","2022-11-27T02:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",3,1487,2005,"Air Force","fbs",13,1731
+401404051,2022,13,"regular","2022-11-27T03:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",33,1689,264,"Washington","fbs",51,1684
+401404049,2022,13,"regular","2022-11-27T04:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",26,1232,252,"BYU","fbs",35,1529
+401506450,2022,14,"regular","2022-12-02T18:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",23,1389,2006,"Akron","fbs",22,1147
+401437032,2022,14,"regular","2022-12-03T00:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",48,1645,249,"North Texas","fbs",27,1487
+401437035,2022,14,"regular","2022-12-03T01:00:00.000Z",TRUE,TRUE,30,"USC","fbs",24,1785,254,"Utah","fbs",47,1896
+401437030,2022,14,"regular","2022-12-03T17:00:00.000Z",TRUE,TRUE,2628,"TCU","fbs",28,1855,2306,"Kansas State","fbs",31,1892
+401437033,2022,14,"regular","2022-12-03T17:00:00.000Z",TRUE,TRUE,195,"Ohio","fbs",7,1495,2649,"Toledo","fbs",17,1478
+401507088,2022,14,"regular","2022-12-03T20:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",65,,2674,"Valparaiso","fcs",3,
+401437037,2022,14,"regular","2022-12-03T20:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",45,1529,324,"Coastal Carolina","fbs",26,1443
+401437008,2022,14,"regular","2022-12-03T21:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",45,1675,2116,"UCF","fbs",28,1647
+401437034,2022,14,"regular","2022-12-03T21:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",16,1750,278,"Fresno State","fbs",28,1676
+401437036,2022,14,"regular","2022-12-03T21:00:00.000Z",TRUE,TRUE,61,"Georgia","fbs",50,2132,99,"LSU","fbs",30,1729
+401437009,2022,14,"regular","2022-12-04T01:00:00.000Z",TRUE,TRUE,153,"North Carolina","fbs",10,1599,228,"Clemson","fbs",39,1821
+401437031,2022,14,"regular","2022-12-04T01:00:00.000Z",TRUE,TRUE,130,"Michigan","fbs",43,2144,2509,"Purdue","fbs",22,1622
+401404145,2022,15,"regular","2022-12-10T20:00:00.000Z",TRUE,TRUE,349,"Army","fbs",20,1494,2426,"Navy","fbs",17,1462
+401441993,2022,1,"postseason","2022-12-16T16:30:00.000Z",TRUE,TRUE,5,"UAB","fbs",24,1513,193,"Miami (OH)","fbs",20,1382
+401441994,2022,1,"postseason","2022-12-16T20:00:00.000Z",TRUE,TRUE,2653,"Troy","fbs",18,1564,2636,"UTSA","fbs",12,1679
+401441995,2022,1,"postseason","2022-12-17T16:00:00.000Z",TRUE,TRUE,97,"Louisville","fbs",24,1704,2132,"Cincinnati","fbs",7,1739
+401441999,2022,1,"postseason","2022-12-17T19:30:00.000Z",TRUE,TRUE,204,"Oregon State","fbs",30,1724,57,"Florida","fbs",3,1650
+401442038,2022,1,"postseason","2022-12-17T20:30:00.000Z",TRUE,TRUE,278,"Fresno State","fbs",29,1709,265,"Washington State","fbs",6,1644
+401442041,2022,1,"postseason","2022-12-17T22:45:00.000Z",TRUE,TRUE,2572,"Southern Miss","fbs",38,1289,242,"Rice","fbs",24,1073
+401441997,2022,1,"postseason","2022-12-18T00:30:00.000Z",TRUE,TRUE,252,"BYU","fbs",24,1524,2567,"SMU","fbs",23,1506
+401442001,2022,1,"postseason","2022-12-18T02:15:00.000Z",TRUE,TRUE,68,"Boise State","fbs",35,1717,249,"North Texas","fbs",32,1453
+401442003,2022,1,"postseason","2022-12-19T19:30:00.000Z",TRUE,TRUE,41,"UConn","fbs",14,1128,276,"Marshall","fbs",28,1576
+401442004,2022,1,"postseason","2022-12-20T20:30:00.000Z",TRUE,TRUE,23,"San José State","fbs",27,1480,2199,"Eastern Michigan","fbs",41,1364
+401442006,2022,1,"postseason","2022-12-21T00:30:00.000Z",TRUE,TRUE,2649,"Toledo","fbs",21,1494,2335,"Liberty","fbs",19,1414
+401442039,2022,1,"postseason","2022-12-22T02:00:00.000Z",TRUE,TRUE,6,"South Alabama","fbs",23,1515,98,"Western Kentucky","fbs",44,1663
+401442040,2022,1,"postseason","2022-12-23T00:30:00.000Z",TRUE,TRUE,2005,"Air Force","fbs",30,1731,239,"Baylor","fbs",15,1709
+401442042,2022,1,"postseason","2022-12-23T20:00:00.000Z",TRUE,TRUE,248,"Houston","fbs",23,1606,309,"Louisiana","fbs",16,1569
+401442007,2022,1,"postseason","2022-12-23T23:30:00.000Z",TRUE,TRUE,142,"Missouri","fbs",17,1470,154,"Wake Forest","fbs",27,1663
+401442009,2022,1,"postseason","2022-12-25T01:00:00.000Z",TRUE,TRUE,21,"San Diego State","fbs",23,1487,2393,"Middle Tennessee","fbs",25,1369
+401442037,2022,1,"postseason","2022-12-26T19:30:00.000Z",TRUE,TRUE,189,"Bowling Green","fbs",19,1123,166,"New Mexico State","fbs",24,1236
+401441998,2022,1,"postseason","2022-12-27T17:00:00.000Z",TRUE,TRUE,2084,"Buffalo","fbs",23,1382,290,"Georgia Southern","fbs",21,1381
+401442000,2022,1,"postseason","2022-12-27T20:15:00.000Z",TRUE,TRUE,328,"Utah State","fbs",10,1398,235,"Memphis","fbs",38,1513
+401442002,2022,1,"postseason","2022-12-27T23:45:00.000Z",TRUE,TRUE,151,"East Carolina","fbs",53,1445,324,"Coastal Carolina","fbs",29,1408
+401442005,2022,1,"postseason","2022-12-28T03:15:00.000Z",TRUE,TRUE,197,"Oklahoma State","fbs",17,1541,275,"Wisconsin","fbs",24,1710
+401442008,2022,1,"postseason","2022-12-28T19:00:00.000Z",TRUE,TRUE,150,"Duke","fbs",30,1466,2116,"UCF","fbs",13,1612
+401442030,2022,1,"postseason","2022-12-28T22:30:00.000Z",TRUE,TRUE,8,"Arkansas","fbs",55,1693,2305,"Kansas","fbs",53,1366
+401470891,2022,1,"postseason","2022-12-29T01:00:00.000Z",TRUE,TRUE,153,"North Carolina","fbs",27,1554,2483,"Oregon","fbs",28,1729
+401442031,2022,1,"postseason","2022-12-29T02:00:00.000Z",TRUE,TRUE,145,"Ole Miss","fbs",25,1676,2641,"Texas Tech","fbs",42,1591
+401442032,2022,1,"postseason","2022-12-29T19:00:00.000Z",TRUE,TRUE,135,"Minnesota","fbs",28,1760,183,"Syracuse","fbs",20,1462
+401442033,2022,1,"postseason","2022-12-29T22:30:00.000Z",TRUE,TRUE,52,"Florida State","fbs",35,1850,201,"Oklahoma","fbs",32,1660
+401442034,2022,1,"postseason","2022-12-30T02:00:00.000Z",TRUE,TRUE,264,"Washington","fbs",27,1729,251,"Texas","fbs",20,1931
+401442035,2022,1,"postseason","2022-12-30T17:00:00.000Z",TRUE,TRUE,152,"NC State","fbs",12,1585,120,"Maryland","fbs",16,1646
+401443542,2022,1,"postseason","2022-12-30T19:00:00.000Z",TRUE,TRUE,26,"UCLA","fbs",35,1683,221,"Pittsburgh","fbs",37,1688
+401442036,2022,1,"postseason","2022-12-30T20:30:00.000Z",TRUE,TRUE,2579,"South Carolina","fbs",38,1612,87,"Notre Dame","fbs",45,1858
+401443543,2022,1,"postseason","2022-12-30T21:30:00.000Z",TRUE,TRUE,2751,"Wyoming","fbs",27,1359,195,"Ohio","fbs",30,1479
+401442019,2022,1,"postseason","2022-12-31T01:00:00.000Z",TRUE,TRUE,228,"Clemson","fbs",14,1866,2633,"Tennessee","fbs",31,1977
+401442017,2022,1,"postseason","2022-12-31T17:00:00.000Z",TRUE,TRUE,96,"Kentucky","fbs",0,1645,2294,"Iowa","fbs",21,1709
+401442018,2022,1,"postseason","2022-12-31T17:00:00.000Z",TRUE,TRUE,2306,"Kansas State","fbs",20,1891,333,"Alabama","fbs",45,2151
+401442016,2022,1,"postseason","2022-12-31T21:00:00.000Z",TRUE,TRUE,130,"Michigan","fbs",45,2150,2628,"TCU","fbs",51,1856
+401442015,2022,1,"postseason","2023-01-01T01:00:00.000Z",TRUE,TRUE,61,"Georgia","fbs",42,2146,194,"Ohio State","fbs",41,2108
+401442011,2022,1,"postseason","2023-01-02T17:00:00.000Z",TRUE,TRUE,356,"Illinois","fbs",10,1768,344,"Mississippi State","fbs",19,1675
+401442012,2022,1,"postseason","2023-01-02T18:00:00.000Z",TRUE,TRUE,2509,"Purdue","fbs",7,1616,99,"LSU","fbs",63,1715
+401442013,2022,1,"postseason","2023-01-02T18:00:00.000Z",TRUE,TRUE,30,"USC","fbs",45,1745,2655,"Tulane","fbs",46,1710
+401442014,2022,1,"postseason","2023-01-02T22:00:00.000Z",TRUE,TRUE,254,"Utah","fbs",21,1936,213,"Penn State","fbs",35,1979
+401442010,2022,1,"postseason","2023-01-10T00:30:00.000Z",TRUE,TRUE,61,"Georgia","fbs",65,2147,2628,"TCU","fbs",7,1882

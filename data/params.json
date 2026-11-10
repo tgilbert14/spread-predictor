@@ -1,0 +1,124 @@
+{
+  "fit_date": "2026-11-09",
+  "training_seasons": [2021, 2022, 2023, 2024, 2025],
+  "k": 24.1857,
+  "h": 3.4296,
+  "sigma": 16.4316,
+  "weights": {
+    "sp": 0.25,
+    "fpi": 0.25,
+    "srs": 0.25,
+    "elo": 0.25
+  },
+  "weights_method": "equal",
+  "weights_note": "Equal weights: 0 games have weekly snapshots from every system, and fitting needs at least 300 across two or more weeks.",
+  "metrics": [
+    {
+      "model": "elo",
+      "label": "Elo (out of fold)",
+      "n": 3944,
+      "mae": 13.0431,
+      "win_rate": 0.7041,
+      "brier": 0.1903
+    },
+    {
+      "model": "line",
+      "label": "Closing line",
+      "n": 3944,
+      "mae": 12.1089,
+      "win_rate": 0.726,
+      "brier": 0.1783
+    }
+  ],
+  "calibration": [
+    {
+      "bin_low": 0.5,
+      "bin_high": 0.6,
+      "n": 1065,
+      "predicted": 0.5488,
+      "actual": 0.5343
+    },
+    {
+      "bin_low": 0.6,
+      "bin_high": 0.7,
+      "n": 994,
+      "predicted": 0.6498,
+      "actual": 0.6469
+    },
+    {
+      "bin_low": 0.7,
+      "bin_high": 0.8,
+      "n": 853,
+      "predicted": 0.7492,
+      "actual": 0.7573
+    },
+    {
+      "bin_low": 0.8,
+      "bin_high": 0.9,
+      "n": 653,
+      "predicted": 0.8464,
+      "actual": 0.8729
+    },
+    {
+      "bin_low": 0.9,
+      "bin_high": 1,
+      "n": 379,
+      "predicted": 0.9404,
+      "actual": 0.9208
+    }
+  ],
+  "folds": [
+    {
+      "season": 2021,
+      "k": 24.3496,
+      "h": 3.6125,
+      "sigma": 16.3958,
+      "mae": 13.4034
+    },
+    {
+      "season": 2022,
+      "k": 23.7898,
+      "h": 3.5564,
+      "sigma": 16.4197,
+      "mae": 12.9374
+    },
+    {
+      "season": 2023,
+      "k": 24.3325,
+      "h": 3.4931,
+      "sigma": 16.4267,
+      "mae": 12.9184
+    },
+    {
+      "season": 2024,
+      "k": 24.0091,
+      "h": 3.2758,
+      "sigma": 16.3997,
+      "mae": 13.2189
+    },
+    {
+      "season": 2025,
+      "k": 24.4617,
+      "h": 3.2106,
+      "sigma": 16.5159,
+      "mae": 12.7499
+    }
+  ],
+  "leaked_diagnostic": [
+    {
+      "model": "sp",
+      "n": 3944,
+      "mae": 10.8714
+    },
+    {
+      "model": "fpi",
+      "n": 3944,
+      "mae": 10.6767
+    },
+    {
+      "model": "srs",
+      "n": 3944,
+      "mae": 10.6309
+    }
+  ]
+}

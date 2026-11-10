@@ -1,0 +1,911 @@
+"game_id","season","week","season_type","start_date","completed","neutral_site","home_id","home_team","home_class","home_points","home_pregame_elo","away_id","away_team","away_class","away_points","away_pregame_elo"
+401525434,2023,1,"regular","2023-08-26T18:30:00.000Z",TRUE,TRUE,87,"Notre Dame","fbs",42,1733,2426,"Navy","fbs",3,1471
+401520145,2023,1,"regular","2023-08-26T21:30:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",17,1500,2638,"UTEP","fbs",14,1369
+401525450,2023,1,"regular","2023-08-26T23:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",30,1322,113,"Massachusetts","fbs",41,1074
+401532392,2023,1,"regular","2023-08-26T23:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",20,1488,195,"Ohio","fbs",13,1482
+401520147,2023,1,"regular","2023-08-26T23:30:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",35,1322,62,"Hawai'i","fbs",28,1246
+401523986,2023,1,"regular","2023-08-27T00:00:00.000Z",TRUE,FALSE,30,"USC","fbs",56,1663,23,"San José State","fbs",28,1462
+401520146,2023,1,"regular","2023-08-27T01:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",22,1251,2229,"Florida International","fbs",17,1072
+401525461,2023,1,"regular","2023-08-31T23:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",37,1608,2210,"Elon","fcs",17,
+401525816,2023,1,"regular","2023-08-31T23:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",56,1534,2309,"Kent State","fbs",6,1396
+401531834,2023,1,"regular","2023-08-31T23:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",42,1490,227,"Rhode Island","fcs",35,
+401532393,2023,1,"regular","2023-08-31T23:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",35,1367,2598,"Saint Francis","fcs",17,
+401520174,2023,1,"regular","2023-08-31T23:30:00.000Z",TRUE,FALSE,41,"UConn","fbs",14,1260,152,"NC State","fbs",24,1557
+401520148,2023,1,"regular","2023-09-01T00:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",13,1672,158,"Nebraska","fbs",10,1521
+401520165,2023,1,"regular","2023-09-01T00:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",35,1480,233,"South Dakota","fcs",10,
+401520176,2023,1,"regular","2023-09-01T00:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",24,1776,57,"Florida","fbs",11,1554
+401531337,2023,1,"regular","2023-09-01T00:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",42,1418,2029,"Arkansas-Pine Bluff","fcs",7,
+401531377,2023,1,"regular","2023-09-01T00:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",35,1510,2448,"North Carolina A&T","fcs",6,
+401523987,2023,1,"regular","2023-09-01T02:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",24,1464,253,"Southern Utah","fcs",21,
+401532394,2023,1,"regular","2023-09-01T22:30:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",33,1433,47,"Howard","fcs",23,
+401520163,2023,1,"regular","2023-09-01T23:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",31,1533,2117,"Central Michigan","fbs",7,1370
+401525463,2023,1,"regular","2023-09-01T23:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",38,1377,193,"Miami (OH)","fbs",3,1420
+401525462,2023,1,"regular","2023-09-01T23:30:00.000Z",TRUE,TRUE,59,"Georgia Tech","fbs",34,1348,97,"Louisville","fbs",39,1668
+401525815,2023,1,"regular","2023-09-02T00:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",48,1415,2623,"Missouri State","fcs",17,
+401523988,2023,1,"regular","2023-09-02T03:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",24,1241,24,"Stanford","fbs",37,1324
+401520157,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",24,1665,328,"Utah State","fbs",14,1395
+401520159,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",44,1570,2050,"Ball State","fbs",14,1360
+401520160,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",34,1442,189,"Bowling Green","fbs",24,1250
+401520162,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",30,1916,151,"East Carolina","fbs",3,1506
+401520170,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",35,1473,278,"Fresno State","fbs",39,1677
+401520172,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",38,1502,2348,"Louisiana Tech","fbs",14,1249
+401520179,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,TRUE,2633,"Tennessee","fbs",49,1833,258,"Virginia","fbs",13,1393
+401523994,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",42,1652,38,"Colorado","fbs",45,1157
+401525464,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",24,1314,2459,"Northern Illinois","fbs",27,1304
+401525822,2023,1,"regular","2023-09-02T16:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",73,1608,2032,"Arkansas State","fbs",0,1256
+401532570,2023,1,"regular","2023-09-02T17:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",42,1678,2523,"Robert Morris","fcs",7,
+401520158,2023,1,"regular","2023-09-02T18:00:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",49,1300,2193,"East Tennessee State","fcs",3,
+401520168,2023,1,"regular","2023-09-02T18:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",73,1589,2382,"Mercer","fcs",7,
+401525820,2023,1,"regular","2023-09-02T18:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",30,1536,2460,"Northern Iowa","fcs",9,
+401531387,2023,1,"regular","2023-09-02T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",24,1262,2006,"Akron","fbs",21,1269
+401532395,2023,1,"regular","2023-09-02T18:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",27,1366,2341,"Long Island University","fcs",10,
+401523992,2023,1,"regular","2023-09-02T19:00:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",81,1649,2502,"Portland State","fcs",7,
+401520151,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",59,1564,113,"Massachusetts","fbs",14,1122
+401520156,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",3,1388,194,"Ohio State","fbs",23,1904
+401520161,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",38,1596,119,"Towson","fcs",6,
+401520180,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",38,1637,2084,"Buffalo","fbs",17,1424
+401520181,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",41,1628,58,"South Florida","fbs",24,1253
+401523997,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",56,1673,68,"Boise State","fbs",19,1641
+401525435,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",56,1909,2634,"Tennessee State","fcs",3,
+401525465,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",45,1624,2747,"Wofford","fcs",7,
+401525818,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",66,1626,2198,"Eastern Kentucky","fcs",13,
+401525824,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",37,1766,242,"Rice","fbs",10,1204
+401531835,2023,1,"regular","2023-09-02T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",45,1562,2241,"Gardner-Webb","fcs",24,
+401520150,2023,1,"regular","2023-09-02T20:00:00.000Z",TRUE,TRUE,8,"Arkansas","fbs",56,1624,2717,"Western Carolina","fcs",13,
+401520164,2023,1,"regular","2023-09-02T20:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",48,1629,2545,"SE Louisiana","fcs",7,
+401523991,2023,1,"regular","2023-09-02T20:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",21,1472,25,"California","fbs",58,1437
+401525466,2023,1,"regular","2023-09-02T20:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",65,1476,2142,"Colgate","fcs",0,
+401532572,2023,1,"regular","2023-09-02T20:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",44,1350,2803,"Bryant","fcs",14,
+401520154,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",48,2033,2630,"UT Martin","fcs",7,
+401531402,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",24,1220,2569,"South Carolina State","fcs",3,
+401531418,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",42,1424,2405,"Monmouth","fcs",20,
+401531836,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",34,1418,2643,"The Citadel","fcs",0,
+401531837,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",38,1606,2083,"Bucknell","fcs",3,
+401531838,2023,1,"regular","2023-09-02T22:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",21,1542,399,"UAlbany","fcs",17,
+401520153,2023,1,"regular","2023-09-02T22:30:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",14,1083,311,"Maine","fcs",12,
+401523996,2023,1,"regular","2023-09-02T22:30:00.000Z",TRUE,FALSE,30,"USC","fbs",66,1713,2440,"Nevada","fbs",14,1324
+401520173,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",52,1586,167,"New Mexico","fbs",10,1187
+401520175,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",17,1244,349,"Army","fbs",13,1499
+401520178,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",47,1238,2010,"Alabama A&M","fcs",13,
+401523990,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",24,1334,265,"Washington State","fbs",50,1558
+401525817,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",31,1614,326,"Texas State","fbs",42,1294
+401525819,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",17,1579,2636,"UTSA","fbs",14,1605
+401525821,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",45,1740,2546,"Southeast Missouri State","fcs",0,
+401525823,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",27,1530,2110,"Central Arkansas","fcs",13,
+401531426,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",56,1545,2065,"Bethune-Cookman","fcs",14,
+401531840,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",40,1370,2016,"Alcorn State","fcs",14,
+401531841,2023,1,"regular","2023-09-02T23:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",48,1556,2617,"Stephen F. Austin","fcs",30,
+401520149,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",56,1954,2393,"Middle Tennessee","fbs",7,1415
+401520155,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",30,1666,2649,"Toledo","fbs",28,1496
+401520167,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,TRUE,153,"North Carolina","fbs",31,1539,2579,"South Carolina","fbs",17,1580
+401520169,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",38,1833,277,"West Virginia","fbs",15,1438
+401525825,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",35,1409,2641,"Texas Tech","fbs",33,1588
+401531839,2023,1,"regular","2023-09-02T23:30:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",38,1537,2466,"Northwestern State","fcs",13,
+401525467,2023,1,"regular","2023-09-03T00:00:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",36,1378,295,"Old Dominion","fbs",17,1376
+401531347,2023,1,"regular","2023-09-03T00:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",37,1640,6,"South Alabama","fbs",17,1490
+401520166,2023,1,"regular","2023-09-03T01:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",58,1150,2710,"Western Illinois","fcs",21,
+401520177,2023,1,"regular","2023-09-03T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",28,1369,2916,"Incarnate Word","fcs",14,
+401523989,2023,1,"regular","2023-09-03T02:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",38,1416,2464,"Northern Arizona","fcs",3,
+401520152,2023,1,"regular","2023-09-03T02:15:00.000Z",TRUE,FALSE,252,"BYU","fbs",14,1517,2534,"Sam Houston","fbs",0,1500
+401523995,2023,1,"regular","2023-09-03T02:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",27,1622,324,"Coastal Carolina","fbs",13,1396
+401532571,2023,1,"regular","2023-09-03T02:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",36,1537,304,"Idaho State","fcs",28,
+401520171,2023,1,"regular","2023-09-03T16:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",24,1288,77,"Northwestern","fbs",7,1338
+401532573,2023,1,"regular","2023-09-03T19:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",17,1412,204,"Oregon State","fbs",42,1695
+401520182,2023,1,"regular","2023-09-03T23:30:00.000Z",TRUE,TRUE,52,"Florida State","fbs",45,1732,99,"LSU","fbs",24,1747
+401525468,2023,1,"regular","2023-09-05T00:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",28,1518,228,"Clemson","fbs",7,1728
+401525469,2023,2,"regular","2023-09-07T23:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",56,1567,93,"Murray State","fcs",0,
+401520193,2023,2,"regular","2023-09-08T23:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",41,1307,282,"Indiana State","fcs",7,
+401520195,2023,2,"regular","2023-09-08T23:30:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",34,1415,356,"Illinois","fbs",23,1664
+401520216,2023,2,"regular","2023-09-09T15:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",36,1608,238,"Vanderbilt","fbs",20,1327
+401520185,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",57,1530,2169,"Delaware State","fcs",0,
+401520188,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",36,1196,158,"Nebraska","fbs",14,1522
+401520191,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",45,2033,2050,"Ball State","fbs",3,1305
+401520208,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",35,1955,2754,"Youngstown State","fcs",7,
+401520209,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",63,1713,48,"Delaware","fcs",7,
+401520215,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",17,1421,2509,"Purdue","fbs",24,1479
+401523999,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",13,1559,254,"Utah","fbs",20,1784
+401525436,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",24,1553,87,"Notre Dame","fbs",45,1819
+401525490,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",31,1434,107,"Holy Cross","fcs",28,
+401525498,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",35,1339,256,"James Madison","fbs",36,1606
+401525829,2023,2,"regular","2023-09-09T16:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",42,1740,2653,"Troy","fbs",13,1556
+401525494,2023,2,"regular","2023-09-09T17:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",48,1347,2569,"South Carolina State","fcs",13,
+401532396,2023,2,"regular","2023-09-09T17:30:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",45,1482,160,"New Hampshire","fcs",42,
+401532400,2023,2,"regular","2023-09-09T18:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",38,1210,2197,"Eastern Illinois","fcs",15,
+401525491,2023,2,"regular","2023-09-09T18:15:00.000Z",TRUE,FALSE,228,"Clemson","fbs",66,1684,2127,"Charleston Southern","fcs",17,
+401520196,2023,2,"regular","2023-09-09T19:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",28,1730,2198,"Eastern Kentucky","fcs",17,
+401525828,2023,2,"regular","2023-09-09T19:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",41,1544,253,"Southern Utah","fcs",16,
+401520194,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",13,1536,2294,"Iowa","fbs",20,1664
+401520201,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",48,1481,245,"Texas A&M","fbs",33,1656
+401520202,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,130,"Michigan","fbs",35,1941,2439,"UNLV","fbs",7,1350
+401520203,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",45,1617,257,"Richmond","fcs",14,
+401520207,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",38,1296,2638,"UTEP","fbs",7,1370
+401520214,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",20,1671,145,"Ole Miss","fbs",37,1589
+401525497,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",48,1476,2711,"Western Michigan","fbs",7,1367
+401526833,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",28,1048,193,"Miami (OH)","fbs",41,1316
+401531395,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",20,1604,326,"Texas State","fbs",13,1349
+401531432,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",24,1320,2681,"Wagner","fcs",0,
+401532397,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",11,1385,79,"Southern Illinois","fcs",14,
+401532398,2023,2,"regular","2023-09-09T19:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",71,1531,2640,"Texas Southern","fcs",3,
+401520184,2023,2,"regular","2023-09-09T20:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",28,1624,2309,"Kent State","fbs",6,1262
+401531411,2023,2,"regular","2023-09-09T20:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",13,1481,276,"Marshall","fbs",31,1542
+401532578,2023,2,"regular","2023-09-09T20:00:00.000Z",TRUE,FALSE,23,"San José State","fbs",59,1223,13,"Cal Poly","fcs",3,
+401532580,2023,2,"regular","2023-09-09T20:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",31,1500,2502,"Portland State","fcs",17,
+401520213,2023,2,"regular","2023-09-09T21:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",30,1735,2046,"Austin Peay","fcs",13,
+401524004,2023,2,"regular","2023-09-09T21:00:00.000Z",TRUE,FALSE,264,"Washington","fbs",43,1774,202,"Tulsa","fbs",10,1418
+401531844,2023,2,"regular","2023-09-09T21:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",35,1313,2545,"SE Louisiana","fcs",17,
+401525495,2023,2,"regular","2023-09-09T21:15:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",40,1579,2026,"App State","fbs",34,1562
+401520198,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",33,1446,166,"New Mexico State","fbs",17,1274
+401525492,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",42,1250,322,"Lafayette","fcs",7,
+401525830,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",28,1793,2567,"SMU","fbs",11,1535
+401525833,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",56,1447,2184,"Duquesne","fcs",17,
+401531378,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",49,1418,5,"UAB","fbs",35,1510
+401531419,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",10,1424,195,"Ohio","fbs",17,1473
+401531842,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",38,1333,309,"Louisiana","fbs",31,1537
+401532399,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",24,1094,2415,"Morgan State","fcs",21,
+401532401,2023,2,"regular","2023-09-09T22:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",37,1354,2230,"Fordham","fcs",40,
+401520189,2023,2,"regular","2023-09-09T22:30:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",46,1074,249,"North Texas","fbs",39,1357
+401525496,2023,2,"regular","2023-09-09T22:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",21,1624,2132,"Cincinnati","fbs",27,1626
+401520183,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",24,2029,251,"Texas","fbs",34,1776
+401520187,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",30,1387,55,"Jacksonville State","fbs",16,1499
+401520192,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",35,1490,41,"UConn","fbs",14,1264
+401520197,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",51,1257,2466,"Northwestern State","fcs",21,
+401520206,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",23,1480,2393,"Middle Tennessee","fbs",19,1340
+401520218,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",52,1700,2277,"Houston Christian","fcs",22,
+401524002,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",30,1585,2483,"Oregon","fbs",38,1649
+401525827,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",16,1540,2116,"UCF","fbs",18,1668
+401525831,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",43,1194,248,"Houston","fbs",41,1580
+401531422,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",38,1268,50,"Florida A&M","fcs",24,
+401531427,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",3,1071,235,"Memphis","fbs",37,1545
+401532576,2023,2,"regular","2023-09-09T23:00:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",6,1405,70,"Idaho","fcs",33,
+401520190,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,57,"Florida","fbs",49,1558,2377,"McNeese","fcs",7,
+401520199,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",72,1484,2755,"Grambling","fcs",10,
+401520200,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",38,1596,2429,"Charlotte","fbs",20,1220
+401520204,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",25,1671,2199,"Eastern Michigan","fbs",6,1433
+401520205,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",31,1629,12,"Arizona","fbs",24,1416
+401520210,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",36,1330,218,"Temple","fbs",7,1263
+401520212,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",47,1459,231,"Furman","fcs",21,
+401520217,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",31,1602,275,"Wisconsin","fbs",22,1665
+401524001,2023,2,"regular","2023-09-09T23:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",10,1497,26,"UCLA","fbs",35,1631
+401520211,2023,2,"regular","2023-09-10T00:00:00.000Z",TRUE,TRUE,2534,"Sam Houston","fbs",3,1473,2005,"Air Force","fbs",13,1678
+401525832,2023,2,"regular","2023-09-10T00:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",41,1428,2447,"Nicholls","fcs",6,
+401531843,2023,2,"regular","2023-09-10T00:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",24,1221,2320,"Lamar","fcs",14,
+401532577,2023,2,"regular","2023-09-10T00:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",56,1146,2635,"Tennessee Tech","fcs",10,
+401532579,2023,2,"regular","2023-09-10T00:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",78,1553,304,"Idaho State","fcs",28,
+401525493,2023,2,"regular","2023-09-10T00:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",66,1792,2572,"Southern Miss","fbs",13,1370
+401524000,2023,2,"regular","2023-09-10T01:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",55,1599,302,"UC Davis","fcs",7,
+401532574,2023,2,"regular","2023-09-10T01:00:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",34,1600,331,"Eastern Washington","fcs",31,
+401520186,2023,2,"regular","2023-09-10T02:30:00.000Z",TRUE,FALSE,25,"California","fbs",10,1552,2,"Auburn","fbs",14,1638
+401523998,2023,2,"regular","2023-09-10T02:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",15,1464,197,"Oklahoma State","fbs",27,1530
+401524003,2023,2,"regular","2023-09-10T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",56,1817,24,"Stanford","fbs",10,1345
+401532575,2023,2,"regular","2023-09-10T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",31,1380,399,"UAlbany","fcs",20,
+401525499,2023,3,"regular","2023-09-14T23:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",48,1659,2065,"Bethune-Cookman","fcs",7,
+401531428,2023,3,"regular","2023-09-14T23:30:00.000Z",TRUE,FALSE,235,"Memphis","fbs",28,1584,2426,"Navy","fbs",24,1385
+401520231,2023,3,"regular","2023-09-15T23:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",42,1602,258,"Virginia","fbs",14,1350
+401531396,2023,3,"regular","2023-09-15T23:00:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",29,1600,349,"Army","fbs",37,1488
+401532581,2023,3,"regular","2023-09-16T00:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",39,1677,328,"Utah State","fbs",21,1396
+401520222,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",27,1396,2335,"Liberty","fbs",55,1465
+401520226,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",13,1624,213,"Penn State","fbs",30,1849
+401520230,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,TRUE,84,"Indiana","fbs",14,1389,97,"Louisville","fbs",21,1654
+401520235,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",14,1627,99,"LSU","fbs",41,1687
+401520236,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",30,1479,2306,"Kansas State","fbs",27,1795
+401520249,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",35,1646,290,"Georgia Southern","fbs",14,1455
+401525500,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",29,1309,52,"Florida State","fbs",31,1895
+401525504,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",24,1355,154,"Wake Forest","fbs",27,1618
+401525834,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",30,1643,2341,"Long Island University","fcs",7,
+401525838,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",10,1482,66,"Iowa State","fbs",7,1533
+401532404,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",38,1212,2115,"Central Connecticut","fcs",10,
+401532582,2023,3,"regular","2023-09-16T16:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",42,1541,155,"North Dakota","fcs",18,
+401524012,2023,3,"regular","2023-09-16T18:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",31,1807,2692,"Weber State","fcs",7,
+401525502,2023,3,"regular","2023-09-16T18:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",45,1570,2678,"VMI","fcs",7,
+401526834,2023,3,"regular","2023-09-16T18:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",19,1413,113,"Massachusetts","fbs",17,1043
+401531388,2023,3,"regular","2023-09-16T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",41,1103,2450,"Norfolk State","fcs",9,
+401532402,2023,3,"regular","2023-09-16T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",45,1288,282,"Indiana State","fcs",7,
+401525437,2023,3,"regular","2023-09-16T18:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",41,1844,2117,"Central Michigan","fbs",17,1328
+401520223,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",38,1592,77,"Northwestern","fbs",14,1390
+401520225,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",24,2065,2579,"South Carolina","fbs",14,1540
+401520227,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",41,1667,2711,"Western Michigan","fbs",10,1262
+401520239,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",31,1585,135,"Minnesota","fbs",13,1691
+401520243,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",35,1399,259,"Virginia Tech","fbs",16,1412
+401520244,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,58,"South Florida","fbs",3,1249,333,"Alabama","fbs",17,1984
+401520246,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,41,"UConn","fbs",17,1237,2229,"Florida International","fbs",24,1101
+401524009,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",26,1729,21,"San Diego State","fbs",9,1446
+401525842,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",17,1370,201,"Oklahoma","fbs",66,1807
+401531412,2023,3,"regular","2023-09-16T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",43,1556,151,"East Carolina","fbs",28,1443
+401520240,2023,3,"regular","2023-09-16T20:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",63,1903,98,"Western Kentucky","fbs",10,1632
+401520245,2023,3,"regular","2023-09-16T20:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",47,1608,2433,"UL Monroe","fbs",3,1255
+401524006,2023,3,"regular","2023-09-16T20:00:00.000Z",TRUE,FALSE,25,"California","fbs",31,1618,70,"Idaho","fcs",17,
+401531348,2023,3,"regular","2023-09-16T20:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",3,1267,2655,"Tulane","fbs",21,1621
+401520233,2023,3,"regular","2023-09-16T21:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",7,1575,264,"Washington","fbs",41,1822
+401524011,2023,3,"regular","2023-09-16T21:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",59,1756,2428,"North Carolina Central","fcs",7,
+401524013,2023,3,"regular","2023-09-16T21:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",64,1653,2458,"Northern Colorado","fcs",21,
+401531403,2023,3,"regular","2023-09-16T22:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",25,1214,2247,"Georgia State","fbs",41,1517
+401525843,2023,3,"regular","2023-09-16T22:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",48,1688,222,"Villanova","fcs",14,
+401520221,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",45,1697,2535,"Samford","fcs",13,
+401520224,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",29,1546,2633,"Tennessee","fbs",16,1887
+401520229,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",37,1216,249,"North Texas","fbs",40,1330
+401520234,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",35,1368,93,"Murray State","fcs",14,
+401520237,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",35,1430,2459,"Northern Illinois","fbs",11,1309
+401520247,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",40,1340,238,"Vanderbilt","fbs",37,1317
+401525835,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",24,1637,193,"Miami (OH)","fbs",31,1321
+401525839,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",7,1550,6,"South Alabama","fbs",33,1459
+401525841,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",41,1533,2627,"Tarleton State","fcs",3,
+401531379,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",21,1473,309,"Louisiana","fbs",41,1515
+401531438,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",69,1584,2504,"Prairie View A&M","fcs",0,
+401531441,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",59,1233,2640,"Texas Southern","fcs",7,
+401531845,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",66,1623,2184,"Duquesne","fcs",7,
+401531846,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",31,1024,2619,"Stony Brook","fcs",7,
+401531848,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",14,1501,256,"James Madison","fbs",16,1595
+401532403,2023,3,"regular","2023-09-16T23:00:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",21,1498,23,"San José State","fbs",17,1378
+401520220,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",31,1641,252,"BYU","fbs",38,1544
+401520228,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",35,1625,2006,"Akron","fbs",3,1268
+401520232,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,130,"Michigan","fbs",31,1951,189,"Bowling Green","fbs",6,1246
+401520241,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",48,1639,59,"Georgia Tech","fbs",23,1362
+401520242,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",20,1488,183,"Syracuse","fbs",35,1581
+401525503,2023,3,"regular","2023-09-16T23:30:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",17,1422,221,"Pittsburgh","fbs",6,1613
+401520238,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",17,1117,166,"New Mexico State","fbs",27,1255
+401524008,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",55,1659,62,"Hawai'i","fbs",10,1220
+401524010,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",23,1283,16,"Sacramento State","fcs",30,
+401525501,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",48,1654,2226,"Florida Atlantic","fbs",14,1415
+401525836,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",13,1575,2628,"TCU","fbs",36,1613
+401525840,2023,3,"regular","2023-09-17T00:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",31,1821,2751,"Wyoming","fbs",10,1412
+401531847,2023,3,"regular","2023-09-17T00:30:00.000Z",TRUE,FALSE,326,"Texas State","fbs",77,1334,2296,"Jackson State","fcs",34,
+401524007,2023,3,"regular","2023-09-17T02:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",43,1288,36,"Colorado State","fbs",35,1290
+401524005,2023,3,"regular","2023-09-17T02:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",0,1444,278,"Fresno State","fbs",29,1671
+401525837,2023,3,"regular","2023-09-17T02:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",24,1220,2305,"Kansas","fbs",31,1455
+401520219,2023,3,"regular","2023-09-17T03:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",31,1418,2638,"UTEP","fbs",10,1276
+401531849,2023,4,"regular","2023-09-21T23:30:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",17,1425,2247,"Georgia State","fbs",30,1526
+401520266,2023,4,"regular","2023-09-22T23:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",17,1462,275,"Wisconsin","fbs",38,1676
+401525505,2023,4,"regular","2023-09-22T23:30:00.000Z",TRUE,FALSE,258,"Virginia","fbs",21,1306,152,"NC State","fbs",24,1528
+401532583,2023,4,"regular","2023-09-23T02:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",31,1434,68,"Boise State","fbs",34,1544
+401532584,2023,4,"regular","2023-09-23T02:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",20,1379,2005,"Air Force","fbs",45,1691
+401520260,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",31,1944,164,"Rutgers","fbs",7,1444
+401520268,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",29,1607,349,"Army","fbs",16,1513
+401520270,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",27,1690,2,"Auburn","fbs",10,1639
+401520271,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",27,1503,98,"Western Kentucky","fbs",24,1507
+401520274,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",28,1316,96,"Kentucky","fbs",45,1669
+401525507,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",24,1718,52,"Florida State","fbs",31,1869
+401525511,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",24,1580,259,"Virginia Tech","fbs",17,1367
+401525845,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",6,1597,201,"Oklahoma","fbs",20,1897
+401525849,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",34,1669,2567,"SMU","fbs",17,1521
+401531338,2023,4,"regular","2023-09-23T16:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",14,1263,202,"Tulsa","fbs",22,1280
+401532406,2023,4,"regular","2023-09-23T17:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",49,1497,2711,"Western Michigan","fbs",31,1226
+401531871,2023,4,"regular","2023-09-23T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",3,1273,290,"Georgia Southern","fbs",40,1425
+401520250,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",24,1954,145,"Ole Miss","fbs",10,1672
+401520255,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",23,1606,2226,"Florida Atlantic","fbs",17,1351
+401520261,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",9,1509,120,"Maryland","fbs",31,1646
+401520263,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",28,1476,2348,"Louisiana Tech","fbs",14,1218
+401520272,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,41,"UConn","fbs",7,1213,150,"Duke","fbs",41,1630
+401524015,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",42,1734,38,"Colorado","fbs",6,1300
+401524017,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,254,"Utah","fbs",14,1780,26,"UCLA","fbs",7,1682
+401525506,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",56,1644,103,"Boston College","fbs",28,1335
+401525509,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,218,"Temple","fbs",7,1194,2390,"Miami","fbs",41,1529
+401525847,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",38,1451,252,"BYU","fbs",27,1565
+401525850,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",20,1457,2641,"Texas Tech","fbs",13,1575
+401526835,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",31,1048,167,"New Mexico","fbs",34,1108
+401531873,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",10,1358,2837,"East Texas A&M","fcs",9,
+401532405,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",7,1253,195,"Ohio","fbs",38,1484
+401532408,2023,4,"regular","2023-09-23T19:30:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",62,1350,2169,"Delaware State","fcs",20,
+401520269,2023,4,"regular","2023-09-23T20:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",45,1830,2636,"UTSA","fbs",14,1575
+401525846,2023,4,"regular","2023-09-23T20:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",34,1531,197,"Oklahoma State","fbs",27,1468
+401531423,2023,4,"regular","2023-09-23T20:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",42,1279,242,"Rice","fbs",29,1199
+401520257,2023,4,"regular","2023-09-23T21:00:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",21,1461,2199,"Eastern Michigan","fbs",0,1408
+401531876,2023,4,"regular","2023-09-23T21:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",30,1541,2117,"Central Michigan","fbs",34,1321
+401531413,2023,4,"regular","2023-09-23T22:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",44,1420,2241,"Gardner-Webb","fcs",0,
+401520275,2023,4,"regular","2023-09-23T22:30:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",6,1125,2335,"Liberty","fbs",38,1533
+401525508,2023,4,"regular","2023-09-23T22:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",16,1607,59,"Georgia Tech","fbs",30,1329
+401520251,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",22,1603,2429,"Charlotte","fbs",7,1205
+401520254,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",38,1519,2534,"Sam Houston","fbs",7,1474
+401520258,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",34,1753,8,"Arkansas","fbs",31,1620
+401520262,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",23,1341,36,"Colorado State","fbs",31,1278
+401524016,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",20,1271,12,"Arizona","fbs",21,1453
+401524019,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",38,1621,204,"Oregon State","fbs",35,1741
+401531349,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",36,1651,2447,"Nicholls","fcs",7,
+401531870,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",22,1402,2026,"App State","fbs",19,1577
+401531874,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",44,1032,2572,"Southern Miss","fbs",37,1258
+401531877,2023,4,"regular","2023-09-23T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",35,1353,2440,"Nevada","fbs",24,1224
+401520252,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",49,2048,5,"UAB","fbs",21,1427
+401520256,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",29,1399,2006,"Akron","fbs",27,1224
+401520259,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,TRUE,142,"Missouri","fbs",34,1485,235,"Memphis","fbs",27,1581
+401520264,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",37,1352,135,"Minnesota","fbs",34,1640
+401520265,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",31,1867,2294,"Iowa","fbs",0,1703
+401520267,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",37,1557,344,"Mississippi State","fbs",30,1561
+401521330,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",14,1851,194,"Ohio State","fbs",17,2028
+401525844,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,239,"Baylor","fbs",6,1563,251,"Texas","fbs",38,1831
+401531875,2023,4,"regular","2023-09-23T23:30:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",45,1561,2084,"Buffalo","fbs",38,1328
+401525510,2023,4,"regular","2023-09-24T00:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",24,1578,153,"North Carolina","fbs",41,1636
+401525848,2023,4,"regular","2023-09-24T00:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",44,1789,2116,"UCF","fbs",31,1664
+401531872,2023,4,"regular","2023-09-24T00:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",38,1382,256,"James Madison","fbs",45,1593
+401520273,2023,4,"regular","2023-09-24T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",28,1241,2439,"UNLV","fbs",45,1341
+401524014,2023,4,"regular","2023-09-24T02:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",28,1392,30,"USC","fbs",42,1891
+401524018,2023,4,"regular","2023-09-24T02:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",59,1888,25,"California","fbs",32,1551
+401532407,2023,4,"regular","2023-09-24T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",53,1723,2309,"Kent State","fbs",10,1245
+401520253,2023,4,"regular","2023-09-24T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",20,1145,166,"New Mexico State","fbs",17,1264
+401520277,2023,5,"regular","2023-09-28T23:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",31,1506,2393,"Middle Tennessee","fbs",10,1320
+401531339,2023,5,"regular","2023-09-28T23:30:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",48,1294,218,"Temple","fbs",26,1139
+401520276,2023,5,"regular","2023-09-29T00:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",28,1396,55,"Jacksonville State","fbs",35,1505
+401525512,2023,5,"regular","2023-09-29T23:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",10,1520,97,"Louisville","fbs",13,1682
+401520278,2023,5,"regular","2023-09-30T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",10,1210,2348,"Louisiana Tech","fbs",24,1211
+401524020,2023,5,"regular","2023-09-30T01:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",21,1738,254,"Utah","fbs",7,1784
+401525851,2023,5,"regular","2023-09-30T02:15:00.000Z",TRUE,FALSE,252,"BYU","fbs",35,1536,2132,"Cincinnati","fbs",27,1593
+401520279,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,TRUE,8,"Arkansas","fbs",22,1621,245,"Texas A&M","fbs",34,1722
+401520282,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",33,1675,57,"Florida","fbs",14,1601
+401520284,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",35,1635,309,"Louisiana","fbs",24,1558
+401520287,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",13,1357,213,"Penn State","fbs",41,1931
+401520292,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",33,1168,328,"Utah State","fbs",34,1385
+401524023,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",41,1252,30,"USC","fbs",48,1879
+401525514,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",14,1625,228,"Clemson","fbs",31,1716
+401531370,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",35,1630,5,"UAB","fbs",23,1420
+401531880,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",31,1590,6,"South Alabama","fbs",23,1519
+401532412,2023,5,"regular","2023-09-30T16:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",10,1226,2084,"Buffalo","fbs",13,1331
+401532410,2023,5,"regular","2023-09-30T17:30:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",26,1343,2199,"Eastern Michigan","fbs",23,1364
+401525513,2023,5,"regular","2023-09-30T18:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",27,1297,258,"Virginia","fbs",24,1314
+401532413,2023,5,"regular","2023-09-30T18:30:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",3,1181,193,"Miami (OH)","fbs",23,1361
+401524022,2023,5,"regular","2023-09-30T19:00:00.000Z",TRUE,FALSE,25,"California","fbs",24,1519,9,"Arizona State","fbs",21,1404
+401520280,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",20,1607,61,"Georgia","fbs",27,2055
+401520283,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",44,1687,84,"Indiana","fbs",17,1397
+401520286,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",7,1483,130,"Michigan","fbs",45,1953
+401520289,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",44,1432,356,"Illinois","fbs",19,1601
+401520290,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",52,1414,2681,"Wagner","fcs",3,
+401525515,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",27,1391,189,"Bowling Green","fbs",38,1195
+401525854,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",40,1888,2305,"Kansas","fbs",14,1480
+401525855,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",49,1559,248,"Houston","fbs",28,1597
+401525856,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",35,1649,239,"Baylor","fbs",36,1506
+401526836,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",28,1047,2032,"Arkansas State","fbs",52,1055
+401531424,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",30,1388,58,"South Florida","fbs",44,1298
+401531881,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",41,1578,295,"Old Dominion","fbs",35,1366
+401532409,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",42,1211,2050,"Ball State","fbs",24,1185
+401532411,2023,5,"regular","2023-09-30T19:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",35,1512,2459,"Northern Illinois","fbs",33,1249
+401520293,2023,5,"regular","2023-09-30T20:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",21,1310,142,"Missouri","fbs",38,1508
+401531429,2023,5,"regular","2023-09-30T20:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",35,1558,68,"Boise State","fbs",32,1542
+401532586,2023,5,"regular","2023-09-30T20:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",44,1372,62,"Hawai'i","fbs",20,1148
+401532588,2023,5,"regular","2023-09-30T20:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",35,1405,167,"New Mexico","fbs",26,1109
+401520288,2023,5,"regular","2023-09-30T22:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",55,1667,99,"LSU","fbs",49,1752
+401524024,2023,5,"regular","2023-09-30T22:30:00.000Z",TRUE,FALSE,24,"Stanford","fbs",6,1278,2483,"Oregon","fbs",42,1782
+401525852,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",50,1901,66,"Iowa State","fbs",20,1537
+401531414,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",24,1180,151,"East Carolina","fbs",17,1422
+401531436,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",45,1332,2000,"Abilene Christian","fcs",31,
+401531878,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",38,1513,324,"Coastal Carolina","fbs",28,1405
+401531879,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",7,1546,2653,"Troy","fbs",28,1504
+401531883,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",36,1235,326,"Texas State","fbs",50,1363
+401532585,2023,5,"regular","2023-09-30T23:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",41,1299,3101,"Utah Tech","fcs",20,
+401520281,2023,5,"regular","2023-09-30T23:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",26,1639,127,"Michigan State","fbs",16,1468
+401520291,2023,5,"regular","2023-09-30T23:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",41,1883,2579,"South Carolina","fbs",20,1567
+401525438,2023,5,"regular","2023-09-30T23:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",14,1675,87,"Notre Dame","fbs",21,1857
+401531404,2023,5,"regular","2023-09-30T23:30:00.000Z",TRUE,FALSE,2567,"SMU","fbs",34,1498,2429,"Charlotte","fbs",16,1207
+401525516,2023,5,"regular","2023-10-01T00:00:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",38,1369,221,"Pittsburgh","fbs",21,1543
+401525853,2023,5,"regular","2023-10-01T00:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",21,1692,277,"West Virginia","fbs",24,1473
+401531882,2023,5,"regular","2023-10-01T00:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",40,1173,2026,"App State","fbs",41,1574
+401532589,2023,5,"regular","2023-10-01T00:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",49,1722,21,"San Diego State","fbs",10,1436
+401520285,2023,5,"regular","2023-10-01T01:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",17,1551,333,"Alabama","fbs",40,1959
+401524021,2023,5,"regular","2023-10-01T02:00:00.000Z",TRUE,FALSE,12,"Arizona","fbs",24,1446,264,"Washington","fbs",31,1920
+401532587,2023,5,"regular","2023-10-01T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",27,1787,2440,"Nevada","fbs",9,1214
+401520294,2023,6,"regular","2023-10-05T00:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",30,1289,55,"Jacksonville State","fbs",45,1510
+401520297,2023,6,"regular","2023-10-05T01:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",34,1261,2229,"Florida International","fbs",17,1084
+401520296,2023,6,"regular","2023-10-05T23:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",21,1574,2534,"Sam Houston","fbs",16,1391
+401520295,2023,6,"regular","2023-10-06T00:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",28,1243,98,"Western Kentucky","fbs",35,1537
+401525857,2023,6,"regular","2023-10-06T23:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",29,1462,2306,"Kansas State","fbs",21,1804
+401520301,2023,6,"regular","2023-10-07T00:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",7,1517,158,"Nebraska","fbs",20,1432
+401520298,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",24,1495,103,"Boston College","fbs",27,1298
+401520304,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",41,1535,2711,"Western Michigan","fbs",28,1249
+401520305,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,142,"Missouri","fbs",39,1529,99,"LSU","fbs",49,1740
+401520307,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",37,2022,120,"Maryland","fbs",17,1724
+401520311,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",24,1706,164,"Rutgers","fbs",13,1435
+401525522,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",27,1311,2729,"William & Mary","fcs",13,
+401525861,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,TRUE,251,"Texas","fbs",30,1910,201,"Oklahoma","fbs",34,1939
+401526837,2023,6,"regular","2023-10-07T16:00:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",24,984,2649,"Toledo","fbs",41,1509
+401525521,2023,6,"regular","2023-10-07T18:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",48,1525,276,"Marshall","fbs",41,1575
+401531389,2023,6,"regular","2023-10-07T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",34,1102,2636,"UTSA","fbs",49,1522
+401532415,2023,6,"regular","2023-10-07T18:00:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",37,1329,2117,"Central Michigan","fbs",13,1344
+401520306,2023,6,"regular","2023-10-07T19:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",23,1311,47,"Howard","fcs",20,
+401524028,2023,6,"regular","2023-10-07T19:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",25,1678,265,"Washington State","fbs",17,1624
+401520302,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",20,1644,2509,"Purdue","fbs",14,1516
+401520310,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",20,1733,333,"Alabama","fbs",26,1975
+401525517,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",17,1748,154,"Wake Forest","fbs",12,1545
+401525518,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",39,1871,259,"Virginia Tech","fbs",17,1424
+401525520,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",40,1671,183,"Syracuse","fbs",7,1593
+401531433,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",27,1347,249,"North Texas","fbs",24,1328
+401531884,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",34,1544,326,"Texas State","fbs",30,1383
+401532414,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",24,1363,2050,"Ball State","fbs",10,1147
+401532416,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",27,1392,189,"Bowling Green","fbs",0,1237
+401532417,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,195,"Ohio","fbs",42,1542,2309,"Kent State","fbs",17,1150
+401532418,2023,6,"regular","2023-10-07T19:30:00.000Z",TRUE,FALSE,2006,"Akron","fbs",14,1228,2459,"Northern Illinois","fbs",55,1252
+401520299,2023,6,"regular","2023-10-07T20:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",38,1565,238,"Vanderbilt","fbs",14,1289
+401525860,2023,6,"regular","2023-10-07T20:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",51,1458,2116,"UCF","fbs",22,1641
+401531380,2023,6,"regular","2023-10-07T20:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",56,1414,58,"South Florida","fbs",35,1339
+401531887,2023,6,"regular","2023-10-07T20:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",37,1563,2032,"Arkansas State","fbs",3,1118
+401520309,2023,6,"regular","2023-10-07T21:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",31,1204,41,"UConn","fbs",38,1177
+401531340,2023,6,"regular","2023-10-07T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",20,1356,202,"Tulsa","fbs",17,1331
+401524026,2023,6,"regular","2023-10-07T22:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",24,1405,38,"Colorado","fbs",27,1281
+401520300,2023,6,"regular","2023-10-07T23:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",51,2037,96,"Kentucky","fbs",13,1711
+401531885,2023,6,"regular","2023-10-07T23:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",7,1189,6,"South Alabama","fbs",55,1511
+401531886,2023,6,"regular","2023-10-07T23:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",13,1215,295,"Old Dominion","fbs",17,1369
+401520303,2023,6,"regular","2023-10-07T23:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",10,1649,130,"Michigan","fbs",52,2004
+401520308,2023,6,"regular","2023-10-07T23:30:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",27,1679,8,"Arkansas","fbs",20,1610
+401525439,2023,6,"regular","2023-10-07T23:37:00.000Z",TRUE,FALSE,97,"Louisville","fbs",33,1677,87,"Notre Dame","fbs",20,1856
+401525519,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",20,1584,59,"Georgia Tech","fbs",23,1349
+401525858,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",14,1514,2641,"Texas Tech","fbs",39,1613
+401525859,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",27,1499,2628,"TCU","fbs",14,1673
+401532590,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",44,1376,36,"Colorado State","fbs",24,1299
+401532591,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",24,1401,278,"Fresno State","fbs",19,1777
+401532592,2023,6,"regular","2023-10-08T00:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",35,1541,23,"San José State","fbs",27,1348
+401524027,2023,6,"regular","2023-10-08T02:00:00.000Z",TRUE,FALSE,25,"California","fbs",40,1518,204,"Oregon State","fbs",52,1770
+401524025,2023,6,"regular","2023-10-08T02:30:00.000Z",TRUE,FALSE,30,"USC","fbs",43,1850,12,"Arizona","fbs",41,1466
+401520313,2023,7,"regular","2023-10-10T23:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",31,1275,2348,"Louisiana Tech","fbs",23,1251
+401520312,2023,7,"regular","2023-10-10T23:30:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",13,1524,2335,"Liberty","fbs",31,1572
+401531888,2023,7,"regular","2023-10-10T23:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",24,1558,324,"Coastal Carolina","fbs",27,1396
+401520314,2023,7,"regular","2023-10-11T23:30:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",14,1063,2638,"UTEP","fbs",27,1178
+401520315,2023,7,"regular","2023-10-12T01:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",27,1282,2534,"Sam Houston","fbs",13,1393
+401525862,2023,7,"regular","2023-10-12T23:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",41,1543,277,"West Virginia","fbs",39,1492
+401531415,2023,7,"regular","2023-10-12T23:30:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",10,1398,2567,"SMU","fbs",31,1511
+401531371,2023,7,"regular","2023-10-13T23:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",21,1559,2655,"Tulane","fbs",31,1636
+401532594,2023,7,"regular","2023-10-14T00:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",32,1415,278,"Fresno State","fbs",37,1755
+401524029,2023,7,"regular","2023-10-14T02:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",43,1293,24,"Stanford","fbs",46,1237
+401520316,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",24,1969,8,"Arkansas","fbs",21,1604
+401520321,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",52,2082,84,"Indiana","fbs",7,1360
+401520323,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",7,1515,194,"Ohio State","fbs",41,2040
+401520324,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",27,1435,127,"Michigan State","fbs",24,1463
+401520327,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",20,1259,61,"Georgia","fbs",37,2103
+401525524,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,52,"Florida State","fbs",41,1880,183,"Syracuse","fbs",3,1512
+401525863,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",10,1577,66,"Iowa State","fbs",30,1540
+401531390,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",45,1327,218,"Temple","fbs",14,1106
+401531890,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",41,1598,290,"Georgia Southern","fbs",13,1522
+401532422,2023,7,"regular","2023-10-14T16:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",28,1373,2309,"Kent State","fbs",14,1129
+401531405,2023,7,"regular","2023-10-14T18:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",0,1194,2426,"Navy","fbs",14,1348
+401532419,2023,7,"regular","2023-10-14T18:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",6,1137,2649,"Toledo","fbs",13,1500
+401524033,2023,7,"regular","2023-10-14T19:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",34,1752,25,"California","fbs",14,1514
+401520317,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,349,"Army","fbs",0,1478,2653,"Troy","fbs",19,1604
+401520320,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",24,1706,356,"Illinois","fbs",27,1479
+401520322,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,213,"Penn State","fbs",63,1943,113,"Massachusetts","fbs",0,993
+401520325,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",39,1549,57,"Florida","fbs",41,1595
+401520326,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",20,1901,245,"Texas A&M","fbs",13,1739
+401524034,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",36,1900,2483,"Oregon","fbs",33,1823
+401525527,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",30,1415,154,"Wake Forest","fbs",13,1548
+401525864,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",39,1497,2305,"Kansas","fbs",32,1559
+401525865,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2628,"TCU","fbs",44,1632,252,"BYU","fbs",11,1552
+401531420,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,58,"South Florida","fbs",14,1297,2226,"Florida Atlantic","fbs",56,1357
+401532420,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",17,1282,2006,"Akron","fbs",10,1107
+401532421,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",14,1391,189,"Bowling Green","fbs",24,1185
+401532423,2023,7,"regular","2023-10-14T19:30:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",21,1246,193,"Miami (OH)","fbs",34,1444
+401520328,2023,7,"regular","2023-10-14T20:00:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",6,1706,2294,"Iowa","fbs",15,1645
+401532424,2023,7,"regular","2023-10-14T20:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",23,1373,195,"Ohio","fbs",13,1563
+401532597,2023,7,"regular","2023-10-14T21:00:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",27,1224,2439,"UNLV","fbs",45,1407
+401532596,2023,7,"regular","2023-10-14T22:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",24,1113,23,"San José State","fbs",52,1348
+401525525,2023,7,"regular","2023-10-14T22:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",38,1488,97,"Louisville","fbs",21,1718
+401520319,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",48,1743,2,"Auburn","fbs",18,1625
+401524030,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",6,1615,12,"Arizona","fbs",44,1471
+401525866,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",21,1668,2306,"Kansas State","fbs",38,1769
+401531889,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",41,1487,276,"Marshall","fbs",24,1563
+401531891,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",21,1385,2433,"UL Monroe","fbs",20,1087
+401532598,2023,7,"regular","2023-10-14T23:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",34,1797,2751,"Wyoming","fbs",27,1423
+401520318,2023,7,"regular","2023-10-14T23:30:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",21,1645,142,"Missouri","fbs",38,1526
+401524031,2023,7,"regular","2023-10-14T23:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",48,1815,30,"USC","fbs",20,1845
+401525526,2023,7,"regular","2023-10-14T23:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",41,1752,2390,"Miami","fbs",31,1564
+401524032,2023,7,"regular","2023-10-15T00:00:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",36,1774,26,"UCLA","fbs",24,1687
+401525523,2023,7,"regular","2023-10-15T00:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",24,1676,152,"NC State","fbs",3,1537
+401531381,2023,7,"regular","2023-10-15T00:00:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",41,1518,5,"UAB","fbs",20,1456
+401532593,2023,7,"regular","2023-10-15T01:45:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",31,1260,68,"Boise State","fbs",30,1541
+401532595,2023,7,"regular","2023-10-15T03:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",34,1113,21,"San Diego State","fbs",41,1361
+401520330,2023,8,"regular","2023-10-17T23:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",42,1611,2393,"Middle Tennessee","fbs",35,1285
+401520329,2023,8,"regular","2023-10-17T23:30:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",20,1485,98,"Western Kentucky","fbs",17,1529
+401531892,2023,8,"regular","2023-10-17T23:30:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",55,1613,2572,"Southern Miss","fbs",3,1218
+401520331,2023,8,"regular","2023-10-18T23:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",27,1355,2229,"Florida International","fbs",33,1045
+401520332,2023,8,"regular","2023-10-19T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",7,1196,166,"New Mexico State","fbs",28,1320
+401531341,2023,8,"regular","2023-10-19T23:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",10,1330,242,"Rice","fbs",42,1189
+401531893,2023,8,"regular","2023-10-19T23:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",9,1518,256,"James Madison","fbs",20,1662
+401531391,2023,8,"regular","2023-10-20T23:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",0,1049,2567,"SMU","fbs",55,1552
+401520334,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",3,1607,344,"Mississippi State","fbs",7,1538
+401520337,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",14,1319,164,"Rutgers","fbs",31,1436
+401520343,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",20,2073,213,"Penn State","fbs",12,2010
+401525528,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",23,1369,103,"Boston College","fbs",38,1315
+401525868,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",29,1522,239,"Baylor","fbs",32,1459
+401525871,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",31,1939,2116,"UCF","fbs",29,1540
+401531382,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",21,1413,235,"Memphis","fbs",45,1545
+401531434,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,2426,"Navy","fbs",6,1365,2005,"Air Force","fbs",17,1787
+401532428,2023,8,"regular","2023-10-21T16:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",20,1531,2711,"Western Michigan","fbs",17,1235
+401531406,2023,8,"regular","2023-10-21T18:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",7,1357,2429,"Charlotte","fbs",10,1177
+401531894,2023,8,"regular","2023-10-21T18:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",38,1458,2433,"UL Monroe","fbs",28,1096
+401532429,2023,8,"regular","2023-10-21T18:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",41,1225,2006,"Akron","fbs",14,1107
+401520333,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,333,"Alabama","fbs",34,1966,2633,"Tennessee","fbs",20,1902
+401520336,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",21,1498,275,"Wisconsin","fbs",25,1683
+401520338,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",10,1668,135,"Minnesota","fbs",12,1571
+401520341,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",34,1580,2579,"South Carolina","fbs",12,1549
+401520342,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",17,1470,77,"Northwestern","fbs",9,1345
+401520344,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,41,"UConn","fbs",21,1192,58,"South Florida","fbs",24,1178
+401524035,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",38,1823,265,"Washington State","fbs",24,1480
+401525532,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",21,1497,221,"Pittsburgh","fbs",17,1549
+401525872,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",34,1492,197,"Oklahoma State","fbs",48,1510
+401531372,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",35,1650,249,"North Texas","fbs",28,1384
+401532425,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",24,1150,2117,"Central Michigan","fbs",17,1282
+401532426,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",20,1405,2199,"Eastern Michigan","fbs",13,1381
+401532430,2023,8,"regular","2023-10-21T19:30:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",6,1121,2084,"Buffalo","fbs",24,1351
+401525869,2023,8,"regular","2023-10-21T20:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",24,1543,251,"Texas","fbs",31,1910
+401532427,2023,8,"regular","2023-10-21T20:00:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",17,1455,2649,"Toledo","fbs",21,1487
+401531397,2023,8,"regular","2023-10-21T22:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",10,1476,2636,"UTSA","fbs",36,1561
+401532600,2023,8,"regular","2023-10-21T22:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",42,1065,62,"Hawai'i","fbs",21,1118
+401525531,2023,8,"regular","2023-10-21T22:30:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",27,1756,258,"Virginia","fbs",31,1313
+401520335,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",21,1559,145,"Ole Miss","fbs",28,1685
+401525867,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",27,1471,2641,"Texas Tech","fbs",14,1637
+401525870,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",41,1800,2628,"TCU","fbs",3,1713
+401531895,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",28,1366,2026,"App State","fbs",21,1543
+401531896,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",17,1077,324,"Coastal Carolina","fbs",27,1411
+401532599,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",25,1432,36,"Colorado State","fbs",23,1268
+401532602,2023,8,"regular","2023-10-21T23:00:00.000Z",TRUE,FALSE,23,"San José State","fbs",42,1396,328,"Utah State","fbs",21,1429
+401520339,2023,8,"regular","2023-10-21T23:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",62,1809,349,"Army","fbs",0,1444
+401520340,2023,8,"regular","2023-10-21T23:30:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",0,1462,130,"Michigan","fbs",49,2123
+401525530,2023,8,"regular","2023-10-21T23:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",38,1941,150,"Duke","fbs",20,1711
+401524037,2023,8,"regular","2023-10-22T00:00:00.000Z",TRUE,FALSE,30,"USC","fbs",32,1768,254,"Utah","fbs",34,1775
+401525529,2023,8,"regular","2023-10-22T00:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",28,1560,228,"Clemson","fbs",20,1745
+401531897,2023,8,"regular","2023-10-22T00:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",17,1542,2247,"Georgia State","fbs",20,1532
+401532601,2023,8,"regular","2023-10-22T01:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",0,1356,2440,"Nevada","fbs",6,1199
+401524036,2023,8,"regular","2023-10-22T02:30:00.000Z",TRUE,FALSE,24,"Stanford","fbs",7,1245,26,"UCLA","fbs",42,1671
+401524038,2023,8,"regular","2023-10-22T02:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",15,1900,9,"Arizona State","fbs",7,1393
+401520345,2023,9,"regular","2023-10-24T23:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",24,1241,166,"New Mexico State","fbs",27,1360
+401520346,2023,9,"regular","2023-10-24T23:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",29,1527,2335,"Liberty","fbs",42,1603
+401520347,2023,9,"regular","2023-10-25T23:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",16,1081,55,"Jacksonville State","fbs",41,1487
+401520348,2023,9,"regular","2023-10-26T00:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",34,1319,2638,"UTEP","fbs",37,1156
+401525533,2023,9,"regular","2023-10-26T23:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",38,1466,183,"Syracuse","fbs",10,1451
+401531929,2023,9,"regular","2023-10-26T23:30:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",44,1451,2247,"Georgia State","fbs",27,1537
+401531407,2023,9,"regular","2023-10-27T23:30:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",16,1193,2226,"Florida Atlantic","fbs",38,1416
+401520349,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,349,"Army","fbs",14,1301,113,"Massachusetts","fbs",21,926
+401520351,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",21,1356,41,"UConn","fbs",14,1187
+401520356,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",33,1341,120,"Maryland","fbs",27,1687
+401520358,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",33,2002,84,"Indiana","fbs",24,1290
+401520359,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",30,1738,2579,"South Carolina","fbs",17,1499
+401525536,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",16,1502,52,"Florida State","fbs",41,1960
+401525874,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",38,1546,201,"Oklahoma","fbs",33,1934
+401525875,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",41,1897,248,"Houston","fbs",0,1556
+401525878,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",28,1545,277,"West Virginia","fbs",41,1462
+401531342,2023,9,"regular","2023-10-28T16:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",69,1653,202,"Tulsa","fbs",10,1219
+401532431,2023,9,"regular","2023-10-28T17:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",21,1373,2711,"Western Michigan","fbs",45,1238
+401525534,2023,9,"regular","2023-10-28T18:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",24,1502,228,"Clemson","fbs",17,1721
+401531430,2023,9,"regular","2023-10-28T19:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",42,1389,235,"Memphis","fbs",45,1593
+401520350,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",27,1555,344,"Mississippi State","fbs",13,1549
+401520352,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,TRUE,57,"Florida","fbs",20,1595,61,"Georgia","fbs",43,2070
+401520354,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",27,1579,127,"Michigan State","fbs",12,1401
+401520355,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",31,1474,2509,"Purdue","fbs",14,1482
+401524044,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,254,"Utah","fbs",6,1777,2483,"Oregon","fbs",35,1824
+401525440,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",58,1892,221,"Pittsburgh","fbs",7,1544
+401525535,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",23,1657,150,"Duke","fbs",0,1692
+401525538,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,2390,"Miami","fbs",29,1584,258,"Virginia","fbs",26,1352
+401525873,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,239,"Baylor","fbs",18,1467,66,"Iowa State","fbs",30,1595
+401525877,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",35,1897,252,"BYU","fbs",6,1511
+401531398,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",41,1621,151,"East Carolina","fbs",27,1341
+401531898,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",48,1523,2572,"Southern Miss","fbs",38,1115
+401532432,2023,9,"regular","2023-10-28T19:30:00.000Z",TRUE,FALSE,195,"Ohio","fbs",16,1528,193,"Miami (OH)","fbs",30,1451
+401524041,2023,9,"regular","2023-10-28T20:00:00.000Z",TRUE,FALSE,25,"California","fbs",49,1491,30,"USC","fbs",50,1766
+401531373,2023,9,"regular","2023-10-28T20:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",28,1300,2655,"Tulane","fbs",30,1645
+401531901,2023,9,"regular","2023-10-28T21:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",24,1103,2032,"Arkansas State","fbs",34,1083
+401531902,2023,9,"regular","2023-10-28T21:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",20,1716,309,"Louisiana","fbs",33,1537
+401532607,2023,9,"regular","2023-10-28T21:30:00.000Z",TRUE,FALSE,68,"Boise State","fbs",32,1533,2751,"Wyoming","fbs",7,1433
+401531899,2023,9,"regular","2023-10-28T22:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",34,1405,276,"Marshall","fbs",6,1507
+401520353,2023,9,"regular","2023-10-28T23:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",27,1591,2633,"Tennessee","fbs",33,1879
+401524042,2023,9,"regular","2023-10-28T23:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",33,1198,264,"Washington","fbs",42,1884
+401531903,2023,9,"regular","2023-10-28T23:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",13,1376,2653,"Troy","fbs",31,1638
+401532603,2023,9,"regular","2023-10-28T23:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",13,1270,2005,"Air Force","fbs",30,1776
+401520357,2023,9,"regular","2023-10-28T23:30:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",33,1689,238,"Vanderbilt","fbs",7,1292
+401520360,2023,9,"regular","2023-10-28T23:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",10,1678,194,"Ohio State","fbs",24,2081
+401524043,2023,9,"regular","2023-10-28T23:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",28,1718,38,"Colorado","fbs",16,1285
+401524040,2023,9,"regular","2023-10-29T00:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",38,1409,265,"Washington State","fbs",27,1479
+401525537,2023,9,"regular","2023-10-29T00:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",46,1328,153,"North Carolina","fbs",42,1717
+401525876,2023,9,"regular","2023-10-29T00:00:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",45,1540,2132,"Cincinnati","fbs",13,1514
+401531900,2023,9,"regular","2023-10-29T00:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",30,1673,295,"Old Dominion","fbs",27,1386
+401524039,2023,9,"regular","2023-10-29T02:30:00.000Z",TRUE,FALSE,12,"Arizona","fbs",27,1606,204,"Oregon State","fbs",24,1790
+401532604,2023,9,"regular","2023-10-29T02:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",34,1222,167,"New Mexico","fbs",24,1121
+401532606,2023,9,"regular","2023-10-29T02:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",31,1741,2439,"UNLV","fbs",24,1430
+401532605,2023,9,"regular","2023-10-29T03:59:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",0,1062,23,"San José State","fbs",35,1449
+401532433,2023,10,"regular","2023-10-31T23:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",37,1265,2459,"Northern Illinois","fbs",31,1413
+401532434,2023,10,"regular","2023-10-31T23:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",31,1491,2084,"Buffalo","fbs",13,1371
+401532435,2023,10,"regular","2023-11-01T23:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",24,1281,2050,"Ball State","fbs",21,1167
+401532436,2023,10,"regular","2023-11-01T23:30:00.000Z",TRUE,FALSE,2006,"Akron","fbs",31,1051,2309,"Kent State","fbs",27,1101
+401525879,2023,10,"regular","2023-11-02T23:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",35,1597,2628,"TCU","fbs",28,1616
+401525539,2023,10,"regular","2023-11-02T23:30:00.000Z",TRUE,FALSE,150,"Duke","fbs",24,1632,154,"Wake Forest","fbs",21,1486
+401531904,2023,10,"regular","2023-11-02T23:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",28,1655,6,"South Alabama","fbs",10,1669
+401525540,2023,10,"regular","2023-11-03T23:30:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",10,1379,103,"Boston College","fbs",17,1356
+401532609,2023,10,"regular","2023-11-04T00:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",24,1381,36,"Colorado State","fbs",15,1277
+401520363,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",36,1592,8,"Arkansas","fbs",39,1596
+401520365,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",20,1317,275,"Wisconsin","fbs",14,1682
+401520369,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",20,1385,158,"Nebraska","fbs",17,1512
+401520374,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",38,1713,245,"Texas A&M","fbs",35,1744
+401520375,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",16,1465,194,"Ohio State","fbs",35,2077
+401520376,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",38,1493,55,"Jacksonville State","fbs",28,1508
+401520377,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",59,1870,41,"UConn","fbs",3,1187
+401525441,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",31,1698,87,"Notre Dame","fbs",23,1998
+401525545,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",59,1701,2097,"Campbell","fcs",7,
+401525884,2023,10,"regular","2023-11-04T16:00:00.000Z",TRUE,FALSE,251,"Texas","fbs",33,1930,2306,"Kansas State","fbs",30,1971
+401525451,2023,10,"regular","2023-11-04T17:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",24,1307,338,"Kennesaw State","fcs",21,
+401524049,2023,10,"regular","2023-11-04T18:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",55,1702,9,"Arizona State","fbs",3,1434
+401525542,2023,10,"regular","2023-11-04T18:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",17,1354,59,"Georgia Tech","fbs",45,1344
+401531392,2023,10,"regular","2023-11-04T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",32,948,2426,"Navy","fbs",18,1376
+401520361,2023,10,"regular","2023-11-04T18:30:00.000Z",TRUE,TRUE,2005,"Air Force","fbs",3,1769,349,"Army","fbs",23,1255
+401531383,2023,10,"regular","2023-11-04T19:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",45,1365,2226,"Florida Atlantic","fbs",42,1448
+401531399,2023,10,"regular","2023-11-04T19:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",29,1396,2636,"UTSA","fbs",37,1626
+401531425,2023,10,"regular","2023-11-04T19:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",59,1586,58,"South Florida","fbs",50,1183
+401531908,2023,10,"regular","2023-11-04T19:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",37,1106,309,"Louisiana","fbs",17,1584
+401520364,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",30,2073,142,"Missouri","fbs",21,1630
+401520367,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,120,"Maryland","fbs",15,1661,213,"Penn State","fbs",51,1975
+401520370,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",26,1595,356,"Illinois","fbs",27,1503
+401520373,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,TRUE,77,"Northwestern","fbs",7,1367,2294,"Iowa","fbs",10,1660
+401520400,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",31,958,2771,"Merrimack","fcs",21,
+401525541,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",7,1438,52,"Florida State","fbs",24,1976
+401525543,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",34,1717,259,"Virginia Tech","fbs",3,1538
+401525880,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,239,"Baylor","fbs",24,1452,248,"Houston","fbs",25,1482
+401525881,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",26,1430,2116,"UCF","fbs",28,1508
+401525883,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",27,1624,201,"Oklahoma","fbs",24,1911
+401531374,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",10,1336,2655,"Tulane","fbs",13,1630
+401531906,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",14,1491,256,"James Madison","fbs",42,1670
+401531907,2023,10,"regular","2023-11-04T19:30:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",24,1389,324,"Coastal Carolina","fbs",28,1491
+401520379,2023,10,"regular","2023-11-04T20:00:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",15,1268,2,"Auburn","fbs",31,1583
+401531343,2023,10,"regular","2023-11-04T20:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",26,1097,2429,"Charlotte","fbs",33,1161
+401531909,2023,10,"regular","2023-11-04T20:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",24,1125,2433,"UL Monroe","fbs",7,1080
+401532610,2023,10,"regular","2023-11-04T20:00:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",14,1232,62,"Hawai'i","fbs",27,1010
+401531910,2023,10,"regular","2023-11-04T21:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",45,1359,290,"Georgia Southern","fbs",24,1497
+401524047,2023,10,"regular","2023-11-04T21:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",63,1899,25,"California","fbs",19,1502
+401520366,2023,10,"regular","2023-11-04T22:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",56,1625,2348,"Louisiana Tech","fbs",30,1244
+401520372,2023,10,"regular","2023-11-04T22:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",13,1357,2393,"Middle Tennessee","fbs",7,1293
+401531905,2023,10,"regular","2023-11-04T22:00:00.000Z",TRUE,FALSE,2026,"App State","fbs",31,1513,276,"Marshall","fbs",9,1421
+401532611,2023,10,"regular","2023-11-04T22:00:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",14,1111,2439,"UNLV","fbs",56,1437
+401525882,2023,10,"regular","2023-11-04T23:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",21,1610,2305,"Kansas","fbs",28,1569
+401525885,2023,10,"regular","2023-11-04T23:00:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",37,1499,252,"BYU","fbs",7,1478
+401532612,2023,10,"regular","2023-11-04T23:00:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",24,1333,328,"Utah State","fbs",32,1376
+401520368,2023,10,"regular","2023-11-04T23:30:00.000Z",TRUE,FALSE,130,"Michigan","fbs",41,2184,2509,"Purdue","fbs",13,1444
+401520371,2023,10,"regular","2023-11-04T23:30:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",3,1521,96,"Kentucky","fbs",24,1600
+401524048,2023,10,"regular","2023-11-04T23:30:00.000Z",TRUE,FALSE,30,"USC","fbs",42,1755,264,"Washington","fbs",52,1852
+401531440,2023,10,"regular","2023-11-04T23:30:00.000Z",TRUE,FALSE,242,"Rice","fbs",31,1315,2567,"SMU","fbs",36,1775
+401520362,2023,10,"regular","2023-11-04T23:45:00.000Z",TRUE,FALSE,333,"Alabama","fbs",42,1989,99,"LSU","fbs",28,1952
+401525544,2023,10,"regular","2023-11-05T00:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",20,1525,2390,"Miami","fbs",6,1582
+401520378,2023,10,"regular","2023-11-05T01:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",13,1171,98,"Western Kentucky","fbs",21,1505
+401524050,2023,10,"regular","2023-11-05T01:00:00.000Z",TRUE,FALSE,265,"Washington State","fbs",7,1454,24,"Stanford","fbs",10,1230
+401524046,2023,10,"regular","2023-11-05T02:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",19,1294,204,"Oregon State","fbs",26,1786
+401532608,2023,10,"regular","2023-11-05T02:00:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",37,1734,68,"Boise State","fbs",30,1585
+401524045,2023,10,"regular","2023-11-05T02:30:00.000Z",TRUE,FALSE,12,"Arizona","fbs",27,1610,26,"UCLA","fbs",10,1709
+401532437,2023,11,"regular","2023-11-08T00:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",17,1398,2050,"Ball State","fbs",20,1167
+401532438,2023,11,"regular","2023-11-08T00:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",38,1319,2117,"Central Michigan","fbs",28,1280
+401532439,2023,11,"regular","2023-11-08T00:30:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",10,1342,195,"Ohio","fbs",20,1488
+401532441,2023,11,"regular","2023-11-09T00:00:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",19,1491,2006,"Akron","fbs",0,1055
+401532442,2023,11,"regular","2023-11-09T00:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",19,1097,189,"Bowling Green","fbs",49,1281
+401532440,2023,11,"regular","2023-11-09T00:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",49,1520,2199,"Eastern Michigan","fbs",23,1292
+401525546,2023,11,"regular","2023-11-10T00:30:00.000Z",TRUE,FALSE,97,"Louisville","fbs",31,1779,258,"Virginia","fbs",24,1275
+401531911,2023,11,"regular","2023-11-10T00:30:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",31,1480,2572,"Southern Miss","fbs",34,1158
+401531437,2023,11,"regular","2023-11-11T02:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",45,1754,249,"North Texas","fbs",21,1398
+401532618,2023,11,"regular","2023-11-11T03:45:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",34,1519,2751,"Wyoming","fbs",14,1389
+401520381,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,349,"Army","fbs",17,1350,107,"Holy Cross","fcs",14,
+401520383,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,356,"Illinois","fbs",48,1509,84,"Indiana","fbs",45,1344
+401520386,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",21,1645,333,"Alabama","fbs",49,2014
+401520392,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",10,1509,120,"Maryland","fbs",13,1597
+401520394,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",15,2039,130,"Michigan","fbs",24,2180
+401520396,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",47,1511,238,"Vanderbilt","fbs",6,1261
+401525547,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",22,1371,259,"Virginia Tech","fbs",48,1476
+401525548,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,228,"Clemson","fbs",42,1730,59,"Georgia Tech","fbs",21,1423
+401525888,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",13,1585,2641,"Texas Tech","fbs",16,1608
+401531344,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",24,1618,202,"Tulsa","fbs",22,1089
+401531393,2023,11,"regular","2023-11-11T17:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",27,1193,218,"Temple","fbs",23,1018
+401520388,2023,11,"regular","2023-11-11T18:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",38,1650,295,"Old Dominion","fbs",10,1389
+401520385,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",44,1725,41,"UConn","fbs",6,1109
+401524052,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,38,"Colorado","fbs",31,1315,12,"Arizona","fbs",34,1657
+401525551,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,154,"Wake Forest","fbs",6,1487,152,"NC State","fbs",26,1558
+401531408,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",38,1169,235,"Memphis","fbs",44,1576
+401531913,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",14,1436,2026,"App State","fbs",42,1556
+401531915,2023,11,"regular","2023-11-11T19:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",14,1047,2653,"Troy","fbs",45,1697
+401520387,2023,11,"regular","2023-11-11T20:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",27,1219,2534,"Sam Houston","fbs",42,1304
+401525889,2023,11,"regular","2023-11-11T20:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",59,1969,239,"Baylor","fbs",25,1452
+401532615,2023,11,"regular","2023-11-11T20:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",41,1388,2440,"Nevada","fbs",24,1180
+401520384,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",22,1648,164,"Rutgers","fbs",0,1477
+401520390,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",40,1289,2229,"Florida International","fbs",6,1060
+401520391,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",36,1643,2633,"Tennessee","fbs",7,1948
+401520395,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",49,1448,135,"Minnesota","fbs",30,1589
+401520398,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",10,1655,77,"Northwestern","fbs",24,1379
+401520399,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",29,1495,166,"New Mexico State","fbs",38,1361
+401524056,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,264,"Washington","fbs",35,1864,254,"Utah","fbs",28,1823
+401525550,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",27,1966,2390,"Miami","fbs",20,1549
+401525552,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,TRUE,183,"Syracuse","fbs",28,1364,221,"Pittsburgh","fbs",13,1448
+401525892,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",45,1507,197,"Oklahoma State","fbs",3,1629
+401531384,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,2426,"Navy","fbs",31,1306,5,"UAB","fbs",6,1367
+401531912,2023,11,"regular","2023-11-11T20:30:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",31,1491,326,"Texas State","fbs",23,1424
+401520380,2023,11,"regular","2023-11-11T21:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",10,1600,2,"Auburn","fbs",48,1590
+401524051,2023,11,"regular","2023-11-11T21:00:00.000Z",TRUE,FALSE,25,"California","fbs",42,1425,265,"Washington State","fbs",39,1435
+401531416,2023,11,"regular","2023-11-11T21:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",7,1446,151,"East Carolina","fbs",22,1348
+401531916,2023,11,"regular","2023-11-11T22:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",21,1627,2032,"Arkansas State","fbs",14,1210
+401524054,2023,11,"regular","2023-11-11T22:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",62,1765,24,"Stanford","fbs",17,1249
+401520382,2023,11,"regular","2023-11-12T00:00:00.000Z",TRUE,FALSE,61,"Georgia","fbs",52,2060,145,"Ole Miss","fbs",17,1714
+401525887,2023,11,"regular","2023-11-12T00:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",14,1482,2132,"Cincinnati","fbs",24,1431
+401525890,2023,11,"regular","2023-11-12T00:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",59,1906,277,"West Virginia","fbs",20,1577
+401531914,2023,11,"regular","2023-11-12T00:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",38,1378,290,"Georgia Southern","fbs",33,1432
+401532617,2023,11,"regular","2023-11-12T00:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",22,1269,21,"San Diego State","fbs",19,1321
+401520389,2023,11,"regular","2023-11-12T00:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",52,1927,57,"Florida","fbs",35,1588
+401520393,2023,11,"regular","2023-11-12T00:30:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",38,2065,127,"Michigan State","fbs",3,1388
+401520397,2023,11,"regular","2023-11-12T00:30:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",51,1743,344,"Mississippi State","fbs",10,1476
+401525891,2023,11,"regular","2023-11-12T00:30:00.000Z",TRUE,FALSE,2628,"TCU","fbs",26,1605,251,"Texas","fbs",29,1932
+401531400,2023,11,"regular","2023-11-12T00:30:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",34,1624,242,"Rice","fbs",14,1336
+401525549,2023,11,"regular","2023-11-12T01:00:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",47,1701,150,"Duke","fbs",45,1631
+401524055,2023,11,"regular","2023-11-12T02:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",7,1662,9,"Arizona State","fbs",17,1313
+401532616,2023,11,"regular","2023-11-12T03:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",42,1584,167,"New Mexico","fbs",14,1029
+401525886,2023,11,"regular","2023-11-12T03:15:00.000Z",TRUE,FALSE,252,"BYU","fbs",13,1400,66,"Iowa State","fbs",45,1594
+401524053,2023,11,"regular","2023-11-12T03:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",36,1976,30,"USC","fbs",27,1743
+401532614,2023,11,"regular","2023-11-12T03:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",42,1501,278,"Fresno State","fbs",18,1735
+401532613,2023,11,"regular","2023-11-12T04:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",27,1062,2005,"Air Force","fbs",13,1663
+401532443,2023,12,"regular","2023-11-15T00:00:00.000Z",TRUE,FALSE,189,"Bowling Green","fbs",31,1342,2649,"Toledo","fbs",32,1561
+401532444,2023,12,"regular","2023-11-15T00:00:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",24,1379,2711,"Western Michigan","fbs",0,1333
+401532445,2023,12,"regular","2023-11-15T00:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",30,1251,2006,"Akron","fbs",27,1052
+401532446,2023,12,"regular","2023-11-16T00:00:00.000Z",TRUE,FALSE,195,"Ohio","fbs",34,1496,2117,"Central Michigan","fbs",20,1266
+401532447,2023,12,"regular","2023-11-16T00:00:00.000Z",TRUE,FALSE,193,"Miami (OH)","fbs",23,1494,2084,"Buffalo","fbs",10,1334
+401525553,2023,12,"regular","2023-11-17T00:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",24,1401,103,"Boston College","fbs",16,1313
+401531401,2023,12,"regular","2023-11-18T02:00:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",49,1642,58,"South Florida","fbs",21,1191
+401524057,2023,12,"regular","2023-11-18T03:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",56,1434,38,"Colorado","fbs",14,1330
+401520401,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,333,"Alabama","fbs",66,2072,236,"Chattanooga","fcs",10,
+401520403,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,349,"Army","fbs",28,1361,324,"Coastal Carolina","fbs",21,1499
+401520405,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,84,"Indiana","fbs",21,1345,127,"Michigan State","fbs",24,1369
+401520410,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",24,1596,130,"Michigan","fbs",31,2187
+401520412,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",41,1392,2572,"Southern Miss","fbs",20,1184
+401520414,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,77,"Northwestern","fbs",23,1441,2509,"Purdue","fbs",15,1506
+401520416,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,145,"Ole Miss","fbs",35,1659,2433,"UL Monroe","fbs",3,1035
+401520417,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",27,2032,164,"Rutgers","fbs",6,1442
+401520420,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",38,1837,2000,"Abilene Christian","fcs",10,
+401520421,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",31,1047,2529,"Sacred Heart","fcs",3,
+401525558,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",31,1561,97,"Louisville","fbs",38,1763
+401525893,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",24,1334,201,"Oklahoma","fbs",31,1975
+401531375,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,2226,"Florida Atlantic","fbs",8,1401,2655,"Tulane","fbs",24,1611
+401531417,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,2426,"Navy","fbs",10,1376,151,"East Carolina","fbs",0,1393
+401531431,2023,12,"regular","2023-11-18T17:00:00.000Z",TRUE,FALSE,235,"Memphis","fbs",34,1559,2567,"SMU","fbs",38,1776
+401520408,2023,12,"regular","2023-11-18T18:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",49,1693,113,"Massachusetts","fbs",25,972
+401520407,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,55,"Jacksonville State","fbs",56,1490,2348,"Louisiana Tech","fbs",17,1192
+401520411,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,2393,"Middle Tennessee","fbs",34,1354,2638,"UTEP","fbs",30,1181
+401531409,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",7,1186,242,"Rice","fbs",28,1318
+401531918,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,256,"James Madison","fbs",23,1758,2026,"App State","fbs",26,1618
+401532448,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",34,1186,2309,"Kent State","fbs",3,1036
+401532620,2023,12,"regular","2023-11-18T19:00:00.000Z",TRUE,FALSE,2751,"Wyoming","fbs",42,1356,62,"Hawai'i","fbs",9,1152
+401524058,2023,12,"regular","2023-11-18T19:30:00.000Z",TRUE,FALSE,12,"Arizona","fbs",42,1642,254,"Utah","fbs",18,1816
+401525899,2023,12,"regular","2023-11-18T19:30:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",42,1508,2132,"Cincinnati","fbs",21,1456
+401525555,2023,12,"regular","2023-11-18T20:00:00.000Z",TRUE,FALSE,258,"Virginia","fbs",30,1291,150,"Duke","fbs",27,1631
+401531345,2023,12,"regular","2023-11-18T20:00:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",28,1096,249,"North Texas","fbs",35,1376
+401531385,2023,12,"regular","2023-11-18T20:00:00.000Z",TRUE,FALSE,5,"UAB","fbs",34,1297,218,"Temple","fbs",24,1020
+401531919,2023,12,"regular","2023-11-18T20:00:00.000Z",TRUE,FALSE,2032,"Arkansas State","fbs",77,1222,326,"Texas State","fbs",31,1416
+401532621,2023,12,"regular","2023-11-18T20:00:00.000Z",TRUE,FALSE,36,"Colorado State","fbs",30,1271,2440,"Nevada","fbs",20,1162
+401520406,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",15,1683,356,"Illinois","fbs",13,1508
+401520419,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",10,1830,61,"Georgia","fbs",38,2115
+401520423,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",28,1465,2534,"Sam Houston","fbs",23,1331
+401524062,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,30,"USC","fbs",20,1743,26,"UCLA","fbs",38,1607
+401525442,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",45,1966,154,"Wake Forest","fbs",7,1444
+401525554,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",31,1749,153,"North Carolina","fbs",20,1701
+401525559,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",28,1534,152,"NC State","fbs",35,1601
+401525897,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,2628,"TCU","fbs",42,1619,239,"Baylor","fbs",17,1419
+401531921,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,2653,"Troy","fbs",31,1709,309,"Louisiana","fbs",24,1454
+401532624,2023,12,"regular","2023-11-18T20:30:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",27,1573,2439,"UNLV","fbs",31,1552
+401520404,2023,12,"regular","2023-11-18T21:00:00.000Z",TRUE,FALSE,2,"Auburn","fbs",10,1705,166,"New Mexico State","fbs",31,1391
+401520415,2023,12,"regular","2023-11-18T21:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",37,2084,135,"Minnesota","fbs",3,1531
+401524059,2023,12,"regular","2023-11-18T21:00:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",13,1368,2483,"Oregon","fbs",49,1976
+401525894,2023,12,"regular","2023-11-18T21:00:00.000Z",TRUE,FALSE,248,"Houston","fbs",30,1457,197,"Oklahoma State","fbs",43,1486
+401525898,2023,12,"regular","2023-11-18T22:00:00.000Z",TRUE,FALSE,2641,"Texas Tech","fbs",24,1611,2116,"UCF","fbs",23,1650
+401531920,2023,12,"regular","2023-11-18T22:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",28,1615,276,"Marshall","fbs",0,1385
+401531917,2023,12,"regular","2023-11-18T23:00:00.000Z",TRUE,FALSE,290,"Georgia Southern","fbs",17,1425,295,"Old Dominion","fbs",20,1346
+401524061,2023,12,"regular","2023-11-18T23:30:00.000Z",TRUE,FALSE,24,"Stanford","fbs",15,1184,25,"California","fbs",27,1426
+401525556,2023,12,"regular","2023-11-18T23:30:00.000Z",TRUE,FALSE,52,"Florida State","fbs",58,1960,2453,"North Alabama","fcs",13,
+401525896,2023,12,"regular","2023-11-19T00:00:00.000Z",TRUE,FALSE,2305,"Kansas","fbs",27,1582,2306,"Kansas State","fbs",31,2002
+401532619,2023,12,"regular","2023-11-19T00:00:00.000Z",TRUE,FALSE,328,"Utah State","fbs",10,1406,68,"Boise State","fbs",45,1597
+401520402,2023,12,"regular","2023-11-19T00:30:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",44,1485,2229,"Florida International","fbs",20,995
+401520413,2023,12,"regular","2023-11-19T00:30:00.000Z",TRUE,FALSE,142,"Missouri","fbs",33,1761,57,"Florida","fbs",31,1581
+401520418,2023,12,"regular","2023-11-19T00:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",17,1597,96,"Kentucky","fbs",14,1612
+401520422,2023,12,"regular","2023-11-19T00:30:00.000Z",TRUE,FALSE,275,"Wisconsin","fbs",24,1593,158,"Nebraska","fbs",17,1510
+401524060,2023,12,"regular","2023-11-19T00:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",20,1830,264,"Washington","fbs",22,1871
+401520409,2023,12,"regular","2023-11-19T01:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",56,1934,2247,"Georgia State","fbs",14,1374
+401525557,2023,12,"regular","2023-11-19T01:00:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",31,1404,183,"Syracuse","fbs",22,1411
+401525895,2023,12,"regular","2023-11-19T01:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",16,1660,251,"Texas","fbs",26,1918
+401532622,2023,12,"regular","2023-11-19T03:30:00.000Z",TRUE,FALSE,278,"Fresno State","fbs",17,1647,167,"New Mexico","fbs",25,1016
+401532623,2023,12,"regular","2023-11-19T03:30:00.000Z",TRUE,FALSE,23,"San José State","fbs",24,1589,21,"San Diego State","fbs",13,1319
+401532450,2023,13,"regular","2023-11-22T00:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",10,1278,189,"Bowling Green","fbs",34,1351
+401532449,2023,13,"regular","2023-11-22T00:30:00.000Z",TRUE,FALSE,2084,"Buffalo","fbs",11,1322,2199,"Eastern Michigan","fbs",24,1249
+401520424,2023,13,"regular","2023-11-24T00:30:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",7,1421,145,"Ole Miss","fbs",17,1676
+401520425,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,158,"Nebraska","fbs",10,1505,2294,"Iowa","fbs",13,1681
+401525560,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,103,"Boston College","fbs",20,1306,2390,"Miami","fbs",45,1563
+401525900,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",69,1945,2628,"TCU","fbs",45,1660
+401531394,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",21,1022,235,"Memphis","fbs",45,1566
+401532451,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,2117,"Central Michigan","fbs",17,1257,2649,"Toledo","fbs",32,1552
+401532452,2023,13,"regular","2023-11-24T17:00:00.000Z",TRUE,FALSE,2006,"Akron","fbs",14,1054,195,"Ohio","fbs",25,1505
+401531376,2023,13,"regular","2023-11-24T20:30:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",29,1628,2636,"UTSA","fbs",16,1665
+401532629,2023,13,"regular","2023-11-24T20:30:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",41,1093,328,"Utah State","fbs",44,1330
+401520426,2023,13,"regular","2023-11-24T21:00:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",14,1495,142,"Missouri","fbs",48,1759
+401532625,2023,13,"regular","2023-11-24T21:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",27,1673,2005,"Air Force","fbs",19,1565
+401520435,2023,13,"regular","2023-11-25T00:30:00.000Z",TRUE,TRUE,127,"Michigan State","fbs",0,1372,213,"Penn State","fbs",42,2027
+401525901,2023,13,"regular","2023-11-25T00:30:00.000Z",TRUE,FALSE,251,"Texas","fbs",57,1917,2641,"Texas Tech","fbs",7,1613
+401524063,2023,13,"regular","2023-11-25T01:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",31,2006,204,"Oregon State","fbs",7,1830
+401520432,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,97,"Louisville","fbs",31,1761,96,"Kentucky","fbs",38,1611
+401520433,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,99,"LSU","fbs",42,1985,245,"Texas A&M","fbs",30,1827
+401520434,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,130,"Michigan","fbs",30,2160,194,"Ohio State","fbs",24,2113
+401520438,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2509,"Purdue","fbs",35,1490,84,"Indiana","fbs",31,1342
+401520440,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",23,1331,2393,"Middle Tennessee","fbs",20,1352
+401520443,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,113,"Massachusetts","fbs",18,982,41,"UConn","fbs",31,1076
+401525561,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,150,"Duke","fbs",30,1625,221,"Pittsburgh","fbs",19,1408
+401525906,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2116,"UCF","fbs",27,1648,248,"Houston","fbs",13,1431
+401531435,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",59,1769,2426,"Navy","fbs",14,1394
+401531927,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2572,"Southern Miss","fbs",17,1155,2653,"Troy","fbs",35,1705
+401532453,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2309,"Kent State","fbs",27,971,2459,"Northern Illinois","fbs",37,1434
+401532454,2023,13,"regular","2023-11-25T17:00:00.000Z",TRUE,FALSE,2050,"Ball State","fbs",15,1251,193,"Miami (OH)","fbs",17,1506
+401531421,2023,13,"regular","2023-11-25T18:00:00.000Z",TRUE,FALSE,242,"Rice","fbs",24,1357,2226,"Florida Atlantic","fbs",21,1384
+401525563,2023,13,"regular","2023-11-25T19:00:00.000Z",TRUE,FALSE,183,"Syracuse","fbs",35,1396,154,"Wake Forest","fbs",31,1400
+401531346,2023,13,"regular","2023-11-25T19:00:00.000Z",TRUE,FALSE,151,"East Carolina","fbs",27,1375,202,"Tulsa","fbs",29,1103
+401531386,2023,13,"regular","2023-11-25T19:00:00.000Z",TRUE,FALSE,249,"North Texas","fbs",45,1369,5,"UAB","fbs",42,1295
+401531925,2023,13,"regular","2023-11-25T19:00:00.000Z",TRUE,FALSE,295,"Old Dominion","fbs",25,1355,2247,"Georgia State","fbs",24,1323
+401520428,2023,13,"regular","2023-11-25T20:00:00.000Z",TRUE,FALSE,2229,"Florida International","fbs",28,985,98,"Western Kentucky","fbs",41,1465
+401524067,2023,13,"regular","2023-11-25T20:00:00.000Z",TRUE,FALSE,254,"Utah","fbs",23,1735,38,"Colorado","fbs",17,1221
+401531926,2023,13,"regular","2023-11-25T20:00:00.000Z",TRUE,FALSE,309,"Louisiana","fbs",52,1458,2433,"UL Monroe","fbs",21,1018
+401532628,2023,13,"regular","2023-11-25T20:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",31,1560,23,"San José State","fbs",37,1589
+401520427,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,2,"Auburn","fbs",24,1612,333,"Alabama","fbs",27,2047
+401520431,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,356,"Illinois","fbs",43,1510,77,"Northwestern","fbs",45,1457
+401520436,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,135,"Minnesota","fbs",14,1502,275,"Wisconsin","fbs",28,1598
+401520439,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",24,1447,120,"Maryland","fbs",42,1623
+401520442,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,2633,"Tennessee","fbs",48,1787,238,"Vanderbilt","fbs",24,1175
+401520444,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",28,1183,2335,"Liberty","fbs",42,1683
+401524064,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",23,1338,12,"Arizona","fbs",59,1723
+401525564,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,258,"Virginia","fbs",17,1297,259,"Virginia Tech","fbs",55,1526
+401525905,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",40,1512,252,"BYU","fbs",34,1364
+401531922,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,2026,"App State","fbs",55,1631,290,"Georgia Southern","fbs",27,1416
+401531923,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",14,1481,256,"James Madison","fbs",56,1745
+401531924,2023,13,"regular","2023-11-25T20:30:00.000Z",TRUE,FALSE,276,"Marshall","fbs",35,1338,2032,"Arkansas State","fbs",21,1394
+401520437,2023,13,"regular","2023-11-25T21:00:00.000Z",TRUE,FALSE,166,"New Mexico State","fbs",20,1484,55,"Jacksonville State","fbs",17,1563
+401524068,2023,13,"regular","2023-11-25T21:00:00.000Z",TRUE,FALSE,264,"Washington","fbs",24,1871,265,"Washington State","fbs",21,1543
+401520429,2023,13,"regular","2023-11-26T00:00:00.000Z",TRUE,FALSE,57,"Florida","fbs",15,1583,52,"Florida State","fbs",24,1954
+401524065,2023,13,"regular","2023-11-26T00:00:00.000Z",TRUE,FALSE,24,"Stanford","fbs",23,1179,87,"Notre Dame","fbs",56,2010
+401525902,2023,13,"regular","2023-11-26T00:00:00.000Z",TRUE,FALSE,239,"Baylor","fbs",31,1378,277,"West Virginia","fbs",34,1552
+401531928,2023,13,"regular","2023-11-26T00:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",52,1244,6,"South Alabama","fbs",44,1662
+401520430,2023,13,"regular","2023-11-26T00:30:00.000Z",TRUE,FALSE,59,"Georgia Tech","fbs",23,1419,61,"Georgia","fbs",31,2158
+401520441,2023,13,"regular","2023-11-26T00:30:00.000Z",TRUE,FALSE,2579,"South Carolina","fbs",7,1598,228,"Clemson","fbs",16,1765
+401525903,2023,13,"regular","2023-11-26T00:30:00.000Z",TRUE,FALSE,2132,"Cincinnati","fbs",16,1412,2305,"Kansas","fbs",49,1601
+401531410,2023,13,"regular","2023-11-26T00:30:00.000Z",TRUE,FALSE,58,"South Florida","fbs",48,1168,2429,"Charlotte","fbs",14,1147
+401525562,2023,13,"regular","2023-11-26T01:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",39,1609,153,"North Carolina","fbs",20,1685
+401525904,2023,13,"regular","2023-11-26T01:00:00.000Z",TRUE,FALSE,2306,"Kansas State","fbs",35,1983,66,"Iowa State","fbs",42,1661
+401532630,2023,13,"regular","2023-11-26T02:00:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",6,1153,2751,"Wyoming","fbs",42,1421
+401524066,2023,13,"regular","2023-11-26T03:30:00.000Z",TRUE,FALSE,26,"UCLA","fbs",7,1667,25,"California","fbs",33,1431
+401532627,2023,13,"regular","2023-11-26T03:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",33,1319,278,"Fresno State","fbs",18,1570
+401532626,2023,13,"regular","2023-11-26T04:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",27,1087,36,"Colorado State","fbs",24,1280
+401539476,2023,14,"regular","2023-12-02T00:00:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",49,1671,166,"New Mexico State","fbs",35,1486
+401539475,2023,14,"regular","2023-12-02T01:00:00.000Z",TRUE,TRUE,264,"Washington","fbs",34,1868,2483,"Oregon","fbs",31,2046
+401539479,2023,14,"regular","2023-12-02T17:00:00.000Z",TRUE,TRUE,251,"Texas","fbs",49,2026,197,"Oklahoma State","fbs",21,1512
+401539481,2023,14,"regular","2023-12-02T17:00:00.000Z",TRUE,TRUE,2649,"Toledo","fbs",14,1559,193,"Miami (OH)","fbs",23,1495
+401539482,2023,14,"regular","2023-12-02T20:00:00.000Z",TRUE,FALSE,2439,"UNLV","fbs",20,1551,68,"Boise State","fbs",44,1678
+401539477,2023,14,"regular","2023-12-02T21:00:00.000Z",TRUE,FALSE,2655,"Tulane","fbs",14,1657,2567,"SMU","fbs",26,1852
+401539483,2023,14,"regular","2023-12-02T21:00:00.000Z",TRUE,TRUE,333,"Alabama","fbs",27,2028,61,"Georgia","fbs",24,2122
+401539484,2023,14,"regular","2023-12-02T21:00:00.000Z",TRUE,FALSE,2653,"Troy","fbs",49,1696,2026,"App State","fbs",23,1679
+401539478,2023,14,"regular","2023-12-03T01:00:00.000Z",TRUE,TRUE,52,"Florida State","fbs",16,1943,97,"Louisville","fbs",6,1736
+401539480,2023,14,"regular","2023-12-03T01:00:00.000Z",TRUE,TRUE,2294,"Iowa","fbs",0,1675,130,"Michigan","fbs",26,2165
+401520445,2023,15,"regular","2023-12-09T20:00:00.000Z",TRUE,TRUE,349,"Army","fbs",17,1379,2426,"Navy","fbs",11,1311
+401551733,2023,1,"postseason","2023-12-16T16:00:00.000Z",TRUE,TRUE,195,"Ohio","fbs",41,1491,290,"Georgia Southern","fbs",21,1368
+401551751,2023,1,"postseason","2023-12-16T19:15:00.000Z",TRUE,TRUE,309,"Louisiana","fbs",31,1491,55,"Jacksonville State","fbs",34,1561
+401551731,2023,1,"postseason","2023-12-16T20:30:00.000Z",TRUE,TRUE,2026,"App State","fbs",13,1614,193,"Miami (OH)","fbs",9,1512
+401551732,2023,1,"postseason","2023-12-16T22:45:00.000Z",TRUE,TRUE,278,"Fresno State","fbs",37,1514,166,"New Mexico State","fbs",10,1473
+401551752,2023,1,"postseason","2023-12-17T00:30:00.000Z",TRUE,TRUE,68,"Boise State","fbs",22,1727,26,"UCLA","fbs",35,1565
+401551753,2023,1,"postseason","2023-12-17T02:15:00.000Z",TRUE,TRUE,2641,"Texas Tech","fbs",34,1504,25,"California","fbs",14,1533
+401551469,2023,1,"postseason","2023-12-18T19:30:00.000Z",TRUE,TRUE,295,"Old Dominion","fbs",35,1355,98,"Western Kentucky","fbs",38,1453
+401551735,2023,1,"postseason","2023-12-20T02:00:00.000Z",TRUE,TRUE,276,"Marshall","fbs",17,1371,2636,"UTSA","fbs",35,1636
+401551737,2023,1,"postseason","2023-12-22T01:00:00.000Z",TRUE,TRUE,183,"Syracuse","fbs",0,1399,58,"South Florida","fbs",45,1260
+401551754,2023,1,"postseason","2023-12-22T23:30:00.000Z",TRUE,TRUE,2116,"UCF","fbs",17,1658,59,"Georgia Tech","fbs",30,1455
+401551739,2023,1,"postseason","2023-12-23T17:00:00.000Z",TRUE,TRUE,150,"Duke","fbs",17,1629,2653,"Troy","fbs",10,1761
+401551741,2023,1,"postseason","2023-12-23T17:00:00.000Z",TRUE,TRUE,2459,"Northern Illinois","fbs",21,1418,2032,"Arkansas State","fbs",19,1361
+401551742,2023,1,"postseason","2023-12-23T20:30:00.000Z",TRUE,TRUE,2005,"Air Force","fbs",31,1560,256,"James Madison","fbs",21,1835
+401551743,2023,1,"postseason","2023-12-23T20:30:00.000Z",TRUE,TRUE,328,"Utah State","fbs",22,1321,2247,"Georgia State","fbs",45,1323
+401551755,2023,1,"postseason","2023-12-24T00:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",10,1285,6,"South Alabama","fbs",59,1621
+401551744,2023,1,"postseason","2023-12-24T00:30:00.000Z",TRUE,TRUE,77,"Northwestern","fbs",14,1463,254,"Utah","fbs",7,1719
+401551746,2023,1,"postseason","2023-12-24T03:30:00.000Z",TRUE,TRUE,23,"San José State","fbs",14,1598,324,"Coastal Carolina","fbs",24,1391
+401551756,2023,1,"postseason","2023-12-26T19:00:00.000Z",TRUE,TRUE,135,"Minnesota","fbs",30,1479,189,"Bowling Green","fbs",24,1406
+401551748,2023,1,"postseason","2023-12-26T22:30:00.000Z",TRUE,TRUE,242,"Rice","fbs",21,1358,326,"Texas State","fbs",45,1285
+401551757,2023,1,"postseason","2023-12-27T02:00:00.000Z",TRUE,TRUE,2439,"UNLV","fbs",36,1502,2305,"Kansas","fbs",49,1671
+401551758,2023,1,"postseason","2023-12-27T19:00:00.000Z",TRUE,TRUE,2655,"Tulane","fbs",20,1648,259,"Virginia Tech","fbs",41,1607
+401551761,2023,1,"postseason","2023-12-27T22:30:00.000Z",TRUE,TRUE,277,"West Virginia","fbs",30,1546,153,"North Carolina","fbs",10,1634
+401581109,2023,1,"postseason","2023-12-28T01:00:00.000Z",TRUE,TRUE,30,"USC","fbs",42,1683,97,"Louisville","fbs",28,1728
+401551749,2023,1,"postseason","2023-12-28T02:00:00.000Z",TRUE,TRUE,197,"Oklahoma State","fbs",31,1488,245,"Texas A&M","fbs",23,1817
+401551750,2023,1,"postseason","2023-12-28T16:00:00.000Z",TRUE,TRUE,103,"Boston College","fbs",23,1269,2567,"SMU","fbs",14,1861
+401551762,2023,1,"postseason","2023-12-28T19:15:00.000Z",TRUE,TRUE,2390,"Miami","fbs",24,1600,164,"Rutgers","fbs",31,1421
+401551764,2023,1,"postseason","2023-12-28T22:45:00.000Z",TRUE,TRUE,2306,"Kansas State","fbs",28,1942,152,"NC State","fbs",19,1660
+401551765,2023,1,"postseason","2023-12-29T02:15:00.000Z",TRUE,TRUE,201,"Oklahoma","fbs",24,1974,12,"Arizona","fbs",38,1778
+401551766,2023,1,"postseason","2023-12-29T17:00:00.000Z",TRUE,TRUE,96,"Kentucky","fbs",35,1636,228,"Clemson","fbs",38,1769
+401551798,2023,1,"postseason","2023-12-29T19:00:00.000Z",TRUE,TRUE,87,"Notre Dame","fbs",40,2009,204,"Oregon State","fbs",8,1790
+401551767,2023,1,"postseason","2023-12-29T20:30:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",26,1702,235,"Memphis","fbs",36,1571
+401551768,2023,1,"postseason","2023-12-30T01:00:00.000Z",TRUE,TRUE,194,"Ohio State","fbs",3,2108,142,"Missouri","fbs",14,1823
+401551769,2023,1,"postseason","2023-12-30T17:00:00.000Z",TRUE,TRUE,213,"Penn State","fbs",25,2061,145,"Ole Miss","fbs",38,1676
+401551770,2023,1,"postseason","2023-12-30T19:00:00.000Z",TRUE,TRUE,120,"Maryland","fbs",31,1649,2,"Auburn","fbs",13,1631
+401551773,2023,1,"postseason","2023-12-30T21:00:00.000Z",TRUE,TRUE,52,"Florida State","fbs",3,1951,61,"Georgia","fbs",63,2111
+401554566,2023,1,"postseason","2023-12-30T21:30:00.000Z",TRUE,TRUE,2751,"Wyoming","fbs",16,1491,2649,"Toledo","fbs",15,1542
+401551778,2023,1,"postseason","2024-01-01T17:00:00.000Z",TRUE,TRUE,99,"LSU","fbs",35,1995,275,"Wisconsin","fbs",31,1621
+401551780,2023,1,"postseason","2024-01-01T18:00:00.000Z",TRUE,TRUE,2633,"Tennessee","fbs",35,1786,2294,"Iowa","fbs",0,1666
+401551782,2023,1,"postseason","2024-01-01T18:00:00.000Z",TRUE,TRUE,2483,"Oregon","fbs",45,2031,2335,"Liberty","fbs",6,1684
+401551786,2023,1,"postseason","2024-01-01T22:00:00.000Z",TRUE,TRUE,130,"Michigan","fbs",27,2174,333,"Alabama","fbs",20,2039
+401551788,2023,1,"postseason","2024-01-02T01:45:00.000Z",TRUE,TRUE,264,"Washington","fbs",37,1883,251,"Texas","fbs",31,2050
+401551789,2023,1,"postseason","2024-01-09T00:30:00.000Z",TRUE,TRUE,130,"Michigan","fbs",34,2181,264,"Washington","fbs",13,1908
