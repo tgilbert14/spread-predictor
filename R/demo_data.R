@@ -70,6 +70,9 @@ demo_app_data <- function(seed = 2026) {
   for (model in names(MODEL_LABELS)) {
     teams[[paste0(model, "_rank")]] <- rank(-teams[[model]], ties.method = "min")
   }
+  # Preseason z-scores: stronger teams tend to have more talent.
+  teams$talent_z <- round(as.numeric(scale(strength + stats::rnorm(n, 0, 6))), 2)
+  teams$returning_z <- round(stats::rnorm(n), 2)
 
   forecasts <- c("elo", "power", "house", "line")
   forecast_table <- function(n, mae, win_rate, brier) {
@@ -79,7 +82,7 @@ demo_app_data <- function(seed = 2026) {
 
   params <- list(
     fit_date = "2026-11-09",
-    fit_seasons = 2022:2025,
+    fit_seasons = c(2018L, 2019L, 2021:2025),
     holdout_season = 2026L,
     k = k,
     elo_tier = elo_tier,
@@ -87,12 +90,18 @@ demo_app_data <- function(seed = 2026) {
     h = 2.8,
     h_elo = 2.9,
     h_power = 2.7,
+    talent_points = 2.5,
+    returning_points = 1.5,
+    talent_points_elo = 2.4,
+    talent_points_power = 2.6,
+    returning_points_elo = 1.4,
+    returning_points_power = 1.6,
     sigma = 15.8,
     power = POWER_RATING,
     weights = equal_weights(),
     weights_method = "equal",
     weights_note = "Equal weights: these are made-up demo numbers.",
-    metrics = forecast_table(3200L, c(12.6, 12.6, 12.5, 12.0), c(0.71, 0.71, 0.72, 0.73),
+    metrics = forecast_table(5500L, c(12.6, 12.6, 12.5, 12.0), c(0.71, 0.71, 0.72, 0.73),
                              c(0.188, 0.185, 0.185, 0.179)),
     holdout = forecast_table(560L, c(12.4, 12.5, 12.3, 11.5), c(0.73, 0.71, 0.72, 0.76),
                              c(0.183, 0.185, 0.181, 0.171)),
@@ -104,17 +113,17 @@ demo_app_data <- function(seed = 2026) {
       actual    = c(0.56, 0.66, 0.76, 0.86, 0.95)
     ),
     folds = data.frame(
-      season = 2022:2025,
-      k = c(26.3, 27.1, 26.4, 27.3),
-      elo_tier = c(10.4, 10.8, 10.2, 10.7),
-      power_scale = c(1.00, 0.99, 1.00, 0.99),
-      h = c(3.0, 2.9, 2.7, 2.6),
-      sigma = c(15.7, 15.7, 15.8, 15.9),
-      mae = c(12.4, 12.6, 12.6, 12.2)
+      season = c(2018L, 2019L, 2021:2025),
+      k = c(26.0, 26.8, 26.3, 27.1, 26.4, 27.3, 26.9),
+      elo_tier = c(10.1, 10.6, 10.4, 10.8, 10.2, 10.7, 10.5),
+      power_scale = c(1.01, 0.98, 1.00, 0.99, 1.00, 0.99, 1.00),
+      h = c(3.1, 3.0, 3.0, 2.9, 2.7, 2.6, 2.8),
+      sigma = c(15.6, 15.8, 15.7, 15.7, 15.8, 15.9, 15.7),
+      mae = c(12.5, 12.7, 12.4, 12.6, 12.6, 12.2, 12.5)
     ),
     leaked_diagnostic = data.frame(
       model = c("sp", "fpi", "srs"),
-      n = rep(3200L, 3),
+      n = rep(5500L, 3),
       mae = c(10.8, 10.6, 10.5)
     )
   )
@@ -136,7 +145,7 @@ demo_app_data <- function(seed = 2026) {
   )
   model_home_margin <- vapply(seq_len(nrow(slate)), function(i) {
     site <- if (slate$neutral_site[i]) "neutral" else "a_home"
-    predict_matchup(slate$home_id[i], slate$away_id[i], site, teams, params)$spread
+    predict_matchup(slate$home_id[i], slate$away_id[i], site, teams, params, week = 11L)$spread
   }, numeric(1))
   # Home-relative, CFBD convention: negative means the home team is favored.
   slate$market_spread_home <- -round_half(model_home_margin + stats::rnorm(nrow(slate), 0, 3))

@@ -71,3 +71,15 @@ format_summary <- function(pred) {
     pred$team_b$school, format_prob(1 - pred$win_prob_a)
   )
 }
+
+#' Seasons in words, with runs of three or more collapsed:
+#' "2018, 2019 and 2021 to 2025".
+format_seasons <- function(seasons) {
+  seasons <- sort(unique(as.integer(seasons)))
+  run <- cumsum(c(1, diff(seasons) != 1))
+  parts <- unlist(lapply(split(seasons, run), function(s) {
+    if (length(s) >= 3) paste(min(s), "to", max(s)) else as.character(s)
+  }), use.names = FALSE)
+  if (length(parts) <= 1) return(paste(parts, collapse = ""))
+  paste(paste(parts[-length(parts)], collapse = ", "), "and", parts[length(parts)])
+}

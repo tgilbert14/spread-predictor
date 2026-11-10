@@ -21,6 +21,9 @@ Rev 2 · Nov 9, 2026 · @tim
 >   Power rating) and a power-conference correction for Elo. Both earned
 >   their place out of sample. Six other factors were tested and rejected.
 >   See `docs/backtest-results.md`.
+> - A second round of testing, on history back to 2017, added two more
+>   pieces: success rate in the Power rating, and preseason talent and
+>   returning production for the first six weeks.
 > - A data audit runs on every refresh and writes `docs/data-audit.md`.
 >
 > The README and the other files in `docs/` describe the project as built.

@@ -50,6 +50,27 @@ write_fake_snapshots <- function(root) {
   }
   # An empty lines file, as written early in a season, must load fine.
   quiet_write(normalize_lines(data.frame()), snapshot_path("lines", 2024, root = root))
+  write_fake_extras(root, quiet_write)
+}
+
+#' Extras files as the API returns them: school names, FCS teams included.
+#' Each season has one FCS talent row, one returning name that matches only
+#' loosely, and one game_stats row for a game we do not track.
+write_fake_extras <- function(root, quiet_write) {
+  for (season in 2025:2026) {
+    quiet_write(data.frame(year = season, school = c("Arizona", "Arizona State", "Northern Arizona"),
+                           talent = c(650.5, 700.25, 300)),
+                extra_path("talent", season, root))
+    quiet_write(data.frame(season = season, team = c("Arizona", "ARIZONA STATE"), conference = "Big 12",
+                           total_ppa = 100, percent_ppa = c(0.55, 0.62)),
+                extra_path("returning", season, root))
+    quiet_write(data.frame(game_id = season * 10L + c(1L, 1L, 2L, 2L, 9L), season = season, week = 1L,
+                           team = c("Arizona", "Northern Arizona", "Arizona State", "Arizona", "Somebody"),
+                           opponent = "x", off_plays = 60,
+                           off_success_rate = c(0.5, 0.3, 0.45, 0.41, 0.4),
+                           def_success_rate = c(0.3, 0.5, 0.41, 0.45, 0.4)),
+                extra_path("advanced", season, root))
+  }
 }
 
 build_fake_db <- function(root, db) {
@@ -58,7 +79,7 @@ build_fake_db <- function(root, db) {
 
 test_that("schema.sql splits into the expected statements", {
   statements <- schema_statements(schema_file)
-  expect_length(statements, 6)
+  expect_length(statements, 9)
   expect_true(all(grepl("^CREATE", statements)))
 })
 
@@ -75,6 +96,9 @@ test_that("build_db loads every snapshot and check_db passes", {
   expect_equal(count("games"), 4)
   expect_equal(count("lines"), 4)
   expect_equal(count("ratings"), 16)
+  expect_equal(count("talent"), 4)
+  expect_equal(count("returning_production"), 4)
+  expect_equal(count("game_stats"), 8)
 
   finals <- DBI::dbGetQuery(con, "SELECT DISTINCT is_final, week FROM ratings WHERE season = 2025")
   expect_equal(finals$is_final, 1L)
@@ -174,4 +198,40 @@ test_that("apply_neutral_overrides fixes only the listed games", {
 
   # No file means nothing to do, not an error.
   expect_equal(apply_neutral_overrides(con, file.path(tempdir(), "missing.csv")), 0L)
+})
+
+test_that("extras rows get team ids by name, and unmatched rows are dropped with one message each", {
+  root <- withr::local_tempdir()
+  db <- file.path(withr::local_tempdir(), "cfb.sqlite")
+  write_fake_snapshots(root)
+  messages <- testthat::capture_messages(build_db(snapshots_dir = root, db_path = db, schema_path = schema_file))
+  expect_true(any(grepl("talent: dropped 2 row", messages)))
+  expect_true(any(grepl("game_stats: dropped 2 row", messages)))
+  expect_false(any(grepl("returning_production: dropped", messages)))
+
+  con <- DBI::dbConnect(RSQLite::SQLite(), db)
+  on.exit(DBI::dbDisconnect(con))
+  talent <- DBI::dbGetQuery(con, "SELECT team_id, talent FROM talent WHERE season = 2026 ORDER BY team_id")
+  expect_equal(talent$team_id, c(2L, 8L))
+  expect_equal(talent$talent, c(700.25, 650.5))
+  # "ARIZONA STATE" matches Arizona State only through team_key().
+  returning <- DBI::dbGetQuery(con, "SELECT team_id, percent_ppa FROM returning_production WHERE season = 2026 ORDER BY team_id")
+  expect_equal(returning$percent_ppa, c(0.62, 0.55))
+  stats <- DBI::dbGetQuery(con, "SELECT game_id, team_id, off_success_rate FROM game_stats WHERE game_id = 20262 ORDER BY team_id")
+  expect_equal(stats$team_id, c(2L, 8L))
+  expect_equal(stats$off_success_rate, c(0.45, 0.41))
+  # The FCS team in a game we track keeps its row, under its own id.
+  expect_equal(DBI::dbGetQuery(con, "SELECT team_id FROM game_stats WHERE game_id = 20261 AND off_success_rate = 0.3")$team_id, 3001L)
+})
+
+test_that("school_ids and game_team_ids match exactly first, then loosely", {
+  teams <- data.frame(season = c(2025L, 2026L, 2026L), team_id = c(8L, 8L, 23L),
+                      school = c("Arizona", "Arizona", "San Jos\u00e9 State"))
+  expect_equal(school_ids(c("Arizona", "San Jose State", "Arizona", "Idaho"), c(2026, 2026, 2024, 2026), teams),
+               c(8L, 23L, NA, NA))
+
+  games <- data.frame(game_id = 1L, home_id = 23L, home_team = "San Jos\u00e9 State",
+                      away_id = 8L, away_team = "Arizona")
+  expect_equal(game_team_ids(c(1L, 1L, 1L, 2L), c("San Jose State", "Arizona", "Idaho", "Arizona"), games),
+               c(23L, 8L, NA, NA))
 })

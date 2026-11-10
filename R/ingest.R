@@ -7,8 +7,8 @@
 #
 # Snapshot rules (see the data dictionary):
 #   * Files are append-only. If a file is on disk, its API call is skipped.
-#   * The one exception: the current season's games and lines files are
-#     rewritten each run, because games get played.
+#   * The one exception: the current season's games, lines and advanced game
+#     stats files are rewritten each run, because games get played.
 #   * Every write goes to a temp file first, then is renamed into place.
 
 
@@ -561,11 +561,13 @@ pull_games_and_lines <- function(season, root, pulled_at, overwrite, allow_empty
   )
 }
 
-#' The weekly job: this week's ratings, plus fresh current-season games and lines.
+#' The weekly job: this week's ratings, plus fresh current-season games,
+#' lines and game stats, and the season's talent and returning production.
 #'
 #' Ratings are only snapshotted ahead of a regular-season week. In the
-#' postseason, games and lines are still refreshed. In the offseason nothing
-#' is pulled unless the season's games file is missing results.
+#' postseason, games, lines and game stats are still refreshed. In the
+#' offseason nothing is pulled unless the season's games file is missing
+#' results.
 #'
 #' @return A named logical vector, one entry per step, TRUE if it worked.
 run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
@@ -585,6 +587,7 @@ run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
   games_file <- snapshot_path("games", season, root = root)
   if (games_unfinished(games_file, now)) {
     ok <- c(ok, pull_games_and_lines(season, root, pulled_at, overwrite = TRUE))
+    ok <- c(ok, pull_season_extras(season, root))
   }
   if (!file.exists(games_file)) {
     message("No games file for ", season, ", so the week is unknown. No ratings snapshotted.")
@@ -653,11 +656,11 @@ run_backfill <- function(seasons = TRAINING_SEASONS, now = Sys.time(), root = PA
   ok
 }
 
-# ---- Research data ----------------------------------------------------------
-# Extra tables used only to test ideas in scripts/backtest.R. They are saved
-# as the API returns them (no renaming), under data/snapshots/extras/, so a
-# test never depends on guesses about column names. Nothing in the app or the
-# fit reads them until an idea has earned its place.
+# ---- Extras: talent, returning production, game stats -----------------------
+# Model inputs that come from other endpoints. They are saved as the API
+# returns them (no renaming), under data/snapshots/extras/, and R/build_db.R
+# maps them to team ids. Talent and returning production feed the house
+# models early in the season; per-game success rates feed the Power rating.
 
 # What to pull, and the cfbfastR function that returns one season of it.
 EXTRA_SOURCES <- c(
@@ -666,12 +669,52 @@ EXTRA_SOURCES <- c(
   advanced  = "cfbd_stats_game_advanced"   # per-game efficiency (success rate, points per play)
 )
 
+#' Path of one extras file.
+extra_path <- function(kind, season, root = PATHS$snapshots) {
+  file.path(root, "extras", kind, sprintf("%d.csv", as.integer(season)))
+}
+
 #' Keep only plain columns, so the table can be written as CSV.
 flatten_frame <- function(df) {
   df[, !vapply(df, is.list, logical(1)), drop = FALSE]
 }
 
-#' Pull the research tables for some seasons. Files on disk are skipped.
+#' Pull one season of one extras table.
+#'
+#' @param overwrite TRUE for the current season's game stats, which grow
+#'   every week. An empty answer then means no games played yet, so nothing
+#'   is written and the step still counts as done.
+pull_extra <- function(kind, season, root, overwrite = FALSE) {
+  path <- extra_path(kind, season, root)
+  if (file.exists(path) && !overwrite) {
+    message("Skipping ", path, ": already on disk.")
+    return(invisible(FALSE))
+  }
+  df <- flatten_frame(cfbd_fetch(EXTRA_SOURCES[[kind]], year = season, allow_empty = overwrite))
+  if (nrow(df) == 0) {
+    message("No ", kind, " data for ", season, " yet, so nothing was written.")
+    return(invisible(FALSE))
+  }
+  write_snapshot(df, path, overwrite = overwrite)
+}
+
+#' The current season's extras for the weekly job: game stats rewritten,
+#' talent and returning production pulled once.
+#'
+#' Talent and returning production can be missing before the season starts.
+#' Then the step fails, is reported, and is tried again next week.
+#'
+#' @return A named logical vector, one entry per table, TRUE if it worked.
+pull_season_extras <- function(season, root) {
+  c(
+    advanced = run_step(paste(season, "advanced game stats"),
+                        pull_extra("advanced", season, root, overwrite = TRUE)),
+    talent = run_step(paste(season, "talent"), pull_extra("talent", season, root)),
+    returning = run_step(paste(season, "returning production"), pull_extra("returning", season, root))
+  )
+}
+
+#' Pull the extras tables for some seasons. Files on disk are skipped.
 #'
 #' @return A named logical vector, one entry per file, TRUE if it worked.
 run_extras <- function(seasons = c(TRAINING_SEASONS, current_season()), root = PATHS$snapshots) {
@@ -686,10 +729,7 @@ run_extras <- function(seasons = c(TRAINING_SEASONS, current_season()), root = P
   for (kind in names(EXTRA_SOURCES)) {
     for (season in seasons) {
       label <- paste(season, kind)
-      path <- file.path(root, "extras", kind, paste0(season, ".csv"))
-      ok[label] <- run_step(label, pull_snapshot(path, function() {
-        flatten_frame(cfbd_fetch(EXTRA_SOURCES[[kind]], year = season))
-      }))
+      ok[label] <- run_step(label, pull_extra(kind, season, root))
     }
   }
   ok

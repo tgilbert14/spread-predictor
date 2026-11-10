@@ -56,12 +56,18 @@ how_it_works <- function() {
     htmltools::p(
       "Five rating systems each score every team. Four are public: SP+, FPI and SRS say how many points ",
       "better a team is than an average one, and Elo uses its own scale, which we convert to points. ",
-      "The fifth, Power, is our own. We build it from game scores alone, week by week, using only games ",
-      "already played. "
+      "The fifth, Power, is our own. We build it week by week from games already played. It looks at the ",
+      "score, and also at how consistently each team won its downs (success rate), which is a steadier ",
+      "sign of strength than the score alone."
     ),
     htmltools::p(
       "Elo undersells the gap between power-conference teams (the SEC, Big Ten, Big 12, ACC and Notre Dame) ",
       "and everyone else, so its margin gets a correction for that, learned from past games. ",
+      "Early in the season, Elo and Power have little to go on, so they also use each team's roster talent ",
+      "and how much of last season's production is coming back. That help fades out by week 7. ",
+      "SP+ and FPI already build in their own preseason view, so they get nothing extra."
+    ),
+    htmltools::p(
       "Each system's rating gap is its predicted margin, and we average the five margins using the weights below. ",
       "If one team is at home, we add a few points for home field. ",
       "Finally, we turn the margin into a win chance using how far real results have landed from our numbers in past seasons."
@@ -76,7 +82,7 @@ how_it_works <- function() {
 fit_caption <- function(params) {
   seasons <- params$fit_seasons
   season_text <- if (length(seasons) > 0) {
-    sprintf(" using the %s to %s seasons", min(seasons), max(seasons))
+    sprintf(" using the %s seasons", format_seasons(seasons))
   } else {
     ""
   }
@@ -123,6 +129,15 @@ param_cards <- function(params) {
     stat_card("Power-conference edge", paste(format_points(params$elo_tier), "points"),
               "Added to Elo's margin when a power-conference team plays anyone else."),
     stat_card(
+      "Early-season help",
+      htmltools::span(class = "weights",
+        htmltools::span(class = "weight-chip", "Talent", htmltools::strong(sprintf("%.1f", params$talent_points))),
+        htmltools::span(class = "weight-chip", "Returning", htmltools::strong(sprintf("%.1f", params$returning_points)))
+      ),
+      paste("Week 1 points added to Elo and Power for a one standard deviation edge in roster",
+            "talent or returning production. Fades to nothing by week 7.")
+    ),
+    stat_card(
       method,
       htmltools::span(class = "weights", lapply(names(weights), function(m) {
         htmltools::span(class = "weight-chip", MODEL_LABELS[[m]], htmltools::strong(format_weight(weights[[m]])))
@@ -152,8 +167,8 @@ holdout_block <- function(params) {
   seasons <- params$fit_seasons
   htmltools::tagList(
     htmltools::p(class = "section-lede",
-                 sprintf("The %s games played so far, predicted with numbers fitted on %s to %s only. ",
-                         params$holdout_season, min(seasons), max(seasons)),
+                 sprintf("The %s games played so far, predicted with numbers fitted on %s only. ",
+                         params$holdout_season, format_seasons(seasons)),
                  "The fit never saw these games, so this is the plainest test of how it does now."),
     forecast_table(params$holdout)
   )

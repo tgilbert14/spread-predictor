@@ -17,10 +17,13 @@ TRAINING_SEASONS <- 2017:2025
 
 # The first season only warms up the Power rating, which needs a season of
 # results before its numbers mean anything. Nothing is fit on it.
-BURN_IN_SEASON <- 2021L
+BURN_IN_SEASON <- 2017L
 
-# Seasons the model is fit and cross-validated on.
-FIT_SEASONS <- 2022:2025
+# Seasons the model is fit and cross-validated on. 2020 is left out: the
+# COVID season had short, conference-only schedules and empty stadiums, so
+# it would teach the model the wrong home field and the wrong team gaps. It
+# stays in the Power rating's chain so 2021 ratings start from real results.
+FIT_SEASONS <- c(2018L, 2019L, 2021:2025)
 
 # The season after the fit seasons is scored as a holdout: the fit never
 # sees it, so it is an honest check on the current season to date.
@@ -35,14 +38,18 @@ RATING_SOURCES <- c("sp", "fpi", "srs", "elo")
 BLEND_SYSTEMS <- c(RATING_SOURCES, "power")
 
 # Settings for the Power rating (R/power_rating.R). Scores are not capped:
-# caps of 28 and 38 points both predicted worse than no cap.
+# caps of 28 and 38 points both predicted worse than no cap. Each game's
+# target mixes the score with how consistently each team won its downs
+# (success rate), which is less noisy than the score alone.
 POWER_RATING <- list(
   team_shrink = 4,        # Pull on each team toward its prior; 3 to 6 all score within 0.03 points.
   conference_shrink = 1,  # Pull on each conference shift; weak, so a whole league can move fast.
   carry = 0.7,            # Share of last season's edge over its conference that carries over.
   home_field = 3,         # Points taken off home margins so ratings are neutral-field.
   new_team_offset = -3,   # A team new to the data starts this far below its conference average.
-  fcs_start = -25         # First-season rating of the single pooled FCS team.
+  fcs_start = -25,        # First-season rating of the single pooled FCS team.
+  success_share = 0.4,    # Share of each game's target taken from success rate; 25% to 50% all score within 0.01.
+  success_points = 124    # Points per unit of success-rate margin, from a regression of margin on it (2018 to 2025).
 )
 
 # Power conferences and the last season each counted as one. CFBD Elo
@@ -73,3 +80,20 @@ STALE_AFTER_DAYS <- 8
 
 # Through this week, ratings still lean on preseason priors.
 EARLY_SEASON_LAST_WEEK <- 3
+
+# Preseason talent and returning production help the Elo and Power models
+# early on, then fade out: full weight in week 1, none from week 1 plus this
+# many weeks on. Fading over 6 weeks passed the backtest; using them all
+# season did not.
+PRESEASON_FADE_WEEKS <- 6
+
+#' How much preseason information still counts in a game: 1 in week 1,
+#' falling in a straight line to 0 by week 7, and 0 in the postseason.
+#'
+#' @param week CFBD week.
+#' @param season_type "regular", or anything else for the postseason.
+preseason_fade <- function(week, season_type = "regular") {
+  fade <- pmax(0, 1 - (week - 1) / PRESEASON_FADE_WEEKS)
+  fade[season_type != "regular"] <- 0
+  fade
+}

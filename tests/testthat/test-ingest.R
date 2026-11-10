@@ -271,7 +271,14 @@ fake_cfbd_fetch <- function(fn, ..., allow_empty = FALSE) {
     cfbd_ratings_sp = rbind(ratings("rating"), data.frame(year = year, team = "nationalAverages", conference = NA, rating = 0)),
     cfbd_ratings_fpi = ratings("fpi"),
     cfbd_ratings_srs = ratings("rating"),
-    cfbd_ratings_elo = ratings("elo")
+    cfbd_ratings_elo = ratings("elo"),
+    cfbd_team_talent = data.frame(year = year, school = c("Arizona", "Arizona State"), talent = c(650, 700)),
+    cfbd_player_returning = data.frame(season = year, team = c("Arizona", "Arizona State"),
+                                       conference = "Big 12", percent_ppa = c(0.5, 0.6)),
+    cfbd_stats_game_advanced = data.frame(game_id = year * 10L + 1L, season = year, week = 10L,
+                                          team = c("Arizona", "Arizona State"),
+                                          opponent = c("Arizona State", "Arizona"),
+                                          off_success_rate = c(0.45, 0.4), def_success_rate = c(0.4, 0.45))
   )
 }
 
@@ -295,23 +302,24 @@ local_fake_api <- function(env = parent.frame()) {
 
 snapshot_files <- function(root) sort(list.files(root, recursive = TRUE))
 
-test_that("a weekly snapshot pulls each file once and refreshes games and lines", {
+test_that("a weekly snapshot pulls each file once and refreshes games, lines and game stats", {
   local_fake_api()
   root <- withr::local_tempdir()
   tuesday <- utc("2026-11-10 13:00:00")
 
   ok <- suppressMessages(run_snapshot(now = tuesday, root = root))
   expect_true(all(ok))
-  expect_equal(api_calls_made(), 7)  # games, lines, teams, 4 ratings
+  expect_equal(api_calls_made(), 10)  # games, lines, game stats, talent, returning, teams, 4 ratings
   expect_equal(snapshot_files(root), sort(c(
     "games/2026.csv", "lines/2026.csv", "teams/2026.csv",
+    "extras/advanced/2026.csv", "extras/talent/2026.csv", "extras/returning/2026.csv",
     sprintf("ratings/%s/2026_wk11.csv", RATING_SOURCES)
   )))
   expect_equal(nrow(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))), 2)
 
-  # Same week again: only games and lines are called.
+  # Same week again: only games, lines and game stats are called.
   suppressMessages(run_snapshot(now = tuesday + 3600, root = root))
-  expect_equal(api_calls_made(), 2)
+  expect_equal(api_calls_made(), 3)
   expect_equal(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))$pulled_at[1], "2026-11-10T13:00:00Z")
   expect_equal(read_snapshot(file.path(root, "lines/2026.csv"))$pulled_at[1], "2026-11-10T14:00:00Z")
 })
@@ -361,6 +369,24 @@ test_that("one failed step does not stop the others", {
   expect_true(all(ok[names(ok) != "fpi"]))
   expect_false(file.exists(file.path(root, "ratings/fpi/2026_wk11.csv")))
   expect_true(file.exists(file.path(root, "ratings/elo/2026_wk11.csv")))
+})
+
+test_that("game stats with no games played yet write nothing, and a missing talent file is retried", {
+  local_fake_api()
+  real_fetch <- fake_cfbd_fetch
+  local_replace(cfbd_fetch = function(fn, ..., allow_empty = FALSE) {
+    if (fn == "cfbd_stats_game_advanced") return(data.frame())
+    if (fn == "cfbd_team_talent") stop("cfbfastR::cfbd_team_talent() returned no data.")
+    real_fetch(fn, ..., allow_empty = allow_empty)
+  })
+  root <- withr::local_tempdir()
+  ok <- suppressMessages(run_snapshot(now = utc("2026-11-10 13:00:00"), root = root))
+  expect_true(ok[["advanced"]])
+  expect_false(ok[["talent"]])
+  expect_true(all(ok[!names(ok) %in% "talent"]))
+  expect_false(file.exists(extra_path("advanced", 2026, root)))
+  expect_false(file.exists(extra_path("talent", 2026, root)))
+  expect_true(file.exists(extra_path("returning", 2026, root)))
 })
 
 test_that("games_unfinished gives up on a game that never got a result", {

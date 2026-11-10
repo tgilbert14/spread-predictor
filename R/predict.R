@@ -40,16 +40,19 @@ find_team <- function(team, teams) {
 #' @param team_a,team_b School name or team_id.
 #' @param site "neutral", "a_home" or "b_home".
 #' @param teams Teams table with one rating column per model (sp, fpi, srs,
-#'   elo, power), matching rank columns (sp_rank, ...) and tier (1 for a
-#'   power team, 0 otherwise).
+#'   elo, power), matching rank columns (sp_rank, ...), tier (1 for a power
+#'   team, 0 otherwise), and talent_z and returning_z (preseason z-scores).
 #' @param params Fitted parameters: k (Elo points per game point), elo_tier
 #'   (points per tier step), power_scale (points per Power point), h (home
-#'   field, in points), sigma (SD of actual margin around the prediction) and
+#'   field, in points), talent_points and returning_points (week 1 points per
+#'   z-score gap), sigma (SD of actual margin around the prediction) and
 #'   weights (named, one per model, summing to 1).
+#' @param week The regular-season week being predicted. NULL (the default)
+#'   adds no preseason points.
 #' @return A list: team_a and team_b (one-row data frames), site, spread
 #'   (A minus B), win_prob_a, interval (low and high margin), models (one row
 #'   per rating system) and flags (character vector, possibly empty).
-predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
+predict_matchup <- function(team_a, team_b, site = "neutral", teams, params, week = NULL) {
   site <- match.arg(site, SITE_CHOICES)
   a <- find_team(team_a, teams)
   b <- find_team(team_b, teams)
@@ -74,6 +77,11 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
   )
 
   models$margin <- rating_margins(models, a$tier - b$tier, params) + home_edge
+  # Elo and Power lean on preseason information early on. SP+, FPI and SRS
+  # already build in their own, so they get nothing extra.
+  early <- preseason_points(a, b, params, week)
+  ours <- models$model %in% c("elo", "power")
+  models$margin[ours] <- models$margin[ours] + early
 
   # A team can be missing from one system. Drop that system for this matchup
   # and let the remaining weights fill the gap, rather than failing.
@@ -95,6 +103,9 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
                               if (length(missing_models) == 1) "has" else "have",
                               if (length(missing_models) == 1) "it was" else "they were"))
   }
+  if (early != 0) {
+    flags <- c(flags, "Early season: the Elo and Power numbers also lean on preseason roster talent and returning production.")
+  }
   if (diff(range(models$margin[usable])) > DISAGREEMENT_POINTS) {
     flags <- c(flags, sprintf("Models disagree by more than %d points.", DISAGREEMENT_POINTS))
   }
@@ -109,6 +120,25 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
     models     = models,
     flags      = flags
   )
+}
+
+#' Preseason points for A over B, added to the Elo and Power margins.
+#'
+#' Roster talent and returning production gaps (in z-scores), times their
+#' fitted points, times preseason_fade(week): full in week 1, gone by week 7.
+#'
+#' @param a,b One-row team data frames with talent_z and returning_z.
+#' @param week Regular-season week, or NULL for none.
+#' @return Points, A minus B. 0 when week is NULL or 7 or later.
+preseason_points <- function(a, b, params, week) {
+  fade <- if (is.null(week)) 0 else preseason_fade(week)
+  if (fade == 0) return(0)
+  gap <- function(column) {
+    z <- c(a[[column]], b[[column]])
+    z[is.na(z)] <- 0
+    z[1] - z[2]
+  }
+  fade * (params$talent_points * gap("talent_z") + params$returning_points * gap("returning_z"))
 }
 
 #' Each model's margin before home field, A minus B.

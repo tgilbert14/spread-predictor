@@ -50,7 +50,8 @@ slate_rows <- function(app_data, open_input_id) {
   rows <- lapply(seq_len(nrow(slate)), function(i) {
     game <- slate[i, , drop = FALSE]
     m <- slate_matchup(game)
-    pred <- tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params),
+    pred <- tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params,
+                                     week = app_data$meta$week),
                      error = function(e) NULL)
     if (is.null(pred)) return(NULL)
     slate_row(pred, game, open_input_id)

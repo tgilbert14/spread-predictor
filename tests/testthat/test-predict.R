@@ -7,8 +7,9 @@ params <- demo$params
 #' when both teams are in the same tier.
 two_teams <- function(a = c(sp = 10, fpi = 10, srs = 10, elo = 1750, power = 10),
                       b = c(sp = 0, fpi = 0, srs = 0, elo = 1500, power = 0),
-                      tier = c(0L, 0L)) {
-  out <- data.frame(team_id = 1:2, school = c("Alpha", "Beta"), tier = tier)
+                      tier = c(0L, 0L), talent_z = c(0, 0), returning_z = c(0, 0)) {
+  out <- data.frame(team_id = 1:2, school = c("Alpha", "Beta"), tier = tier,
+                    talent_z = talent_z, returning_z = returning_z)
   for (model in names(a)) {
     out[[model]] <- c(a[[model]], b[[model]])
     out[[paste0(model, "_rank")]] <- rank(-out[[model]], ties.method = "min")
@@ -104,4 +105,40 @@ test_that("Power margin is power_scale times the rating gap, plus home field", {
   expect_equal(pred$models$margin[pred$models$model == "power"], 0.8 * 10 + p$h)
   expect_identical(pred$models$label, unname(MODEL_LABELS))
   expect_identical(nrow(pred$models), 5L)
+})
+
+test_that("preseason points are zero without a week and from week 7 on", {
+  t <- two_teams(talent_z = c(1.5, -0.5), returning_z = c(0.5, 1))
+  none <- predict_matchup("Alpha", "Beta", "neutral", t, params)
+  for (week in c(7L, 11L)) {
+    late <- predict_matchup("Alpha", "Beta", "neutral", t, params, week = week)
+    expect_identical(late$models$margin, none$models$margin, label = paste("week", week))
+    expect_false(any(grepl("Early season", late$flags)))
+  }
+  expect_equal(none$models$margin, rep(10, 5))
+})
+
+test_that("early in the season only Elo and Power get preseason points", {
+  t <- two_teams(talent_z = c(1.5, -0.5), returning_z = c(0.5, 1))
+  late <- predict_matchup("Alpha", "Beta", "neutral", t, params, week = 9L)
+  margin_of <- function(pred, model) pred$models$margin[pred$models$model == model]
+  # Alpha has more talent (gap 2) and less returning production (gap -0.5).
+  week_1_points <- params$talent_points * 2 + params$returning_points * -0.5
+
+  week_1 <- predict_matchup("Alpha", "Beta", "neutral", t, params, week = 1L)
+  week_4 <- predict_matchup("Alpha", "Beta", "neutral", t, params, week = 4L)
+  for (model in c("elo", "power")) {
+    expect_equal(margin_of(week_1, model), margin_of(late, model) + week_1_points, label = model)
+    expect_equal(margin_of(week_4, model), margin_of(late, model) + week_1_points / 2, label = model)
+  }
+  for (model in c("sp", "fpi", "srs")) {
+    expect_identical(margin_of(week_1, model), margin_of(late, model), label = model)
+  }
+  expect_gt(week_1_points, 0)
+  expect_gt(week_1$spread, late$spread)
+  expect_true(any(grepl("Early season", week_1$flags)))
+
+  # Swapping the teams flips the preseason points too.
+  swapped <- predict_matchup("Beta", "Alpha", "neutral", t, params, week = 1L)
+  expect_equal(swapped$spread, -week_1$spread)
 })

@@ -61,5 +61,36 @@ CREATE TABLE ratings (
   pulled_at  TEXT
 );
 
+-- Preseason and per-game inputs to the model, from data/snapshots/extras/.
+-- The files keep the API's school names; R/build_db.R maps them to team_id
+-- and drops rows for teams we do not track (FCS and lower).
+
+-- Roster talent composite (247Sports), known before the season starts.
+CREATE TABLE talent (
+  season   INTEGER NOT NULL,
+  team_id  INTEGER NOT NULL,
+  talent   REAL,
+  PRIMARY KEY (season, team_id)
+);
+
+-- Share of last season's production (PPA) that is coming back, 0 to 1.
+-- Named returning_production because RETURNING is a reserved word in SQLite.
+CREATE TABLE returning_production (
+  season       INTEGER NOT NULL,
+  team_id      INTEGER NOT NULL,
+  percent_ppa  REAL,
+  PRIMARY KEY (season, team_id)
+);
+
+-- One row per team per game. Success rate is the share of plays that gain
+-- enough yards to stay on schedule, on offense and allowed on defense (0 to 1).
+CREATE TABLE game_stats (
+  game_id           INTEGER NOT NULL,
+  team_id           INTEGER NOT NULL,
+  off_success_rate  REAL,
+  def_success_rate  REAL,
+  PRIMARY KEY (game_id, team_id)
+);
+
 CREATE INDEX idx_ratings_lookup ON ratings (source, season, week, team_id);
 CREATE INDEX idx_games_season   ON games (season, week);

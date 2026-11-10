@@ -4,12 +4,20 @@
 # docs/data-dictionary.md).
 #
 # The house models fit only on numbers known before kickoff: CFBD's pregame
-# Elo and our walk-forward Power rating. Season-final ratings are only ever
+# Elo, our walk-forward Power rating, and preseason roster talent and
+# returning production. Season-final ratings are only ever
 # used for the diagnostic labeled as leaked.
 #
 # Seasons (R/config.R): BURN_IN_SEASON warms up the Power rating and is not
 # fit on. FIT_SEASONS are fit and cross-validated. HOLDOUT_SEASON is scored
 # with parameters from FIT_SEASONS and never used to fit anything.
+
+# The two house models, each a regression of the home margin with no
+# intercept. The preseason terms are z-score gaps times preseason_fade(), so
+# they count fully in week 1 and not at all from week 7 on.
+PRESEASON_TERMS <- c("talent_early", "returning_early")
+ELO_TERMS <- c("elo_gap", "tier_diff", "home", PRESEASON_TERMS)
+POWER_TERMS <- c("power_gap", "home", PRESEASON_TERMS)
 
 # Weekly-snapshot games needed before fitted blend weights are considered.
 MIN_BLEND_GAMES <- 300
@@ -44,7 +52,9 @@ PARAM_TABLES <- list(
 )
 
 # Single numbers in params.json.
-PARAM_NUMBERS <- c("k", "elo_tier", "power_scale", "h", "h_elo", "h_power", "sigma")
+PARAM_NUMBERS <- c("k", "elo_tier", "power_scale", "h", "h_elo", "h_power",
+                   "talent_points", "returning_points", "talent_points_elo", "talent_points_power",
+                   "returning_points_elo", "returning_points_power", "sigma")
 
 # ---- Database access --------------------------------------------------------
 
@@ -60,8 +70,9 @@ connect_readonly <- function(db_path) {
 #' Run one query file from sql/ and return the rows.
 #'
 #' @param params Values for the `?` placeholders, in order.
-query_sql_file <- function(con, file, params = NULL) {
-  path <- file.path(dirname(PATHS$schema), file)
+#' @param sql_dir Folder holding the query files.
+query_sql_file <- function(con, file, params = NULL, sql_dir = dirname(PATHS$schema)) {
+  path <- file.path(sql_dir, file)
   sql <- paste(readLines(path, warn = FALSE), collapse = "\n")
   if (is.null(params)) {
     DBI::dbGetQuery(con, sql)
@@ -81,6 +92,11 @@ load_completed_games <- function(con) {
 load_power_ratings <- function(con) {
   power_ratings(query_sql_file(con, "rating_games.sql", list(BURN_IN_SEASON)),
                 query_sql_file(con, "team_conferences.sql"))
+}
+
+#' Preseason talent and returning production, as z-scores by season.
+load_preseason <- function(con) {
+  preseason_z(query_sql_file(con, "preseason.sql"))
 }
 
 #' Closing line per game: the median spread across sportsbooks.
@@ -116,14 +132,45 @@ is_flipped_line <- function(spreads, min_spread = 3, tolerance = 1.5) {
 
 # ---- Model inputs -----------------------------------------------------------
 
+#' Preseason inputs as z-scores among each season's FBS teams.
+#'
+#' A z-score is how many standard deviations a team sits above that season's
+#' average, so seasons on different scales compare fairly. A team with no
+#' value gets 0, the average.
+#'
+#' Returning production is a share, so it belongs between 0 and 1. The source
+#' has a few values far outside that (one team at -3.1), which would put that
+#' team nine standard deviations from average. They are pulled back to the
+#' nearest end of the range first.
+#'
+#' @param preseason Rows of season, team_id, talent, percent_ppa.
+#' @return season, team_id, talent_z, returning_z.
+preseason_z <- function(preseason) {
+  returning_share <- pmin(pmax(as.numeric(preseason$percent_ppa), 0), 1)
+  z <- function(x) {
+    out <- (x - mean(x, na.rm = TRUE)) / stats::sd(x, na.rm = TRUE)
+    out[is.na(out)] <- 0
+    out
+  }
+  data.frame(
+    season = preseason$season,
+    team_id = preseason$team_id,
+    talent_z = stats::ave(as.numeric(preseason$talent), preseason$season, FUN = z),
+    returning_z = stats::ave(returning_share, preseason$season, FUN = z)
+  )
+}
+
 #' Completed FBS games with every input the house models use.
 #'
 #' Adds home (1 unless neutral), elo_gap (home minus away pregame Elo),
-#' tier_diff (home power team minus away power team: -1, 0 or 1) and
-#' power_gap (home minus away pregame Power rating).
+#' tier_diff (home power team minus away power team: -1, 0 or 1),
+#' power_gap (home minus away pregame Power rating), talent_gap and
+#' returning_gap (home minus away z-scores), fade (preseason_fade()), and
+#' talent_early and returning_early (each gap times fade).
 #'
 #' @param pregame_power The pregame table from power_ratings().
-add_model_inputs <- function(games, pregame_power) {
+#' @param preseason The table from preseason_z().
+add_model_inputs <- function(games, pregame_power, preseason) {
   games$home <- 1L - games$neutral_site
   games$elo_gap <- games$home_pregame_elo - games$away_pregame_elo
   games$tier_diff <-
@@ -131,6 +178,17 @@ add_model_inputs <- function(games, pregame_power) {
     as.integer(is_power_team(games$away_conference, games$away_id, games$season))
   at <- match(games$game_id, pregame_power$game_id)
   games$power_gap <- pregame_power$home_power[at] - pregame_power$away_power[at]
+
+  team_z <- function(column, team_id) {
+    z <- preseason[[column]][match(paste(games$season, team_id),
+                                   paste(preseason$season, preseason$team_id))]
+    ifelse(is.na(z), 0, z)
+  }
+  games$talent_gap <- team_z("talent_z", games$home_id) - team_z("talent_z", games$away_id)
+  games$returning_gap <- team_z("returning_z", games$home_id) - team_z("returning_z", games$away_id)
+  games$fade <- preseason_fade(games$week, games$season_type)
+  games$talent_early <- games$talent_gap * games$fade
+  games$returning_early <- games$returning_gap * games$fade
   games
 }
 
@@ -142,16 +200,30 @@ house_set <- function(games, seasons) {
 
 # ---- House models -----------------------------------------------------------
 
+#' A no-intercept regression formula for home_margin.
+margin_formula <- function(terms) {
+  stats::reformulate(c("0", terms), response = "home_margin")
+}
+
 #' Fit the Elo model and the Power model, each one regression with no intercept.
 #'
-#' Elo:   home_margin = elo_gap / k + elo_tier * tier_diff + h_elo * home
-#' Power: home_margin = power_scale * power_gap + h_power * home
+#' Elo:   home_margin = elo_gap / k + elo_tier * tier_diff + h_elo * home + preseason
+#' Power: home_margin = power_scale * power_gap + h_power * home + preseason
 #'
-#' @return k, elo_tier, h_elo, power_scale, h_power, and h, the shared home
-#'   field the app uses (the mean of the two).
+#' where preseason = fade * (talent * talent_gap + returning * returning_gap).
+#'
+#' @return Each model's own estimates (k, elo_tier, h_elo, talent_points_elo,
+#'   returning_points_elo; power_scale, h_power, talent_points_power,
+#'   returning_points_power), and the shared values the app uses, each the
+#'   mean of the two models: h, talent_points and returning_points.
 fit_house <- function(games) {
-  elo <- stats::coef(stats::lm(home_margin ~ 0 + elo_gap + tier_diff + home, data = games))
-  power <- stats::coef(stats::lm(home_margin ~ 0 + power_gap + home, data = games))
+  elo <- stats::coef(stats::lm(margin_formula(ELO_TERMS), data = games))
+  power <- stats::coef(stats::lm(margin_formula(POWER_TERMS), data = games))
+  if (anyNA(c(elo[PRESEASON_TERMS], power[PRESEASON_TERMS]))) {
+    stop("The preseason terms could not be fit: no game has a talent or returning-production gap. ",
+         "Check that data/snapshots/extras/ has talent/ and returning/ files for the fit seasons ",
+         "(Rscript scripts/pull_extras.R pulls them), then rebuild the database.", call. = FALSE)
+  }
   if (anyNA(elo) || elo[["elo_gap"]] <= 0) {
     stop("The Elo fit failed. It needs games with different pregame Elos, some non-neutral sites, ",
          "and games between power and non-power teams. Check home_pregame_elo, away_pregame_elo ",
@@ -162,21 +234,33 @@ fit_house <- function(games) {
          "Check BURN_IN_SEASON and FIT_SEASONS in R/config.R, then rebuild the database.",
          call. = FALSE)
   }
+  talent <- "talent_early"
+  returning <- "returning_early"
   list(
     k = 1 / elo[["elo_gap"]], elo_tier = elo[["tier_diff"]], h_elo = elo[["home"]],
+    talent_points_elo = elo[[talent]], returning_points_elo = elo[[returning]],
     power_scale = power[["power_gap"]], h_power = power[["home"]],
-    h = mean(c(elo[["home"]], power[["home"]]))
+    talent_points_power = power[[talent]], returning_points_power = power[[returning]],
+    h = mean(c(elo[["home"]], power[["home"]])),
+    talent_points = mean(c(elo[[talent]], power[[talent]])),
+    returning_points = mean(c(elo[[returning]], power[[returning]]))
   )
 }
 
 #' Predicted home margins: the Elo model, the Power model and their average.
 #'
-#' Each model uses its own home field. Their average then carries the mean
-#' of the two, which is the shared h the app uses, so the house blend here is
-#' exactly what the app computes from Elo and Power.
+#' Each model uses its own home field and preseason points. Their average
+#' then carries the mean of the two, which is the shared h, talent_points
+#' and returning_points the app uses, so the house blend here is exactly
+#' what the app computes from Elo and Power.
 predict_house <- function(games, fit) {
-  elo <- games$elo_gap / fit$k + fit$elo_tier * games$tier_diff + fit$h_elo * games$home
-  power <- fit$power_scale * games$power_gap + fit$h_power * games$home
+  preseason <- function(talent, returning) {
+    talent * games$talent_early + returning * games$returning_early
+  }
+  elo <- games$elo_gap / fit$k + fit$elo_tier * games$tier_diff + fit$h_elo * games$home +
+    preseason(fit$talent_points_elo, fit$returning_points_elo)
+  power <- fit$power_scale * games$power_gap + fit$h_power * games$home +
+    preseason(fit$talent_points_power, fit$returning_points_power)
   data.frame(elo = elo, power = power, house = (elo + power) / 2)
 }
 
@@ -354,7 +438,8 @@ equal_weights <- function() {
 #' the wrong snapshot.
 #'
 #' @param games Completed games from add_model_inputs().
-#' @param fit The house fit: k, elo_tier, power_scale and h.
+#' @param fit The house fit: k, elo_tier, power_scale, h, talent_points and
+#'   returning_points.
 #' @return X (one column per system, games with every system present), y
 #'   (home margin with home field removed) and week (a season-week label).
 blend_design <- function(games, weekly, fit) {
@@ -366,8 +451,10 @@ blend_design <- function(games, weekly, fit) {
     lookup_rating(ratings, key, game_key(games$home_id)) -
       lookup_rating(ratings, key, game_key(games$away_id))
   })
-  margins$elo <- margins$elo / fit$k + fit$elo_tier * games$tier_diff
-  margins$power <- fit$power_scale * games$power_gap
+  # Elo and Power get the same preseason points the app adds to them.
+  preseason <- fit$talent_points * games$talent_early + fit$returning_points * games$returning_early
+  margins$elo <- margins$elo / fit$k + fit$elo_tier * games$tier_diff + preseason
+  margins$power <- fit$power_scale * games$power_gap + preseason
 
   X <- matrix(unlist(margins[BLEND_SYSTEMS]), ncol = length(BLEND_SYSTEMS),
               dimnames = list(NULL, BLEND_SYSTEMS))
@@ -443,7 +530,8 @@ choose_weights <- function(design, min_games = MIN_BLEND_GAMES) {
 
 #' Fit everything and return the params list described in the data dictionary.
 fit_params <- function(con, fit_seasons = FIT_SEASONS, holdout_season = HOLDOUT_SEASON) {
-  games <- add_model_inputs(load_completed_games(con), load_power_ratings(con)$pregame)
+  games <- add_model_inputs(load_completed_games(con), load_power_ratings(con)$pregame,
+                            load_preseason(con))
   fit_set <- house_set(games, fit_seasons)
   if (nrow(fit_set) == 0) {
     stop(sprintf("No completed FBS games with pregame Elo and Power ratings in seasons %s. Run `Rscript scripts/refresh.R` to load them.",
@@ -473,6 +561,12 @@ fit_params <- function(con, fit_seasons = FIT_SEASONS, holdout_season = HOLDOUT_
     h = fit$h,
     h_elo = fit$h_elo,
     h_power = fit$h_power,
+    talent_points = fit$talent_points,
+    returning_points = fit$returning_points,
+    talent_points_elo = fit$talent_points_elo,
+    talent_points_power = fit$talent_points_power,
+    returning_points_elo = fit$returning_points_elo,
+    returning_points_power = fit$returning_points_power,
     sigma = sigma,
     power = POWER_RATING,
     weights = blend$weights,
@@ -593,6 +687,11 @@ gate_report <- function(params) {
     sprintf("  power_scale  %6.3f  points of margin per point of Power gap", params$power_scale),
     sprintf("  h            %6.2f  home field, points (Elo model %.2f, Power model %.2f)",
             params$h, params$h_elo, params$h_power),
+    sprintf("  talent       %6.2f  week 1 points per SD of roster talent gap (Elo model %.2f, Power model %.2f)",
+            params$talent_points, params$talent_points_elo, params$talent_points_power),
+    sprintf("  returning    %6.2f  week 1 points per SD of returning production gap (Elo model %.2f, Power model %.2f)",
+            params$returning_points, params$returning_points_elo, params$returning_points_power),
+    sprintf("               (both fade to 0 by week %d)", PRESEASON_FADE_WEEKS + 1),
     sprintf("  sigma        %6.2f  SD of real margin around the house blend, out of fold", params$sigma),
     sprintf("  Power settings: %s",
             paste(sprintf("%s %s", names(power), unlist(power)), collapse = ", ")),
@@ -602,7 +701,7 @@ gate_report <- function(params) {
     "Out-of-fold accuracy (every row on the same games)", show(params$metrics),
     "",
     sprintf("Holdout season %s (fit on %s only)", params$holdout_season,
-            paste(range(params$fit_seasons), collapse = " to ")),
+            format_seasons(params$fit_seasons)),
     if (nrow(params$holdout) > 0) show(params$holdout) else "  (no completed holdout games yet)",
     "",
     "Calibration (favorite win probability, house blend, out of fold)", show(params$calibration),

@@ -141,3 +141,25 @@ test_that("is_power_team follows the conference list, the Pac-12 cutoff and Notr
   expect_identical(is_power_team(c("FBS Independents", NA), c(87L, 87L), 2026), c(TRUE, TRUE))
   expect_identical(is_power_team("FBS Independents", 88L, 2026), FALSE)
 })
+
+test_that("the target blends margin and success rate, and falls back to the margin", {
+  settings <- utils::modifyList(POWER_RATING, list(success_share = 0.4, success_points = 124))
+  target <- power_target(margin = c(10, 10, -3), success_margin = c(0.1, NA, -0.05), settings)
+  expect_equal(target, c(0.6 * 10 + 0.4 * 124 * 0.1, 10, 0.6 * -3 + 0.4 * 124 * -0.05))
+  # No stats column at all: every game uses its margin.
+  expect_identical(power_target(c(10, -3), NULL, settings), c(10, -3))
+})
+
+test_that("a success-rate share of 0 reproduces the points-only rating exactly", {
+  with_stats <- games
+  with_stats$success_margin <- stats::rnorm(nrow(games), 0, 0.1)
+  points_only <- utils::modifyList(POWER_RATING, list(success_share = 0))
+  expect_identical(power_ratings(with_stats, conferences, points_only), rated)
+  # With the real share, success rate changes the ratings.
+  expect_false(isTRUE(all.equal(power_ratings(with_stats, conferences)$current, rated$current)))
+})
+
+test_that("preseason fade is 1 in week 1, 0 from week 7, and 0 in the postseason", {
+  expect_equal(preseason_fade(1:8), c(1, 5 / 6, 4 / 6, 3 / 6, 2 / 6, 1 / 6, 0, 0))
+  expect_equal(preseason_fade(c(1, 1), c("regular", "postseason")), c(1, 0))
+})

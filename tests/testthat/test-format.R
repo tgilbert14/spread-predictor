@@ -43,3 +43,10 @@ test_that("the favorite is named correctly when B is favored", {
   expect_identical(format_summary(pred),
                    "Beta by 10.5 over Alpha at Alpha. Win probability: Alpha 26%, Beta 74%.")
 })
+
+test_that("seasons read as words, with runs collapsed", {
+  expect_identical(format_seasons(c(2018, 2019, 2021:2025)), "2018, 2019 and 2021 to 2025")
+  expect_identical(format_seasons(2022:2025), "2022 to 2025")
+  expect_identical(format_seasons(c(2025, 2024)), "2024 and 2025")
+  expect_identical(format_seasons(2025), "2025")
+})

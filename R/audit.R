@@ -288,7 +288,26 @@ audit_checks <- function() {
       "Teams that changed conference from one season to the next (real realignment).",
       audit_sql_check("teams_conference_change.sql")),
     audit_check("teams_name_change", "teams", "warning",
-      "A team_id whose school name changes between seasons.", audit_sql_check("teams_name_change.sql"))
+      "A team_id whose school name changes between seasons.", audit_sql_check("teams_name_change.sql")),
+
+    # Talent, returning production and game stats
+    audit_check("talent_duplicate", "talent", "error",
+      "A team with two talent values in one season.", audit_sql_check("talent_duplicate.sql")),
+    audit_check("returning_duplicate", "returning_production", "error",
+      "A team with two returning-production values in one season.", audit_sql_check("returning_duplicate.sql")),
+    audit_check("returning_out_of_range", "returning_production", "warning",
+      "Returning-production shares below 0 or above 1 (the model pulls them back into range).",
+      audit_sql_check("returning_out_of_range.sql")),
+    audit_check("preseason_missing_by_season", "talent", "info",
+      "FBS teams with no talent or no returning-production value, per season (they count as average).",
+      audit_sql_check("preseason_missing_by_season.sql")),
+    audit_check("game_stats_duplicate", "game_stats", "error",
+      "A team with two rows of stats for one game.", audit_sql_check("game_stats_duplicate.sql")),
+    audit_check("game_stats_bad_success_rate", "game_stats", "error",
+      "Success rates outside 0 to 1.", audit_sql_check("game_stats_bad_success_rate.sql")),
+    audit_check("game_stats_missing_for_fbs_games", "game_stats", "warning",
+      "Seasons where over 3% of completed FBS-vs-FBS games have no stats for the home team.",
+      audit_sql_check("game_stats_missing_for_fbs_games.sql"))
   )
 }
 
@@ -332,7 +351,7 @@ audit_has_errors <- function(summary) {
 
 #' Row counts per table, for the report header.
 audit_table_counts <- function(con) {
-  tables <- c("teams", "games", "lines", "ratings")
+  tables <- c("teams", "games", "lines", "ratings", "talent", "returning_production", "game_stats")
   counts <- vapply(tables, function(t) {
     as.integer(DBI::dbGetQuery(con, paste("SELECT COUNT(*) AS n FROM", t))$n)
   }, integer(1))

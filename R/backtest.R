@@ -1,14 +1,12 @@
-# Helpers for scripts/backtest.R, which re-tests the house models and the
-# candidate factors that were tried and rejected. Nothing here is used by the
-# app or by scripts/fit.R.
+# Helpers for scripts/backtest.R, which re-tests the house models, the
+# factors now in them, and the candidate factors that were tried and
+# rejected. Nothing here is used by the app or by scripts/fit.R.
 #
 # Every number is out of sample: leave-one-season-out over FIT_SEASONS for
 # the cross-validated (CV) numbers, and a fit on FIT_SEASONS scored on
 # HOLDOUT_SEASON for the holdout numbers.
-
-# The two house models as regressions with no intercept (see R/fit.R).
-ELO_TERMS <- c("elo_gap", "tier_diff", "home")
-POWER_TERMS <- c("power_gap", "home")
+#
+# The final house models are ELO_TERMS and POWER_TERMS in R/fit.R.
 
 # Days between games that count as a bye (two weeks) or short rest.
 BYE_REST_DAYS <- 13
@@ -22,10 +20,13 @@ EARLY_WEEKS <- 1:4
 BOOTSTRAP_DRAWS <- 2000
 BOOTSTRAP_SEED <- 2026
 
-# Candidate factors. Each adds terms to the Elo model and the Power model,
-# except the sigma candidate, which changes only the win probabilities and
-# is judged on log loss instead of MAE.
+# Factors to judge. A candidate adds terms to the final Elo and Power
+# models, except the sigma candidate, which changes only the win
+# probabilities and is judged on log loss instead of MAE. A factor already
+# in the model is judged by taking it out (see house_terms_without()).
 CANDIDATES <- list(
+  success_rate = list(label = "Success rate in the Power target", in_model = TRUE),
+  preseason = list(label = "Preseason talent and returning production", in_model = TRUE),
   rest = list(label = "Bye week or short rest",
               elo = c("bye_diff", "short_diff"), power = c("bye_diff", "short_diff")),
   curvature = list(label = "Blowout curvature",
@@ -44,12 +45,21 @@ CANDIDATES <- list(
 #' Games for the backtest: completed FBS games with every model input, the
 #' closing line and the candidate factors, in the fit and holdout seasons.
 #'
+#' Besides the final Power rating gap, each game gets power_gap_points, the
+#' gap from a Power rating learned from scores alone (success_share 0).
+#'
 #' Only games with a closing line are kept, so every row in every table is
 #' scored on the same games.
 backtest_games <- function(con) {
   all_games <- query_sql_file(con, "rating_games.sql", list(BURN_IN_SEASON))
-  power <- power_ratings(all_games, query_sql_file(con, "team_conferences.sql"))
-  games <- add_model_inputs(load_completed_games(con), power$pregame)
+  conferences <- query_sql_file(con, "team_conferences.sql")
+  power <- power_ratings(all_games, conferences)
+  points_only <- power_ratings(all_games, conferences,
+                               utils::modifyList(POWER_RATING, list(success_share = 0)))$pregame
+
+  games <- add_model_inputs(load_completed_games(con), power$pregame, load_preseason(con))
+  at <- match(games$game_id, points_only$game_id)
+  games$power_gap_points <- points_only$home_power[at] - points_only$away_power[at]
   games <- house_set(games, c(FIT_SEASONS, HOLDOUT_SEASON))
 
   lines <- median_spread(query_sql_file(con, "lines.sql"))
@@ -106,11 +116,6 @@ add_candidate_factors <- function(games, rest) {
 
 # ---- Out-of-sample predictions ----------------------------------------------
 
-#' A no-intercept regression formula for home_margin.
-margin_formula <- function(terms) {
-  stats::reformulate(c("0", terms), response = "home_margin")
-}
-
 #' Fit on `train` and predict `test`.
 fit_predict <- function(train, test, terms) {
   unname(stats::predict(stats::lm(margin_formula(terms), data = train), newdata = test))
@@ -130,21 +135,43 @@ out_of_sample <- function(games, terms) {
   list(cv = cv, holdout = fit_predict(cv_games, games[games$season == HOLDOUT_SEASON, ], terms))
 }
 
-#' Out-of-sample house blend: the average of the Elo and Power models, each
-#' with any extra terms.
-house_out_of_sample <- function(games, elo_extra = NULL, power_extra = NULL) {
-  elo <- out_of_sample(games, c(ELO_TERMS, elo_extra))
-  power <- out_of_sample(games, c(POWER_TERMS, power_extra))
+#' Out-of-sample house blend: the average of an Elo model and a Power
+#' model. The defaults are the final house models.
+house_out_of_sample <- function(games, elo_terms = ELO_TERMS, power_terms = POWER_TERMS) {
+  elo <- out_of_sample(games, elo_terms)
+  power <- out_of_sample(games, power_terms)
   list(cv = (elo$cv + power$cv) / 2, holdout = (elo$holdout + power$holdout) / 2)
 }
 
+#' The final house models' terms with one of their factors taken out.
+#'
+#' @param factor "success_rate" (Power learns from scores alone) or
+#'   "preseason" (no talent or returning production terms).
+#' @return A list of elo and power terms.
+house_terms_without <- function(factor) {
+  switch(factor,
+    success_rate = list(elo = ELO_TERMS,
+                        power = sub("^power_gap$", "power_gap_points", POWER_TERMS)),
+    preseason = list(elo = setdiff(ELO_TERMS, PRESEASON_TERMS),
+                     power = setdiff(POWER_TERMS, PRESEASON_TERMS)),
+    stop("Unknown factor '", factor, "'.", call. = FALSE)
+  )
+}
+
 #' The model comparison: CV MAE and holdout MAE, all on the same games.
+#'
+#' The rows build up to the final house blend one step at a time, then show
+#' the closing line as the benchmark.
 compare_models <- function(games) {
+  no_preseason <- house_terms_without("preseason")
   forecasts <- list(
     "Elo" = out_of_sample(games, c("elo_gap", "home")),
-    "Elo with tier correction" = out_of_sample(games, ELO_TERMS),
-    "Power" = out_of_sample(games, POWER_TERMS),
-    "House blend (Elo and Power average)" = house_out_of_sample(games),
+    "Elo with tier correction" = out_of_sample(games, no_preseason$elo),
+    "Power on points only" = out_of_sample(games, c("power_gap_points", "home")),
+    "Power with success rate" = out_of_sample(games, no_preseason$power),
+    "House blend without preseason terms" =
+      house_out_of_sample(games, no_preseason$elo, no_preseason$power),
+    "House blend, final" = house_out_of_sample(games),
     "Closing line" = list(cv = games$line[games$season %in% FIT_SEASONS],
                           holdout = games$line[games$season == HOLDOUT_SEASON])
   )
@@ -223,11 +250,16 @@ verdict <- function(low, high, holdout_change) {
   ifelse(high < 0 & holdout_change < 0, "kept", "rejected")
 }
 
-#' Test one candidate against the plain house blend.
+#' Judge one factor against the final house blend.
 #'
+#' A candidate is added to the final models. A factor already in them is
+#' taken out instead, and the change is still "with it" minus "without it",
+#' so negative always means the factor helps.
+#'
+#' @param name The factor's name in CANDIDATES.
 #' @return One row: factor, metric, cv_change, cv_low, cv_high,
 #'   holdout_change, verdict.
-judge_candidate <- function(games, candidate) {
+judge_candidate <- function(games, candidate, name) {
   actual <- split_seasons(games)
   if (isTRUE(candidate$sigma)) {
     base <- house_log_loss(games, split_early = FALSE)
@@ -236,8 +268,15 @@ judge_candidate <- function(games, candidate) {
     cv_diff <- new$cv - base$cv
     holdout_diff <- new$holdout - base$holdout
   } else {
-    base <- house_out_of_sample(games)
-    new <- house_out_of_sample(games, candidate$elo, candidate$power)
+    final <- house_out_of_sample(games)
+    if (isTRUE(candidate$in_model)) {
+      without <- house_terms_without(name)
+      new <- final
+      base <- house_out_of_sample(games, without$elo, without$power)
+    } else {
+      base <- final
+      new <- house_out_of_sample(games, c(ELO_TERMS, candidate$elo), c(POWER_TERMS, candidate$power))
+    }
     metric <- "MAE"
     cv_diff <- abs(actual$cv - new$cv) - abs(actual$cv - base$cv)
     holdout_diff <- abs(actual$holdout - new$holdout) - abs(actual$holdout - base$holdout)
@@ -279,19 +318,19 @@ backtest_markdown <- function(models, factors, n_cv, n_holdout) {
     "",
     "Generated by `scripts/backtest.R`. Do not edit by hand; rerun the script instead.",
     "",
-    sprintf("Completed FBS games with a closing line. Cross-validated (CV) numbers are leave-one-season-out over %s to %s (%s games). Holdout numbers are %s games so far (%s games), predicted from a fit on %s to %s only. %s is burn-in for the Power rating and is not scored.",
-            min(FIT_SEASONS), max(FIT_SEASONS), format(n_cv, big.mark = ","), HOLDOUT_SEASON,
-            format(n_holdout, big.mark = ","), min(FIT_SEASONS), max(FIT_SEASONS), BURN_IN_SEASON),
+    sprintf("Completed FBS games with a closing line. Cross-validated (CV) numbers are leave-one-season-out over %s (%s games). Holdout numbers are %s games so far (%s games), predicted from a fit on those seasons only. %s is burn-in for the Power rating and is not scored. 2020 (the COVID season) stays in the Power rating's history but is never fit or scored.",
+            format_seasons(FIT_SEASONS), format(n_cv, big.mark = ","), HOLDOUT_SEASON,
+            format(n_holdout, big.mark = ","), BURN_IN_SEASON),
     "",
     "## Model comparison",
     "",
-    "Mean absolute error of the predicted home margin, in points. Lower is better.",
+    "Mean absolute error of the predicted home margin, in points. Lower is better. The rows build up to the final house blend one step at a time: Elo alone, Elo with the power-conference correction, our Power rating learned from scores only and then also from success rate, the average of the two models, and finally that average with the early-season talent and returning production terms.",
     "",
     markdown_table(model_rows, c("Model", "CV MAE", "Holdout MAE")),
     "",
     "## Candidate factors",
     "",
-    "Each factor is added to both house models (Elo with tier correction, and Power), and the house blend is compared with and without it. A change is the factor's loss minus the plain blend's loss, per game, so negative means the factor helped. The interval is a paired bootstrap 95% interval over games.",
+    "Each candidate is added to both final house models (Elo and Power, each with the preseason terms), and the house blend is compared with and without it. The first two rows are factors already in the model; each is measured by taking it out of the final model, so the row shows what the model would lose without it. Either way, a change is the loss with the factor minus the loss without it, per game, so negative means the factor helps. The interval is a paired bootstrap 95% interval over games.",
     "",
     "A factor is kept only if the CV interval lies wholly below zero and the holdout change is also negative. The early-season sigma changes only win probabilities, so it is judged on log loss instead of MAE.",
     "",

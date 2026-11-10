@@ -1,8 +1,11 @@
-# Pull research data: team talent, returning production and per-game
-# efficiency stats for every backfilled season. About 18 API calls the first
-# time, none after that (files on disk are never pulled twice).
+# Pull the extras for every backfilled season: team talent, returning
+# production and per-game efficiency stats. About 30 API calls the first
+# time (3 per season), none after that (files on disk are never pulled twice).
 #
-# These tables are only used to test ideas in scripts/backtest.R.
+# The model uses them: talent and returning production early in the season,
+# per-game success rates in the Power rating. The weekly snapshot keeps the
+# current season's files up to date, so this is a one-time job, like
+# scripts/backfill.R.
 #
 # Run from the project root:
 #   Rscript scripts/pull_extras.R
@@ -21,4 +24,4 @@ if (!all(ok)) {
           ". The others were kept. Run this again to retry.")
   quit(save = "no", status = 1)
 }
-message("\nResearch data is up to date.")
+message("\nTalent, returning production and game stats are up to date.")

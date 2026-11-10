@@ -22,7 +22,7 @@ test_that("app data has the shape in the data dictionary", {
   expect_false(app$meta$is_demo)
 
   team_columns <- c("team_id", "school", "mascot", "abbreviation", "conference", "color",
-                    "alt_color", "logo", "tier", names(MODEL_LABELS),
+                    "alt_color", "logo", "tier", "talent_z", "returning_z", names(MODEL_LABELS),
                     paste0(names(MODEL_LABELS), "_rank"))
   expect_true(all(team_columns %in% names(app$teams)))
   expect_named(app$slate, c("game_id", "start_date", "home_id", "away_id",
@@ -84,6 +84,18 @@ test_that("Power ratings come from every completed game and tier from the confer
   raw <- current$power[match(teams$team_id[rated], current$team_id)]
   expect_equal(teams$power[rated] - teams$power[rated][1], raw - raw[1])
   expect_identical(teams$tier, as.integer(teams$team_id <= FIXTURE_POWER_TEAMS))
+})
+
+test_that("teams carry this season's preseason z-scores", {
+  con <- connect_readonly(built$db)
+  on.exit(DBI::dbDisconnect(con))
+  preseason <- with_project_root(load_preseason(con))
+  preseason <- preseason[preseason$season == FIXTURE_SEASON, ]
+  expect_false(anyNA(app$teams$talent_z))
+  expect_gt(stats::sd(app$teams$talent_z), 0.5)
+  expect_identical(app$teams$talent_z[app$teams$team_id == 5], 0)
+  expect_equal(app$teams$talent_z, preseason$talent_z[match(app$teams$team_id, preseason$team_id)])
+  expect_equal(app$teams$returning_z, preseason$returning_z[match(app$teams$team_id, preseason$team_id)])
 })
 
 test_that("the slate holds only unplayed FBS games, with the median line", {

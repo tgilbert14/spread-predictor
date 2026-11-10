@@ -1,7 +1,7 @@
 # A small synthetic database with known answers, built from sql/schema.sql
 # in a temp file. Fit tests check that the fit recovers FIXTURE_TRUTH.
 
-FIXTURE_TRUTH <- list(k = 25, h = 2.5, sigma = 16, elo_tier = 8)
+FIXTURE_TRUTH <- list(k = 25, h = 2.5, sigma = 16, elo_tier = 8, talent = 3, returning = 1.5)
 
 # The first FIXTURE_POWER_TEAMS team ids play in a power conference.
 FIXTURE_POWER_TEAMS <- 20L
@@ -35,27 +35,36 @@ fixture_tier <- function(team_id) as.integer(team_id <= FIXTURE_POWER_TEAMS)
 
 #' Simulated games for one season, following the Elo model exactly.
 #'
-#' The real margin is Elo margin + tier edge + home field + market
-#' information + noise. Elo does not see the tier edge, as CFBD Elo
-#' understates power-conference teams. The closing line sees the market
-#' information and Elo does not, which makes the line sharper than Elo, as it
-#' is in real life.
-simulate_games <- function(season, n_games, strength, first_id, truth) {
+#' The real margin is Elo margin + tier edge + home field + preseason edge +
+#' market information + noise. Elo does not see the tier edge, as CFBD Elo
+#' understates power-conference teams. The preseason edge is the talent and
+#' returning z-score gaps times their true points, faded by week. The closing
+#' line sees the market information and Elo does not, which makes the line
+#' sharper than Elo, as it is in real life.
+#'
+#' @param preseason Per-team talent_z and returning_z, or NULL for none.
+simulate_games <- function(season, n_games, strength, first_id, truth, preseason = NULL) {
   team_ids <- seq_along(strength)
   pairs <- t(replicate(n_games, sample(team_ids, 2)))
+  week <- sample(1:13, n_games, replace = TRUE)
   pregame_elo <- function(ids) 1500 + truth$k * (strength[ids] + stats::rnorm(length(ids), 0, 1.5))
   neutral <- as.integer(stats::runif(n_games) < 0.1)
   home_elo <- pregame_elo(pairs[, 1])
   away_elo <- pregame_elo(pairs[, 2])
   tier_diff <- fixture_tier(pairs[, 1]) - fixture_tier(pairs[, 2])
   elo_margin <- (home_elo - away_elo) / truth$k + truth$elo_tier * tier_diff + truth$h * (1 - neutral)
+  if (!is.null(preseason)) {
+    gap <- function(z) z[pairs[, 1]] - z[pairs[, 2]]
+    elo_margin <- elo_margin + preseason_fade(week) *
+      (truth$talent * gap(preseason$talent_z) + truth$returning * gap(preseason$returning_z))
+  }
   market_info <- stats::rnorm(n_games, 0, 10)
   noise <- stats::rnorm(n_games, 0, sqrt(truth$sigma^2 - 10^2))
   margin <- round(elo_margin + market_info + noise)
 
   data.frame(
     game_id = first_id + seq_len(n_games), season = season,
-    week = sample(1:13, n_games, replace = TRUE), season_type = "regular",
+    week = week, season_type = "regular",
     start_date = sprintf("%d-10-01T19:00:00Z", season), completed = 1L,
     neutral_site = neutral,
     home_id = pairs[, 1], home_team = paste("Team", pairs[, 1]), home_class = "fbs",
@@ -64,6 +73,32 @@ simulate_games <- function(season, n_games, strength, first_id, truth) {
     away_points = pmax(-margin, 0) + 10L, away_pregame_elo = away_elo,
     expected_line_margin = elo_margin + market_info,
     stringsAsFactors = FALSE
+  )
+}
+
+#' Preseason inputs for one season: z-scores, and the raw talent and
+#' returning values the database stores.
+simulate_preseason <- function(season, n_teams) {
+  talent_z <- stats::rnorm(n_teams)
+  returning_z <- stats::rnorm(n_teams)
+  data.frame(season = season, team_id = seq_len(n_teams), talent_z = talent_z,
+             returning_z = returning_z, talent = 600 + 100 * talent_z,
+             percent_ppa = 0.5 + 0.15 * returning_z)
+}
+
+#' Success rates for both teams of every completed game, tracking the margin
+#' the way real ones do (about 124 points per unit of success-rate margin).
+simulate_game_stats <- function(games) {
+  games <- games[games$completed == 1, ]
+  margin <- games$home_points - games$away_points
+  home_off <- 0.42 + margin / 248 + stats::rnorm(nrow(games), 0, 0.02)
+  home_def <- 0.42 - margin / 248 + stats::rnorm(nrow(games), 0, 0.02)
+  clamp <- function(x) pmin(pmax(x, 0.05), 0.95)
+  rbind(
+    data.frame(game_id = games$game_id, team_id = games$home_id,
+               off_success_rate = clamp(home_off), def_success_rate = clamp(home_def)),
+    data.frame(game_id = games$game_id, team_id = games$away_id,
+               off_success_rate = clamp(home_def), def_success_rate = clamp(home_off))
   )
 }
 
@@ -152,7 +187,7 @@ simulate_current_season <- function(strength, truth) {
 #'
 #' @param flip_lines Write every spread with the wrong sign.
 #' @param snapshots Include the current season's weekly snapshots.
-make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021:2025,
+make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = BURN_IN_SEASON:max(FIT_SEASONS),
                             games_per_season = 400, n_teams = 60, flip_lines = FALSE,
                             snapshots = TRUE, seed = 42) {
   set.seed(seed)
@@ -161,6 +196,7 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
   lines <- list()
   ratings <- list()
   teams <- list()
+  preseason <- list()
 
   for (season in c(seasons, FIXTURE_SEASON)) {
     teams[[length(teams) + 1]] <- data.frame(
@@ -173,7 +209,9 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
 
   for (season in seasons) {
     strength <- stats::rnorm(n_teams, 0, 10)
-    played <- simulate_games(season, games_per_season, strength, season * 10000L, truth)
+    preseason[[length(preseason) + 1]] <- simulate_preseason(season, n_teams)
+    played <- simulate_games(season, games_per_season, strength, season * 10000L, truth,
+                             preseason[[length(preseason)]])
     games[[length(games) + 1]] <- played
     games[[length(games) + 1]] <- simulate_excluded_games(season, strength, season * 10000L + 5000L, truth)
     lines[[length(lines) + 1]] <- simulate_lines(played, flip_lines)
@@ -183,6 +221,10 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
   }
 
   current <- simulate_current_season(stats::rnorm(n_teams, 0, 10), truth)
+  # This season's preseason inputs. Team 5 has no talent value.
+  this_season <- simulate_preseason(FIXTURE_SEASON, n_teams)
+  this_season$talent[5] <- NA
+  preseason[[length(preseason) + 1]] <- this_season
   games[[length(games) + 1]] <- current$games
   lines[[length(lines) + 1]] <- current$lines
   if (snapshots) ratings[[length(ratings) + 1]] <- current$ratings
@@ -199,5 +241,8 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
   write_rows("games", games)
   write_rows("lines", lines)
   write_rows("ratings", ratings)
+  write_rows("talent", preseason)
+  write_rows("returning_production", preseason)
+  write_rows("game_stats", lapply(games, simulate_game_stats))
   path
 }

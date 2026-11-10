@@ -7,7 +7,7 @@ Pick any two FBS college football teams and get a spread and a win
 probability, on a neutral field or at either team's home.
 
 The number is a blend of five rating systems: four public ones (SP+, FPI, SRS
-and Elo) and our own Power rating, built from game scores. The app shows where
+and Elo) and our own Power rating, built from game scores and success rate. The app shows where
 each one lands, so you can see when they disagree.
 
 ![The Matchup tab: LSU by 2 over Texas, with a band in the two team colors showing each team's chance to win](docs/img/matchup.png)
@@ -69,8 +69,9 @@ CFBD_API_KEY=paste-your-key-here
 **3. Pull the history and fit the model.**
 
 ```bash
-Rscript scripts/backfill.R   # past seasons: games, lines, ratings (about 50 API calls)
-Rscript scripts/fit.R        # builds the database, fits the model, prints a report
+Rscript scripts/backfill.R      # past seasons: games, lines, ratings (about 70 API calls)
+Rscript scripts/pull_extras.R   # past seasons: talent, returning production, game stats (about 30 calls)
+Rscript scripts/fit.R           # builds the database, fits the model, prints a report
 ```
 
 **4. Take this week's snapshot and build the app data.**
@@ -116,13 +117,13 @@ calling the API.
 | Script | What it does | Calls the API? |
 |---|---|---|
 | `scripts/setup.R` | Installs R packages and checks your key | No |
-| `scripts/backfill.R` | One-time pull of past seasons | Yes, about 50 calls |
+| `scripts/backfill.R` | One-time pull of past seasons | Yes, about 70 calls |
 | `scripts/fit.R` | Rebuilds the database, fits the model, writes `data/params.json` | No |
-| `scripts/snapshot.R` | Saves this week's ratings, games and lines | Yes, under 10 calls |
+| `scripts/snapshot.R` | Saves this week's ratings, games, lines and game stats (plus the season's talent and returning production the first time) | Yes, about 9 calls (12 the first week of a season) |
 | `scripts/refresh.R` | Snapshot, then rebuild the database and app data | Yes, unless `--offline` |
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
-| `scripts/pull_extras.R` | Pulls research data (talent, returning production, efficiency stats) for testing ideas | Yes, about 18 calls once |
+| `scripts/pull_extras.R` | One-time pull of past seasons' talent, returning production and game stats | Yes, about 30 calls once |
 
 The free API tier allows 1,000 calls a month. Normal use is well under 100.
 
@@ -132,17 +133,23 @@ The free API tier allows 1,000 calls a month. Normal use is well under 100.
    the margin is one team's rating minus the other's. Elo isn't in points, so
    its gap is divided by a scale factor, and it gets a correction because it
    undersells the gap between power-conference teams and everyone else.
-   Power is our own rating, computed week by week from scores.
-2. **Home field is added** when the game isn't on a neutral field.
-3. **The five margins are averaged.** Right now each counts equally. Fitted
+   Power is our own rating, computed week by week from scores and from how
+   consistently each team wins its downs (success rate).
+2. **Early in the season, Elo and Power get preseason help.** Roster talent
+   and how much of last season's production is coming back add points in
+   week 1, fading to nothing by week 7. SP+ and FPI already include their own
+   preseason view, so they get nothing extra.
+3. **Home field is added** when the game isn't on a neutral field.
+4. **The five margins are averaged.** Right now each counts equally. Fitted
    weights only replace equal ones if they prove better on data the fit never
    saw.
-4. **The margin becomes a win probability** using how far real games tend to
+5. **The margin becomes a win probability** using how far real games tend to
    land from predictions.
 
-The scale factors, the power-conference correction, home field and the
-typical miss are fit on 2022 to 2025 using each team's Elo and Power ratings
-from *before* kickoff (2021 warms up the Power rating). The current season is
+The scale factors, the power-conference correction, the preseason points,
+home field and the typical miss are fit on 2018, 2019 and 2021 to 2025 using
+each team's Elo and Power ratings from *before* kickoff (2017 warms up the
+Power rating, and the 2020 COVID season is skipped). The current season is
 held out as an honest test. That matters. Fitting on end-of-season ratings
 would mean grading the model on answers it had already seen.
 
@@ -155,7 +162,7 @@ app.R                 the Shiny app
 R/                    all functions (pipeline, model, app modules)
 scripts/              the commands you run (see the table above)
 sql/                  database schema and queries
-data/snapshots/       weekly ratings, games and lines as CSV. The source of truth.
+data/snapshots/       weekly ratings, games, lines and extras as CSV. The source of truth.
 data/params.json      fitted model parameters
 tests/testthat/       unit tests
 docs/                 deeper documentation

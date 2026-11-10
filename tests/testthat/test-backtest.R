@@ -30,3 +30,15 @@ test_that("rest days count FCS games and start fresh each season", {
   expect_equal(rest$home_rest, c(NA, NA, 14, NA))
   expect_equal(rest$away_rest, c(NA, 5, 19, NA))
 })
+
+test_that("factors in the model are judged by taking them out of the final models", {
+  no_preseason <- house_terms_without("preseason")
+  expect_false(any(PRESEASON_TERMS %in% c(no_preseason$elo, no_preseason$power)))
+  expect_true(all(setdiff(ELO_TERMS, PRESEASON_TERMS) %in% no_preseason$elo))
+
+  no_success <- house_terms_without("success_rate")
+  expect_identical(no_success$elo, ELO_TERMS)
+  expect_true("power_gap_points" %in% no_success$power)
+  expect_false("power_gap" %in% no_success$power)
+  expect_error(house_terms_without("weather"), "Unknown factor")
+})

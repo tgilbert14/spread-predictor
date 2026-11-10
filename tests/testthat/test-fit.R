@@ -28,7 +28,8 @@ test_that("FCS games and games without pregame Elo are left out of the fit", {
   con <- connect_readonly(fixture_db)
   on.exit(DBI::dbDisconnect(con))
   games <- with_project_root(add_model_inputs(load_completed_games(con),
-                                              load_power_ratings(con)$pregame))
+                                              load_power_ratings(con)$pregame,
+                                              load_preseason(con)))
   fit_set <- house_set(games, FIT_SEASONS)
   expect_false(any(fit_set$game_id %% 10000 > 5000))
   expect_equal(nrow(fit_set), length(FIT_SEASONS) * 400)
@@ -58,14 +59,55 @@ test_that("every forecast is scored on the same games and the line is sharpest",
   expect_true(all(line$brier < metrics$brier[metrics$model != "line"]))
 })
 
+test_that("the fit recovers the true preseason points and the app uses their mean", {
+  # Only weeks 1 to 6 carry these terms, so they are noisier than k or h.
+  expect_lt(abs(params$talent_points_elo - FIXTURE_TRUTH$talent), 1.5)
+  expect_lt(abs(params$returning_points_elo - FIXTURE_TRUTH$returning), 1.5)
+  expect_equal(params$talent_points, mean(c(params$talent_points_elo, params$talent_points_power)))
+  expect_equal(params$returning_points,
+               mean(c(params$returning_points_elo, params$returning_points_power)))
+})
+
 test_that("the house blend is the average of the Elo and Power models", {
   games <- data.frame(elo_gap = c(100, -50), tier_diff = c(1L, 0L), power_gap = c(4, -2),
-                      home = c(1L, 0L))
-  fit <- list(k = 25, elo_tier = 10, h_elo = 3, power_scale = 0.9, h_power = 2)
+                      home = c(1L, 0L), talent_early = c(1, 0), returning_early = c(-0.5, 0))
+  fit <- list(k = 25, elo_tier = 10, h_elo = 3, talent_points_elo = 2, returning_points_elo = 1,
+              power_scale = 0.9, h_power = 2, talent_points_power = 4, returning_points_power = 3)
   pred <- predict_house(games, fit)
-  expect_equal(pred$elo, c(100 / 25 + 10 + 3, -2))
-  expect_equal(pred$power, c(0.9 * 4 + 2, -1.8))
+  expect_equal(pred$elo, c(100 / 25 + 10 + 3 + 2 - 0.5, -2))
+  expect_equal(pred$power, c(0.9 * 4 + 2 + 4 - 1.5, -1.8))
   expect_equal(pred$house, (pred$elo + pred$power) / 2)
+
+  # The average equals using the mean preseason points in both models,
+  # which is what the app does.
+  shared <- modifyList(fit, list(talent_points_elo = 3, talent_points_power = 3,
+                                 returning_points_elo = 2, returning_points_power = 2))
+  expect_equal(predict_house(games, shared)$house, pred$house)
+})
+
+test_that("preseason z-scores are by season among FBS teams, with 0 for a missing value", {
+  preseason <- data.frame(season = c(2025L, 2025L, 2025L, 2026L, 2026L),
+                          team_id = c(1L, 2L, 3L, 1L, 2L),
+                          talent = c(500, 700, NA, 10, 20),
+                          percent_ppa = c(0.2, 0.4, 0.6, NA, NA))
+  z <- preseason_z(preseason)
+  expect_equal(z$talent_z, c(-sqrt(0.5), sqrt(0.5), 0, -sqrt(0.5), sqrt(0.5)))
+  expect_equal(z$returning_z, c(-1, 0, 1, 0, 0))
+})
+
+test_that("model inputs carry faded preseason gaps", {
+  games <- data.frame(game_id = 1:3, season = 2026L, week = c(1L, 4L, 1L),
+                      season_type = c("regular", "regular", "postseason"), neutral_site = 0L,
+                      home_id = 1L, away_id = 2L, home_conference = "SEC", away_conference = "SEC",
+                      home_pregame_elo = 1600, away_pregame_elo = 1500)
+  pregame <- data.frame(game_id = 1:3, home_power = 5, away_power = 0)
+  preseason <- data.frame(season = 2026L, team_id = 1L, talent_z = 1.5, returning_z = -1)
+  out <- add_model_inputs(games, pregame, preseason)
+  # Team 2 has no preseason values, so it counts as average.
+  expect_equal(out$talent_gap, rep(1.5, 3))
+  expect_equal(out$fade, c(1, 0.5, 0))
+  expect_equal(out$talent_early, c(1.5, 0.75, 0))
+  expect_equal(out$returning_early, c(-1, -0.5, 0))
 })
 
 test_that("calibration has five bins covering 0.5 to 1", {
@@ -178,17 +220,18 @@ test_that("choose_weights stays equal with too few snapshot games", {
 test_that("blend_design matches snapshot week W to week W games and skips postseason", {
   games <- data.frame(season = 2026L, week = c(5L, 5L, 6L), season_type = c("regular", "postseason", "regular"),
                       home_id = 1L, away_id = 2L, neutral_site = 0L, home_margin = 10,
-                      tier_diff = 1L, power_gap = 5)
+                      tier_diff = 1L, power_gap = 5, talent_early = 1 / 3, returning_early = 0)
   weekly <- do.call(rbind, lapply(RATING_SOURCES, function(source) {
     data.frame(source = source, season = 2026L, week = 5L, team_id = 1:2,
                rating = if (source == "elo") c(1600, 1500) else c(6, 0))
   }))
-  fit <- list(k = 25, elo_tier = 10, power_scale = 0.8, h = 2)
+  fit <- list(k = 25, elo_tier = 10, power_scale = 0.8, h = 2, talent_points = 3, returning_points = 1)
   design <- blend_design(games, weekly, fit)
   expect_identical(nrow(design$X), 1L)
   expect_identical(colnames(design$X), BLEND_SYSTEMS)
   # Elo gets the tier edge; Power comes from the game itself, not a snapshot.
-  expect_equal(unname(design$X[1, ]), c(6, 6, 6, 4 + 10, 0.8 * 5))
+  # Both get the preseason point (3 * 1/3), as in the app.
+  expect_equal(unname(design$X[1, ]), c(6, 6, 6, 4 + 10 + 1, 0.8 * 5 + 1))
   expect_equal(design$y, 8)
 })
 
@@ -211,4 +254,13 @@ test_that("a sportsbook with home and away swapped is outvoted, not averaged in"
   expect_equal(is_flipped_line(c(-12, 12)), c(FALSE, FALSE))
   # Near pick'em, books really do disagree on the favorite.
   expect_equal(is_flipped_line(c(-1, 1, -1.5)), c(FALSE, FALSE, FALSE))
+})
+
+test_that("preseason_z pulls impossible returning-production shares back into range", {
+  preseason <- data.frame(season = 2021L, team_id = 1:4, talent = c(600, 700, 800, 900),
+                          percent_ppa = c(-3.1, 0.4, 0.6, 1.7))
+  z <- preseason_z(preseason)
+  # Treated as shares of 0, 0.4, 0.6 and 1, so no team sits absurdly far out.
+  expect_equal(z$returning_z, as.numeric(scale(c(0, 0.4, 0.6, 1))))
+  expect_lt(max(abs(z$returning_z)), 2)
 })

@@ -1,6 +1,7 @@
-# Re-test the house models and the candidate factors on the real data, and
-# write docs/backtest-results.md. Reads cfb.sqlite read-only and changes
-# nothing else, so it is safe to run any time.
+# Re-test the house models, the factors now in them, and the candidate
+# factors on the real data, and write docs/backtest-results.md. Reads
+# cfb.sqlite read-only and changes nothing else, so it is safe to run any
+# time.
 #
 # Run from the project root (after scripts/fit.R or scripts/refresh.R has
 # built the database):
@@ -14,7 +15,8 @@ con <- connect_readonly(PATHS$database)
 games <- tryCatch(backtest_games(con), finally = DBI::dbDisconnect(con))
 
 models <- compare_models(games)
-factors <- do.call(rbind, lapply(CANDIDATES, judge_candidate, games = games))
+factors <- do.call(rbind, Map(judge_candidate, CANDIDATES, names(CANDIDATES),
+                              MoreArgs = list(games = games)))
 
 report <- backtest_markdown(models, factors,
                             n_cv = sum(games$season %in% FIT_SEASONS),

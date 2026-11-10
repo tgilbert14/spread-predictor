@@ -310,7 +310,7 @@ model_table <- function(pred) {
     numeric = c(FALSE, TRUE, TRUE, FALSE, TRUE),
     row_class = c(ifelse(left_out, "is-left-out", ""), "is-blend"),
     caption = paste("Ratings are points better than an average team, except Elo, which uses its own scale.",
-                    "Power is our own rating, built from game scores. Elo's margin includes the power-conference correction.")
+                    "Power is our own rating, built from game scores and success rate. Elo's margin includes the power-conference correction.")
   )
 }
 
@@ -339,7 +339,8 @@ mod_matchup_server <- function(id, app_data) {
       a <- suppressWarnings(as.integer(input$team_a))
       b <- suppressWarnings(as.integer(input$team_b))
       shiny::req(!is.na(a), !is.na(b), a != b, input$site %in% SITE_CHOICES)
-      tryCatch(predict_matchup(a, b, input$site, teams, app_data$params),
+      tryCatch(predict_matchup(a, b, input$site, teams, app_data$params,
+                               week = app_data$meta$week),
                error = function(e) e)
     })
 

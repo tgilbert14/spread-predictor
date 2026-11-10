@@ -51,8 +51,9 @@ latest_snapshots <- function(coverage, season) {
   in_season[!duplicated(in_season$source), , drop = FALSE]
 }
 
-#' The season's teams with one rating and one rank column per system, and
-#' tier (1 for a power team, 0 otherwise).
+#' The season's teams with one rating and one rank column per system, tier
+#' (1 for a power team, 0 otherwise), and talent_z and returning_z (preseason
+#' z-scores, 0 for a team with no value).
 #'
 #' Rank 1 is the best rating. Tied teams share the better rank, and a team
 #' with no rating has no rank.
@@ -75,6 +76,12 @@ current_teams <- function(con, season, latest) {
       as.integer(rank(-teams[[model]], ties.method = "min", na.last = "keep"))
   }
   teams$tier <- as.integer(is_power_team(teams$conference, teams$team_id, season))
+
+  preseason <- load_preseason(con)
+  preseason <- preseason[preseason$season == season, , drop = FALSE]
+  at <- match(teams$team_id, preseason$team_id)
+  teams$talent_z <- ifelse(is.na(at), 0, preseason$talent_z[at])
+  teams$returning_z <- ifelse(is.na(at), 0, preseason$returning_z[at])
   teams
 }
 

@@ -43,7 +43,76 @@ fill_db <- function(con, snapshots_dir, schema_path) {
     load_table(con, "lines", read_season_files(file.path(snapshots_dir, "lines")))
     drop_orphan_lines(con)
     load_table(con, "ratings", read_ratings_files(file.path(snapshots_dir, "ratings")))
+    load_extras(con, file.path(snapshots_dir, "extras"), dirname(schema_path))
   })
+}
+
+#' Load talent, returning production and per-game success rates.
+#'
+#' The extras files are saved exactly as the API returns them, with school
+#' names instead of ids, so each row is matched to a team_id here. Needs the
+#' teams and games tables loaded first.
+#'
+#' @param extras_dir data/snapshots/extras, with talent/, returning/ and
+#'   advanced/ folders of {season}.csv files.
+#' @param sql_dir Folder holding the query files.
+load_extras <- function(con, extras_dir, sql_dir) {
+  teams <- query_sql_file(con, "team_names.sql", sql_dir = sql_dir)
+  games <- query_sql_file(con, "game_teams.sql", sql_dir = sql_dir)
+
+  load_extra_table(con, "talent", read_season_files(file.path(extras_dir, "talent"), add_season = TRUE),
+                   function(df) school_ids(df$school, df$season, teams))
+  load_extra_table(con, "returning_production",
+                   read_season_files(file.path(extras_dir, "returning"), add_season = TRUE),
+                   function(df) school_ids(df$team, df$season, teams))
+  load_extra_table(con, "game_stats", read_season_files(file.path(extras_dir, "advanced")),
+                   function(df) game_team_ids(df$game_id, df$team, games))
+}
+
+#' Add team_id to each file's rows, drop rows that match no team we track,
+#' and load the rest into a table.
+#'
+#' FCS teams are in these files and not in ours, so unmatched rows are
+#' expected. They get one count, not a warning per team.
+#'
+#' @param frames A list of data frames named by file path.
+#' @param find_ids A function from one data frame to one team_id per row
+#'   (NA when there is no match).
+load_extra_table <- function(con, table, frames, find_ids) {
+  frames <- lapply(frames, function(df) {
+    df$team_id <- as.integer(find_ids(df))
+    df
+  })
+  unmatched <- sum(vapply(frames, function(df) sum(is.na(df$team_id)), integer(1)))
+  if (unmatched > 0) {
+    message(table, ": dropped ", unmatched, " row(s) for teams or games we do not track (FCS and lower).")
+  }
+  load_table(con, table, lapply(frames, function(df) df[!is.na(df$team_id), , drop = FALSE]))
+}
+
+#' Team ids for school names, each looked up in its own season's teams.
+#'
+#' An exact name match comes first. Names that differ only in accents, case
+#' or punctuation (like "San Jose State") fall back to team_key().
+#'
+#' @param teams Rows of season, team_id, school.
+school_ids <- function(names, seasons, teams) {
+  ids <- teams$team_id[match(paste(seasons, names), paste(teams$season, teams$school))]
+  loose <- is.na(ids)
+  ids[loose] <- teams$team_id[match(paste(seasons[loose], team_key(names[loose])),
+                                    paste(teams$season, team_key(teams$school)))]
+  ids
+}
+
+#' Team ids for per-game rows: the game's home team or away team, by name.
+#'
+#' @param games Rows of game_id, home_id, home_team, away_id, away_team.
+#' @return NA where the game is not ours or the name is neither team.
+game_team_ids <- function(game_ids, names, games) {
+  at <- match(game_ids, games$game_id)
+  key <- team_key(names)
+  ifelse(key == team_key(games$home_team[at]), games$home_id[at],
+         ifelse(key == team_key(games$away_team[at]), games$away_id[at], NA_integer_))
 }
 
 #' Correct neutral-site flags the source has wrong.

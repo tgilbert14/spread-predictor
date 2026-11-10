@@ -9,7 +9,9 @@ audit_sql <- file.path(audit_root, "sql", "audit")
 TEAM_IDS <- c(10L, 20L, 30L, 40L)
 
 #' A small, clean database: one season, four FBS teams, six weeks of
-#' completed games with two sportsbooks each, and two weekly rating snapshots.
+#' completed games with two sportsbooks each, two weekly rating snapshots,
+#' talent and returning production for every team, and success rates for
+#' both teams in every game.
 clean_audit_db <- function() {
   con <- DBI::dbConnect(RSQLite::SQLite(), tempfile(fileext = ".sqlite"))
   schema <- sub("--.*$", "", readLines(file.path(audit_root, "sql", "schema.sql"), warn = FALSE))
@@ -60,6 +62,18 @@ clean_audit_db <- function() {
   ratings$team <- "Team"
   ratings$pulled_at <- "2026-10-01T00:00:00Z"
   DBI::dbAppendTable(con, "ratings", ratings[c("source", "season", "week", "is_final", "team_id", "team", "rating", "pulled_at")])
+
+  DBI::dbAppendTable(con, "talent", data.frame(season = 2026L, team_id = TEAM_IDS,
+                                               talent = c(900, 750, 600, 500)))
+  DBI::dbAppendTable(con, "returning_production", data.frame(season = 2026L, team_id = TEAM_IDS,
+                                                             percent_ppa = c(0.4, 0.6, 0.5, 0.7)))
+  success <- 0.42 + margins / 250
+  DBI::dbAppendTable(con, "game_stats", rbind(
+    data.frame(game_id = games$game_id, team_id = games$home_id,
+               off_success_rate = success, def_success_rate = 1 - success - 0.16),
+    data.frame(game_id = games$game_id, team_id = games$away_id,
+               off_success_rate = 1 - success - 0.16, def_success_rate = success)
+  ))
   con
 }
 
@@ -221,6 +235,38 @@ test_that("teams checks catch a planted problem", {
     "INSERT INTO teams (season, team_id, school, conference) VALUES (2025, 10, 'Alpha', 'Old Conference')")), 0)
   expect_gt(nrow(flagged_after("teams_name_change",
     "INSERT INTO teams (season, team_id, school, conference) VALUES (2025, 10, 'Old Alpha', 'Test Conference')")), 0)
+})
+
+test_that("talent, returning production and game stats checks catch a planted problem", {
+  expect_gt(nrow(flagged_after("talent_duplicate",
+    function(con) drop_constraints(con, "talent"),
+    "INSERT INTO talent SELECT * FROM talent WHERE team_id = 10")), 0)
+  expect_gt(nrow(flagged_after("returning_duplicate",
+    function(con) drop_constraints(con, "returning_production"),
+    "INSERT INTO returning_production SELECT * FROM returning_production WHERE team_id = 10")), 0)
+  expect_gt(nrow(flagged_after("game_stats_duplicate",
+    function(con) drop_constraints(con, "game_stats"),
+    "INSERT INTO game_stats SELECT * FROM game_stats WHERE game_id = 1001")), 0)
+  expect_gt(nrow(flagged_after("returning_out_of_range",
+    "UPDATE returning_production SET percent_ppa = -3.1 WHERE team_id = 10")), 0)
+  expect_gt(nrow(flagged_after("game_stats_bad_success_rate",
+    "UPDATE game_stats SET off_success_rate = 1.2 WHERE game_id = 1001")), 0)
+  expect_gt(nrow(flagged_after("game_stats_bad_success_rate",
+    "UPDATE game_stats SET def_success_rate = -0.1 WHERE game_id = 1001")), 0)
+
+  # One game in twelve without stats is over 3%; the home row is what counts.
+  expect_equal(nrow(flagged_after("game_stats_missing_for_fbs_games",
+    "DELETE FROM game_stats WHERE game_id = 1001 AND team_id = (SELECT away_id FROM games WHERE game_id = 1001)")), 0)
+  missing <- flagged_after("game_stats_missing_for_fbs_games", "DELETE FROM game_stats WHERE game_id = 1001")
+  expect_equal(missing$n_without_stats, 1)
+  expect_equal(missing$n_fbs_games, 12)
+
+  counts <- flagged_after("preseason_missing_by_season",
+    "DELETE FROM talent WHERE team_id = 10",
+    "DELETE FROM returning_production WHERE team_id IN (10, 20)")
+  expect_equal(counts$n_fbs_teams, 4)
+  expect_equal(counts$n_no_talent, 1)
+  expect_equal(counts$n_no_returning, 2)
 })
 
 test_that("an error check that flags rows makes the audit fail, and the report says so", {

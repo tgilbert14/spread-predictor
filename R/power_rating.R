@@ -1,7 +1,10 @@
-# The Power rating: our own team rating, built only from game scores.
+# The Power rating: our own team rating, built from game results.
 #
 # Each team's rating is a prior (where we expected it to be) plus a
-# conference shift and a team shift learned from this season's margins.
+# conference shift and a team shift learned from this season's games. What
+# it learns from each game is mostly the final margin, partly the gap in
+# success rate (see power_target()), because how consistently a team wins
+# its downs says a lot about it and is less noisy than the score.
 # The shifts are ridge-regularized, so a team with few games stays near its
 # prior and the rating firms up as the season goes on.
 #
@@ -19,8 +22,9 @@ FCS_POOL_ID <- -1L
 #' Walk-forward Power ratings.
 #'
 #' @param games Rows of game_id, season, week, season_type, neutral_site,
-#'   home_id, home_class, home_points, away_id, away_class, away_points.
-#'   Games of any division. Unplayed games (points NA) get a pregame rating
+#'   home_id, home_class, home_points, away_id, away_class, away_points,
+#'   and optionally success_margin (NA, or a missing column, means the game
+#'   has no stats and the plain margin is used). Games of any division. Unplayed games (points NA) get a pregame rating
 #'   but are not learned from.
 #' @param conferences Rows of season, team_id, conference.
 #' @param settings See POWER_RATING in R/config.R.
@@ -85,9 +89,10 @@ rate_season <- function(games, conferences, last_season, settings) {
   home <- match(games$home_key, ids)
   away <- match(games$away_key, ids)
   played <- !is.na(games$home_points) & !is.na(games$away_points)
-  # Margin left over after home field and the priors, which is what the
+  # Target left over after home field and the priors, which is what the
   # shifts have to explain.
-  residual <- (games$home_points - games$away_points) -
+  target <- power_target(games$home_points - games$away_points, games[["success_margin"]], settings)
+  residual <- target -
     settings$home_field * (1 - games$neutral_site) - (prior[home] - prior[away])
 
   block <- rating_block(games$week, games$season_type)
@@ -108,6 +113,22 @@ rate_season <- function(games, conferences, last_season, settings) {
 
   list(home_power = home_power, away_power = away_power,
        final = stats::setNames(rating, ids))
+}
+
+#' What the Power rating learns from one game, in points, home minus away.
+#'
+#' A blend of the final margin and the success-rate margin converted to
+#' points: (1 - success_share) * margin + success_share * success_points *
+#' success_margin. A game with no stats uses its margin alone.
+#'
+#' @param margin Home points minus away points.
+#' @param success_margin Home offensive success rate minus the success rate
+#'   it allowed, or NULL when no game has stats.
+power_target <- function(margin, success_margin, settings) {
+  if (is.null(success_margin)) return(margin)
+  blended <- (1 - settings$success_share) * margin +
+    settings$success_share * settings$success_points * success_margin
+  ifelse(is.na(success_margin), margin, blended)
 }
 
 #' Regular-season week, with the whole postseason as one last block.

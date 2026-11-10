@@ -17,13 +17,25 @@ the average into a win probability.
 | FPI | ESPN's Football Power Index | Points vs an average team |
 | SRS | Simple Rating System: scoring margin adjusted for schedule | Points |
 | Elo | A running rating that moves after every game | Elo points |
-| Power | Our own rating, built only from game scores (`R/power_rating.R`) | Points |
+| Power | Our own rating, built from game scores and success rate (`R/power_rating.R`) | Points |
 
 ### The Power rating
 
 Each team's rating is a prior plus a conference shift and a team shift, fit
-to this season's scores with a ridge penalty, so a team with few games stays
-close to its prior. The prior is last season's conference average plus 70% of
+to this season's games with a ridge penalty, so a team with few games stays
+close to its prior.
+
+What it learns from each game is mostly the score and partly success rate:
+how consistently each team gained enough yards on a play to stay on
+schedule. Success rate is a steadier sign of strength than the final score,
+which bounces around with turnovers and late touchdowns. For each game:
+
+```
+target = 0.6 * home margin + 0.4 * 124 * (home success rate - success rate it allowed)
+```
+
+124 converts a success-rate gap into points (a regression of margin on it).
+A game with no stats uses its margin alone. The prior is last season's conference average plus 70% of
 the team's edge over it. A team new to the data starts 3 points below its
 conference average. All FCS opponents are pooled into one team.
 
@@ -32,14 +44,39 @@ block). The rating for a game uses only games from earlier weeks, so it is a
 fair "before kickoff" number we can fit and test on. The settings are in
 `POWER_RATING` in `R/config.R`, with a reason for each.
 
+### Preseason information
+
+Early in a season, Elo and Power have few games to go on. So the Elo and
+Power margins also get points for two things known before kickoff:
+
+- **Roster talent**, the 247Sports talent composite.
+- **Returning production**, the share of last season's production that is
+  coming back.
+
+Each is turned into a z-score among that season's FBS teams (how many
+standard deviations above average). A team with no value counts as average.
+The points fade in a straight line, full in week 1 and gone by week 7, and
+are 0 in the postseason:
+
+```
+fade = max(0, 1 - (week - 1) / 6)
+preseason points = fade * (talent_points * talent gap + returning_points * returning gap)
+```
+
+SP+, FPI and SRS get nothing extra. SP+ and FPI build in their own
+preseason view.
+
 ### The power-conference correction
 
 CFBD Elo understates the gap between power-conference teams (SEC, Big Ten,
 Big 12, ACC, the Pac-12 through 2023, and Notre Dame) and everyone else. When
 a power team hosts a non-power team, real margins and the closing line are
 both about 22 to 23 points, and Elo says about 14. So the Elo margin gets a
-fitted bonus of about 10.6 points per tier step. The list of power teams is
-`POWER_CONFERENCES` and `POWER_TEAM_IDS` in `R/config.R`.
+fitted bonus per tier step, about 6 points in the current fit. It was about 9
+before the preseason terms were added: most of these games are early-season
+non-conference games, where the talent gap now explains part of the
+difference. The list of power teams is `POWER_CONFERENCES` and
+`POWER_TEAM_IDS` in `R/config.R`.
 
 ## From ratings to a spread
 
@@ -49,8 +86,8 @@ For Team A against Team B:
 margin = w_sp  * (SP+ gap)
        + w_fpi * (FPI gap)
        + w_srs * (SRS gap)
-       + w_elo * (Elo gap / k + elo_tier * tier gap)
-       + w_power * power_scale * (Power gap)
+       + w_elo * (Elo gap / k + elo_tier * tier gap + preseason points)
+       + w_power * (power_scale * Power gap + preseason points)
        + h * site
 ```
 
@@ -58,6 +95,7 @@ margin = w_sp  * (SP+ gap)
 - `k` converts Elo points into game points. `tier gap` is +1 when only A is a
   power team, -1 when only B is, and 0 otherwise.
 - `power_scale` is fitted and close to 1.
+- `preseason points` is 0 from week 7 on (see above).
 - `h` is home-field advantage in points. `site` is +1 when A is home, -1 when
   B is home, and 0 on a neutral field.
 - The weights `w` add up to 1.
@@ -82,25 +120,33 @@ Two "house" models are fit on games, each one regression with no intercept:
 
 ```
 Elo model:   home margin = (1/k) * Elo gap + elo_tier * tier gap + h_elo * (not neutral)
+                           + fade * (talent * talent gap + returning * returning gap)
 Power model: home margin = power_scale * Power gap + h_power * (not neutral)
+                           + fade * (talent * talent gap + returning * returning gap)
 ```
 
 The Elo values are CFBD's pregame Elo, and the Power values are our
-walk-forward pregame ratings. Both were known before kickoff. This is the key
+walk-forward pregame ratings. Talent and returning production are known
+before the season. All of it was known before kickoff. This is the key
 design choice in the project.
 
 The app uses one home field, `h`, the mean of `h_elo` and `h_power`. They
-come out within a fraction of a point of each other. `sigma` is the typical
+come out within a fraction of a point of each other. In the same way it uses
+one `talent_points` and one `returning_points`, each the mean of the two
+models' estimates. `sigma` is the typical
 miss of the house blend (the average of the two models) on games it did not
 see.
 
 ### Seasons
 
-- **2021 is burn-in.** The Power rating needs a season of results before its
-  numbers mean anything, so nothing is fit on 2021.
-- **2022 to 2025 are fit and cross-validated** (`FIT_SEASONS`).
+- **2017 is burn-in.** The Power rating needs a season of results before its
+  numbers mean anything, so nothing is fit on 2017.
+- **2018, 2019 and 2021 to 2025 are fit and cross-validated** (`FIT_SEASONS`).
+- **2020 is skipped.** The COVID season had short, conference-only schedules
+  and empty stadiums. It stays in the Power rating's history, so 2021 starts
+  from real results, but it is never fit or scored.
 - **The current season is a holdout** (`HOLDOUT_SEASON`). It is scored with
-  parameters fit on 2022 to 2025 and never used to fit anything.
+  parameters fit on the fit seasons and never used to fit anything.
 
 ### Why not fit on SP+, FPI and SRS?
 
@@ -115,8 +161,9 @@ look-ahead bias.
 
 So:
 
-- `k`, `elo_tier`, `power_scale`, `h` and `sigma` are fit on pregame Elo and
-  pregame Power, which are clean.
+- `k`, `elo_tier`, `power_scale`, `h`, `talent_points`, `returning_points`
+  and `sigma` are fit on pregame Elo, pregame Power and preseason numbers,
+  which are clean.
 - The five blend weights start equal (20% each). A plain average of good
   forecasts is hard to beat.
 - Every week, the pipeline saves what SP+, FPI, SRS and Elo say *before* that
@@ -130,8 +177,8 @@ immediately). It is never used to fit anything.
 
 ## How we check it
 
-- **Leave one season out.** Fit on three of the fit seasons, predict the
-  fourth, repeat. Every prediction in the accuracy table was made without
+- **Leave one season out.** Fit on all but one of the fit seasons, predict
+  that one, repeat. Every prediction in the accuracy table was made without
   seeing that season.
 - **The holdout.** The current season's games, predicted with parameters
   that never saw them.
@@ -146,12 +193,15 @@ immediately). It is never used to fit anything.
 
 ### Backtest
 
-`Rscript scripts/backtest.R` re-tests the models and the factors we tried and
-left out (bye weeks and short rest, blowout curvature, a postseason shift, a
-home-field trend, home field in conference games, a separate early-season
-sigma). It writes [backtest-results.md](backtest-results.md). A factor is
-kept only if its paired bootstrap 95% interval on the cross-validated change
-lies wholly below zero and the holdout agrees. None does today.
+`Rscript scripts/backtest.R` re-tests the models step by step, the two
+factors now in the model (success rate in the Power rating, and preseason
+talent and returning production), and the factors we tried and left out (bye
+weeks and short rest, blowout curvature, a postseason shift, a home-field
+trend, home field in conference games, a separate early-season sigma). It
+writes [backtest-results.md](backtest-results.md). A factor is kept only if
+its paired bootstrap 95% interval on the cross-validated change lies wholly
+below zero and the holdout agrees. The two factors in the model pass; the
+others do not.
 
 ## The pipeline
 
@@ -160,12 +210,13 @@ CFBD API
    |  scripts/snapshot.R  (weekly, automated)
    v
 data/snapshots/*.csv        saved forever, committed to git
+                            (extras/: talent, returning production, game stats)
    |  build_db()
    v
 cfb.sqlite                  rebuilt on demand, not committed
    |  scripts/fit.R         (once a season, or when you want)
    v
-data/params.json            k, h, sigma, weights, accuracy numbers
+data/params.json            k, h, preseason points, sigma, weights, accuracy numbers
    |  build_app_data()
    v
 data/app_data.rds           the one file the app reads
@@ -195,6 +246,6 @@ Rscript scripts/fit.R
 Rscript scripts/refresh.R --offline
 ```
 
-`fit.R` prints a gate report with `k`, `elo_tier`, `power_scale`, `h` and
-`sigma` for each held-out season. They should be close to each other. If they aren't, look at the data before
+`fit.R` prints a gate report with `k`, `elo_tier`, `power_scale`, `h`, the
+preseason points and `sigma`, with the main ones for each held-out season. They should be close to each other. If they aren't, look at the data before
 trusting the fit.

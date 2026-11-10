@@ -1,21 +1,29 @@
 {
   "fit_date": "2026-11-09",
-  "fit_seasons": [2022, 2023, 2024, 2025],
+  "fit_seasons": [2018, 2019, 2021, 2022, 2023, 2024, 2025],
   "holdout_season": 2026,
-  "k": 26.7624,
-  "elo_tier": 10.5436,
-  "power_scale": 0.9942,
-  "h": 2.8112,
-  "h_elo": 2.879,
-  "h_power": 2.7435,
-  "sigma": 15.776,
+  "k": 26.0865,
+  "elo_tier": 6.1279,
+  "power_scale": 1.086,
+  "h": 2.5439,
+  "h_elo": 2.6835,
+  "h_power": 2.4042,
+  "talent_points": 3.0814,
+  "returning_points": 1.6939,
+  "talent_points_elo": 3.5938,
+  "talent_points_power": 2.5691,
+  "returning_points_elo": 1.779,
+  "returning_points_power": 1.6087,
+  "sigma": 15.9049,
   "power": {
     "team_shrink": 4,
     "conference_shrink": 1,
     "carry": 0.7,
     "home_field": 3,
     "new_team_offset": -3,
-    "fcs_start": -25
+    "fcs_start": -25,
+    "success_share": 0.4,
+    "success_points": 124
   },
   "weights": {
     "sp": 0.2,
@@ -30,34 +38,34 @@
     {
       "model": "elo",
       "label": "Elo, power-conference corrected",
-      "n": 3174,
-      "mae": 12.6263,
-      "win_rate": 0.7064,
-      "brier": 0.1876
+      "n": 5490,
+      "mae": 12.7672,
+      "win_rate": 0.7158,
+      "brier": 0.1835
     },
     {
       "model": "power",
       "label": "Power",
-      "n": 3174,
-      "mae": 12.5748,
-      "win_rate": 0.7105,
-      "brier": 0.1854
+      "n": 5490,
+      "mae": 12.715,
+      "win_rate": 0.7197,
+      "brier": 0.182
     },
     {
       "model": "house",
       "label": "Elo and Power average",
-      "n": 3174,
-      "mae": 12.4764,
-      "win_rate": 0.7183,
-      "brier": 0.1845
+      "n": 5490,
+      "mae": 12.6141,
+      "win_rate": 0.7242,
+      "brier": 0.1806
     },
     {
       "model": "line",
       "label": "Closing line",
-      "n": 3174,
-      "mae": 12.0046,
-      "win_rate": 0.7253,
-      "brier": 0.1787
+      "n": 5490,
+      "mae": 12.1882,
+      "win_rate": 0.7306,
+      "brier": 0.1745
     }
   ],
   "holdout": [
@@ -65,25 +73,25 @@
       "model": "elo",
       "label": "Elo, power-conference corrected",
       "n": 562,
-      "mae": 12.3689,
-      "win_rate": 0.7278,
-      "brier": 0.183
+      "mae": 12.3326,
+      "win_rate": 0.726,
+      "brier": 0.1814
     },
     {
       "model": "power",
       "label": "Power",
       "n": 562,
-      "mae": 12.4935,
-      "win_rate": 0.71,
-      "brier": 0.1847
+      "mae": 12.2237,
+      "win_rate": 0.7028,
+      "brier": 0.1814
     },
     {
       "model": "house",
       "label": "Elo and Power average",
       "n": 562,
-      "mae": 12.2854,
-      "win_rate": 0.7189,
-      "brier": 0.1814
+      "mae": 12.0863,
+      "win_rate": 0.7295,
+      "brier": 0.1788
     },
     {
       "model": "line",
@@ -91,99 +99,126 @@
       "n": 562,
       "mae": 11.5485,
       "win_rate": 0.7562,
-      "brier": 0.1706
+      "brier": 0.1707
     }
   ],
   "calibration": [
     {
       "bin_low": 0.5,
       "bin_high": 0.6,
-      "n": 867,
-      "predicted": 0.5496,
-      "actual": 0.564
+      "n": 1458,
+      "predicted": 0.5505,
+      "actual": 0.5562
     },
     {
       "bin_low": 0.6,
       "bin_high": 0.7,
-      "n": 779,
-      "predicted": 0.6486,
-      "actual": 0.6547
+      "n": 1331,
+      "predicted": 0.6484,
+      "actual": 0.6597
     },
     {
       "bin_low": 0.7,
       "bin_high": 0.8,
-      "n": 641,
-      "predicted": 0.7476,
-      "actual": 0.7551
+      "n": 1115,
+      "predicted": 0.749,
+      "actual": 0.7578
     },
     {
       "bin_low": 0.8,
       "bin_high": 0.9,
-      "n": 520,
-      "predicted": 0.8472,
-      "actual": 0.8577
+      "n": 892,
+      "predicted": 0.8486,
+      "actual": 0.8722
     },
     {
       "bin_low": 0.9,
       "bin_high": 1,
-      "n": 367,
-      "predicted": 0.9455,
-      "actual": 0.9564
+      "n": 694,
+      "predicted": 0.9478,
+      "actual": 0.9568
     }
   ],
   "folds": [
     {
+      "season": 2018,
+      "k": 26.1419,
+      "elo_tier": 6.3929,
+      "power_scale": 1.0804,
+      "h": 2.6076,
+      "sigma": 15.8079,
+      "mae": 12.8598
+    },
+    {
+      "season": 2019,
+      "k": 26.6495,
+      "elo_tier": 6.7984,
+      "power_scale": 1.0731,
+      "h": 2.4786,
+      "sigma": 15.8704,
+      "mae": 12.7199
+    },
+    {
+      "season": 2021,
+      "k": 26.2158,
+      "elo_tier": 6.4203,
+      "power_scale": 1.0939,
+      "h": 2.6405,
+      "sigma": 15.8489,
+      "mae": 13.1502
+    },
+    {
       "season": 2022,
-      "k": 26.3313,
-      "elo_tier": 10.4156,
-      "power_scale": 0.9972,
-      "h": 2.9908,
-      "sigma": 15.7355,
-      "mae": 12.4474
+      "k": 25.6588,
+      "elo_tier": 5.8706,
+      "power_scale": 1.1039,
+      "h": 2.6278,
+      "sigma": 15.9203,
+      "mae": 12.2824
     },
     {
       "season": 2023,
-      "k": 27.0768,
-      "elo_tier": 10.7686,
-      "power_scale": 0.9913,
-      "h": 2.9516,
-      "sigma": 15.7037,
-      "mae": 12.6235
+      "k": 26.0133,
+      "elo_tier": 6.0957,
+      "power_scale": 1.0862,
+      "h": 2.5927,
+      "sigma": 15.9097,
+      "mae": 12.4943
     },
     {
       "season": 2024,
-      "k": 26.4063,
-      "elo_tier": 10.2462,
-      "power_scale": 1.0019,
-      "h": 2.6814,
-      "sigma": 15.7514,
-      "mae": 12.628
+      "k": 25.8259,
+      "elo_tier": 5.4732,
+      "power_scale": 1.0858,
+      "h": 2.4436,
+      "sigma": 15.91,
+      "mae": 12.5304
     },
     {
       "season": 2025,
-      "k": 27.247,
-      "elo_tier": 10.7254,
-      "power_scale": 0.9858,
-      "h": 2.6225,
-      "sigma": 15.8759,
-      "mae": 12.2104
+      "k": 26.1512,
+      "elo_tier": 5.8423,
+      "power_scale": 1.0791,
+      "h": 2.4173,
+      "sigma": 15.967,
+      "mae": 12.2857
     }
   ],
   "leaked_diagnostic": [
     {
       "model": "sp",
-      "n": 3174,
-      "mae": 10.7481
+      "n": 5490,
+      "mae": 10.9126
     },
     {
       "model": "fpi",
-      "n": 3174,
-      "mae": 10.5474
+      "n": 5490,
+      "mae": 10.6821
     },
     {
       "model": "srs",
-      "n": 3174,
-      "mae": 10.5103
+      "n": 5490,
+      "mae": 10.5732
     }
   ]
 }
