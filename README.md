@@ -6,6 +6,10 @@
 Pick any two FBS college football teams and get a spread and a win
 probability, on a neutral field or at either team's home.
 
+**[Open the live app](https://01a1c5e7-cc4d-e36c-e94b-154a1b6d62e7.share.connect.posit.cloud)**.
+It runs on Posit Connect Cloud and republishes itself whenever the data
+refreshes.
+
 The number is a blend of five rating systems: four public ones (SP+, FPI, SRS
 and Elo) and our own Power rating, built from game scores and success rate. The app shows where
 each one lands, so you can see when they disagree.
@@ -154,7 +158,7 @@ calling the API.
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
 | `scripts/pull_extras.R` | One-time pull of past seasons' talent, returning production and game stats | Yes, about 30 calls once |
-| `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app (needs the `rsconnect` package) | No |
+| `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app, trimmed to the packages the app uses (needs the `rsconnect` package) | No |
 
 The free API tier allows 1,000 calls a month. The three automatic runs use
 about 20 a week (later runs in a week skip ratings already saved).

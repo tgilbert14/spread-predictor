@@ -230,7 +230,7 @@ A sortable table of every FBS game this week: matchup, our spread, market line, 
 | Tables and charts | `reactable`, `ggplot2` (or `plotly` for the dot plot hover) | |
 | Tests | `testthat` | |
 | Schedule | GitHub Actions cron, key in repo secrets | Windows Task Scheduler as a fallback |
-| Hosting | Local first. shinyapps.io or Posit Connect Cloud later. | App needs only `app_data.rds`, so deploys are trivial |
+| Hosting | Posit Connect Cloud, republished on every push to main. | App needs only `app_data.rds`, so deploys are trivial |
 
 ## Build phases
 
