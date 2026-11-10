@@ -40,8 +40,50 @@ fill_db <- function(con, snapshots_dir, schema_path) {
     load_table(con, "teams", read_season_files(file.path(snapshots_dir, "teams"), add_season = TRUE))
     load_table(con, "games", read_season_files(file.path(snapshots_dir, "games")))
     load_table(con, "lines", read_season_files(file.path(snapshots_dir, "lines")))
+    drop_orphan_lines(con)
     load_table(con, "ratings", read_ratings_files(file.path(snapshots_dir, "ratings")))
   })
+}
+
+#' Drop lines for games we do not track.
+#'
+#' The lines endpoint returns every game a sportsbook listed, including games
+#' between two FCS teams. Our games table only has games with an FBS team, so
+#' those lines can never be used. Removing them keeps the audit meaningful.
+drop_orphan_lines <- function(con) {
+  dropped <- DBI::dbExecute(con, "DELETE FROM lines WHERE game_id NOT IN (SELECT game_id FROM games)")
+  if (dropped > 0) message("Dropped ", dropped, " line rows for games that are not in the games table.")
+  invisible(dropped)
+}
+
+#' One rating per team per snapshot.
+#'
+#' The API sometimes lists a team twice in one pull, now and then with two
+#' different values. We cannot tell which copy is right, so the copies are
+#' averaged and the teams are named, rather than silently using whichever
+#' came first.
+#'
+#' @param ratings A ratings snapshot (needs team_id, team, rating).
+#' @param what Label for the message, such as the file path.
+combine_duplicate_ratings <- function(ratings, what) {
+  dup_ids <- unique(ratings$team_id[duplicated(ratings$team_id)])
+  if (length(dup_ids) == 0) return(ratings)
+
+  is_dup <- ratings$team_id %in% dup_ids
+  differ <- vapply(dup_ids, function(id) {
+    diff(range(ratings$rating[ratings$team_id == id], na.rm = TRUE)) > 0
+  }, logical(1))
+  if (any(differ)) {
+    names_differ <- unique(ratings$team[ratings$team_id %in% dup_ids[differ]])
+    warning(what, ": listed twice with different ratings, so the average is used: ",
+            paste(names_differ, collapse = ", "), ".", call. = FALSE)
+  }
+  means <- tapply(ratings$rating[is_dup], ratings$team_id[is_dup], mean, na.rm = TRUE)
+  keep <- !duplicated(ratings$team_id)
+  out <- ratings[keep, , drop = FALSE]
+  fix <- out$team_id %in% dup_ids
+  out$rating[fix] <- as.numeric(means[as.character(out$team_id[fix])])
+  out
 }
 
 #' Split schema.sql into single statements, dropping "--" comments.
@@ -76,7 +118,7 @@ read_ratings_files <- function(dir) {
     warning("Skipped ratings files in unknown folders: ", paste(files[unknown], collapse = ", "), call. = FALSE)
   }
   frames <- lapply(files[!unknown], function(path) {
-    df <- read_snapshot(path)
+    df <- combine_duplicate_ratings(read_snapshot(path), path)
     df$source <- rep(basename(dirname(path)), nrow(df))
     df$is_final <- rep(as.integer(grepl("_final\\.csv$", path)), nrow(df))
     df

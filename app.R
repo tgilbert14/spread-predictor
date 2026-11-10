@@ -1,5 +1,5 @@
-# CFB Spread Predictor: a Shiny app that blends SP+, FPI, SRS and Elo into a
-# spread and win probability for any two teams.
+# CFB Spread Predictor: a Shiny app that blends SP+, FPI, SRS, Elo and our own
+# Power rating into a spread and win probability for any two teams.
 #
 # Run from the project root:
 #   Rscript -e 'shiny::runApp(".")'

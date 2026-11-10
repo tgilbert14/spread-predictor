@@ -7,7 +7,7 @@
 # Data loading ----------------------------------------------------------------
 
 REQUIRED_TEAM_COLUMNS <- c(
-  "team_id", "school", "conference",
+  "team_id", "school", "conference", "tier",
   names(MODEL_LABELS), paste0(names(MODEL_LABELS), "_rank")
 )
 
@@ -30,7 +30,7 @@ app_data_problems <- function(x) {
                                       paste(missing_cols, collapse = ", ")))
     }
   }
-  missing_params <- setdiff(c("k", "h", "sigma", "weights"), names(x$params))
+  missing_params <- setdiff(c("k", "elo_tier", "power_scale", "h", "sigma", "weights"), names(x$params))
   if (length(missing_params) > 0) {
     problems <- c(problems, sprintf("params is missing %s", paste(missing_params, collapse = ", ")))
   }

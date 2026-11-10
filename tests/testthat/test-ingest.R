@@ -362,3 +362,15 @@ test_that("one failed step does not stop the others", {
   expect_false(file.exists(file.path(root, "ratings/fpi/2026_wk11.csv")))
   expect_true(file.exists(file.path(root, "ratings/elo/2026_wk11.csv")))
 })
+
+test_that("games_unfinished gives up on a game that never got a result", {
+  dir <- withr::local_tempdir()
+  path <- file.path(dir, "2024.csv")
+  games <- data.frame(game_id = 1:2, completed = c(TRUE, FALSE),
+                      start_date = c("2024-09-21T20:00:00.000Z", "2024-09-28T20:00:00.000Z"))
+  suppressMessages(write_snapshot(games, path))
+  # The day after kickoff it is still worth asking for the score.
+  expect_true(games_unfinished(path, now = utc("2024-09-29 13:00:00")))
+  # Months later the game was plainly cancelled.
+  expect_false(games_unfinished(path, now = utc("2025-01-15 13:00:00")))
+})

@@ -127,10 +127,15 @@ pull_snapshot <- function(path, fetch, overwrite = FALSE) {
 }
 
 #' TRUE if a games file is missing or still has games without a final score.
-games_unfinished <- function(path) {
+games_unfinished <- function(path, now = Sys.time(), give_up_days = 14) {
   if (!file.exists(path)) return(TRUE)
   games <- read_snapshot(path)
-  any(!as.logical(games$completed) %in% TRUE)
+  open <- !as.logical(games$completed) %in% TRUE
+  # A game still open two weeks after kickoff was cancelled, not delayed.
+  # Without this, one cancelled game would keep us calling the API all offseason.
+  kickoff <- if ("start_date" %in% names(games)) parse_utc(games$start_date) else rep(as.POSIXct(NA), nrow(games))
+  days_since <- as.numeric(difftime(now, kickoff, units = "days"))
+  any(open & (is.na(days_since) | days_since < give_up_days))
 }
 
 
@@ -369,6 +374,8 @@ normalize_ratings <- function(raw, source, season, week, teams, pulled_at = form
   )
   ratings <- ratings[!is.na(ratings$team_id), ]
 
+  ratings <- combine_duplicate_ratings(ratings, paste(season, source))
+
   n <- nrow(ratings)
   data.frame(
     season    = rep(as.integer(season), n),
@@ -576,7 +583,7 @@ run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
 
   # Games first: the schedule is what tells us which week this snapshot is for.
   games_file <- snapshot_path("games", season, root = root)
-  if (games_unfinished(games_file)) {
+  if (games_unfinished(games_file, now)) {
     ok <- c(ok, pull_games_and_lines(season, root, pulled_at, overwrite = TRUE))
   }
   if (!file.exists(games_file)) {

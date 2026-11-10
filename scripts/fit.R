@@ -1,6 +1,7 @@
-# Rebuild the database from the snapshot files, then fit k, home field and
-# sigma from pregame Elo, validate them season by season, choose blend
-# weights, write data/params.json and print the Phase 2 gate report.
+# Rebuild the database from the snapshot files, then fit the two house
+# models (Elo with its power-conference correction, and our Power rating),
+# validate them season by season, score the holdout season, choose blend
+# weights, write data/params.json and print the model gate report.
 #
 # Run from the project root:
 #   Rscript scripts/fit.R

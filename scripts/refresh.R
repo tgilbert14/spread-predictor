@@ -32,4 +32,19 @@ if (!file.exists(PATHS$params)) {
 }
 
 build_app_data()
+
+# Check the data every time it changes. Problems are reported, not fatal:
+# the report says which ones matter.
+con <- DBI::dbConnect(RSQLite::SQLite(), PATHS$database, flags = RSQLite::SQLITE_RO)
+audit <- tryCatch(list(summary = audit_db(con), counts = audit_table_counts(con)),
+                  finally = DBI::dbDisconnect(con))
+writeLines(audit_markdown(audit$summary, audit$counts), file.path("docs", "data-audit.md"), useBytes = TRUE)
+flagged <- audit$summary[audit$summary$severity %in% c("error", "warning") & audit$summary$n_flagged > 0, ]
+if (nrow(flagged) > 0) {
+  message("\nData audit flagged ", nrow(flagged), " check(s). See docs/data-audit.md: ",
+          paste(flagged$check, collapse = ", "), ".")
+} else {
+  message("\nData audit: no problems found.")
+}
+
 message("\nRefresh done. Wrote ", PATHS$app_data, ".")

@@ -22,7 +22,8 @@ test_that("app data has the shape in the data dictionary", {
   expect_false(app$meta$is_demo)
 
   team_columns <- c("team_id", "school", "mascot", "abbreviation", "conference", "color",
-                    "alt_color", "logo", RATING_SOURCES, paste0(RATING_SOURCES, "_rank"))
+                    "alt_color", "logo", "tier", names(MODEL_LABELS),
+                    paste0(names(MODEL_LABELS), "_rank"))
   expect_true(all(team_columns %in% names(app$teams)))
   expect_named(app$slate, c("game_id", "start_date", "home_id", "away_id",
                             "neutral_site", "market_spread_home"))
@@ -42,7 +43,7 @@ test_that("column types match the demo data the app was built against", {
 
 test_that("ranks run from 1 for the best rating, share ties and keep NA", {
   teams <- app$teams
-  for (source in RATING_SOURCES) {
+  for (source in names(MODEL_LABELS)) {
     rated <- !is.na(teams[[source]])
     best <- teams[[source]] == max(teams[[source]], na.rm = TRUE)
     expect_true(all(teams[[paste0(source, "_rank")]][which(best)] == 1L))
@@ -69,6 +70,22 @@ test_that("each source uses its own latest snapshot when one lags", {
   expect_equal(teams$sp, sp_week_11$rating[match(teams$team_id, sp_week_11$team_id)])
 })
 
+test_that("Power ratings come from every completed game and tier from the conference", {
+  con <- connect_readonly(built$db)
+  on.exit(DBI::dbDisconnect(con))
+  games <- with_project_root(query_sql_file(con, "rating_games.sql", list(BURN_IN_SEASON)))
+  conferences <- with_project_root(query_sql_file(con, "team_conferences.sql"))
+  current <- power_ratings(games, conferences)$current
+
+  teams <- app$teams
+  rated <- !is.na(teams$power)
+  expect_equal(mean(teams$power[rated]), 0)
+  # Centered for display, so gaps between teams match the raw ratings.
+  raw <- current$power[match(teams$team_id[rated], current$team_id)]
+  expect_equal(teams$power[rated] - teams$power[rated][1], raw - raw[1])
+  expect_identical(teams$tier, as.integer(teams$team_id <= FIXTURE_POWER_TEAMS))
+})
+
 test_that("the slate holds only unplayed FBS games, with the median line", {
   slate <- app$slate
   expect_identical(nrow(slate), 6L)
@@ -85,8 +102,14 @@ test_that("predict_matchup works on the built data", {
     expect_true(is.finite(pred$spread))
   }
   # Team 3 has no FPI rating this week, so FPI drops out with a note.
-  pred <- predict_matchup(3, 4, "neutral", app$teams, app$params)
+  rated <- app$teams$team_id[!is.na(app$teams$power) & app$teams$team_id != 3]
+  pred <- predict_matchup(3, rated[1], "neutral", app$teams, app$params)
   expect_true(any(grepl("FPI has no rating", pred$flags)))
+
+  # A team that has not played this season has no Power rating yet.
+  unplayed <- app$teams$team_id[is.na(app$teams$power) & !is.na(app$teams$fpi)]
+  pred <- predict_matchup(unplayed[1], rated[1], "neutral", app$teams, app$params)
+  expect_true(any(grepl("Power has no rating", pred$flags)))
 })
 
 test_that("missing inputs fail with a plain next step", {

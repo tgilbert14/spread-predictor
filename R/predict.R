@@ -5,9 +5,9 @@
 # Sign convention used everywhere in this project:
 #   margin = Team A points minus Team B points. Positive means A is favored.
 
-# The four rating systems, in display order. Names are column names in the
+# The five rating systems, in display order. Names are column names in the
 # teams table; values are the labels people see.
-MODEL_LABELS <- c(sp = "SP+", fpi = "FPI", srs = "SRS", elo = "Elo")
+MODEL_LABELS <- c(sp = "SP+", fpi = "FPI", srs = "SRS", elo = "Elo", power = "Power")
 
 SITE_CHOICES <- c("neutral", "a_home", "b_home")
 
@@ -39,9 +39,11 @@ find_team <- function(team, teams) {
 #'
 #' @param team_a,team_b School name or team_id.
 #' @param site "neutral", "a_home" or "b_home".
-#' @param teams Teams table with one rating column per model (sp, fpi, srs, elo)
-#'   and matching rank columns (sp_rank, ...).
-#' @param params Fitted parameters: k (Elo points per game point), h (home
+#' @param teams Teams table with one rating column per model (sp, fpi, srs,
+#'   elo, power), matching rank columns (sp_rank, ...) and tier (1 for a
+#'   power team, 0 otherwise).
+#' @param params Fitted parameters: k (Elo points per game point), elo_tier
+#'   (points per tier step), power_scale (points per Power point), h (home
 #'   field, in points), sigma (SD of actual margin around the prediction) and
 #'   weights (named, one per model, summing to 1).
 #' @return A list: team_a and team_b (one-row data frames), site, spread
@@ -71,9 +73,7 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
     row.names = NULL
   )
 
-  # Elo is not in points, so its gap is divided by k. The others already are.
-  points_per_unit <- ifelse(models$model == "elo", 1 / params$k, 1)
-  models$margin <- (models$rating_a - models$rating_b) * points_per_unit + home_edge
+  models$margin <- rating_margins(models, a$tier - b$tier, params) + home_edge
 
   # A team can be missing from one system. Drop that system for this matchup
   # and let the remaining weights fill the gap, rather than failing.
@@ -90,8 +90,10 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
   flags <- character()
   missing_models <- models$label[is.na(models$margin)]
   if (length(missing_models) > 0) {
-    flags <- c(flags, sprintf("%s has no rating for one of these teams, so it was left out.",
-                              paste(missing_models, collapse = " and ")))
+    flags <- c(flags, sprintf("%s %s no rating for one of these teams, so %s left out.",
+                              paste(missing_models, collapse = " and "),
+                              if (length(missing_models) == 1) "has" else "have",
+                              if (length(missing_models) == 1) "it was" else "they were"))
   }
   if (diff(range(models$margin[usable])) > DISAGREEMENT_POINTS) {
     flags <- c(flags, sprintf("Models disagree by more than %d points.", DISAGREEMENT_POINTS))
@@ -107,4 +109,22 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params) {
     models     = models,
     flags      = flags
   )
+}
+
+#' Each model's margin before home field, A minus B.
+#'
+#' SP+, FPI and SRS are already in points. Elo is not, so its gap is divided
+#' by k, and it gets elo_tier points per tier step because CFBD Elo
+#' understates the gap between power-conference teams and everyone else.
+#' Power is in points but is rescaled by its fitted power_scale.
+#'
+#' @param models Rows of model, rating_a and rating_b.
+#' @param tier_diff Team A's tier minus Team B's: -1, 0 or 1.
+rating_margins <- function(models, tier_diff, params) {
+  margin <- models$rating_a - models$rating_b
+  elo <- models$model == "elo"
+  margin[elo] <- margin[elo] / params$k + params$elo_tier * tier_diff
+  power <- models$model == "power"
+  margin[power] <- params$power_scale * margin[power]
+  margin
 }

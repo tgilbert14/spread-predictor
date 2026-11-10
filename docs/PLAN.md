@@ -17,6 +17,11 @@ Rev 2 · Nov 9, 2026 · @tim
 > - The app is light, not dark: navy ink on a pale ground with the answer set
 >   large and a band in the two team colors. Brand turquoise is kept for the
 >   navbar and the blend marker. Fonts ship in `www/fonts/`.
+> - The model grew after backtesting on real data: a fifth system (our own
+>   Power rating) and a power-conference correction for Elo. Both earned
+>   their place out of sample. Six other factors were tested and rejected.
+>   See `docs/backtest-results.md`.
+> - A data audit runs on every refresh and writes `docs/data-audit.md`.
 >
 > The README and the other files in `docs/` describe the project as built.
 

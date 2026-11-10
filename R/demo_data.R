@@ -50,56 +50,72 @@ demo_app_data <- function(seed = 2026) {
   n <- nrow(DEMO_TEAMS)
 
   # One hidden "true strength" per team, in points. Each system sees it with
-  # its own noise, which is what makes the models disagree a little.
+  # its own noise, which is what makes the models disagree a little. The
+  # first conference plays the part of a power conference, and its Elo
+  # understates it by the tier edge, as CFBD Elo does with real ones.
   strength <- sort(stats::rnorm(n, mean = 0, sd = 10), decreasing = TRUE)[sample(n)]
   k <- 25
+  elo_tier <- 10
 
   teams <- DEMO_TEAMS
   teams$team_id <- 9000L + seq_len(n)
   teams$logo <- NA_character_
+  teams$tier <- as.integer(teams$conference == "Desert Athletic")
+  strength <- strength + 4 * teams$tier
   teams$sp  <- round(strength + stats::rnorm(n, 0, 2.5), 1)
   teams$fpi <- round(strength + stats::rnorm(n, 0, 2.5), 1)
   teams$srs <- round(strength + stats::rnorm(n, 0, 4.0), 1)
-  teams$elo <- round(1500 + k * (strength + stats::rnorm(n, 0, 2.5)))
-  for (model in c("sp", "fpi", "srs", "elo")) {
+  teams$elo <- round(1500 + k * (strength - elo_tier * teams$tier + stats::rnorm(n, 0, 2.5)))
+  teams$power <- round(strength + stats::rnorm(n, 0, 3.0), 1)
+  for (model in names(MODEL_LABELS)) {
     teams[[paste0(model, "_rank")]] <- rank(-teams[[model]], ties.method = "min")
+  }
+
+  forecasts <- c("elo", "power", "house", "line")
+  forecast_table <- function(n, mae, win_rate, brier) {
+    data.frame(model = forecasts, label = unname(FORECAST_LABELS[forecasts]), n = n,
+               mae = mae, win_rate = win_rate, brier = brier, stringsAsFactors = FALSE)
   }
 
   params <- list(
     fit_date = "2026-11-09",
-    training_seasons = 2021:2025,
+    fit_seasons = 2022:2025,
+    holdout_season = 2026L,
     k = k,
-    h = 2.5,
-    sigma = 16,
-    weights = list(sp = 0.25, fpi = 0.25, srs = 0.25, elo = 0.25),
+    elo_tier = elo_tier,
+    power_scale = 1,
+    h = 2.8,
+    h_elo = 2.9,
+    h_power = 2.7,
+    sigma = 15.8,
+    power = POWER_RATING,
+    weights = equal_weights(),
     weights_method = "equal",
-    metrics = data.frame(
-      model = c("elo", "line"),
-      label = c("Elo (what we fit on)", "Closing line"),
-      n = c(3600L, 3600L),
-      mae = c(13.4, 12.2),
-      win_rate = c(0.72, 0.75),
-      brier = c(0.186, 0.172),
-      stringsAsFactors = FALSE
-    ),
+    weights_note = "Equal weights: these are made-up demo numbers.",
+    metrics = forecast_table(3200L, c(12.6, 12.6, 12.5, 12.0), c(0.71, 0.71, 0.72, 0.73),
+                             c(0.188, 0.185, 0.185, 0.179)),
+    holdout = forecast_table(560L, c(12.4, 12.5, 12.3, 11.5), c(0.73, 0.71, 0.72, 0.76),
+                             c(0.183, 0.185, 0.181, 0.171)),
     calibration = data.frame(
       bin_low   = seq(0.5, 0.9, by = 0.1),
       bin_high  = seq(0.6, 1.0, by = 0.1),
-      n         = c(900L, 820L, 740L, 640L, 500L),
+      n         = c(860L, 780L, 640L, 520L, 370L),
       predicted = c(0.55, 0.65, 0.75, 0.85, 0.94),
-      actual    = c(0.54, 0.66, 0.74, 0.86, 0.95)
+      actual    = c(0.56, 0.66, 0.76, 0.86, 0.95)
     ),
     folds = data.frame(
-      season = 2021:2025,
-      k = c(25.4, 24.7, 25.1, 24.9, 25.3),
-      h = c(2.6, 2.3, 2.5, 2.4, 2.7),
-      sigma = c(16.2, 15.8, 16.1, 15.9, 16.0),
-      mae = c(13.5, 13.2, 13.4, 13.3, 13.6)
+      season = 2022:2025,
+      k = c(26.3, 27.1, 26.4, 27.3),
+      elo_tier = c(10.4, 10.8, 10.2, 10.7),
+      power_scale = c(1.00, 0.99, 1.00, 0.99),
+      h = c(3.0, 2.9, 2.7, 2.6),
+      sigma = c(15.7, 15.7, 15.8, 15.9),
+      mae = c(12.4, 12.6, 12.6, 12.2)
     ),
     leaked_diagnostic = data.frame(
       model = c("sp", "fpi", "srs"),
-      n = rep(3600L, 3),
-      mae = c(11.9, 12.0, 11.6)
+      n = rep(3200L, 3),
+      mae = c(10.8, 10.6, 10.5)
     )
   )
 

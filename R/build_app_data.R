@@ -51,7 +51,8 @@ latest_snapshots <- function(coverage, season) {
   in_season[!duplicated(in_season$source), , drop = FALSE]
 }
 
-#' The season's teams with one rating and one rank column per source.
+#' The season's teams with one rating and one rank column per system, and
+#' tier (1 for a power team, 0 otherwise).
 #'
 #' Rank 1 is the best rating. Tied teams share the better rank, and a team
 #' with no rating has no rank.
@@ -68,11 +69,31 @@ current_teams <- function(con, season, latest) {
                         weekly$week %in% week, , drop = FALSE]
     teams[[source]] <- ratings$rating[match(teams$team_id, ratings$team_id)]
   }
-  for (source in RATING_SOURCES) {
-    teams[[paste0(source, "_rank")]] <-
-      as.integer(rank(-teams[[source]], ties.method = "min", na.last = "keep"))
+  teams$power <- current_power(con, season, teams$team_id)
+  for (model in names(MODEL_LABELS)) {
+    teams[[paste0(model, "_rank")]] <-
+      as.integer(rank(-teams[[model]], ties.method = "min", na.last = "keep"))
   }
+  teams$tier <- as.integer(is_power_team(teams$conference, teams$team_id, season))
   teams
+}
+
+#' Each team's Power rating after every completed game so far this season.
+#'
+#' Only gaps between ratings matter for a spread, so the ratings are shifted
+#' to average zero across these teams. That way they read like the others:
+#' points better than an average FBS team.
+current_power <- function(con, season, team_ids) {
+  games <- query_sql_file(con, "rating_games.sql", list(BURN_IN_SEASON))
+  if (!season %in% games$season) {
+    stop(sprintf("The Power rating needs the %d schedule, and the database has no %d games. ",
+                 season, season),
+         "Run `Rscript scripts/refresh.R` to load them, then try again.", call. = FALSE)
+  }
+  games <- games[games$season <= season, , drop = FALSE]
+  current <- power_ratings(games, query_sql_file(con, "team_conferences.sql"))$current
+  power <- current$power[match(team_ids, current$team_id)]
+  power - mean(power, na.rm = TRUE)
 }
 
 #' This week's unplayed FBS games, with the median sportsbook spread.

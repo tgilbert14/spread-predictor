@@ -133,3 +133,30 @@ test_that("build_db and check_db give plain errors when files are missing", {
   expect_error(build_db(file.path(dir, "nope"), file.path(dir, "x.sqlite"), schema_file), "backfill")
   expect_error(check_db(file.path(dir, "x.sqlite")), "build_db")
 })
+
+test_that("combine_duplicate_ratings averages a team listed twice and names it", {
+  ratings <- data.frame(
+    team_id = c(1L, 2L, 2L, 3L, 3L),
+    team = c("A", "B", "B", "C", "C"),
+    rating = c(5, -20.4, -24.8, 7, 7),
+    stringsAsFactors = FALSE
+  )
+  # B's copies disagree, so it is named. C's copies agree, so it is not.
+  expect_warning(out <- combine_duplicate_ratings(ratings, "srs file"), "srs file.*average is used: B\\.")
+  expect_equal(out$team_id, 1:3)
+  expect_equal(out$rating, c(5, -22.6, 7))
+
+  clean <- ratings[c(1, 2, 4), ]
+  expect_silent(same <- combine_duplicate_ratings(clean, "srs file"))
+  expect_equal(same, clean)
+})
+
+test_that("drop_orphan_lines removes lines for games we do not track", {
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  withr::defer(DBI::dbDisconnect(con))
+  DBI::dbWriteTable(con, "games", data.frame(game_id = 1:2))
+  DBI::dbWriteTable(con, "lines", data.frame(game_id = c(1L, 2L, 99L), spread = c(-3, 7, 1)))
+  expect_message(dropped <- drop_orphan_lines(con), "Dropped 1 line")
+  expect_equal(dropped, 1)
+  expect_equal(DBI::dbGetQuery(con, "SELECT game_id FROM lines ORDER BY game_id")$game_id, 1:2)
+})

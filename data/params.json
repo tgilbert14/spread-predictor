@@ -1,124 +1,189 @@
 {
   "fit_date": "2026-11-09",
-  "training_seasons": [2021, 2022, 2023, 2024, 2025],
-  "k": 24.1857,
-  "h": 3.4296,
-  "sigma": 16.4316,
+  "fit_seasons": [2022, 2023, 2024, 2025],
+  "holdout_season": 2026,
+  "k": 26.7681,
+  "elo_tier": 10.5555,
+  "power_scale": 0.9943,
+  "h": 2.8017,
+  "h_elo": 2.872,
+  "h_power": 2.7314,
+  "sigma": 15.7784,
+  "power": {
+    "team_shrink": 4,
+    "conference_shrink": 1,
+    "carry": 0.7,
+    "home_field": 3,
+    "new_team_offset": -3,
+    "fcs_start": -25
+  },
   "weights": {
-    "sp": 0.25,
-    "fpi": 0.25,
-    "srs": 0.25,
-    "elo": 0.25
+    "sp": 0.2,
+    "fpi": 0.2,
+    "srs": 0.2,
+    "elo": 0.2,
+    "power": 0.2
   },
   "weights_method": "equal",
   "weights_note": "Equal weights: 0 games have weekly snapshots from every system, and fitting needs at least 300 across two or more weeks.",
   "metrics": [
     {
       "model": "elo",
-      "label": "Elo (out of fold)",
-      "n": 3944,
-      "mae": 13.0431,
-      "win_rate": 0.7041,
-      "brier": 0.1903
+      "label": "Elo, power-conference corrected",
+      "n": 3174,
+      "mae": 12.6272,
+      "win_rate": 0.7064,
+      "brier": 0.1876
+    },
+    {
+      "model": "power",
+      "label": "Power",
+      "n": 3174,
+      "mae": 12.5754,
+      "win_rate": 0.7101,
+      "brier": 0.1854
+    },
+    {
+      "model": "house",
+      "label": "Elo and Power average",
+      "n": 3174,
+      "mae": 12.4777,
+      "win_rate": 0.7187,
+      "brier": 0.1845
     },
     {
       "model": "line",
       "label": "Closing line",
-      "n": 3944,
-      "mae": 12.1089,
+      "n": 3174,
+      "mae": 12.0047,
+      "win_rate": 0.7253,
+      "brier": 0.1787
+    }
+  ],
+  "holdout": [
+    {
+      "model": "elo",
+      "label": "Elo, power-conference corrected",
+      "n": 562,
+      "mae": 12.3689,
       "win_rate": 0.726,
-      "brier": 0.1783
+      "brier": 0.183
+    },
+    {
+      "model": "power",
+      "label": "Power",
+      "n": 562,
+      "mae": 12.4938,
+      "win_rate": 0.7117,
+      "brier": 0.1847
+    },
+    {
+      "model": "house",
+      "label": "Elo and Power average",
+      "n": 562,
+      "mae": 12.2854,
+      "win_rate": 0.7171,
+      "brier": 0.1814
+    },
+    {
+      "model": "line",
+      "label": "Closing line",
+      "n": 562,
+      "mae": 11.5485,
+      "win_rate": 0.7562,
+      "brier": 0.1706
     }
   ],
   "calibration": [
     {
       "bin_low": 0.5,
       "bin_high": 0.6,
-      "n": 1065,
-      "predicted": 0.5488,
-      "actual": 0.5343
+      "n": 864,
+      "predicted": 0.5494,
+      "actual": 0.5637
     },
     {
       "bin_low": 0.6,
       "bin_high": 0.7,
-      "n": 994,
-      "predicted": 0.6498,
-      "actual": 0.6469
+      "n": 784,
+      "predicted": 0.6485,
+      "actual": 0.6569
     },
     {
       "bin_low": 0.7,
       "bin_high": 0.8,
-      "n": 853,
-      "predicted": 0.7492,
-      "actual": 0.7573
+      "n": 639,
+      "predicted": 0.7475,
+      "actual": 0.7559
     },
     {
       "bin_low": 0.8,
       "bin_high": 0.9,
-      "n": 653,
-      "predicted": 0.8464,
-      "actual": 0.8729
+      "n": 520,
+      "predicted": 0.8472,
+      "actual": 0.8558
     },
     {
       "bin_low": 0.9,
       "bin_high": 1,
-      "n": 379,
-      "predicted": 0.9404,
-      "actual": 0.9208
+      "n": 367,
+      "predicted": 0.9454,
+      "actual": 0.9564
     }
   ],
   "folds": [
     {
-      "season": 2021,
-      "k": 24.3496,
-      "h": 3.6125,
-      "sigma": 16.3958,
-      "mae": 13.4034
-    },
-    {
       "season": 2022,
-      "k": 23.7898,
-      "h": 3.5564,
-      "sigma": 16.4197,
-      "mae": 12.9374
+      "k": 26.3398,
+      "elo_tier": 10.4322,
+      "power_scale": 0.9973,
+      "h": 2.9788,
+      "sigma": 15.739,
+      "mae": 12.4468
     },
     {
       "season": 2023,
-      "k": 24.3325,
-      "h": 3.4931,
-      "sigma": 16.4267,
-      "mae": 12.9184
+      "k": 27.0847,
+      "elo_tier": 10.7845,
+      "power_scale": 0.9914,
+      "h": 2.9396,
+      "sigma": 15.7071,
+      "mae": 12.6233
     },
     {
       "season": 2024,
-      "k": 24.0091,
-      "h": 3.2758,
-      "sigma": 16.3997,
-      "mae": 13.2189
+      "k": 26.4063,
+      "elo_tier": 10.2462,
+      "power_scale": 1.002,
+      "h": 2.6811,
+      "sigma": 15.7514,
+      "mae": 12.6327
     },
     {
       "season": 2025,
-      "k": 24.4617,
-      "h": 3.2106,
-      "sigma": 16.5159,
-      "mae": 12.7499
+      "k": 27.2538,
+      "elo_tier": 10.7406,
+      "power_scale": 0.9859,
+      "h": 2.6094,
+      "sigma": 15.8791,
+      "mae": 12.2117
     }
   ],
   "leaked_diagnostic": [
     {
       "model": "sp",
-      "n": 3944,
-      "mae": 10.8714
+      "n": 3174,
+      "mae": 10.7519
     },
     {
       "model": "fpi",
-      "n": 3944,
-      "mae": 10.6767
+      "n": 3174,
+      "mae": 10.553
     },
     {
       "model": "srs",
-      "n": 3944,
-      "mae": 10.6309
+      "n": 3174,
+      "mae": 10.5127
     }
   ]
 }

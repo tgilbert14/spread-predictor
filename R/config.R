@@ -9,13 +9,62 @@ PATHS <- list(
   app_data  = file.path("data", "app_data.rds")
 )
 
-# Seasons used to fit k, home field and sigma. 2020 is skipped on purpose:
-# the COVID season had odd schedules and empty stadiums.
+# Seasons to backfill from the API. 2020 is skipped on purpose: the COVID
+# season had odd schedules and empty stadiums.
 TRAINING_SEASONS <- 2021:2025
+
+# The first season only warms up the Power rating, which needs a season of
+# results before its numbers mean anything. Nothing is fit on it.
+BURN_IN_SEASON <- 2021L
+
+# Seasons the model is fit and cross-validated on.
+FIT_SEASONS <- 2022:2025
+
+# The season after the fit seasons is scored as a holdout: the fit never
+# sees it, so it is an honest check on the current season to date.
+HOLDOUT_SEASON <- max(FIT_SEASONS) + 1L
 
 # Rating systems we snapshot. These are also the folder names under
 # data/snapshots/ratings/ and the rating column names in the teams table.
 RATING_SOURCES <- c("sp", "fpi", "srs", "elo")
+
+# Every system in the blend: the snapshotted ones plus our own Power rating,
+# which is computed from game results instead of being downloaded.
+BLEND_SYSTEMS <- c(RATING_SOURCES, "power")
+
+# Settings for the Power rating (R/power_rating.R). Scores are not capped:
+# caps of 28 and 38 points both predicted worse than no cap.
+POWER_RATING <- list(
+  team_shrink = 4,        # Pull on each team toward its prior; 3 to 6 all score within 0.03 points.
+  conference_shrink = 1,  # Pull on each conference shift; weak, so a whole league can move fast.
+  carry = 0.7,            # Share of last season's edge over its conference that carries over.
+  home_field = 3,         # Points taken off home margins so ratings are neutral-field.
+  new_team_offset = -3,   # A team new to the data starts this far below its conference average.
+  fcs_start = -25         # First-season rating of the single pooled FCS team.
+)
+
+# Power conferences and the last season each counted as one. CFBD Elo
+# understates the gap between these teams and everyone else, so the Elo model
+# adds a fitted bonus per tier step. Inf means "still a power conference".
+# The Pac-12 lost its power status when ten members left after 2023.
+POWER_CONFERENCES <- c("SEC" = Inf, "Big Ten" = Inf, "Big 12" = Inf, "ACC" = Inf, "Pac-12" = 2023)
+
+# Independents that count as power teams. 87 is Notre Dame.
+POWER_TEAM_IDS <- c(87L)
+
+#' Is each team a power team in that season?
+#'
+#' Vectorized over all three arguments.
+#'
+#' @param conference Conference name as in the teams table (may be NA).
+#' @param team_id CFBD team id.
+#' @param season Season year.
+#' @return Logical, never NA.
+is_power_team <- function(conference, team_id, season) {
+  last_power_season <- unname(POWER_CONFERENCES[conference])
+  in_power_conference <- !is.na(last_power_season) & season <= last_power_season
+  in_power_conference | team_id %in% POWER_TEAM_IDS
+}
 
 # Ratings older than this many days raise a "stale" note in the app.
 STALE_AFTER_DAYS <- 8

@@ -1,7 +1,10 @@
 # A small synthetic database with known answers, built from sql/schema.sql
 # in a temp file. Fit tests check that the fit recovers FIXTURE_TRUTH.
 
-FIXTURE_TRUTH <- list(k = 25, h = 2.5, sigma = 16)
+FIXTURE_TRUTH <- list(k = 25, h = 2.5, sigma = 16, elo_tier = 8)
+
+# The first FIXTURE_POWER_TEAMS team ids play in a power conference.
+FIXTURE_POWER_TEAMS <- 20L
 
 # The current (snapshot) season and week in the fixture.
 FIXTURE_SEASON <- 2026L
@@ -27,11 +30,16 @@ create_schema <- function(con) {
   }
 }
 
-#' Simulated games for one season, following the model exactly.
+#' 1 for the fixture's power-conference teams, 0 for the rest.
+fixture_tier <- function(team_id) as.integer(team_id <= FIXTURE_POWER_TEAMS)
+
+#' Simulated games for one season, following the Elo model exactly.
 #'
-#' The real margin is Elo margin + home field + market information + noise.
-#' The closing line sees the market information and Elo does not, which
-#' makes the line sharper than Elo, as it is in real life.
+#' The real margin is Elo margin + tier edge + home field + market
+#' information + noise. Elo does not see the tier edge, as CFBD Elo
+#' understates power-conference teams. The closing line sees the market
+#' information and Elo does not, which makes the line sharper than Elo, as it
+#' is in real life.
 simulate_games <- function(season, n_games, strength, first_id, truth) {
   team_ids <- seq_along(strength)
   pairs <- t(replicate(n_games, sample(team_ids, 2)))
@@ -39,7 +47,8 @@ simulate_games <- function(season, n_games, strength, first_id, truth) {
   neutral <- as.integer(stats::runif(n_games) < 0.1)
   home_elo <- pregame_elo(pairs[, 1])
   away_elo <- pregame_elo(pairs[, 2])
-  elo_margin <- (home_elo - away_elo) / truth$k + truth$h * (1 - neutral)
+  tier_diff <- fixture_tier(pairs[, 1]) - fixture_tier(pairs[, 2])
+  elo_margin <- (home_elo - away_elo) / truth$k + truth$elo_tier * tier_diff + truth$h * (1 - neutral)
   market_info <- stats::rnorm(n_games, 0, 10)
   noise <- stats::rnorm(n_games, 0, sqrt(truth$sigma^2 - 10^2))
   margin <- round(elo_margin + market_info + noise)
@@ -73,8 +82,10 @@ simulate_lines <- function(games, flip_lines) {
 }
 
 #' Games that must never reach the fit: FBS vs FCS, and missing pregame Elo.
-#' Their margins are absurd so that including them would wreck the estimates.
-simulate_excluded_games <- function(season, n_teams, first_id) {
+#' The FCS margins are absurd so that including them would wreck the Elo fit.
+#' The Power rating does learn from them, through its pooled FCS team. The
+#' games without Elo are ordinary games, because Power learns from those too.
+simulate_excluded_games <- function(season, strength, first_id, truth) {
   fcs <- data.frame(
     game_id = first_id + 1:10, season = season, week = 2L, season_type = "regular",
     start_date = NA_character_, completed = 1L, neutral_site = 0L,
@@ -83,11 +94,7 @@ simulate_excluded_games <- function(season, n_teams, first_id) {
     away_id = 900L + 1:10, away_team = paste("FCS", 1:10), away_class = "fcs",
     away_points = 0L, away_pregame_elo = 1500
   )
-  no_elo <- fcs
-  no_elo$game_id <- first_id + 11:20
-  no_elo$away_id <- 11:20
-  no_elo$away_team <- paste("Team", 11:20)
-  no_elo$away_class <- "fbs"
+  no_elo <- simulate_games(season, 10, strength, first_id + 10L, truth)[, names(fcs)]
   no_elo$home_pregame_elo <- NA_real_
   rbind(fcs, no_elo)
 }
@@ -137,6 +144,7 @@ simulate_current_season <- function(strength, truth) {
   other <- slate$game_id[3:6]
   lines <- rbind(lines, data.frame(game_id = other, provider = "Book A", spread = -7,
                                    pulled_at = "2026-11-10T13:00:00Z"))
+  lines <- rbind(lines, simulate_lines(played, flip_lines = FALSE))
   list(games = rbind(played, slate), ratings = ratings, lines = lines)
 }
 
@@ -158,7 +166,8 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
     teams[[length(teams) + 1]] <- data.frame(
       season = season, team_id = seq_len(n_teams), school = paste("Team", seq_len(n_teams)),
       mascot = "Mascots", abbreviation = sprintf("T%02d", seq_len(n_teams)),
-      conference = "Fixture", color = "#123456", alt_color = "#FFFFFF", logo = NA_character_
+      conference = ifelse(fixture_tier(seq_len(n_teams)) == 1, "SEC", "Sun Belt"),
+      color = "#123456", alt_color = "#FFFFFF", logo = NA_character_
     )
   }
 
@@ -166,7 +175,7 @@ make_fixture_db <- function(path = tempfile(fileext = ".sqlite"), seasons = 2021
     strength <- stats::rnorm(n_teams, 0, 10)
     played <- simulate_games(season, games_per_season, strength, season * 10000L, truth)
     games[[length(games) + 1]] <- played
-    games[[length(games) + 1]] <- simulate_excluded_games(season, n_teams, season * 10000L + 5000L)
+    games[[length(games) + 1]] <- simulate_excluded_games(season, strength, season * 10000L + 5000L, truth)
     lines[[length(lines) + 1]] <- simulate_lines(played, flip_lines)
     ratings[[length(ratings) + 1]] <- do.call(rbind, lapply(
       c("sp", "fpi", "srs"), ratings_rows, season = season, week = NA_integer_, is_final = 1L,

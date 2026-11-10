@@ -309,7 +309,8 @@ model_table <- function(pred) {
     headers = list("Model", rating_header(name_a), rating_header(name_b), "Margin", "Weight"),
     numeric = c(FALSE, TRUE, TRUE, FALSE, TRUE),
     row_class = c(ifelse(left_out, "is-left-out", ""), "is-blend"),
-    caption = "Ratings are points better than an average team, except Elo, which uses its own scale."
+    caption = paste("Ratings are points better than an average team, except Elo, which uses its own scale.",
+                    "Power is our own rating, built from game scores. Elo's margin includes the power-conference correction.")
   )
 }
 

@@ -26,7 +26,8 @@ can be rebuilt from them.
 | `games/{season}.csv` | game | Past seasons once. Current season is rewritten each run, because games get played. |
 | `lines/{season}.csv` | game and sportsbook | Same rule as games. |
 
-`{source}` is one of `sp`, `fpi`, `srs`, `elo`. `{WW}` is the zero-padded
+`{source}` is one of `sp`, `fpi`, `srs`, `elo`. The fifth system, Power, is
+computed from game results (`R/power_rating.R`), so it has no snapshot files. `{WW}` is the zero-padded
 CFBD week, for example `2026_wk11.csv`.
 
 **Postseason.** CFBD restarts week numbers at 1 for the postseason, so a
@@ -84,16 +85,22 @@ Written by `scripts/fit.R`. Committed, so changes show up in git history.
 | Field | Meaning |
 |---|---|
 | `fit_date` | Date of the fit |
-| `training_seasons` | Seasons used |
+| `fit_seasons` | Seasons the model was fit and cross-validated on (`FIT_SEASONS`). The burn-in season before them only warms up the Power rating. |
+| `holdout_season` | Season scored in `holdout`, never used to fit anything |
 | `k` | Elo points per point of margin. Elo gap divided by `k` is a margin. |
-| `h` | Home-field advantage in points |
-| `sigma` | Standard deviation of the real margin around the prediction |
-| `weights` | One number per model (`sp`, `fpi`, `srs`, `elo`). They sum to 1. |
+| `elo_tier` | Points added to the Elo margin per tier step (power team vs non-power team) |
+| `power_scale` | Points of margin per point of Power rating gap |
+| `h` | Home-field advantage in points, used by every model in the app: the mean of `h_elo` and `h_power` |
+| `h_elo`, `h_power` | Home field as fitted by the Elo model and the Power model. Reported so you can see they agree. |
+| `sigma` | Standard deviation of the real margin around the house blend (the Elo and Power average), out of fold |
+| `power` | The Power rating settings used (`POWER_RATING` in `R/config.R`) |
+| `weights` | One number per system (`sp`, `fpi`, `srs`, `elo`, `power`). They sum to 1. |
 | `weights_method` | `"equal"` or `"fitted"` |
 | `weights_note` | One sentence on why that method was chosen |
-| `metrics` | Rows of `model`, `label`, `n`, `mae`, `win_rate`, `brier` |
-| `calibration` | Rows of `bin_low`, `bin_high`, `n`, `predicted`, `actual` |
-| `folds` | One row per held-out season: `season`, `k`, `h`, `sigma`, `mae` |
+| `metrics` | Out-of-fold accuracy on the fit seasons. Rows of `model` (`elo`, `power`, `house`, `line`), `label`, `n`, `mae`, `win_rate`, `brier`, all on the same games (those with a closing line) |
+| `holdout` | Same columns, for the holdout season, using parameters fitted on the fit seasons only |
+| `calibration` | House blend, out of fold. Rows of `bin_low`, `bin_high`, `n`, `predicted`, `actual` |
+| `folds` | One row per held-out season: `season`, `k`, `elo_tier`, `power_scale`, `h`, `sigma` (from that fold's training games), `mae` (house blend) |
 | `leaked_diagnostic` | Rows of `model`, `n`, `mae` using season-final ratings. For catching bugs only. |
 
 ## App data (`data/app_data.rds`)
@@ -105,7 +112,7 @@ with made-up teams.
 | Element | Type | Contents |
 |---|---|---|
 | `meta` | list | `season`, `week`, `ratings_date`, `built_at`, `is_demo` |
-| `teams` | data frame | One row per FBS team: the teams columns above, plus `sp`, `fpi`, `srs`, `elo` and `sp_rank`, `fpi_rank`, `srs_rank`, `elo_rank`. A rating can be `NA`. |
+| `teams` | data frame | One row per FBS team: the teams columns above, plus `sp`, `fpi`, `srs`, `elo`, `power`, their ranks (`sp_rank` and so on), and `tier` (1 for a power team, 0 otherwise, from `is_power_team()`). `power` is centered so the average team is 0. A rating can be `NA`. |
 | `params` | list | The contents of `params.json`. Table-like fields are data frames. |
 | `slate` | data frame | This week's FBS games: `game_id`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `market_spread_home` (can be `NA`) |
 | `coverage` | data frame | Which snapshots exist: `source`, `season`, `week`, `n_teams`, `pulled_at` |

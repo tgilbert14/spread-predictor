@@ -21,9 +21,10 @@ mod_report_ui <- function(id, app_data) {
       report_section("Calibration", calibration_block(ns, params$calibration))
     )),
     report_grid(list(
-      report_section("Season by season", folds_block(params$folds)),
+      report_section("This season so far", holdout_block(params)),
       report_section("Leaked check", leaked_block(params$leaked_diagnostic), badge = "Not used for fitting")
     )),
+    report_section("Season by season", folds_block(params$folds)),
     report_section("Snapshot coverage", coverage_block(app_data$coverage))
   )
 }
@@ -53,27 +54,37 @@ how_it_works <- function() {
   htmltools::div(
     class = "prose",
     htmltools::p(
-      "Four public rating systems (SP+, FPI, SRS and Elo) each score every team by how strong it has played. ",
-      "The first three say how many points better a team is than an average one; Elo uses its own scale, ",
-      "which we convert to points. ",
-      "The gap between two teams' ratings is each system's predicted margin, and we average those margins ",
-      "using the weights below. ",
+      "Five rating systems each score every team. Four are public: SP+, FPI and SRS say how many points ",
+      "better a team is than an average one, and Elo uses its own scale, which we convert to points. ",
+      "The fifth, Power, is our own. We build it from game scores alone, week by week, using only games ",
+      "already played. "
+    ),
+    htmltools::p(
+      "Elo undersells the gap between power-conference teams (the SEC, Big Ten, Big 12, ACC and Notre Dame) ",
+      "and everyone else, so its margin gets a correction for that, learned from past games. ",
+      "Each system's rating gap is its predicted margin, and we average the five margins using the weights below. ",
       "If one team is at home, we add a few points for home field. ",
       "Finally, we turn the margin into a win chance using how far real results have landed from our numbers in past seasons."
+    ),
+    htmltools::p(
+      "Only Elo and Power have ratings from before every past kickoff, so the accuracy tables test the ",
+      "average of those two. Grading on ratings published after the games would flatter the model."
     )
   )
 }
 
 fit_caption <- function(params) {
-  seasons <- params$training_seasons
+  seasons <- params$fit_seasons
   season_text <- if (length(seasons) > 0) {
     sprintf(" using the %s to %s seasons", min(seasons), max(seasons))
   } else {
     ""
   }
   fit_date <- tryCatch(format_long_date(params$fit_date), error = function(e) NULL)
-  if (is.null(fit_date)) return(paste0("Fitted", season_text, "."))
-  sprintf("Fitted on %s%s.", fit_date, season_text)
+  fitted <- if (is.null(fit_date)) paste0("Fitted", season_text, ".") else
+    sprintf("Fitted on %s%s.", fit_date, season_text)
+  if (length(params$holdout_season) != 1) return(fitted)
+  sprintf("%s The %s games were kept out of the fit so they can test it.", fitted, params$holdout_season)
 }
 
 #' "Nov 9, 2026".
@@ -109,6 +120,8 @@ param_cards <- function(params) {
               "About two games in three land within this many points of our line."),
     stat_card("Elo conversion", paste(round(params$k, 1), "Elo = 1 point"),
               "Elo is not in points, so we divide an Elo gap by this number."),
+    stat_card("Power-conference edge", paste(format_points(params$elo_tier), "points"),
+              "Added to Elo's margin when a power-conference team plays anyone else."),
     stat_card(
       method,
       htmltools::span(class = "weights", lapply(names(weights), function(m) {
@@ -121,7 +134,33 @@ param_cards <- function(params) {
 
 accuracy_block <- function(metrics) {
   if (!has_rows(metrics)) return(empty_state("No accuracy results yet.", "They appear after the model is fitted."))
-  is_line <- metrics$model == "line"
+  htmltools::tagList(
+    htmltools::p(class = "section-lede",
+                 "Each past season is predicted by a fit on the other seasons, so no forecast saw its own games. ",
+                 "The closing line is the benchmark. It is the betting market's final number and the ",
+                 "hardest public forecast to beat, so getting close to it is the goal."),
+    forecast_table(metrics),
+    htmltools::p(class = "fine-print",
+                 "Avg miss: average gap between predicted and real margin. Brier: error in the win chances, lower is better.")
+  )
+}
+
+holdout_block <- function(params) {
+  if (!has_rows(params$holdout)) {
+    return(empty_state("No games from this season yet.", "They appear once games are played and the model is refitted."))
+  }
+  seasons <- params$fit_seasons
+  htmltools::tagList(
+    htmltools::p(class = "section-lede",
+                 sprintf("The %s games played so far, predicted with numbers fitted on %s to %s only. ",
+                         params$holdout_season, min(seasons), max(seasons)),
+                 "The fit never saw these games, so this is the plainest test of how it does now."),
+    forecast_table(params$holdout)
+  )
+}
+
+#' Accuracy rows as a table, with the closing line marked as the benchmark.
+forecast_table <- function(metrics) {
   rows <- data.frame(
     label = metrics$label,
     n = format(metrics$n, big.mark = ","),
@@ -130,16 +169,9 @@ accuracy_block <- function(metrics) {
     brier = sprintf("%.3f", metrics$brier),
     stringsAsFactors = FALSE
   )
-  htmltools::tagList(
-    htmltools::p(class = "section-lede",
-                 "The closing line is the benchmark. It is the betting market's final number and the ",
-                 "hardest public forecast to beat, so getting close to it is the goal."),
-    simple_table(rows, c("Forecast", "Games", "Avg miss (pts)", "Picked winner", "Brier"),
-                 numeric = c(FALSE, TRUE, TRUE, TRUE, TRUE),
-                 row_class = ifelse(is_line, "is-benchmark", "")),
-    htmltools::p(class = "fine-print",
-                 "Avg miss: average gap between predicted and real margin. Brier: error in the win chances, lower is better.")
-  )
+  simple_table(rows, c("Forecast", "Games", "Avg miss (pts)", "Picked winner", "Brier"),
+               numeric = c(FALSE, TRUE, TRUE, TRUE, TRUE),
+               row_class = ifelse(metrics$model == "line", "is-benchmark", ""))
 }
 
 calibration_block <- function(ns, calibration) {
@@ -190,14 +222,17 @@ folds_block <- function(folds) {
   if (!has_rows(folds)) return(empty_state("No season-by-season results yet.", "They appear after the model is fitted."))
   rows <- data.frame(
     season = as.character(folds$season),
-    k = sprintf("%.1f", folds$k), h = sprintf("%.1f", folds$h),
+    k = sprintf("%.1f", folds$k), elo_tier = sprintf("%.1f", folds$elo_tier),
+    power_scale = sprintf("%.2f", folds$power_scale), h = sprintf("%.1f", folds$h),
     sigma = sprintf("%.1f", folds$sigma), mae = sprintf("%.1f", folds$mae)
   )
   htmltools::tagList(
     htmltools::p(class = "section-lede",
-                 "Each row fits on every other season and tests on this one. Steady numbers mean the fit is not a fluke."),
-    simple_table(rows, c("Held-out season", "Elo per point", "Home field", "Typical miss", "Avg miss"),
-                 numeric = c(FALSE, TRUE, TRUE, TRUE, TRUE))
+                 "Each row fits on every other season and tests on this one. Steady numbers mean the fit is not a fluke. ",
+                 "Power scale turns a Power rating gap into points, and avg miss is for the Elo and Power average."),
+    simple_table(rows, c("Held-out season", "Elo per point", "Conference edge", "Power scale",
+                         "Home field", "Typical miss", "Avg miss"),
+                 numeric = c(FALSE, rep(TRUE, 6)))
   )
 }
 
@@ -213,7 +248,8 @@ leaked_block <- function(leaked) {
   )
 }
 
-#' One row per season and week, one column per rating system.
+#' One row per season and week, one column per published rating system.
+#' Power is computed from scores, not downloaded, so it has no snapshots.
 #' Weeks with no snapshot at all are added as rows so a gap stands out.
 #' Season-final snapshots have no week; they sort after the last week as "Final".
 coverage_grid <- function(coverage) {
@@ -230,9 +266,9 @@ coverage_grid <- function(coverage) {
     week = ifelse(weeks$week_key == 99L, "Final", as.character(weeks$week_key)),
     stringsAsFactors = FALSE
   )
-  missing <- matrix(FALSE, nrow(weeks), length(MODEL_LABELS))
-  for (j in seq_along(MODEL_LABELS)) {
-    src <- names(MODEL_LABELS)[j]
+  missing <- matrix(FALSE, nrow(weeks), length(RATING_SOURCES))
+  for (j in seq_along(RATING_SOURCES)) {
+    src <- RATING_SOURCES[j]
     n <- vapply(seq_len(nrow(weeks)), function(i) {
       hit <- coverage$source == src & coverage$season == weeks$season[i] & coverage$week_key == weeks$week_key[i]
       if (any(hit)) as.integer(coverage$n_teams[which(hit)[1]]) else NA_integer_
@@ -249,8 +285,8 @@ coverage_block <- function(coverage) {
   any_missing <- any(cov$missing)
   # Mark missing cells so they read as a problem, in words as well as color.
   grid <- cov$grid
-  for (j in seq_along(MODEL_LABELS)) {
-    col <- names(MODEL_LABELS)[j]
+  for (j in seq_along(RATING_SOURCES)) {
+    col <- RATING_SOURCES[j]
     grid[[col]] <- lapply(seq_len(nrow(grid)), function(i) {
       if (cov$missing[i, j]) htmltools::span(class = "pill pill-warn", "Missing") else grid[[col]][i]
     })
@@ -258,9 +294,9 @@ coverage_block <- function(coverage) {
   htmltools::tagList(
     htmltools::p(class = "section-lede",
                  if (any_missing) "Some weekly snapshots are missing. They are marked below."
-                 else "Every week has a snapshot from every rating system."),
-    simple_table(grid, c("Season", "Week", unname(MODEL_LABELS)),
-                 numeric = c(FALSE, FALSE, rep(TRUE, length(MODEL_LABELS))),
+                 else "Every week has a snapshot from every published rating system."),
+    simple_table(grid, c("Season", "Week", unname(MODEL_LABELS[RATING_SOURCES])),
+                 numeric = c(FALSE, FALSE, rep(TRUE, length(RATING_SOURCES))),
                  row_class = ifelse(rowSums(cov$missing) > 0, "has-missing", ""))
   )
 }
