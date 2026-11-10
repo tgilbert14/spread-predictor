@@ -65,10 +65,12 @@ jobs:
           dependencies: '"hard"'
           extra-packages: any::cfbfastR
 
-      # rsconnect is only needed to write the manifest, so it is not a project dependency.
+      # rsconnect is only needed to write the manifest, so it is not a project
+      # dependency. cpp11 is a build-time dependency of several packages that
+      # binary installs skip, and the manifest writer insists on finding it.
       - name: Install rsconnect
         if: ${{ inputs.task == 'manifest' }}
-        run: Rscript -e 'install.packages("rsconnect")'
+        run: Rscript -e 'install.packages(c("rsconnect", "cpp11"))'
 
       # Scheduled runs have no inputs, so they take the refresh.
       - name: Run the task
