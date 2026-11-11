@@ -118,5 +118,11 @@ jobs:
             exit 0
           fi
           git commit -m "Data refresh $(date -u +%Y-%m-%d)"
-          git pull --rebase
-          git push
+          # Someone else can push between our pull and our push, so try a
+          # few times before giving up.
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            echo "Push attempt $attempt failed. Trying again."
+            sleep 10
+          done
+          exit 1
