@@ -527,14 +527,18 @@ table.dataTable.slate-table thead th:last-child, table.dataTable.slate-table tbo
   table.dataTable.slate-table tbody td { padding-inline: 0.5rem; }
 }
 
-/* Between phones and a full-width desktop the table is tight. Keep the two
-   line columns to two lines at most, and let the side note and the last
-   header wrap, so the Open link stays on screen. */
+/* Between phones and a full-width desktop the table is tight. Let the
+   matchup and the last header wrap and keep the two line columns to two
+   lines at most, so the Open link stays on screen. On tablets the side
+   note under the difference wraps too. */
 @media (min-width: 576px) and (max-width: 1199.98px) {
   table.dataTable.slate-table thead th,
   table.dataTable.slate-table tbody td { padding-inline: 0.4rem; }
+  table.dataTable.slate-table tbody td:first-child { white-space: normal; min-width: 11rem; }
   table.dataTable.slate-table tbody td:nth-child(2),
   table.dataTable.slate-table tbody td:nth-child(3) { min-width: 8.5rem; }
-  table.dataTable.slate-table tbody td:nth-child(4) { white-space: normal; min-width: 7.5rem; }
   table.dataTable.slate-table thead th:nth-child(5) { white-space: normal; min-width: 5.5rem; }
+}
+@media (min-width: 576px) and (max-width: 899.98px) {
+  table.dataTable.slate-table tbody td:nth-child(4) { white-space: normal; min-width: 7.5rem; }
 }
