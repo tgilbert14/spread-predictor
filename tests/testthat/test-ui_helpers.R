@@ -305,3 +305,10 @@ test_that("chart labels face the middle from the edges and face out near the mid
   expect_equal(value_side(25), "to-right")
   expect_equal(value_side(75), "to-left")
 })
+
+test_that("shown_gap is the difference of the two lines as displayed", {
+  # 3.7 shows as 3.5 and 3 as 3, so the gap reads 0.5, not 1.
+  expect_equal(shown_gap(3.7, 3), 0.5)
+  expect_equal(shown_gap(-4.1, 2.75), -7)
+  expect_equal(shown_gap(3.2, 3), 0)
+})

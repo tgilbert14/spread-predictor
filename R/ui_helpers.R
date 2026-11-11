@@ -277,6 +277,12 @@ market_margin_for_a <- function(game, a_id) {
   if (game$home_id == a_id) home_margin else -home_margin
 }
 
+#' The gap between our line and the market's, as shown: the difference of
+#' the two lines after each is rounded to the half point. That way a line of
+#' 3.5 next to a market of 3 always reads as half a point apart, whatever
+#' the unrounded numbers were.
+shown_gap <- function(ours, market) round_half(ours) - round_half(market)
+
 #' "we're 2 points higher on Ironwood", or agreement when it rounds to zero.
 #'
 #' @param gap Our margin minus the market margin, both A minus B.
@@ -308,7 +314,7 @@ market_view <- function(pred, slate, sigma) {
   name_b <- pred$team_b$school
   margin <- market_margin_for_a(game, a_id)
   line <- format_favorite(margin, name_a, name_b)
-  gap <- market_gap_phrase(pred$spread - margin, name_a, name_b)
+  gap <- market_gap_phrase(shown_gap(pred$spread, margin), name_a, name_b)
   chance <- if (line == "Pick'em") NULL else {
     sprintf("%s %s to win", if (margin > 0) name_a else name_b,
             format_prob(stats::pnorm(abs(margin) / sigma)))

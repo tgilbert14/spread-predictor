@@ -70,7 +70,7 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0) {
   esc <- htmltools::htmlEscape
   has_line <- !is.na(game$market_spread_home)
   market <- if (has_line) market_margin_for_a(game, pred$team_a$team_id) else NA
-  gap <- pred$spread - market
+  gap <- shown_gap(pred$spread, market)
   joiner <- if (isTRUE(game$neutral_site)) "vs" else "at"
 
   # Each cell carries its own label, shown only when rows stack as cards on phones.
