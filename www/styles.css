@@ -399,7 +399,7 @@ table.dataTable.slate-table tbody td {
   padding: 0.8rem 0.6rem; white-space: nowrap; vertical-align: middle; background: transparent; box-shadow: none !important;
 }
 table.dataTable.slate-table tbody tr:hover td { background: rgba(94, 234, 212, 0.22); }
-.slate-team { font-weight: 700; }
+.slate-team { font-weight: 700; white-space: nowrap; }
 .slate-at { color: var(--muted); font-size: 0.9rem; }
 .cell-label { display: none; }
 .gap-points { font-family: var(--display); font-weight: 900; font-size: 1.5rem; line-height: 1; }
