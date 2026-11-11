@@ -201,6 +201,18 @@ plot_limit <- function(margins) {
 #'
 #' Team A is favored to the left, matching its place in the pickers and the
 #' win probability bar. Rows keep labels from colliding when models agree.
+#' Which side of its dot a value label sits on: "to-left" or "to-right".
+#'
+#' A dot out toward an edge gets its label on the side facing the middle,
+#' where there is room. A dot near the middle gets it on the outside, so the
+#' text never runs across the center line.
+#'
+#' @param x The dot's position, 0 to 100 percent of the track.
+value_side <- function(x, near_middle = 25) {
+  faces_middle <- abs(x - 50) >= near_middle
+  if ((x <= 50) == faces_middle) "to-right" else "to-left"
+}
+
 model_plot <- function(pred, colors) {
   models <- pred$models
   limit <- plot_limit(c(models$margin, pred$spread))
@@ -223,9 +235,8 @@ model_plot <- function(pred, colors) {
       htmltools::div(
         class = "dp-track",
         htmltools::span(class = "dp-dot", style = sprintf("left:%.2f%%", x)),
-        # Text sits on the side facing the middle, where there is always room.
         htmltools::span(
-          class = paste("dp-value", if (x <= 50) "to-right" else "to-left"),
+          class = paste("dp-value", value_side(x)),
           style = sprintf("left:%.2f%%", x),
           short_favorite(margin, pred$team_a, pred$team_b)
         )

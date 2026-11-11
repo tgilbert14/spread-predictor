@@ -15,6 +15,11 @@ SHORT_REST_DAYS <- 5
 # Regular-season weeks treated as early season by the sigma candidate.
 EARLY_WEEKS <- 1:4
 
+# The form candidate averages a team's results against our line so far this
+# season, with this many extra games at zero mixed in so one early result
+# does not count for much.
+FORM_SHRINK_GAMES <- 3
+
 # Bootstrap draws and seed for the paired intervals. Fixed so the results
 # file only changes when the data or the code does.
 BOOTSTRAP_DRAWS <- 2000
@@ -37,6 +42,8 @@ CANDIDATES <- list(
                     elo = "home_trend", power = "home_trend"),
   conference_home = list(label = "Home field in conference games",
                          elo = "conference_home", power = "conference_home"),
+  form = list(label = "In-season form (results against our own line so far)",
+              elo = "form_diff", power = "form_diff"),
   early_sigma = list(label = "Separate early-season sigma", sigma = TRUE)
 )
 
@@ -65,7 +72,9 @@ backtest_games <- function(con) {
   lines <- median_spread(query_sql_file(con, "lines.sql"))
   games$line <- -lines$spread[match(games$game_id, lines$game_id)]
   games <- games[!is.na(games$line), , drop = FALSE]
-  add_candidate_factors(games, rest_days(all_games))
+  games <- add_candidate_factors(games, rest_days(all_games))
+  games$form_diff <- form_diff(games, house_predictions(games))
+  games
 }
 
 #' Days since each team's previous game, for every game and both teams.
@@ -114,6 +123,34 @@ add_candidate_factors <- function(games, rest) {
   games
 }
 
+#' In-season form, home minus away.
+#'
+#' A team's form is the average of (its margin minus what we predicted) over
+#' its earlier games this season, with FORM_SHRINK_GAMES games at zero mixed
+#' in. Positive means it has been beating our line. A team's first game of
+#' the season has a form of 0.
+#'
+#' @param games Rows of game_id, season, start_date, home_id, away_id and
+#'   home_margin.
+#' @param predicted Our out-of-sample home margin for each row.
+#' @return One number per row of `games`.
+form_diff <- function(games, predicted, shrink = FORM_SHRINK_GAMES) {
+  miss <- games$home_margin - predicted
+  sides <- rbind(
+    data.frame(row = seq_len(nrow(games)), season = games$season, team_id = games$home_id,
+               start_date = games$start_date, miss = miss, sign = 1),
+    data.frame(row = seq_len(nrow(games)), season = games$season, team_id = games$away_id,
+               start_date = games$start_date, miss = -miss, sign = -1)
+  )
+  sides <- sides[order(sides$season, sides$team_id, sides$start_date, sides$row), ]
+  team <- paste(sides$season, sides$team_id)
+  # Sum and count of the team's earlier games: the running total minus this game.
+  earlier_sum <- stats::ave(sides$miss, team, FUN = cumsum) - sides$miss
+  earlier_n <- stats::ave(rep(1, nrow(sides)), team, FUN = cumsum) - 1
+  sides$form <- earlier_sum / (earlier_n + shrink)
+  as.numeric(tapply(sides$sign * sides$form, sides$row, sum))
+}
+
 # ---- Out-of-sample predictions ----------------------------------------------
 
 #' Fit on `train` and predict `test`.
@@ -141,6 +178,15 @@ house_out_of_sample <- function(games, elo_terms = ELO_TERMS, power_terms = POWE
   elo <- out_of_sample(games, elo_terms)
   power <- out_of_sample(games, power_terms)
   list(cv = (elo$cv + power$cv) / 2, holdout = (elo$holdout + power$holdout) / 2)
+}
+
+#' The out-of-sample house blend as one vector, in the order of `games`.
+house_predictions <- function(games) {
+  blend <- house_out_of_sample(games)
+  out <- rep(NA_real_, nrow(games))
+  out[games$season %in% FIT_SEASONS] <- blend$cv
+  out[games$season == HOLDOUT_SEASON] <- blend$holdout
+  out
 }
 
 #' The final house models' terms with one of their factors taken out.

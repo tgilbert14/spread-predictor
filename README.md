@@ -120,6 +120,7 @@ The weekly rhythm (times are UTC):
 | When | What happens |
 |---|---|
 | Tuesday 13:00 | New ratings, games and lines. This week's predictions are saved before the first kickoff, and last week's are graded. |
+| Tuesday 18:00 | The same run again, as a safety net. If the first one failed, the week's predictions are still saved before the first kickoff. Saved files are never rewritten. |
 | Thursday and Friday 21:00 | Lines refreshed, so the app shows how far each has moved since Tuesday. Game notes (injuries, weather) are added to `data/notes.csv` on these days by a separate check. |
 
 Each run does the same thing: `Rscript scripts/refresh.R`. It never rewrites
@@ -158,6 +159,7 @@ calling the API.
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
 | `scripts/pull_extras.R` | One-time pull of past seasons' talent, returning production and game stats | Yes, about 30 calls once |
+| `scripts/disagreement.R` | Counts which side covered when a model and the sportsbooks disagreed on the spread, and writes `docs/market-disagreement.md` | No |
 | `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app, trimmed to the packages the app uses (needs the `rsconnect` package) | No |
 
 The free API tier allows 1,000 calls a month. The three automatic runs use

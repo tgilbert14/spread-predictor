@@ -295,3 +295,13 @@ test_that("slate rows carry markers for moved lines and notes", {
   expect_identical(sum(grepl("2 notes", rows$matchup)), 1L)
   expect_identical(sum(grepl("1 note<", rows$matchup)), 1L)
 })
+
+test_that("chart labels face the middle from the edges and face out near the middle", {
+  expect_equal(value_side(10), "to-right")
+  expect_equal(value_side(90), "to-left")
+  # Near the center line the label goes on the outside, so it never crosses it.
+  expect_equal(value_side(42), "to-left")
+  expect_equal(value_side(58), "to-right")
+  expect_equal(value_side(25), "to-right")
+  expect_equal(value_side(75), "to-left")
+})

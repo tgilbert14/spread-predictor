@@ -6,6 +6,11 @@
 # When it runs (UTC):
 #   Tuesday 13:00          after the weekend's games and before the next
 #                          week's first kickoff: new ratings, predictions saved.
+#   Tuesday 18:00          the same run again, as a safety net. If the first
+#                          one failed, this one saves the week's predictions
+#                          while there is still time before the first kickoff.
+#                          If it worked, this only refreshes games and lines:
+#                          saved files are never rewritten.
 #   Thursday, Friday 21:00 lines refreshed before the weekend, so the app shows
 #                          how far they have moved. Game notes are added to
 #                          data/notes.csv on these days by a separate check.
@@ -16,6 +21,7 @@ name: Weekly snapshot
 on:
   schedule:
     - cron: "0 13 * * 2"
+    - cron: "0 18 * * 2"
     - cron: "0 21 * * 4"
     - cron: "0 21 * * 5"
   workflow_dispatch:

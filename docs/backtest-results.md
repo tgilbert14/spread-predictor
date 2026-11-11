@@ -33,4 +33,5 @@ A factor is kept only if the CV interval lies wholly below zero and the holdout 
 | Postseason shift | MAE | -0.008 | [-0.017, +0.001] | +0.003 | rejected |
 | Home field trend by season | MAE | +0.000 | [-0.006, +0.007] | -0.015 | rejected |
 | Home field in conference games | MAE | +0.004 | [-0.002, +0.009] | -0.001 | rejected |
+| In-season form (results against our own line so far) | MAE | -0.019 | [-0.050, +0.013] | -0.037 | rejected |
 | Separate early-season sigma | log loss | -0.0000 | [-0.0001, +0.0001] | +0.0001 | rejected |

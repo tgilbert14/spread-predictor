@@ -42,3 +42,22 @@ test_that("factors in the model are judged by taking them out of the final model
   expect_false("power_gap" %in% no_success$power)
   expect_error(house_terms_without("weather"), "Unknown factor")
 })
+
+test_that("form_diff averages each team's earlier misses this season, home minus away", {
+  games <- data.frame(
+    game_id = 1:4, season = c(2024L, 2024L, 2024L, 2025L),
+    start_date = c("2024-09-01", "2024-09-08", "2024-09-15", "2025-09-01"),
+    home_id = c(1L, 1L, 2L, 1L), away_id = c(2L, 3L, 1L, 2L),
+    home_margin = c(10, 0, 0, 0)
+  )
+  predicted <- c(4, 0, 0, 0)
+  form <- form_diff(games, predicted, shrink = 1)
+  # Game 1: nobody has played yet.
+  expect_equal(form[1], 0)
+  # Game 2: team 1 beat our line by 6 in its one game: 6 / (1 + 1). Team 3 is new.
+  expect_equal(form[2], 3)
+  # Game 3: team 2 (home) is -6 over one game, team 1 (away) is +6 and 0 over two.
+  expect_equal(form[3], -6 / 2 - 6 / 3)
+  # A new season starts from zero.
+  expect_equal(form[4], 0)
+})
