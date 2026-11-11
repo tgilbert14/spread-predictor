@@ -1,6 +1,8 @@
 # Pull the extras for every backfilled season: team talent, returning
 # production and per-game efficiency stats. About 30 API calls the first
 # time (3 per season), none after that (files on disk are never pulled twice).
+# It also pulls two research-only tables that the model does not use: every
+# sportsbook's line with its opening spread, and stadium coordinates.
 #
 # The model uses them: talent and returning production early in the season,
 # per-game success rates in the Power rating. The weekly snapshot keeps the
@@ -24,4 +26,4 @@ if (!all(ok)) {
           ". The others were kept. Run this again to retry.")
   quit(save = "no", status = 1)
 }
-message("\nTalent, returning production and game stats are up to date.")
+message("\nTalent, returning production, game stats and the research tables are up to date.")

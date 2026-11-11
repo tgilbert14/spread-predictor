@@ -669,6 +669,22 @@ EXTRA_SOURCES <- c(
   advanced  = "cfbd_stats_game_advanced"   # per-game efficiency (success rate, points per play)
 )
 
+# Research-only tables. Nothing in the model or the app reads them. They
+# feed the scripts that test ideas (see docs/research-log.md). Each entry is
+# the cfbfastR function and any arguments besides the season.
+RESEARCH_SOURCES <- list(
+  # Every sportsbook's line per game, with the opening spread.
+  lines_full = list(fn = "cfbd_betting_lines", args = list(season_type = "both")),
+  # Each team's home stadium and its coordinates, for travel distance.
+  locations = list(fn = "cfbd_team_info", args = list())
+)
+
+#' The cfbfastR function and extra arguments for one extras table.
+extra_source <- function(kind) {
+  if (kind %in% names(RESEARCH_SOURCES)) return(RESEARCH_SOURCES[[kind]])
+  list(fn = EXTRA_SOURCES[[kind]], args = list())
+}
+
 #' Path of one extras file.
 extra_path <- function(kind, season, root = PATHS$snapshots) {
   file.path(root, "extras", kind, sprintf("%d.csv", as.integer(season)))
@@ -690,7 +706,9 @@ pull_extra <- function(kind, season, root, overwrite = FALSE) {
     message("Skipping ", path, ": already on disk.")
     return(invisible(FALSE))
   }
-  df <- flatten_frame(cfbd_fetch(EXTRA_SOURCES[[kind]], year = season, allow_empty = overwrite))
+  source <- extra_source(kind)
+  df <- flatten_frame(do.call(cfbd_fetch, c(list(source$fn, year = season), source$args,
+                                            list(allow_empty = overwrite))))
   if (nrow(df) == 0) {
     message("No ", kind, " data for ", season, " yet, so nothing was written.")
     return(invisible(FALSE))
@@ -714,7 +732,8 @@ pull_season_extras <- function(season, root) {
   )
 }
 
-#' Pull the extras tables for some seasons. Files on disk are skipped.
+#' Pull the extras and research tables for some seasons. Files on disk are
+#' skipped, except the current season's research tables.
 #'
 #' @return A named logical vector, one entry per file, TRUE if it worked.
 run_extras <- function(seasons = c(TRAINING_SEASONS, current_season()), root = PATHS$snapshots) {
@@ -730,6 +749,15 @@ run_extras <- function(seasons = c(TRAINING_SEASONS, current_season()), root = P
     for (season in seasons) {
       label <- paste(season, kind)
       ok[label] <- run_step(label, pull_extra(kind, season, root))
+    }
+  }
+  # The current season's research tables are still growing, so they are
+  # pulled fresh every time.
+  for (kind in names(RESEARCH_SOURCES)) {
+    for (season in seasons) {
+      label <- paste(season, kind)
+      ok[label] <- run_step(label, pull_extra(kind, season, root,
+                                              overwrite = season == current_season()))
     }
   }
   ok
