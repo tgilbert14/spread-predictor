@@ -1,8 +1,22 @@
 # Research log
 
-Ideas that were tested by hand, outside `scripts/backtest.R`, usually because
-they needed data that is not in this repo. Everything the script can
-reproduce is in [backtest-results.md](backtest-results.md) instead.
+Ideas that were tested outside `scripts/backtest.R`, and what happened.
+The standing candidates that script re-judges on every run are in
+[backtest-results.md](backtest-results.md) instead.
+
+Most entries can be rerun from `scripts/research/`:
+
+| Script | Entries it reproduces |
+|---|---|
+| `scripts/research/spots.R` | Letdown, trap and look-ahead games |
+| `scripts/research/scaling.R` | Re-scaling the field by season, opponent tiers, and rating drift |
+| `scripts/research/market_blend.R` | How close the market is, and whether to blend it in |
+| `scripts/research/travel.R` | Travel, time zones and altitude |
+| `scripts/disagreement.R` | Which side covers when a model and the sportsbooks disagree |
+
+The Girth Index and points-per-play entries used data from outside this
+repo and have no script here. The public-ratings scale check became part
+of the fit (`fit_public_scales()` in `R/fit.R`).
 
 Same rule every time: an idea goes into the model only if the 95% interval on
 its cross-validated change lies wholly below zero and the holdout season
@@ -86,8 +100,7 @@ What this says:
   not pass.
 - Look-ahead and sandwich spots show nothing at all.
 
-The test script is not in the repo. It builds each flag from the previous
-and next game per team and calls `judge_candidate()` from `R/backtest.R`.
+Rerun it with `Rscript scripts/research/spots.R`.
 
 ## Nov 11, 2026: re-scaling the field by season, opponent tiers, and rating drift
 

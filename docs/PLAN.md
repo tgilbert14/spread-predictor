@@ -14,6 +14,21 @@ Rev 2 · Nov 9, 2026 · @tim
 > - Ratings are not snapshotted in the postseason, because CFBD restarts week
 >   numbers there. See the data dictionary.
 > - In "Where the models land", Team A is on the left, matching the pickers.
+>
+> **Since then (Nov 11, 2026).** The plan below is kept as written. The
+> model has moved on from it in these ways, all covered in
+> `docs/how-it-works.md`:
+>
+> - The blend has five systems, not four. The fifth is our own Power
+>   rating, built from game scores and success rate.
+> - Elo gets a power-conference correction, and Elo and Power get
+>   early-season help from roster talent and returning production.
+> - SP+, FPI and SRS gaps are scaled to the point-spread scale, using
+>   past closing lines.
+> - The app saves its predictions every week and grades them on a
+>   Scorecard tab, and shows the market line next to ours.
+> - It is hosted on Posit Connect Cloud and republishes on every push.
+> - Ideas that were tested and left out are in `docs/research-log.md`.
 > - The app is light, not dark: navy ink on a pale ground with the answer set
 >   large and a band in the two team colors. Brand turquoise is kept for the
 >   navbar and the blend marker. Fonts ship in `www/fonts/`.
