@@ -1,9 +1,9 @@
 Package: spreadpredictor
 Title: Neutral-Site College Football Spread Predictor
 Version: 0.1.0
-Description: A Shiny app and data pipeline that blends four public rating
-    systems (SP+, FPI, SRS, Elo) into a spread and win probability for any
-    two FBS teams. This file exists so dependencies can be installed with one
+Description: A Shiny app and data pipeline that blends five rating systems
+    (SP+, FPI, SRS, Elo and the project's own Power rating) into a spread
+    and win probability for any two FBS teams. This file exists so dependencies can be installed with one
     command. The project is an app, not an installable package.
 License: MIT + file LICENSE
 Depends:

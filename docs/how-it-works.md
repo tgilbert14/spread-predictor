@@ -239,6 +239,16 @@ FPI, SRS, Elo and Power on the same saved lines. It is the first honest test
 of all five: the backtest can only test Elo and Power, because the others'
 past ratings already include the results.
 
+**The market line beside ours.** When the two teams on the Matchup tab really
+play this week, and the site picked is the real one, the tab shows the
+market's line under ours: the line, the win chance it implies (using the
+same `sigma` as our own), how far we are from it, and one sentence on how the
+two have compared on past games, taken from the fit's accuracy table. The
+market is never part of our number. On past games the closing line has been
+about half a point a game closer than we are, and when the two differ by a
+lot the market has usually been right (see `docs/research-log.md`), so a big
+gap is a prompt to look for news, not a sign we found something.
+
 **Line movement.** The slate keeps the market line from the saved file, so the
 app can show how far the market has moved since. A move of 2.5 points or
 more (`LINE_MOVE_POINTS`) is flagged, because it usually means news, such as a

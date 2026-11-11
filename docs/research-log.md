@@ -188,3 +188,45 @@ number into the market's number with extra steps. It stays what it is now:
 the benchmark on the Scorecard, and a flag in the app. A large gap between
 us and the market should be read as "the market likely knows something we
 do not", not as an edge.
+
+## Nov 11, 2026: are the public ratings on a points scale?
+
+SP+, FPI and SRS go into the blend point for point: a 10-point rating gap
+counts as a 10-point spread. Elo and Power are different. Their scales are
+fitted. The three public ones cannot be fitted against results, because
+their past ratings already include the results. They can be checked against
+the closing line, which was set before the game.
+
+Test: for late-season games (week 11 on, plus bowls) in 2018, 2019 and 2021
+to 2025, regress the closing line on each system's season-final rating gap
+plus a home term. 1,816 games. The slope is how much of the rating gap the
+market uses.
+
+| System | Scale the market uses [95% interval] | By season, 2018 to 2025 | Home field implied |
+|---|---|---|---|
+| SP+ | 0.79 [0.78, 0.81] | 0.83, 0.88, 0.82, 0.76, 0.76, 0.74, 0.75 | 2.6 |
+| FPI | 0.95 [0.94, 0.97] | 0.97, 0.99, 0.96, 0.98, 0.87, 0.93, 0.93 | 2.5 |
+| SRS | 0.94 [0.92, 0.96] | 0.88, 0.92, 1.00, 1.05, 0.92, 0.96, 0.92 | 2.6 |
+
+SP+ is stretched: its ratings spread teams out about 25% more than a point
+spread does, every season. FPI and SRS are close to point for point. The
+home field the market implies (2.5 to 2.6) matches ours (2.5).
+
+Season-final ratings are a slightly noisy stand-in for the ratings on game
+day, which pulls these slopes down a little. FPI and SRS landing near 0.95
+says that effect is small, so most of SP+'s 0.79 is real.
+
+This week's saved predictions agree. Across the 67 week 11 games, the slope
+of the market line on each system's margin is 0.69 for SP+, 0.86 for FPI,
+0.83 for SRS, 0.84 for Elo and 0.95 for Power. SP+ is the furthest from the
+market of the five (4.1 points a game, against 2.2 for FPI and Power).
+
+What it would do: with SP+ at 0.79, FPI at 0.95 and SRS at 0.94 (numbers
+from past seasons, not from this week), the blend's average distance from
+the market this week drops from 2.08 points to 1.70, and the share of games
+where we differ by 3 or more drops from 27% to 19%.
+
+Status: recommended, not yet in the model. It would be a fitted scale per
+public system in `data/params.json`, estimated the way described here, and
+applied in `rating_margins()`. The Scorecard will show whether SP+ grades
+worse than the others on real results as weeks come in.

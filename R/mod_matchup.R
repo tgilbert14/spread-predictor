@@ -92,8 +92,8 @@ site_control <- function(id, school_a, school_b, selected) {
   )
 }
 
-#' The answer: the line in words, the two teams' chances, the likely range,
-#' the market, then any notes.
+#' The answer: our line in words, the two teams' chances, the likely range,
+#' the market's line beside ours, then any notes.
 answer_card <- function(ns) {
   htmltools::tags$section(
     class = "answer", `aria-label` = "Prediction",
@@ -379,10 +379,9 @@ mod_matchup_server <- function(id, app_data, notes) {
     })
     output$band <- shiny::renderUI(matchup_band(ok_pred(), colors()))
     output$range <- shiny::renderText(format_interval(ok_pred()))
-    output$market <- shiny::renderUI({
-      text <- describe_market(ok_pred(), app_data$slate)
-      if (!is.null(text)) htmltools::p(class = "market-line", text)
-    })
+    market <- shiny::reactive(market_view(ok_pred(), app_data$slate, app_data$params$sigma))
+    record <- market_record(app_data$params$metrics)
+    output$market <- shiny::renderUI(market_fact(market(), record))
     output$flags <- shiny::renderUI({
       flag_list(c(ok_pred()$flags, slate_line_note(slate_game(), app_data), data_flags))
     })
@@ -397,7 +396,8 @@ mod_matchup_server <- function(id, app_data, notes) {
     # Keep the copy text and the shareable URL in step with the prediction.
     shiny::observe({
       p <- ok_pred()
-      session$sendCustomMessage("cfb-summary", list(id = session$ns("copy"), text = format_summary(p)))
+      summary <- paste(c(format_summary(p), describe_market(market())), collapse = " ")
+      session$sendCustomMessage("cfb-summary", list(id = session$ns("copy"), text = summary))
       shiny::updateQueryString(matchup_query(p), mode = "replace")
     })
 

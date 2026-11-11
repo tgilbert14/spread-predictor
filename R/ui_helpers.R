@@ -287,11 +287,18 @@ market_gap_phrase <- function(gap, name_a, name_b) {
   sprintf("we're %s %s higher on %s", points, unit, if (gap > 0) name_a else name_b)
 }
 
-#' The market line in words for this prediction, or NULL when there is none.
+#' The market's number for this prediction, or NULL when there is none.
 #'
-#' Only shown when the pair is on the slate, has a line, and the picked site
+#' Only given when the pair is on the slate, has a line, and the picked site
 #' is the real one. A line for a different site would be misleading.
-describe_market <- function(pred, slate) {
+#'
+#' @param sigma The model's typical miss, used to turn the line into a win
+#'   chance the same way we do for our own spread.
+#' @return list(margin, line, chance, gap): the market's margin for Team A,
+#'   the line in words ("Ironwood by 4.5"), the win chance it implies
+#'   ("Ironwood 61% to win", or NULL for a pick'em), and how far we are from
+#'   it ("We're 2 points higher on Mesquite.").
+market_view <- function(pred, slate, sigma) {
   a_id <- pred$team_a$team_id
   game <- find_slate_game(slate, a_id, pred$team_b$team_id)
   if (is.null(game) || is.na(game$market_spread_home)) return(NULL)
@@ -299,12 +306,51 @@ describe_market <- function(pred, slate) {
 
   name_a <- pred$team_a$school
   name_b <- pred$team_b$school
-  market <- market_margin_for_a(game, a_id)
-  market_line <- format_favorite(market, name_a, name_b)
-  gap <- market_gap_phrase(pred$spread - market, name_a, name_b)
-  sprintf("%s %s%s.",
-          if (market_line == "Pick'em") "The market calls it a pick'em." else sprintf("The market has %s.", market_line),
-          toupper(substr(gap, 1, 1)), substr(gap, 2, nchar(gap)))
+  margin <- market_margin_for_a(game, a_id)
+  line <- format_favorite(margin, name_a, name_b)
+  gap <- market_gap_phrase(pred$spread - margin, name_a, name_b)
+  chance <- if (line == "Pick'em") NULL else {
+    sprintf("%s %s to win", if (margin > 0) name_a else name_b,
+            format_prob(stats::pnorm(abs(margin) / sigma)))
+  }
+  list(margin = margin, line = line, chance = chance,
+       gap = paste0(toupper(substr(gap, 1, 1)), substr(gap, 2, nchar(gap)), "."))
+}
+
+#' The market line as one sentence, for the copy summary.
+describe_market <- function(view) {
+  if (is.null(view)) return(NULL)
+  if (view$line == "Pick'em") "The market calls it a pick'em." else sprintf("The market has %s.", view$line)
+}
+
+#' How the market's line has compared with ours on past games, in words, or
+#' NULL when the fit has no closing-line row or the market was not closer.
+#'
+#' Our side is the two ratings that can be graded on history (Elo and Power).
+#'
+#' @param metrics params$metrics: rows of model and mae.
+market_record <- function(metrics) {
+  mae <- function(model) {
+    value <- metrics$mae[metrics$model == model]
+    if (length(value) == 1) value else NA_real_
+  }
+  edge <- mae("house") - mae("line")
+  if (is.na(edge) || round_half(edge) <= 0) return(NULL)
+  points <- format_points(edge)
+  sprintf("On past games the market's line has been closer than ours, by about %s %s a game.",
+          points, if (points == "1") "point" else "points")
+}
+
+#' The "Market line" row under the answer: the market's number, set the same
+#' way as the likely range, with how we compare underneath.
+market_fact <- function(view, record = NULL) {
+  if (is.null(view)) return(NULL)
+  htmltools::p(
+    class = "market-line",
+    htmltools::span(class = "fact-label", "Market line"),
+    htmltools::span(class = "market-value", paste(c(view$line, view$chance), collapse = ", ")),
+    htmltools::span(class = "range-note", paste(c(view$gap, record), collapse = " "))
+  )
 }
 
 # Line movement and notes --------------------------------------------------------

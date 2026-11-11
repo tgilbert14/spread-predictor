@@ -135,23 +135,57 @@ test_that("market_margin_for_a respects the sportsbook sign convention", {
   expect_equal(market_margin_for_a(game, id_of("Mesquite")), -4.5)
 })
 
-test_that("describe_market says it in words and only for the real site", {
+test_that("market_view gives the line, its win chance and our gap, only for the real site", {
+  sigma <- demo$params$sigma
   pred <- predict_matchup("Ironwood", "Mesquite", "a_home", teams, demo$params)
-  text <- as_utf8(describe_market(pred, test_slate))
-  expect_match(text, "^The market has Ironwood by 4.5\\. ")
-
-  gap <- pred$spread - 4.5
-  side <- if (gap > 0) "Ironwood" else "Mesquite"
-  expect_match(text, side)
+  view <- market_view(pred, test_slate, sigma)
+  expect_equal(view$margin, 4.5)
+  expect_equal(view$line, "Ironwood by 4.5")
+  expect_equal(view$chance, paste("Ironwood", format_prob(stats::pnorm(4.5 / sigma)), "to win"))
+  side <- if (pred$spread - 4.5 > 0) "Ironwood" else "Mesquite"
+  expect_match(as_utf8(view$gap), side)
+  expect_match(view$gap, "^W.*\\.$")
+  expect_equal(describe_market(view), "The market has Ironwood by 4.5.")
 
   # Same game from the other side reads the same way.
-  flipped <- predict_matchup("Mesquite", "Ironwood", "b_home", teams, demo$params)
-  expect_match(describe_market(flipped, test_slate), "The market has Ironwood by 4.5")
+  flipped <- market_view(predict_matchup("Mesquite", "Ironwood", "b_home", teams, demo$params), test_slate, sigma)
+  expect_equal(flipped$margin, -4.5)
+  expect_equal(flipped$line, "Ironwood by 4.5")
+  expect_match(flipped$chance, "^Ironwood ")
 
   # Wrong site, no line, or not on the slate: nothing.
-  expect_null(describe_market(predict_matchup("Ironwood", "Mesquite", "neutral", teams, demo$params), test_slate))
-  expect_null(describe_market(predict_matchup("Kofa", "Bajada", "neutral", teams, demo$params), test_slate))
-  expect_null(describe_market(predict_matchup("Kofa", "Ironwood", "neutral", teams, demo$params), test_slate))
+  expect_null(market_view(predict_matchup("Ironwood", "Mesquite", "neutral", teams, demo$params), test_slate, sigma))
+  expect_null(market_view(predict_matchup("Kofa", "Bajada", "neutral", teams, demo$params), test_slate, sigma))
+  expect_null(market_view(predict_matchup("Kofa", "Ironwood", "neutral", teams, demo$params), test_slate, sigma))
+  expect_null(describe_market(NULL))
+  expect_null(market_fact(NULL))
+})
+
+test_that("a pick'em market line has no win chance", {
+  pick <- test_slate
+  pick$market_spread_home[1] <- 0.2
+  view <- market_view(predict_matchup("Ironwood", "Mesquite", "a_home", teams, demo$params), pick, demo$params$sigma)
+  expect_equal(view$line, "Pick'em")
+  expect_null(view$chance)
+  expect_equal(describe_market(view), "The market calls it a pick'em.")
+})
+
+test_that("market_record speaks only when the market was closer", {
+  metrics <- data.frame(model = c("house", "line"), mae = c(12.6, 12.2))
+  expect_match(market_record(metrics), "closer than ours, by about 0.5 points a game")
+  expect_match(market_record(data.frame(model = c("house", "line"), mae = c(13.1, 12.2))), "about 1 point a game")
+  expect_null(market_record(data.frame(model = c("house", "line"), mae = c(12.0, 12.2))))
+  expect_null(market_record(data.frame(model = "house", mae = 12.6)))
+  expect_null(market_record(NULL))
+})
+
+test_that("market_fact shows the market's number with our gap under it", {
+  view <- list(margin = 4.5, line = "Ironwood by 4.5", chance = "Ironwood 61% to win",
+               gap = "We're 2 points higher on Mesquite.")
+  html <- as_utf8(as.character(market_fact(view, "On past games the market was closer.")))
+  expect_match(html, "Market line")
+  expect_match(html, "Ironwood by 4.5, Ironwood 61% to win")
+  expect_match(html, "higher on Mesquite\\. On past games the market was closer\\.")
 })
 
 test_that("market_gap_phrase handles agreement and singular points", {
