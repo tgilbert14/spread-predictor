@@ -22,7 +22,7 @@ test_that("demo params have every field in the data dictionary", {
                     "power_scale", "h", "h_elo", "h_power", "talent_points", "returning_points",
                     "sigma", "power", "weights",
                     "weights_method", "weights_note", "metrics", "holdout", "calibration",
-                    "folds", "leaked_diagnostic") %in% names(p)))
+                    "folds", "leaked_diagnostic", "public_scale") %in% names(p)))
   expect_equal(sum(unlist(p$weights)), 1)
   expect_named(p$weights, BLEND_SYSTEMS)
   for (table in names(PARAM_TABLES)) {

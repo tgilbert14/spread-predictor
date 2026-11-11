@@ -98,6 +98,20 @@ test_that("Elo adds the tier edge for a power team against a non-power team", {
   }
 })
 
+test_that("SP+, FPI and SRS margins use their fitted scales, and 1 when there is none", {
+  p <- demo$params
+  base <- predict_matchup("Ironwood", "Mesquite", "neutral", teams, p)$models
+  p$public_scale <- data.frame(model = c("sp", "fpi"), scale = c(0.8, 0.5), n = 500L)
+  scaled <- predict_matchup("Ironwood", "Mesquite", "neutral", teams, p)$models
+  ratio <- stats::setNames(scaled$margin / base$margin, scaled$model)
+  expect_equal(ratio[["sp"]], 0.8)
+  expect_equal(ratio[["fpi"]], 0.5)
+  expect_equal(unname(ratio[c("srs", "elo", "power")]), c(1, 1, 1))
+
+  p$public_scale <- NULL
+  expect_equal(predict_matchup("Ironwood", "Mesquite", "neutral", teams, p)$models$margin, base$margin)
+})
+
 test_that("Power margin is power_scale times the rating gap, plus home field", {
   p <- params
   p$power_scale <- 0.8

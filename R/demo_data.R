@@ -97,6 +97,8 @@ demo_app_data <- function(seed = 2026) {
     returning_points_elo = 1.4,
     returning_points_power = 1.6,
     sigma = 15.8,
+    # Point for point in the demo, so its numbers are easy to check by hand.
+    public_scale = data.frame(model = PUBLIC_SYSTEMS, scale = 1, n = 1800L),
     power = POWER_RATING,
     weights = equal_weights(),
     weights_method = "equal",

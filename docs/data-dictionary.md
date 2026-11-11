@@ -30,6 +30,8 @@ can be rebuilt from them.
 | `extras/talent/{season}.csv` | team | Once per season. |
 | `extras/returning/{season}.csv` | team | Once per season. |
 | `extras/advanced/{season}.csv` | team per game | Same rule as games. |
+| `extras/lines_full/{season}.csv` | game and sportsbook | Research only. Past seasons once; current season on each `extras` run. |
+| `extras/locations/{season}.csv` | team | Research only. Same rule. |
 | `predictions/{season}_wk{WW}.csv` | game | Once per week, before the week's first kickoff. Never overwritten. |
 
 `{source}` is one of `sp`, `fpi`, `srs`, `elo`. The fifth system, Power, is
@@ -95,6 +97,14 @@ drops rows for teams we do not track, with one count per table.
 Talent and returning production feed the house models early in the season.
 Success rates feed the Power rating. `scripts/pull_extras.R` pulls past
 seasons once; the weekly snapshot keeps the current season up to date.
+
+Two more folders are research only. The model, the database and the app
+never read them. They feed the analysis scripts.
+
+| Folder | What it holds | Used by |
+|---|---|---|
+| `lines_full/` | Every sportsbook's line per game as the API returns it, including `spread_open`, the opening spread | `scripts/disagreement.R` |
+| `locations/` | Each FBS team's home stadium with `latitude` and `longitude` | The travel-distance test in `docs/research-log.md` |
 
 ### Predictions files
 
@@ -182,6 +192,7 @@ Written by `scripts/fit.R`. Committed, so changes show up in git history.
 | `talent_points`, `returning_points` | Week 1 points added to the Elo and Power margins per z-score of roster talent gap and of returning production gap. Each is the mean of the two models' estimates. They fade to 0 by week 7. |
 | `talent_points_elo`, `talent_points_power`, `returning_points_elo`, `returning_points_power` | Each model's own estimate, for the gate report |
 | `sigma` | Standard deviation of the real margin around the house blend (the Elo and Power average), out of fold |
+| `public_scale` | Rows of `model` (`sp`, `fpi`, `srs`), `scale`, `n`. Points of spread per point of rating gap, fitted against closing lines on `n` late-season games. A missing row means 1. |
 | `power` | The Power rating settings used (`POWER_RATING` in `R/config.R`), including `success_share` and `success_points` |
 | `weights` | One number per system (`sp`, `fpi`, `srs`, `elo`, `power`). They sum to 1. |
 | `weights_method` | `"equal"` or `"fitted"` |

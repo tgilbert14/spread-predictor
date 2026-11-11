@@ -38,6 +38,16 @@ RATING_SOURCES <- c("sp", "fpi", "srs", "elo")
 # which is computed from game results instead of being downloaded.
 BLEND_SYSTEMS <- c(RATING_SOURCES, "power")
 
+# The public systems that are already in points. Their past ratings include
+# the results, so their scale is fitted against closing lines instead
+# (fit_public_scales() in R/fit.R), on games from this regular-season week on
+# plus the postseason, where season-final ratings are closest to what the
+# systems said on game day. With fewer games than the minimum, a system is
+# used point for point.
+PUBLIC_SYSTEMS <- c("sp", "fpi", "srs")
+PUBLIC_SCALE_FROM_WEEK <- 11L
+PUBLIC_SCALE_MIN_GAMES <- 300L
+
 # Settings for the Power rating (R/power_rating.R). Scores are not capped:
 # caps of 28 and 38 points both predicted worse than no cap. Each game's
 # target mixes the score with how consistently each team won its downs

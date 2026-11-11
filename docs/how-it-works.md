@@ -83,9 +83,9 @@ difference. The list of power teams is `POWER_CONFERENCES` and
 For Team A against Team B:
 
 ```
-margin = w_sp  * (SP+ gap)
-       + w_fpi * (FPI gap)
-       + w_srs * (SRS gap)
+margin = w_sp  * (sp_scale  * SP+ gap)
+       + w_fpi * (fpi_scale * FPI gap)
+       + w_srs * (srs_scale * SRS gap)
        + w_elo * (Elo gap / k + elo_tier * tier gap + preseason points)
        + w_power * (power_scale * Power gap + preseason points)
        + h * site
@@ -95,6 +95,8 @@ margin = w_sp  * (SP+ gap)
 - `k` converts Elo points into game points. `tier gap` is +1 when only A is a
   power team, -1 when only B is, and 0 otherwise.
 - `power_scale` is fitted and close to 1.
+- `sp_scale`, `fpi_scale` and `srs_scale` are the public scales (see below):
+  about 0.79, 0.95 and 0.94 in the current fit.
 - `preseason points` is 0 from week 7 on (see above).
 - `h` is home-field advantage in points. `site` is +1 when A is home, -1 when
   B is home, and 0 on a neutral field.
@@ -170,6 +172,23 @@ So:
   week's games. Once about 300 games have been played against saved
   snapshots, the weights can be fit honestly. Fitted weights replace equal
   ones only if they do better on weeks the fit never saw.
+
+### The public scales
+
+SP+, FPI and SRS are in points, but that does not mean a 10-point rating gap
+is a 10-point spread. SP+ in particular spreads teams out about 25% more
+than point spreads do.
+
+Their scale cannot be fitted against results, for the reason above. It can
+be fitted against the closing line, which was set before the game and
+cannot know the result. For late-season games (week 11 on, plus bowls) in
+the fit seasons, where a season-final rating is close to the rating on game
+day, `fit_public_scales()` regresses the line's home margin on each
+system's rating gap plus a home term. The slope is the scale. It is stable:
+SP+ lands between 0.74 and 0.88 in every fit season.
+
+This uses the market only to learn a constant per system. No game's own
+line ever goes into its prediction.
 
 The model report tab includes a "leaked" table that scores SP+, FPI and SRS
 using end-of-season ratings. It's there to catch bugs (a flipped sign shows up

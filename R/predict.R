@@ -143,15 +143,22 @@ preseason_points <- function(a, b, params, week) {
 
 #' Each model's margin before home field, A minus B.
 #'
-#' SP+, FPI and SRS are already in points. Elo is not, so its gap is divided
-#' by k, and it gets elo_tier points per tier step because CFBD Elo
-#' understates the gap between power-conference teams and everyone else.
-#' Power is in points but is rescaled by its fitted power_scale.
+#' SP+, FPI and SRS are in points, but they spread teams out more than point
+#' spreads do, so each gap is multiplied by its fitted scale
+#' (params$public_scale; 1 when there is none). Elo is not in points, so its
+#' gap is divided by k, and it gets elo_tier points per tier step because
+#' CFBD Elo understates the gap between power-conference teams and everyone
+#' else. Power is in points but is rescaled by its fitted power_scale.
 #'
 #' @param models Rows of model, rating_a and rating_b.
 #' @param tier_diff Team A's tier minus Team B's: -1, 0 or 1.
 rating_margins <- function(models, tier_diff, params) {
   margin <- models$rating_a - models$rating_b
+  public <- params$public_scale
+  if (!is.null(public)) {
+    scale <- public$scale[match(models$model, public$model)]
+    margin <- margin * ifelse(is.na(scale), 1, scale)
+  }
   elo <- models$model == "elo"
   margin[elo] <- margin[elo] / params$k + params$elo_tier * tier_diff
   power <- models$model == "power"

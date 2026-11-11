@@ -48,7 +48,8 @@ PARAM_TABLES <- list(
                   predicted = "numeric", actual = "numeric"),
   folds = c(season = "integer", k = "numeric", elo_tier = "numeric", power_scale = "numeric",
             h = "numeric", sigma = "numeric", mae = "numeric"),
-  leaked_diagnostic = c(model = "character", n = "integer", mae = "numeric")
+  leaked_diagnostic = c(model = "character", n = "integer", mae = "numeric"),
+  public_scale = c(model = "character", scale = "numeric", n = "integer")
 )
 
 # Single numbers in params.json.
@@ -422,6 +423,54 @@ leaked_diagnostic <- function(finals, games, h) {
   if (is.null(out)) as_param_table(NULL, PARAM_TABLES$leaked_diagnostic) else out
 }
 
+# ---- Public system scales ---------------------------------------------------
+
+#' How much of each public system's rating gap a point spread uses.
+#'
+#' SP+, FPI and SRS cannot be fitted against results, because their past
+#' ratings already include them. They can be fitted against the closing
+#' line, which was set before the game. For late-season games, where a
+#' season-final rating is close to the rating on game day, regress the
+#' line's home margin on the rating gap plus a home term. The slope is the
+#' scale: 0.8 means a 10-point rating gap is worth an 8-point spread.
+#'
+#' @param finals Rows of source, season, team_id, rating (season-final).
+#' @param games Completed games: game_id, season, week, season_type,
+#'   neutral_site, home_id, away_id.
+#' @param lines game_id and spread (the closing line, sportsbook style).
+#' @return One row per public system: model, scale, n (games used). A
+#'   system with fewer than `min_games` games, or a fit that makes no sense,
+#'   gets a scale of 1.
+fit_public_scales <- function(finals, games, lines, from_week = PUBLIC_SCALE_FROM_WEEK,
+                              min_games = PUBLIC_SCALE_MIN_GAMES) {
+  late <- games[games$season_type == "postseason" | games$week >= from_week, , drop = FALSE]
+  late$line <- -lines$spread[match(late$game_id, lines$game_id)]
+  late$home <- 1 - late$neutral_site
+  rows <- lapply(PUBLIC_SYSTEMS, function(source) {
+    ratings <- finals[finals$source == source, , drop = FALSE]
+    key <- paste(ratings$season, ratings$team_id)
+    late$gap <- lookup_rating(ratings, key, paste(late$season, late$home_id)) -
+      lookup_rating(ratings, key, paste(late$season, late$away_id))
+    usable <- late[!is.na(late$gap) & !is.na(late$line), , drop = FALSE]
+    scale <- 1
+    if (nrow(usable) >= min_games) {
+      slope <- stats::coef(stats::lm(line ~ 0 + gap + home, data = usable))[["gap"]]
+      if (!is.na(slope) && slope > 0) scale <- slope
+    }
+    data.frame(model = source, scale = scale, n = nrow(usable))
+  })
+  do.call(rbind, rows)
+}
+
+#' Each public system's scale as a named vector, 1 for any that is missing.
+public_scales <- function(table) {
+  scale <- stats::setNames(rep(1, length(PUBLIC_SYSTEMS)), PUBLIC_SYSTEMS)
+  if (is.null(table)) return(scale)
+  found <- table$scale[match(PUBLIC_SYSTEMS, table$model)]
+  scale[!is.na(found)] <- found[!is.na(found)]
+  scale
+}
+
 # ---- Blend weights ----------------------------------------------------------
 
 #' Equal weight on every system in the blend.
@@ -439,7 +488,7 @@ equal_weights <- function() {
 #'
 #' @param games Completed games from add_model_inputs().
 #' @param fit The house fit: k, elo_tier, power_scale, h, talent_points and
-#'   returning_points.
+#'   returning_points, plus public_scale (the fit_public_scales() table).
 #' @return X (one column per system, games with every system present), y
 #'   (home margin with home field removed) and week (a season-week label).
 blend_design <- function(games, weekly, fit) {
@@ -451,6 +500,8 @@ blend_design <- function(games, weekly, fit) {
     lookup_rating(ratings, key, game_key(games$home_id)) -
       lookup_rating(ratings, key, game_key(games$away_id))
   })
+  scales <- public_scales(fit$public_scale)
+  for (source in PUBLIC_SYSTEMS) margins[[source]] <- scales[[source]] * margins[[source]]
   # Elo and Power get the same preseason points the app adds to them.
   preseason <- fit$talent_points * games$talent_early + fit$returning_points * games$returning_early
   margins$elo <- margins$elo / fit$k + fit$elo_tier * games$tier_diff + preseason
@@ -549,6 +600,8 @@ fit_params <- function(con, fit_seasons = FIT_SEASONS, holdout_season = HOLDOUT_
   holdout$sigma <- rep(sigma, nrow(holdout))
 
   fit$sigma <- sigma
+  all_fit_games <- games[games$season %in% fit_seasons, , drop = FALSE]
+  fit$public_scale <- fit_public_scales(query_sql_file(con, "final_ratings.sql"), all_fit_games, lines)
   blend <- choose_weights(blend_design(games, query_sql_file(con, "weekly_ratings.sql"), fit))
 
   list(
@@ -568,6 +621,7 @@ fit_params <- function(con, fit_seasons = FIT_SEASONS, holdout_season = HOLDOUT_
     returning_points_elo = fit$returning_points_elo,
     returning_points_power = fit$returning_points_power,
     sigma = sigma,
+    public_scale = fit$public_scale,
     power = POWER_RATING,
     weights = blend$weights,
     weights_method = blend$method,
@@ -648,6 +702,7 @@ gate_checks <- function(params) {
       "k is between 15 and 40 Elo points per point",
       "the power-conference edge is between 5 and 15 points",
       "the Power scale is between 0.7 and 1.3",
+      "the SP+, FPI and SRS scales are between 0.6 and 1.1",
       "home field is between 0 and 5 points",
       "the Elo and Power home fields are within 1 point of each other",
       "sigma is between 12 and 20 points",
@@ -661,6 +716,7 @@ gate_checks <- function(params) {
       params$k >= 15 && params$k <= 40,
       params$elo_tier >= 5 && params$elo_tier <= 15,
       params$power_scale >= 0.7 && params$power_scale <= 1.3,
+      all(public_scales(params$public_scale) >= 0.6 & public_scales(params$public_scale) <= 1.1),
       params$h >= 0 && params$h <= 5,
       abs(params$h_elo - params$h_power) <= 1,
       params$sigma >= 12 && params$sigma <= 20,
@@ -685,6 +741,9 @@ gate_report <- function(params) {
     sprintf("  k            %6.2f  Elo points per point of margin", params$k),
     sprintf("  elo_tier     %6.2f  points added to Elo per power-conference tier step", params$elo_tier),
     sprintf("  power_scale  %6.3f  points of margin per point of Power gap", params$power_scale),
+    sprintf("  public       %s  points of spread per point of rating gap, fitted on closing lines",
+            paste(sprintf("%s %.3f (%d games)", params$public_scale$model, params$public_scale$scale,
+                          params$public_scale$n), collapse = ", ")),
     sprintf("  h            %6.2f  home field, points (Elo model %.2f, Power model %.2f)",
             params$h, params$h_elo, params$h_power),
     sprintf("  talent       %6.2f  week 1 points per SD of roster talent gap (Elo model %.2f, Power model %.2f)",

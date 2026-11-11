@@ -235,6 +235,51 @@ test_that("blend_design matches snapshot week W to week W games and skips postse
   expect_equal(design$y, 8)
 })
 
+test_that("blend_design applies the public scales", {
+  games <- data.frame(game_id = 1L, season = 2026L, week = 5L, season_type = "regular",
+                      home_id = 1L, away_id = 2L, neutral_site = 0L, home_margin = 10,
+                      tier_diff = 0L, power_gap = 5, talent_early = 0, returning_early = 0)
+  weekly <- do.call(rbind, lapply(RATING_SOURCES, function(source) {
+    data.frame(source = source, season = 2026L, week = 5L, team_id = 1:2,
+               rating = if (source == "elo") c(1600, 1500) else c(10, 0))
+  }))
+  fit <- list(k = 25, elo_tier = 10, power_scale = 1, h = 2, talent_points = 0, returning_points = 0,
+              public_scale = data.frame(model = c("sp", "fpi"), scale = c(0.8, 0.9), n = 500L))
+  # SRS has no scale in the table, so it stays point for point.
+  expect_equal(unname(blend_design(games, weekly, fit)$X[1, ]), c(8, 9, 10, 4, 5))
+})
+
+test_that("fit_public_scales recovers the scale the lines use, from late games only", {
+  set.seed(11)
+  n_teams <- 40
+  finals <- do.call(rbind, lapply(PUBLIC_SYSTEMS, function(source) {
+    data.frame(source = source, season = 2024L, team_id = seq_len(n_teams), rating = rnorm(n_teams, 0, 10))
+  }))
+  n <- 800
+  games <- data.frame(game_id = seq_len(n), season = 2024L, week = sample(1:14, n, replace = TRUE),
+                      season_type = "regular", neutral_site = rbinom(n, 1, 0.1),
+                      home_id = sample(n_teams, n, replace = TRUE))
+  games$away_id <- (games$home_id + sample(n_teams - 1, n, replace = TRUE) - 1) %% n_teams + 1
+  sp <- finals[finals$source == "sp", ]
+  gap <- sp$rating[games$home_id] - sp$rating[games$away_id]
+  # The books use 0.8 of the SP+ gap late in the season and all of it early,
+  # so a fit that looked at early games would land above 0.8.
+  late <- games$week >= PUBLIC_SCALE_FROM_WEEK
+  market <- ifelse(late, 0.8, 1) * gap + 2.5 * (1 - games$neutral_site) + rnorm(n, 0, 1)
+  lines <- data.frame(game_id = games$game_id, spread = -market)
+
+  scales <- fit_public_scales(finals, games, lines, min_games = 100)
+  expect_identical(scales$model, PUBLIC_SYSTEMS)
+  expect_equal(scales$scale[scales$model == "sp"], 0.8, tolerance = 0.02)
+  expect_equal(scales$n, rep(sum(late), 3))
+
+  # Too few games: point for point.
+  few <- fit_public_scales(finals, games, lines, min_games = 10000)
+  expect_equal(few$scale, c(1, 1, 1))
+  expect_equal(unname(public_scales(few[1, ])), c(1, 1, 1))
+  expect_equal(unname(public_scales(NULL)), c(1, 1, 1))
+})
+
 test_that("the gate report runs and every check gives a clear pass or look", {
   report <- gate_report(params)
   expect_true(any(grepl("Holdout season", report)))

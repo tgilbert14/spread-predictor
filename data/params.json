@@ -1,5 +1,5 @@
 {
-  "fit_date": "2026-11-09",
+  "fit_date": "2026-11-11",
   "fit_seasons": [2018, 2019, 2021, 2022, 2023, 2024, 2025],
   "holdout_season": 2026,
   "k": 26.0865,
@@ -15,6 +15,23 @@
   "returning_points_elo": 1.779,
   "returning_points_power": 1.6087,
   "sigma": 15.9049,
+  "public_scale": [
+    {
+      "model": "sp",
+      "scale": 0.7912,
+      "n": 1816
+    },
+    {
+      "model": "fpi",
+      "scale": 0.9515,
+      "n": 1816
+    },
+    {
+      "model": "srs",
+      "scale": 0.9418,
+      "n": 1816
+    }
+  ],
   "power": {
     "team_shrink": 4,
     "conference_shrink": 1,

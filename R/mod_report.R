@@ -68,7 +68,9 @@ how_it_works <- function() {
       "SP+ and FPI already build in their own preseason view, so they get nothing extra."
     ),
     htmltools::p(
-      "Each system's rating gap is its predicted margin, and we average the five margins using the weights below. ",
+      "Each system's rating gap becomes a predicted margin. SP+, FPI and SRS spread teams out more than ",
+      "point spreads do, so their gaps are trimmed first, by an amount learned from past closing lines. ",
+      "Then we average the five margins using the weights below. ",
       "If one team is at home, we add a few points for home field. ",
       "Finally, we turn the margin into a win chance using how far real results have landed from our numbers in past seasons."
     ),
@@ -128,6 +130,15 @@ param_cards <- function(params) {
               "Elo is not in points, so we divide an Elo gap by this number."),
     stat_card("Power-conference edge", paste(format_points(params$elo_tier), "points"),
               "Added to Elo's margin when a power-conference team plays anyone else."),
+    stat_card(
+      "Public rating scales",
+      htmltools::span(class = "weights", lapply(PUBLIC_SYSTEMS, function(m) {
+        htmltools::span(class = "weight-chip", MODEL_LABELS[[m]],
+                        htmltools::strong(sprintf("%.2f", public_scales(params$public_scale)[[m]])))
+      })),
+      paste("Points of spread per point of rating gap. These systems spread teams out more than",
+            "point spreads do, so a 10-point SP+ gap counts for less than 10.")
+    ),
     stat_card(
       "Early-season help",
       htmltools::span(class = "weights",

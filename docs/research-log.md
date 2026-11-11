@@ -226,7 +226,8 @@ from past seasons, not from this week), the blend's average distance from
 the market this week drops from 2.08 points to 1.70, and the share of games
 where we differ by 3 or more drops from 27% to 19%.
 
-Status: recommended, not yet in the model. It would be a fitted scale per
-public system in `data/params.json`, estimated the way described here, and
-applied in `rating_margins()`. The Scorecard will show whether SP+ grades
-worse than the others on real results as weeks come in.
+Status: in the model as of Nov 11, 2026. `fit_public_scales()` in `R/fit.R`
+estimates the three scales this way at every fit, `data/params.json` stores
+them as `public_scale`, and `rating_margins()` applies them. Week 11
+predictions were saved before the change and stay as they were, so the
+Scorecard grades the scaled version from week 12 on.

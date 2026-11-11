@@ -311,6 +311,7 @@ model_table <- function(pred) {
     numeric = c(FALSE, TRUE, TRUE, FALSE, TRUE),
     row_class = c(ifelse(left_out, "is-left-out", ""), "is-blend"),
     caption = paste("Ratings are points better than an average team, except Elo, which uses its own scale.",
+                    "SP+, FPI and SRS margins are trimmed to the scale point spreads use, so they can be smaller than the rating gap.",
                     "Power is our own rating, built from game scores and success rate. Elo's margin includes the power-conference correction.")
   )
 }
