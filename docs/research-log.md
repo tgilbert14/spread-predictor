@@ -149,3 +149,42 @@ automatically. Elo does not: it locks in the opponent's rating on game day.
 Adding "how much have a team's past opponents' Elo moved since" changed
 nothing (CV +0.002 [-0.001, +0.004], holdout +0.001), with or without Power
 in the mix. Rejected.
+
+## Nov 11, 2026: how close is the market, and should we blend it in?
+
+The market here is the closing line, the median across sportsbooks. Our
+number is the house blend (Elo and Power), out of sample. 5,490 games in
+the fit seasons, 562 in 2026.
+
+| | Fit seasons | 2026 |
+|---|---|---|
+| Our average miss | 12.61 | 12.09 |
+| Market's average miss | 12.19 | 11.55 |
+| We pick the winner | 72.4% | 73.0% |
+| Market picks the winner | 73.1% | 75.6% |
+
+Our line and the market's are 3.1 points apart on average (correlation
+0.96). They are within 3 points in 58% of games and 7 or more apart in 7%.
+
+When we disagree, the market is usually right:
+
+| We differ by at least | Games | Our miss | Market's miss | Result on our side of the market line |
+|---|---|---|---|---|
+| 3 | 2,512 | 13.10 | 12.18 | 49.1% |
+| 5 | 1,139 | 14.04 | 12.42 | 47.6% |
+| 7 | 446 | 15.15 | 12.88 | 48.4% |
+| 10 | 99 | 16.80 | 12.34 | 42.9% |
+
+The last column is a coin flip at every size. The model does not find
+games where the market is wrong.
+
+Blending the two: the best mix is 98% market and 2% ours, and the 2% is
+noise (it makes the market slightly worse out of sample: CV +0.006
+[+0.001, +0.010]). Once you have the closing line, our number adds nothing
+to it.
+
+Decision: the market stays out of the blend. Putting it in would turn our
+number into the market's number with extra steps. It stays what it is now:
+the benchmark on the Scorecard, and a flag in the app. A large gap between
+us and the market should be read as "the market likely knows something we
+do not", not as an edge.
