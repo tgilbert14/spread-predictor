@@ -34,7 +34,7 @@ on:
           - refresh    # snapshot, rebuild, save and grade predictions, audit
           - extras     # research data: talent, returning production, efficiency stats
           - backfill   # history for every season in TRAINING_SEASONS, plus the research data
-          - fit        # refit the model (data/params.json), then rebuild the app data
+          - fit        # refit the model, rebuild the app data, rerun the backtest and the spread study
           - manifest   # write manifest.json for deploying the app
 
 permissions:
@@ -90,7 +90,10 @@ jobs:
               Rscript scripts/pull_extras.R ;;
             fit)
               Rscript scripts/fit.R
-              Rscript scripts/refresh.R --offline ;;
+              Rscript scripts/refresh.R --offline
+              # Re-judge the candidate factors and the spread study on the new fit.
+              Rscript scripts/backtest.R
+              Rscript scripts/disagreement.R ;;
             manifest)
               Rscript scripts/write_manifest.R ;;
             *)
@@ -107,7 +110,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/snapshots
-          for file in data/app_data.rds data/params.json docs/data-audit.md manifest.json; do
+          for file in data/app_data.rds data/params.json docs/data-audit.md docs/backtest-results.md docs/market-disagreement.md manifest.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if git diff --cached --quiet; then
