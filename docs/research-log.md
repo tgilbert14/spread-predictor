@@ -231,3 +231,65 @@ estimates the three scales this way at every fit, `data/params.json` stores
 them as `public_scale`, and `rating_margins()` applies them. Week 11
 predictions were saved before the change and stay as they were, so the
 Scorecard grades the scaled version from week 12 on.
+
+## Nov 11, 2026: travel, time zones and altitude, all of FBS
+
+The earlier travel test only had coordinates for Power-4 programs. This one
+uses every FBS team's home stadium (`data/snapshots/extras/locations/`),
+6,052 games. Distance is stadium to stadium for true home games. Neutral
+sites count as no travel edge, since neither stadium is the venue.
+
+| Candidate | Games it applies to | Fitted size (points to the home team) | CV change in MAE [95% interval] | Holdout change | Verdict |
+|---|---|---|---|---|---|
+| Travel distance (log miles) | all home games | +0.6 per log-mile | -0.007 [-0.022, +0.008] | -0.037 | rejected |
+| Visitor travels more than 1,000 miles | 882 | +0.9 | +0.002 [-0.007, +0.011] | -0.019 | rejected |
+| Visitor travels more than 1,500 miles | 419 | +0.9 | +0.002 [-0.004, +0.009] | -0.010 | rejected |
+| Visitor travels under 150 miles | 713 | -1.3 | +0.001 [-0.012, +0.014] | -0.018 | rejected |
+| Time zones crossed | all home games | +0.5 per zone | -0.008 [-0.020, +0.004] | -0.015 | rejected |
+| Visitor travels east 2 or more zones | 272 | +0.1 | +0.002 [-0.000, +0.004] | -0.002 | rejected |
+| Visitor travels west 2 or more zones | 258 | +3.5 | -0.011 [-0.028, +0.007] | +0.040 | rejected |
+| Low-elevation visitor at a high-elevation home | 199 | +2.7 | -0.003 [-0.016, +0.010] | -0.046 | rejected |
+
+Every sign points the way you would expect: long trips cost the visitor
+about a point, short ones give back about a point of home field, altitude
+is worth a couple. None of it changes the average error by more than a
+hundredth of a point, because each applies to a small share of games and
+the effect is small next to a typical miss of 16. The "west 2 or more
+zones" row is mostly trips to Hawaii and the Pacific coast, and it made
+2026 worse. Rejected, and closed unless new data turns up.
+
+## Nov 11, 2026: when a model and the sportsbooks disagree, which side covers?
+
+Full tables are in `docs/market-disagreement.md`, written by
+`scripts/disagreement.R`. Sportsbook opening lines came from a new
+research pull (`data/snapshots/extras/lines_full/`).
+
+What it says:
+
+- **Against the closing line, it is a coin flip.** When our testable model
+  (Elo and Power) and the closing line were 3 or more points apart, the
+  sportsbook's side covered 50.9% of the time over 2,512 games (95%
+  interval 48.9% to 52.8%). At 2, 4 and 5 points it is 51.1%, 51.2% and
+  52.4%. Neither side reaches the 52.4% needed to break even at -110 in
+  any reliable way. Elo alone and Power alone look the same.
+- **It does not depend on the book.** DraftKings, Bovada and ESPN Bet
+  closing lines all give 50% to 53% for the sportsbook's side.
+- **Against the opening line the model does a little better, but not
+  enough.** There the model's side covered 50.5% to 52% (1,785 games at 3
+  or more, since 2021). Still short of break-even.
+- **The line does move toward the model.** When the model and the opening
+  line were 3 or more apart, 61% of the lines that moved went the model's
+  way, by half a point on average, and more at bigger gaps. So the model
+  sees something real that the opener has not priced, and the market has
+  mostly priced it by kickoff.
+- **No slice stands out.** Early season, late season, favorites, underdogs,
+  home, away, and Elo and Power agreeing with each other all sit between
+  50% and 52%. Single seasons swing from 47% to 55%, which is what chance
+  looks like at 300 games.
+- **SP+, FPI, SRS and the five-system blend cannot be tested on history.**
+  They are graded from the weekly saved predictions, and section 7 of the
+  file fills in as those games are played.
+
+This matches the earlier finding that the best mix of our number and the
+closing line is 98% line. It is a record of past results, not betting
+advice.
