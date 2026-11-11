@@ -14,17 +14,17 @@ The number is a blend of five rating systems: four public ones (SP+, FPI, SRS
 and Elo) and our own Power rating, built from game scores and success rate. The app shows where
 each one lands, so you can see when they disagree.
 
-![The Matchup tab: LSU by 2 over Texas, with a band in the two team colors showing each team's chance to win](docs/img/matchup.png)
+![The Matchup tab for Utah at Arizona: Utah by 3.5, a band in the two team colors showing each team's chance to win, the likely range, and the market line under it](docs/img/matchup.png)
 
 Under the answer, the app shows where each rating system lands, so
 disagreement is easy to see.
 
-![Where the models land: one dot per rating system on a shared scale, with the blend marked](docs/img/models.png)
+![Where the models land for Utah at Arizona: one dot per rating system on a shared scale with the blend marked, and a table of each system's ratings and margin](docs/img/models.png)
 
 The This week tab lists every game, sorted by how far our number is from the
 market's.
 
-![The This week tab: a table of games with our line, the market line and the difference](docs/img/this-week.png)
+![The This week tab: a table of games with our line, the market line, the difference and the home team's win chance](docs/img/this-week.png)
 
 The Scorecard tab keeps the model honest. Every week, before the first
 kickoff, the app's line for every game is saved and never changed. Once the
