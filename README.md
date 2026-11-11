@@ -134,7 +134,7 @@ kicks off.
 | `refresh` | The default, as above |
 | `extras` | Pulls research data: talent, returning production, game stats |
 | `backfill` | Pulls history for every season, plus the research data |
-| `fit` | Refits the model (`data/params.json`), then rebuilds the app data |
+| `fit` | Refits the model (`data/params.json`), rebuilds the app data, then reruns the backtest and the spread study |
 | `manifest` | Writes `manifest.json`, the file list a Posit Connect or shinyapps.io server needs to deploy the app |
 
 ### Updating your local copy
