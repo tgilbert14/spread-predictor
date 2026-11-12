@@ -1,8 +1,8 @@
-_Generated file: written by scripts/audit.R on 2026-11-11 from cfb.sqlite (1,320 teams, 8,651 games, 27,788 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,866 game_stats). Do not edit by hand; rerun the script._
+_Generated file: written by scripts/audit.R on 2026-11-12 from cfb.sqlite (1,320 teams, 8,651 games, 27,795 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,878 game_stats). Do not edit by hand; rerun the script._
 
 # Data audit
 
-Checked on 2026-11-11. Rows checked: 1,320 teams, 8,651 games, 27,788 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,866 game_stats.
+Checked on 2026-11-12. Rows checked: 1,320 teams, 8,651 games, 27,795 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,878 game_stats.
 
 No check that could corrupt the model found anything.
 6 other check(s) flagged rows worth a look.
@@ -303,9 +303,9 @@ Average miss of each provider against the final margin, next to the median-of-pr
 | provider | n_games | mae | consensus_mae | vs_consensus |
 |---|---|---|---|---|
 | Caesars Sportsbook (Colorado) | 33 | 11.7 | 11.67 | 0.03 |
-| DraftKings | 2837 | 11.91 | 11.89 | 0.02 |
+| DraftKings | 2843 | 11.9 | 11.88 | 0.02 |
 | ESPN Bet | 1838 | 12.06 | 12.04 | 0.03 |
-| Bovada | 5326 | 12.15 | 12.14 | 0.01 |
+| Bovada | 5332 | 12.15 | 12.14 | 0.01 |
 | William Hill (New Jersey) | 2049 | 12.15 | 12.15 | 0 |
 | consensus | 4334 | 12.37 | 12.36 | 0 |
 | teamrankings | 4401 | 12.37 | 12.37 | 0 |
