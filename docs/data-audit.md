@@ -1,8 +1,8 @@
-_Generated file: written by scripts/audit.R on 2026-11-13 from cfb.sqlite (1,320 teams, 8,651 games, 27,795 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,882 game_stats). Do not edit by hand; rerun the script._
+_Generated file: written by scripts/audit.R on 2026-11-17 from cfb.sqlite (1,320 teams, 8,651 games, 27,916 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,000 game_stats). Do not edit by hand; rerun the script._
 
 # Data audit
 
-Checked on 2026-11-13. Rows checked: 1,320 teams, 8,651 games, 27,795 lines, 5,225 ratings, 1,318 talent, 1,307 returning_production, 16,882 game_stats.
+Checked on 2026-11-17. Rows checked: 1,320 teams, 8,651 games, 27,916 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,000 game_stats.
 
 No check that could corrupt the model found anything.
 6 other check(s) flagged rows worth a look.
@@ -265,12 +265,13 @@ A provider's spread that matches the other books' line for the other team (home 
 ### lines_worst_misses (info)
 
 Games where the closing line missed the final margin by more than 45 points.
-Showing the first 25 of 33 rows.
+Showing the first 25 of 34 rows.
 
 | game_id | season | week | home_team | away_team | home_points | away_points | n_providers | median_spread | home_margin | miss |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 401013185 | 2018 | 13 | Duke | Wake Forest | 7 | 59 | 4 | -9.75 | -52 | -61.75 |
 | 401404166 | 2022 | 13 | Liberty | New Mexico State | 14 | 49 | 4 | -24 | -35 | -59 |
+| 401860917 | 2026 | 11 | Washington State | Colorado State | 73 | 7 | 2 | -7.5 | 66 | 58.5 |
 | 400944877 | 2017 | 12 | Georgia Southern | South Alabama | 52 | 0 | 3 | 6 | 52 | 58 |
 | 401760413 | 2025 | 12 | Nevada | San José State | 55 | 10 | 3 | 9.5 | 45 | 54.5 |
 | 401249429 | 2020 | 15 | Arizona | Arizona State | 7 | 70 | 5 | 9 | -63 | -54 |
@@ -293,7 +294,6 @@ Showing the first 25 of 33 rows.
 | 401215318 | 2020 | 9 | Georgia State | Coastal Carolina | 0 | 51 | 6 | 3.5 | -51 | -47.5 |
 | 401403953 | 2022 | 12 | South Carolina | Tennessee | 63 | 38 | 4 | 22.5 | 25 | 47.5 |
 | 401643760 | 2024 | 12 | Utah State | Hawai'i | 55 | 10 | 3 | 2.5 | 45 | 47.5 |
-| 401013448 | 2018 | 1 | Liberty | Old Dominion | 52 | 10 | 4 | 5 | 42 | 47 |
 
 ### lines_provider_accuracy (info)
 
@@ -303,10 +303,10 @@ Average miss of each provider against the final margin, next to the median-of-pr
 | provider | n_games | mae | consensus_mae | vs_consensus |
 |---|---|---|---|---|
 | Caesars Sportsbook (Colorado) | 33 | 11.7 | 11.67 | 0.03 |
-| DraftKings | 2845 | 11.9 | 11.88 | 0.02 |
+| DraftKings | 2904 | 11.94 | 11.92 | 0.02 |
 | ESPN Bet | 1838 | 12.06 | 12.04 | 0.03 |
-| Bovada | 5334 | 12.15 | 12.14 | 0.01 |
 | William Hill (New Jersey) | 2049 | 12.15 | 12.15 | 0 |
+| Bovada | 5393 | 12.17 | 12.16 | 0.01 |
 | consensus | 4334 | 12.37 | 12.36 | 0 |
 | teamrankings | 4401 | 12.37 | 12.37 | 0 |
 | numberfire | 2973 | 12.44 | 12.43 | 0.01 |
@@ -350,7 +350,7 @@ Showing the first 25 of 55 rows.
 ### ratings_rows_by_snapshot (info)
 
 Rows per snapshot next to the number of FBS teams that season.
-Showing the first 25 of 40 rows.
+Showing the first 25 of 44 rows.
 
 | source | season | week | is_final | n_rows | n_distinct_teams | n_fbs_teams |
 |---|---|---|---|---|---|---|
@@ -364,6 +364,7 @@ Showing the first 25 of 40 rows.
 | elo | 2024 |  | 1 | 134 | 134 | 134 |
 | elo | 2025 |  | 1 | 136 | 136 | 136 |
 | elo | 2026 | 11 | 0 | 138 | 138 | 138 |
+| elo | 2026 | 12 | 0 | 138 | 138 | 138 |
 | fpi | 2017 |  | 1 | 130 | 130 | 130 |
 | fpi | 2018 |  | 1 | 130 | 130 | 130 |
 | fpi | 2019 |  | 1 | 130 | 130 | 130 |
@@ -374,11 +375,10 @@ Showing the first 25 of 40 rows.
 | fpi | 2024 |  | 1 | 134 | 134 | 134 |
 | fpi | 2025 |  | 1 | 136 | 136 | 136 |
 | fpi | 2026 | 11 | 0 | 138 | 138 | 138 |
+| fpi | 2026 | 12 | 0 | 138 | 138 | 138 |
 | sp | 2017 |  | 1 | 128 | 128 | 130 |
 | sp | 2018 |  | 1 | 130 | 130 | 130 |
 | sp | 2019 |  | 1 | 130 | 130 | 130 |
-| sp | 2020 |  | 1 | 128 | 128 | 128 |
-| sp | 2021 |  | 1 | 130 | 130 | 130 |
 
 ### teams_conference_change (info)
 

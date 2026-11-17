@@ -692,198 +692,198 @@
 401866463,2026,11,"regular","2026-11-12T00:30:00.000Z",TRUE,FALSE,2649,"Toledo","fbs",24,1531,113,"Massachusetts","fbs",0,1122
 401862824,2026,11,"regular","2026-11-13T01:00:00.000Z",TRUE,FALSE,58,"South Florida","fbs",41,1634,235,"Memphis","fbs",52,1686
 401869969,2026,11,"regular","2026-11-13T02:00:00.000Z",TRUE,FALSE,2433,"UL Monroe","fbs",21,1040,309,"Louisiana","fbs",42,1492
-401858293,2026,11,"regular","2026-11-14T00:00:00.000Z",FALSE,FALSE,221,"Pittsburgh","fbs",,1626,52,"Florida State","fbs",,1572
-401858526,2026,11,"regular","2026-11-14T02:00:00.000Z",FALSE,FALSE,26,"UCLA","fbs",,1754,356,"Illinois","fbs",,1602
-401856860,2026,11,"regular","2026-11-14T03:15:00.000Z",FALSE,FALSE,38,"Colorado","fbs",,1268,248,"Houston","fbs",,1619
-401856859,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,66,"Iowa State","fbs",,1540,2132,"Cincinnati","fbs",,1505
-401856886,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,344,"Mississippi State","fbs",,1519,2,"Auburn","fbs",,1618
-401858296,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,2390,"Miami","fbs",,1988,150,"Duke","fbs",,1822
-401858300,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,152,"NC State","fbs",,1414,183,"Syracuse","fbs",,1342
-401858301,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,2567,"SMU","fbs",,1783,154,"Wake Forest","fbs",,1871
-401858520,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,120,"Maryland","fbs",,1323,275,"Wisconsin","fbs",,1667
-401858522,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,194,"Ohio State","fbs",,1967,77,"Northwestern","fbs",,1730
-401861967,2026,11,"regular","2026-11-14T17:00:00.000Z",FALSE,FALSE,41,"UConn","fbs",,1435,256,"James Madison","fbs",,1798
-401858297,2026,11,"regular","2026-11-14T17:30:00.000Z",FALSE,FALSE,228,"Clemson","fbs",,1559,59,"Georgia Tech","fbs",,1342
-401858525,2026,11,"regular","2026-11-14T17:30:00.000Z",FALSE,FALSE,164,"Rutgers","fbs",,1346,158,"Nebraska","fbs",,1715
-401856889,2026,11,"regular","2026-11-14T17:45:00.000Z",FALSE,FALSE,238,"Vanderbilt","fbs",,1544,333,"Alabama","fbs",,1984
-401862825,2026,11,"regular","2026-11-14T18:00:00.000Z",FALSE,FALSE,2429,"Charlotte","fbs",,1049,151,"East Carolina","fbs",,1441
-401862829,2026,11,"regular","2026-11-14T18:00:00.000Z",FALSE,FALSE,218,"Temple","fbs",,1295,5,"UAB","fbs",,1368
-401869937,2026,11,"regular","2026-11-14T18:00:00.000Z",FALSE,FALSE,324,"Coastal Carolina","fbs",,1265,2032,"Arkansas State","fbs",,1310
-401856862,2026,11,"regular","2026-11-14T19:00:00.000Z",FALSE,FALSE,2628,"TCU","fbs",,1613,2306,"Kansas State","fbs",,1462
-401862828,2026,11,"regular","2026-11-14T19:00:00.000Z",FALSE,FALSE,242,"Rice","fbs",,1111,2655,"Tulane","fbs",,1283
-401870769,2026,11,"regular","2026-11-14T19:00:00.000Z",FALSE,FALSE,2534,"Sam Houston","fbs",,1021,338,"Kennesaw State","fbs",,1295
-401856888,2026,11,"regular","2026-11-14T20:00:00.000Z",FALSE,FALSE,245,"Texas A&M","fbs",,1717,2633,"Tennessee","fbs",,1879
-401870796,2026,11,"regular","2026-11-14T20:00:00.000Z",FALSE,FALSE,2623,"Missouri State","fbs",,1228,166,"New Mexico State","fbs",,1225
-401871060,2026,11,"regular","2026-11-14T20:00:00.000Z",FALSE,FALSE,48,"Delaware","fbs",,1391,2229,"Florida International","fbs",,1337
-401856857,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,2116,"UCF","fbs",,1415,9,"Arizona State","fbs",,1477
-401856858,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,252,"BYU","fbs",,1706,239,"Baylor","fbs",,1697
-401856883,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,61,"Georgia","fbs",,2130,142,"Missouri","fbs",,1767
-401858294,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,87,"Notre Dame","fbs",,2078,103,"Boston College","fbs",,1360
-401858295,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,258,"Virginia","fbs",,1476,25,"California","fbs",,1209
-401858518,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,84,"Indiana","fbs",,2054,30,"USC","fbs",,1802
-401858523,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,2483,"Oregon","fbs",,1849,130,"Michigan","fbs",,1677
-401862826,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,202,"Tulsa","fbs",,1489,2226,"Florida Atlantic","fbs",,1383
-401864536,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,2459,"Northern Illinois","fbs",,1078,2440,"Nevada","fbs",,1362
-401869952,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,2247,"Georgia State","fbs",,1367,290,"Georgia Southern","fbs",,1499
-401870752,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,98,"Western Kentucky","fbs",,1225,55,"Jacksonville State","fbs",,1515
-401871061,2026,11,"regular","2026-11-14T20:30:00.000Z",FALSE,FALSE,2335,"Liberty","fbs",,1815,2393,"Middle Tennessee","fbs",,1165
-401860916,2026,11,"regular","2026-11-14T21:00:00.000Z",FALSE,FALSE,326,"Texas State","fbs",,1624,278,"Fresno State","fbs",,1634
-401856887,2026,11,"regular","2026-11-14T21:15:00.000Z",FALSE,FALSE,201,"Oklahoma","fbs",,1709,145,"Ole Miss","fbs",,1880
-401858521,2026,11,"regular","2026-11-14T21:15:00.000Z",FALSE,FALSE,127,"Michigan State","fbs",,1487,264,"Washington","fbs",,1722
-401871099,2026,11,"regular","2026-11-14T22:00:00.000Z",FALSE,FALSE,2348,"Louisiana Tech","fbs",,1524,2572,"Southern Miss","fbs",,1193
-401856861,2026,11,"regular","2026-11-14T22:30:00.000Z",FALSE,FALSE,277,"West Virginia","fbs",,1380,2305,"Kansas","fbs",,1577
-401860914,2026,11,"regular","2026-11-14T23:00:00.000Z",FALSE,FALSE,68,"Boise State","fbs",,1722,204,"Oregon State","fbs",,1523
-401869928,2026,11,"regular","2026-11-14T23:00:00.000Z",FALSE,FALSE,276,"Marshall","fbs",,1270,2026,"App State","fbs",,1249
-401856884,2026,11,"regular","2026-11-14T23:15:00.000Z",FALSE,FALSE,96,"Kentucky","fbs",,1584,57,"Florida","fbs",,1596
-401858298,2026,11,"regular","2026-11-15T00:00:00.000Z",FALSE,FALSE,153,"North Carolina","fbs",,1526,97,"Louisville","fbs",,1758
-401858524,2026,11,"regular","2026-11-15T00:00:00.000Z",FALSE,FALSE,213,"Penn State","fbs",,1798,135,"Minnesota","fbs",,1451
-401864538,2026,11,"regular","2026-11-15T00:00:00.000Z",FALSE,FALSE,2005,"Air Force","fbs",,1466,23,"San José State","fbs",,1364
-401871100,2026,11,"regular","2026-11-15T00:00:00.000Z",FALSE,FALSE,6,"South Alabama","fbs",,1331,2653,"Troy","fbs",,1305
-401856864,2026,11,"regular","2026-11-15T00:30:00.000Z",FALSE,FALSE,12,"Arizona","fbs",,1795,254,"Utah","fbs",,1918
-401856885,2026,11,"regular","2026-11-15T00:30:00.000Z",FALSE,FALSE,99,"LSU","fbs",,1898,251,"Texas","fbs",,1953
-401858299,2026,11,"regular","2026-11-15T00:30:00.000Z",FALSE,FALSE,259,"Virginia Tech","fbs",,1485,24,"Stanford","fbs",,1144
-401858519,2026,11,"regular","2026-11-15T00:30:00.000Z",FALSE,FALSE,2294,"Iowa","fbs",,1925,2509,"Purdue","fbs",,1408
-401864539,2026,11,"regular","2026-11-15T00:30:00.000Z",FALSE,FALSE,167,"New Mexico","fbs",,1713,2439,"UNLV","fbs",,1457
-401856882,2026,11,"regular","2026-11-15T00:45:00.000Z",FALSE,FALSE,8,"Arkansas","fbs",,1479,2579,"South Carolina","fbs",,1756
-401862827,2026,11,"regular","2026-11-15T02:00:00.000Z",FALSE,FALSE,2636,"UTSA","fbs",,1457,249,"North Texas","fbs",,1680
-401856863,2026,11,"regular","2026-11-15T02:30:00.000Z",FALSE,FALSE,197,"Oklahoma State","fbs",,1597,2641,"Texas Tech","fbs",,1824
-401860915,2026,11,"regular","2026-11-15T02:30:00.000Z",FALSE,FALSE,21,"San Diego State","fbs",,1261,328,"Utah State","fbs",,1410
-401864540,2026,11,"regular","2026-11-15T03:00:00.000Z",FALSE,FALSE,2638,"UTEP","fbs",,1014,2751,"Wyoming","fbs",,1383
-401860917,2026,11,"regular","2026-11-15T03:30:00.000Z",FALSE,FALSE,265,"Washington State","fbs",,1403,36,"Colorado State","fbs",,1144
-401864537,2026,11,"regular","2026-11-15T04:00:00.000Z",FALSE,FALSE,62,"Hawai'i","fbs",,1399,2449,"North Dakota State","fbs",,1628
-401866465,2026,12,"regular","2026-11-17T23:00:00.000Z",FALSE,FALSE,2711,"Western Michigan","fbs",,1530,2199,"Eastern Michigan","fbs",,1151
-401866464,2026,12,"regular","2026-11-18T00:00:00.000Z",FALSE,FALSE,195,"Ohio","fbs",,1361,2050,"Ball State","fbs",,1055
-401866466,2026,12,"regular","2026-11-18T00:00:00.000Z",FALSE,FALSE,2309,"Kent State","fbs",,976,193,"Miami (OH)","fbs",,1300
-401866467,2026,12,"regular","2026-11-19T00:00:00.000Z",FALSE,FALSE,113,"Massachusetts","fbs",,1088,2006,"Akron","fbs",,831
-401866469,2026,12,"regular","2026-11-19T00:30:00.000Z",FALSE,FALSE,2084,"Buffalo","fbs",,1404,2117,"Central Michigan","fbs",,1326
-401862830,2026,12,"regular","2026-11-20T00:30:00.000Z",FALSE,FALSE,218,"Temple","fbs",,1295,242,"Rice","fbs",,1111
-401856869,2026,12,"regular","2026-11-20T23:00:00.000Z",FALSE,FALSE,2116,"UCF","fbs",,1415,66,"Iowa State","fbs",,1540
-401858303,2026,12,"regular","2026-11-21T00:30:00.000Z",FALSE,FALSE,150,"Duke","fbs",,1822,228,"Clemson","fbs",,1559
-401866468,2026,12,"regular","2026-11-21T00:30:00.000Z",FALSE,FALSE,2649,"Toledo","fbs",,1565,189,"Bowling Green","fbs",,1221
-401858529,2026,12,"regular","2026-11-21T01:00:00.000Z",FALSE,FALSE,127,"Michigan State","fbs",,1487,2483,"Oregon","fbs",,1849
-401864545,2026,12,"regular","2026-11-21T01:00:00.000Z",FALSE,FALSE,2005,"Air Force","fbs",,1466,2638,"UTEP","fbs",,1014
-401864542,2026,12,"regular","2026-11-21T02:00:00.000Z",FALSE,FALSE,2751,"Wyoming","fbs",,1383,167,"New Mexico","fbs",,1713
-401856865,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,2306,"Kansas State","fbs",,1462,12,"Arizona","fbs",,1795
-401856866,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,2305,"Kansas","fbs",,1577,252,"BYU","fbs",,1706
-401856868,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,277,"West Virginia","fbs",,1380,248,"Houston","fbs",,1619
-401856871,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,239,"Baylor","fbs",,1697,2641,"Texas Tech","fbs",,1824
-401856872,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,2628,"TCU","fbs",,1613,254,"Utah","fbs",,1918
-401858302,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,2390,"Miami","fbs",,1988,259,"Virginia Tech","fbs",,1485
-401858306,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,97,"Louisville","fbs",,1758,221,"Pittsburgh","fbs",,1626
-401858310,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,59,"Georgia Tech","fbs",,1342,154,"Wake Forest","fbs",,1871
-401858528,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,130,"Michigan","fbs",,1677,26,"UCLA","fbs",,1754
-401858531,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,158,"Nebraska","fbs",,1715,194,"Ohio State","fbs",,1967
-401858535,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,264,"Washington","fbs",,1722,84,"Indiana","fbs",,2054
-401862835,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,2655,"Tulane","fbs",,1283,249,"North Texas","fbs",,1680
-401862836,2026,12,"regular","2026-11-21T05:00:00.000Z",FALSE,FALSE,5,"UAB","fbs",,1368,2636,"UTSA","fbs",,1457
-401856748,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,57,"Florida","fbs",,1596,238,"Vanderbilt","fbs",,1544
-401856749,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,145,"Ole Miss","fbs",,1871,2747,"Wofford","fcs",,
-401856752,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,201,"Oklahoma","fbs",,1709,245,"Texas A&M","fbs",,1717
-401856867,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2132,"Cincinnati","fbs",,1505,38,"Colorado","fbs",,1268
-401858309,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,103,"Boston College","fbs",,1360,183,"Syracuse","fbs",,1342
-401858530,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,135,"Minnesota","fbs",,1451,77,"Northwestern","fbs",,1730
-401858533,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2509,"Purdue","fbs",,1408,275,"Wisconsin","fbs",,1667
-401862831,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,349,"Army","fbs",,1500,151,"East Carolina","fbs",,1441
-401862834,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2426,"Navy","fbs",,1495,235,"Memphis","fbs",,1711
-401858305,2026,12,"regular","2026-11-21T17:30:00.000Z",FALSE,FALSE,258,"Virginia","fbs",,1476,153,"North Carolina","fbs",,1526
-401856750,2026,12,"regular","2026-11-21T18:00:00.000Z",FALSE,FALSE,344,"Mississippi State","fbs",,1518,2635,"Tennessee Tech","fcs",,
-401871080,2026,12,"regular","2026-11-21T18:00:00.000Z",FALSE,FALSE,2335,"Liberty","fbs",,1815,98,"Western Kentucky","fbs",,1225
-401856746,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,333,"Alabama","fbs",,1988,236,"Chattanooga","fcs",,
-401862832,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,202,"Tulsa","fbs",,1489,2429,"Charlotte","fbs",,1049
-401871079,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,55,"Jacksonville State","fbs",,1515,2623,"Missouri State","fbs",,1228
-401871081,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,2534,"Sam Houston","fbs",,1021,2393,"Middle Tennessee","fbs",,1165
-401858527,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,356,"Illinois","fbs",,1602,2294,"Iowa","fbs",,1925
-401862833,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,2226,"Florida Atlantic","fbs",,1383,58,"South Florida","fbs",,1609
-401869929,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,2026,"App State","fbs",,1249,2433,"UL Monroe","fbs",,1007
-401869946,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,309,"Louisiana","fbs",,1525,324,"Coastal Carolina","fbs",,1265
-401871077,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,166,"New Mexico State","fbs",,1225,48,"Delaware","fbs",,1391
-401871078,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,338,"Kennesaw State","fbs",,1295,2229,"Florida International","fbs",,1337
-401856747,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,2,"Auburn","fbs",,1617,2535,"Samford","fcs",,
-401856754,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,2633,"Tennessee","fbs",,1879,99,"LSU","fbs",,1898
-401856755,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,251,"Texas","fbs",,1953,8,"Arkansas","fbs",,1479
-401858304,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,52,"Florida State","fbs",,1572,152,"NC State","fbs",,1414
-401858532,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,213,"Penn State","fbs",,1798,164,"Rutgers","fbs",,1346
-401861968,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,41,"UConn","fbs",,1435,295,"Old Dominion","fbs",,1203
-401864543,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2449,"North Dakota State","fbs",,1628,2459,"Northern Illinois","fbs",,1078
-401869953,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2653,"Troy","fbs",,1305,290,"Georgia Southern","fbs",,1499
-401869958,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,276,"Marshall","fbs",,1270,2247,"Georgia State","fbs",,1367
-401871101,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2572,"Southern Miss","fbs",,1193,6,"South Alabama","fbs",,1331
-401860920,2026,12,"regular","2026-11-21T23:00:00.000Z",FALSE,FALSE,326,"Texas State","fbs",,1624,265,"Washington State","fbs",,1403
-401858534,2026,12,"regular","2026-11-21T23:15:00.000Z",FALSE,FALSE,30,"USC","fbs",,1802,120,"Maryland","fbs",,1323
-401864544,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,23,"San José State","fbs",,1364,2439,"UNLV","fbs",,1457
-401869938,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,2348,"Louisiana Tech","fbs",,1524,2032,"Arkansas State","fbs",,1310
-401856751,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,142,"Missouri","fbs",,1767,96,"Kentucky","fbs",,1584
-401856753,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,2579,"South Carolina","fbs",,1756,61,"Georgia","fbs",,2130
-401858307,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,87,"Notre Dame","fbs",,2078,2567,"SMU","fbs",,1783
-401858308,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,25,"California","fbs",,1209,24,"Stanford","fbs",,1144
-401860918,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,278,"Fresno State","fbs",,1634,36,"Colorado State","fbs",,1144
-401860925,2026,12,"regular","2026-11-22T02:30:00.000Z",FALSE,FALSE,68,"Boise State","fbs",,1722,21,"San Diego State","fbs",,1261
-401856870,2026,12,"regular","2026-11-22T03:15:00.000Z",FALSE,FALSE,9,"Arizona State","fbs",,1477,197,"Oklahoma State","fbs",,1597
-401860919,2026,12,"regular","2026-11-22T03:30:00.000Z",FALSE,FALSE,204,"Oregon State","fbs",,1523,328,"Utah State","fbs",,1410
-401864541,2026,12,"regular","2026-11-22T03:30:00.000Z",FALSE,FALSE,2440,"Nevada","fbs",,1362,62,"Hawai'i","fbs",,1399
-401866471,2026,13,"regular","2026-11-24T05:00:00.000Z",FALSE,FALSE,2711,"Western Michigan","fbs",,1530,193,"Miami (OH)","fbs",,1300
-401866470,2026,13,"regular","2026-11-25T00:00:00.000Z",FALSE,FALSE,2199,"Eastern Michigan","fbs",,1151,2309,"Kent State","fbs",,976
-401856879,2026,13,"regular","2026-11-27T01:00:00.000Z",FALSE,FALSE,2641,"Texas Tech","fbs",,1824,2628,"TCU","fbs",,1613
-401862838,2026,13,"regular","2026-11-27T05:00:00.000Z",FALSE,FALSE,235,"Memphis","fbs",,1711,218,"Temple","fbs",,1295
-401862840,2026,13,"regular","2026-11-27T05:00:00.000Z",FALSE,FALSE,2636,"UTSA","fbs",,1457,202,"Tulsa","fbs",,1489
-401856762,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,145,"Ole Miss","fbs",,1880,344,"Mississippi State","fbs",,1519
-401858536,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2294,"Iowa","fbs",,1925,158,"Nebraska","fbs",,1715
-401866472,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2006,"Akron","fbs",,831,2084,"Buffalo","fbs",,1404
-401866473,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,195,"Ohio","fbs",,1361,2649,"Toledo","fbs",,1565
-401869930,2026,13,"regular","2026-11-27T20:00:00.000Z",FALSE,FALSE,6,"South Alabama","fbs",,1331,2026,"App State","fbs",,1249
-401856759,2026,13,"regular","2026-11-27T20:30:00.000Z",FALSE,FALSE,52,"Florida State","fbs",,1572,57,"Florida","fbs",,1596
-401864549,2026,13,"regular","2026-11-27T20:30:00.000Z",FALSE,FALSE,23,"San José State","fbs",,1364,2449,"North Dakota State","fbs",,1628
-401864546,2026,13,"regular","2026-11-27T21:30:00.000Z",FALSE,FALSE,167,"New Mexico","fbs",,1713,2005,"Air Force","fbs",,1466
-401856756,2026,13,"regular","2026-11-28T00:30:00.000Z",FALSE,FALSE,245,"Texas A&M","fbs",,1717,251,"Texas","fbs",,1953
-401858544,2026,13,"regular","2026-11-28T00:30:00.000Z",FALSE,FALSE,275,"Wisconsin","fbs",,1667,135,"Minnesota","fbs",,1451
-401856880,2026,13,"regular","2026-11-28T02:00:00.000Z",FALSE,FALSE,254,"Utah","fbs",,1918,277,"West Virginia","fbs",,1380
-401856757,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,333,"Alabama","fbs",,1984,2,"Auburn","fbs",,1618
-401856758,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,8,"Arkansas","fbs",,1479,99,"LSU","fbs",,1898
-401856760,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,61,"Georgia","fbs",,2130,59,"Georgia Tech","fbs",,1342
-401856761,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,96,"Kentucky","fbs",,1584,97,"Louisville","fbs",,1758
-401856763,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,142,"Missouri","fbs",,1767,201,"Oklahoma","fbs",,1709
-401856764,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,228,"Clemson","fbs",,1559,2579,"South Carolina","fbs",,1756
-401856765,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,238,"Vanderbilt","fbs",,1544,2633,"Tennessee","fbs",,1879
-401856873,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,12,"Arizona","fbs",,1795,9,"Arizona State","fbs",,1477
-401856874,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,248,"Houston","fbs",,1619,239,"Baylor","fbs",,1697
-401856875,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,38,"Colorado","fbs",,1268,2116,"UCF","fbs",,1415
-401856876,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,252,"BYU","fbs",,1706,2132,"Cincinnati","fbs",,1505
-401856877,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,197,"Oklahoma State","fbs",,1597,2305,"Kansas","fbs",,1577
-401856878,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,66,"Iowa State","fbs",,1540,2306,"Kansas State","fbs",,1462
-401858311,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2390,"Miami","fbs",,1988,103,"Boston College","fbs",,1360
-401858312,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,154,"Wake Forest","fbs",,1871,150,"Duke","fbs",,1822
-401858313,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,153,"North Carolina","fbs",,1526,152,"NC State","fbs",,1414
-401858314,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,183,"Syracuse","fbs",,1342,87,"Notre Dame","fbs",,2078
-401858315,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,25,"California","fbs",,1209,221,"Pittsburgh","fbs",,1626
-401858316,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,24,"Stanford","fbs",,1144,2567,"SMU","fbs",,1783
-401858317,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,259,"Virginia Tech","fbs",,1485,258,"Virginia","fbs",,1476
-401858537,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,77,"Northwestern","fbs",,1730,356,"Illinois","fbs",,1602
-401858538,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,84,"Indiana","fbs",,2054,2509,"Purdue","fbs",,1408
-401858539,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,120,"Maryland","fbs",,1323,213,"Penn State","fbs",,1798
-401858541,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2483,"Oregon","fbs",,1849,264,"Washington","fbs",,1722
-401858542,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,164,"Rutgers","fbs",,1346,127,"Michigan State","fbs",,1487
-401858543,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,26,"UCLA","fbs",,1754,30,"USC","fbs",,1802
-401861969,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2751,"Wyoming","fbs",,1383,41,"UConn","fbs",,1435
-401862837,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,151,"East Carolina","fbs",,1441,2226,"Florida Atlantic","fbs",,1383
-401862839,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,58,"South Florida","fbs",,1609,2655,"Tulane","fbs",,1283
-401862841,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,242,"Rice","fbs",,1111,349,"Army","fbs",,1500
-401862842,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2429,"Charlotte","fbs",,1049,2426,"Navy","fbs",,1495
-401862843,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,249,"North Texas","fbs",,1680,5,"UAB","fbs",,1368
-401864550,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2459,"Northern Illinois","fbs",,1078,2638,"UTEP","fbs",,1014
-401869947,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,256,"James Madison","fbs",,1798,324,"Coastal Carolina","fbs",,1265
-401869954,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,290,"Georgia Southern","fbs",,1499,2348,"Louisiana Tech","fbs",,1524
-401869959,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2247,"Georgia State","fbs",,1367,309,"Louisiana","fbs",,1525
-401871102,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2433,"UL Monroe","fbs",,1007,276,"Marshall","fbs",,1270
-401871103,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,295,"Old Dominion","fbs",,1203,2572,"Southern Miss","fbs",,1193
-401858540,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,194,"Ohio State","fbs",,1967,130,"Michigan","fbs",,1677
-401866474,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,2050,"Ball State","fbs",,1055,2117,"Central Michigan","fbs",,1326
-401866475,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,189,"Bowling Green","fbs",,1221,113,"Massachusetts","fbs",,1088
-401870804,2026,13,"regular","2026-11-28T18:00:00.000Z",FALSE,FALSE,98,"Western Kentucky","fbs",,1225,338,"Kennesaw State","fbs",,1295
-401871063,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2623,"Missouri State","fbs",,1228,2335,"Liberty","fbs",,1815
-401871082,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2229,"Florida International","fbs",,1337,2534,"Sam Houston","fbs",,1021
-401871083,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2393,"Middle Tennessee","fbs",,1165,166,"New Mexico State","fbs",,1225
-401869939,2026,13,"regular","2026-11-28T20:00:00.000Z",FALSE,FALSE,2032,"Arkansas State","fbs",,1310,2653,"Troy","fbs",,1305
-401871062,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,48,"Delaware","fbs",,1391,55,"Jacksonville State","fbs",,1515
-401864548,2026,13,"regular","2026-11-29T02:00:00.000Z",FALSE,FALSE,2439,"UNLV","fbs",,1457,2440,"Nevada","fbs",,1362
-401864547,2026,13,"regular","2026-11-29T04:00:00.000Z",FALSE,FALSE,62,"Hawai'i","fbs",,1399,16,"Sacramento State","fbs",,1029
+401858293,2026,11,"regular","2026-11-14T00:00:00.000Z",TRUE,FALSE,221,"Pittsburgh","fbs",10,1626,52,"Florida State","fbs",16,1572
+401858526,2026,11,"regular","2026-11-14T02:00:00.000Z",TRUE,FALSE,26,"UCLA","fbs",22,1754,356,"Illinois","fbs",14,1602
+401856860,2026,11,"regular","2026-11-14T03:15:00.000Z",TRUE,FALSE,38,"Colorado","fbs",42,1268,248,"Houston","fbs",32,1619
+401856859,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,66,"Iowa State","fbs",41,1540,2132,"Cincinnati","fbs",13,1505
+401858296,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,2390,"Miami","fbs",36,1988,150,"Duke","fbs",25,1822
+401858300,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,152,"NC State","fbs",31,1414,183,"Syracuse","fbs",34,1342
+401858301,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,2567,"SMU","fbs",7,1783,154,"Wake Forest","fbs",49,1871
+401858520,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,120,"Maryland","fbs",24,1323,275,"Wisconsin","fbs",21,1667
+401858522,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,194,"Ohio State","fbs",28,1967,77,"Northwestern","fbs",19,1730
+401861967,2026,11,"regular","2026-11-14T17:00:00.000Z",TRUE,FALSE,41,"UConn","fbs",46,1435,256,"James Madison","fbs",22,1798
+401858297,2026,11,"regular","2026-11-14T17:30:00.000Z",TRUE,FALSE,228,"Clemson","fbs",6,1559,59,"Georgia Tech","fbs",20,1342
+401858525,2026,11,"regular","2026-11-14T17:30:00.000Z",TRUE,FALSE,164,"Rutgers","fbs",0,1346,158,"Nebraska","fbs",31,1715
+401856889,2026,11,"regular","2026-11-14T17:45:00.000Z",TRUE,FALSE,238,"Vanderbilt","fbs",6,1544,333,"Alabama","fbs",21,1984
+401862825,2026,11,"regular","2026-11-14T18:00:00.000Z",TRUE,FALSE,2429,"Charlotte","fbs",16,1049,151,"East Carolina","fbs",17,1441
+401862829,2026,11,"regular","2026-11-14T18:00:00.000Z",TRUE,FALSE,218,"Temple","fbs",10,1295,5,"UAB","fbs",36,1368
+401869937,2026,11,"regular","2026-11-14T18:00:00.000Z",TRUE,FALSE,324,"Coastal Carolina","fbs",28,1265,2032,"Arkansas State","fbs",21,1310
+401856862,2026,11,"regular","2026-11-14T19:00:00.000Z",TRUE,FALSE,2628,"TCU","fbs",20,1613,2306,"Kansas State","fbs",10,1462
+401870769,2026,11,"regular","2026-11-14T19:00:00.000Z",TRUE,FALSE,2534,"Sam Houston","fbs",7,1021,338,"Kennesaw State","fbs",26,1295
+401856888,2026,11,"regular","2026-11-14T20:00:00.000Z",TRUE,FALSE,245,"Texas A&M","fbs",7,1717,2633,"Tennessee","fbs",22,1879
+401870796,2026,11,"regular","2026-11-14T20:00:00.000Z",TRUE,FALSE,2623,"Missouri State","fbs",27,1228,166,"New Mexico State","fbs",21,1225
+401871060,2026,11,"regular","2026-11-14T20:00:00.000Z",TRUE,FALSE,48,"Delaware","fbs",24,1391,2229,"Florida International","fbs",16,1337
+401856861,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,277,"West Virginia","fbs",14,1380,2305,"Kansas","fbs",37,1577
+401856883,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,61,"Georgia","fbs",48,2130,142,"Missouri","fbs",21,1767
+401858294,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,87,"Notre Dame","fbs",41,2078,103,"Boston College","fbs",7,1360
+401858295,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,258,"Virginia","fbs",36,1476,25,"California","fbs",7,1209
+401858518,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,84,"Indiana","fbs",27,2054,30,"USC","fbs",13,1802
+401858523,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,2483,"Oregon","fbs",31,1849,130,"Michigan","fbs",7,1677
+401864536,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,2459,"Northern Illinois","fbs",7,1078,2440,"Nevada","fbs",28,1362
+401869952,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,2247,"Georgia State","fbs",17,1367,290,"Georgia Southern","fbs",34,1499
+401870752,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,98,"Western Kentucky","fbs",34,1225,55,"Jacksonville State","fbs",24,1515
+401871061,2026,11,"regular","2026-11-14T20:30:00.000Z",TRUE,FALSE,2335,"Liberty","fbs",28,1815,2393,"Middle Tennessee","fbs",23,1165
+401860916,2026,11,"regular","2026-11-14T21:00:00.000Z",TRUE,FALSE,326,"Texas State","fbs",37,1624,278,"Fresno State","fbs",35,1634
+401856886,2026,11,"regular","2026-11-14T21:15:00.000Z",TRUE,FALSE,344,"Mississippi State","fbs",9,1519,2,"Auburn","fbs",41,1618
+401862828,2026,11,"regular","2026-11-14T21:30:00.000Z",TRUE,FALSE,242,"Rice","fbs",17,1111,2655,"Tulane","fbs",20,1283
+401871099,2026,11,"regular","2026-11-14T22:00:00.000Z",TRUE,FALSE,2348,"Louisiana Tech","fbs",63,1524,2572,"Southern Miss","fbs",31,1193
+401856857,2026,11,"regular","2026-11-14T22:30:00.000Z",TRUE,FALSE,2116,"UCF","fbs",13,1415,9,"Arizona State","fbs",26,1477
+401858521,2026,11,"regular","2026-11-14T22:30:00.000Z",TRUE,FALSE,127,"Michigan State","fbs",14,1487,264,"Washington","fbs",21,1722
+401860914,2026,11,"regular","2026-11-14T23:00:00.000Z",TRUE,FALSE,68,"Boise State","fbs",46,1722,204,"Oregon State","fbs",41,1523
+401869928,2026,11,"regular","2026-11-14T23:00:00.000Z",TRUE,FALSE,276,"Marshall","fbs",16,1270,2026,"App State","fbs",20,1249
+401856884,2026,11,"regular","2026-11-14T23:15:00.000Z",TRUE,FALSE,96,"Kentucky","fbs",14,1584,57,"Florida","fbs",21,1596
+401856858,2026,11,"regular","2026-11-15T00:00:00.000Z",TRUE,FALSE,252,"BYU","fbs",28,1706,239,"Baylor","fbs",7,1697
+401858298,2026,11,"regular","2026-11-15T00:00:00.000Z",TRUE,FALSE,153,"North Carolina","fbs",14,1526,97,"Louisville","fbs",16,1758
+401858524,2026,11,"regular","2026-11-15T00:00:00.000Z",TRUE,FALSE,213,"Penn State","fbs",42,1798,135,"Minnesota","fbs",14,1451
+401864538,2026,11,"regular","2026-11-15T00:00:00.000Z",TRUE,FALSE,2005,"Air Force","fbs",24,1466,23,"San José State","fbs",3,1364
+401871100,2026,11,"regular","2026-11-15T00:00:00.000Z",TRUE,FALSE,6,"South Alabama","fbs",27,1331,2653,"Troy","fbs",14,1305
+401862826,2026,11,"regular","2026-11-15T00:15:00.000Z",TRUE,FALSE,202,"Tulsa","fbs",38,1489,2226,"Florida Atlantic","fbs",21,1383
+401856885,2026,11,"regular","2026-11-15T00:30:00.000Z",TRUE,FALSE,99,"LSU","fbs",21,1898,251,"Texas","fbs",22,1953
+401858299,2026,11,"regular","2026-11-15T00:30:00.000Z",TRUE,FALSE,259,"Virginia Tech","fbs",22,1485,24,"Stanford","fbs",40,1144
+401858519,2026,11,"regular","2026-11-15T00:30:00.000Z",TRUE,FALSE,2294,"Iowa","fbs",28,1925,2509,"Purdue","fbs",7,1408
+401864539,2026,11,"regular","2026-11-15T00:30:00.000Z",TRUE,FALSE,167,"New Mexico","fbs",17,1713,2439,"UNLV","fbs",21,1457
+401856882,2026,11,"regular","2026-11-15T00:45:00.000Z",TRUE,FALSE,8,"Arkansas","fbs",34,1479,2579,"South Carolina","fbs",6,1756
+401862827,2026,11,"regular","2026-11-15T02:00:00.000Z",TRUE,FALSE,2636,"UTSA","fbs",35,1457,249,"North Texas","fbs",16,1680
+401856863,2026,11,"regular","2026-11-15T02:30:00.000Z",TRUE,FALSE,197,"Oklahoma State","fbs",27,1597,2641,"Texas Tech","fbs",52,1824
+401860915,2026,11,"regular","2026-11-15T02:30:00.000Z",TRUE,FALSE,21,"San Diego State","fbs",30,1261,328,"Utah State","fbs",13,1410
+401864540,2026,11,"regular","2026-11-15T03:00:00.000Z",TRUE,FALSE,2638,"UTEP","fbs",15,1014,2751,"Wyoming","fbs",27,1383
+401856864,2026,11,"regular","2026-11-15T03:30:00.000Z",TRUE,FALSE,12,"Arizona","fbs",39,1795,254,"Utah","fbs",40,1918
+401860917,2026,11,"regular","2026-11-15T03:30:00.000Z",TRUE,FALSE,265,"Washington State","fbs",73,1403,36,"Colorado State","fbs",7,1144
+401864537,2026,11,"regular","2026-11-15T04:00:00.000Z",TRUE,FALSE,62,"Hawai'i","fbs",13,1399,2449,"North Dakota State","fbs",21,1628
+401856887,2026,11,"regular","2026-11-15T18:00:00.000Z",TRUE,FALSE,201,"Oklahoma","fbs",24,1709,145,"Ole Miss","fbs",17,1880
+401866465,2026,12,"regular","2026-11-17T23:00:00.000Z",FALSE,FALSE,2711,"Western Michigan","fbs",,1495,2199,"Eastern Michigan","fbs",,1151
+401866464,2026,12,"regular","2026-11-18T00:00:00.000Z",FALSE,FALSE,195,"Ohio","fbs",,1350,2050,"Ball State","fbs",,1073
+401866466,2026,12,"regular","2026-11-18T00:00:00.000Z",FALSE,FALSE,2309,"Kent State","fbs",,977,193,"Miami (OH)","fbs",,1311
+401866467,2026,12,"regular","2026-11-19T00:00:00.000Z",FALSE,FALSE,113,"Massachusetts","fbs",,1105,2006,"Akron","fbs",,866
+401866469,2026,12,"regular","2026-11-19T00:30:00.000Z",FALSE,FALSE,2084,"Buffalo","fbs",,1386,2117,"Central Michigan","fbs",,1319
+401862830,2026,12,"regular","2026-11-20T00:30:00.000Z",FALSE,FALSE,218,"Temple","fbs",,1234,242,"Rice","fbs",,1117
+401856869,2026,12,"regular","2026-11-20T23:00:00.000Z",FALSE,FALSE,2116,"UCF","fbs",,1392,66,"Iowa State","fbs",,1609
+401858303,2026,12,"regular","2026-11-21T00:30:00.000Z",FALSE,FALSE,150,"Duke","fbs",,1814,228,"Clemson","fbs",,1504
+401866468,2026,12,"regular","2026-11-21T00:30:00.000Z",FALSE,FALSE,2649,"Toledo","fbs",,1548,189,"Bowling Green","fbs",,1220
+401858529,2026,12,"regular","2026-11-21T01:00:00.000Z",FALSE,FALSE,127,"Michigan State","fbs",,1491,2483,"Oregon","fbs",,1890
+401864545,2026,12,"regular","2026-11-21T01:00:00.000Z",FALSE,FALSE,2005,"Air Force","fbs",,1505,2638,"UTEP","fbs",,1020
+401864542,2026,12,"regular","2026-11-21T02:00:00.000Z",FALSE,FALSE,2751,"Wyoming","fbs",,1377,167,"New Mexico","fbs",,1688
+401856748,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,57,"Florida","fbs",,1608,238,"Vanderbilt","fbs",,1549
+401856749,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,145,"Ole Miss","fbs",,1866,2747,"Wofford","fcs",,
+401856866,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2305,"Kansas","fbs",,1615,252,"BYU","fbs",,1755
+401856867,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2132,"Cincinnati","fbs",,1436,38,"Colorado","fbs",,1313
+401858309,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,103,"Boston College","fbs",,1348,183,"Syracuse","fbs",,1351
+401858310,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,59,"Georgia Tech","fbs",,1397,154,"Wake Forest","fbs",,1986
+401858530,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,135,"Minnesota","fbs",,1417,77,"Northwestern","fbs",,1731
+401858531,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,158,"Nebraska","fbs",,1757,194,"Ohio State","fbs",,1966
+401858533,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2509,"Purdue","fbs",,1407,275,"Wisconsin","fbs",,1661
+401862831,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,349,"Army","fbs",,1500,151,"East Carolina","fbs",,1425
+401862834,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2426,"Navy","fbs",,1495,235,"Memphis","fbs",,1705
+401862835,2026,12,"regular","2026-11-21T17:00:00.000Z",FALSE,FALSE,2655,"Tulane","fbs",,1277,249,"North Texas","fbs",,1612
+401858305,2026,12,"regular","2026-11-21T17:30:00.000Z",FALSE,FALSE,258,"Virginia","fbs",,1522,153,"North Carolina","fbs",,1535
+401856750,2026,12,"regular","2026-11-21T18:00:00.000Z",FALSE,FALSE,344,"Mississippi State","fbs",,1430,2635,"Tennessee Tech","fcs",,
+401856868,2026,12,"regular","2026-11-21T18:00:00.000Z",FALSE,FALSE,277,"West Virginia","fbs",,1342,248,"Houston","fbs",,1574
+401871080,2026,12,"regular","2026-11-21T18:00:00.000Z",FALSE,FALSE,2335,"Liberty","fbs",,1797,98,"Western Kentucky","fbs",,1265
+401856746,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,333,"Alabama","fbs",,2002,236,"Chattanooga","fcs",,
+401862832,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,202,"Tulsa","fbs",,1516,2429,"Charlotte","fbs",,1065
+401871079,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,55,"Jacksonville State","fbs",,1475,2623,"Missouri State","fbs",,1235
+401871081,2026,12,"regular","2026-11-21T19:00:00.000Z",FALSE,FALSE,2534,"Sam Houston","fbs",,1002,2393,"Middle Tennessee","fbs",,1183
+401858527,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,356,"Illinois","fbs",,1599,2294,"Iowa","fbs",,1926
+401862833,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,2226,"Florida Atlantic","fbs",,1356,58,"South Florida","fbs",,1615
+401869929,2026,12,"regular","2026-11-21T19:30:00.000Z",FALSE,FALSE,2026,"App State","fbs",,1257,2433,"UL Monroe","fbs",,1033
+401869946,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,309,"Louisiana","fbs",,1499,324,"Coastal Carolina","fbs",,1277
+401871077,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,166,"New Mexico State","fbs",,1218,48,"Delaware","fbs",,1400
+401871078,2026,12,"regular","2026-11-21T20:00:00.000Z",FALSE,FALSE,338,"Kennesaw State","fbs",,1314,2229,"Florida International","fbs",,1328
+401856747,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,2,"Auburn","fbs",,1707,2535,"Samford","fcs",,
+401856754,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,2633,"Tennessee","fbs",,1898,99,"LSU","fbs",,1899
+401856755,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,251,"Texas","fbs",,1952,8,"Arkansas","fbs",,1589
+401856871,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,239,"Baylor","fbs",,1648,2641,"Texas Tech","fbs",,1864
+401858304,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,52,"Florida State","fbs",,1587,152,"NC State","fbs",,1405
+401858528,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,130,"Michigan","fbs",,1636,26,"UCLA","fbs",,1757
+401858532,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,213,"Penn State","fbs",,1832,164,"Rutgers","fbs",,1304
+401858535,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,264,"Washington","fbs",,1718,84,"Indiana","fbs",,2061
+401861968,2026,12,"regular","2026-11-21T20:30:00.000Z",FALSE,FALSE,41,"UConn","fbs",,1541,295,"Old Dominion","fbs",,1203
+401856752,2026,12,"regular","2026-11-21T20:45:00.000Z",FALSE,FALSE,201,"Oklahoma","fbs",,1729,245,"Texas A&M","fbs",,1698
+401864543,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2449,"North Dakota State","fbs",,1626,2459,"Northern Illinois","fbs",,1055
+401869953,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2653,"Troy","fbs",,1282,290,"Georgia Southern","fbs",,1526
+401869958,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,276,"Marshall","fbs",,1262,2247,"Georgia State","fbs",,1340
+401871101,2026,12,"regular","2026-11-21T21:00:00.000Z",FALSE,FALSE,2572,"Southern Miss","fbs",,1146,6,"South Alabama","fbs",,1354
+401860920,2026,12,"regular","2026-11-21T23:00:00.000Z",FALSE,FALSE,326,"Texas State","fbs",,1625,265,"Washington State","fbs",,1577
+401858534,2026,12,"regular","2026-11-21T23:15:00.000Z",FALSE,FALSE,30,"USC","fbs",,1795,120,"Maryland","fbs",,1329
+401856865,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,2306,"Kansas State","fbs",,1455,12,"Arizona","fbs",,1800
+401858302,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,2390,"Miami","fbs",,1996,259,"Virginia Tech","fbs",,1400
+401864544,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,23,"San José State","fbs",,1325,2439,"UNLV","fbs",,1482
+401869938,2026,12,"regular","2026-11-22T00:00:00.000Z",FALSE,FALSE,2348,"Louisiana Tech","fbs",,1571,2032,"Arkansas State","fbs",,1298
+401856751,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,142,"Missouri","fbs",,1737,96,"Kentucky","fbs",,1572
+401856753,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,2579,"South Carolina","fbs",,1646,61,"Georgia","fbs",,2160
+401858306,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,97,"Louisville","fbs",,1749,221,"Pittsburgh","fbs",,1611
+401858307,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,87,"Notre Dame","fbs",,2090,2567,"SMU","fbs",,1668
+401858308,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,25,"California","fbs",,1163,24,"Stanford","fbs",,1229
+401860918,2026,12,"regular","2026-11-22T00:30:00.000Z",FALSE,FALSE,278,"Fresno State","fbs",,1633,36,"Colorado State","fbs",,970
+401862836,2026,12,"regular","2026-11-22T01:00:00.000Z",FALSE,FALSE,5,"UAB","fbs",,1429,2636,"UTSA","fbs",,1525
+401856872,2026,12,"regular","2026-11-22T02:00:00.000Z",FALSE,FALSE,2628,"TCU","fbs",,1620,254,"Utah","fbs",,1913
+401860925,2026,12,"regular","2026-11-22T02:30:00.000Z",FALSE,FALSE,68,"Boise State","fbs",,1719,21,"San Diego State","fbs",,1313
+401856870,2026,12,"regular","2026-11-22T03:15:00.000Z",FALSE,FALSE,9,"Arizona State","fbs",,1500,197,"Oklahoma State","fbs",,1557
+401860919,2026,12,"regular","2026-11-22T03:30:00.000Z",FALSE,FALSE,204,"Oregon State","fbs",,1526,328,"Utah State","fbs",,1358
+401864541,2026,12,"regular","2026-11-22T03:30:00.000Z",FALSE,FALSE,2440,"Nevada","fbs",,1385,62,"Hawai'i","fbs",,1401
+401866470,2026,13,"regular","2026-11-25T00:00:00.000Z",FALSE,FALSE,2199,"Eastern Michigan","fbs",,1151,2309,"Kent State","fbs",,977
+401866471,2026,13,"regular","2026-11-25T00:00:00.000Z",FALSE,FALSE,2711,"Western Michigan","fbs",,1495,193,"Miami (OH)","fbs",,1311
+401856879,2026,13,"regular","2026-11-27T01:00:00.000Z",FALSE,FALSE,2641,"Texas Tech","fbs",,1864,2628,"TCU","fbs",,1620
+401856762,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,145,"Ole Miss","fbs",,1860,344,"Mississippi State","fbs",,1441
+401858536,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2294,"Iowa","fbs",,1926,158,"Nebraska","fbs",,1757
+401862840,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2636,"UTSA","fbs",,1525,202,"Tulsa","fbs",,1516
+401866472,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2006,"Akron","fbs",,866,2084,"Buffalo","fbs",,1386
+401866473,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,195,"Ohio","fbs",,1350,2649,"Toledo","fbs",,1548
+401869930,2026,13,"regular","2026-11-27T20:00:00.000Z",FALSE,FALSE,6,"South Alabama","fbs",,1354,2026,"App State","fbs",,1257
+401856759,2026,13,"regular","2026-11-27T20:30:00.000Z",FALSE,FALSE,52,"Florida State","fbs",,1587,57,"Florida","fbs",,1608
+401862838,2026,13,"regular","2026-11-27T20:30:00.000Z",FALSE,FALSE,235,"Memphis","fbs",,1705,218,"Temple","fbs",,1234
+401864549,2026,13,"regular","2026-11-27T20:30:00.000Z",FALSE,FALSE,23,"San José State","fbs",,1325,2449,"North Dakota State","fbs",,1626
+401864546,2026,13,"regular","2026-11-27T21:30:00.000Z",FALSE,FALSE,167,"New Mexico","fbs",,1688,2005,"Air Force","fbs",,1505
+401856756,2026,13,"regular","2026-11-28T00:30:00.000Z",FALSE,FALSE,245,"Texas A&M","fbs",,1698,251,"Texas","fbs",,1952
+401858544,2026,13,"regular","2026-11-28T00:30:00.000Z",FALSE,FALSE,275,"Wisconsin","fbs",,1661,135,"Minnesota","fbs",,1417
+401856880,2026,13,"regular","2026-11-28T02:00:00.000Z",FALSE,FALSE,254,"Utah","fbs",,1913,277,"West Virginia","fbs",,1342
+401856757,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,333,"Alabama","fbs",,1979,2,"Auburn","fbs",,1696
+401856758,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,8,"Arkansas","fbs",,1589,99,"LSU","fbs",,1899
+401856760,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,61,"Georgia","fbs",,2160,59,"Georgia Tech","fbs",,1397
+401856761,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,96,"Kentucky","fbs",,1572,97,"Louisville","fbs",,1749
+401856764,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,228,"Clemson","fbs",,1504,2579,"South Carolina","fbs",,1646
+401856765,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,238,"Vanderbilt","fbs",,1549,2633,"Tennessee","fbs",,1898
+401858312,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,154,"Wake Forest","fbs",,1986,150,"Duke","fbs",,1814
+401858316,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,24,"Stanford","fbs",,1229,2567,"SMU","fbs",,1668
+401858538,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,84,"Indiana","fbs",,2061,2509,"Purdue","fbs",,1407
+401858541,2026,13,"regular","2026-11-28T05:00:00.000Z",FALSE,FALSE,2483,"Oregon","fbs",,1890,264,"Washington","fbs",,1718
+401858311,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,2390,"Miami","fbs",,1996,103,"Boston College","fbs",,1348
+401858313,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,153,"North Carolina","fbs",,1535,152,"NC State","fbs",,1405
+401858314,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,183,"Syracuse","fbs",,1351,87,"Notre Dame","fbs",,2090
+401858540,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,194,"Ohio State","fbs",,1966,130,"Michigan","fbs",,1636
+401861969,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,2751,"Wyoming","fbs",,1377,41,"UConn","fbs",,1541
+401862842,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,2429,"Charlotte","fbs",,1065,2426,"Navy","fbs",,1495
+401866474,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,2050,"Ball State","fbs",,1073,2117,"Central Michigan","fbs",,1319
+401869954,2026,13,"regular","2026-11-28T17:00:00.000Z",FALSE,FALSE,290,"Georgia Southern","fbs",,1526,2348,"Louisiana Tech","fbs",,1571
+401858537,2026,13,"regular","2026-11-28T17:30:00.000Z",FALSE,FALSE,77,"Northwestern","fbs",,1731,356,"Illinois","fbs",,1599
+401862837,2026,13,"regular","2026-11-28T18:00:00.000Z",FALSE,FALSE,151,"East Carolina","fbs",,1425,2226,"Florida Atlantic","fbs",,1356
+401870804,2026,13,"regular","2026-11-28T18:00:00.000Z",FALSE,FALSE,98,"Western Kentucky","fbs",,1265,338,"Kennesaw State","fbs",,1314
+401871102,2026,13,"regular","2026-11-28T18:00:00.000Z",FALSE,FALSE,2433,"UL Monroe","fbs",,1033,276,"Marshall","fbs",,1262
+401871103,2026,13,"regular","2026-11-28T18:00:00.000Z",FALSE,FALSE,295,"Old Dominion","fbs",,1203,2572,"Southern Miss","fbs",,1146
+401856875,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,38,"Colorado","fbs",,1313,2116,"UCF","fbs",,1392
+401856878,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,66,"Iowa State","fbs",,1609,2306,"Kansas State","fbs",,1455
+401862841,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,242,"Rice","fbs",,1117,349,"Army","fbs",,1500
+401869947,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,256,"James Madison","fbs",,1692,324,"Coastal Carolina","fbs",,1277
+401869959,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2247,"Georgia State","fbs",,1340,309,"Louisiana","fbs",,1499
+401871063,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2623,"Missouri State","fbs",,1235,2335,"Liberty","fbs",,1797
+401871082,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2229,"Florida International","fbs",,1328,2534,"Sam Houston","fbs",,1002
+401871083,2026,13,"regular","2026-11-28T19:00:00.000Z",FALSE,FALSE,2393,"Middle Tennessee","fbs",,1183,166,"New Mexico State","fbs",,1218
+401858317,2026,13,"regular","2026-11-28T20:00:00.000Z",FALSE,FALSE,259,"Virginia Tech","fbs",,1400,258,"Virginia","fbs",,1522
+401869939,2026,13,"regular","2026-11-28T20:00:00.000Z",FALSE,FALSE,2032,"Arkansas State","fbs",,1298,2653,"Troy","fbs",,1282
+401856876,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,252,"BYU","fbs",,1755,2132,"Cincinnati","fbs",,1436
+401858539,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,120,"Maryland","fbs",,1329,213,"Penn State","fbs",,1832
+401858543,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,26,"UCLA","fbs",,1757,30,"USC","fbs",,1795
+401862839,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,58,"South Florida","fbs",,1615,2655,"Tulane","fbs",,1277
+401864550,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,2459,"Northern Illinois","fbs",,1055,2638,"UTEP","fbs",,1020
+401866475,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,189,"Bowling Green","fbs",,1220,113,"Massachusetts","fbs",,1105
+401871062,2026,13,"regular","2026-11-28T20:30:00.000Z",FALSE,FALSE,48,"Delaware","fbs",,1400,55,"Jacksonville State","fbs",,1475
+401862843,2026,13,"regular","2026-11-28T21:00:00.000Z",FALSE,FALSE,249,"North Texas","fbs",,1612,5,"UAB","fbs",,1429
+401856763,2026,13,"regular","2026-11-28T21:15:00.000Z",FALSE,FALSE,142,"Missouri","fbs",,1737,201,"Oklahoma","fbs",,1729
+401858542,2026,13,"regular","2026-11-28T21:15:00.000Z",FALSE,FALSE,164,"Rutgers","fbs",,1304,127,"Michigan State","fbs",,1491
+401856877,2026,13,"regular","2026-11-28T23:15:00.000Z",FALSE,FALSE,197,"Oklahoma State","fbs",,1557,2305,"Kansas","fbs",,1615
+401858315,2026,13,"regular","2026-11-29T00:30:00.000Z",FALSE,FALSE,25,"California","fbs",,1163,221,"Pittsburgh","fbs",,1611
+401856873,2026,13,"regular","2026-11-29T02:00:00.000Z",FALSE,FALSE,12,"Arizona","fbs",,1800,9,"Arizona State","fbs",,1500
+401864548,2026,13,"regular","2026-11-29T02:00:00.000Z",FALSE,FALSE,2439,"UNLV","fbs",,1482,2440,"Nevada","fbs",,1385
+401856874,2026,13,"regular","2026-11-29T02:30:00.000Z",FALSE,FALSE,248,"Houston","fbs",,1574,239,"Baylor","fbs",,1648
+401864547,2026,13,"regular","2026-11-29T04:00:00.000Z",FALSE,FALSE,62,"Hawai'i","fbs",,1401,16,"Sacramento State","fbs",,1036
 401862844,2026,15,"regular","2026-12-12T20:00:00.000Z",FALSE,TRUE,349,"Army","fbs",,1500,2426,"Navy","fbs",,1495
