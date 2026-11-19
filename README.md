@@ -165,6 +165,27 @@ calling the API.
 The free API tier allows 1,000 calls a month. The three automatic runs use
 about 20 a week (later runs in a week skip ratings already saved).
 
+### Start of a new season
+
+Once a year, before week 1, tell the model that last season is now history.
+Until you do, the app still works, but it is running on settings that never
+learned from last season. Do this in August or later. Before August the code
+still treats last season as the current one and won't pull its final ratings.
+
+1. In `R/config.R`, add last season to `TRAINING_SEASONS` and `FIT_SEASONS`.
+   For the 2027 season that means `TRAINING_SEASONS <- 2017:2026` and
+   `FIT_SEASONS <- c(2018L, 2019L, 2021:2026)`. `HOLDOUT_SEASON` follows on
+   its own.
+2. Update the season lists in this README (How the number is made) and in
+   [docs/how-it-works.md](docs/how-it-works.md) (Seasons) to match.
+3. Commit, push, and check that the tests pass.
+4. On the **Actions** tab, run **Weekly snapshot** with the task `backfill`.
+   It pulls last season's final ratings and skips everything already saved.
+5. Run it again with the task `fit`. That refits the model with last season
+   included and rebuilds the app data.
+6. Run it once more with the default task, `refresh`, and check that it
+   finishes green and the new season's files show up in `data/snapshots/`.
+
 ## How the number is made
 
 1. **Each system gives a margin.** SP+, FPI and SRS rate teams in points, so
@@ -240,6 +261,7 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 | "Ratings are more than 8 days old" | Run `git pull`, then `Rscript scripts/refresh.R --offline`. |
 | A column-name error from a `normalize_` function | The `cfbfastR` package changed its output. The message lists the columns it got. Open an issue with that message. |
 | The GitHub Action fails | Check that the `CFBD_API_KEY` secret exists and that you have API calls left this month. |
+| The scheduled runs stopped on their own | GitHub turns off schedules on a repo with no commits for 60 days. Open the **Actions** tab, choose **Weekly snapshot**, click **Enable workflow**, then **Run workflow**. |
 
 ## Limits
 
