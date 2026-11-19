@@ -150,6 +150,9 @@ see.
 - **The current season is a holdout** (`HOLDOUT_SEASON`). It is scored with
   parameters fit on the fit seasons and never used to fit anything.
 
+These lists move forward one season a year, by hand. The steps are in the
+README under "Start of a new season".
+
 ### Why not fit on SP+, FPI and SRS?
 
 To test a model fairly, you predict each past game using only what was known
