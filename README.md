@@ -268,7 +268,6 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 
 | You see | Do this |
 |---|---|
-| The app opens on a game you don't care about | Set `FEATURED_TEAM` in `R/config.R` to your school. Its game opens first each week. With no game left to play, the app opens on the game between the two strongest teams. |
 | A "Demo data" banner | `data/app_data.rds` doesn't exist yet. Follow [Use real data](#use-real-data). |
 | `CFBD_API_KEY is not set` | Check that `.Renviron` is in the project folder, then restart R. |
 | `params.json` not found | Run `Rscript scripts/fit.R` first. |
@@ -276,6 +275,7 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 | A column-name error from a `normalize_` function | The `cfbfastR` package changed its output. The message lists the columns it got. Open an issue with that message. |
 | The GitHub Action fails | Check that the `CFBD_API_KEY` secret exists and that you have API calls left this month. |
 | The scheduled runs stopped on their own | GitHub turns off schedules on a repo with no commits for 60 days. Open the **Actions** tab, choose **Weekly snapshot**, click **Enable workflow**, then **Run workflow**. |
+| The app opens on a game you don't care about | Set `FEATURED_TEAM` in `R/config.R` to your school. Its game opens first each week. With no game left to play, the app opens on the game between the two strongest teams. |
 
 ## Limits
 

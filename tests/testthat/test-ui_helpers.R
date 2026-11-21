@@ -91,6 +91,23 @@ test_that("team_badge falls back to initials and labels logos", {
   expect_match(html, sprintf('alt="%s logo"', with_logo$school))
 })
 
+test_that("the small table badge is a logo or a plain dot, and stays quiet for screen readers", {
+  dot <- as.character(team_badge(teams[1, ], "xs", decorative = TRUE))
+  expect_false(grepl("team-initials", dot))
+  expect_false(grepl("<img", dot))
+
+  with_logo <- teams[1, ]
+  with_logo$logo <- "https://example.com/logo.png"
+  logo <- as.character(team_badge(with_logo, "xs", decorative = TRUE))
+  expect_match(logo, 'alt=""', fixed = TRUE)
+
+  expect_match(team_name_html(with_logo, "Cochise A&M"), "has-logo")
+  expect_match(team_name_html(with_logo, "Cochise A&M"), "Cochise A&amp;M</span>$")
+  # A team we do not hold gets its name alone.
+  expect_identical(team_name_html(teams[0, ], "Nowhere"), '<span class="slate-team">Nowhere</span>')
+  expect_identical(team_name_html(NULL, "Nowhere"), '<span class="slate-team">Nowhere</span>')
+})
+
 test_that("slate_matchup puts the away team first and keeps the real site", {
   expect_equal(slate_matchup(test_slate[1, ]), list(a = id_of("Mesquite"), b = id_of("Ironwood"), site = "b_home"))
   expect_equal(slate_matchup(test_slate[2, ])$site, "neutral")

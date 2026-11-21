@@ -187,7 +187,10 @@ format_closer <- function(closer, our_error, market_error) {
 
 #' One display row per graded game, plus numeric keys for sorting. Lines and
 #' finals read away first, the same way the This week tab does.
-scorecard_game_rows <- function(games) {
+#'
+#' @param teams The teams table, for the small logo beside each name. NULL
+#'   shows the names alone.
+scorecard_game_rows <- function(games, teams = NULL) {
   esc <- htmltools::htmlEscape
   cell <- function(label, html) sprintf('<span class="cell-label">%s</span>%s', label, html)
   away <- games$away_team
@@ -200,9 +203,14 @@ scorecard_game_rows <- function(games) {
       esc(format_favorite(-home_margin[i], away[i], home[i]))
     }, character(1))
   }
+  name_html <- function(team_id, school) {
+    vapply(seq_along(school), function(i) {
+      team <- if (is.null(teams)) NULL else teams[teams$team_id %in% team_id[i], , drop = FALSE]
+      team_name_html(team, school[i])
+    }, character(1))
+  }
   data.frame(
-    matchup = sprintf('<span class="slate-team">%s</span> <span class="slate-at">%s</span> <span class="slate-team">%s</span>',
-                      esc(away), joiner, esc(home)),
+    matchup = matchup_html(name_html(games$away_id, away), joiner, name_html(games$home_id, home)),
     our = cell("Our line", in_words(games$blend)),
     market = cell("Market", in_words(-games$market_spread_home)),
     final = cell("Final", esc(format_final(home, away, games$home_points, games$away_points))),
@@ -247,6 +255,6 @@ mod_scorecard_server <- function(id, app_data) {
     if (scorecard$season$games == 0) return(invisible(NULL))
     graded <- scorecard$games[!is.na(scorecard$games$final_margin), , drop = FALSE]
     latest <- graded[graded$week == max(graded$week), , drop = FALSE]
-    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(latest)))
+    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(latest, app_data$teams)))
   })
 }

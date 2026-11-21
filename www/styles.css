@@ -150,6 +150,11 @@ code { color: var(--ink); background: #e6eaf0; padding: 0.1em 0.35em; border-rad
   font-size: 0.62rem; font-weight: 700; letter-spacing: 0.02em; overflow: hidden;
 }
 .team-badge-sm { width: 1.75rem; height: 1.75rem; font-size: 0.56rem; }
+/* Table rows: a logo, or a plain dot in the team's color when there is none. */
+.team-badge-xs { width: 1.4rem; height: 1.4rem; margin-right: 0.4rem; vertical-align: -0.3rem; }
+.team-badge-xs:not(.has-logo) { width: 0.7rem; height: 0.7rem; vertical-align: 0; }
+.rating-header { display: inline-flex; align-items: center; justify-content: flex-end; }
+.rating-header .team-badge-xs { vertical-align: 0; }
 .team-badge-lg { width: 3rem; height: 3rem; font-size: 0.85rem; }
 .team-badge.has-logo { background: transparent; }
 .team-badge.has-logo .team-initials { visibility: hidden; }
@@ -400,6 +405,7 @@ table.dataTable.slate-table tbody td {
 }
 table.dataTable.slate-table tbody tr:hover td { background: rgba(94, 234, 212, 0.22); }
 .slate-team { font-weight: 700; white-space: nowrap; }
+.slate-line { display: block; line-height: 1.75; }
 .slate-at { color: var(--muted); font-size: 0.9rem; }
 .cell-label { display: none; }
 .gap-points { font-family: var(--display); font-weight: 900; font-size: 1.5rem; line-height: 1; }

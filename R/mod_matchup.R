@@ -100,9 +100,9 @@ season_section <- function(ns, app_data) {
     ),
     shiny::plotOutput(ns("matchup_trend"), height = "340px", click = ns("trend_click"),
                       hover = shiny::hoverOpts(ns("trend_hover"), delay = 60, delayType = "throttle")),
-    htmltools::tags$p(class = "chart-readout", `aria-live` = "off",
+    htmltools::tags$p(class = "chart-readout",
                       shiny::textOutput(ns("trend_readout"), inline = TRUE),
-                      htmltools::span(class = "muted", " Hover or tap the chart for another week.")),
+                      htmltools::span(class = "range-note", "Hover or tap the chart to read another week.")),
     htmltools::tags$h3(class = "chart-title", "Team ratings, week by week"),
     htmltools::tags$p(
       class = "section-lede",
@@ -388,7 +388,7 @@ model_table <- function(pred) {
   simple_table(
     rows,
     # "rating (rank)" is dropped on phones so the headers do not wrap into towers.
-    headers = list("Model", rating_header(name_a), rating_header(name_b), "Margin", "Weight"),
+    headers = list("Model", rating_header(pred$team_a), rating_header(pred$team_b), "Margin", "Weight"),
     numeric = c(FALSE, TRUE, TRUE, FALSE, TRUE),
     row_class = c(ifelse(left_out, "is-left-out", ""), "is-blend"),
     caption = paste("Ratings are points better than an average team, except Elo, which uses its own scale.",
@@ -397,8 +397,11 @@ model_table <- function(pred) {
   )
 }
 
-rating_header <- function(school) {
-  htmltools::tagList(school, htmltools::span(class = "hide-sm", " rating (rank)"))
+#' A ratings column header: the team's small logo, its name, and on wider
+#' screens what the numbers under it are.
+rating_header <- function(team) {
+  htmltools::span(class = "rating-header", team_badge(team, "xs", decorative = TRUE),
+                  htmltools::span(team$school, htmltools::span(class = "hide-sm", " rating (rank)")))
 }
 
 #' The line-movement note for a slate game, with the weekday its

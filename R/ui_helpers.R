@@ -160,18 +160,46 @@ badge_colors <- function(color) {
 #' If the logo fails to load, www/app.js swaps in the initials.
 #'
 #' @param team One-row data frame from the teams table.
-#' @param size "sm", "md" or "lg".
-team_badge <- function(team, size = "md") {
+#' @param size "xs", "sm", "md" or "lg". "xs" is for table rows: too small
+#'   for letters, so a team with no logo gets a plain dot in its color.
+#' @param decorative TRUE when the school's name sits right next to the
+#'   badge, so a screen reader should not read the logo out as well.
+team_badge <- function(team, size = "md", decorative = FALSE) {
   colors <- badge_colors(team$color)
   has_logo <- !is.na(team$logo) && nzchar(team$logo)
   htmltools::tags$span(
     class = paste("team-badge", paste0("team-badge-", size), if (has_logo) "has-logo"),
     style = sprintf("--badge-bg:%s;--badge-fg:%s", colors[["bg"]], colors[["fg"]]),
-    htmltools::tags$span(class = "team-initials", `aria-hidden` = "true",
-                         team_initials(team$school, team$abbreviation)),
-    if (has_logo) htmltools::tags$img(src = team$logo, alt = paste(team$school, "logo"),
-                                      loading = "lazy", class = "team-logo")
+    if (size != "xs") {
+      htmltools::tags$span(class = "team-initials", `aria-hidden` = "true",
+                           team_initials(team$school, team$abbreviation))
+    },
+    if (has_logo) {
+      htmltools::tags$img(src = team$logo, alt = if (decorative) "" else paste(team$school, "logo"),
+                          loading = "lazy", class = "team-logo")
+    }
   )
+}
+
+#' A school's name with its small logo in front, as HTML text for a table
+#' cell. A team that is not in the teams table gets its name alone.
+#'
+#' @param team One-row data frame from the teams table, or one with no rows.
+#' @param school The name to show.
+team_name_html <- function(team, school) {
+  name <- htmltools::htmlEscape(school)
+  mark <- if (is.data.frame(team) && nrow(team) == 1) as.character(team_badge(team, "xs", decorative = TRUE)) else ""
+  sprintf('<span class="slate-team">%s%s</span>', mark, name)
+}
+
+#' "Away at Home" for a table cell, one team per line so the logos line up
+#' down the column.
+#'
+#' @param away,home HTML from team_name_html().
+#' @param joiner "at", or "vs" on a neutral field.
+matchup_html <- function(away, joiner, home) {
+  sprintf('<span class="slate-line">%s <span class="slate-at">%s</span></span><span class="slate-line">%s</span>',
+          away, joiner, home)
 }
 
 #' Team rows as selectize options: the fields the picker renders and searches.
