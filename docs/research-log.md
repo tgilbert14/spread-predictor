@@ -306,3 +306,69 @@ What it says:
 This matches the earlier finding that the best mix of our number and the
 closing line is 98% line. It is a record of past results, not betting
 advice.
+
+## Nov 21, 2026: what does the playoff committee reward?
+
+**Question.** Our rankings say who would win. The committee ranks who has
+earned the most. Which of our numbers is closest to the committee, and can
+a ranking built only from results reproduce its list?
+
+**Data.** Every committee release from 2018 to 2025 except 2020: 41
+releases, 1,025 ranked team-weeks. For each one, every FBS team's resume
+going into that week, from regular-season games already played and the
+Power rating as it stood then. No bowl results, since the committee never
+sees them. Script: `scripts/research/committee.R`.
+
+**How close is each ranking to the committee?** Average places off across
+the committee's 25 teams, and how many of its top 12 the ranking shares.
+
+| Ranking | Places off | Top 12 shared |
+|---|---|---|
+| AP poll, same week | 1.27 | 11.5 |
+| Record strength alone | 3.76 | 10.3 |
+| Fewest losses, then Power | 5.20 | 9.6 |
+| Power rating (who would win) | 8.73 | 8.9 |
+
+Record strength is wins minus what a reference team, about the 10th best
+in the country, would be expected to win against the same schedule at the
+same sites.
+
+**Fitting a score to the committee.** A score is a weighted sum of resume
+inputs. The weights were fit so that, across every pair of teams the
+committee put in order, the higher-ranked team tends to get the higher
+score. Each season was scored with weights fit on the other six.
+
+| Inputs | Places off | Top 12 shared |
+|---|---|---|
+| Record strength + Power | 3.40 | 10.5 |
+| + losses | 3.29 | 10.7 |
+| + power-conference flag | 2.73 | 11.0 |
+| + average opponent and top-25 wins | 2.70 | 10.9 |
+| + wins | 2.64 | 11.0 |
+
+**What it says.**
+
+- **The committee ranks results, not strength.** Our Power rating alone is
+  8.7 places off. Record strength alone is 3.8.
+- **It still gives some credit for being good.** Adding Power to record
+  strength helps, so a team that looks strong sits a little higher than
+  its results alone would put it.
+- **Losses count on their own**, beyond what they do to record strength.
+- **Power-conference teams get a bonus.** The flag is the biggest single
+  step after the basics. It is worth about two losses.
+- **More inputs barely help.** Average opponent strength, top-25 wins and
+  win count together move the answer by 0.1. The four-input score is the
+  one in the app.
+- **It holds up season by season**: 2.1 to 3.6 places off in each left-out
+  season, and 10.8 to 11.3 of the top 12.
+- **On 2026, which no fit has seen,** it is 2.5 places off in each of the
+  three releases so far, and has 22 of the committee's 25 teams.
+
+**What it cannot see.** Head-to-head results, conference titles, injuries
+and anything said in the room. The AP poll is closer than any formula here
+because voters see those things too.
+
+**Decision.** Added to the Rankings tab as "Our CFP guess", next to the
+committee's and the AP's ranks. It is kept apart from the Top 50, which
+stays a who-would-win ranking. The weights live in `COMMITTEE_MODEL` in
+`R/config.R` and should be refit with the script after each season.

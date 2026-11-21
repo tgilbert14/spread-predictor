@@ -27,7 +27,8 @@ mod_rankings_ui <- function(id, app_data) {
         htmltools::p(
           class = "section-lede",
           "Ranked by who we think would win, not by who has earned the most.",
-          "Each system's own rank sits beside ours, with the committee's and the AP's at the end.",
+          "Each system's own rank sits beside ours.",
+          "The last three columns rank who has earned the most: our guess at the committee, the committee itself, and the AP.",
           "Tap a column heading to sort by it."
         ),
         htmltools::div(
@@ -93,7 +94,9 @@ ranking_rows <- function(ranking, teams) {
   rows <- data.frame(rank = ranking$rank, move = format_move(ranking$change), team = team,
                      record = ranking$record, rating = sprintf("%+.1f", ranking$rating),
                      stringsAsFactors = FALSE)
-  for (column in c(names(MODEL_LABELS), names(POLL_NAMES))) rows[[column]] <- format_rank(ranking[[column]])
+  for (column in c(names(MODEL_LABELS), "committee_style", names(POLL_NAMES))) {
+    rows[[column]] <- format_rank(ranking[[column]])
+  }
   for (column in RANKINGS_SORTED) {
     key <- ranking[[column]]
     # Biggest climbers first when the Move column is sorted descending.
@@ -107,7 +110,7 @@ rankings_table <- function(rows) {
   n_visible <- length(RANKINGS_VISIBLE)
   key_of <- function(column) n_visible + match(column, RANKINGS_SORTED) - 1
   sorted_by <- function(target, column, ...) c(list(targets = target, orderData = key_of(column)), list(...))
-  ranks <- c(names(MODEL_LABELS), names(POLL_NAMES))
+  ranks <- c(names(MODEL_LABELS), "committee_style", names(POLL_NAMES))
   DT::datatable(
     rows,
     colnames = c(RANKINGS_VISIBLE, paste0(RANKINGS_SORTED, "_key")),
@@ -129,7 +132,7 @@ rankings_table <- function(rows) {
         ),
         lapply(seq_along(ranks), function(i) {
           sorted_by(4 + i, ranks[i], searchable = FALSE,
-                    className = paste("dt-right", if (ranks[i] %in% names(POLL_NAMES)) "rank-poll"))
+                    className = paste("dt-right", if (ranks[i] == "committee_style") "rank-earned"))
         })
       )
     )
@@ -146,19 +149,17 @@ format_gap <- function(ours, theirs) {
                         ifelse(gap > 0, "higher", "lower"))))
 }
 
-#' The sentence naming the ranking closest to the committee's.
+#' The sentences on how close our guess came, and which system is nearest.
 closest_sentence <- function(similarity) {
   spots <- function(row) sprintf("%s (%.1f places off on average)", row$label, row$avg_gap)
-  best <- similarity[1, , drop = FALSE]
-  systems <- similarity[similarity$id %in% names(MODEL_LABELS), , drop = FALSE]
-  ours <- similarity[similarity$id == "blend", , drop = FALSE]
-  parts <- sprintf("Closest to the committee this week: %s.", spots(best))
-  if (best$id == "ap" && nrow(systems) > 0) {
-    parts <- c(parts, sprintf("Among the rating systems, %s comes nearest.", spots(systems[1, , drop = FALSE])))
-  }
-  if (nrow(ours) == 1 && best$id != "blend") {
-    parts <- c(parts, sprintf("Our blend is %.1f places off.", ours$avg_gap))
-  }
+  guess <- similarity[similarity$id == "committee_style", , drop = FALSE]
+  systems <- similarity[similarity$id %in% c("blend", names(MODEL_LABELS)), , drop = FALSE]
+  ap <- similarity[similarity$id == "ap", , drop = FALSE]
+  parts <- c(
+    if (nrow(guess) == 1) sprintf("Our CFP guess is %.1f places off the committee this week, on average.", guess$avg_gap),
+    if (nrow(systems) > 0) sprintf("The closest who-would-win ranking is %s.", spots(systems[1, , drop = FALSE])),
+    if (nrow(ap) == 1) sprintf("The AP poll, which also ranks by results, is %.1f off.", ap$avg_gap)
+  )
   paste(parts, collapse = " ")
 }
 
@@ -182,6 +183,7 @@ committee_block <- function(ranking, teams, week) {
       team_name_html(teams[teams$team_id == committee$team_id[i], , drop = FALSE], school[i])
     }, character(1)),
     record = committee$record,
+    guess = ifelse(is.na(committee$committee_style), "", as.character(committee$committee_style)),
     ours = committee$rank,
     gap = format_gap(committee$rank, committee$cfp),
     ap = ifelse(is.na(committee$ap), "", as.character(committee$ap)),
@@ -190,24 +192,26 @@ committee_block <- function(ranking, teams, week) {
   htmltools::tagList(
     htmltools::p(
       class = "section-lede",
-      "The committee ranks what teams have earned so far. We rank who would win.",
-      "Where the two disagree most is the interesting part."
+      "The committee ranks what teams have earned so far. Our Top 50 ranks who would win.",
+      "Our CFP guess sits in between: it scores each team's results the way the committee has rewarded them in past seasons,",
+      "using only the games played and our own Power rating."
     ),
     htmltools::p(class = "closest-line", closest_sentence(similarity)),
     htmltools::div(
       class = "committee-grid",
       simple_table(
         rows,
-        headers = list("CFP", "Team", "Record", "Ours", "We have them", "AP"),
-        numeric = c(TRUE, FALSE, FALSE, TRUE, FALSE, TRUE),
-        caption = "Ours is the team's place in our ranking above.",
-        html = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE)
+        headers = list("CFP", "Team", "Record", "Our CFP guess", "Top 50", "Top 50 vs CFP", "AP"),
+        numeric = c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE),
+        caption = paste("Our CFP guess ranks teams by what they have earned, the way the committee has in past seasons.",
+                        "Top 50 is the team's place in our who-would-win ranking above."),
+        html = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
       ),
       simple_table(
         data.frame(label = similarity$label, gap = sprintf("%.1f", similarity$avg_gap)),
         headers = list("Ranking", "Places off"),
         numeric = c(FALSE, TRUE),
-        row_class = ifelse(similarity$id == "blend", "is-blend", ""),
+        row_class = ifelse(similarity$id == "committee_style", "is-blend", ""),
         caption = paste("Places off: across the committee's 25 teams, how far each ranking has them on average.",
                         "Smaller is closer. A team the AP leaves out counts as 26th.")
       )

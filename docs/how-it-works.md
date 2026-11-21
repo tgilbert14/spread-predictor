@@ -343,6 +343,38 @@ question: who has earned the most so far. "Places off" measures how closely
 another ranking tracks the committee: across the committee's 25 teams, the
 average number of places between its rank and theirs.
 
+### Our CFP guess
+
+A third ranking sits between the two: who has earned the most, judged the
+way the committee has judged teams before (`committee_style()` in
+`R/rankings.R`). It uses only games already played and our own Power
+rating, so it can be made in any week, including before the committee has
+released anything.
+
+Each team gets a score from four things:
+
+- **Losses.** Each one costs the same.
+- **Record strength.** For every game: did the team win, minus how often a
+  reference team (about the 10th best in the country) would have won that
+  game at that site. Beating a good team on the road adds a lot. Beating a
+  weak one at home adds almost nothing. Losing to a weak one costs the most.
+- **Power.** Our rating of how good the team is. The committee does give
+  some credit for looking strong, on top of the results.
+- **Power conference.** A flat bonus. The committee has ranked
+  power-conference teams higher than their results alone explain.
+
+The four weights (`COMMITTEE_MODEL` in `R/config.R`) were fit to the order
+of every committee release from 2018 to 2025, leaving out 2020. Checked on
+seasons left out of the fit, the score is 2.7 places from the committee on
+average and shares 11 of its top 12. Our who-would-win Power rating alone
+is 8.7 places off. The AP poll, which is also people ranking by results, is
+1.3 off. `scripts/research/committee.R` reproduces all of this, and
+[research-log.md](research-log.md) has the details.
+
+It is a guess at the committee, not an opinion of ours about who deserves
+what. It also knows nothing about head-to-head results or conference
+titles, which the committee says it weighs.
+
 ## The pipeline
 
 ```

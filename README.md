@@ -43,9 +43,14 @@ The Rankings tab is our Top 50. Teams are ranked by the same blend that
 sets the spreads: how many points better than an average team each one is
 on a neutral field. So the gap between two teams on the list is our
 neutral-site line for them. Each system's own rank sits beside ours, with
-how far each team moved since last week. The playoff committee's and the
-AP's rankings sit at the end, and a second table lines the committee's 25
-up against ours and shows which ranking tracks the committee most closely.
+how far each team moved since last week.
+
+The last three columns rank a different thing: who has earned the most.
+They are the playoff committee, the AP, and **our CFP guess**, a ranking we
+build from results alone that scores teams the way the committee has in
+past seasons. On seasons it was not fit on, it lands 2.7 places from the
+committee on average and has 11 of the committee's top 12. A second table
+lines the committee's 25 up against it and against our Top 50.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 
@@ -208,6 +213,9 @@ still treats last season as the current one and won't pull its final ratings.
    included and rebuilds the app data.
 6. Run it once more with the default task, `refresh`, and check that it
    finishes green and the new season's files show up in `data/snapshots/`.
+7. Optional: add last season to `SEASONS` in `scripts/research/committee.R`,
+   run it, and copy the new weights into `COMMITTEE_MODEL` in `R/config.R`.
+   That keeps the CFP guess in step with how the committee ranked last year.
 
 ## How the number is made
 

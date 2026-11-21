@@ -2069,7 +2069,7 @@
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
     },
     "R/config.R": {
-      "checksum": "64bdd7514edb3a5e1c70ff462c976004"
+      "checksum": "eefcb367be9b9402803c995e5f856efb"
     },
     "R/demo_data.R": {
       "checksum": "b2c43316402c85276249f37ba53c5a68"
@@ -2090,7 +2090,7 @@
       "checksum": "f3d0a653ae55c8989cd6874163e54698"
     },
     "R/mod_rankings.R": {
-      "checksum": "3bb15dd290959fff6a4e30e1001a2086"
+      "checksum": "3b31854f8c0040341d2690a3ae775779"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2114,7 +2114,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/rankings.R": {
-      "checksum": "c5353a667164243ff2bb741677bbe4e0"
+      "checksum": "bf4c76d1883ba0636f5d319dcdc028c7"
     },
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
@@ -2153,7 +2153,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "418e45cb09fabe6b4d9d3c14fb1f0f71"
+      "checksum": "b36ec518e1af9f3ff551613207632181"
     }
   },
   "users": null

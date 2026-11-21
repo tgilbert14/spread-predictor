@@ -39,7 +39,7 @@ ranking <- ranking_table(demo)
 
 test_that("ranking_table ranks every team by the blend, best first", {
   expect_named(ranking, c("rank", "change", "team_id", "record", "rating",
-                          names(MODEL_LABELS), names(POLL_NAMES)))
+                          names(MODEL_LABELS), "committee_style", names(POLL_NAMES)))
   expect_identical(nrow(ranking), nrow(teams))
   expect_identical(ranking$rank, seq_len(nrow(teams)))
   expect_false(is.unsorted(rev(ranking$rating)))
@@ -71,7 +71,8 @@ test_that("poll ranks show for the week they were released, and only then", {
 })
 
 test_that("committee_similarity scores each ranking by places off, closest first", {
-  toy <- data.frame(rank = 1:4, cfp = c(2L, 1L, 3L, NA), ap = c(2L, 1L, NA, 3L))
+  toy <- data.frame(rank = 1:4, cfp = c(2L, 1L, 3L, NA), ap = c(2L, 1L, NA, 3L),
+                    committee_style = c(2L, 1L, 4L, 3L))
   for (model in names(MODEL_LABELS)) toy[[model]] <- 1:4
   toy$sp <- c(2L, 1L, 3L, 4L)
   similarity <- committee_similarity(toy)
@@ -79,6 +80,7 @@ test_that("committee_similarity scores each ranking by places off, closest first
   score <- function(id) similarity$avg_gap[similarity$id == id]
   expect_equal(score("sp"), 0)
   expect_equal(score("blend"), 2 / 3)
+  expect_equal(score("committee_style"), 1 / 3)
   # The AP left the committee's third team out, so it counts as one past its last: 4th.
   expect_equal(score("ap"), 1 / 3)
   expect_identical(similarity$id[1], "sp")
@@ -145,18 +147,20 @@ test_that("moves, gaps and the closest line read in plain words", {
   expect_identical(format_gap(c(2L, 9L, 5L, 4L, NA), c(6L, 2L, 5L, 5L, 1L)),
                    c("4 places higher", "7 places lower", "same", "1 place higher", ""))
 
-  similarity <- data.frame(id = c("ap", "srs", "blend"), label = c("AP poll", "SRS", "Our blend"),
-                           avg_gap = c(1.52, 4.76, 5.24), n = 25L)
+  similarity <- data.frame(id = c("ap", "committee_style", "srs", "blend"),
+                           label = c("AP poll", "Our CFP guess", "SRS", "Our blend"),
+                           avg_gap = c(1.52, 2.56, 4.76, 5.24), n = 25L)
   line <- closest_sentence(similarity)
-  expect_match(line, "Closest to the committee this week: AP poll (1.5 places off on average).", fixed = TRUE)
-  expect_match(line, "Among the rating systems, SRS (4.8 places off on average) comes nearest.", fixed = TRUE)
-  expect_match(line, "Our blend is 5.2 places off.", fixed = TRUE)
+  expect_match(line, "Our CFP guess is 2.6 places off the committee this week, on average.", fixed = TRUE)
+  expect_match(line, "The closest who-would-win ranking is SRS (4.8 places off on average).", fixed = TRUE)
+  expect_match(line, "The AP poll, which also ranks by results, is 1.5 off.", fixed = TRUE)
 })
 
 test_that("the committee block shows its teams, or says there is no release", {
   html <- as.character(committee_block(ranking, teams, this_week))
   expect_match(html, "Places off", fixed = TRUE)
-  expect_match(html, "We have them", fixed = TRUE)
+  expect_match(html, "Our CFP guess", fixed = TRUE)
+  expect_match(html, "Top 50 vs CFP", fixed = TRUE)
   none <- as.character(committee_block(ranking_table(demo, 5L), teams, 5L))
   expect_match(none, "No committee ranking for week 5.", fixed = TRUE)
 })
@@ -165,4 +169,75 @@ test_that("simple_table leaves marked columns as HTML and escapes the rest", {
   html <- as.character(simple_table(data.frame(a = "<b>x</b>", b = "<b>y</b>"), html = c(TRUE, FALSE)))
   expect_match(html, "<td class=\"\"><b>x</b></td>", fixed = TRUE)
   expect_match(html, "&lt;b&gt;y&lt;/b&gt;", fixed = TRUE)
+})
+
+# The committee-style ranking ---------------------------------------------------
+
+# Four teams. A beat everyone, B lost only to A, C lost to A and B, D lost to
+# all three. Power puts them in the same order, ten points apart.
+toy_games <- data.frame(
+  home_id = c(1L, 1L, 1L, 2L, 2L, 3L), away_id = c(2L, 3L, 4L, 3L, 4L, 4L),
+  home_points = 30L, away_points = 10L, neutral_site = TRUE
+)
+toy_power <- c("1" = 30, "2" = 20, "3" = 10, "4" = 0)
+toy_tier <- c("1" = 1L, "2" = 1L, "3" = 0L, "4" = 0L)
+
+test_that("team_resumes counts results and scores them against the reference team", {
+  resumes <- team_resumes(toy_games, toy_power, toy_tier, sigma = 16, reference_rank = 2)
+  expect_named(resumes, c("team_id", "wins", "losses", "record_strength", "schedule",
+                          "top25_wins", "power", "tier"))
+  expect_identical(resumes$team_id, 1:4)
+  expect_equal(resumes$wins, c(3, 2, 1, 0))
+  expect_equal(resumes$losses, c(0, 1, 2, 3))
+  expect_equal(resumes$schedule, c(10, 40 / 3, 50 / 3, 20))
+  expect_identical(resumes$tier, unname(toy_tier))
+
+  # Team 1 went 3-0. The reference team (rated 20) would be even against
+  # team 2 and a favorite against 3 and 4, so three wins beat its par.
+  par <- stats::pnorm(c(0, 10, 20) / 16)
+  expect_equal(resumes$record_strength[1], sum(1 - par))
+  expect_false(is.unsorted(rev(resumes$record_strength)))
+})
+
+test_that("a win counts for more at the other team's place than at home", {
+  one <- toy_games[1, ]
+  one$neutral_site <- FALSE
+  home_win <- team_resumes(one, toy_power, toy_tier, sigma = 16, reference_rank = 2)
+  flipped <- one
+  flipped[c("home_id", "away_id")] <- one[c("away_id", "home_id")]
+  flipped[c("home_points", "away_points")] <- one[c("away_points", "home_points")]
+  road_win <- team_resumes(flipped, toy_power, toy_tier, sigma = 16, reference_rank = 2)
+  expect_gt(road_win$record_strength[road_win$team_id == 1], home_win$record_strength[home_win$team_id == 1])
+})
+
+test_that("an opponent we do not rate counts as the weakest team we do", {
+  fcs <- data.frame(home_id = 1L, away_id = 999L, home_points = 40L, away_points = 3L, neutral_site = TRUE)
+  cupcake <- data.frame(home_id = 1L, away_id = 4L, home_points = 40L, away_points = 3L, neutral_site = TRUE)
+  expect_equal(team_resumes(fcs, toy_power, toy_tier, 16, 2)$record_strength,
+               team_resumes(cupcake, toy_power, toy_tier, 16, 2)$record_strength[1])
+  expect_identical(team_resumes(fcs, toy_power, toy_tier, 16, 2)$team_id, 1L)
+})
+
+test_that("committee_score rewards wins and punishes losses, and uses the stored weights", {
+  resumes <- team_resumes(toy_games, toy_power, toy_tier, sigma = 16)
+  score <- committee_score(resumes)
+  expect_false(is.unsorted(rev(score)))
+  expect_equal(score, drop(as.matrix(resumes[names(COMMITTEE_MODEL$weights)]) %*% COMMITTEE_MODEL$weights))
+  expect_named(COMMITTEE_MODEL$weights, c("losses", "record_strength", "power", "tier"))
+  expect_lt(COMMITTEE_MODEL$weights[["losses"]], 0)
+  expect_gt(COMMITTEE_MODEL$weights[["record_strength"]], 0)
+})
+
+test_that("committee_style ranks every team that has played, from earlier weeks only", {
+  style <- committee_style(demo, 10L)
+  expect_named(style, c("team_id", "committee_style"))
+  played <- demo$results[demo$results$week < 10L, ]
+  expect_setequal(style$team_id, unique(c(played$home_id, played$away_id)))
+  expect_identical(sort(style$committee_style), seq_len(nrow(style)))
+  expect_identical(ranking_table(demo, 10L)$committee_style,
+                   style$committee_style[match(ranking_table(demo, 10L)$team_id, style$team_id)])
+
+  # Before any game there is nothing to judge.
+  expect_identical(nrow(committee_style(demo, min(demo$results$week))), 0L)
+  expect_true(all(is.na(ranking_table(demo, 3L)$committee_style)))
 })

@@ -609,9 +609,9 @@ table.dataTable.rank-table tbody td {
 table.dataTable.rank-table tbody tr:hover td { background: rgba(94, 234, 212, 0.14); }
 table.dataTable.rank-table thead th:first-child, table.dataTable.rank-table tbody td:first-child { padding-left: 0; }
 table.dataTable.rank-table td.rank-number { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1; }
-/* The committee and the AP are outside voices, so a rule sets them apart. */
-table.dataTable.rank-table td.rank-poll:nth-last-child(2),
-table.dataTable.rank-table th.rank-poll:nth-last-child(2) { border-left: 1px solid var(--rule); }
+/* The last three columns rank by results, not by who would win, so a rule sets them apart. */
+table.dataTable.rank-table td.rank-earned,
+table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); }
 .rank-conference { display: block; font-size: 0.8rem; color: var(--muted); margin-left: 1.8rem; line-height: 1.2; }
 .move { font-weight: 600; white-space: nowrap; }
 .move-up { color: #15803d; }

@@ -18,8 +18,8 @@ RANKINGS_SHOWN <- 50
 # The Rankings table's visible columns, then the columns it can sort by.
 # Each sortable column has a hidden numeric key after the visible ones.
 RANKINGS_VISIBLE <- c("", "Move", "Team", "Record", "Rating",
-                      unname(MODEL_LABELS), unname(POLL_LABELS))
-RANKINGS_SORTED <- c("rank", "change", "rating", names(MODEL_LABELS), names(POLL_NAMES))
+                      unname(MODEL_LABELS), "CFP guess", unname(POLL_LABELS))
+RANKINGS_SORTED <- c("rank", "change", "rating", names(MODEL_LABELS), "committee_style", names(POLL_NAMES))
 # A team with no rank in a column sorts after every team that has one.
 UNRANKED_KEY <- 999
 
@@ -116,8 +116,9 @@ records_before <- function(results, week, team_ids) {
 #' @param week A week the app holds (snapshot_weeks()).
 #' @return One row per team with a blend rating: rank, change (places gained
 #'   since the week before, NA when there is no fair comparison), team_id,
-#'   record, rating (the blend, in points), each system's rank, and the
-#'   committee's and AP's rank (NA when unranked or not released).
+#'   record, rating (the blend, in points), each system's rank,
+#'   committee_style (our guess at the committee's rank, from results), and
+#'   the committee's and AP's rank (NA when unranked or not released).
 ranking_table <- function(app_data, week = app_data$meta$week) {
   teams <- snapshot_teams(app_data, week)
   ranked <- function(x) as.integer(rank(-x, ties.method = "min", na.last = "keep"))
@@ -137,6 +138,8 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
   }
   out$record <- records_before(app_data$results, week, teams$team_id)
   for (model in names(MODEL_LABELS)) out[[model]] <- teams[[paste0(model, "_rank")]]
+  style <- committee_style(app_data, week)
+  out$committee_style <- style$committee_style[match(out$team_id, style$team_id)]
   polls <- app_data$polls[app_data$polls$week == week, , drop = FALSE]
   for (poll in names(POLL_NAMES)) {
     released <- polls[polls$poll == poll, , drop = FALSE]
@@ -144,7 +147,7 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
   }
   out <- out[!is.na(out$rank), , drop = FALSE]
   out <- out[order(out$rank, out$team_id), c("rank", "change", "team_id", "record", "rating",
-                                             names(MODEL_LABELS), names(POLL_NAMES))]
+                                             names(MODEL_LABELS), "committee_style", names(POLL_NAMES))]
   rownames(out) <- NULL
   out
 }
@@ -161,7 +164,7 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
 #'   committee teams it could be compared on). No rows without a release.
 committee_similarity <- function(ranking) {
   committee <- ranking[!is.na(ranking$cfp), , drop = FALSE]
-  others <- c(blend = "Our blend", MODEL_LABELS, ap = "AP poll")
+  others <- c(committee_style = "Our CFP guess", blend = "Our blend", MODEL_LABELS, ap = "AP poll")
   if (nrow(committee) == 0) {
     return(data.frame(id = character(), label = character(), avg_gap = numeric(), n = integer()))
   }
@@ -178,3 +181,80 @@ committee_similarity <- function(ranking) {
   rownames(out) <- NULL
   out
 }
+
+# The committee-style ranking ---------------------------------------------------
+
+#' Every team's resume from the games it has played.
+#'
+#' Record strength is the heart of it: for each game, did the team win,
+#' minus how often a reference team (about the 10th best in the country)
+#' would have won that game at that site. Beating good teams adds a lot,
+#' beating weak ones adds little, and losing to a weak one costs the most.
+#'
+#' @param played Finished games: home_id, away_id, home_points, away_points,
+#'   neutral_site.
+#' @param power Each FBS team's Power rating, named by team id. An opponent
+#'   not in it (an FCS team) counts as the weakest team that is.
+#' @param tier 1 for a power-conference team, 0 otherwise, named by team id.
+#' @param sigma How far games land from a prediction, for the win chances.
+#' @return One row per team in `power` that has played: team_id, wins,
+#'   losses, record_strength, schedule (average opponent Power), top25_wins
+#'   (wins over the top 25 by Power), power and tier.
+team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_MODEL$reference_rank) {
+  power <- power[!is.na(power)]
+  best_first <- sort(power, decreasing = TRUE)
+  reference <- best_first[min(reference_rank, length(best_first))]
+  top25 <- names(best_first)[seq_len(min(25, length(best_first)))]
+  at_home <- 1 - as.numeric(played$neutral_site)
+
+  sides <- rbind(
+    data.frame(team_id = played$home_id, opponent = played$away_id, site = at_home,
+               won = played$home_points > played$away_points),
+    data.frame(team_id = played$away_id, opponent = played$home_id, site = -at_home,
+               won = played$away_points > played$home_points)
+  )
+  sides <- sides[as.character(sides$team_id) %in% names(power), , drop = FALSE]
+  sides$opponent_power <- unname(power[as.character(sides$opponent)])
+  sides$opponent_power[is.na(sides$opponent_power)] <- min(power)
+  expected <- stats::pnorm((reference - sides$opponent_power + POWER_RATING$home_field * sides$site) / sigma)
+  sides$above <- sides$won - expected
+  sides$top25_win <- sides$won & as.character(sides$opponent) %in% top25
+
+  ids <- names(power)[names(power) %in% as.character(sides$team_id)]
+  total <- function(values, f = sum) unname(tapply(values, as.character(sides$team_id), f)[ids])
+  data.frame(
+    team_id = as.integer(ids),
+    wins = total(sides$won), losses = total(!sides$won),
+    record_strength = total(sides$above),
+    schedule = total(sides$opponent_power, mean),
+    top25_wins = total(sides$top25_win),
+    power = unname(power[ids]), tier = unname(tier[ids])
+  )
+}
+
+#' The committee-style score for each resume: higher is better.
+committee_score <- function(resumes, weights = COMMITTEE_MODEL$weights) {
+  drop(as.matrix(resumes[names(weights)]) %*% weights)
+}
+
+#' Our committee-style ranking for one week: who has earned the most so far,
+#' judged the way the committee has judged teams in past seasons.
+#'
+#' It uses only games played before that week and our own Power rating, so
+#' it can be made any week, including before the committee has spoken.
+#'
+#' @return team_id and committee_style (rank, 1 is best) for every team
+#'   that has played a game. No rows before any games.
+committee_style <- function(app_data, week = app_data$meta$week) {
+  teams <- app_data$teams
+  rated <- app_data$history[app_data$history$week == week, , drop = FALSE]
+  power <- stats::setNames(rated$power, rated$team_id)
+  played <- app_data$results[app_data$results$week < week, , drop = FALSE]
+  if (nrow(played) == 0 || all(is.na(power))) {
+    return(data.frame(team_id = integer(), committee_style = integer()))
+  }
+  resumes <- team_resumes(played, power, stats::setNames(teams$tier, teams$team_id), app_data$params$sigma)
+  data.frame(team_id = resumes$team_id,
+             committee_style = as.integer(rank(-committee_score(resumes), ties.method = "min")))
+}
+
