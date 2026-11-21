@@ -243,6 +243,21 @@ games with a line), `market_miss` (average over those), `winners`,
 `disagree_games` (graded disagreements, pushes left out) and
 `disagree_our_side`.
 
+## Basketball (`data/basketball/`)
+
+Kept apart from football's files. Written by `R/cbb_ingest.R` and
+`R/cbb_app_data.R`.
+
+| File | Contents |
+|---|---|
+| `teams.csv` | Division I teams, pulled once a season: `team_id`, `school`, `mascot`, `abbreviation`, `conference`, `color`, `alt_color`, `logo` |
+| `games/{season}.csv` | One row per game. A season is named by the year it ends in (2027 is 2026-27). `game_id`, `season`, `season_type`, `start_date` (UTC), `status`, `neutral_site`, `home_id`, `home_team`, `away_id`, `away_team`, `home_points`, `away_points`, `home_elo`, `away_elo` (going in), `home_elo_end`, `away_elo_end` (coming out), `spread` (median across sportsbooks, home team's, so -6.5 means the home team by 6.5) |
+| `ratings/{season}/{YYYYMMDD}.csv` | T-Rank as published for that day, **taken after that day's games**: `team`, `conference`, `adj_o`, `adj_d` (points per 100 possessions), `tempo` (possessions per game). A game is predicted from the newest file dated before its day. |
+| `team_names.csv` | `school` (the API's spelling) and `trank` (T-Rank's), for the schools whose names do not match on their own |
+| `params.json` | Written by `scripts/cbb_fit.R`: `trank_scale`, `elo_k`, `home`, `average_tempo`, `sigma`, `weights`, the fit season, and how the blend and the market did on the held-out part of it |
+| `predictions/{season}/{YYYYMMDD}.csv` | That day's games as predicted before tipoff, written once: each system's home margin, `blend`, `win_prob_home`, `market_spread_home`, `ratings_date`, `frozen_at` |
+| `app_data.rds` | What the Basketball pages show: `meta`, `teams` (with `em`, `tempo`, `elo` and ranks), `params`, `slate` (the next few days' games) and `results` |
+
 ## Prediction result
 
 `predict_matchup(team_a, team_b, site, teams, params, week = NULL)` returns a

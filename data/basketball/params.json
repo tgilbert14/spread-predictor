@@ -1,0 +1,24 @@
+{
+  "fit_date": "2026-11-21",
+  "fit_season": 2025,
+  "n_games": 5587,
+  "trank_scale": 1.090996,
+  "elo_k": 30.938078,
+  "home": 3.330551,
+  "average_tempo": 68.094566,
+  "sigma": 11.379667,
+  "weights": {
+    "trank": 0.973858,
+    "elo": 0.026142
+  },
+  "avg_miss": 8.955711,
+  "avg_miss_lined": 8.90485,
+  "market_avg_miss": 8.706274,
+  "n_lined": 5260,
+  "holdout": {
+    "n": 2589,
+    "avg_miss": 8.612919,
+    "market_avg_miss": 8.396871,
+    "winners": 0.713403
+  }
+}

@@ -18,6 +18,10 @@ app_data <- loaded$data
 # notes added during the week show up without a rebuild.
 notes <- app_notes(app_data)
 
+# Basketball has its own data file. With no file, the Basketball menu is
+# left out and the app is football only.
+cbb <- cbb_load_app_data()
+
 # The UI is a function of the request so a shared link (?a=...&b=...&site=...)
 # opens straight on that matchup, with no flash of the default first.
 ui <- function(request) {
@@ -50,6 +54,14 @@ ui <- function(request) {
     nav_panel("Rankings", value = "rankings", mod_rankings_ui("rankings", app_data)),
     nav_panel("Scorecard", value = "scorecard", mod_scorecard_ui("scorecard", app_data)),
     nav_panel("Model report", value = "report", mod_report_ui("report", app_data)),
+    if (!is.null(cbb)) {
+      nav_menu(
+        "Basketball",
+        nav_panel("Matchup", value = "cbb_matchup", mod_cbb_matchup_ui("cbb_matchup", cbb)),
+        nav_panel("Today", value = "cbb_slate", mod_cbb_slate_ui("cbb_slate", cbb)),
+        nav_panel("Top 50", value = "cbb_rankings", mod_cbb_rankings_ui("cbb_rankings", cbb))
+      )
+    },
     nav_spacer(),
     nav_item(span(class = "freshness", freshness_label(app_data$meta)))
   )
@@ -68,6 +80,15 @@ server <- function(input, output, session) {
   mod_rankings_server("rankings", app_data)
   mod_scorecard_server("scorecard", app_data)
   mod_report_server("report", app_data)
+
+  if (!is.null(cbb)) {
+    cbb_matchup <- mod_cbb_matchup_server("cbb_matchup", cbb)
+    mod_cbb_slate_server("cbb_slate", cbb, on_open = function(game) {
+      cbb_matchup$load(game)
+      nav_select("tabs", "cbb_matchup", session = session)
+    })
+    mod_cbb_rankings_server("cbb_rankings", cbb)
+  }
 }
 
 shinyApp(ui, server)

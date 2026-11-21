@@ -61,7 +61,9 @@ app_files <- c(
   list.files("R", recursive = TRUE, full.names = TRUE),
   list.files("www", recursive = TRUE, full.names = TRUE),
   file.path("data", "app_data.rds"),
-  file.path("data", "notes.csv")
+  file.path("data", "notes.csv"),
+  # Basketball's own data file, when it has been built.
+  Filter(file.exists, file.path("data", "basketball", "app_data.rds"))
 )
 
 missing <- app_files[!file.exists(app_files)]
