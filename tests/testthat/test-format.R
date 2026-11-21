@@ -50,3 +50,9 @@ test_that("seasons read as words, with runs collapsed", {
   expect_identical(format_seasons(c(2025, 2024)), "2024 and 2025")
   expect_identical(format_seasons(2025), "2025")
 })
+
+test_that("format_list joins one, two or more items the way people write them", {
+  expect_identical(format_list("SP+"), "SP+")
+  expect_identical(format_list(c(a = "SP+", b = "FPI")), "SP+ and FPI")
+  expect_identical(format_list(c("SP+", "FPI", "SRS")), "SP+, FPI and SRS")
+})

@@ -209,7 +209,8 @@ What the app shows. A named list written by `build_app_data()`, committed so
 the hosted app has it. The app also reads `data/notes.csv`. When the app data
 is missing, the app uses `demo_app_data()`, which returns the same shape with
 made-up teams, a made-up scorecard and made-up notes. An older file without
-`scorecard` or the line-movement columns loads as if nothing had been saved.
+`scorecard` or the line-movement columns loads as if nothing had been saved,
+and one without `history` loads with this week as its only week.
 
 | Element | Type | Contents |
 |---|---|---|
@@ -219,6 +220,8 @@ made-up teams, a made-up scorecard and made-up notes. An older file without
 | `slate` | data frame | This week's FBS games: `game_id`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `market_spread_home` (can be `NA`), `market_at_freeze` (the line saved with this week's predictions, `NA` when none), `market_move` (`market_at_freeze - market_spread_home`: points the expected home margin has moved since, positive toward the home team) |
 | `coverage` | data frame | Which snapshots exist: `source`, `season`, `week`, `n_teams`, `pulled_at` |
 | `scorecard` | list | Saved predictions for this season, graded. See below. |
+| `history` | data frame | What every system said going into each week so far, for snapshots and the week-by-week charts. One row per team and week: `week`, `team_id`, `sp`, `fpi`, `srs`, `elo`, `power`. `sp`, `fpi` and `srs` are `NA` for weeks before the weekly snapshots started. `elo` is the snapshot value when there is one, otherwise the Elo the team took into its game that week (its next game, in a bye week). `power` is centered each week so the average team is 0. |
+| `results` | data frame | This season's finished regular-season games, so a snapshot can show how a game turned out: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `home_points`, `away_points` |
 
 ### Scorecard (`app_data$scorecard`)
 

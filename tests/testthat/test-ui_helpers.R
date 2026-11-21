@@ -91,6 +91,23 @@ test_that("team_badge falls back to initials and labels logos", {
   expect_match(html, sprintf('alt="%s logo"', with_logo$school))
 })
 
+test_that("the small table badge is a logo or a plain dot, and stays quiet for screen readers", {
+  dot <- as.character(team_badge(teams[1, ], "xs", decorative = TRUE))
+  expect_false(grepl("team-initials", dot))
+  expect_false(grepl("<img", dot))
+
+  with_logo <- teams[1, ]
+  with_logo$logo <- "https://example.com/logo.png"
+  logo <- as.character(team_badge(with_logo, "xs", decorative = TRUE))
+  expect_match(logo, 'alt=""', fixed = TRUE)
+
+  expect_match(team_name_html(with_logo, "Cochise A&M"), "has-logo")
+  expect_match(team_name_html(with_logo, "Cochise A&M"), "Cochise A&amp;M</span>$")
+  # A team we do not hold gets its name alone.
+  expect_identical(team_name_html(teams[0, ], "Nowhere"), '<span class="slate-team">Nowhere</span>')
+  expect_identical(team_name_html(NULL, "Nowhere"), '<span class="slate-team">Nowhere</span>')
+})
+
 test_that("slate_matchup puts the away team first and keeps the real site", {
   expect_equal(slate_matchup(test_slate[1, ]), list(a = id_of("Mesquite"), b = id_of("Ironwood"), site = "b_home"))
   expect_equal(slate_matchup(test_slate[2, ])$site, "neutral")
@@ -107,6 +124,34 @@ test_that("default_matchup picks a real slate game, or the top two teams", {
   m2 <- default_matchup(no_slate)
   expect_equal(m2$site, "neutral")
   expect_false(m2$a == m2$b)
+})
+
+test_that("default_matchup opens on the featured team's game when it has one", {
+  game <- demo$slate[3, ]
+  featured <- teams$school[teams$team_id == game$away_id]
+  expect_equal(default_matchup(demo, featured), slate_matchup(game))
+  # No such team, or no game left for it this week: the usual pick.
+  expect_equal(default_matchup(demo, "Nowhere State"), default_matchup(demo, NA))
+  off_week <- demo
+  off_week$slate <- demo$slate[-3, ]
+  expect_equal(default_matchup(off_week, featured), default_matchup(off_week, NA))
+})
+
+test_that("app data from before snapshots still loads, with one week of history", {
+  old <- demo_app_data()
+  old$history <- NULL
+  old$results <- NULL
+  filled <- complete_app_data(old)
+  expect_identical(snapshot_weeks(filled), filled$meta$week)
+  expect_equal(filled$history$sp, filled$teams$sp)
+  expect_identical(nrow(filled$results), 0L)
+  expect_null(snapshot_result(filled, filled$meta$week, teams$team_id[1], teams$team_id[2]))
+})
+
+test_that("matchup_query adds the week only for a snapshot", {
+  pred <- predict_matchup("Ironwood", "Cochise A&M", "a_home", teams, demo$params)
+  expect_identical(matchup_query(pred), "?a=Ironwood&b=Cochise%20A%26M&site=a_home")
+  expect_identical(matchup_query(pred, 9L), "?a=Ironwood&b=Cochise%20A%26M&site=a_home&week=9")
 })
 
 test_that("matchup_from_query restores valid links and ignores bad values", {

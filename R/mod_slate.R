@@ -77,8 +77,7 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0) {
   cell <- function(label, html) sprintf('<span class="cell-label">%s</span>%s', label, html)
   data.frame(
     matchup = paste0(
-      sprintf('<span class="slate-team">%s</span> <span class="slate-at">%s</span> <span class="slate-team">%s</span>',
-              esc(away), joiner, esc(home)),
+      matchup_html(team_name_html(pred$team_a, away), joiner, team_name_html(pred$team_b, home)),
       slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes)
     ),
     our = cell("Our line", esc(format_favorite(pred$spread, away, home))),

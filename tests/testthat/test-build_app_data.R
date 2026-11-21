@@ -14,7 +14,8 @@ built <- build_fixture_app_data()
 app <- built$app
 
 test_that("app data has the shape in the data dictionary", {
-  expect_named(app, c("meta", "teams", "params", "slate", "coverage", "scorecard"))
+  expect_named(app, c("meta", "teams", "params", "slate", "coverage", "scorecard",
+                      "history", "results"))
   expect_named(app$meta, c("season", "week", "ratings_date", "built_at", "is_demo"))
   expect_identical(app$meta$season, FIXTURE_SEASON)
   expect_identical(app$meta$week, FIXTURE_WEEK)
@@ -38,7 +39,7 @@ test_that("app data has the shape in the data dictionary", {
 
 test_that("column types match the demo data the app was built against", {
   demo <- demo_app_data()
-  for (element in c("teams", "slate", "coverage")) {
+  for (element in c("teams", "slate", "coverage", "history", "results")) {
     shared <- intersect(names(demo[[element]]), names(app[[element]]))
     expect_identical(vapply(app[[element]][shared], class, character(1)),
                      vapply(demo[[element]][shared], class, character(1)), label = element)
@@ -168,4 +169,67 @@ test_that("saved predictions are graded and give the slate its line movement", {
   unplayed <- card$games[card$games$week == 11, ]
   expect_gt(nrow(unplayed), 0)
   expect_true(all(is.na(unplayed$final_margin)))
+})
+
+test_that("the history has every team's ratings going into every week so far", {
+  history <- app$history
+  teams <- app$teams
+  expect_named(history, c("week", "team_id", names(MODEL_LABELS)))
+  expect_identical(sort(unique(history$week)), seq_len(FIXTURE_WEEK))
+  expect_identical(nrow(history), nrow(teams) * FIXTURE_WEEK)
+  expect_false(anyDuplicated(history[c("week", "team_id")]) > 0)
+
+  # This week's snapshot ratings are this week's row.
+  now <- history[history$week == FIXTURE_WEEK, ]
+  now <- now[match(teams$team_id, now$team_id), ]
+  expect_equal(now$sp, teams$sp)
+  expect_equal(now$fpi, teams$fpi)
+  # Nothing was saved before the fixture's first snapshot week.
+  expect_true(all(is.na(history$sp[history$week < FIXTURE_WEEK - 1L])))
+  expect_false(anyNA(history$sp[history$week == FIXTURE_WEEK - 1L]))
+})
+
+test_that("history Elo and Power cover weeks with no snapshot", {
+  con <- connect_readonly(built$db)
+  on.exit(DBI::dbDisconnect(con))
+  history <- app$history
+
+  # Power is our own, so every team with a game this season has one in
+  # every week, and it is centered each week.
+  playing <- DBI::dbGetQuery(con, "SELECT home_id AS team_id FROM games WHERE season = 2026
+                                   UNION SELECT away_id FROM games WHERE season = 2026")$team_id
+  expect_false(anyNA(history$power[history$team_id %in% playing]))
+  centers <- tapply(history$power, history$week, mean, na.rm = TRUE)
+  expect_equal(as.numeric(centers), rep(0, FIXTURE_WEEK))
+
+  # Elo for the week with no Elo snapshot comes from the Elo each team took
+  # into its game that week.
+  game_elo <- with_project_root(query_sql_file(con, "elo_by_week.sql", list(FIXTURE_SEASON, FIXTURE_SEASON)))
+  this_week <- game_elo[game_elo$week == FIXTURE_WEEK, ]
+  this_week <- this_week[!duplicated(this_week$team_id), ]
+  from_history <- history[history$week == FIXTURE_WEEK, ]
+  expect_equal(from_history$elo[match(this_week$team_id, from_history$team_id)], this_week$elo)
+})
+
+test_that("elo_entering_week uses the next game after a bye", {
+  history <- data.frame(team_id = c(1L, 1L, 1L, 2L), week = c(1L, 2L, 4L, 1L))
+  game_elo <- data.frame(team_id = 1L, week = c(1L, 3L), elo = c(1500, 1540))
+  expect_equal(elo_entering_week(history, game_elo), c(1500, 1540, NA, NA))
+})
+
+test_that("fill_idle_weeks carries the next known rating back, then the last one forward", {
+  expect_equal(fill_idle_weeks(c(NA, NA, 3, NA, 5, NA)), c(3, 3, 3, 5, 5, 5))
+  expect_equal(fill_idle_weeks(c(NA_real_, NA_real_)), c(NA_real_, NA_real_))
+})
+
+test_that("results list this season's finished games", {
+  con <- connect_readonly(built$db)
+  on.exit(DBI::dbDisconnect(con))
+  finished <- DBI::dbGetQuery(con, "SELECT game_id FROM games WHERE season = 2026 AND completed = 1
+                                    AND home_points IS NOT NULL")
+  expect_gt(nrow(finished), 0)
+  expect_setequal(app$results$game_id, finished$game_id)
+  expect_true(all(app$results$week <= FIXTURE_WEEK))
+  expect_type(app$results$neutral_site, "logical")
+  expect_false(anyNA(app$results$home_points))
 })

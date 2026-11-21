@@ -1,6 +1,7 @@
 # Matchup tab: pick two teams and a site, get the answer first, then the
-# evidence. Everything recomputes from one reactive the moment an input
-# changes. Picker behavior (swap, same-team prevention, site labels) runs in
+# evidence. "Ratings as of" swaps in an earlier week's ratings (a snapshot,
+# see R/snapshot.R). Everything recomputes from one reactive the moment an
+# input changes. Picker behavior (swap, same-team prevention, site labels) runs in
 # www/app.js so the pickers are never re-rendered.
 
 SITE_ORDER <- c("a_home", "neutral", "b_home")
@@ -8,10 +9,12 @@ SITE_ORDER <- c("a_home", "neutral", "b_home")
 # UI ----------------------------------------------------------------------------
 
 #' @param app_data See docs/data-dictionary.md.
-#' @param initial list(a, b, site): the matchup to open with.
+#' @param initial list(a, b, site, week): the matchup to open with. `week`
+#'   is the snapshot week; NULL opens this week.
 mod_matchup_ui <- function(id, app_data, initial) {
   ns <- shiny::NS(id)
   teams <- app_data$teams
+  has_trend <- length(snapshot_weeks(app_data)) >= 2
   school_of <- function(team_id) teams$school[teams$team_id == team_id]
 
   htmltools::div(
@@ -29,8 +32,10 @@ mod_matchup_ui <- function(id, app_data, initial) {
         ),
         team_picker(ns("team_b"), "Team B", teams, initial$b)
       ),
-      site_control(ns("site"), school_of(initial$a), school_of(initial$b), initial$site)
+      site_control(ns("site"), school_of(initial$a), school_of(initial$b), initial$site),
+      snapshot_control(ns, app_data, initial$week)
     ),
+    shiny::uiOutput(ns("snapshot_banner")),
     answer_card(ns),
     htmltools::tags$section(
       class = "evidence", `aria-labelledby` = ns("evidence-title"),
@@ -39,7 +44,72 @@ mod_matchup_ui <- function(id, app_data, initial) {
                         "Each rating system's margin on one scale. The blend is what we use."),
       shiny::uiOutput(ns("model_plot")),
       shiny::uiOutput(ns("model_table"))
-    )
+    ),
+    if (has_trend) season_section(ns, app_data)
+  )
+}
+
+#' "Ratings as of": the snapshot week, with a button that explains it.
+#'
+#' The explanation opens on a click, not a hover, so it works on a phone.
+snapshot_control <- function(ns, app_data, selected = NULL) {
+  choices <- snapshot_choices(app_data)
+  if (is.null(selected)) selected <- app_data$meta$week
+  htmltools::div(
+    class = "snapshot-control",
+    htmltools::div(
+      class = "snapshot-label",
+      htmltools::tags$label(class = "control-label", `for` = ns("week"), "Ratings as of"),
+      bslib::popover(
+        htmltools::tags$button(type = "button", class = "info-btn",
+                               `aria-label` = "What is a snapshot?", svg_icon("info")),
+        SNAPSHOT_HELP,
+        title = "What is a snapshot?"
+      )
+    ),
+    shiny::selectInput(ns("week"), label = NULL, choices = choices,
+                       selected = as.character(selected), selectize = FALSE, width = "100%")
+  )
+}
+
+#' The strip above the answer while an earlier week's ratings are on show.
+snapshot_banner <- function(ns, week) {
+  htmltools::div(
+    class = "snapshot-banner", role = "status",
+    svg_icon("info"),
+    htmltools::span(sprintf("Snapshot: the ratings going into week %d.", week)),
+    shiny::actionLink(ns("this_week"), "Back to this week")
+  )
+}
+
+#' "Through the season": the two week-by-week charts.
+season_section <- function(ns, app_data) {
+  history <- app_data$history
+  partial <- vapply(snapshot_weeks(app_data), function(week) {
+    length(models_missing_in_week(history, week)) > 0
+  }, logical(1))
+  htmltools::tags$section(
+    class = "evidence", `aria-labelledby` = ns("season-title"),
+    htmltools::tags$h2(id = ns("season-title"), class = "section-title", "Through the season"),
+    htmltools::tags$h3(class = "chart-title", "This matchup, week by week"),
+    htmltools::tags$p(
+      class = "section-lede",
+      "Each system's line for these two teams, from the ratings it had going into each week.",
+      "The dotted line marks the week on show.",
+      if (any(partial)) "The blend is dashed in weeks where some systems were not saved yet."
+    ),
+    shiny::plotOutput(ns("matchup_trend"), height = "340px", click = ns("trend_click"),
+                      hover = shiny::hoverOpts(ns("trend_hover"), delay = 60, delayType = "throttle")),
+    htmltools::tags$p(class = "chart-readout",
+                      shiny::textOutput(ns("trend_readout"), inline = TRUE),
+                      htmltools::span(class = "range-note", "Hover or tap the chart to read another week.")),
+    htmltools::tags$h3(class = "chart-title", "Team ratings, week by week"),
+    htmltools::tags$p(
+      class = "section-lede",
+      "How each system has rated the two teams. Each system has its own panel",
+      "because Elo runs on a different scale from the rest."
+    ),
+    shiny::plotOutput(ns("rating_trend"), height = "auto")
   )
 }
 
@@ -318,7 +388,7 @@ model_table <- function(pred) {
   simple_table(
     rows,
     # "rating (rank)" is dropped on phones so the headers do not wrap into towers.
-    headers = list("Model", rating_header(name_a), rating_header(name_b), "Margin", "Weight"),
+    headers = list("Model", rating_header(pred$team_a), rating_header(pred$team_b), "Margin", "Weight"),
     numeric = c(FALSE, TRUE, TRUE, FALSE, TRUE),
     row_class = c(ifelse(left_out, "is-left-out", ""), "is-blend"),
     caption = paste("Ratings are points better than an average team, except Elo, which uses its own scale.",
@@ -327,8 +397,11 @@ model_table <- function(pred) {
   )
 }
 
-rating_header <- function(school) {
-  htmltools::tagList(school, htmltools::span(class = "hide-sm", " rating (rank)"))
+#' A ratings column header: the team's small logo, its name, and on wider
+#' screens what the numbers under it are.
+rating_header <- function(team) {
+  htmltools::span(class = "rating-header", team_badge(team, "xs", decorative = TRUE),
+                  htmltools::span(team$school, htmltools::span(class = "hide-sm", " rating (rank)")))
 }
 
 #' The line-movement note for a slate game, with the weekday its
@@ -342,9 +415,12 @@ slate_line_note <- function(game, app_data) {
 }
 
 #' The address-bar query for a prediction, using school names so links read well.
-matchup_query <- function(pred) {
+#'
+#' @param week The snapshot week, or NULL for this week (left out of the link).
+matchup_query <- function(pred, week = NULL) {
   enc <- function(x) utils::URLencode(x, reserved = TRUE)
-  sprintf("?a=%s&b=%s&site=%s", enc(pred$team_a$school), enc(pred$team_b$school), pred$site)
+  query <- sprintf("?a=%s&b=%s&site=%s", enc(pred$team_a$school), enc(pred$team_b$school), pred$site)
+  if (is.null(week)) query else sprintf("%s&week=%d", query, as.integer(week))
 }
 
 # Server ------------------------------------------------------------------------
@@ -354,8 +430,18 @@ matchup_query <- function(pred) {
 #' @return list(load = function(matchup)): opens list(a, b, site) in the tab.
 mod_matchup_server <- function(id, app_data, notes) {
   shiny::moduleServer(id, function(input, output, session) {
-    teams <- app_data$teams
     data_flags <- data_notes(app_data$meta)
+    this_week <- as.integer(app_data$meta$week)
+    weeks <- snapshot_weeks(app_data)
+    # Every week's teams table, built once. A snapshot only swaps the table.
+    teams_by_week <- stats::setNames(lapply(weeks, function(w) snapshot_teams(app_data, w)), weeks)
+
+    # The week whose ratings are on show. Anything unexpected means this week.
+    week <- shiny::reactive({
+      picked <- suppressWarnings(as.integer(input$week))
+      if (length(picked) == 1 && picked %in% weeks) picked else this_week
+    })
+    is_snapshot <- shiny::reactive(week() != this_week)
 
     # The single reactive everything else reads. Invalid or half-updated
     # inputs (for example mid-swap) are skipped rather than shown as errors.
@@ -363,8 +449,8 @@ mod_matchup_server <- function(id, app_data, notes) {
       a <- suppressWarnings(as.integer(input$team_a))
       b <- suppressWarnings(as.integer(input$team_b))
       shiny::req(!is.na(a), !is.na(b), a != b, input$site %in% SITE_CHOICES)
-      tryCatch(predict_matchup(a, b, input$site, teams, app_data$params,
-                               week = app_data$meta$week),
+      tryCatch(predict_matchup(a, b, input$site, teams_by_week[[as.character(week())]],
+                               app_data$params, week = week()),
                error = function(e) e)
     })
 
@@ -374,8 +460,10 @@ mod_matchup_server <- function(id, app_data, notes) {
       p
     })
     colors <- shiny::reactive(pick_team_colors(ok_pred()$team_a, ok_pred()$team_b))
-    # The real game between these two teams this week, or NULL.
+    # The real game between these two teams this week, or NULL. A snapshot
+    # is about an earlier week, so this week's game does not apply to it.
     slate_game <- shiny::reactive({
+      if (is_snapshot()) return(NULL)
       find_slate_game(app_data$slate, ok_pred()$team_a$team_id, ok_pred()$team_b$team_id)
     })
 
@@ -391,11 +479,26 @@ mod_matchup_server <- function(id, app_data, notes) {
     })
     output$band <- shiny::renderUI(matchup_band(ok_pred(), colors()))
     output$range <- shiny::renderText(format_interval(ok_pred()))
-    market <- shiny::reactive(market_view(ok_pred(), app_data$slate, app_data$params$sigma))
+    # This week's market line. A snapshot shows how the game turned out instead.
+    market <- shiny::reactive({
+      if (is_snapshot()) return(NULL)
+      market_view(ok_pred(), app_data$slate, app_data$params$sigma)
+    })
     record <- market_record(app_data$params$metrics)
-    output$market <- shiny::renderUI(market_fact(market(), record))
+    output$market <- shiny::renderUI({
+      if (!is_snapshot()) return(market_fact(market(), record))
+      p <- ok_pred()
+      snapshot_result_fact(snapshot_result(app_data, week(), p$team_a$team_id, p$team_b$team_id))
+    })
     output$flags <- shiny::renderUI({
+      if (is_snapshot()) return(flag_list(snapshot_flags(ok_pred(), app_data$history, week())))
       flag_list(c(ok_pred()$flags, slate_line_note(slate_game(), app_data), data_flags))
+    })
+    output$snapshot_banner <- shiny::renderUI({
+      if (is_snapshot()) snapshot_banner(session$ns, week())
+    })
+    shiny::observeEvent(input$this_week, {
+      shiny::updateSelectInput(session, "week", selected = as.character(this_week))
     })
     output$notes <- shiny::renderUI({
       game <- slate_game()
@@ -405,16 +508,59 @@ mod_matchup_server <- function(id, app_data, notes) {
     output$model_plot <- shiny::renderUI(model_plot(ok_pred(), colors()))
     output$model_table <- shiny::renderUI(model_table(ok_pred()))
 
+    # Through the season: the same matchup on every week's ratings.
+    trend <- shiny::reactive({
+      p <- ok_pred()
+      matchup_trend(p$team_a$team_id, p$team_b$team_id, p$site, teams_by_week, app_data$params)
+    })
+    plot_width <- function(output_id) {
+      session$clientData[[paste0("output_", session$ns(output_id), "_width")]]
+    }
+    is_narrow <- function(output_id) {
+      width <- plot_width(output_id)
+      !is.null(width) && width < 520
+    }
+    output$matchup_trend <- shiny::renderPlot(
+      matchup_trend_plot(trend(), ok_pred(), week(), is_narrow("matchup_trend")),
+      bg = "transparent", alt = shiny::reactive(matchup_trend_alt(trend(), ok_pred()))
+    )
+    # The week spelled out under the chart: the one on show until the reader
+    # hovers or taps another.
+    readout_week <- shiny::reactiveVal(this_week)
+    shiny::observeEvent(week(), readout_week(week()))
+    point_at <- function(event) {
+      if (is.null(event$x)) return()
+      readout_week(min(max(round(event$x), min(weeks)), max(weeks)))
+    }
+    shiny::observeEvent(input$trend_hover, point_at(input$trend_hover))
+    shiny::observeEvent(input$trend_click, point_at(input$trend_click))
+    output$trend_readout <- shiny::renderText(matchup_trend_readout(trend(), readout_week(), ok_pred()))
+
+    ratings <- shiny::reactive({
+      p <- ok_pred()
+      rating_trend(app_data$history, c(p$team_a$team_id, p$team_b$team_id))
+    })
+    # Three panels across, or two on a phone.
+    rating_columns <- shiny::reactive(if (is_narrow("rating_trend")) 2 else 3)
+    output$rating_trend <- shiny::renderPlot(
+      rating_trend_plot(ratings(), ok_pred(), colors(), week(), rating_columns()),
+      height = function() 60 + 190 * ceiling(length(MODEL_LABELS) / rating_columns()),
+      bg = "transparent", alt = shiny::reactive(rating_trend_alt(ratings(), ok_pred()))
+    )
+
     # Keep the copy text and the shareable URL in step with the prediction.
     shiny::observe({
       p <- ok_pred()
-      summary <- paste(c(format_summary(p), describe_market(market())), collapse = " ")
+      snapshot <- if (is_snapshot()) sprintf("Snapshot from the ratings going into week %d.", week())
+      summary <- paste(c(snapshot, format_summary(p), describe_market(market())), collapse = " ")
       session$sendCustomMessage("cfb-summary", list(id = session$ns("copy"), text = summary))
-      shiny::updateQueryString(matchup_query(p), mode = "replace")
+      shiny::updateQueryString(matchup_query(p, if (is_snapshot()) week()), mode = "replace")
     })
 
     list(
       load = function(matchup) {
+        # A game opened from this week's slate is always shown on this week's ratings.
+        shiny::updateSelectInput(session, "week", selected = as.character(this_week))
         session$sendCustomMessage("cfb-set-matchup", list(
           container = session$ns("pickers"),
           a = as.character(matchup$a), b = as.character(matchup$b), site = matchup$site
