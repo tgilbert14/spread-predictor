@@ -39,7 +39,8 @@ ranking <- ranking_table(demo)
 
 test_that("ranking_table ranks every team by the blend, best first", {
   expect_named(ranking, c("rank", "change", "team_id", "record", "rating",
-                          names(MODEL_LABELS), "committee_style", names(POLL_NAMES)))
+                          names(MODEL_LABELS), "earned", "earned_change", "committee_style",
+                          names(POLL_NAMES)))
   expect_identical(nrow(ranking), nrow(teams))
   expect_identical(ranking$rank, seq_len(nrow(teams)))
   expect_false(is.unsorted(rev(ranking$rating)))
@@ -72,7 +73,7 @@ test_that("poll ranks show for the week they were released, and only then", {
 
 test_that("committee_similarity scores each ranking by places off, closest first", {
   toy <- data.frame(rank = 1:4, cfp = c(2L, 1L, 3L, NA), ap = c(2L, 1L, NA, 3L),
-                    committee_style = c(2L, 1L, 4L, 3L))
+                    committee_style = c(2L, 1L, 4L, 3L), earned = c(1L, 2L, 3L, 4L))
   for (model in names(MODEL_LABELS)) toy[[model]] <- 1:4
   toy$sp <- c(2L, 1L, 3L, 4L)
   similarity <- committee_similarity(toy)
@@ -126,7 +127,7 @@ test_that("the demo has made-up polls and old app data loads without any", {
 test_that("table rows carry a sort key for every sortable column", {
   rows <- ranking_rows(utils::head(ranking, 5), teams)
   expect_identical(nrow(rows), 5L)
-  expect_identical(ncol(rows), length(RANKINGS_VISIBLE) + length(RANKINGS_SORTED))
+  expect_identical(ncol(rows), length(rankings_headers()) + length(RANKINGS_SORTED))
   expect_identical(rows$rank_key, 1:5)
   expect_match(rows$team[1], "rank-conference", fixed = TRUE)
   expect_match(rows$rating[1], "^[+-][0-9]+\\.[0-9]$")
@@ -144,14 +145,13 @@ test_that("moves, gaps and the closest line read in plain words", {
   expect_match(moves[3], "no change", fixed = TRUE)
   expect_match(moves[4], "no comparison", fixed = TRUE)
 
-  expect_identical(format_gap(c(2L, 9L, 5L, 4L, NA), c(6L, 2L, 5L, 5L, 1L)),
-                   c("4 places higher", "7 places lower", "same", "1 place higher", ""))
-
-  similarity <- data.frame(id = c("ap", "committee_style", "srs", "blend"),
-                           label = c("AP poll", "Our CFP guess", "SRS", "Our blend"),
-                           avg_gap = c(1.52, 2.56, 4.76, 5.24), n = 25L)
+  similarity <- data.frame(id = c("ap", "committee_style", "earned", "srs", "blend"),
+                           label = c("AP poll", "Our CFP guess", "Who has earned it (ours)", "SRS",
+                                     "Who would win (ours)"),
+                           avg_gap = c(1.52, 2.56, 3.1, 4.76, 5.24), n = 25L)
   line <- closest_sentence(similarity)
   expect_match(line, "Our CFP guess is 2.6 places off the committee this week, on average.", fixed = TRUE)
+  expect_match(line, "Our earned-it ranking is 3.1 off.", fixed = TRUE)
   expect_match(line, "The closest who-would-win ranking is SRS (4.8 places off on average).", fixed = TRUE)
   expect_match(line, "The AP poll, which also ranks by results, is 1.5 off.", fixed = TRUE)
 })
@@ -160,7 +160,8 @@ test_that("the committee block shows its teams, or says there is no release", {
   html <- as.character(committee_block(ranking, teams, this_week))
   expect_match(html, "Places off", fixed = TRUE)
   expect_match(html, "Our CFP guess", fixed = TRUE)
-  expect_match(html, "Top 50 vs CFP", fixed = TRUE)
+  expect_match(html, "Earned it", fixed = TRUE)
+  expect_match(html, "Would win", fixed = TRUE)
   none <- as.character(committee_block(ranking_table(demo, 5L), teams, 5L))
   expect_match(none, "No committee ranking for week 5.", fixed = TRUE)
 })
@@ -230,7 +231,7 @@ test_that("committee_score rewards wins and punishes losses, and uses the stored
 
 test_that("committee_style ranks every team that has played, from earlier weeks only", {
   style <- committee_style(demo, 10L)
-  expect_named(style, c("team_id", "committee_style"))
+  expect_named(style, c("team_id", "earned", "committee_style"))
   played <- demo$results[demo$results$week < 10L, ]
   expect_setequal(style$team_id, unique(c(played$home_id, played$away_id)))
   expect_identical(sort(style$committee_style), seq_len(nrow(style)))
@@ -240,4 +241,48 @@ test_that("committee_style ranks every team that has played, from earlier weeks 
   # Before any game there is nothing to judge.
   expect_identical(nrow(committee_style(demo, min(demo$results$week))), 0L)
   expect_true(all(is.na(ranking_table(demo, 3L)$committee_style)))
+})
+
+# Who has earned it -------------------------------------------------------------
+
+test_that("the earned-it ranking is record strength and nothing else", {
+  style <- committee_style(demo, 10L)
+  rated <- demo$history[demo$history$week == 10L, ]
+  resumes <- team_resumes(demo$results[demo$results$week < 10L, ],
+                          stats::setNames(rated$power, rated$team_id),
+                          stats::setNames(teams$tier, teams$team_id), demo$params$sigma)
+  expect_identical(style$earned, as.integer(rank(-resumes$record_strength, ties.method = "min")))
+  expect_identical(min(style$earned), 1L)
+
+  # A power-conference bonus moves the committee guess but never this one.
+  flipped <- demo
+  flipped$teams$tier <- 1L - teams$tier
+  expect_identical(committee_style(flipped, 10L)$earned, style$earned)
+  expect_false(identical(committee_style(flipped, 10L)$committee_style, style$committee_style))
+})
+
+test_that("ranking_table carries the earned rank and how far it moved", {
+  now <- ranking_table(demo, 10L)
+  before <- ranking_table(demo, 9L)
+  expect_identical(now$earned_change, before$earned[match(now$team_id, before$team_id)] - now$earned)
+  # The first week with any results has nothing earlier to compare with.
+  first <- ranking_table(demo, min(demo$results$week) + 1L)
+  expect_true(all(is.na(first$earned_change)))
+  expect_false(all(is.na(first$earned)))
+})
+
+test_that("rows can be numbered by either ranking, with the other beside it", {
+  listed <- ranking_table(demo, 10L)
+  listed <- listed[order(listed$earned), ][1:5, ]
+  rows <- ranking_rows(listed, teams, by = "earned")
+  expect_identical(rows$rank, listed$earned)
+  expect_equal(rows$rank_key, listed$earned)
+  expect_identical(rows$other, as.character(listed$rank))
+  expect_identical(ranking_rows(listed, teams)$other, as.character(listed$earned))
+
+  expect_identical(rankings_headers("blend")[11], "Earned")
+  expect_identical(rankings_headers("earned")[11], "Would win")
+  expect_identical(length(rankings_headers("earned")), length(rankings_headers("blend")))
+  expect_s3_class(rankings_table(rows, "earned"), "datatables")
+  expect_named(RANKING_KINDS, c("blend", "earned"))
 })

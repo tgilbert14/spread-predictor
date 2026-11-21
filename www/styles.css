@@ -243,6 +243,8 @@ code { color: var(--ink); background: #e6eaf0; padding: 0.1em 0.35em; border-rad
 }
 .segmented .radio-inline:hover > span { background: #eef1f5; }
 .segmented input:checked + span { background: var(--ink); color: #ffffff; }
+/* The picked segment stays dark under the pointer. */
+.segmented .radio-inline:hover > input:checked + span { background: var(--ink); }
 .segmented input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
 .segmented input:focus-visible { outline: none !important; }
 @media (max-width: 575.98px) {
@@ -595,7 +597,7 @@ table.dataTable.rank-table {
   width: 100% !important; margin: 0 !important; border-collapse: collapse !important; font-size: 1rem;
 }
 table.dataTable.rank-table thead th {
-  color: var(--muted); font-size: 0.85rem; font-weight: 600;
+  color: var(--muted); font-size: 0.85rem; font-weight: 600; padding-inline: 0.4rem 1.1rem;
   border-bottom: 2px solid var(--ink) !important; white-space: nowrap; background: transparent;
 }
 table.dataTable.rank-table thead th.sorting_asc,
@@ -603,7 +605,7 @@ table.dataTable.rank-table thead th.sorting_desc { color: var(--ink); }
 table.dataTable.rank-table tbody tr { background-color: transparent; color: var(--ink); }
 table.dataTable.rank-table.no-footer { border-bottom: none; }
 table.dataTable.rank-table tbody td {
-  padding: 0.5rem 0.6rem; border-top: none; border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.4rem; border-top: none; border-bottom: 1px solid var(--rule);
   vertical-align: middle; white-space: nowrap; font-variant-numeric: tabular-nums;
 }
 table.dataTable.rank-table tbody tr:hover td { background: rgba(94, 234, 212, 0.14); }
@@ -620,3 +622,6 @@ table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); 
 .committee-grid { display: grid; gap: 2rem; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
 .committee-grid .slate-team { white-space: nowrap; }
 @media (max-width: 899.98px) { .committee-grid { grid-template-columns: 1fr; } }
+.rankings-controls .rank-by { margin-top: 0; flex: 1 1 18rem; max-width: 26rem; }
+.rankings-controls .rank-by .shiny-options-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.data-table tr.is-ours td { font-weight: 700; }

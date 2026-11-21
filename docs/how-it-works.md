@@ -343,13 +343,29 @@ question: who has earned the most so far. "Places off" measures how closely
 another ranking tracks the committee: across the committee's 25 teams, the
 average number of places between its rank and theirs.
 
+### Who has earned it
+
+Our second ranking answers the other question. It is every team in order
+of **record strength** and nothing else (`committee_style()` in
+`R/rankings.R` returns it as `earned`).
+
+For every game a team has played: did it win, minus how often a reference
+team, about the 10th best in the country, would have won that game at that
+site. Add those up. Beating a good team on the road adds a lot. Beating a
+weak one at home adds almost nothing. Losing to a weak one costs the most.
+
+What it leaves out is the point. Margin of victory does not count: a
+one-point win and a blowout are the same win. Conference does not count.
+How good the team looks does not count. Our Power rating is used for one
+thing only, which is judging how hard each opponent was.
+
 ### Our CFP guess
 
-A third ranking sits between the two: who has earned the most, judged the
-way the committee has judged teams before (`committee_style()` in
-`R/rankings.R`). It uses only games already played and our own Power
-rating, so it can be made in any week, including before the committee has
-released anything.
+A third ranking predicts the committee: the same resumes, scored the way
+the committee has scored teams before (`committee_style` from the same
+function). It uses only games already played and our own Power rating, so
+it can be made in any week, including before the committee has released
+anything.
 
 Each team gets a score from four things:
 
@@ -372,8 +388,10 @@ is 8.7 places off. The AP poll, which is also people ranking by results, is
 [research-log.md](research-log.md) has the details.
 
 It is a guess at the committee, not an opinion of ours about who deserves
-what. It also knows nothing about head-to-head results or conference
-titles, which the committee says it weighs.
+what. That opinion is the earned-it ranking above, which drops the credit
+for strength and the conference bonus. Neither one knows about
+head-to-head results or conference titles, which the committee says it
+weighs.
 
 ## The pipeline
 

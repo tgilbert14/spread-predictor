@@ -15,11 +15,23 @@ POLL_LABELS <- c(cfp = "CFP", ap = "AP")
 # How many teams the Rankings tab lists before "Show every team" is ticked.
 RANKINGS_SHOWN <- 50
 
-# The Rankings table's visible columns, then the columns it can sort by.
-# Each sortable column has a hidden numeric key after the visible ones.
-RANKINGS_VISIBLE <- c("", "Move", "Team", "Record", "Rating",
-                      unname(MODEL_LABELS), "CFP guess", unname(POLL_LABELS))
-RANKINGS_SORTED <- c("rank", "change", "rating", names(MODEL_LABELS), "committee_style", names(POLL_NAMES))
+# The two rankings of our own that the Rankings tab can list teams by.
+RANKING_KINDS <- c(blend = "Who would win", earned = "Who has earned it")
+
+# The columns the Rankings table can sort by. Each has a hidden numeric key
+# after the visible columns. "other" is whichever of our two rankings the
+# table is not listed by.
+RANKINGS_SORTED <- c("rank", "change", "rating", names(MODEL_LABELS), "other", "committee_style",
+                     names(POLL_NAMES))
+
+#' The Rankings table's visible column headings.
+#'
+#' @param by "blend" or "earned": the ranking the table is listed by. The
+#'   other one gets its own column.
+rankings_headers <- function(by = "blend") {
+  c("", "Move", "Team", "Record", "Rating", unname(MODEL_LABELS),
+    if (by == "earned") "Would win" else "Earned", "CFP guess", unname(POLL_LABELS))
+}
 # A team with no rank in a column sorts after every team that has one.
 UNRANKED_KEY <- 999
 
@@ -116,9 +128,10 @@ records_before <- function(results, week, team_ids) {
 #' @param week A week the app holds (snapshot_weeks()).
 #' @return One row per team with a blend rating: rank, change (places gained
 #'   since the week before, NA when there is no fair comparison), team_id,
-#'   record, rating (the blend, in points), each system's rank,
-#'   committee_style (our guess at the committee's rank, from results), and
-#'   the committee's and AP's rank (NA when unranked or not released).
+#'   record, rating (the blend, in points), each system's rank, earned (our
+#'   who-has-earned-it rank) and earned_change, committee_style (our guess
+#'   at the committee's rank), and the committee's and AP's rank (NA when
+#'   unranked or not released).
 ranking_table <- function(app_data, week = app_data$meta$week) {
   teams <- snapshot_teams(app_data, week)
   ranked <- function(x) as.integer(rank(-x, ties.method = "min", na.last = "keep"))
@@ -139,7 +152,11 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
   out$record <- records_before(app_data$results, week, teams$team_id)
   for (model in names(MODEL_LABELS)) out[[model]] <- teams[[paste0(model, "_rank")]]
   style <- committee_style(app_data, week)
-  out$committee_style <- style$committee_style[match(out$team_id, style$team_id)]
+  at <- match(out$team_id, style$team_id)
+  out$committee_style <- style$committee_style[at]
+  out$earned <- style$earned[at]
+  earlier <- committee_style(app_data, before)
+  out$earned_change <- earlier$earned[match(out$team_id, earlier$team_id)] - out$earned
   polls <- app_data$polls[app_data$polls$week == week, , drop = FALSE]
   for (poll in names(POLL_NAMES)) {
     released <- polls[polls$poll == poll, , drop = FALSE]
@@ -147,7 +164,8 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
   }
   out <- out[!is.na(out$rank), , drop = FALSE]
   out <- out[order(out$rank, out$team_id), c("rank", "change", "team_id", "record", "rating",
-                                             names(MODEL_LABELS), "committee_style", names(POLL_NAMES))]
+                                             names(MODEL_LABELS), "earned", "earned_change",
+                                             "committee_style", names(POLL_NAMES))]
   rownames(out) <- NULL
   out
 }
@@ -164,7 +182,8 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
 #'   committee teams it could be compared on). No rows without a release.
 committee_similarity <- function(ranking) {
   committee <- ranking[!is.na(ranking$cfp), , drop = FALSE]
-  others <- c(committee_style = "Our CFP guess", blend = "Our blend", MODEL_LABELS, ap = "AP poll")
+  others <- c(committee_style = "Our CFP guess", earned = "Who has earned it (ours)",
+              blend = "Who would win (ours)", MODEL_LABELS, ap = "AP poll")
   if (nrow(committee) == 0) {
     return(data.frame(id = character(), label = character(), avg_gap = numeric(), n = integer()))
   }
@@ -237,24 +256,30 @@ committee_score <- function(resumes, weights = COMMITTEE_MODEL$weights) {
   drop(as.matrix(resumes[names(weights)]) %*% weights)
 }
 
-#' Our committee-style ranking for one week: who has earned the most so far,
-#' judged the way the committee has judged teams in past seasons.
+#' Our two results rankings for one week.
 #'
-#' It uses only games played before that week and our own Power rating, so
-#' it can be made any week, including before the committee has spoken.
+#' `earned` is our own answer to "who deserves it": teams in order of
+#' record strength and nothing else. No credit for looking good, no bonus
+#' for a conference. `committee_style` is our guess at the committee: the
+#' same resumes scored the way the committee has scored teams in past
+#' seasons, which does give credit for both.
 #'
-#' @return team_id and committee_style (rank, 1 is best) for every team
-#'   that has played a game. No rows before any games.
+#' Both use only games played before that week and our own Power rating
+#' (to judge how hard each opponent was), so they can be made any week.
+#'
+#' @return team_id, earned and committee_style (ranks, 1 is best) for every
+#'   team that has played a game. No rows before any games.
 committee_style <- function(app_data, week = app_data$meta$week) {
   teams <- app_data$teams
   rated <- app_data$history[app_data$history$week == week, , drop = FALSE]
   power <- stats::setNames(rated$power, rated$team_id)
   played <- app_data$results[app_data$results$week < week, , drop = FALSE]
   if (nrow(played) == 0 || all(is.na(power))) {
-    return(data.frame(team_id = integer(), committee_style = integer()))
+    return(data.frame(team_id = integer(), earned = integer(), committee_style = integer()))
   }
   resumes <- team_resumes(played, power, stats::setNames(teams$tier, teams$team_id), app_data$params$sigma)
-  data.frame(team_id = resumes$team_id,
-             committee_style = as.integer(rank(-committee_score(resumes), ties.method = "min")))
+  ranked <- function(score) as.integer(rank(-score, ties.method = "min"))
+  data.frame(team_id = resumes$team_id, earned = ranked(resumes$record_strength),
+             committee_style = ranked(committee_score(resumes)))
 }
 

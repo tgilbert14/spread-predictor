@@ -2,13 +2,16 @@
 # team moved since last week, and the committee's and AP's rankings for
 # comparison. The numbers come from R/rankings.R.
 
-# The table's column lists (RANKINGS_VISIBLE, RANKINGS_SORTED) live in
+# The table's column lists (rankings_headers(), RANKINGS_SORTED) live in
 # R/rankings.R, which loads after the rating systems are named.
 
 RANKINGS_HELP <- paste(
-  "Rating is how many points better than an average team we make each one on a neutral field.",
-  "It is the same blend of five rating systems that sets our spreads,",
-  "so the gap between two teams here is our neutral-site line for them."
+  "Who would win: the blend of five rating systems that sets our spreads.",
+  "Rating is points better than an average team on a neutral field,",
+  "so the gap between two teams is our neutral-site line for them.",
+  "Who has earned it: results only. Each win counts for more the better the opponent and the harder the site,",
+  "measured against what a top-10 team would do with the same schedule.",
+  "No credit for winning big, and no bonus for a conference."
 )
 
 # UI ----------------------------------------------------------------------------
@@ -26,9 +29,9 @@ mod_rankings_ui <- function(id, app_data) {
                            shiny::textOutput(ns("title_text"), inline = TRUE)),
         htmltools::p(
           class = "section-lede",
-          "Ranked by who we think would win, not by who has earned the most.",
-          "Each system's own rank sits beside ours.",
-          "The last three columns rank who has earned the most: our guess at the committee, the committee itself, and the AP.",
+          "Two rankings of our own. Who would win is the blend behind our spreads.",
+          "Who has earned it looks only at results and how hard they were to get.",
+          "Each rating system's rank sits beside them, then our guess at the committee, the committee itself, and the AP.",
           "Tap a column heading to sort by it."
         ),
         htmltools::div(
@@ -46,6 +49,12 @@ mod_rankings_ui <- function(id, app_data) {
             ),
             shiny::selectInput(ns("week"), label = NULL, choices = snapshot_choices(app_data),
                                selected = as.character(app_data$meta$week), selectize = FALSE, width = "100%")
+          ),
+          htmltools::div(
+            class = "segmented rank-by",
+            shiny::radioButtons(ns("by"), "Rank by", inline = TRUE, width = "100%",
+                                choiceNames = unname(RANKING_KINDS), choiceValues = names(RANKING_KINDS),
+                                selected = "blend")
           ),
           shiny::checkboxInput(ns("all"), "Show every team", value = FALSE)
         ),
@@ -82,9 +91,19 @@ format_rank <- function(rank) {
 
 #' One display row per ranked team, plus numeric keys for sorting.
 #'
-#' @param ranking What ranking_table() returns.
+#' @param ranking What ranking_table() returns, already in the order to show.
 #' @param teams The teams table, for names, conferences and logos.
-ranking_rows <- function(ranking, teams) {
+#' @param by "blend" or "earned": which of our rankings numbers the rows.
+#'   The other one gets a column of its own.
+ranking_rows <- function(ranking, teams, by = "blend") {
+  # Line the chosen ranking up under the names the table sorts by.
+  if (by == "earned") {
+    ranking$other <- ranking$rank
+    ranking$rank <- ranking$earned
+    ranking$change <- ranking$earned_change
+  } else {
+    ranking$other <- ranking$earned
+  }
   at <- match(ranking$team_id, teams$team_id)
   team <- vapply(seq_along(at), function(i) {
     row <- teams[at[i], , drop = FALSE]
@@ -94,7 +113,7 @@ ranking_rows <- function(ranking, teams) {
   rows <- data.frame(rank = ranking$rank, move = format_move(ranking$change), team = team,
                      record = ranking$record, rating = sprintf("%+.1f", ranking$rating),
                      stringsAsFactors = FALSE)
-  for (column in c(names(MODEL_LABELS), "committee_style", names(POLL_NAMES))) {
+  for (column in c(names(MODEL_LABELS), "other", "committee_style", names(POLL_NAMES))) {
     rows[[column]] <- format_rank(ranking[[column]])
   }
   for (column in RANKINGS_SORTED) {
@@ -106,14 +125,15 @@ ranking_rows <- function(ranking, teams) {
 }
 
 #' The ranking as a sortable DT that matches the rest of the app.
-rankings_table <- function(rows) {
-  n_visible <- length(RANKINGS_VISIBLE)
+rankings_table <- function(rows, by = "blend") {
+  headers <- rankings_headers(by)
+  n_visible <- length(headers)
   key_of <- function(column) n_visible + match(column, RANKINGS_SORTED) - 1
   sorted_by <- function(target, column, ...) c(list(targets = target, orderData = key_of(column)), list(...))
-  ranks <- c(names(MODEL_LABELS), "committee_style", names(POLL_NAMES))
+  ranks <- c(names(MODEL_LABELS), "other", "committee_style", names(POLL_NAMES))
   DT::datatable(
     rows,
-    colnames = c(RANKINGS_VISIBLE, paste0(RANKINGS_SORTED, "_key")),
+    colnames = c(headers, paste0(RANKINGS_SORTED, "_key")),
     rownames = FALSE, escape = FALSE, selection = "none",
     style = "default", class = "rank-table",
     options = list(
@@ -132,21 +152,11 @@ rankings_table <- function(rows) {
         ),
         lapply(seq_along(ranks), function(i) {
           sorted_by(4 + i, ranks[i], searchable = FALSE,
-                    className = paste("dt-right", if (ranks[i] == "committee_style") "rank-earned"))
+                    className = paste("dt-right", if (ranks[i] == "other") "rank-earned"))
         })
       )
     )
   )
-}
-
-#' "3 places higher", "1 place lower" or "same": where we have a team next
-#' to where the committee has it.
-format_gap <- function(ours, theirs) {
-  gap <- theirs - ours
-  ifelse(is.na(gap), "",
-         ifelse(gap == 0, "same",
-                sprintf("%d %s %s", abs(gap), ifelse(abs(gap) == 1, "place", "places"),
-                        ifelse(gap > 0, "higher", "lower"))))
 }
 
 #' The sentences on how close our guess came, and which system is nearest.
@@ -154,9 +164,11 @@ closest_sentence <- function(similarity) {
   spots <- function(row) sprintf("%s (%.1f places off on average)", row$label, row$avg_gap)
   guess <- similarity[similarity$id == "committee_style", , drop = FALSE]
   systems <- similarity[similarity$id %in% c("blend", names(MODEL_LABELS)), , drop = FALSE]
+  earned <- similarity[similarity$id == "earned", , drop = FALSE]
   ap <- similarity[similarity$id == "ap", , drop = FALSE]
   parts <- c(
     if (nrow(guess) == 1) sprintf("Our CFP guess is %.1f places off the committee this week, on average.", guess$avg_gap),
+    if (nrow(earned) == 1) sprintf("Our earned-it ranking is %.1f off.", earned$avg_gap),
     if (nrow(systems) > 0) sprintf("The closest who-would-win ranking is %s.", spots(systems[1, , drop = FALSE])),
     if (nrow(ap) == 1) sprintf("The AP poll, which also ranks by results, is %.1f off.", ap$avg_gap)
   )
@@ -184,34 +196,34 @@ committee_block <- function(ranking, teams, week) {
     }, character(1)),
     record = committee$record,
     guess = ifelse(is.na(committee$committee_style), "", as.character(committee$committee_style)),
+    earned = ifelse(is.na(committee$earned), "", as.character(committee$earned)),
     ours = committee$rank,
-    gap = format_gap(committee$rank, committee$cfp),
     ap = ifelse(is.na(committee$ap), "", as.character(committee$ap)),
     stringsAsFactors = FALSE
   )
   htmltools::tagList(
     htmltools::p(
       class = "section-lede",
-      "The committee ranks what teams have earned so far. Our Top 50 ranks who would win.",
-      "Our CFP guess sits in between: it scores each team's results the way the committee has rewarded them in past seasons,",
-      "using only the games played and our own Power rating."
+      "The committee ranks what teams have earned so far.",
+      "Our CFP guess tries to predict its list: it scores each team's results the way the committee has rewarded them in past seasons.",
+      "That includes two things our own earned-it ranking leaves out on purpose: some credit for looking strong, and a bonus for power-conference teams."
     ),
     htmltools::p(class = "closest-line", closest_sentence(similarity)),
     htmltools::div(
       class = "committee-grid",
       simple_table(
         rows,
-        headers = list("CFP", "Team", "Record", "Our CFP guess", "Top 50", "Top 50 vs CFP", "AP"),
-        numeric = c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE),
-        caption = paste("Our CFP guess ranks teams by what they have earned, the way the committee has in past seasons.",
-                        "Top 50 is the team's place in our who-would-win ranking above."),
+        headers = list("CFP", "Team", "Record", "Our CFP guess", "Earned it", "Would win", "AP"),
+        numeric = c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE),
+        caption = paste("Our CFP guess scores results the way the committee has in past seasons.",
+                        "Earned it and Would win are the team's places in our two rankings above."),
         html = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
       ),
       simple_table(
         data.frame(label = similarity$label, gap = sprintf("%.1f", similarity$avg_gap)),
         headers = list("Ranking", "Places off"),
         numeric = c(FALSE, TRUE),
-        row_class = ifelse(similarity$id == "committee_style", "is-blend", ""),
+        row_class = ifelse(similarity$id %in% c("committee_style", "earned", "blend"), "is-ours", ""),
         caption = paste("Places off: across the committee's 25 teams, how far each ranking has them on average.",
                         "Smaller is closer. A team the AP leaves out counts as 26th.")
       )
@@ -231,18 +243,28 @@ mod_rankings_server <- function(id, app_data) {
       if (length(picked) == 1 && picked %in% weeks) picked else this_week
     })
     ranking <- shiny::reactive(ranking_table(app_data, week()))
+    by <- shiny::reactive(if (identical(input$by, "earned")) "earned" else "blend")
     shown <- shiny::reactive({
-      if (isTRUE(input$all)) ranking() else utils::head(ranking(), RANKINGS_SHOWN)
+      listed <- ranking()
+      if (by() == "earned") {
+        listed <- listed[!is.na(listed$earned), , drop = FALSE]
+        listed <- listed[order(listed$earned, listed$rank), , drop = FALSE]
+      }
+      if (isTRUE(input$all)) listed else utils::head(listed, RANKINGS_SHOWN)
     })
 
     output$title_text <- shiny::renderText({
-      if (isTRUE(input$all)) "Every team, ranked" else sprintf("Top %d", RANKINGS_SHOWN)
+      kind <- tolower(RANKING_KINDS[[by()]])
+      if (isTRUE(input$all)) sprintf("Every team: %s", kind) else sprintf("Top %d: %s", RANKINGS_SHOWN, kind)
     })
-    output$table <- DT::renderDT(rankings_table(ranking_rows(shown(), app_data$teams)))
+    output$table <- DT::renderDT(rankings_table(ranking_rows(shown(), app_data$teams, by()), by()))
     output$table_note <- shiny::renderUI({
       notes <- c(
         "Record is going into that week's games.",
-        if (all(is.na(ranking()$change))) "Move needs the week before to blend the same systems, so it is blank here.",
+        if (by() == "blend" && all(is.na(ranking()$change))) {
+          "Move needs the week before to blend the same systems, so it is blank here."
+        },
+        if (by() == "earned" && nrow(shown()) == 0) "No games have been played before this week, so no one has earned anything yet.",
         snapshot_missing_note(app_data$history, week())
       )
       htmltools::p(class = "fine-print", paste(notes, collapse = " "))

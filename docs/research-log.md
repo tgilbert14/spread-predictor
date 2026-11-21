@@ -368,7 +368,15 @@ score. Each season was scored with weights fit on the other six.
 and anything said in the room. The AP poll is closer than any formula here
 because voters see those things too.
 
-**Decision.** Added to the Rankings tab as "Our CFP guess", next to the
-committee's and the AP's ranks. It is kept apart from the Top 50, which
-stays a who-would-win ranking. The weights live in `COMMITTEE_MODEL` in
+**Decision.** Two rankings came out of this.
+
+- "Our CFP guess": the four-input score, shown next to the committee's and
+  the AP's ranks. It predicts the committee, bonus and all.
+- "Who has earned it": record strength alone. It is our own answer to who
+  deserves what, so it deliberately leaves out the two things the fit says
+  the committee adds on top of results: credit for looking strong and the
+  power-conference bonus. It is 3.8 places from the committee on history,
+  and that gap is the point, not a flaw.
+
+Both are kept apart from the who-would-win ranking. The weights live in `COMMITTEE_MODEL` in
 `R/config.R` and should be refit with the script after each season.
