@@ -33,6 +33,8 @@ FCS_POOL_ID <- -1L
 #'     game's block. FCS teams get the pooled FCS rating.
 #'   current: team_id, power, after every played game of the latest season.
 #'     FBS teams only.
+#'   weekly: team_id, week, power, for the latest season: every FBS team's
+#'     rating going into each regular-season week, bye weeks included.
 power_ratings <- function(games, conferences, settings = POWER_RATING) {
   if (nrow(games) == 0) {
     stop("The Power rating needs games, and none were given. ",
@@ -44,6 +46,7 @@ power_ratings <- function(games, conferences, settings = POWER_RATING) {
   home_power <- rep(NA_real_, nrow(games))
   away_power <- rep(NA_real_, nrow(games))
   last_season <- numeric()
+  weekly <- NULL
 
   for (season in sort(unique(games$season))) {
     rows <- which(games$season == season)
@@ -52,13 +55,15 @@ power_ratings <- function(games, conferences, settings = POWER_RATING) {
     home_power[rows] <- rated$home_power
     away_power[rows] <- rated$away_power
     last_season <- rated$final
+    weekly <- rated$weekly
   }
 
   fbs <- names(last_season) != as.character(FCS_POOL_ID)
   list(
     pregame = data.frame(game_id = games$game_id, home_power = home_power, away_power = away_power),
     current = data.frame(team_id = as.integer(names(last_season)[fbs]),
-                         power = unname(last_season[fbs]))
+                         power = unname(last_season[fbs])),
+    weekly = weekly[weekly$team_id != FCS_POOL_ID, , drop = FALSE]
   )
 }
 
@@ -72,8 +77,9 @@ pooled_id <- function(team_id, class) {
 #' @param games This season's games, with home_key and away_key.
 #' @param conferences This season's rows of team_id and conference.
 #' @param last_season Named ratings (by team id) at the end of last season.
-#' @return home_power and away_power per game (pregame), and final: named
-#'   ratings after every played game.
+#' @return home_power and away_power per game (pregame), final: named
+#'   ratings after every played game, and weekly: team_id, week, power, the
+#'   rating every team took into each regular-season week.
 rate_season <- function(games, conferences, last_season, settings) {
   ids <- sort(unique(c(games$home_key, games$away_key)))
   conference <- team_conference(ids, conferences)
@@ -99,10 +105,14 @@ rate_season <- function(games, conferences, last_season, settings) {
   rating <- prior
   home_power <- rep(NA_real_, nrow(games))
   away_power <- rep(NA_real_, nrow(games))
+  weekly <- list()
   for (b in sort(unique(block))) {
     now <- block == b
     home_power[now] <- rating[home[now]]
     away_power[now] <- rating[away[now]]
+    if (is.finite(b)) {
+      weekly[[length(weekly) + 1]] <- data.frame(team_id = ids, week = as.integer(b), power = rating)
+    }
 
     learn <- played & block <= b
     if (!any(learn & now)) next
@@ -112,7 +122,8 @@ rate_season <- function(games, conferences, last_season, settings) {
   }
 
   list(home_power = home_power, away_power = away_power,
-       final = stats::setNames(rating, ids))
+       final = stats::setNames(rating, ids),
+       weekly = do.call(rbind, weekly))
 }
 
 #' What the Power rating learns from one game, in points, home minus away.

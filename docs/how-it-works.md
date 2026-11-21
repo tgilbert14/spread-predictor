@@ -284,6 +284,35 @@ up without rebuilding anything. Notes never change the number.
 A few weeks of grades is a small sample. One game can swing by two
 touchdowns, so judge the model on a season or more.
 
+## Snapshots: looking back at an earlier week
+
+The Matchup tab's **Ratings as of** selector swaps in the ratings from an
+earlier week. It answers a question like "what did the systems think of
+Utah and Arizona before they played?"
+
+`build_app_data()` saves the history the app needs (`app_data$history`):
+every team's rating in every system going into each week so far.
+
+- **SP+, FPI and SRS** come from the weekly snapshot files. There is no
+  other source, so weeks before the first snapshot have none. Those weeks
+  blend Elo and Power only, and the app says so.
+- **Elo** comes from the snapshot when there is one. Otherwise it is the Elo
+  the team took into its game that week, which the games file already
+  holds. Elo only moves when a team plays, so a bye week uses the next game.
+- **Power** is ours and is built week by week, so it covers every week.
+
+A snapshot is that week's ratings run through `predict_matchup()` with
+**today's** fitted settings (`snapshot_teams()` in `R/snapshot.R`). That makes
+it a fair way to compare weeks, since only the ratings change. It also means
+a snapshot is not always the line we saved that week: if the model was refit
+in between, the two differ a little. So when the two teams really played
+that week, the app shows the final score and the saved line next to the
+snapshot.
+
+The same history feeds the two charts under the model table: each system's
+margin for the matchup week by week, and each team's rating in every system.
+The blend line is dashed in weeks where it is missing a system.
+
 ## The pipeline
 
 ```

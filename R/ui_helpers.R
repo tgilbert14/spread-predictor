@@ -56,6 +56,17 @@ complete_app_data <- function(x) {
     x$coverage <- data.frame(source = character(), season = integer(), week = integer(),
                              n_teams = integer(), pulled_at = character())
   }
+  # App data built before snapshots has no rating history or results. This
+  # week's ratings are then the only week there is.
+  if (!is.data.frame(x$history)) {
+    x$history <- cbind(week = as.integer(x$meta$week),
+                       x$teams[c("team_id", names(MODEL_LABELS))])
+  }
+  if (!is.data.frame(x$results)) {
+    x$results <- data.frame(game_id = integer(), week = integer(), start_date = character(),
+                            home_id = integer(), away_id = integer(), neutral_site = logical(),
+                            home_points = integer(), away_points = integer())
+  }
   x$meta$is_demo <- isTRUE(x$meta$is_demo)
   x
 }
@@ -209,9 +220,12 @@ slate_matchup <- function(game) {
   )
 }
 
-#' The first game to show: the slate game between the two strongest teams.
-#' With no slate, the top two teams on a neutral field.
-default_matchup <- function(app_data) {
+#' The first game to show: the featured team's game this week when it has
+#' one left to play, otherwise the slate game between the two strongest
+#' teams. With no slate, the top two teams on a neutral field.
+#'
+#' @param featured A school name, usually FEATURED_TEAM.
+default_matchup <- function(app_data, featured = FEATURED_TEAM) {
   teams <- app_data$teams
   strength <- stats::setNames(team_strength(teams), teams$team_id)
   slate <- app_data$slate
@@ -219,6 +233,11 @@ default_matchup <- function(app_data) {
     as.character(slate$away_id) %in% names(strength)
   slate <- slate[known, , drop = FALSE]
 
+  featured_id <- teams$team_id[teams$school == featured]
+  featured_game <- slate$home_id %in% featured_id | slate$away_id %in% featured_id
+  if (any(featured_game)) {
+    return(slate_matchup(slate[which(featured_game)[1], , drop = FALSE]))
+  }
   if (nrow(slate) > 0) {
     combined <- strength[as.character(slate$home_id)] + strength[as.character(slate$away_id)]
     return(slate_matchup(slate[which.max(combined), , drop = FALSE]))

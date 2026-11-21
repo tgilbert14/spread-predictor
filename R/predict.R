@@ -97,12 +97,7 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params, wee
 
   flags <- character()
   missing_models <- models$label[is.na(models$margin)]
-  if (length(missing_models) > 0) {
-    flags <- c(flags, sprintf("%s %s no rating for one of these teams, so %s left out.",
-                              paste(missing_models, collapse = " and "),
-                              if (length(missing_models) == 1) "has" else "have",
-                              if (length(missing_models) == 1) "it was" else "they were"))
-  }
+  if (length(missing_models) > 0) flags <- c(flags, missing_models_flag(missing_models))
   if (early != 0) {
     flags <- c(flags, "Early season: the Elo and Power numbers also lean on preseason roster talent and returning production.")
   }
@@ -120,6 +115,15 @@ predict_matchup <- function(team_a, team_b, site = "neutral", teams, params, wee
     models     = models,
     flags      = flags
   )
+}
+
+#' The note for rating systems left out of a blend.
+#'
+#' @param labels Display names of the systems, such as "SP+".
+missing_models_flag <- function(labels) {
+  one <- length(labels) == 1
+  sprintf("%s %s no rating for one of these teams, so %s left out.",
+          format_list(labels), if (one) "has" else "have", if (one) "it was" else "they were")
 }
 
 #' Preseason points for A over B, added to the Elo and Power margins.

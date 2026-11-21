@@ -109,6 +109,34 @@ test_that("default_matchup picks a real slate game, or the top two teams", {
   expect_false(m2$a == m2$b)
 })
 
+test_that("default_matchup opens on the featured team's game when it has one", {
+  game <- demo$slate[3, ]
+  featured <- teams$school[teams$team_id == game$away_id]
+  expect_equal(default_matchup(demo, featured), slate_matchup(game))
+  # No such team, or no game left for it this week: the usual pick.
+  expect_equal(default_matchup(demo, "Nowhere State"), default_matchup(demo, NA))
+  off_week <- demo
+  off_week$slate <- demo$slate[-3, ]
+  expect_equal(default_matchup(off_week, featured), default_matchup(off_week, NA))
+})
+
+test_that("app data from before snapshots still loads, with one week of history", {
+  old <- demo_app_data()
+  old$history <- NULL
+  old$results <- NULL
+  filled <- complete_app_data(old)
+  expect_identical(snapshot_weeks(filled), filled$meta$week)
+  expect_equal(filled$history$sp, filled$teams$sp)
+  expect_identical(nrow(filled$results), 0L)
+  expect_null(snapshot_result(filled, filled$meta$week, teams$team_id[1], teams$team_id[2]))
+})
+
+test_that("matchup_query adds the week only for a snapshot", {
+  pred <- predict_matchup("Ironwood", "Cochise A&M", "a_home", teams, demo$params)
+  expect_identical(matchup_query(pred), "?a=Ironwood&b=Cochise%20A%26M&site=a_home")
+  expect_identical(matchup_query(pred, 9L), "?a=Ironwood&b=Cochise%20A%26M&site=a_home&week=9")
+})
+
 test_that("matchup_from_query restores valid links and ignores bad values", {
   fallback <- list(a = id_of("Kofa"), b = id_of("Bajada"), site = "b_home")
 

@@ -542,3 +542,36 @@ table.dataTable.slate-table thead th:last-child, table.dataTable.slate-table tbo
 @media (min-width: 576px) and (max-width: 899.98px) {
   table.dataTable.slate-table tbody td:nth-child(4) { white-space: normal; min-width: 7.5rem; }
 }
+
+/* Snapshot: "Ratings as of" selector, its help button, and the banner ------- */
+.snapshot-control { margin-top: 1rem; max-width: 22rem; }
+.snapshot-control .form-group { margin-bottom: 0; width: 100% !important; }
+.snapshot-label { display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.3rem; }
+.snapshot-label .control-label { font-size: 0.875rem; font-weight: 600; color: var(--muted); margin: 0; }
+.snapshot-control select {
+  min-height: var(--tap); background-color: var(--surface); color: var(--ink);
+  border: 1px solid var(--edge); border-radius: 4px; font-size: 1rem;
+  /* Keep the browser's own arrow so it reads as a dropdown. */
+  appearance: auto; -webkit-appearance: menulist; padding-inline: 0.6rem;
+}
+.info-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; color: var(--focus);
+}
+.info-btn:hover { background: #e6eaf0; color: var(--ink); }
+.popover { max-width: 20rem; border-color: var(--ink); }
+.popover-header { font-weight: 700; background: var(--surface); }
+.popover-body { color: var(--ink); }
+.snapshot-banner {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem;
+  margin: 0; padding: 0.6rem 0.9rem;
+  background: var(--surface); border-left: 4px solid var(--accent);
+}
+.snapshot-banner .icon { flex: none; color: var(--focus); }
+.snapshot-banner a { font-weight: 600; }
+
+/* Through the season (trend charts) ------------------------------------------- */
+.chart-title { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.3rem; }
+.chart-title:first-of-type { margin-top: 0.5rem; }
+.chart-readout { margin: 0.4rem 0 0; font-size: 0.95rem; font-variant-numeric: tabular-nums; max-width: 68ch; }

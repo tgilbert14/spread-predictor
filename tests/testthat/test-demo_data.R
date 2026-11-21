@@ -1,7 +1,8 @@
 demo <- demo_app_data()
 
 test_that("demo data has every element and column in the data dictionary", {
-  expect_named(demo, c("meta", "teams", "params", "slate", "coverage", "scorecard"))
+  expect_named(demo, c("meta", "teams", "params", "slate", "coverage", "scorecard",
+                       "history", "results"))
   expect_named(demo$meta, c("season", "week", "ratings_date", "built_at", "is_demo"))
   expect_true(demo$meta$is_demo)
 

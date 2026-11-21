@@ -167,6 +167,8 @@ demo_app_data <- function(seed = 2026) {
   coverage$n_teams <- n
   coverage$pulled_at <- "2026-11-10T13:00:00Z"
 
+  scorecard <- demo_scorecard(teams, params, slate)
+
   list(
     meta = list(
       season = 2026L,
@@ -179,8 +181,43 @@ demo_app_data <- function(seed = 2026) {
     params = params,
     slate = slate,
     coverage = coverage[, c("source", "season", "week", "n_teams", "pulled_at")],
-    scorecard = demo_scorecard(teams, params, slate)
+    scorecard = scorecard,
+    history = demo_history(teams, 11L, first_saved_week = 8L),
+    results = demo_results(scorecard$games)
   )
+}
+
+#' Made-up ratings for every week so far, ending at this week's.
+#'
+#' Each earlier week is the next one plus a little drift. SP+, FPI and SRS
+#' only start in `first_saved_week`, the way the real snapshots started
+#' partway through a season, so the demo shows both kinds of week.
+demo_history <- function(teams, week, first_saved_week) {
+  drift <- c(sp = 1.2, fpi = 1.2, srs = 1.8, elo = 22, power = 1.5)
+  current <- teams[names(MODEL_LABELS)]
+  weeks <- vector("list", week)
+  for (w in rev(seq_len(week))) {
+    weeks[[w]] <- cbind(week = w, team_id = teams$team_id, current)
+    for (model in names(drift)) {
+      current[[model]] <- current[[model]] + stats::rnorm(nrow(teams), 0, drift[[model]])
+    }
+    current$elo <- round(current$elo)
+    for (model in setdiff(names(drift), "elo")) current[[model]] <- round(current[[model]], 1)
+  }
+  history <- do.call(rbind, weeks)
+  history[history$week < first_saved_week, c("sp", "fpi", "srs")] <- NA_real_
+  rownames(history) <- NULL
+  history
+}
+
+#' The demo's finished games, in the shape of app_data$results.
+demo_results <- function(games) {
+  played <- games[!is.na(games$home_points), , drop = FALSE]
+  results <- played[c("game_id", "week", "start_date", "home_id", "away_id", "neutral_site",
+                      "home_points", "away_points")]
+  results$neutral_site <- results$neutral_site == 1
+  rownames(results) <- NULL
+  results
 }
 
 #' A made-up scorecard: three graded weeks (8 to 10) and this week's saved,

@@ -156,3 +156,10 @@ test_that("early in the season only Elo and Power get preseason points", {
   swapped <- predict_matchup("Beta", "Alpha", "neutral", t, params, week = 1L)
   expect_equal(swapped$spread, -week_1$spread)
 })
+
+test_that("missing_models_flag reads right for one system or several", {
+  expect_identical(missing_models_flag("FPI"),
+                   "FPI has no rating for one of these teams, so it was left out.")
+  expect_identical(missing_models_flag(c("SP+", "FPI", "SRS")),
+                   "SP+, FPI and SRS have no rating for one of these teams, so they were left out.")
+})

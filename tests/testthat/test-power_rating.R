@@ -163,3 +163,25 @@ test_that("preseason fade is 1 in week 1, 0 from week 7, and 0 in the postseason
   expect_equal(preseason_fade(1:8), c(1, 5 / 6, 4 / 6, 3 / 6, 2 / 6, 1 / 6, 0, 0))
   expect_equal(preseason_fade(c(1, 1), c("regular", "postseason")), c(1, 0))
 })
+
+test_that("weekly ratings are what each team took into each week of the latest season", {
+  weekly <- rated$weekly
+  expect_named(weekly, c("team_id", "week", "power"))
+  expect_equal(nrow(weekly), n_teams * 12)
+  expect_false(anyNA(weekly$power))
+
+  latest <- games[games$season == 2025, ]
+  pregame <- rated$pregame[match(latest$game_id, rated$pregame$game_id), ]
+  at <- function(team_id) weekly$power[match(paste(team_id, latest$week), paste(weekly$team_id, weekly$week))]
+  expect_equal(at(latest$home_id), pregame$home_power)
+  expect_equal(at(latest$away_id), pregame$away_power)
+})
+
+test_that("weekly ratings leave out the pooled FCS team", {
+  fcs_game <- games[games$season == 2025 & games$week == 3, ][1, ]
+  fcs_game$game_id <- 999001L
+  fcs_game$away_id <- 5000L
+  fcs_game$away_class <- "fcs"
+  weekly <- power_ratings(rbind(games, fcs_game), conferences)$weekly
+  expect_setequal(weekly$team_id, seq_len(n_teams))
+})
