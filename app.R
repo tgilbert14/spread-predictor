@@ -22,6 +22,7 @@ notes <- app_notes(app_data)
 # opens straight on that matchup, with no flash of the default first.
 ui <- function(request) {
   initial <- matchup_from_query(request$QUERY_STRING, app_data$teams, default_matchup(app_data))
+  initial$week <- week_from_query(request$QUERY_STRING, app_data)
 
   page_navbar(
     title = "CFB Spread Predictor",

@@ -123,3 +123,8 @@ LINE_MOVE_POINTS <- 2.5
 
 # Kinds of game notes in data/notes.csv. Anything else is read as "other".
 NOTE_CATEGORIES <- c("availability", "weather", "other")
+
+# The team whose game opens the app each week. When it has no game left to
+# play this week, the app opens on the week's best game instead (see
+# default_matchup() in R/ui_helpers.R). Spelled as in the teams table.
+FEATURED_TEAM <- "Arizona"

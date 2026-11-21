@@ -31,6 +31,15 @@ test_that("game rows read away first with home-relative margins turned around", 
   expect_match(rows$matchup, "Kofa</span> <span class=\"slate-at\">at</span>")
 })
 
+test_that("game rows carry each team's badge when the teams table is given", {
+  games <- demo$scorecard$games[!is.na(demo$scorecard$games$final_margin), ][1:2, ]
+  plain <- scorecard_game_rows(games)
+  marked <- scorecard_game_rows(games, demo$teams)
+  expect_false(any(grepl("team-badge", plain$matchup)))
+  expect_true(all(lengths(regmatches(marked$matchup, gregexpr("team-badge-xs", marked$matchup))) == 2))
+  expect_identical(marked[setdiff(names(marked), "matchup")], plain[setdiff(names(plain), "matchup")])
+})
+
 test_that("the empty state says what is saved and when results appear", {
   html <- as.character(scorecard_empty(data.frame(week = c(11L, 11L, 11L))))
   expect_match(html, "We saved 3 predictions for week 11 before the first kickoff.")

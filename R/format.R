@@ -83,3 +83,10 @@ format_seasons <- function(seasons) {
   if (length(parts) <= 1) return(paste(parts, collapse = ""))
   paste(paste(parts[-length(parts)], collapse = ", "), "and", parts[length(parts)])
 }
+
+#' "SP+", "SP+ and FPI", or "SP+, FPI and SRS".
+format_list <- function(items) {
+  items <- unname(items)
+  if (length(items) <= 2) return(paste(items, collapse = " and "))
+  paste(paste(items[-length(items)], collapse = ", "), "and", items[length(items)])
+}

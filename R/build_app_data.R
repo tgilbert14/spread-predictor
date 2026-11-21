@@ -24,6 +24,8 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
   week <- max(coverage$week[coverage$season == season])
   latest <- latest_snapshots(coverage, season)
   predictions <- load_predictions(snapshots_root)
+  power <- season_power(con, season)
+  teams <- current_teams(con, season, latest, power)
 
   app_data <- list(
     meta = list(
@@ -33,11 +35,13 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
       built_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
       is_demo = FALSE
     ),
-    teams = current_teams(con, season, latest),
+    teams = teams,
     params = params,
     slate = add_line_movement(current_slate(con, season, week), predictions, season, week),
     coverage = coverage,
-    scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season)
+    scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season),
+    history = rating_history(con, season, seq_len(week), teams$team_id, power$weekly),
+    results = season_results(con, season)
   )
 
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
@@ -61,7 +65,9 @@ latest_snapshots <- function(coverage, season) {
 #'
 #' Rank 1 is the best rating. Tied teams share the better rank, and a team
 #' with no rating has no rank.
-current_teams <- function(con, season, latest) {
+#'
+#' @param power What season_power() returns.
+current_teams <- function(con, season, latest, power = season_power(con, season)) {
   teams <- query_sql_file(con, "season_teams.sql", list(season))
   if (nrow(teams) == 0) {
     stop(sprintf("No teams for the %d season in the database. Run `Rscript scripts/refresh.R`, then try again.",
@@ -74,7 +80,7 @@ current_teams <- function(con, season, latest) {
                         weekly$week %in% week, , drop = FALSE]
     teams[[source]] <- ratings$rating[match(teams$team_id, ratings$team_id)]
   }
-  teams$power <- current_power(con, season, teams$team_id)
+  teams$power <- current_power(power$current, teams$team_id)
   for (model in names(MODEL_LABELS)) {
     teams[[paste0(model, "_rank")]] <-
       as.integer(rank(-teams[[model]], ties.method = "min", na.last = "keep"))
@@ -89,12 +95,8 @@ current_teams <- function(con, season, latest) {
   teams
 }
 
-#' Each team's Power rating after every completed game so far this season.
-#'
-#' Only gaps between ratings matter for a spread, so the ratings are shifted
-#' to average zero across these teams. That way they read like the others:
-#' points better than an average FBS team.
-current_power <- function(con, season, team_ids) {
+#' Power ratings through `season`: what power_ratings() returns.
+season_power <- function(con, season) {
   games <- query_sql_file(con, "rating_games.sql", list(BURN_IN_SEASON))
   if (!season %in% games$season) {
     stop(sprintf("The Power rating needs the %d schedule, and the database has no %d games. ",
@@ -102,9 +104,94 @@ current_power <- function(con, season, team_ids) {
          "Run `Rscript scripts/refresh.R` to load them, then try again.", call. = FALSE)
   }
   games <- games[games$season <= season, , drop = FALSE]
-  current <- power_ratings(games, query_sql_file(con, "team_conferences.sql"))$current
+  power_ratings(games, query_sql_file(con, "team_conferences.sql"))
+}
+
+#' Each team's Power rating after every completed game so far this season.
+#'
+#' Only gaps between ratings matter for a spread, so the ratings are shifted
+#' to average zero across these teams. That way they read like the others:
+#' points better than an average FBS team.
+#'
+#' @param current team_id and power, from season_power()$current.
+current_power <- function(current, team_ids) {
   power <- current$power[match(team_ids, current$team_id)]
   power - mean(power, na.rm = TRUE)
+}
+
+#' What every system said about every team going into each week so far.
+#'
+#' SP+, FPI and SRS come from the weekly snapshots, so they are missing for
+#' weeks before the snapshots started. Elo comes from the snapshot when there
+#' is one, and otherwise from the Elo each team took into its game that week.
+#' Power is our own, so it covers every week.
+#'
+#' @param weeks Regular-season weeks to cover, usually 1 to the current week.
+#' @param power_weekly team_id, week, power, from season_power()$weekly.
+#' @return One row per team and week: week, team_id and one rating column
+#'   per system, NA where a system has nothing for that week.
+rating_history <- function(con, season, weeks, team_ids, power_weekly) {
+  history <- expand.grid(team_id = team_ids, week = as.integer(weeks))
+  key <- function(df) paste(df$team_id, df$week)
+
+  weekly <- query_sql_file(con, "weekly_ratings.sql")
+  weekly <- weekly[weekly$season == season, , drop = FALSE]
+  for (source in RATING_SOURCES) {
+    saved <- weekly[weekly$source == source, , drop = FALSE]
+    history[[source]] <- as.numeric(saved$rating[match(key(history), key(saved))])
+  }
+  game_elo <- query_sql_file(con, "elo_by_week.sql", list(season, season))
+  history$elo <- ifelse(is.na(history$elo), elo_entering_week(history, game_elo), history$elo)
+
+  power <- power_weekly$power[match(key(history), key(power_weekly))]
+  power <- stats::ave(power, history$team_id, FUN = fill_idle_weeks)
+  history$power <- power - stats::ave(power, history$week, FUN = function(x) mean(x, na.rm = TRUE))
+
+  history <- history[order(history$week, history$team_id), c("week", "team_id", names(MODEL_LABELS))]
+  rownames(history) <- NULL
+  history
+}
+
+#' Fill the weeks with no games at all, in week order.
+#'
+#' A rating only changes when games are played. So a week nobody played
+#' carries the rating of the next week that has one, or the last one known.
+fill_idle_weeks <- function(x) {
+  known <- which(!is.na(x))
+  if (length(known) == 0) return(x)
+  for (i in which(is.na(x))) {
+    later <- known[known > i]
+    x[i] <- x[if (length(later) > 0) later[1] else known[length(known)]]
+  }
+  x
+}
+
+#' The Elo each team took into each week, from its games.
+#'
+#' Elo only changes when a team plays. So in a bye week a team's Elo is
+#' whatever it takes into its next game.
+#'
+#' @param history Rows of team_id and week.
+#' @param game_elo Rows of team_id, week and elo: one per game played or
+#'   scheduled.
+#' @return One Elo per row of `history`, NA when the team has no game that
+#'   week or later.
+elo_entering_week <- function(history, game_elo) {
+  game_elo <- game_elo[order(game_elo$team_id, game_elo$week), , drop = FALSE]
+  by_team <- split(game_elo, game_elo$team_id)
+  vapply(seq_len(nrow(history)), function(i) {
+    games <- by_team[[as.character(history$team_id[i])]]
+    if (is.null(games)) return(NA_real_)
+    next_game <- which(games$week >= history$week[i])
+    if (length(next_game) == 0) NA_real_ else as.numeric(games$elo[next_game[1]])
+  }, numeric(1))
+}
+
+#' This season's finished regular-season games.
+season_results <- function(con, season) {
+  results <- query_sql_file(con, "season_results.sql", list(season))
+  results$neutral_site <- results$neutral_site == 1
+  results
 }
 
 #' This week's unplayed FBS games, with the median sportsbook spread.

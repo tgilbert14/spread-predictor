@@ -21,6 +21,19 @@ disagreement is easy to see.
 
 ![Where the models land for Utah at Arizona: one dot per rating system on a shared scale with the blend marked, and a table of each system's ratings and margin](docs/img/models.png)
 
+**Ratings as of** turns the Matchup tab into a snapshot of an earlier week.
+Pick a week and the app answers with the ratings the systems had going into
+that week's games. If the two teams played that week, it shows the final
+score and the line we saved at the time.
+
+![A week 11 snapshot of Utah at Arizona: the Ratings as of selector set to week 11, a banner saying this is a snapshot, Utah by 3.5, and the final score, Utah 40, Arizona 39](docs/img/snapshot.png)
+
+Under that, two charts follow the matchup through the season: each system's
+line for these two teams week by week, and each team's rating in every
+system.
+
+![Through the season for Utah at Arizona: a line chart of each system's margin by week with the blend marked, and five small charts of each team's rating by week](docs/img/trend.png)
+
 The This week tab lists every game, sorted by how far our number is from the
 market's.
 
@@ -262,10 +275,15 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 | A column-name error from a `normalize_` function | The `cfbfastR` package changed its output. The message lists the columns it got. Open an issue with that message. |
 | The GitHub Action fails | Check that the `CFBD_API_KEY` secret exists and that you have API calls left this month. |
 | The scheduled runs stopped on their own | GitHub turns off schedules on a repo with no commits for 60 days. Open the **Actions** tab, choose **Weekly snapshot**, click **Enable workflow**, then **Run workflow**. |
+| The app opens on a game you don't care about | Set `FEATURED_TEAM` in `R/config.R` to your school. Its game opens first each week. With no game left to play, the app opens on the game between the two strongest teams. |
 
 ## Limits
 
 - FBS teams only.
+- Snapshots only reach back as far as the saved ratings. SP+, FPI and SRS
+  were first saved in week 11 of 2026, so earlier weeks that season show Elo
+  and Power only. A snapshot uses that week's ratings with today's model
+  settings, so it can differ a little from the line saved that week.
 - No injuries, weather or roster news in the number. The line is what the
   rating systems know. Game notes and line movement show news next to it,
   but never change it.
