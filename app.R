@@ -47,6 +47,7 @@ ui <- function(request) {
     footer = app_footer(),
     nav_panel("Matchup", value = "matchup", mod_matchup_ui("matchup", app_data, initial)),
     nav_panel("This week", value = "slate", mod_slate_ui("slate", app_data)),
+    nav_panel("Rankings", value = "rankings", mod_rankings_ui("rankings", app_data)),
     nav_panel("Scorecard", value = "scorecard", mod_scorecard_ui("scorecard", app_data)),
     nav_panel("Model report", value = "report", mod_report_ui("report", app_data)),
     nav_spacer(),
@@ -64,6 +65,7 @@ server <- function(input, output, session) {
     nav_select("tabs", "matchup", session = session)
   }
   mod_slate_server("slate", app_data, notes, on_open = open_matchup)
+  mod_rankings_server("rankings", app_data)
   mod_scorecard_server("scorecard", app_data)
   mod_report_server("report", app_data)
 }

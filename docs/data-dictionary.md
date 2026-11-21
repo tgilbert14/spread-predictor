@@ -93,6 +93,7 @@ drops rows for teams we do not track, with one count per table.
 | `talent/` | `year`, `school`, `talent` (247Sports roster talent composite) | `talent` table |
 | `returning/` | `season`, `team`, `percent_ppa` (share of last season's production returning, usually 0 to 1) | `returning_production` table |
 | `advanced/` | `game_id`, `team`, `off_success_rate`, `def_success_rate` | `game_stats` table |
+| `rankings/` | `season_type`, `week`, `poll`, `rank`, `school` (every poll the API has; the app uses "Playoff Committee Rankings" and "AP Top 25") | `app_data$polls`, read straight from the file by `load_polls()` |
 
 Talent and returning production feed the house models early in the season.
 Success rates feed the Power rating. `scripts/pull_extras.R` pulls past
@@ -210,7 +211,8 @@ the hosted app has it. The app also reads `data/notes.csv`. When the app data
 is missing, the app uses `demo_app_data()`, which returns the same shape with
 made-up teams, a made-up scorecard and made-up notes. An older file without
 `scorecard` or the line-movement columns loads as if nothing had been saved,
-and one without `history` loads with this week as its only week.
+one without `history` loads with this week as its only week, and one
+without `polls` loads with no committee or AP rankings.
 
 | Element | Type | Contents |
 |---|---|---|
@@ -221,6 +223,7 @@ and one without `history` loads with this week as its only week.
 | `coverage` | data frame | Which snapshots exist: `source`, `season`, `week`, `n_teams`, `pulled_at` |
 | `scorecard` | list | Saved predictions for this season, graded. See below. |
 | `history` | data frame | What every system said going into each week so far, for snapshots and the week-by-week charts. One row per team and week: `week`, `team_id`, `sp`, `fpi`, `srs`, `elo`, `power`. `sp`, `fpi` and `srs` are `NA` for weeks before the weekly snapshots started. `elo` is the snapshot value when there is one, otherwise the Elo the team took into its game that week (its next game, in a bye week). `power` is centered each week so the average team is 0. |
+| `polls` | data frame | This season's playoff committee and AP rankings, for the Rankings tab: `week`, `poll` (`"cfp"` or `"ap"`), `rank`, `team_id`. A poll's week is the week its ranking goes into, the same way rating snapshots are labeled. No rows before any are released. |
 | `results` | data frame | This season's finished regular-season games, so a snapshot can show how a game turned out: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `home_points`, `away_points` |
 
 ### Scorecard (`app_data$scorecard`)

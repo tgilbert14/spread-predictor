@@ -313,6 +313,36 @@ The same history feeds the two charts under the model table: each system's
 margin for the matchup week by week, and each team's rating in every system.
 The blend line is dashed in weeks where it is missing a system.
 
+## Rankings
+
+The Rankings tab turns the blend into one number per team
+(`team_points()` in `R/rankings.R`).
+
+1. Each system's rating is put on the scale its margins use: SP+, FPI and
+   SRS times their fitted scales, Elo divided by its points scale plus the
+   power-conference correction, Power times its scale. This is the same
+   arithmetic `predict_matchup()` does.
+2. Each system is centered, so the average rated team is 0.
+3. The five are averaged with the blend weights. A team one system skipped
+   is averaged over the systems it has.
+
+The result is points better than an average team on a neutral field. For
+two teams rated by every system, the gap between their numbers is exactly
+our neutral-site spread, so the list can never disagree with the Matchup
+tab. A test checks this.
+
+**Move** is how many places a team gained or lost since the week before.
+It is left blank when the two weeks blend different systems (week 11 of
+2026 against week 10, for example), because the yardstick changed, not the
+teams.
+
+**The committee and the AP** come from the poll rankings file
+(`data/snapshots/extras/rankings/`), refreshed on every run. They are shown
+beside our ranking and never mixed into it. They answer a different
+question: who has earned the most so far. "Places off" measures how closely
+another ranking tracks the committee: across the committee's 25 teams, the
+average number of places between its rank and theirs.
+
 ## The pipeline
 
 ```

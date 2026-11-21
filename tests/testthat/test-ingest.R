@@ -273,6 +273,8 @@ fake_cfbd_fetch <- function(fn, ..., allow_empty = FALSE) {
     cfbd_ratings_srs = ratings("rating"),
     cfbd_ratings_elo = ratings("elo"),
     cfbd_team_talent = data.frame(year = year, school = c("Arizona", "Arizona State"), talent = c(650, 700)),
+    cfbd_rankings = data.frame(season = year, season_type = "regular", week = 11L, poll = "AP Top 25",
+                               rank = 1:2, school = c("Arizona", "Arizona State")),
     cfbd_player_returning = data.frame(season = year, team = c("Arizona", "Arizona State"),
                                        conference = "Big 12", percent_ppa = c(0.5, 0.6)),
     cfbd_stats_game_advanced = data.frame(game_id = year * 10L + 1L, season = year, week = 10L,
@@ -309,17 +311,18 @@ test_that("a weekly snapshot pulls each file once and refreshes games, lines and
 
   ok <- suppressMessages(run_snapshot(now = tuesday, root = root))
   expect_true(all(ok))
-  expect_equal(api_calls_made(), 10)  # games, lines, game stats, talent, returning, teams, 4 ratings
+  expect_equal(api_calls_made(), 11)  # games, lines, game stats, polls, talent, returning, teams, 4 ratings
   expect_equal(snapshot_files(root), sort(c(
     "games/2026.csv", "lines/2026.csv", "teams/2026.csv",
-    "extras/advanced/2026.csv", "extras/talent/2026.csv", "extras/returning/2026.csv",
+    "extras/advanced/2026.csv", "extras/rankings/2026.csv", "extras/talent/2026.csv",
+    "extras/returning/2026.csv",
     sprintf("ratings/%s/2026_wk11.csv", RATING_SOURCES)
   )))
   expect_equal(nrow(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))), 2)
 
-  # Same week again: only games, lines and game stats are called.
+  # Same week again: only games, lines, game stats and polls are called.
   suppressMessages(run_snapshot(now = tuesday + 3600, root = root))
-  expect_equal(api_calls_made(), 3)
+  expect_equal(api_calls_made(), 4)
   expect_equal(read_snapshot(file.path(root, "ratings/sp/2026_wk11.csv"))$pulled_at[1], "2026-11-10T13:00:00Z")
   expect_equal(read_snapshot(file.path(root, "lines/2026.csv"))$pulled_at[1], "2026-11-10T14:00:00Z")
 })

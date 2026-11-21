@@ -39,6 +39,16 @@ market's.
 
 ![The This week tab: a table of games with our line, the market line, the difference and the home team's win chance](docs/img/this-week.png)
 
+The Rankings tab is our Top 50. Teams are ranked by the same blend that
+sets the spreads: how many points better than an average team each one is
+on a neutral field. So the gap between two teams on the list is our
+neutral-site line for them. Each system's own rank sits beside ours, with
+how far each team moved since last week. The playoff committee's and the
+AP's rankings sit at the end, and a second table lines the committee's 25
+up against ours and shows which ranking tracks the committee most closely.
+
+![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
+
 The Scorecard tab keeps the model honest. Every week, before the first
 kickoff, the app's line for every game is saved and never changed. Once the
 games are played, each saved line is graded against the final score and
@@ -167,7 +177,7 @@ calling the API.
 | `scripts/setup.R` | Installs R packages and checks your key | No |
 | `scripts/backfill.R` | One-time pull of past seasons | Yes, about 70 calls |
 | `scripts/fit.R` | Rebuilds the database, fits the model, writes `data/params.json` | No |
-| `scripts/snapshot.R` | Saves this week's ratings, games, lines and game stats (plus the season's talent and returning production the first time) | Yes, about 9 calls (12 the first week of a season) |
+| `scripts/snapshot.R` | Saves this week's ratings, games, lines, game stats and poll rankings (plus the season's talent and returning production the first time) | Yes, about 10 calls (13 the first week of a season) |
 | `scripts/refresh.R` | Snapshot, rebuild the database and app data, save this week's predictions before kickoff, grade saved ones, audit | Yes, unless `--offline` |
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
@@ -295,6 +305,9 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 - The betting market is the benchmark, and it's hard to beat. Expect this
   tool to be a little less accurate than the closing line. Its value is that
   it prices any matchup, including games that will never be played.
+- Our ranking is about who would win, not who has earned the most. A team
+  with a soft schedule and a perfect record will sit lower with us than
+  with the committee. That is on purpose.
 - This is not betting advice.
 
 ## Credits

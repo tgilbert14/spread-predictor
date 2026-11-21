@@ -2045,10 +2045,10 @@
       "checksum": "87f9d4ec0ffedff42d9aa1a7e04c6c96"
     },
     "app.R": {
-      "checksum": "b55b4018f1cdefed3f39d64f5defb7bc"
+      "checksum": "593ec855e89688dfca24b82998ab5ebd"
     },
     "data/app_data.rds": {
-      "checksum": "2dd48660784e66fcb6d00fd364f832ae"
+      "checksum": "ff5c5f709b52ce6dec2c818621a75ac7"
     },
     "data/notes.csv": {
       "checksum": "8e484544c5e7c95061a7f410563ae8f1"
@@ -2063,7 +2063,7 @@
       "checksum": "e252eb3525d640c8adb96d822dab871c"
     },
     "R/build_app_data.R": {
-      "checksum": "eabe86c500360df8bb9923e3d6a39500"
+      "checksum": "a0c3f952301d6191add4daf195ca448e"
     },
     "R/build_db.R": {
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
@@ -2072,7 +2072,7 @@
       "checksum": "64bdd7514edb3a5e1c70ff462c976004"
     },
     "R/demo_data.R": {
-      "checksum": "293b41ca469a9fe341cd54e2361f9e41"
+      "checksum": "b2c43316402c85276249f37ba53c5a68"
     },
     "R/disagreement.R": {
       "checksum": "f937d55781eaeef157bff5e4b8ca53f3"
@@ -2084,10 +2084,13 @@
       "checksum": "b48c34f941e91bcbd115007a1fe0be4b"
     },
     "R/ingest.R": {
-      "checksum": "065023c12d8ae01f2d5a5afcfe553e0f"
+      "checksum": "c9528fee1ecfca6a5e8889ed98238749"
     },
     "R/mod_matchup.R": {
       "checksum": "f3d0a653ae55c8989cd6874163e54698"
+    },
+    "R/mod_rankings.R": {
+      "checksum": "3bb15dd290959fff6a4e30e1001a2086"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2110,6 +2113,9 @@
     "R/predictions.R": {
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
+    "R/rankings.R": {
+      "checksum": "c5353a667164243ff2bb741677bbe4e0"
+    },
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
     },
@@ -2120,7 +2126,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "80ca867fd37727221e5544bb8214f6ea"
+      "checksum": "fc97894da6b65956b2227c20405a8304"
     },
     "www/app.js": {
       "checksum": "97696dddcd2f610cfa46ae52d37b298b"
@@ -2147,7 +2153,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "d001f9088a872e86fd9d1f010b016c56"
+      "checksum": "418e45cb09fabe6b4d9d3c14fb1f0f71"
     }
   },
   "users": null

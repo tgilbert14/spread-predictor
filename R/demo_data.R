@@ -183,8 +183,26 @@ demo_app_data <- function(seed = 2026) {
     coverage = coverage[, c("source", "season", "week", "n_teams", "pulled_at")],
     scorecard = scorecard,
     history = demo_history(teams, 11L, first_saved_week = 8L),
-    results = demo_results(scorecard$games)
+    results = demo_results(scorecard$games),
+    polls = demo_polls(teams, weeks = 9:11)
   )
+}
+
+#' Made-up committee and AP rankings for the demo's latest weeks.
+#'
+#' Both lean on a team's rating with some noise of their own, so they agree
+#' with our ranking in broad strokes and differ in the details, the way the
+#' real ones do. With 24 demo teams, each ranks a top 10.
+demo_polls <- function(teams, weeks, ranked = 10L) {
+  strength <- rowMeans(scale(teams[c("sp", "fpi", "srs", "power")]))
+  polls <- lapply(weeks, function(week) {
+    do.call(rbind, lapply(names(POLL_NAMES), function(poll) {
+      order_of <- order(-(strength + stats::rnorm(nrow(teams), 0, 0.45)))
+      data.frame(week = as.integer(week), poll = poll, rank = seq_len(ranked),
+                 team_id = teams$team_id[order_of[seq_len(ranked)]], stringsAsFactors = FALSE)
+    }))
+  })
+  do.call(rbind, polls)
 }
 
 #' Made-up ratings for every week so far, ending at this week's.
