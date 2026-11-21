@@ -15,6 +15,9 @@
 #                          how far they have moved. Game notes are added to
 #                          data/notes.csv on these days by a separate check.
 # It can also be started by hand, with a choice of task.
+#
+# Basketball is one of those tasks and has no schedule yet. To make it
+# daily, add a cron line below and point scheduled runs at it.
 
 name: Weekly snapshot
 
@@ -36,6 +39,7 @@ on:
           - backfill   # history for every season in TRAINING_SEASONS, plus the research data
           - fit        # refit the model, rebuild the app data, rerun the backtest and the spread study
           - manifest   # write manifest.json for deploying the app
+          - basketball # basketball: pull games, lines and T-Rank, rebuild its app data, save today's predictions
 
 permissions:
   contents: write
@@ -96,6 +100,8 @@ jobs:
               Rscript scripts/disagreement.R ;;
             manifest)
               Rscript scripts/write_manifest.R ;;
+            basketball)
+              Rscript scripts/cbb_refresh.R ;;
             *)
               Rscript scripts/refresh.R ;;
           esac
@@ -110,6 +116,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/snapshots
+          if [ -d data/basketball ]; then git add data/basketball; fi
           for file in data/app_data.rds data/params.json docs/data-audit.md docs/backtest-results.md docs/market-disagreement.md manifest.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done

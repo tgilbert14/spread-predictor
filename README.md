@@ -59,6 +59,13 @@ A second table lines the committee's 25 up against all three of ours.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 
+The **Basketball** menu does the same for men's college basketball: a
+Matchup page, the next few days' games against the market, and a Top 50
+ranked both ways (who would win, and who has earned it). See
+[Basketball](#basketball) below.
+
+![The Basketball Top 50: teams ranked by who would win, with each team's record, rating, T-Rank and Elo ranks, and its earned-it rank](docs/img/basketball.png)
+
 The Scorecard tab keeps the model honest. Every week, before the first
 kickoff, the app's line for every game is saved and never changed. Once the
 games are played, each saved line is graded against the final score and
@@ -74,6 +81,7 @@ systems on the same games.
 - [Try it in two minutes](#try-it-in-two-minutes)
 - [Use real data](#use-real-data)
 - [Keep it up to date](#keep-it-up-to-date)
+- [Basketball](#basketball)
 - [How the number is made](#how-the-number-is-made)
 - [What's in the repo](#whats-in-the-repo)
 - [Troubleshooting](#troubleshooting)
@@ -169,6 +177,7 @@ kicks off.
 | `backfill` | Pulls history for every season, plus the research data |
 | `fit` | Refits the model (`data/params.json`), rebuilds the app data, then reruns the backtest and the spread study |
 | `manifest` | Writes `manifest.json`, the file list a Posit Connect or shinyapps.io server needs to deploy the app |
+| `basketball` | Refreshes basketball: games, lines and T-Rank ratings, its app data, and today's saved predictions |
 
 ### Updating your local copy
 
@@ -222,6 +231,50 @@ still treats last season as the current one and won't pull its final ratings.
    run it, and copy the new weights into `COMMITTEE_MODEL` in `R/config.R`.
    That keeps the CFP guess in step with how the committee ranked last year.
 
+## Basketball
+
+Basketball lives in the same app, under the **Basketball** menu, with its
+own data in `data/basketball/` and its own code in the `R/cbb_*.R` files.
+Nothing in football depends on it. Without `data/basketball/app_data.rds`
+the menu simply does not show.
+
+**How the line is made.** Two rating systems, blended.
+
+- **T-Rank** (barttorvik.com) rates each team's offense and defense per 100
+  possessions, and its pace. The margin is the efficiency gap times the
+  possessions the two teams would play, so the same edge is worth more
+  points in a faster game.
+- **Elo** comes with each game from the API.
+
+The scales, home court (3.3 points) and the blend weight were fit on the
+2024-25 season: 97% T-Rank, 3% Elo. Fit on games before mid-January and
+checked on the 2,589 after, the blend missed by 8.6 points a game against
+the market's 8.4.
+
+**Refresh it by hand.** It uses the same `CFBD_API_KEY` as football and
+draws on the same 1,000 calls a month. A refresh is 2 calls.
+
+```bash
+Rscript scripts/cbb_refresh.R             # pull, rebuild, save today's predictions
+Rscript scripts/cbb_refresh.R --offline   # rebuild from the files on disk
+Rscript scripts/cbb_fit.R                 # refit the model on last season
+```
+
+Or on GitHub: **Actions > Weekly snapshot > Run workflow**, task
+`basketball`. It is not on a schedule yet. To make it daily, add a cron
+line to `.github/workflows/snapshot.yml` that runs that task.
+
+**One rule to know.** A T-Rank file dated the 20th is taken after the
+20th's games. So a game on the 20th is predicted from the 19th's file.
+`cbb_ratings_before()` is the only place ratings are looked up, and it
+enforces that. Getting it wrong makes the model look better than the
+betting market, which it is not.
+
+**What is saved.** Each day's predictions are written once, before tipoff,
+to `data/basketball/predictions/`, the way football's are each week. There
+is no basketball Scorecard page yet. The files are there so one can be
+built on an honest record.
+
 ## How the number is made
 
 1. **Each system gives a margin.** SP+, FPI and SRS rate teams in points, so
@@ -262,6 +315,7 @@ data/snapshots/       weekly ratings, games, lines, extras and saved predictions
 data/params.json      fitted model parameters
 data/app_data.rds     everything the app shows, built from the files above
 data/notes.csv        game notes (injuries, weather), added during the week
+data/basketball/      basketball: games, daily T-Rank ratings, saved predictions, fitted parameters, app data
 tests/testthat/       unit tests
 docs/                 deeper documentation
 .github/workflows/    weekly snapshot and test automation

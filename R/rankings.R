@@ -216,10 +216,13 @@ committee_similarity <- function(ranking) {
 #'   not in it (an FCS team) counts as the weakest team that is.
 #' @param tier 1 for a power-conference team, 0 otherwise, named by team id.
 #' @param sigma How far games land from a prediction, for the win chances.
+#' @param reference_rank Which team to measure against: 10 is the 10th best.
+#' @param home_field Points the home team gets, in the same units as `power`.
 #' @return One row per team in `power` that has played: team_id, wins,
 #'   losses, record_strength, schedule (average opponent Power), top25_wins
 #'   (wins over the top 25 by Power), power and tier.
-team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_MODEL$reference_rank) {
+team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_MODEL$reference_rank,
+                         home_field = POWER_RATING$home_field) {
   power <- power[!is.na(power)]
   best_first <- sort(power, decreasing = TRUE)
   reference <- best_first[min(reference_rank, length(best_first))]
@@ -235,7 +238,7 @@ team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_
   sides <- sides[as.character(sides$team_id) %in% names(power), , drop = FALSE]
   sides$opponent_power <- unname(power[as.character(sides$opponent)])
   sides$opponent_power[is.na(sides$opponent_power)] <- min(power)
-  expected <- stats::pnorm((reference - sides$opponent_power + POWER_RATING$home_field * sides$site) / sigma)
+  expected <- stats::pnorm((reference - sides$opponent_power + home_field * sides$site) / sigma)
   sides$above <- sides$won - expected
   sides$top25_win <- sides$won & as.character(sides$opponent) %in% top25
 
