@@ -1157,22 +1157,22 @@
 375196,2027,"regular","2026-11-21T20:00:00.000Z","final",0,172,"Milwaukee",280,"St. Thomas-Minnesota",70,98,1618,1806,1495,1929,1.5
 375201,2027,"regular","2026-11-21T20:00:00.000Z","in_progress",0,17,"Austin Peay",326,"UT Rio Grande Valley",0,0,1688,1777,,,-5.5
 378082,2027,"regular","2026-11-21T20:00:00.000Z","final",0,176,"Missouri State",70,"Drake",67,65,1691,1744,1689,1746,3.5
-378693,2027,"regular","2026-11-21T20:00:00.000Z","in_progress",1,171,"Middle Tennessee",122,"Indiana State",0,0,1527,1748,,,-2.25
+378693,2027,"regular","2026-11-21T20:00:00.000Z","final",1,171,"Middle Tennessee",122,"Indiana State",69,59,1527,1748,1604,1672,-2.25
 372896,2027,"regular","2026-11-21T20:30:00.000Z","in_progress",0,24,"Binghamton",15,"Army",0,0,1508,1604,,,1.5
 375178,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,93,"Furman",995,"Clinton College",0,0,1779,1500,,,
 375179,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,207,"Northern Colorado",716,"Justice College",0,0,1439,1500,,,
-375186,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,42,"Canisius",306,"UAlbany",0,0,1434,1430,,,2.5
+375186,2027,"regular","2026-11-21T21:00:00.000Z","scheduled",0,42,"Canisius",306,"UAlbany",0,0,1434,1430,,,2.5
 375190,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,75,"East Tennessee State",147,"Longwood",0,0,1475,1831,,,-4.5
 375193,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,137,"La Salle",227,"Pennsylvania",0,0,1423,1560,,,-2.5
 375200,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,95,"George Mason",271,"South Florida",0,0,1685,1742,,,-3.75
 375207,2027,"regular","2026-11-21T21:00:00.000Z","in_progress",0,127,"Jacksonville",43,"Central Arkansas",0,0,1371,1627,,,3.5
 375208,2027,"regular","2026-11-21T21:30:00.000Z","in_progress",1,258,"San Diego",308,"UC Irvine",0,0,1637,1743,,,4.5
-372887,2027,"regular","2026-11-21T22:00:00.000Z","scheduled",0,328,"UTSA",2,"Air Force",0,0,1527,1565,,,-6
-375182,2027,"regular","2026-11-21T22:00:00.000Z","scheduled",1,195,"Nicholls",275,"Southern Miss",0,0,1509,1486,,,2.5
-375209,2027,"regular","2026-11-21T22:00:00.000Z","scheduled",0,356,"Wofford",354,"Winthrop",0,0,1601,1408,,,-6.5
-375210,2027,"regular","2026-11-21T22:00:00.000Z","scheduled",0,284,"Stonehill",205,"Northeastern",0,0,1259,1488,,,10.5
+372887,2027,"regular","2026-11-21T22:00:00.000Z","in_progress",0,328,"UTSA",2,"Air Force",0,0,1527,1565,,,-6
+375182,2027,"regular","2026-11-21T22:00:00.000Z","in_progress",1,195,"Nicholls",275,"Southern Miss",0,0,1509,1486,,,2.5
+375209,2027,"regular","2026-11-21T22:00:00.000Z","in_progress",0,356,"Wofford",354,"Winthrop",0,0,1601,1408,,,-6.5
+375210,2027,"regular","2026-11-21T22:00:00.000Z","in_progress",0,284,"Stonehill",205,"Northeastern",0,0,1259,1488,,,10.5
 378694,2027,"regular","2026-11-21T22:30:00.000Z","scheduled",1,332,"Utah Valley",273,"Southern Illinois",0,0,1650,1683,,,
-372889,2027,"regular","2026-11-21T23:00:00.000Z","scheduled",0,161,"Massachusetts",154,"Maine",0,0,1512,1428,,,-12.25
+372889,2027,"regular","2026-11-21T23:00:00.000Z","scheduled",0,161,"Massachusetts",154,"Maine",0,0,1512,1428,,,-11.5
 372894,2027,"regular","2026-11-21T23:00:00.000Z","scheduled",0,97,"Georgetown",59,"Coppin State",0,0,1753,1337,,,-31.5
 375211,2027,"regular","2026-11-21T23:00:00.000Z","scheduled",0,196,"Norfolk State",321,"UNC Wilmington",0,0,1393,1914,,,11.5
 372885,2027,"regular","2026-11-22T00:00:00.000Z","scheduled",0,334,"VMI",94,"Gardner-Webb",0,0,1625,1314,,,-7.75
@@ -1209,7 +1209,7 @@
 375151,2027,"regular","2026-11-22T20:00:00.000Z","scheduled",0,265,"South Alabama",1073,"West Florida",0,0,1580,1924,,,
 375218,2027,"regular","2026-11-22T20:00:00.000Z","scheduled",1,195,"Nicholls",302,"Troy",0,0,1509,1461,,,
 375219,2027,"regular","2026-11-22T20:30:00.000Z","scheduled",1,165,"Mercyhurst",306,"UAlbany",0,0,1461,1430,,,
-375231,2027,"regular","2026-11-22T20:30:00.000Z","scheduled",1,218,"Oklahoma State",340,"Virginia Tech",0,0,1824,1842,,,-1.5
+375231,2027,"regular","2026-11-22T20:30:00.000Z","scheduled",1,218,"Oklahoma State",340,"Virginia Tech",0,0,1824,1842,,,1.5
 378086,2027,"regular","2026-11-22T20:30:00.000Z","scheduled",0,297,"Texas State",162,"McNeese",0,0,1932,1795,,,
 378089,2027,"regular","2026-11-22T21:00:00.000Z","scheduled",0,78,"Eastern Kentucky",506,"Alice Lloyd College",0,0,1845,1500,,,
 375232,2027,"regular","2026-11-22T21:30:00.000Z","scheduled",1,153,"Loyola Marymount",308,"UC Irvine",0,0,1739,1743,,,
