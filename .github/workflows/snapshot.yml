@@ -16,8 +16,12 @@
 #                          data/notes.csv on these days by a separate check.
 # It can also be started by hand, with a choice of task.
 #
-# Basketball is one of those tasks and has no schedule yet. To make it
-# daily, add a cron line below and point scheduled runs at it.
+# Basketball has its own daily run in season:
+#   Every day 14:23, November to April
+#                          (9:23am Eastern) yesterday's T-Rank file is out
+#                          and the day's first tipoff is still ahead: new
+#                          games, lines and ratings, and today's predictions
+#                          saved. Runs scripts/cbb_refresh.R, 2 API calls.
 
 name: Weekly snapshot
 
@@ -27,6 +31,7 @@ on:
     - cron: "0 18 * * 2"
     - cron: "0 21 * * 4"
     - cron: "0 21 * * 5"
+    - cron: "23 14 * 11,12,1,2,3,4 *"   # basketball, daily in season
   workflow_dispatch:
     inputs:
       task:
@@ -54,6 +59,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+      # A manual run names its task. The daily basketball schedule runs the
+      # basketball task. Every other schedule is the football refresh.
+      TASK: ${{ inputs.task || (github.event.schedule == '23 14 * 11,12,1,2,3,4 *' && 'basketball') || 'refresh' }}
     steps:
       # fit and manifest work only with files already in the repo.
       - name: Check for the API key
@@ -82,11 +90,11 @@ jobs:
         if: ${{ inputs.task == 'manifest' }}
         run: Rscript -e 'install.packages(c("rsconnect", "cpp11"))'
 
-      # Scheduled runs have no inputs, so they take the refresh.
       - name: Run the task
         id: snapshot
         run: |
-          case "${{ inputs.task }}" in
+          echo "Task: $TASK"
+          case "$TASK" in
             extras)
               Rscript scripts/pull_extras.R ;;
             backfill)

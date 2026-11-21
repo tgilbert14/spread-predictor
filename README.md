@@ -163,6 +163,7 @@ The weekly rhythm (times are UTC):
 | Tuesday 13:00 | New ratings, games and lines. This week's predictions are saved before the first kickoff, and last week's are graded. |
 | Tuesday 18:00 | The same run again, as a safety net. If the first one failed, the week's predictions are still saved before the first kickoff. Saved files are never rewritten. |
 | Thursday and Friday 21:00 | Lines refreshed, so the app shows how far each has moved since Tuesday. Game notes (injuries, weather) are added to `data/notes.csv` on these days by a separate check. |
+| Every day 14:23, November to April | Basketball: new games, lines and T-Rank ratings, and the day's predictions saved before tipoff. See [Basketball](#basketball). |
 
 Each run does the same thing: `Rscript scripts/refresh.R`. It never rewrites
 a saved predictions file, and it only saves one before the week's first game
@@ -205,7 +206,8 @@ calling the API.
 | `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app, trimmed to the packages the app uses (needs the `rsconnect` package) | No |
 
 The free API tier allows 1,000 calls a month. The three automatic runs use
-about 20 a week (later runs in a week skip ratings already saved).
+about 20 a week (later runs in a week skip ratings already saved). The
+daily basketball run uses the same key and adds about 60 a month.
 
 ### Start of a new season
 
@@ -260,9 +262,14 @@ Rscript scripts/cbb_refresh.R --offline   # rebuild from the files on disk
 Rscript scripts/cbb_fit.R                 # refit the model on last season
 ```
 
-Or on GitHub: **Actions > Weekly snapshot > Run workflow**, task
-`basketball`. It is not on a schedule yet. To make it daily, add a cron
-line to `.github/workflows/snapshot.yml` that runs that task.
+It also runs on its own every morning from November to April (14:23 UTC,
+9:23am Eastern), once yesterday's T-Rank file is out and before the day's
+first tipoff. To run it by hand on GitHub: **Actions > Weekly snapshot >
+Run workflow**, task `basketball`.
+
+Elo is the weak half. The API starts every team level each fall and it
+swings hard on early results, so its ranks look odd until midseason. It
+carries 3% of the line.
 
 **One rule to know.** A T-Rank file dated the 20th is taken after the
 20th's games. So a game on the 20th is predicted from the 19th's file.

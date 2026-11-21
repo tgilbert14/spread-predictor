@@ -133,7 +133,9 @@ mod_cbb_rankings_ui <- function(id, cbb) {
         ),
         htmltools::div(class = "rank-wrap", DT::DTOutput(ns("table"))),
         htmltools::p(class = "fine-print",
-                     "Early in the season a few games decide a lot, so the earned-it ranking moves fast.")
+                     "Early in the season a few games decide a lot, so the earned-it ranking moves fast.",
+                     "Elo starts every team level each fall and swings hard on early results,",
+                     "so its ranks are rough until midseason. It is 3% of our line.")
       )
     )
   )
