@@ -39,6 +39,26 @@ market's.
 
 ![The This week tab: a table of games with our line, the market line, the difference and the home team's win chance](docs/img/this-week.png)
 
+The Rankings tab is our Top 50, two ways. A switch picks which one the
+list is ranked by.
+
+- **Who would win.** The same blend that sets the spreads: how many points
+  better than an average team each one is on a neutral field. The gap
+  between two teams on the list is our neutral-site line for them.
+- **Who has earned it.** Results only. Each win counts for more the better
+  the opponent and the harder the site, measured against what a top-10
+  team would do with the same schedule. No credit for winning big and no
+  bonus for a conference.
+
+Each rating system's own rank sits beside them, with how far each team
+moved since last week. The last columns are the playoff committee, the AP,
+and **our CFP guess**: the same results scored the way the committee has
+scored teams in past seasons. On seasons it was not fit on, it lands 2.7
+places from the committee on average and has 11 of the committee's top 12.
+A second table lines the committee's 25 up against all three of ours.
+
+![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
+
 The Scorecard tab keeps the model honest. Every week, before the first
 kickoff, the app's line for every game is saved and never changed. Once the
 games are played, each saved line is graded against the final score and
@@ -167,7 +187,7 @@ calling the API.
 | `scripts/setup.R` | Installs R packages and checks your key | No |
 | `scripts/backfill.R` | One-time pull of past seasons | Yes, about 70 calls |
 | `scripts/fit.R` | Rebuilds the database, fits the model, writes `data/params.json` | No |
-| `scripts/snapshot.R` | Saves this week's ratings, games, lines and game stats (plus the season's talent and returning production the first time) | Yes, about 9 calls (12 the first week of a season) |
+| `scripts/snapshot.R` | Saves this week's ratings, games, lines, game stats and poll rankings (plus the season's talent and returning production the first time) | Yes, about 10 calls (13 the first week of a season) |
 | `scripts/refresh.R` | Snapshot, rebuild the database and app data, save this week's predictions before kickoff, grade saved ones, audit | Yes, unless `--offline` |
 | `scripts/backtest.R` | Re-tests the model and candidate factors, writes `docs/backtest-results.md` | No |
 | `scripts/audit.R` | Checks every table for duplicates, bad scores, odd lines and gaps, writes `docs/data-audit.md` | No |
@@ -198,6 +218,9 @@ still treats last season as the current one and won't pull its final ratings.
    included and rebuilds the app data.
 6. Run it once more with the default task, `refresh`, and check that it
    finishes green and the new season's files show up in `data/snapshots/`.
+7. Optional: add last season to `SEASONS` in `scripts/research/committee.R`,
+   run it, and copy the new weights into `COMMITTEE_MODEL` in `R/config.R`.
+   That keeps the CFP guess in step with how the committee ranked last year.
 
 ## How the number is made
 
@@ -295,6 +318,13 @@ Rscript -e 'testthat::test_dir("tests/testthat")'
 - The betting market is the benchmark, and it's hard to beat. Expect this
   tool to be a little less accurate than the closing line. Its value is that
   it prices any matchup, including games that will never be played.
+- "Who would win" and "who has earned it" are different questions, so the
+  two rankings disagree, sometimes by a lot. A team with a perfect record
+  and close wins ranks high on earned and lower on would-win. That is on
+  purpose.
+- The earned-it ranking judges a schedule by our Power rating of each
+  opponent, so it is only as good as that rating. It knows nothing about
+  head-to-head results or conference titles.
 - This is not betting advice.
 
 ## Credits

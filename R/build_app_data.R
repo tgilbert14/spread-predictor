@@ -41,7 +41,8 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
     coverage = coverage,
     scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season),
     history = rating_history(con, season, seq_len(week), teams$team_id, power$weekly),
-    results = season_results(con, season)
+    results = season_results(con, season),
+    polls = load_polls(snapshots_root, season, teams)
   )
 
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)

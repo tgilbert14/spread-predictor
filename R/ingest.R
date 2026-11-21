@@ -666,7 +666,8 @@ run_backfill <- function(seasons = TRAINING_SEASONS, now = Sys.time(), root = PA
 EXTRA_SOURCES <- c(
   talent    = "cfbd_team_talent",          # roster talent composite, known before the season
   returning = "cfbd_player_returning",     # share of last year's production coming back
-  advanced  = "cfbd_stats_game_advanced"   # per-game efficiency (success rate, points per play)
+  advanced  = "cfbd_stats_game_advanced",  # per-game efficiency (success rate, points per play)
+  rankings  = "cfbd_rankings"              # the committee's and the polls' weekly rankings
 )
 
 # Research-only tables. Nothing in the model or the app reads them. They
@@ -716,8 +717,8 @@ pull_extra <- function(kind, season, root, overwrite = FALSE) {
   write_snapshot(df, path, overwrite = overwrite)
 }
 
-#' The current season's extras for the weekly job: game stats rewritten,
-#' talent and returning production pulled once.
+#' The current season's extras for the weekly job: game stats and poll
+#' rankings rewritten, talent and returning production pulled once.
 #'
 #' Talent and returning production can be missing before the season starts.
 #' Then the step fails, is reported, and is tried again next week.
@@ -727,6 +728,8 @@ pull_season_extras <- function(season, root) {
   c(
     advanced = run_step(paste(season, "advanced game stats"),
                         pull_extra("advanced", season, root, overwrite = TRUE)),
+    rankings = run_step(paste(season, "poll rankings"),
+                        pull_extra("rankings", season, root, overwrite = TRUE)),
     talent = run_step(paste(season, "talent"), pull_extra("talent", season, root)),
     returning = run_step(paste(season, "returning production"), pull_extra("returning", season, root))
   )

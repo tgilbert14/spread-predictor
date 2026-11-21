@@ -128,3 +128,19 @@ NOTE_CATEGORIES <- c("availability", "weather", "other")
 # play this week, the app opens on the week's best game instead (see
 # default_matchup() in R/ui_helpers.R). Spelled as in the teams table.
 FEATURED_TEAM <- "Arizona"
+
+# The committee-style ranking: a score built only from results that tracks
+# the playoff committee's order. The weights were fit to every committee
+# release from 2018 to 2025 (2020 left out) by scripts/research/committee.R,
+# which also shows how they do on seasons left out of the fit. Refit them
+# there after each season.
+#   losses          per loss
+#   record_strength per win above what the reference team (about the 10th
+#                   best in the country) would have against the same schedule
+#   power           per point of our Power rating
+#   tier            for a power-conference team
+COMMITTEE_MODEL <- list(
+  weights = c(losses = -1.5834, record_strength = 1.4093, power = 0.1610, tier = 3.1297),
+  reference_rank = 10
+)
+

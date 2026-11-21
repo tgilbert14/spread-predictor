@@ -313,6 +313,86 @@ The same history feeds the two charts under the model table: each system's
 margin for the matchup week by week, and each team's rating in every system.
 The blend line is dashed in weeks where it is missing a system.
 
+## Rankings
+
+The Rankings tab turns the blend into one number per team
+(`team_points()` in `R/rankings.R`).
+
+1. Each system's rating is put on the scale its margins use: SP+, FPI and
+   SRS times their fitted scales, Elo divided by its points scale plus the
+   power-conference correction, Power times its scale. This is the same
+   arithmetic `predict_matchup()` does.
+2. Each system is centered, so the average rated team is 0.
+3. The five are averaged with the blend weights. A team one system skipped
+   is averaged over the systems it has.
+
+The result is points better than an average team on a neutral field. For
+two teams rated by every system, the gap between their numbers is exactly
+our neutral-site spread, so the list can never disagree with the Matchup
+tab. A test checks this.
+
+**Move** is how many places a team gained or lost since the week before.
+It is left blank when the two weeks blend different systems (week 11 of
+2026 against week 10, for example), because the yardstick changed, not the
+teams.
+
+**The committee and the AP** come from the poll rankings file
+(`data/snapshots/extras/rankings/`), refreshed on every run. They are shown
+beside our ranking and never mixed into it. They answer a different
+question: who has earned the most so far. "Places off" measures how closely
+another ranking tracks the committee: across the committee's 25 teams, the
+average number of places between its rank and theirs.
+
+### Who has earned it
+
+Our second ranking answers the other question. It is every team in order
+of **record strength** and nothing else (`committee_style()` in
+`R/rankings.R` returns it as `earned`).
+
+For every game a team has played: did it win, minus how often a reference
+team, about the 10th best in the country, would have won that game at that
+site. Add those up. Beating a good team on the road adds a lot. Beating a
+weak one at home adds almost nothing. Losing to a weak one costs the most.
+
+What it leaves out is the point. Margin of victory does not count: a
+one-point win and a blowout are the same win. Conference does not count.
+How good the team looks does not count. Our Power rating is used for one
+thing only, which is judging how hard each opponent was.
+
+### Our CFP guess
+
+A third ranking predicts the committee: the same resumes, scored the way
+the committee has scored teams before (`committee_style` from the same
+function). It uses only games already played and our own Power rating, so
+it can be made in any week, including before the committee has released
+anything.
+
+Each team gets a score from four things:
+
+- **Losses.** Each one costs the same.
+- **Record strength.** For every game: did the team win, minus how often a
+  reference team (about the 10th best in the country) would have won that
+  game at that site. Beating a good team on the road adds a lot. Beating a
+  weak one at home adds almost nothing. Losing to a weak one costs the most.
+- **Power.** Our rating of how good the team is. The committee does give
+  some credit for looking strong, on top of the results.
+- **Power conference.** A flat bonus. The committee has ranked
+  power-conference teams higher than their results alone explain.
+
+The four weights (`COMMITTEE_MODEL` in `R/config.R`) were fit to the order
+of every committee release from 2018 to 2025, leaving out 2020. Checked on
+seasons left out of the fit, the score is 2.7 places from the committee on
+average and shares 11 of its top 12. Our who-would-win Power rating alone
+is 8.7 places off. The AP poll, which is also people ranking by results, is
+1.3 off. `scripts/research/committee.R` reproduces all of this, and
+[research-log.md](research-log.md) has the details.
+
+It is a guess at the committee, not an opinion of ours about who deserves
+what. That opinion is the earned-it ranking above, which drops the credit
+for strength and the conference bonus. Neither one knows about
+head-to-head results or conference titles, which the committee says it
+weighs.
+
 ## The pipeline
 
 ```

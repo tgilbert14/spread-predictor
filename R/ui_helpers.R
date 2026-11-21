@@ -67,6 +67,10 @@ complete_app_data <- function(x) {
                             home_id = integer(), away_id = integer(), neutral_site = logical(),
                             home_points = integer(), away_points = integer())
   }
+  if (!is.data.frame(x$polls)) {
+    x$polls <- data.frame(week = integer(), poll = character(), rank = integer(), team_id = integer(),
+                          stringsAsFactors = FALSE)
+  }
   x$meta$is_demo <- isTRUE(x$meta$is_demo)
   x
 }
@@ -556,13 +560,18 @@ empty_state <- function(title, ...) {
 #' @param headers Column labels (strings or tags), same length as ncol(df).
 #' @param numeric Logical per column; numeric columns are right-aligned.
 #' @param row_class Optional CSS class per row.
+#' @param html Logical per column; TRUE for a column that already holds
+#'   HTML (a team name with its logo), which is then not escaped.
 simple_table <- function(df, headers = names(df), numeric = rep(FALSE, ncol(df)),
-                         row_class = NULL, caption = NULL) {
+                         row_class = NULL, caption = NULL, html = rep(FALSE, ncol(df))) {
   cell_class <- ifelse(numeric, "num", "")
   rows <- lapply(seq_len(nrow(df)), function(i) {
     htmltools::tags$tr(
       class = row_class[i],
-      lapply(seq_along(df), function(j) htmltools::tags$td(class = cell_class[j], df[[j]][i]))
+      lapply(seq_along(df), function(j) {
+        value <- df[[j]][i]
+        htmltools::tags$td(class = cell_class[j], if (html[j]) htmltools::HTML(value) else value)
+      })
     )
   })
   htmltools::div(
