@@ -580,11 +580,13 @@ simple_table <- function(df, headers = names(df), numeric = rep(FALSE, ncol(df))
       })
     )
   })
-  htmltools::div(
+  # The note is shown under the scrolling box, so it never scrolls out of
+  # view on a phone. Screen readers get it as the table's caption.
+  htmltools::tagList(htmltools::div(
     class = "table-scroll",
     htmltools::tags$table(
       class = "table table-sm data-table",
-      if (!is.null(caption)) htmltools::tags$caption(caption),
+      if (!is.null(caption)) htmltools::tags$caption(class = "visually-hidden", caption),
       htmltools::tags$thead(htmltools::tags$tr(
         lapply(seq_along(headers), function(j) {
           htmltools::tags$th(scope = "col", class = cell_class[j], headers[[j]])
@@ -592,7 +594,7 @@ simple_table <- function(df, headers = names(df), numeric = rep(FALSE, ncol(df))
       )),
       htmltools::tags$tbody(rows)
     )
-  )
+  ), if (!is.null(caption)) htmltools::p(class = "table-note", `aria-hidden` = "true", caption))
 }
 
 #' The slim notice shown in demo mode or when real data failed to load.

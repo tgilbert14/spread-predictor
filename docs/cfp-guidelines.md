@@ -69,16 +69,13 @@ relying on any one detail.
 
 ## Ideas for the project
 
-1. **A projected playoff field.** Apply the bid rules to our predicted
-   ranking: four projected Power Four champions, the top Group of Six team,
-   Notre Dame if top 12, then at-larges, seeded straight from the ranking.
-   Until championship games are played, a conference's projected champion
-   would be its best team in our prediction.
+1. **A projected playoff field.** Built Nov. 22: the Rankings tab applies
+   the bid rules to our predicted ranking (`R/playoff.R`).
 2. **A conference-champion input for Selection Day.** Championship games are
    Dec. 5 and 6, right before the final ranking. The final ranking
    historically moves the most, and the model has no input for it.
-3. **Plan for 24 teams next season.** The bid rules will change again.
-   Bracket logic should read them from one place.
+3. **Plan for 24 teams next season.** The bid rules will change again. They
+   live in one place, `PLAYOFF` in `R/config.R`.
 4. **Keep the "what the committee has done" lessons honest.** If the SEC gap
    or the new conference metric starts to show in our misses, the notes file
    (`docs/committee-notes.md`) will show it first.

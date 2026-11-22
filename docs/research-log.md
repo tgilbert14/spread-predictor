@@ -475,3 +475,24 @@ own choice. It moved nothing else and puts Georgia back at No. 1 for week
 **Week 13's saved prediction was re-saved** with this model on Sunday, Nov
 22, before the committee's release. The first version, saved that morning
 with the 2018 to 2025 weights, had Utah first and Georgia second.
+
+## Nov 22, 2026: past seasons as the starting point
+
+**Change.** The committee's 2026 rules kept the same ingredients and
+changed their weight. So instead of learning from this season alone, the
+weights now start from a fit on 2018 to 2025 (`scripts/committee_prior.R`)
+and each 2026 ranking pulls them toward this season's emphasis.
+
+**Each week predicted only from what came before it:**
+
+| Week | Past seasons as start | This season only |
+|---|---|---|
+| 10 | 2.56 places off | 3.88 |
+| 11 | 1.84 | 2.44 |
+| 12 | 1.64 | 1.80 |
+| Average | 2.01 | 2.71 |
+
+How hard the fit is held toward the start (3 to 100) changed the average by
+0.02 or less. Week 13 is Georgia, Utah, Notre Dame, Miami, Texas either
+way at the top. Its saved prediction was re-saved with this version on
+Nov. 22, still before the committee's release.

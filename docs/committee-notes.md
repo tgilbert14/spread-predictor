@@ -2,7 +2,7 @@ _Generated file: written by scripts/refresh.R on 2026-11-22. Do not edit by hand
 
 # What we have learned about the playoff committee
 
-Season 2026. Learned only from this season's committee rankings (3 so far).
+Season 2026. The weights below start from what earlier committees did and are pulled toward this season's emphasis by its rankings (3 so far). The lessons come from this season's rankings alone.
 
 ## What it has done this season
 
@@ -24,15 +24,15 @@ Learned from 2 rankings.
 
 | Input | Weight |
 |---|---|
-| total losses | -0.378 |
-| strength of record | +1.167 |
-| how strong the team looks | +0.069 |
-| playing in a power conference | +1.116 |
-| its place in the last ranking | +0.144 |
-| being ranked last time at all | +1.691 |
-| losing since the last ranking | -0.661 |
-| the quality of its wins since the last ranking | +1.256 |
-| being No. 1 last time and not losing since | +1.156 |
+| total losses | -0.921 |
+| strength of record | +0.822 |
+| how strong the team looks | +0.076 |
+| playing in a power conference | +1.995 |
+| its place in the last ranking | +0.466 |
+| being ranked last time at all | +2.355 |
+| losing since the last ranking | -1.408 |
+| the quality of its wins since the last ranking | +3.616 |
+| being No. 1 last time and not losing since | +1.977 |
 
 ### From resumes alone (before its first ranking)
 
@@ -40,22 +40,22 @@ Learned from 3 rankings.
 
 | Input | Weight |
 |---|---|
-| total losses | -0.576 |
-| strength of record | +2.232 |
-| how strong the team looks | +0.176 |
-| playing in a power conference | +1.385 |
+| total losses | -1.173 |
+| strength of record | +2.527 |
+| how strong the team looks | +0.228 |
+| playing in a power conference | +2.697 |
 
 ## How our predictions have done
 
 | Week | Places off | Exactly right | Their 25 | Their top 12 | Made |
 |---|---|---|---|---|---|
-| 10 | 3.9 | 1 | 22 of 25 | 10 of 12 | after the release |
-| 11 | 2.4 | 5 | 24 of 25 | 11 of 12 | after the release |
-| 12 | 1.8 | 6 | 22 of 25 | 12 of 12 | after the release |
+| 10 | 2.6 | 2 | 22 of 25 | 10 of 12 | after the release |
+| 11 | 1.8 | 4 | 24 of 25 | 11 of 12 | after the release |
+| 12 | 1.6 | 6 | 23 of 25 | 12 of 12 | after the release |
 
-**Week 10, biggest misses:** Oregon (we said 38, they said 23); Wake Forest (we said 9, they said 16); South Carolina (we said 28, they said 21).
+**Week 10, biggest misses:** Texas (we said 14, they said 7); South Carolina (we said 27, they said 21); Oregon (we said 29, they said 23).
 
-**Week 11, biggest misses:** Ole Miss (we said 13, they said 19); South Carolina (we said 22, they said 17); Ohio State (we said 15, they said 20).
+**Week 11, biggest misses:** South Carolina (we said 22, they said 17); Ole Miss (we said 14, they said 19); Indiana (we said 5, they said 9).
 
-**Week 12, biggest misses:** Ole Miss (we said 18, they said 25); Oklahoma (we said 28, they said 22); Arizona (we said 23, they said 19).
+**Week 12, biggest misses:** Arizona (we said 27, they said 19); Oklahoma (we said 28, they said 22); Ole Miss (we said 20, they said 25).
 

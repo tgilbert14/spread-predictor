@@ -161,3 +161,20 @@ COMMITTEE_UPDATE <- list(
 # the extra places are there so every team it does rank can be found in ours.
 FORECAST_SAVED <- 50
 
+# How the playoff field is built in 2026-27 (see docs/cfp-guidelines.md).
+# The 12-team format ends after this season; the field grows to 24, and
+# these rules will need to change with it.
+#   power_four   each one's champion gets in, whatever its ranking
+#   group_of_six the best-ranked team from these gets one more bid
+#   notre_dame   gets in if it is ranked in the top `notre_dame_top`
+# Seeds come straight from the ranking. Seeds 1 to `byes` skip the first
+# round, and the rest play 5 v 12, 6 v 11, 7 v 10, 8 v 9 on campus.
+PLAYOFF <- list(
+  size = 12,
+  byes = 4,
+  power_four = c("ACC", "Big Ten", "Big 12", "SEC"),
+  group_of_six = c("American Athletic", "Conference USA", "Mid-American", "Mountain West", "Pac-12", "Sun Belt"),
+  notre_dame = "Notre Dame",
+  notre_dame_top = 12
+)
+
