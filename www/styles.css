@@ -645,3 +645,4 @@ table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); 
 .jump-links a { font-weight: 600; color: var(--ink); min-height: 1.75rem; }
 .section-title { scroll-margin-top: 1rem; }
 
+.section-title[tabindex="-1"]:focus { outline: none; }
