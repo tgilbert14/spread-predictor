@@ -2048,7 +2048,7 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "511f566d2a1403630dbf7510a65322b5"
+      "checksum": "78c91e9da9e19c5131a61a72ce86a38b"
     },
     "data/basketball/app_data.rds": {
       "checksum": "feeee7860ba41870ed9b778ab47e2159"
@@ -2081,7 +2081,7 @@
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
     "R/committee.R": {
-      "checksum": "bd2907841b16f02e0a1653071969dab3"
+      "checksum": "9a168999ded7197028451509fa02ab7d"
     },
     "R/config.R": {
       "checksum": "22764c423c39b38dbf3f9973473e1324"
@@ -2108,7 +2108,7 @@
       "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
     },
     "R/mod_rankings.R": {
-      "checksum": "a36ff635479d4dc324b6b5f7f4d66a41"
+      "checksum": "4e9af9c95c3429e892ccba17f2c0bd20"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2150,7 +2150,7 @@
       "checksum": "d8757db1b85b1c1f8f02627d21f3fe3b"
     },
     "www/app.js": {
-      "checksum": "eb7ed44c144eccf3d208a514233699ef"
+      "checksum": "c331f2411e23c16c8565ac8c7f82c0ad"
     },
     "www/fonts/big-shoulders-display-latin-700-normal.woff2": {
       "checksum": "677f0a8821e508356d9c61a8d2c72627"

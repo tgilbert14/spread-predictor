@@ -12,7 +12,8 @@ Season 2026. The weights below start from what earlier committees did and are pu
 - **A No. 1 that wins has stayed No. 1.** Georgia won and kept the top spot in week 12. Miami lost as No. 1 and fell to No. 7.
 - **An unbeaten record does not settle it.** In week 12, unbeaten UCLA is No. 4, behind 2 teams with a loss, including Georgia.
 - **Looking strong is not enough without the record.** We rate LSU No. 7 on who would win. With 4 losses, the committee has it unranked in week 12.
-- **It mostly keeps its own order from week to week.** Of the teams ranked in back-to-back rankings, 22 of 46 moved 2 places or fewer. In week 12, Georgia, Utah and Alabama kept the exact same spot.
+- **Head-to-head does not always decide it.** In week 12, No. 23 Louisville is ahead of No. 25 Ole Miss, which beat it.
+- **Most ranked teams move 3 places or fewer from one ranking to the next.** Of the teams ranked in back-to-back rankings, 26 of 46 did. In week 12, Georgia, Utah and Alabama kept the exact same spot.
 
 ## The weights behind the prediction
 
@@ -46,6 +47,11 @@ Learned from 3 rankings.
 | strength of record | +2.527 |
 | how strong the team looks | +0.228 |
 | playing in a power conference | +2.697 |
+
+## Rules applied after the scores
+
+- **Head-to-head in small groups.** A team goes above one it beat when both are within 3 places of each other and their scores are within 2.
+- **Winners stay close to where they were.** A ranked team that played and won since the last ranking drops at most 1 place. A team on a bye can still drop.
 
 ## How our predictions have done
 

@@ -430,13 +430,29 @@ committee_lessons <- function(app_data) {
                   place(theirs), latest))
     }
   }
+  # Head-to-head: a team ranked above one that beat it.
+  played <- app_data$results[app_data$results$week < latest, , drop = FALSE]
+  home_won <- played$home_points > played$away_points
+  winner <- ifelse(home_won, played$home_id, played$away_id)
+  loser <- ifelse(home_won, played$away_id, played$home_id)
+  rank_of <- function(id) now$rank[match(id, now$team_id)]
+  flipped <- which(!is.na(rank_of(winner)) & !is.na(rank_of(loser)) & rank_of(loser) < rank_of(winner))
+  if (length(flipped) > 0) {
+    # The closest pair: where head-to-head should matter most.
+    f <- flipped[which.min(rank_of(winner[flipped]) - rank_of(loser[flipped]))]
+    add("Head-to-head does not always decide it.",
+        sprintf("In week %d, No. %d %s is ahead of No. %d %s, which beat it.", latest, rank_of(loser[f]),
+                school(loser[f]), rank_of(winner[f]), school(winner[f])))
+  }
   steady <- moves[!is.na(moves$from) & !is.na(moves$to), , drop = FALSE]
   if (nrow(steady) > 0) {
-    close <- sum(abs(steady$change) <= 2)
+    typical <- max(1, ceiling(stats::median(abs(steady$change))))
+    close <- sum(abs(steady$change) <= typical)
     latest_moves <- steady[steady$week == max(steady$week), , drop = FALSE]
     held_spot <- latest_moves[latest_moves$change == 0, , drop = FALSE]
-    add("It mostly keeps its own order from week to week.",
-        sprintf("Of the teams ranked in back-to-back rankings, %d of %d moved 2 places or fewer.%s",
+    add(sprintf("Most ranked teams move %d %s or fewer from one ranking to the next.", typical,
+                if (typical == 1) "place" else "places"),
+        sprintf("Of the teams ranked in back-to-back rankings, %d of %d did.%s",
                 close, nrow(steady),
                 if (nrow(held_spot) > 0) sprintf(" In week %d, %s kept the exact same spot.", max(steady$week),
                                                  format_list(school(utils::head(held_spot$team_id[order(held_spot$to)], 3)))) else ""))
@@ -479,6 +495,11 @@ committee_notes_markdown <- function(app_data, date = Sys.Date()) {
              "A positive weight moves a team up. They are in each input's own units, so sizes do not compare directly.",
              weights_table("Week to week (once the committee has ranked)", learned$update, learned$n_update),
              weights_table("From resumes alone (before its first ranking)", learned$resume, learned$n_resume))
+  lines <- c(lines, "", "## Rules applied after the scores", "",
+             sprintf("- **Head-to-head in small groups.** A team goes above one it beat when both are within %d places of each other and their scores are within %g.",
+                     COMMITTEE_RULES$head_to_head_window - 1, COMMITTEE_RULES$head_to_head_gap),
+             sprintf("- **Winners stay close to where they were.** A ranked team that played and won since the last ranking drops at most %d %s. A team on a bye can still drop.",
+                     COMMITTEE_RULES$max_drop_after_win, if (COMMITTEE_RULES$max_drop_after_win == 1) "place" else "places"))
   lines <- c(lines, "", "## How our predictions have done", "")
   if (nrow(record) == 0) {
     lines <- c(lines, "No prediction has been graded yet.")
