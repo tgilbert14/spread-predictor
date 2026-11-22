@@ -7,25 +7,40 @@
   },
   "learned": {
     "resume": {
-      "losses": -0.57596,
-      "record_strength": 2.23227,
-      "power": 0.17568,
-      "tier": 1.3846
+      "losses": -1.1728,
+      "record_strength": 2.52724,
+      "power": 0.22787,
+      "tier": 2.69664
     },
     "update": {
-      "losses": -0.37847,
-      "record_strength": 1.16749,
-      "power": 0.06925,
-      "tier": 1.1164,
-      "prev_points": 0.14443,
-      "was_ranked": 1.69086,
-      "new_losses": -0.66087,
-      "strength_gain": 1.25572,
-      "held_top": 1.15574
+      "losses": -0.92073,
+      "record_strength": 0.8216,
+      "power": 0.07633,
+      "tier": 1.99455,
+      "prev_points": 0.46555,
+      "was_ranked": 2.35524,
+      "new_losses": -1.40805,
+      "strength_gain": 3.61608,
+      "held_top": 1.9774
     }
   },
   "prior": {
-    "resume": null,
-    "update": null
+    "resume": {
+      "losses": -1.46456,
+      "record_strength": 1.39875,
+      "power": 0.15277,
+      "tier": 2.91835
+    },
+    "update": {
+      "losses": -0.92086,
+      "record_strength": 0.6436,
+      "power": 0.07286,
+      "tier": 1.66474,
+      "prev_points": 0.47664,
+      "was_ranked": 1.63783,
+      "new_losses": -1.18986,
+      "strength_gain": 3.02135,
+      "held_top": 1.5399
+    }
   }
 }

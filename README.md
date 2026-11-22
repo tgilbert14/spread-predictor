@@ -59,14 +59,22 @@ are final, the app saves its prediction of the committee's next ranking.
 It is never changed. When the real ranking comes out, the prediction is
 graded and added to a running record on the Rankings tab.
 
-The prediction learns only from the committee's own rankings this season,
-and learns again each time a new one comes out. Its biggest lesson: the
+The prediction starts from what earlier committees did and learns this
+season's emphasis from each new ranking, since the 2026 rules kept the
+same ingredients but changed their weight. Its biggest lesson: the
 committee mostly keeps its own order, then moves teams for new losses and
 for how much their record improved. It has also learned that a No. 1 that
 keeps winning stays No. 1. The info button beside "Predicting the
 committee" lists what it has learned, each with a real example, and
 `docs/committee-notes.md` keeps the full reasoning and weights on record.
 What a season learns is saved and carried into the next one.
+
+**Projected playoff field.** The 2026 bid rules applied to our predicted
+ranking: the four Power Four champions, the best team from the other six
+conferences, Notre Dame if it is in the top 12, and the best of the rest,
+seeded straight from the ranking, with the first-round games. Until the
+title games are played, a conference's champion is projected as its best
+team in our prediction.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 

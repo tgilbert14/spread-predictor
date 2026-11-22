@@ -361,14 +361,22 @@ thing only, which is judging how hard each opponent was.
 
 ### Our CFP guess
 
-A third ranking predicts the committee (`R/committee.R`). It learns only
-from the committee's own rankings, starting with the 2026 season, and it
-learns again every time a new ranking comes out.
+A third ranking predicts the committee (`R/committee.R`), and it learns as
+the season goes.
+
+**Where it starts.** The committee's rules changed for 2026, but mostly in
+emphasis: the ingredients (record, schedule, losses, its own last ranking)
+are the same. So the weights start from a fit on every committee ranking
+from 2018 to 2025 (`scripts/committee_prior.R`), and each ranking released
+this season pulls them toward this season's emphasis. Checked on 2026's
+first three rankings, each predicted only from what came before it, that
+was 2.6, 1.8 and 1.6 places off (2.0 on average), against 3.9, 2.4 and 1.8
+(2.7) when learning from this season alone.
 
 **How it learns.** Every ranking puts pairs of teams in order: the
-committee had this team above that one. The model finds the weights on a
-few inputs that best explain those choices, holding the weights back while
-there are only a few rankings to learn from. The inputs:
+committee had this team above that one. The model finds the weights that
+best explain those choices, held toward the starting weights until the
+season's evidence is strong. The inputs:
 
 - Total losses, strength of record, how strong the team looks (our Power
   rating), and playing in a power conference.
@@ -376,42 +384,35 @@ there are only a few rankings to learn from. The inputs:
   ranked at all, losses since, how much its strength of record grew since,
   and whether it was No. 1 and has not lost since.
 
-**What it predicts with, as the season goes on.**
+**What it predicts with.** Before the committee's first ranking of a
+season, the resume weights alone. From the second ranking on, the last
+ranking moved for what has happened since. A prediction for a week only
+learns from rankings released before that week.
 
-1. Before the committee's first ranking, with nothing learned yet: strength
-   of record alone.
-2. After the first ranking: what that ranking rewards, from resumes.
-3. From the second ranking on: the last ranking, moved for what has
-   happened since.
-
-A prediction for a week only ever learns from rankings released before
-that week.
-
-**From one season to the next.** At every refresh the learned weights are
-saved to `data/committee_learned.json`. When a new season starts, the
-weights the last season ended with are where it starts, held toward them
-until its own rankings say otherwise.
+**From one season to the next.** At every refresh the weights are saved to
+`data/committee_learned.json`, with the start they came from. The next
+season starts from where this one ends.
 
 **The reasoning, on record.** `docs/committee-notes.md` is rewritten on
 every refresh: what the committee has done this season, each with a real
 example, the current weights, and how each prediction did. The same
-lessons are behind the info button on the Rankings tab.
+lessons are behind the info button on the Rankings tab. The committee's
+2026 rules and metrics are summarized in `docs/cfp-guidelines.md`.
 
-**What it cannot see.** Head-to-head results and conference titles, which
-the committee says it weighs, and anything said in the room.
+**What it cannot see.** Head-to-head results, common opponents, injuries
+and conference titles, which the committee says it weighs, and anything
+said in the room.
 
-**Why this season only.** The committee's rules changed for 2026, so its
-earlier rankings describe a committee working under different rules.
-`scripts/research/committee.R` and `committee_extras.R` study the 2018 to
-2025 rankings, and those studies shaped which inputs are used (most of all,
-that the committee anchors on its own last ranking). The weights, though,
-come only from 2026 on. An input the new rules make irrelevant will learn a
-weight near zero.
+### Projected playoff field
 
-On 2026's first rankings the old weights happened to do a little better
-(weeks 10 to 12: 2.6, 1.7 and 1.6 places off, against 3.9, 2.4 and 1.8),
-mostly because the first two rankings left little to learn from. Under new
-rules there is no reason to expect that to last.
+`playoff_field()` in `R/playoff.R` applies the 2026-27 bid rules (`PLAYOFF`
+in `R/config.R`) to our prediction of the committee's next ranking: the
+best-ranked team in each Power Four conference (standing in for its
+champion until the title games), the best-ranked team from the other six
+conferences, Notre Dame if it is in the top 12, then the best of the rest
+until there are 12. Seeds follow the ranking. The top four get byes, and 5
+hosts 12, 6 hosts 11, 7 hosts 10 and 8 hosts 9. The field grows to 24 in
+2027, and `PLAYOFF` is the one place to change.
 
 ## The pipeline
 

@@ -366,7 +366,7 @@ code { color: var(--ink); background: #e6eaf0; padding: 0.1em 0.35em; border-rad
 /* Tables -------------------------------------------------------------------- */
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .data-table { --bs-table-bg: transparent; --bs-table-color: var(--ink); margin: 0; font-size: 0.95rem; caption-side: bottom; }
-.data-table caption { color: var(--muted); font-size: 0.85rem; padding-top: 0.6rem; }
+.table-note { color: var(--muted); font-size: 0.85rem; margin: 0.6rem 0 0; max-width: 68ch; }
 .data-table th {
   color: var(--muted); font-size: 0.85rem; font-weight: 600;
   border-bottom: 2px solid var(--ink); padding: 0.45rem 0.6rem; vertical-align: bottom;
@@ -639,4 +639,9 @@ table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); 
 .rules-list { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.55rem; }
 .rules-list strong { display: block; }
 .rules-note { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.85rem; }
+.data-table tr.has-bye td:first-child { box-shadow: inset 3px 0 0 var(--accent); padding-left: 0.6rem; }
+.jump-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: -0.25rem 0 1rem; font-size: 0.95rem; }
+.jump-label { color: var(--muted); }
+.jump-links a { font-weight: 600; color: var(--ink); min-height: 1.75rem; }
+.section-title { scroll-margin-top: 1rem; }
 

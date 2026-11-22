@@ -5,24 +5,23 @@
 # those pairs into weights on a handful of inputs, uses the weights to
 # predict the next ranking, and puts what was learned into plain words.
 #
-# Only rankings from COMMITTEE_LEARN_FROM on are used. Within a season the
-# weights are refit from scratch each time a ranking comes out. The weights
-# a season ends with are saved (data/committee_learned.json) and are where
-# the next season starts, so the first ranking of a new season is predicted
-# from what last season's committee did.
+# The committee's ingredients stay much the same from year to year, but how
+# much each one counts can change (it did for 2026). So the weights start
+# from what earlier committees did (scripts/committee_prior.R, 2018 to 2025)
+# and every ranking of the current season pulls them toward its own
+# emphasis. The weights a season ends with are saved
+# (data/committee_learned.json) and are where the next season starts.
 #
 # A prediction for a week only ever learns from rankings released before it.
-
-COMMITTEE_LEARN_FROM <- 2026L
 
 # What a team's resume says on its own, and what is added once the committee
 # has a previous ranking to start from.
 RESUME_INPUTS <- c("losses", "record_strength", "power", "tier")
 UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top")
 
-# How hard the fit is held back. A few rankings are not much to learn from,
-# so weights stay modest unless the evidence is strong. Tested from 1 to
-# 100 on this season's rankings with little difference.
+# How hard the fit is held toward its starting weights. A few rankings are
+# not much to learn from, so the start counts until the season's evidence
+# is strong. Tested from 3 to 100 on 2026's rankings with little difference.
 COMMITTEE_RIDGE <- 10
 
 INPUT_LABELS <- c(
@@ -383,9 +382,8 @@ committee_notes_markdown <- function(app_data, date = Sys.Date()) {
   lines <- c(
     sprintf("_Generated file: written by scripts/refresh.R on %s. Do not edit by hand; it is rewritten on every refresh._", format(date)),
     "", "# What we have learned about the playoff committee", "",
-    sprintf("Season %d. Learned only from this season's committee rankings (%d so far)%s.",
-            app_data$meta$season, length(unique(cfp$week)),
-            if (is.null(app_data$committee_prior)) "" else ", starting from where last season's left off"),
+    sprintf("Season %d. The weights below start from what earlier committees did and are pulled toward this season's emphasis by its rankings (%d so far). The lessons come from this season's rankings alone.",
+            app_data$meta$season, length(unique(cfp$week))),
     "", "## What it has done this season", ""
   )
   lines <- c(lines, if (length(lessons) == 0) "Nothing yet. The committee needs two rankings before patterns show." else

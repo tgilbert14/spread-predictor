@@ -34,6 +34,13 @@ mod_rankings_ui <- function(id, app_data) {
           "Each rating system's rank sits beside them, then our guess at the committee, the committee itself, and the AP.",
           "Tap a column heading to sort by it."
         ),
+        htmltools::tags$nav(
+          class = "jump-links", `aria-label` = "On this page",
+          htmltools::span(class = "jump-label", "Jump to:"),
+          htmltools::tags$a(href = paste0("#", ns("forecast-title")), "Predicting the committee"),
+          htmltools::tags$a(href = paste0("#", ns("playoff-title")), "Projected playoff field"),
+          htmltools::tags$a(href = paste0("#", ns("committee-title")), "Next to the committee")
+        ),
         htmltools::div(
           class = "rankings-controls",
           htmltools::div(
@@ -63,6 +70,7 @@ mod_rankings_ui <- function(id, app_data) {
       )
     ),
     forecast_section(ns("forecast-title"), app_data),
+    playoff_section(ns("playoff-title"), app_data),
     htmltools::tags$section(
       class = "evidence", `aria-labelledby` = ns("committee-title"),
       htmltools::tags$h2(id = ns("committee-title"), class = "section-title", "Next to the committee"),
@@ -87,12 +95,57 @@ forecast_section <- function(title_id, app_data) {
       class = "section-lede",
       "Each week, once every game is final, we save our prediction of the committee's next ranking.",
       "When the real ranking comes out, we grade it, and the model learns from it.",
-      "It learns only from this season's rankings. Tap the info button for what it has learned so far."
+      "It starts from what earlier committees did and learns this season's emphasis from each new ranking.",
+      "Tap the info button for what this season's rankings show."
     ),
     htmltools::div(
       class = "committee-grid",
       if (!is.null(upcoming)) upcoming_forecast_table(upcoming, app_data),
       if (nrow(record) > 0) forecast_record_table(record)
+    )
+  )
+}
+
+#' "Projected playoff field": the bid rules applied to our prediction of
+#' the committee's next ranking. NULL when there is no prediction to use.
+playoff_section <- function(title_id, app_data) {
+  week <- app_data$meta$forecast_week
+  guess <- if (is.null(week) || is.na(week)) NULL else committee_guess(app_data, week)
+  if (is.null(guess) || nrow(guess) < PLAYOFF$size) return(NULL)
+  teams <- app_data$teams
+  field <- playoff_field(guess, teams)
+  rows <- data.frame(
+    seed = field$seed,
+    team = vapply(field$team_id, function(id) {
+      team <- teams[teams$team_id == id, , drop = FALSE]
+      team_name_html(team, team$school)
+    }, character(1)),
+    record = records_before(app_data$results, week, field$team_id),
+    rank = field$rank,
+    how = field$how,
+    first = first_round(field, teams),
+    stringsAsFactors = FALSE
+  )
+  htmltools::tags$section(
+    class = "evidence", `aria-labelledby` = title_id,
+    htmltools::tags$h2(id = title_id, class = "section-title", "Projected playoff field"),
+    htmltools::p(
+      class = "section-lede",
+      "The 2026 bid rules applied to our prediction of the committee's next ranking.",
+      "The four Power Four champions get in, plus the best team from the other six conferences,",
+      "Notre Dame if it is in the top 12, and the best of the rest. Seeds follow the ranking."
+    ),
+    simple_table(
+      rows,
+      headers = list("Seed", "Team", "Record", "Rank", "How it gets in", "First round"),
+      numeric = c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE),
+      html = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE),
+      row_class = ifelse(field$seed <= PLAYOFF$byes, "has-bye", ""),
+      caption = paste(
+        "Rank is the team's place in our predicted ranking.",
+        "Conference champions are projected as each conference's best team in it until the title games are played.",
+        "A champion ranked outside the top 12 still gets in, and pushes the last at-large team out."
+      )
     )
   )
 }
@@ -109,7 +162,7 @@ committee_rules_popover <- function(app_data) {
         htmltools::tags$li(htmltools::tags$strong(lesson$rule), " ", lesson$example)
       })),
       htmltools::p(class = "rules-note",
-                   "Learned only from this season's committee rankings. It updates every time a new one comes out.")
+                   "From this season's committee rankings. It updates every time a new one comes out.")
     )
   }
   bslib::popover(
