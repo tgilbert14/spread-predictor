@@ -127,6 +127,15 @@ in this order:
 | `fit_date` | chr | `fit_date` from `params.json` |
 | `frozen_at` | chr | ISO 8601 UTC time the file was written |
 
+### What the committee has taught us (`data/committee_learned.json`)
+
+Rewritten on every refresh by `write_committee_learned()`. `season`,
+`written`, `rankings_used` (how many rankings each part learned from),
+`learned` (weights for `resume` and `update`, by input) and `prior` (the
+weights the season started from: last season's `learned`, or empty). A new
+season starts from the `learned` weights of the season before.
+`docs/committee-notes.md` is the same in plain words.
+
 ### Committee predictions (`data/snapshots/cfp_predictions/`)
 
 `{season}_wk{WW}.csv`: our prediction of the committee's ranking for that
@@ -232,7 +241,9 @@ without `polls` loads with no committee or AP rankings.
 | `scorecard` | list | Saved predictions for this season, graded. See below. |
 | `history` | data frame | (It can run one week past `meta$week`, with Elo and Power only, so the committee's next ranking can be predicted before the weekly snapshot.) What every system said going into each week so far, for snapshots and the week-by-week charts. One row per team and week: `week`, `team_id`, `sp`, `fpi`, `srs`, `elo`, `power`. `sp`, `fpi` and `srs` are `NA` for weeks before the weekly snapshots started. `elo` is the snapshot value when there is one, otherwise the Elo the team took into its game that week (its next game, in a bye week). `power` is centered each week so the average team is 0. |
 | `polls` | data frame | This season's playoff committee and AP rankings, for the Rankings tab: `week`, `poll` (`"cfp"` or `"ap"`), `rank`, `team_id`. A poll's week is the week its ranking goes into, the same way rating snapshots are labeled. No rows before any are released. |
-| `forecasts` | data frame | Our saved predictions of the committee's rankings this season: `week`, `rank`, `team_id`, `score`, `prev_cfp` (the team's place in the committee's ranking before, `NA` if unranked), `method` (`"resume"` before the committee's first ranking, `"update"` after), `made` (`"before"` the release, or `"after"` for ones worked out later to fill in earlier weeks) |
+| `committee_prior` | list or `NULL` | The committee weights this season started from (`committee_prior()`), `NULL` in the first season we learn from |
+| `committee_guesses` | data frame | Our guess at the committee for every week so far, each learned only from rankings before it: `week`, `rank`, `team_id`, `score`, `prev_cfp`, `method`. Worked out once at build time. |
+| `forecasts` | data frame | Our saved predictions of the committee's rankings this season: `week`, `rank`, `team_id`, `score`, `prev_cfp` (the team's place in the committee's ranking before, `NA` if unranked), `method` (`"record"` with nothing learned yet, `"resume"` after the committee's first ranking, `"update"` once there is a previous ranking to start from), `made` (`"before"` the release, or `"after"` for ones worked out later to fill in earlier weeks) |
 | `results` | data frame | This season's finished regular-season games, so a snapshot can show how a game turned out: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `home_points`, `away_points` |
 
 ### Scorecard (`app_data$scorecard`)

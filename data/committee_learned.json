@@ -1,0 +1,31 @@
+{
+  "season": 2026,
+  "written": "2026-11-22",
+  "rankings_used": {
+    "resume": 3,
+    "update": 2
+  },
+  "learned": {
+    "resume": {
+      "losses": -0.57596,
+      "record_strength": 2.23227,
+      "power": 0.17568,
+      "tier": 1.3846
+    },
+    "update": {
+      "losses": -0.37847,
+      "record_strength": 1.16749,
+      "power": 0.06925,
+      "tier": 1.1164,
+      "prev_points": 0.14443,
+      "was_ranked": 1.69086,
+      "new_losses": -0.66087,
+      "strength_gain": 1.25572,
+      "held_top": 1.15574
+    }
+  },
+  "prior": {
+    "resume": null,
+    "update": null
+  }
+}

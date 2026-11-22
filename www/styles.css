@@ -633,3 +633,10 @@ table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); 
 .navbar .dropdown-menu { border-radius: 4px; border-color: var(--rule); }
 .navbar .dropdown-item { min-height: var(--tap); display: flex; align-items: center; }
 .navbar .dropdown-item.active { background: var(--ink); color: #ffffff; }
+
+/* "How the committee ranks teams" popover --------------------------------------- */
+.rules-popover { max-width: min(30rem, calc(100vw - 2rem)); }
+.rules-list { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.55rem; }
+.rules-list strong { display: block; }
+.rules-note { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.85rem; }
+

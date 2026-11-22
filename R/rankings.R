@@ -154,10 +154,7 @@ ranking_table <- function(app_data, week = app_data$meta$week) {
   style <- committee_style(app_data, week)
   at <- match(out$team_id, style$team_id)
   out$earned <- style$earned[at]
-  # Our guess at the committee: from resumes alone before its first ranking,
-  # from its last ranking and what has happened since after that.
-  guess <- committee_forecast(app_data, week)
-  out$committee_style <- guess$rank[match(out$team_id, guess$team_id)]
+  out$committee_style <- style$committee_style[at]
   earlier <- committee_style(app_data, before)
   out$earned_change <- earlier$earned[match(out$team_id, earlier$team_id)] - out$earned
   polls <- app_data$polls[app_data$polls$week == week, , drop = FALSE]
@@ -257,8 +254,10 @@ team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_
   )
 }
 
-#' The committee-style score for each resume: higher is better.
-committee_score <- function(resumes, weights = COMMITTEE_MODEL$weights) {
+#' A weighted score for each row of inputs: higher is better.
+#'
+#' @param weights Named, one per input column used.
+committee_score <- function(resumes, weights) {
   drop(as.matrix(resumes[names(weights)]) %*% weights)
 }
 
@@ -266,12 +265,12 @@ committee_score <- function(resumes, weights = COMMITTEE_MODEL$weights) {
 #'
 #' `earned` is our own answer to "who deserves it": teams in order of
 #' record strength and nothing else. No credit for looking good, no bonus
-#' for a conference. `committee_style` is our guess at the committee: the
-#' same resumes scored the way the committee has scored teams in past
-#' seasons, which does give credit for both.
+#' for a conference. `committee_style` is our guess at the committee
+#' (committee_forecast() in R/committee.R), learned from its own rankings,
+#' which does give credit for both.
 #'
-#' Both use only games played before that week and our own Power rating
-#' (to judge how hard each opponent was), so they can be made any week.
+#' Both use only games played before that week, and the guess only
+#' rankings released before it.
 #'
 #' @return team_id, earned and committee_style (ranks, 1 is best) for every
 #'   team that has played a game. No rows before any games.
@@ -281,8 +280,9 @@ committee_style <- function(app_data, week = app_data$meta$week) {
     return(data.frame(team_id = integer(), earned = integer(), committee_style = integer()))
   }
   ranked <- function(score) as.integer(rank(-score, ties.method = "min"))
+  guess <- committee_guess(app_data, week)
   data.frame(team_id = resumes$team_id, earned = ranked(resumes$record_strength),
-             committee_style = ranked(committee_score(resumes)))
+             committee_style = guess$rank[match(resumes$team_id, guess$team_id)])
 }
 
 #' Every team's resume going into a week, or NULL when there is nothing to
@@ -313,52 +313,6 @@ forecast_week <- function(progress, now = Sys.time(), give_up_days = 14) {
   finished <- progress$completed > 0 & (is.na(progress$last_open_kickoff) | open_for >= give_up_days)
   if (!any(finished)) return(NA_integer_)
   as.integer(max(progress$week[finished]) + 1L)
-}
-
-#' Our prediction of the committee's ranking for one week.
-#'
-#' Before the committee's first ranking of a season, teams are scored from
-#' their resumes alone (COMMITTEE_MODEL). After that, the committee's last
-#' ranking is the starting point, moved by what has happened since: new
-#' losses and record strength gained (COMMITTEE_UPDATE). It uses only games
-#' played before `week` and rankings released before it.
-#'
-#' @return Every team with a resume, best first: rank, team_id, score,
-#'   prev_cfp (its place in the committee's last ranking, NA if unranked or
-#'   there was none), and method ("resume" or "update"). No rows when there
-#'   is nothing to go on.
-committee_forecast <- function(app_data, week = app_data$meta$forecast_week) {
-  empty <- data.frame(rank = integer(), team_id = integer(), score = numeric(), prev_cfp = integer(),
-                      method = character(), stringsAsFactors = FALSE)
-  resumes <- week_resumes(app_data, week)
-  if (is.null(resumes)) return(empty)
-
-  released <- app_data$polls[app_data$polls$poll == "cfp" & app_data$polls$week < week, , drop = FALSE]
-  before <- if (nrow(released) > 0) week_resumes(app_data, max(released$week)) else NULL
-  if (is.null(before)) {
-    score <- committee_score(resumes)
-    prev_cfp <- rep(NA_integer_, nrow(resumes))
-    method <- "resume"
-  } else {
-    last <- released[released$week == max(released$week), , drop = FALSE]
-    prev_cfp <- last$rank[match(resumes$team_id, last$team_id)]
-    then <- match(resumes$team_id, before$team_id)
-    since <- function(column) ifelse(is.na(then), 0, resumes[[column]] - before[[column]][then])
-    inputs <- cbind(
-      resumes[c("losses", "record_strength", "power", "tier")],
-      prev_points = ifelse(is.na(prev_cfp), 0, 26 - prev_cfp),
-      was_ranked = as.numeric(!is.na(prev_cfp)),
-      new_losses = since("losses"),
-      strength_gain = since("record_strength")
-    )
-    score <- committee_score(inputs, COMMITTEE_UPDATE$weights)
-    method <- "update"
-  }
-  out <- data.frame(rank = as.integer(rank(-score, ties.method = "first")), team_id = resumes$team_id,
-                    score = score, prev_cfp = as.integer(prev_cfp), method = method, stringsAsFactors = FALSE)
-  out <- out[order(out$rank), , drop = FALSE]
-  rownames(out) <- NULL
-  out
 }
 
 #' Path of one saved committee prediction.

@@ -81,17 +81,42 @@ forecast_section <- function(title_id, app_data) {
   if (is.null(upcoming) && nrow(record) == 0) return(NULL)
   htmltools::tags$section(
     class = "evidence", `aria-labelledby` = title_id,
-    htmltools::tags$h2(id = title_id, class = "section-title", "Predicting the committee"),
+    htmltools::tags$h2(id = title_id, class = "section-title", "Predicting the committee",
+                       committee_rules_popover(app_data)),
     htmltools::p(
       class = "section-lede",
       "Each week, once every game is final, we save our prediction of the committee's next ranking.",
-      "It is never changed. When the real ranking comes out, we grade it."
+      "When the real ranking comes out, we grade it, and the model learns from it.",
+      "It learns only from this season's rankings. Tap the info button for what it has learned so far."
     ),
     htmltools::div(
       class = "committee-grid",
       if (!is.null(upcoming)) upcoming_forecast_table(upcoming, app_data),
       if (nrow(record) > 0) forecast_record_table(record)
     )
+  )
+}
+
+#' The info button beside "Predicting the committee": what this season's
+#' rankings show about how the committee works, each with a real example.
+committee_rules_popover <- function(app_data) {
+  lessons <- committee_lessons(app_data)
+  body <- if (length(lessons) == 0) {
+    htmltools::p("Nothing learned yet. The committee needs two rankings before patterns show.")
+  } else {
+    htmltools::tagList(
+      htmltools::tags$ul(class = "rules-list", lapply(lessons, function(lesson) {
+        htmltools::tags$li(htmltools::tags$strong(lesson$rule), " ", lesson$example)
+      })),
+      htmltools::p(class = "rules-note",
+                   "Learned only from this season's committee rankings. It updates every time a new one comes out.")
+    )
+  }
+  bslib::popover(
+    htmltools::tags$button(type = "button", class = "info-btn",
+                           `aria-label` = "How the committee ranks teams", svg_icon("info")),
+    body, title = "How the committee ranks teams", placement = "bottom",
+    options = list(customClass = "rules-popover")
   )
 }
 

@@ -139,7 +139,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/snapshots
           if [ -d data/basketball ]; then git add data/basketball; fi
-          for file in data/app_data.rds data/params.json docs/data-audit.md docs/backtest-results.md docs/market-disagreement.md manifest.json; do
+          for file in data/app_data.rds data/params.json data/committee_learned.json docs/committee-notes.md docs/data-audit.md docs/backtest-results.md docs/market-disagreement.md manifest.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if git diff --cached --quiet; then

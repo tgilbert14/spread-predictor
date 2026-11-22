@@ -54,6 +54,12 @@ if (freeze_committee_forecast(complete_app_data(app_data))) {
   app_data <- build_app_data()
 }
 
+# Keep what the committee's rankings have taught us on record: the weights
+# (the next season starts from them) and the reasoning in plain words.
+write_committee_learned(complete_app_data(app_data), COMMITTEE_LEARNED_PATH)
+writeLines(committee_notes_markdown(complete_app_data(app_data)), file.path("docs", "committee-notes.md"),
+           useBytes = TRUE)
+
 # Check the data every time it changes. Problems are reported, not fatal:
 # the report says which ones matter.
 con <- DBI::dbConnect(RSQLite::SQLite(), PATHS$database, flags = RSQLite::SQLITE_RO)
