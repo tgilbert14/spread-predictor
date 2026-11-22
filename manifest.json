@@ -2048,7 +2048,7 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "b9c3a5baa5f849570aa9894ab230d04b"
+      "checksum": "3c7e7a751dffbe4f9affd3143aead9e8"
     },
     "data/basketball/app_data.rds": {
       "checksum": "feeee7860ba41870ed9b778ab47e2159"
@@ -2066,7 +2066,7 @@
       "checksum": "e252eb3525d640c8adb96d822dab871c"
     },
     "R/build_app_data.R": {
-      "checksum": "e749d73057a70baa5eefa619b0753b60"
+      "checksum": "8f99a87c6e8116eefbce70207a5a8360"
     },
     "R/build_db.R": {
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
@@ -2080,8 +2080,11 @@
     "R/cbb_model.R": {
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
+    "R/committee.R": {
+      "checksum": "61cac1af87de41ca18cfad10867060a9"
+    },
     "R/config.R": {
-      "checksum": "b73d52a94a442d339c4191aebb776fe6"
+      "checksum": "c9c0f00d875aaba0778c572d3cd99972"
     },
     "R/demo_data.R": {
       "checksum": "f90b398270b5eed4fa6f6a92ef27dd39"
@@ -2105,7 +2108,7 @@
       "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
     },
     "R/mod_rankings.R": {
-      "checksum": "e61c062b468a957963b063f93eb51457"
+      "checksum": "a4358b9c44a4b523e824e25430c8aff2"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2129,7 +2132,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/rankings.R": {
-      "checksum": "ed1697f487973c4cd063a7fda0a9fad1"
+      "checksum": "a9006206a897cd6aea9e82657cb1d133"
     },
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
@@ -2141,7 +2144,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "b685d54a3caed91357df182e5b47c341"
+      "checksum": "55249bd09dd3c94a09657c872394b6a0"
     },
     "www/app.js": {
       "checksum": "97696dddcd2f610cfa46ae52d37b298b"
@@ -2168,7 +2171,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "8662a1c37aacddb913683c7a6b851c62"
+      "checksum": "24b38f84f05e258bd6b1bf02d1d26357"
     }
   },
   "users": null

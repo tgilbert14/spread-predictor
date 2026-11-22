@@ -129,35 +129,14 @@ NOTE_CATEGORIES <- c("availability", "weather", "other")
 # default_matchup() in R/ui_helpers.R). Spelled as in the teams table.
 FEATURED_TEAM <- "Arizona"
 
-# The committee-style ranking: a score built only from results that tracks
-# the playoff committee's order. The weights were fit to every committee
-# release from 2018 to 2025 (2020 left out) by scripts/research/committee.R,
-# which also shows how they do on seasons left out of the fit. Refit them
-# there after each season.
-#   losses          per loss
-#   record_strength per win above what the reference team (about the 10th
-#                   best in the country) would have against the same schedule
-#   power           per point of our Power rating
-#   tier            for a power-conference team
-COMMITTEE_MODEL <- list(
-  weights = c(losses = -1.5834, record_strength = 1.4093, power = 0.1610, tier = 3.1297),
-  reference_rank = 10
-)
+# The team a resume is measured against when judging strength of record:
+# about the 10th best in the country. Football's "earned it" ranking and the
+# committee prediction both use it.
+COMMITTEE_MODEL <- list(reference_rank = 10)
 
-# The week-to-week committee model: once the committee has ranked teams, its
-# next ranking is mostly its last one, adjusted for what happened since.
-# Fit by scripts/research/committee_extras.R on every release after a
-# season's first, 2018 to 2025 (2020 left out). The first four inputs are
-# the same as COMMITTEE_MODEL's. The rest:
-#   prev_points    per place in last week's ranking (25 for 1st, 1 for 25th,
-#                  0 for unranked)
-#   was_ranked     for being in last week's 25 at all
-#   new_losses     per loss since that ranking
-#   strength_gain  per unit of record strength gained since that ranking
-COMMITTEE_UPDATE <- list(
-  weights = c(losses = -1.1702, record_strength = 0.5396, power = 0.0825, tier = 1.9611,
-              prev_points = 0.6817, was_ranked = 1.6571, new_losses = -1.5096, strength_gain = 4.2897)
-)
+# Where what the committee's rankings have taught us is saved, so the next
+# season starts from it (see R/committee.R).
+COMMITTEE_LEARNED_PATH <- file.path("data", "committee_learned.json")
 
 # How many teams a saved committee prediction lists. The committee ranks 25;
 # the extra places are there so every team it does rank can be found in ours.

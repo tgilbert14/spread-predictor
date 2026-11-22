@@ -150,7 +150,7 @@ chosen <- c("losses", "record_strength", "power", "tier")
 beta <- fit_committee(scaled, chosen)
 cat("\nWeights on the chosen four (each input scaled to the same spread, so sizes compare):\n")
 print(round(beta, 2))
-cat("\nIn their own units (COMMITTEE_MODEL$weights in R/config.R):\n")
+cat("\nIn their own units:\n")
 print(round(beta / vapply(chosen, function(f) stats::sd(data[[f]]), numeric(1)), 4))
 
 cat("\nBy season, the chosen four, out of sample:\n")

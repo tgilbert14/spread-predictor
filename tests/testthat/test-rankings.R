@@ -219,14 +219,11 @@ test_that("an opponent we do not rate counts as the weakest team we do", {
   expect_identical(team_resumes(fcs, toy_power, toy_tier, 16, 2)$team_id, 1L)
 })
 
-test_that("committee_score rewards wins and punishes losses, and uses the stored weights", {
+test_that("committee_score is the weighted sum of the inputs it is given", {
   resumes <- team_resumes(toy_games, toy_power, toy_tier, sigma = 16)
-  score <- committee_score(resumes)
-  expect_false(is.unsorted(rev(score)))
-  expect_equal(score, drop(as.matrix(resumes[names(COMMITTEE_MODEL$weights)]) %*% COMMITTEE_MODEL$weights))
-  expect_named(COMMITTEE_MODEL$weights, c("losses", "record_strength", "power", "tier"))
-  expect_lt(COMMITTEE_MODEL$weights[["losses"]], 0)
-  expect_gt(COMMITTEE_MODEL$weights[["record_strength"]], 0)
+  weights <- c(losses = -2, record_strength = 1)
+  expect_equal(committee_score(resumes, weights), -2 * resumes$losses + resumes$record_strength)
+  expect_false(is.unsorted(rev(committee_score(resumes, weights))))
 })
 
 test_that("committee_style ranks every team that has played, from earlier weeks only", {
@@ -256,11 +253,10 @@ test_that("the earned-it ranking is record strength and nothing else", {
   expect_identical(style$earned, as.integer(rank(-resumes$record_strength, ties.method = "min")))
   expect_identical(min(style$earned), 1L)
 
-  # A power-conference bonus moves the committee guess but never this one.
+  # Conference never enters it.
   flipped <- demo
   flipped$teams$tier <- 1L - teams$tier
   expect_identical(committee_style(flipped, 10L)$earned, style$earned)
-  expect_false(identical(committee_style(flipped, 10L)$committee_style, style$committee_style))
 })
 
 test_that("ranking_table carries the earned rank and how far it moved", {
@@ -303,54 +299,6 @@ test_that("the next ranking is for the week after the last one fully played", {
   # The same game still open two weeks on was cancelled, not delayed.
   expect_identical(forecast_week(progress, now + 15 * 86400), 13L)
   expect_identical(forecast_week(progress[3, ], now), NA_integer_)
-})
-
-test_that("before the committee's first ranking the forecast is the resume score", {
-  first <- min(demo$polls$week[demo$polls$poll == "cfp"])
-  forecast <- committee_forecast(demo, first)
-  expect_named(forecast, c("rank", "team_id", "score", "prev_cfp", "method"))
-  expect_true(all(forecast$method == "resume"))
-  expect_true(all(is.na(forecast$prev_cfp)))
-  expect_identical(forecast$rank, seq_len(nrow(forecast)))
-  resumes <- week_resumes(demo, first)
-  expect_equal(forecast$score[match(resumes$team_id, forecast$team_id)], committee_score(resumes))
-})
-
-test_that("after that it starts from the last ranking and what has happened since", {
-  forecast <- committee_forecast(demo, 11L)
-  expect_true(all(forecast$method == "update"))
-  last <- demo$polls[demo$polls$poll == "cfp" & demo$polls$week == 10L, ]
-  expect_identical(forecast$prev_cfp, last$rank[match(forecast$team_id, last$team_id)])
-
-  now <- week_resumes(demo, 11L)
-  then <- week_resumes(demo, 10L)
-  team <- forecast$team_id[1]
-  r <- now[now$team_id == team, ]
-  b <- then[then$team_id == team, ]
-  prev <- forecast$prev_cfp[1]
-  w <- COMMITTEE_UPDATE$weights
-  expected <- w[["losses"]] * r$losses + w[["record_strength"]] * r$record_strength +
-    w[["power"]] * r$power + w[["tier"]] * r$tier +
-    w[["prev_points"]] * (if (is.na(prev)) 0 else 26 - prev) + w[["was_ranked"]] * as.numeric(!is.na(prev)) +
-    w[["new_losses"]] * (r$losses - b$losses) + w[["strength_gain"]] * (r$record_strength - b$record_strength)
-  expect_equal(forecast$score[1], expected)
-
-  # It never looks at a ranking released that week or later.
-  peeking <- demo
-  peeking$polls <- demo$polls[demo$polls$week != 10L, ]
-  expect_identical(committee_forecast(peeking, 10L), committee_forecast(demo, 10L))
-  expect_identical(nrow(committee_forecast(demo, NA_integer_)), 0L)
-  expect_identical(nrow(committee_forecast(demo, 99L)), 0L)
-})
-
-test_that("a team the committee ranked last week starts ahead of one it did not", {
-  w <- COMMITTEE_UPDATE$weights
-  expect_named(w, c("losses", "record_strength", "power", "tier", "prev_points", "was_ranked",
-                    "new_losses", "strength_gain"))
-  expect_gt(w[["prev_points"]], 0)
-  expect_gt(w[["was_ranked"]], 0)
-  expect_lt(w[["new_losses"]], 0)
-  expect_gt(w[["strength_gain"]], 0)
 })
 
 test_that("a committee prediction is saved once, and never after the release", {

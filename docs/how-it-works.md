@@ -361,70 +361,53 @@ thing only, which is judging how hard each opponent was.
 
 ### Our CFP guess
 
-A third ranking predicts the committee (`committee_forecast()` in
-`R/rankings.R`). It works two ways, depending on whether the committee has
-ranked teams yet this season.
+A third ranking predicts the committee (`R/committee.R`). It learns only
+from the committee's own rankings, starting with the 2026 season, and it
+learns again every time a new ranking comes out.
 
-**After the committee's first ranking**, the prediction starts from its
-last one. That turned out to be the most important thing about how the
-committee works: it mostly keeps its own order and moves teams for what
-just happened. Each team's score adds, to the four resume inputs below:
+**How it learns.** Every ranking puts pairs of teams in order: the
+committee had this team above that one. The model finds the weights on a
+few inputs that best explain those choices, holding the weights back while
+there are only a few rankings to learn from. The inputs:
 
-- **Where the committee had it last week.** By far the heaviest input.
-- **Whether it was ranked at all.** Getting into the 25 is a step of its
-  own.
-- **New losses** since that ranking.
-- **Record strength gained** since that ranking: a big win moves a team up
-  more than a routine one.
+- Total losses, strength of record, how strong the team looks (our Power
+  rating), and playing in a power conference.
+- Once there is a previous ranking: the team's place in it, whether it was
+  ranked at all, losses since, how much its strength of record grew since,
+  and whether it was No. 1 and has not lost since.
 
-The weights are `COMMITTEE_UPDATE` in `R/config.R`, fit on every release
-after a season's first from 2018 to 2025. On seasons left out of the fit
-it is 1.3 places from the committee on average and shares 11.4 of its top
-12. Last week's ranking left unchanged is 1.9 off. The AP poll is 1.2.
+**What it predicts with, as the season goes on.**
 
-**Before the first ranking** there is nothing to start from, so teams are
-scored from their resumes alone.
+1. Before the committee's first ranking, with nothing learned yet: strength
+   of record alone.
+2. After the first ranking: what that ranking rewards, from resumes.
+3. From the second ranking on: the last ranking, moved for what has
+   happened since.
 
-Each team gets a score from four things:
+A prediction for a week only ever learns from rankings released before
+that week.
 
-- **Losses.** Each one costs the same.
-- **Record strength.** For every game: did the team win, minus how often a
-  reference team (about the 10th best in the country) would have won that
-  game at that site. Beating a good team on the road adds a lot. Beating a
-  weak one at home adds almost nothing. Losing to a weak one costs the most.
-- **Power.** Our rating of how good the team is. The committee does give
-  some credit for looking strong, on top of the results.
-- **Power conference.** A flat bonus. The committee has ranked
-  power-conference teams higher than their results alone explain.
+**From one season to the next.** At every refresh the learned weights are
+saved to `data/committee_learned.json`. When a new season starts, the
+weights the last season ended with are where it starts, held toward them
+until its own rankings say otherwise.
 
-The four weights (`COMMITTEE_MODEL` in `R/config.R`) were fit to the order
-of every committee release from 2018 to 2025, leaving out 2020. Checked on
-seasons left out of the fit, the score is 2.7 places from the committee on
-average and shares 11 of its top 12. Our who-would-win Power rating alone
-is 8.7 places off. The AP poll, which is also people ranking by results, is
-1.3 off. `scripts/research/committee.R` reproduces all of this, and
-[research-log.md](research-log.md) has the details.
+**The reasoning, on record.** `docs/committee-notes.md` is rewritten on
+every refresh: what the committee has done this season, each with a real
+example, the current weights, and how each prediction did. The same
+lessons are behind the info button on the Rankings tab.
 
-Things the committee says it weighs that did not help predict it, once
-the inputs above were in: head-to-head results, the quality of a team's
-best win and worst loss, counts of top-10 wins and bad losses, and losses
-in the last three weeks. Each moved the answer by 0.1 places or less.
-Record strength already carries most of what they say.
+**What it cannot see.** Head-to-head results and conference titles, which
+the committee says it weighs, and anything said in the room.
 
-**Saving and grading.** `freeze_committee_forecast()` saves the top 50 of
-the prediction to `data/snapshots/cfp_predictions/` the first time a
-refresh runs after the week's games are all final, and never if the
-committee's ranking for that week is already out. `forecast_record()`
-grades each saved prediction against the real ranking. The Sunday and
-Monday runs exist to get the prediction saved early. They refresh results
-only, because the week's rating snapshot is saved once and the public
-systems may not have updated by Sunday morning.
-
-It is a guess at the committee, not an opinion of ours about who deserves
-what. That opinion is the earned-it ranking above, which drops the credit
-for strength and the conference bonus. Neither one knows about
-head-to-head results or conference titles, which the committee says it
-weighs.
+**On history.** `scripts/research/committee.R` and
+`committee_extras.R` study the committee's 2018 to 2025 rankings. Those
+studies found that the committee anchors on its own last ranking and
+shaped the inputs above, but the app learns its weights only from 2026 on.
+On 2026's first rankings, that costs some accuracy: weeks 10 to 12 came out
+3.9, 2.4 and 1.8 places off, against 2.6, 1.7 and 1.6 with weights fit on
+past seasons. The gap should close as the season adds rankings, and next
+season starts from this one's weights.
 
 ## The pipeline
 

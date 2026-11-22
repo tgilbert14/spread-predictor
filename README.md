@@ -59,14 +59,14 @@ are final, the app saves its prediction of the committee's next ranking.
 It is never changed. When the real ranking comes out, the prediction is
 graded and added to a running record on the Rankings tab.
 
-The biggest thing we learned about the committee: its best predictor is
-its own ranking from the week before. So the prediction starts there and
-moves teams for what has happened since, mostly new losses and how much
-their record strength grew. Before the committee's first ranking of a
-season there is nothing to start from, so teams are scored from their
-resumes alone. On past seasons the week-to-week prediction was 1.3 places
-off on average and had 11.4 of the committee's top 12. The AP poll was 1.2
-off.
+The prediction learns only from the committee's own rankings this season,
+and learns again each time a new one comes out. Its biggest lesson: the
+committee mostly keeps its own order, then moves teams for new losses and
+for how much their record improved. It has also learned that a No. 1 that
+keeps winning stays No. 1. The info button beside "Predicting the
+committee" lists what it has learned, each with a real example, and
+`docs/committee-notes.md` keeps the full reasoning and weights on record.
+What a season learns is saved and carried into the next one.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 

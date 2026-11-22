@@ -440,3 +440,34 @@ top 12 in both.
 the committee has a previous ranking that season, and the resume score
 before that. The prediction is saved each week before the release and
 graded after. Weights: `COMMITTEE_UPDATE` in `R/config.R`.
+
+## Nov 22, 2026: learning the committee from this season only
+
+**Decision first.** The committee prediction now learns its weights only
+from 2026's committee rankings, and learns again every time a new one is
+released. Past seasons shaped which inputs it uses, not their weights.
+
+**What that costs, so far.** Each week predicted from only the rankings
+before it:
+
+| Week | This season only | Weights from 2018 to 2025 |
+|---|---|---|
+| 10 (first ranking) | 3.9 places off | 2.6 |
+| 11 | 2.4 | 1.7 |
+| 12 | 1.8 | 1.6 |
+
+Week 10 has nothing to learn from yet and uses strength of record alone.
+Week 11 has one ranking but no week-to-week example. By week 12 the gap is
+small. Holding the fit back more or less (tested from 1 to 100) changed
+week 12 by under 0.1 places.
+
+**A new input: a No. 1 that keeps winning.** In week 12 the committee kept
+9-1 Georgia at No. 1 over 10-0 Utah after both won. Our model had Utah
+first, and would have again for week 13 by a hair. An input for "No. 1
+last time and no loss since" lets the fit learn that from the committee's
+own choice. It moved nothing else and puts Georgia back at No. 1 for week
+13. It rests on one example so far, held back like everything else.
+
+**Week 13's saved prediction was re-saved** with this model on Sunday, Nov
+22, before the committee's release. The first version, saved that morning
+with the 2018 to 2025 weights, had Utah first and Georgia second.

@@ -9,10 +9,12 @@
 #' line movement.
 #'
 #' @param now The time of the build, for telling which week's games are all in.
+#' @param learned_path What earlier seasons' committee rankings taught us
+#'   (R/committee.R), or a path that does not exist for nothing.
 #' @return The app data list, invisibly.
 build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
                            out_path = PATHS$app_data, snapshots_root = PATHS$snapshots,
-                           now = Sys.time()) {
+                           now = Sys.time(), learned_path = COMMITTEE_LEARNED_PATH) {
   params <- read_params(params_path)
   con <- connect_readonly(db_path)
   on.exit(DBI::dbDisconnect(con))
@@ -50,8 +52,12 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
     history = rating_history(con, season, history_weeks, teams$team_id, power_through(power, history_weeks)),
     results = season_results(con, season),
     polls = load_polls(snapshots_root, season, teams),
-    forecasts = load_forecasts(snapshots_root, season)
+    forecasts = load_forecasts(snapshots_root, season),
+    committee_prior = committee_prior(learned_path, season)
   )
+  # Our guess at the committee for every week, each learned only from
+  # rankings released before it. Worked out once here, not on every click.
+  app_data$committee_guesses <- committee_guesses(app_data)
 
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
   saveRDS(app_data, out_path)
