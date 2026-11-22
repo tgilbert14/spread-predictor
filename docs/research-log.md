@@ -447,6 +447,10 @@ graded after. Weights: `COMMITTEE_UPDATE` in `R/config.R`.
 from 2026's committee rankings, and learns again every time a new one is
 released. Past seasons shaped which inputs it uses, not their weights.
 
+**Why.** The committee's rules changed for the 2026 season, so its 2018 to
+2025 rankings describe a different process. Weights fit on them could be
+wrong in ways their accuracy on old seasons cannot show.
+
 **What that costs, so far.** Each week predicted from only the rankings
 before it:
 

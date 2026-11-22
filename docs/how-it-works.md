@@ -400,14 +400,18 @@ lessons are behind the info button on the Rankings tab.
 **What it cannot see.** Head-to-head results and conference titles, which
 the committee says it weighs, and anything said in the room.
 
-**On history.** `scripts/research/committee.R` and
-`committee_extras.R` study the committee's 2018 to 2025 rankings. Those
-studies found that the committee anchors on its own last ranking and
-shaped the inputs above, but the app learns its weights only from 2026 on.
-On 2026's first rankings, that costs some accuracy: weeks 10 to 12 came out
-3.9, 2.4 and 1.8 places off, against 2.6, 1.7 and 1.6 with weights fit on
-past seasons. The gap should close as the season adds rankings, and next
-season starts from this one's weights.
+**Why this season only.** The committee's rules changed for 2026, so its
+earlier rankings describe a committee working under different rules.
+`scripts/research/committee.R` and `committee_extras.R` study the 2018 to
+2025 rankings, and those studies shaped which inputs are used (most of all,
+that the committee anchors on its own last ranking). The weights, though,
+come only from 2026 on. An input the new rules make irrelevant will learn a
+weight near zero.
+
+On 2026's first rankings the old weights happened to do a little better
+(weeks 10 to 12: 2.6, 1.7 and 1.6 places off, against 3.9, 2.4 and 1.8),
+mostly because the first two rankings left little to learn from. Under new
+rules there is no reason to expect that to last.
 
 ## The pipeline
 
