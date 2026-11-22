@@ -56,15 +56,19 @@ and **our CFP guess**, our prediction of the committee's ranking.
 
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.
-It is never changed. When the real ranking comes out, the prediction is
+Once the real ranking is out, the prediction is never changed: it is
 graded and added to a running record on the Rankings tab.
 
 The prediction starts from what earlier committees did and learns this
 season's emphasis from each new ranking, since the 2026 rules kept the
 same ingredients but changed their weight. Its biggest lesson: the
-committee mostly keeps its own order, then moves teams for new losses and
-for how much their record improved. It has also learned that a No. 1 that
-keeps winning stays No. 1. The info button beside "Predicting the
+committee starts from its own last ranking, then moves teams for new
+losses, for how much their record improved and for wins over ranked teams.
+Two habits are applied after the scores: head-to-head decides between
+close teams within a few places of each other, and a ranked team that
+wins drops at most one place. A No. 1 that keeps winning stays No. 1, and
+once the title games are played the real conference champions take their
+bids. The info button beside "Predicting the
 committee" lists what it has learned, each with a real example, and
 `docs/committee-notes.md` keeps the full reasoning and weights on record.
 What a season learns is saved and carried into the next one.
@@ -251,9 +255,13 @@ still treats last season as the current one and won't pull its final ratings.
    included and rebuilds the app data.
 6. Run it once more with the default task, `refresh`, and check that it
    finishes green and the new season's files show up in `data/snapshots/`.
-7. Optional: add last season to `SEASONS` in `scripts/research/committee.R`,
-   run it, and copy the new weights into `COMMITTEE_MODEL` in `R/config.R`.
-   That keeps the CFP guess in step with how the committee ranked last year.
+7. The committee weights carry over on their own: the new season starts
+   from what last season learned (`data/committee_learned.json`). To start
+   from every past season instead, add last season to `SEASONS` in
+   `scripts/committee_prior.R` and run it.
+8. Check the playoff rules in `PLAYOFF` in `R/config.R`. The field grows to
+   24 teams in 2027, so the bids and byes there need updating, and
+   `docs/cfp-guidelines.md` with them.
 
 ## Basketball
 
