@@ -185,3 +185,13 @@ test_that("committee_order keeps winners near their place and honors close head-
   # With a wide gap, the head-to-head result does not move them.
   expect_identical(inputs$team_id[committee_order(inputs, c(5, 4, 10, 9, 6))][c(3, 4)], c(4L, 5L))
 })
+
+test_that("head-to-head works inside a small group, not across a wide one", {
+  inputs <- data.frame(team_id = 1:6, prev_cfp = NA_integer_, new_losses = 0, won_since = 0)
+  attr(inputs, "beat") <- data.frame(winner = c(4L, 6L), loser = c(1L, 1L))
+  # Team 4 is three places below team 1 and close in score: it goes above.
+  ord <- committee_order(inputs, c(10, 9.8, 9.6, 9.4, 5, 4))
+  expect_identical(inputs$team_id[ord][1:2], c(4L, 1L))
+  # Team 6 also beat team 1 but sits outside the window and far behind.
+  expect_identical(inputs$team_id[ord][6], 6L)
+})

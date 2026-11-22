@@ -408,12 +408,15 @@ and this season, it brought the average miss from 1.40 to 1.36 places, and
 from 1.66 to 1.36 on this season's rankings.
 
 **Two habits applied after scoring.** `committee_order()` puts the scores
-in order, then (1) a team goes above a close neighbor it beat head to head,
-and (2) a ranked team that played and won since the last ranking drops at
+in order, then (1) head-to-head inside small groups: the committee ranks a
+few teams at a time, so a team goes above one it beat when both sit within
+four places of each other and their scores are close (about four places'
+worth), and (2) a ranked team that played and won since the last ranking drops at
 most one place. Since 2018 the committee dropped such a team two or more
 places 9 times in 667. A team on a bye can still drop (Indiana fell from 4
 to 9 on a bye this season). Together these brought the average miss from
-1.36 to 1.31 places, and no season got worse.
+1.36 to 1.31 places. Letting every head-to-head win inside a group of 5 or
+6 did much worse (1.49 to 1.64), so the committee does not always honor it.
 
 **Conference titles.** Once the title games are played (the weekend before
 Selection Day), the update model has one more input: did the team win its

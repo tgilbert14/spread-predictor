@@ -26,15 +26,18 @@ COMMITTEE_RIDGE <- 10
 
 # Two habits of the committee that a score per team cannot show, applied to
 # the order after scoring (committee_order()). Tested a season at a time on
-# 2018 to 2025 and 2026: the average miss went from 1.36 to 1.31 places and
-# no season got worse (docs/research-log.md, Nov. 22).
+# 2018 to 2025 and 2026: the average miss went from 1.36 to 1.31 places (docs/research-log.md, Nov. 22).
 COMMITTEE_RULES <- list(
   # A ranked team that played and won since the last ranking drops at most
   # this many places. Of 667 such teams since 2018, 9 dropped 2 or more.
   max_drop_after_win = 1,
-  # A team goes above one it beat head to head when it is placed right
-  # below it and their scores are this close (about two places).
-  head_to_head_gap = 1
+  # The committee ranks in small groups, where head-to-head is one of the
+  # first things compared. A team goes above one it beat when both sit in
+  # the same window of this many places and their scores are within the
+  # gap (about four places). Honoring every head-to-head in a group of 5 or
+  # 6 did much worse: the committee does not always let it win.
+  head_to_head_window = 4,
+  head_to_head_gap = 2
 )
 
 INPUT_LABELS <- c(
@@ -226,13 +229,21 @@ committee_order <- function(inputs, score, rules = COMMITTEE_RULES) {
   beat <- attr(inputs, "beat")
   beat <- if (is.null(beat)) character() else paste(beat$winner, beat$loser)
   ids <- inputs$team_id
+  n <- min(40, length(order))
   for (pass in 1:3) {
-    for (i in seq_len(min(40, length(order)) - 1)) {
-      above <- order[i]
-      below <- order[i + 1]
-      below_won <- paste(ids[below], ids[above]) %in% beat && !paste(ids[above], ids[below]) %in% beat
-      if (below_won && score[above] - score[below] < rules$head_to_head_gap) order[c(i, i + 1)] <- c(below, above)
+    moved <- FALSE
+    for (i in seq_len(n - 1)) {
+      for (j in (i + 1):min(n, i + rules$head_to_head_window - 1)) {
+        above <- order[i]
+        below <- order[j]
+        below_won <- paste(ids[below], ids[above]) %in% beat && !paste(ids[above], ids[below]) %in% beat
+        if (below_won && score[above] - score[below] < rules$head_to_head_gap) {
+          order <- append(order[-j], below, after = i - 1)
+          moved <- TRUE
+        }
+      }
     }
+    if (!moved) break
   }
   kept <- which(!is.na(inputs$prev_cfp) & inputs$new_losses == 0 & inputs$won_since == 1)
   kept <- kept[order(inputs$prev_cfp[kept])]

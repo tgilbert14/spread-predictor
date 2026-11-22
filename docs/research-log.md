@@ -559,3 +559,29 @@ held. Not added, but worth watching: Liberty (10-1, AP 22) is unranked in
 our prediction and Boise State (24th) holds the Group of Six spot after
 losing to San Diego State. If the committee swaps them, the playoff field
 changes.
+
+## 2026-11-22: head-to-head in groups
+
+The committee's procedure ranks a few teams at a time (a pool of about six,
+place three, add more), and head-to-head is one of the first things
+compared inside a group. Our rule only let next-door neighbors swap. Tried
+windows of 2 to 6 places and score gaps of 1, 2, 3 and "always":
+
+| Window | Gap 1 | Gap 2 | Gap 3 | Always |
+|---|---|---|---|---|
+| 2 (neighbors) | 1.314 | 1.311 | 1.315 | 1.315 |
+| 3 | 1.314 | 1.316 | 1.322 | 1.322 |
+| 4 | 1.316 | **1.305** | 1.336 | 1.377 |
+| 5 | 1.319 | 1.313 | 1.355 | 1.492 |
+| 6 | 1.327 | 1.340 | 1.370 | 1.637 |
+
+(Average places off, with the keep-winners rule on.) Honoring every
+head-to-head in a group of 5 or 6 is clearly worse: the committee does not
+always let it win. Window 4 with gap 2 (about four places of score) was
+best, better than the old rule in 6 of 8 seasons and 1.32 to 1.24 on 2026.
+The gain is small and was picked from 20 tries, so treat it as a lean,
+not proof. Kept.
+
+Week 13 change: Tennessee (beat Alabama, close in score) moves above
+Alabama, then the keep-winners rule puts Alabama back at 4. Net: Tennessee
+7th, Texas Tech 8th. Both won, Tennessee was 3 places ahead last time.
