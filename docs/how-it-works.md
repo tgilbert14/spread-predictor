@@ -361,11 +361,29 @@ thing only, which is judging how hard each opponent was.
 
 ### Our CFP guess
 
-A third ranking predicts the committee: the same resumes, scored the way
-the committee has scored teams before (`committee_style` from the same
-function). It uses only games already played and our own Power rating, so
-it can be made in any week, including before the committee has released
-anything.
+A third ranking predicts the committee (`committee_forecast()` in
+`R/rankings.R`). It works two ways, depending on whether the committee has
+ranked teams yet this season.
+
+**After the committee's first ranking**, the prediction starts from its
+last one. That turned out to be the most important thing about how the
+committee works: it mostly keeps its own order and moves teams for what
+just happened. Each team's score adds, to the four resume inputs below:
+
+- **Where the committee had it last week.** By far the heaviest input.
+- **Whether it was ranked at all.** Getting into the 25 is a step of its
+  own.
+- **New losses** since that ranking.
+- **Record strength gained** since that ranking: a big win moves a team up
+  more than a routine one.
+
+The weights are `COMMITTEE_UPDATE` in `R/config.R`, fit on every release
+after a season's first from 2018 to 2025. On seasons left out of the fit
+it is 1.3 places from the committee on average and shares 11.4 of its top
+12. Last week's ranking left unchanged is 1.9 off. The AP poll is 1.2.
+
+**Before the first ranking** there is nothing to start from, so teams are
+scored from their resumes alone.
 
 Each team gets a score from four things:
 
@@ -386,6 +404,21 @@ average and shares 11 of its top 12. Our who-would-win Power rating alone
 is 8.7 places off. The AP poll, which is also people ranking by results, is
 1.3 off. `scripts/research/committee.R` reproduces all of this, and
 [research-log.md](research-log.md) has the details.
+
+Things the committee says it weighs that did not help predict it, once
+the inputs above were in: head-to-head results, the quality of a team's
+best win and worst loss, counts of top-10 wins and bad losses, and losses
+in the last three weeks. Each moved the answer by 0.1 places or less.
+Record strength already carries most of what they say.
+
+**Saving and grading.** `freeze_committee_forecast()` saves the top 50 of
+the prediction to `data/snapshots/cfp_predictions/` the first time a
+refresh runs after the week's games are all final, and never if the
+committee's ranking for that week is already out. `forecast_record()`
+grades each saved prediction against the real ranking. The Sunday and
+Monday runs exist to get the prediction saved early. They refresh results
+only, because the week's rating snapshot is saved once and the public
+systems may not have updated by Sunday morning.
 
 It is a guess at the committee, not an opinion of ours about who deserves
 what. That opinion is the earned-it ranking above, which drops the credit

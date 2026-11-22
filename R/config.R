@@ -144,3 +144,22 @@ COMMITTEE_MODEL <- list(
   reference_rank = 10
 )
 
+# The week-to-week committee model: once the committee has ranked teams, its
+# next ranking is mostly its last one, adjusted for what happened since.
+# Fit by scripts/research/committee_extras.R on every release after a
+# season's first, 2018 to 2025 (2020 left out). The first four inputs are
+# the same as COMMITTEE_MODEL's. The rest:
+#   prev_points    per place in last week's ranking (25 for 1st, 1 for 25th,
+#                  0 for unranked)
+#   was_ranked     for being in last week's 25 at all
+#   new_losses     per loss since that ranking
+#   strength_gain  per unit of record strength gained since that ranking
+COMMITTEE_UPDATE <- list(
+  weights = c(losses = -1.1702, record_strength = 0.5396, power = 0.0825, tier = 1.9611,
+              prev_points = 0.6817, was_ranked = 1.6571, new_losses = -1.5096, strength_gain = 4.2897)
+)
+
+# How many teams a saved committee prediction lists. The committee ranks 25;
+# the extra places are there so every team it does rank can be found in ours.
+FORECAST_SAVED <- 50
+

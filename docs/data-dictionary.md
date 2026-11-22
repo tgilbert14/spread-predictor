@@ -127,6 +127,14 @@ in this order:
 | `fit_date` | chr | `fit_date` from `params.json` |
 | `frozen_at` | chr | ISO 8601 UTC time the file was written |
 
+### Committee predictions (`data/snapshots/cfp_predictions/`)
+
+`{season}_wk{WW}.csv`: our prediction of the committee's ranking for that
+week, the top 50, saved once and never rewritten. Columns: `season`,
+`week`, `rank`, `team_id`, `score`, `prev_cfp`, `method`, `school`, `made`,
+`saved_at`. The week is the one the ranking goes into, the same way poll
+weeks and rating snapshots are labeled.
+
 ## Game notes (`data/notes.csv`)
 
 Short, sourced notes about this week's games. A separate weekly check outside
@@ -216,14 +224,15 @@ without `polls` loads with no committee or AP rankings.
 
 | Element | Type | Contents |
 |---|---|---|
-| `meta` | list | `season`, `week`, `ratings_date`, `built_at`, `is_demo` |
+| `meta` | list | `season`, `week`, `ratings_date`, `built_at`, `is_demo`, `forecast_week` (the week whose committee ranking comes next: one past the latest week with every game final) |
 | `teams` | data frame | One row per FBS team: the teams columns above, plus `sp`, `fpi`, `srs`, `elo`, `power`, their ranks (`sp_rank` and so on), and `tier` (1 for a power team, 0 otherwise, from `is_power_team()`), and `talent_z` and `returning_z` (this season's preseason z-scores among FBS teams, 0 when missing). `power` is centered so the average team is 0. A rating can be `NA`. |
 | `params` | list | The contents of `params.json`. Table-like fields are data frames. |
 | `slate` | data frame | This week's FBS games: `game_id`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `market_spread_home` (can be `NA`), `market_at_freeze` (the line saved with this week's predictions, `NA` when none), `market_move` (`market_at_freeze - market_spread_home`: points the expected home margin has moved since, positive toward the home team) |
 | `coverage` | data frame | Which snapshots exist: `source`, `season`, `week`, `n_teams`, `pulled_at` |
 | `scorecard` | list | Saved predictions for this season, graded. See below. |
-| `history` | data frame | What every system said going into each week so far, for snapshots and the week-by-week charts. One row per team and week: `week`, `team_id`, `sp`, `fpi`, `srs`, `elo`, `power`. `sp`, `fpi` and `srs` are `NA` for weeks before the weekly snapshots started. `elo` is the snapshot value when there is one, otherwise the Elo the team took into its game that week (its next game, in a bye week). `power` is centered each week so the average team is 0. |
+| `history` | data frame | (It can run one week past `meta$week`, with Elo and Power only, so the committee's next ranking can be predicted before the weekly snapshot.) What every system said going into each week so far, for snapshots and the week-by-week charts. One row per team and week: `week`, `team_id`, `sp`, `fpi`, `srs`, `elo`, `power`. `sp`, `fpi` and `srs` are `NA` for weeks before the weekly snapshots started. `elo` is the snapshot value when there is one, otherwise the Elo the team took into its game that week (its next game, in a bye week). `power` is centered each week so the average team is 0. |
 | `polls` | data frame | This season's playoff committee and AP rankings, for the Rankings tab: `week`, `poll` (`"cfp"` or `"ap"`), `rank`, `team_id`. A poll's week is the week its ranking goes into, the same way rating snapshots are labeled. No rows before any are released. |
+| `forecasts` | data frame | Our saved predictions of the committee's rankings this season: `week`, `rank`, `team_id`, `score`, `prev_cfp` (the team's place in the committee's ranking before, `NA` if unranked), `method` (`"resume"` before the committee's first ranking, `"update"` after), `made` (`"before"` the release, or `"after"` for ones worked out later to fill in earlier weeks) |
 | `results` | data frame | This season's finished regular-season games, so a snapshot can show how a game turned out: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `neutral_site` (logical), `home_points`, `away_points` |
 
 ### Scorecard (`app_data$scorecard`)

@@ -169,13 +169,14 @@ demo_app_data <- function(seed = 2026) {
 
   scorecard <- demo_scorecard(teams, params, slate)
 
-  list(
+  demo <- list(
     meta = list(
       season = 2026L,
       week = 11L,
       ratings_date = "2026-11-10",
       built_at = "2026-11-10T13:05:00Z",
-      is_demo = TRUE
+      is_demo = TRUE,
+      forecast_week = 11L
     ),
     teams = teams,
     params = params,
@@ -186,6 +187,12 @@ demo_app_data <- function(seed = 2026) {
     results = demo_results(scorecard$games),
     polls = demo_polls(teams, weeks = 9:11)
   )
+  # A prediction of each made-up committee ranking, as if saved beforehand.
+  demo$forecasts <- do.call(rbind, lapply(10:11, function(week) {
+    forecast <- utils::head(committee_forecast(demo, week), FORECAST_SAVED)
+    cbind(week = week, forecast, made = "before", stringsAsFactors = FALSE)
+  }))
+  demo
 }
 
 #' Made-up committee and AP rankings for the demo's latest weeks.

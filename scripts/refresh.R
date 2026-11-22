@@ -2,8 +2,10 @@
 # week's predictions before kickoff, grade the saved ones, and audit the data.
 #
 # Run from the project root:
-#   Rscript scripts/refresh.R             # pulls this week's snapshot first
-#   Rscript scripts/refresh.R --offline   # uses only the files already on disk
+#   Rscript scripts/refresh.R                 # pulls this week's snapshot first
+#   Rscript scripts/refresh.R --results-only  # new results, lines and polls, but no new
+#                                             # ratings snapshot and no game predictions saved
+#   Rscript scripts/refresh.R --offline       # uses only the files already on disk
 
 # Pick up the API key from the project's .Renviron, even when R was started
 # somewhere else (for example from RStudio with setwd()).
@@ -13,9 +15,13 @@ for (file in list.files("R", pattern = "\\.R$", full.names = TRUE)) source(file)
 options(warn = 1)
 
 offline <- "--offline" %in% commandArgs(trailingOnly = TRUE)
+# Sunday and Monday runs: the weekend's results are in, the new week's
+# ratings may not be. Those are snapshotted, and game predictions saved, on
+# Tuesday.
+results_only <- "--results-only" %in% commandArgs(trailingOnly = TRUE)
 
 if (!offline) {
-  ok <- tryCatch(run_snapshot(), error = function(e) {
+  ok <- tryCatch(run_snapshot(ratings = !results_only), error = function(e) {
     stop(conditionMessage(e), "\nTo rebuild from the files already on disk, run: ",
          "Rscript scripts/refresh.R --offline", call. = FALSE)
   })
@@ -38,8 +44,15 @@ app_data <- build_app_data()
 
 # Save this week's predictions, once, before the first kickoff. A new file
 # changes the scorecard and the line movement, so rebuild to include it.
-if (freeze_predictions(app_data)) app_data <- build_app_data()
+if (!results_only && freeze_predictions(app_data)) app_data <- build_app_data()
 message(scorecard_message(app_data$scorecard))
+
+# Save our prediction of the committee's next ranking, once, as soon as the
+# week's games are all in and before the committee releases it.
+if (freeze_committee_forecast(complete_app_data(app_data))) {
+  message("Saved our prediction of the committee's week ", app_data$meta$forecast_week, " ranking.")
+  app_data <- build_app_data()
+}
 
 # Check the data every time it changes. Problems are reported, not fatal:
 # the report says which ones matter.

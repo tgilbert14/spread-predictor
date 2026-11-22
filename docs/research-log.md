@@ -380,3 +380,63 @@ because voters see those things too.
 
 Both are kept apart from the who-would-win ranking. The weights live in `COMMITTEE_MODEL` in
 `R/config.R` and should be refit with the script after each season.
+
+## Nov 22, 2026: predicting the committee week to week
+
+**Question.** The four-input score explains the committee's order from
+results alone. What else does the committee use? It says it weighs
+head-to-head results and quality wins. And does knowing its previous
+ranking help predict the next one?
+
+**Data.** The same 41 releases as before. Script:
+`scripts/research/committee_extras.R`. Everything is scored on seasons left
+out of the fit.
+
+**Things the committee says it values, added to the four inputs.**
+
+| Added input | Places off | Top 12 shared |
+|---|---|---|
+| None (the four inputs) | 2.73 | 11.0 |
+| Best win and worst loss | 2.64 | 11.0 |
+| Top-10 wins and bad losses | 2.69 | 11.0 |
+| Losses in the last three weeks | 2.70 | 11.0 |
+| Head-to-head | 2.67 | 11.0 |
+
+None of them matters much. Head-to-head does get a clear positive weight
+in the fit, so the committee does respect it, but it only decides a few
+close pairs a year. Record strength already carries most of what "quality
+wins" and "bad losses" say.
+
+**The committee's own last ranking.** On the 34 releases after a season's
+first:
+
+| Prediction | Places off | Top 12 shared | Same No. 1 |
+|---|---|---|---|
+| The four inputs | 2.71 | 11.0 | 68% |
+| Last week's ranking, unchanged | 1.90 | 11.0 | 76% |
+| Four inputs + last week's rank | 1.97 | 11.3 | 71% |
+| + new losses and record strength gained | 1.33 | 11.4 | 82% |
+| + head-to-head | 1.31 | 11.5 | 82% |
+| AP poll, same week | 1.21 | 11.6 | 94% |
+
+**What it says.**
+
+- **The committee anchors on itself.** Last week's ranking, left alone,
+  beats any score built from results. Its heaviest input by far is where
+  it had a team seven days ago.
+- **It then reacts to the week.** A new loss drops a team. A win moves a
+  team up in proportion to how hard the win was. Adding those two cuts the
+  error from 1.9 to 1.3 places.
+- **That gets within a tenth of a place of the AP poll**, with no human
+  input at all.
+- **Head-to-head adds 0.02 places.** Not worth the extra moving part.
+
+**On 2026.** Worked out after the fact, from only what was known going
+into each week: 2.6 places off in week 10 (the first release, resumes
+only), then 1.7 and 1.6 in weeks 11 and 12, with all 12 of the committee's
+top 12 in both.
+
+**Decision.** The app's CFP guess now uses the week-to-week model whenever
+the committee has a previous ranking that season, and the resume score
+before that. The prediction is saved each week before the release and
+graded after. Weights: `COMMITTEE_UPDATE` in `R/config.R`.

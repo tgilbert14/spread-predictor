@@ -8,9 +8,11 @@
 #' `snapshots_root`) are graded into the scorecard and give the slate its
 #' line movement.
 #'
+#' @param now The time of the build, for telling which week's games are all in.
 #' @return The app data list, invisibly.
 build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
-                           out_path = PATHS$app_data, snapshots_root = PATHS$snapshots) {
+                           out_path = PATHS$app_data, snapshots_root = PATHS$snapshots,
+                           now = Sys.time()) {
   params <- read_params(params_path)
   con <- connect_readonly(db_path)
   on.exit(DBI::dbDisconnect(con))
@@ -26,6 +28,10 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
   predictions <- load_predictions(snapshots_root)
   power <- season_power(con, season)
   teams <- current_teams(con, season, latest, power)
+  # The week whose committee ranking comes next. Its ratings row is added to
+  # the history so that ranking can be predicted before the weekly snapshot.
+  next_release <- forecast_week(query_sql_file(con, "week_progress.sql", list(season)), now)
+  history_weeks <- seq_len(max(week, next_release, na.rm = TRUE))
 
   app_data <- list(
     meta = list(
@@ -33,16 +39,18 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
       week = as.integer(week),
       ratings_date = substr(max(latest$pulled_at, na.rm = TRUE), 1, 10),
       built_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
-      is_demo = FALSE
+      is_demo = FALSE,
+      forecast_week = next_release
     ),
     teams = teams,
     params = params,
     slate = add_line_movement(current_slate(con, season, week), predictions, season, week),
     coverage = coverage,
     scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season),
-    history = rating_history(con, season, seq_len(week), teams$team_id, power$weekly),
+    history = rating_history(con, season, history_weeks, teams$team_id, power_through(power, history_weeks)),
     results = season_results(con, season),
-    polls = load_polls(snapshots_root, season, teams)
+    polls = load_polls(snapshots_root, season, teams),
+    forecasts = load_forecasts(snapshots_root, season)
   )
 
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
@@ -118,6 +126,23 @@ season_power <- function(con, season) {
 current_power <- function(current, team_ids) {
   power <- current$power[match(team_ids, current$team_id)]
   power - mean(power, na.rm = TRUE)
+}
+
+#' Weekly Power ratings, with the ratings after the last games played
+#' standing in for any week past the end of the schedule so far.
+#'
+#' The weekly table only has the weeks that have games. After the last one
+#' (championship weekend, say) the next ranking still needs ratings that
+#' include it, and `current` has them.
+#'
+#' @param power What season_power() returns.
+power_through <- function(power, weeks) {
+  weekly <- power$weekly
+  beyond <- weeks[weeks > max(weekly$week)]
+  if (length(beyond) == 0) return(weekly)
+  rbind(weekly, do.call(rbind, lapply(beyond, function(week) {
+    data.frame(team_id = power$current$team_id, week = as.integer(week), power = power$current$power)
+  })))
 }
 
 #' What every system said about every team going into each week so far.

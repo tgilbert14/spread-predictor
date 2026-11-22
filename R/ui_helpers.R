@@ -71,6 +71,10 @@ complete_app_data <- function(x) {
     x$polls <- data.frame(week = integer(), poll = character(), rank = integer(), team_id = integer(),
                           stringsAsFactors = FALSE)
   }
+  # App data built before committee predictions has none saved and no week
+  # to predict.
+  if (!is.data.frame(x$forecasts)) x$forecasts <- load_forecasts(tempfile(), 0L)
+  if (is.null(x$meta$forecast_week)) x$meta$forecast_week <- NA_integer_
   x$meta$is_demo <- isTRUE(x$meta$is_demo)
   x
 }

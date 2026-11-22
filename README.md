@@ -52,10 +52,21 @@ list is ranked by.
 
 Each rating system's own rank sits beside them, with how far each team
 moved since last week. The last columns are the playoff committee, the AP,
-and **our CFP guess**: the same results scored the way the committee has
-scored teams in past seasons. On seasons it was not fit on, it lands 2.7
-places from the committee on average and has 11 of the committee's top 12.
-A second table lines the committee's 25 up against all three of ours.
+and **our CFP guess**, our prediction of the committee's ranking.
+
+**Predicting the committee.** Every week, as soon as the weekend's games
+are final, the app saves its prediction of the committee's next ranking.
+It is never changed. When the real ranking comes out, the prediction is
+graded and added to a running record on the Rankings tab.
+
+The biggest thing we learned about the committee: its best predictor is
+its own ranking from the week before. So the prediction starts there and
+moves teams for what has happened since, mostly new losses and how much
+their record strength grew. Before the committee's first ranking of a
+season there is nothing to start from, so teams are scored from their
+resumes alone. On past seasons the week-to-week prediction was 1.3 places
+off on average and had 11.4 of the committee's top 12. The AP poll was 1.2
+off.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 
@@ -163,6 +174,8 @@ The weekly rhythm (times are UTC):
 | Tuesday 13:00 | New ratings, games and lines. This week's predictions are saved before the first kickoff, and last week's are graded. |
 | Tuesday 18:00 | The same run again, as a safety net. If the first one failed, the week's predictions are still saved before the first kickoff. Saved files are never rewritten. |
 | Thursday and Friday 21:00 | Lines refreshed, so the app shows how far each has moved since Tuesday. Game notes (injuries, weather) are added to `data/notes.csv` on these days by a separate check. |
+| Sunday and Monday 14:00 | Results only. The weekend's games are in, so our prediction of the committee's next ranking is saved, and last week's game predictions are graded. No new ratings: the public systems may not have updated yet, and a ratings snapshot is never rewritten. |
+| Wednesday 14:00 | Results only. Picks up the committee's ranking from Tuesday night, so our prediction of it is graded. |
 | Every day 14:23, November to April | Basketball: new games, lines and T-Rank ratings, and the day's predictions saved before tipoff. See [Basketball](#basketball). |
 
 Each run does the same thing: `Rscript scripts/refresh.R`. It never rewrites
@@ -174,6 +187,7 @@ kicks off.
 | Task | What it does |
 |---|---|
 | `refresh` | The default, as above |
+| `results` | New results, lines and polls only. No ratings snapshot and no game predictions saved. What the Sunday, Monday and Wednesday runs do. |
 | `extras` | Pulls research data: talent, returning production, game stats |
 | `backfill` | Pulls history for every season, plus the research data |
 | `fit` | Refits the model (`data/params.json`), rebuilds the app data, then reruns the backtest and the spread study |
@@ -205,8 +219,8 @@ calling the API.
 | `scripts/disagreement.R` | Counts which side covered when a model and the sportsbooks disagreed on the spread, and writes `docs/market-disagreement.md` | No |
 | `scripts/write_manifest.R` | Writes `manifest.json` for deploying the app, trimmed to the packages the app uses (needs the `rsconnect` package) | No |
 
-The free API tier allows 1,000 calls a month. The three automatic runs use
-about 20 a week (later runs in a week skip ratings already saved). The
+The free API tier allows 1,000 calls a month. The football runs use about
+35 a week (later runs in a week skip ratings already saved). The
 daily basketball run uses the same key and adds about 60 a month.
 
 ### Start of a new season

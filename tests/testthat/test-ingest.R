@@ -403,3 +403,18 @@ test_that("games_unfinished gives up on a game that never got a result", {
   # Months later the game was plainly cancelled.
   expect_false(games_unfinished(path, now = utc("2025-01-15 13:00:00")))
 })
+
+test_that("a results-only run refreshes games and polls but snapshots no ratings", {
+  local_fake_api()
+  root <- withr::local_tempdir()
+  sunday <- utc("2026-11-08 14:00:00")
+  ok <- suppressMessages(run_snapshot(now = sunday, root = root, ratings = FALSE))
+  expect_true(all(ok))
+  files <- snapshot_files(root)
+  expect_true(all(c("games/2026.csv", "lines/2026.csv", "extras/rankings/2026.csv") %in% files))
+  expect_false(any(grepl("^ratings/", files)))
+  expect_false("teams/2026.csv" %in% files)
+  # Tuesday's run then takes the week's snapshot as usual.
+  suppressMessages(run_snapshot(now = utc("2026-11-10 13:00:00"), root = root))
+  expect_true(all(sprintf("ratings/%s/2026_wk11.csv", RATING_SOURCES) %in% snapshot_files(root)))
+})

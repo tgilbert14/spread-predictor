@@ -538,7 +538,10 @@ mod_matchup_server <- function(id, app_data, notes) {
 
     ratings <- shiny::reactive({
       p <- ok_pred()
-      rating_trend(app_data$history, c(p$team_a$team_id, p$team_b$team_id))
+      # The history can run one week past the snapshots, for the committee
+      # prediction. The chart stops where the snapshots do.
+      rating_trend(app_data$history[app_data$history$week <= this_week, , drop = FALSE],
+                   c(p$team_a$team_id, p$team_b$team_id))
     })
     # Three panels across, or two on a phone.
     rating_columns <- shiny::reactive(if (is_narrow("rating_trend")) 2 else 3)

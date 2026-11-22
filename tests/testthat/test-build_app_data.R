@@ -7,7 +7,9 @@ build_fixture_app_data <- function(snapshots = TRUE) {
   write_params(with_project_root(fit_params(con)), params_path)
   DBI::dbDisconnect(con)
   list(db = db, params_path = params_path, out_path = out_path,
-       app = with_project_root(build_app_data(db, params_path, out_path)))
+       # A fixed clock: the fixture's week 11 games are a day old and still open.
+       app = with_project_root(build_app_data(db, params_path, out_path,
+                                              now = as.POSIXct("2026-10-02", tz = "UTC"))))
 }
 
 built <- build_fixture_app_data()
@@ -15,8 +17,10 @@ app <- built$app
 
 test_that("app data has the shape in the data dictionary", {
   expect_named(app, c("meta", "teams", "params", "slate", "coverage", "scorecard",
-                      "history", "results", "polls"))
-  expect_named(app$meta, c("season", "week", "ratings_date", "built_at", "is_demo"))
+                      "history", "results", "polls", "forecasts"))
+  expect_named(app$meta, c("season", "week", "ratings_date", "built_at", "is_demo", "forecast_week"))
+  # Week 10 is all played and week 11 is not, so week 11's ranking comes next.
+  expect_identical(app$meta$forecast_week, FIXTURE_WEEK)
   expect_identical(app$meta$season, FIXTURE_SEASON)
   expect_identical(app$meta$week, FIXTURE_WEEK)
   expect_identical(app$meta$ratings_date, "2026-11-10")
@@ -39,7 +43,7 @@ test_that("app data has the shape in the data dictionary", {
 
 test_that("column types match the demo data the app was built against", {
   demo <- demo_app_data()
-  for (element in c("teams", "slate", "coverage", "history", "results", "polls")) {
+  for (element in c("teams", "slate", "coverage", "history", "results", "polls", "forecasts")) {
     shared <- intersect(names(demo[[element]]), names(app[[element]]))
     expect_identical(vapply(app[[element]][shared], class, character(1)),
                      vapply(demo[[element]][shared], class, character(1)), label = element)
