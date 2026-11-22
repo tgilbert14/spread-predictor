@@ -399,6 +399,14 @@ example, the current weights, and how each prediction did. The same
 lessons are behind the info button on the Rankings tab. The committee's
 2026 rules and metrics are summarized in `docs/cfp-guidelines.md`.
 
+**Wins over ranked teams.** When two close teams never played each other,
+the committee says it looks at results against ranked teams. The update
+model counts each team's wins over teams in the committee's last ranking.
+Added Nov. 22 after it called Arizona over USC for week 13: Arizona has no
+ranked wins, USC beat Ohio State. Tested a season at a time on 2018 to 2025
+and this season, it brought the average miss from 1.40 to 1.36 places, and
+from 1.66 to 1.36 on this season's rankings.
+
 **Conference titles.** Once the title games are played (the weekend before
 Selection Day), the update model has one more input: did the team win its
 conference title game. The data has no flag for title games, so

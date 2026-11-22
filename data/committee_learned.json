@@ -13,16 +13,17 @@
       "tier": 2.69664
     },
     "update": {
-      "losses": -0.91953,
-      "record_strength": 0.82256,
-      "power": 0.07635,
-      "tier": 1.99622,
-      "prev_points": 0.46541,
-      "was_ranked": 2.35466,
-      "new_losses": -1.41544,
-      "strength_gain": 3.60577,
-      "held_top": 1.97527,
-      "conf_champ": 0.05907
+      "losses": -1.22674,
+      "record_strength": 0.59838,
+      "power": 0.08107,
+      "tier": 2.03556,
+      "prev_points": 0.44596,
+      "was_ranked": 2.41081,
+      "new_losses": -1.46217,
+      "strength_gain": 3.23576,
+      "held_top": 1.92735,
+      "conf_champ": -0.13596,
+      "ranked_wins": 0.43962
     }
   },
   "prior": {
@@ -33,16 +34,17 @@
       "tier": 2.91835
     },
     "update": {
-      "losses": -0.9193,
-      "record_strength": 0.64422,
-      "power": 0.07292,
-      "tier": 1.66816,
-      "prev_points": 0.47658,
-      "was_ranked": 1.63753,
-      "new_losses": -1.19697,
-      "strength_gain": 3.00796,
-      "held_top": 1.53755,
-      "conf_champ": 0.05907
+      "losses": -1.11243,
+      "record_strength": 0.51619,
+      "power": 0.08019,
+      "tier": 1.68808,
+      "prev_points": 0.46038,
+      "was_ranked": 1.66799,
+      "new_losses": -1.23611,
+      "strength_gain": 2.82676,
+      "held_top": 1.41025,
+      "conf_champ": -0.13596,
+      "ranked_wins": 0.42566
     }
   }
 }

@@ -11,7 +11,7 @@ test_that("inputs carry the resume, and the last ranking once there is one", {
   expect_true(all(c("team_id", UPDATE_INPUTS, "prev_cfp") %in% names(before_any)))
   expect_true(is.na(attr(before_any, "previous")))
   expect_true(all(is.na(before_any$prev_cfp)))
-  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")] == 0))
+  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ", "ranked_wins")] == 0))
 
   inputs <- committee_inputs(demo, 11L)
   expect_identical(attr(inputs, "previous"), 10L)
@@ -26,6 +26,13 @@ test_that("inputs carry the resume, and the last ranking once there is one", {
   top <- inputs[inputs$prev_cfp %in% 1L, ]
   expect_identical(top$held_top, as.numeric(top$new_losses == 0))
   expect_true(all(inputs$held_top[!inputs$prev_cfp %in% 1L] == 0))
+  # Ranked wins count wins before the week over teams in the last ranking.
+  games <- demo$results[demo$results$week < 11L, ]
+  home_won <- games$home_points > games$away_points
+  winner <- ifelse(home_won, games$home_id, games$away_id)
+  loser <- ifelse(home_won, games$away_id, games$home_id)
+  expected <- vapply(inputs$team_id, function(id) sum(winner == id & loser %in% last$team_id), integer(1))
+  expect_equal(inputs$ranked_wins, as.numeric(expected))
   expect_null(committee_inputs(demo, min(demo$results$week)))
 })
 

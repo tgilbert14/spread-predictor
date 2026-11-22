@@ -17,7 +17,7 @@
 # What a team's resume says on its own, and what is added once the committee
 # has a previous ranking to start from.
 RESUME_INPUTS <- c("losses", "record_strength", "power", "tier")
-UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")
+UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ", "ranked_wins")
 
 # How hard the fit is held toward its starting weights. A few rankings are
 # not much to learn from, so the start counts until the season's evidence
@@ -30,7 +30,8 @@ INPUT_LABELS <- c(
   was_ranked = "being ranked last time at all", new_losses = "losing since the last ranking",
   strength_gain = "the quality of its wins since the last ranking",
   held_top = "being No. 1 last time and not losing since",
-  conf_champ = "winning its conference title game"
+  conf_champ = "winning its conference title game",
+  ranked_wins = "wins over teams in the last ranking"
 )
 
 #' Everything the fit knows about each team going into a week.
@@ -58,6 +59,19 @@ committee_inputs <- function(app_data, week) {
     then <- match(out$team_id, before$team_id)
     out$new_losses <- ifelse(is.na(then), 0, resumes$losses - before$losses[then])
     out$strength_gain <- ifelse(is.na(then), 0, resumes$record_strength - before$record_strength[then])
+  }
+  # Wins over teams in the committee's last ranking. When two close teams
+  # never played each other, the committee says it looks at results against
+  # ranked teams.
+  if (is.null(before)) {
+    out$ranked_wins <- 0
+  } else {
+    games <- app_data$results[app_data$results$week < week, , drop = FALSE]
+    home_won <- games$home_points > games$away_points
+    winner <- ifelse(home_won, games$home_id, games$away_id)
+    loser <- ifelse(home_won, games$away_id, games$home_id)
+    beat_ranked <- winner[loser %in% last$team_id]
+    out$ranked_wins <- as.numeric(table(factor(beat_ranked, levels = out$team_id)))
   }
   out$prev_points <- ifelse(is.na(out$prev_cfp), 0, 26 - out$prev_cfp)
   out$was_ranked <- as.numeric(!is.na(out$prev_cfp))

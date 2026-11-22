@@ -496,3 +496,35 @@ How hard the fit is held toward the start (3 to 100) changed the average by
 0.02 or less. Week 13 is Georgia, Utah, Notre Dame, Miami, Texas either
 way at the top. Its saved prediction was re-saved with this version on
 Nov. 22, still before the committee's release.
+
+## 2026-11-22: wins over ranked teams
+
+The week 13 prediction had Arizona (19 last time) passing USC (18). The
+whole edge was Arizona's win at Kansas State counting for more than USC's
+win over Maryland. They never played, and the committee says that for close
+teams it looks at results against ranked teams: USC beat No. 14 Ohio State,
+Arizona has no ranked wins. The model had no input for that, so we added
+`ranked_wins` (wins over teams in the committee's last ranking) to the
+update model.
+
+**Each season predicted from the others' weights (update model, every
+ranking after the first):**
+
+| Season | Without | With ranked wins |
+|---|---|---|
+| 2018 | 1.46 places off | 1.50 |
+| 2019 | 1.44 | 1.57 |
+| 2021 | 1.47 | 1.34 |
+| 2022 | 1.34 | 1.17 |
+| 2023 | 1.14 | 1.16 |
+| 2024 | 1.34 | 1.51 |
+| 2025 | 1.34 | 1.26 |
+| 2026 | 1.66 | 1.36 |
+| Average | 1.40 | 1.36 |
+
+Mixed season to season, better on average and clearly better on this
+season. Pairs put in the right order went from 97.3% to 97.5%. Kept.
+With it, the week 13 prediction has USC 15 and Arizona 16, still close
+(about 56% USC). It also moved Texas above Miami, Texas Tech above
+Tennessee and Oregon above Iowa. The prediction was re-saved on Nov. 22,
+before the committee's release.
