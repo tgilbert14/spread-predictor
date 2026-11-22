@@ -164,7 +164,9 @@ committee_rules_popover <- function(app_data) {
         htmltools::tags$li(htmltools::tags$strong(lesson$rule), " ", lesson$example)
       })),
       htmltools::p(class = "rules-note",
-                   "From this season's committee rankings. It updates every time a new one comes out.")
+                   "From this season's committee rankings. It updates every time a new one comes out.",
+                   "Our prediction scores every resume, then lets head-to-head decide between close teams",
+                   "and keeps a ranked team that wins within one place of where it was.")
     )
   }
   bslib::popover(

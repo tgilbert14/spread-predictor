@@ -496,3 +496,92 @@ How hard the fit is held toward the start (3 to 100) changed the average by
 0.02 or less. Week 13 is Georgia, Utah, Notre Dame, Miami, Texas either
 way at the top. Its saved prediction was re-saved with this version on
 Nov. 22, still before the committee's release.
+
+## 2026-11-22: wins over ranked teams
+
+The week 13 prediction had Arizona (19 last time) passing USC (18). The
+whole edge was Arizona's win at Kansas State counting for more than USC's
+win over Maryland. They never played, and the committee says that for close
+teams it looks at results against ranked teams: USC beat No. 14 Ohio State,
+Arizona has no ranked wins. The model had no input for that, so we added
+`ranked_wins` (wins over teams in the committee's last ranking) to the
+update model.
+
+**Each season predicted from the others' weights (update model, every
+ranking after the first):**
+
+| Season | Without | With ranked wins |
+|---|---|---|
+| 2018 | 1.46 places off | 1.50 |
+| 2019 | 1.44 | 1.57 |
+| 2021 | 1.47 | 1.34 |
+| 2022 | 1.34 | 1.17 |
+| 2023 | 1.14 | 1.16 |
+| 2024 | 1.34 | 1.51 |
+| 2025 | 1.34 | 1.26 |
+| 2026 | 1.66 | 1.36 |
+| Average | 1.40 | 1.36 |
+
+Mixed season to season, better on average and clearly better on this
+season. Pairs put in the right order went from 97.3% to 97.5%. Kept.
+With it, the week 13 prediction has USC 15 and Arizona 16, still close
+(about 56% USC). It also moved Texas above Miami, Texas Tech above
+Tennessee and Oregon above Iowa. The prediction was re-saved on Nov. 22,
+before the committee's release.
+
+## 2026-11-22: a pass over the week 13 top 25
+
+Went through the predicted top 25 team by team, looking for things the
+model misses. Each idea was tested a season at a time (2018 to 2025 and
+2026, update model, average places off for the committee's top 25).
+
+| Idea | Average | 2026 | Kept? |
+|---|---|---|---|
+| Model as it was (with ranked wins) | 1.358 | 1.36 | |
+| Input: ranked last time and no loss since | 1.371 | 1.46 | No |
+| Input: losses to unranked teams | 1.376 | 1.50 | No |
+| Input: new loss to an unranked team | 1.356 | 1.60 | No |
+| Rule: head-to-head swap for close neighbors | 1.344 | 1.32 | Yes |
+| Rule: winners drop at most 1 place | 1.322 | 1.40 | Changed |
+| Same, only for teams that played and won | 1.330 | 1.36 | |
+| Both rules, winners that played | 1.314 | 1.32 | Yes |
+
+What prompted it: Alabama was predicted to drop from 3 to 6 after beating
+an FCS team, because two of its old wins (Kentucky, South Carolina) lost
+value when those teams lost. The committee almost never does that: of 667
+ranked teams that did not lose, 7 dropped two or more places and 2 fell
+out. The one 2026 case was Indiana falling 4 to 9 on a bye, which is why
+the rule only covers teams that played and won.
+
+Week 13 now has Alabama 4th instead of 6th, with Texas and Miami each one
+place lower. The rest of the top 25
+held. Not added, but worth watching: Liberty (10-1, AP 22) is unranked in
+our prediction and Boise State (24th) holds the Group of Six spot after
+losing to San Diego State. If the committee swaps them, the playoff field
+changes.
+
+## 2026-11-22: head-to-head in groups
+
+The committee's procedure ranks a few teams at a time (a pool of about six,
+place three, add more), and head-to-head is one of the first things
+compared inside a group. Our rule only let next-door neighbors swap. Tried
+windows of 2 to 6 places and score gaps of 1, 2, 3 and "always":
+
+| Window | Gap 1 | Gap 2 | Gap 3 | Always |
+|---|---|---|---|---|
+| 2 (neighbors) | 1.314 | 1.311 | 1.315 | 1.315 |
+| 3 | 1.314 | 1.316 | 1.322 | 1.322 |
+| 4 | 1.316 | **1.305** | 1.336 | 1.377 |
+| 5 | 1.319 | 1.313 | 1.355 | 1.492 |
+| 6 | 1.327 | 1.340 | 1.370 | 1.637 |
+
+(Average places off, with the keep-winners rule on.) Honoring every
+head-to-head in a group of 5 or 6 is clearly worse: the committee does not
+always let it win. Window 4 with gap 2 (about four places of score) was
+best, better than the old rule in 6 of 8 seasons and 1.32 to 1.24 on 2026.
+The gain is small and was picked from 20 tries, so treat it as a lean,
+not proof. Kept.
+
+Week 13 change: Tennessee (beat Alabama, close in score) moves above
+Alabama, then the keep-winners rule puts Alabama back at 4. Net: Tennessee
+7th, Texas Tech 8th. Both won, Tennessee was 3 places ahead last time.

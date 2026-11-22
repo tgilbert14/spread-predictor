@@ -11,7 +11,7 @@ test_that("inputs carry the resume, and the last ranking once there is one", {
   expect_true(all(c("team_id", UPDATE_INPUTS, "prev_cfp") %in% names(before_any)))
   expect_true(is.na(attr(before_any, "previous")))
   expect_true(all(is.na(before_any$prev_cfp)))
-  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")] == 0))
+  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ", "ranked_wins")] == 0))
 
   inputs <- committee_inputs(demo, 11L)
   expect_identical(attr(inputs, "previous"), 10L)
@@ -26,6 +26,13 @@ test_that("inputs carry the resume, and the last ranking once there is one", {
   top <- inputs[inputs$prev_cfp %in% 1L, ]
   expect_identical(top$held_top, as.numeric(top$new_losses == 0))
   expect_true(all(inputs$held_top[!inputs$prev_cfp %in% 1L] == 0))
+  # Ranked wins count wins before the week over teams in the last ranking.
+  games <- demo$results[demo$results$week < 11L, ]
+  home_won <- games$home_points > games$away_points
+  winner <- ifelse(home_won, games$home_id, games$away_id)
+  loser <- ifelse(home_won, games$away_id, games$home_id)
+  expected <- vapply(inputs$team_id, function(id) sum(winner == id & loser %in% last$team_id), integer(1))
+  expect_equal(inputs$ranked_wins, as.numeric(expected))
   expect_null(committee_inputs(demo, min(demo$results$week)))
 })
 
@@ -163,4 +170,28 @@ test_that("the info button lists the lessons", {
   single <- demo
   single$polls <- demo$polls[demo$polls$week == 10L, ]
   expect_match(as.character(committee_rules_popover(single)), "Nothing learned yet", fixed = TRUE)
+})
+
+test_that("committee_order keeps winners near their place and honors close head-to-head results", {
+  inputs <- data.frame(team_id = 1:5, prev_cfp = c(1L, 2L, 3L, NA, NA), new_losses = c(0, 0, 1, 0, 0),
+                       won_since = c(1, 0, 0, 1, 1))
+  attr(inputs, "beat") <- data.frame(winner = 5L, loser = 4L)
+  # Team 1 won but scores 4th: it can only drop one place. Team 2 had a bye,
+  # so it can drop. Team 5 beat team 4 and is a hair behind it.
+  score <- c(5, 4, 10, 9, 8.5)
+  ord <- committee_order(inputs, score)
+  expect_identical(which(ord == 1L), 2L)
+  expect_identical(inputs$team_id[ord][c(3, 4)], c(5L, 4L))
+  # With a wide gap, the head-to-head result does not move them.
+  expect_identical(inputs$team_id[committee_order(inputs, c(5, 4, 10, 9, 6))][c(3, 4)], c(4L, 5L))
+})
+
+test_that("head-to-head works inside a small group, not across a wide one", {
+  inputs <- data.frame(team_id = 1:6, prev_cfp = NA_integer_, new_losses = 0, won_since = 0)
+  attr(inputs, "beat") <- data.frame(winner = c(4L, 6L), loser = c(1L, 1L))
+  # Team 4 is three places below team 1 and close in score: it goes above.
+  ord <- committee_order(inputs, c(10, 9.8, 9.6, 9.4, 5, 4))
+  expect_identical(inputs$team_id[ord][1:2], c(4L, 1L))
+  # Team 6 also beat team 1 but sits outside the window and far behind.
+  expect_identical(inputs$team_id[ord][6], 6L)
 })

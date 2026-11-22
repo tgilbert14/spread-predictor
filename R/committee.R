@@ -17,12 +17,28 @@
 # What a team's resume says on its own, and what is added once the committee
 # has a previous ranking to start from.
 RESUME_INPUTS <- c("losses", "record_strength", "power", "tier")
-UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")
+UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ", "ranked_wins")
 
 # How hard the fit is held toward its starting weights. A few rankings are
 # not much to learn from, so the start counts until the season's evidence
 # is strong. Tested from 3 to 100 on 2026's rankings with little difference.
 COMMITTEE_RIDGE <- 10
+
+# Two habits of the committee that a score per team cannot show, applied to
+# the order after scoring (committee_order()). Tested a season at a time on
+# 2018 to 2025 and 2026: the average miss went from 1.36 to 1.31 places (docs/research-log.md, Nov. 22).
+COMMITTEE_RULES <- list(
+  # A ranked team that played and won since the last ranking drops at most
+  # this many places. Of 667 such teams since 2018, 9 dropped 2 or more.
+  max_drop_after_win = 1,
+  # The committee ranks in small groups, where head-to-head is one of the
+  # first things compared. A team goes above one it beat when both sit in
+  # the same window of this many places and their scores are within the
+  # gap (about four places). Honoring every head-to-head in a group of 5 or
+  # 6 did much worse: the committee does not always let it win.
+  head_to_head_window = 4,
+  head_to_head_gap = 2
+)
 
 INPUT_LABELS <- c(
   losses = "total losses", record_strength = "strength of record", power = "how strong the team looks",
@@ -30,7 +46,8 @@ INPUT_LABELS <- c(
   was_ranked = "being ranked last time at all", new_losses = "losing since the last ranking",
   strength_gain = "the quality of its wins since the last ranking",
   held_top = "being No. 1 last time and not losing since",
-  conf_champ = "winning its conference title game"
+  conf_champ = "winning its conference title game",
+  ranked_wins = "wins over teams in the last ranking"
 )
 
 #' Everything the fit knows about each team going into a week.
@@ -59,6 +76,22 @@ committee_inputs <- function(app_data, week) {
     out$new_losses <- ifelse(is.na(then), 0, resumes$losses - before$losses[then])
     out$strength_gain <- ifelse(is.na(then), 0, resumes$record_strength - before$record_strength[then])
   }
+  # Wins over teams in the committee's last ranking. When two close teams
+  # never played each other, the committee says it looks at results against
+  # ranked teams.
+  games <- app_data$results[app_data$results$week < week, , drop = FALSE]
+  home_won <- games$home_points > games$away_points
+  winner <- ifelse(home_won, games$home_id, games$away_id)
+  loser <- ifelse(home_won, games$away_id, games$home_id)
+  if (is.null(before)) {
+    out$ranked_wins <- 0
+    out$won_since <- 0
+  } else {
+    beat_ranked <- winner[loser %in% last$team_id]
+    out$ranked_wins <- as.numeric(table(factor(beat_ranked, levels = out$team_id)))
+    # Not a fit input: committee_order() uses it to keep winners in place.
+    out$won_since <- as.numeric(out$team_id %in% winner[games$week >= previous])
+  }
   out$prev_points <- ifelse(is.na(out$prev_cfp), 0, 26 - out$prev_cfp)
   out$was_ranked <- as.numeric(!is.na(out$prev_cfp))
   # The committee has kept a No. 1 that keeps winning, even past a team
@@ -69,6 +102,7 @@ committee_inputs <- function(app_data, week) {
   played <- app_data$results[app_data$results$week < week, , drop = FALSE]
   out$conf_champ <- as.numeric(out$team_id %in% conference_champions(played, app_data$teams)$team_id)
   attr(out, "previous") <- previous
+  attr(out, "beat") <- data.frame(winner = winner, loser = loser)
   out
 }
 
@@ -174,12 +208,53 @@ committee_forecast <- function(app_data, week = app_data$meta$forecast_week,
     score <- inputs$record_strength
     method <- "record"
   }
-  out <- data.frame(rank = as.integer(rank(-score, ties.method = "first")), team_id = inputs$team_id,
+  order <- if (method == "update") committee_order(inputs, score) else order(-score)
+  out <- data.frame(rank = match(seq_along(score), order), team_id = inputs$team_id,
                     score = score, prev_cfp = as.integer(inputs$prev_cfp), method = method,
                     stringsAsFactors = FALSE)
   out <- out[order(out$rank), , drop = FALSE]
   rownames(out) <- NULL
   out
+}
+
+#' The order of teams from their scores, with the committee's habits
+#' (COMMITTEE_RULES) applied: head-to-head between neighbors with close
+#' scores, then winners kept near where they were.
+#'
+#' @param inputs What committee_inputs() returns, with a previous ranking.
+#' @param score One score per row of `inputs`.
+#' @return Row numbers of `inputs`, best first.
+committee_order <- function(inputs, score, rules = COMMITTEE_RULES) {
+  order <- order(-score)
+  beat <- attr(inputs, "beat")
+  beat <- if (is.null(beat)) character() else paste(beat$winner, beat$loser)
+  ids <- inputs$team_id
+  n <- min(40, length(order))
+  for (pass in 1:3) {
+    moved <- FALSE
+    for (i in seq_len(n - 1)) {
+      for (j in (i + 1):min(n, i + rules$head_to_head_window - 1)) {
+        above <- order[i]
+        below <- order[j]
+        below_won <- paste(ids[below], ids[above]) %in% beat && !paste(ids[above], ids[below]) %in% beat
+        if (below_won && score[above] - score[below] < rules$head_to_head_gap) {
+          order <- append(order[-j], below, after = i - 1)
+          moved <- TRUE
+        }
+      }
+    }
+    if (!moved) break
+  }
+  kept <- which(!is.na(inputs$prev_cfp) & inputs$new_losses == 0 & inputs$won_since == 1)
+  kept <- kept[order(inputs$prev_cfp[kept])]
+  for (pass in 1:3) {
+    for (k in kept) {
+      limit <- inputs$prev_cfp[k] + rules$max_drop_after_win
+      at <- which(order == k)
+      if (at > limit) order <- append(order[-at], k, after = limit - 1)
+    }
+  }
+  order
 }
 
 #' Our guess at the committee for one week: the one worked out when the app
@@ -355,13 +430,29 @@ committee_lessons <- function(app_data) {
                   place(theirs), latest))
     }
   }
+  # Head-to-head: a team ranked above one that beat it.
+  played <- app_data$results[app_data$results$week < latest, , drop = FALSE]
+  home_won <- played$home_points > played$away_points
+  winner <- ifelse(home_won, played$home_id, played$away_id)
+  loser <- ifelse(home_won, played$away_id, played$home_id)
+  rank_of <- function(id) now$rank[match(id, now$team_id)]
+  flipped <- which(!is.na(rank_of(winner)) & !is.na(rank_of(loser)) & rank_of(loser) < rank_of(winner))
+  if (length(flipped) > 0) {
+    # The closest pair: where head-to-head should matter most.
+    f <- flipped[which.min(rank_of(winner[flipped]) - rank_of(loser[flipped]))]
+    add("Head-to-head does not always decide it.",
+        sprintf("In week %d, No. %d %s is ahead of No. %d %s, which beat it.", latest, rank_of(loser[f]),
+                school(loser[f]), rank_of(winner[f]), school(winner[f])))
+  }
   steady <- moves[!is.na(moves$from) & !is.na(moves$to), , drop = FALSE]
   if (nrow(steady) > 0) {
-    close <- sum(abs(steady$change) <= 2)
+    typical <- max(1, ceiling(stats::median(abs(steady$change))))
+    close <- sum(abs(steady$change) <= typical)
     latest_moves <- steady[steady$week == max(steady$week), , drop = FALSE]
     held_spot <- latest_moves[latest_moves$change == 0, , drop = FALSE]
-    add("It mostly keeps its own order from week to week.",
-        sprintf("Of the teams ranked in back-to-back rankings, %d of %d moved 2 places or fewer.%s",
+    add(sprintf("Most ranked teams move %d %s or fewer from one ranking to the next.", typical,
+                if (typical == 1) "place" else "places"),
+        sprintf("Of the teams ranked in back-to-back rankings, %d of %d did.%s",
                 close, nrow(steady),
                 if (nrow(held_spot) > 0) sprintf(" In week %d, %s kept the exact same spot.", max(steady$week),
                                                  format_list(school(utils::head(held_spot$team_id[order(held_spot$to)], 3)))) else ""))
@@ -404,6 +495,11 @@ committee_notes_markdown <- function(app_data, date = Sys.Date()) {
              "A positive weight moves a team up. They are in each input's own units, so sizes do not compare directly.",
              weights_table("Week to week (once the committee has ranked)", learned$update, learned$n_update),
              weights_table("From resumes alone (before its first ranking)", learned$resume, learned$n_resume))
+  lines <- c(lines, "", "## Rules applied after the scores", "",
+             sprintf("- **Head-to-head in small groups.** A team goes above one it beat when both are within %d places of each other and their scores are within %g.",
+                     COMMITTEE_RULES$head_to_head_window - 1, COMMITTEE_RULES$head_to_head_gap),
+             sprintf("- **Winners stay close to where they were.** A ranked team that played and won since the last ranking drops at most %d %s. A team on a bye can still drop.",
+                     COMMITTEE_RULES$max_drop_after_win, if (COMMITTEE_RULES$max_drop_after_win == 1) "place" else "places"))
   lines <- c(lines, "", "## How our predictions have done", "")
   if (nrow(record) == 0) {
     lines <- c(lines, "No prediction has been graded yet.")

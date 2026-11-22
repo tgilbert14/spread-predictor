@@ -229,6 +229,17 @@
     Shiny.setInputValue(button.dataset.input, Number(button.dataset.gameId), { priority: 'event' });
   });
 
+  // A logo that fails to load (slow network, blocked image host) would leave
+  // a blank space. Fall back to the team's color badge instead. Image errors
+  // do not bubble, so listen in the capture phase.
+  document.addEventListener('error', function (event) {
+    var img = event.target;
+    if (!img.classList || !img.classList.contains('team-logo')) return;
+    var badge = img.closest('.team-badge');
+    if (badge) badge.classList.remove('has-logo');
+    img.remove();
+  }, true);
+
   // Jump links. On Posit Connect the app sits in a frame, and on iPhones the
   // frame is stretched to full height, so the outer page is what scrolls. A
   // plain "#section" link only scrolls the frame and goes nowhere there.
