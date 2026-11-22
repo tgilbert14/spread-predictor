@@ -72,9 +72,9 @@ What a season learns is saved and carried into the next one.
 **Projected playoff field.** The 2026 bid rules applied to our predicted
 ranking: the four Power Four champions, the best team from the other six
 conferences, Notre Dame if it is in the top 12, and the best of the rest,
-seeded straight from the ranking, with the first-round games. Until the
-title games are played, a conference's champion is projected as its best
-team in our prediction.
+seeded straight from the ranking, with the first-round games. Until a
+conference's title game is played, its best team in our prediction stands
+in as the "leader". After that, the real champion takes the bid.
 
 ![The Rankings tab: a Top 50 table with each team's record, rating, rank in all five systems, and its committee and AP rank](docs/img/rankings.png)
 

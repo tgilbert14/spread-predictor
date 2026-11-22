@@ -17,7 +17,7 @@
 # What a team's resume says on its own, and what is added once the committee
 # has a previous ranking to start from.
 RESUME_INPUTS <- c("losses", "record_strength", "power", "tier")
-UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top")
+UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")
 
 # How hard the fit is held toward its starting weights. A few rankings are
 # not much to learn from, so the start counts until the season's evidence
@@ -29,7 +29,8 @@ INPUT_LABELS <- c(
   tier = "playing in a power conference", prev_points = "its place in the last ranking",
   was_ranked = "being ranked last time at all", new_losses = "losing since the last ranking",
   strength_gain = "the quality of its wins since the last ranking",
-  held_top = "being No. 1 last time and not losing since"
+  held_top = "being No. 1 last time and not losing since",
+  conf_champ = "winning its conference title game"
 )
 
 #' Everything the fit knows about each team going into a week.
@@ -63,6 +64,10 @@ committee_inputs <- function(app_data, week) {
   # The committee has kept a No. 1 that keeps winning, even past a team
   # whose resume looked a little better. This lets the fit learn that.
   out$held_top <- as.numeric(out$prev_cfp %in% 1L & out$new_losses == 0)
+  # Title games come the weekend before Selection Day, so this only counts
+  # in the final ranking. Losing one already shows up in new_losses.
+  played <- app_data$results[app_data$results$week < week, , drop = FALSE]
+  out$conf_champ <- as.numeric(out$team_id %in% conference_champions(played, app_data$teams)$team_id)
   attr(out, "previous") <- previous
   out
 }
@@ -105,6 +110,7 @@ fit_committee_weights <- function(pairs, prior = NULL, ridge = COMMITTEE_RIDGE) 
   scale[!is.finite(scale) | scale == 0] <- 1
   d <- sweep(pairs, 2, scale, "/")
   toward <- if (is.null(prior)) rep(0, length(features)) else unname(prior[features]) * scale
+  toward[is.na(toward)] <- 0  # an input newer than the prior starts at zero
   loss <- function(b) sum(log1p(exp(-drop(d %*% b)))) + ridge * sum((b - toward)^2)
   slope <- function(b) drop(-crossprod(d, 1 / (1 + exp(drop(d %*% b))))) + 2 * ridge * (b - toward)
   fit <- stats::optim(toward, loss, slope, method = "BFGS")

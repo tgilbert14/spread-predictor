@@ -11,7 +11,7 @@ test_that("inputs carry the resume, and the last ranking once there is one", {
   expect_true(all(c("team_id", UPDATE_INPUTS, "prev_cfp") %in% names(before_any)))
   expect_true(is.na(attr(before_any, "previous")))
   expect_true(all(is.na(before_any$prev_cfp)))
-  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top")] == 0))
+  expect_true(all(before_any[c("prev_points", "was_ranked", "new_losses", "strength_gain", "held_top", "conf_champ")] == 0))
 
   inputs <- committee_inputs(demo, 11L)
   expect_identical(attr(inputs, "previous"), 10L)
