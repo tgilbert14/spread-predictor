@@ -254,6 +254,41 @@
     target.focus({ preventScroll: true });
   });
 
+  // Charts: tap a game's row to open the line under it (both lines and the
+  // final score). One open at a time keeps the chart short.
+  $(document).on('click', 'button.swing-row', function () {
+    var open = this.getAttribute('aria-expanded') === 'true';
+    $(this).closest('.swing-chart').find('button.swing-row').attr('aria-expanded', 'false');
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+
+  // Big numbers count up from zero when their tab comes into view. The final
+  // text is already on the page, so nothing is lost if this never runs.
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el) {
+    var match = /^(-?\d+(?:\.\d+)?)(.*)$/.exec(el.dataset.final || el.textContent.trim());
+    if (!match || still) return;
+    el.dataset.final = match[0];
+    var target = parseFloat(match[1]);
+    var decimals = (match[1].split('.')[1] || '').length;
+    var began = null;
+    function step(now) {
+      if (began === null) began = now;
+      var t = Math.min((now - began) / 900, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = (target * eased).toFixed(decimals) + match[2];
+      if (t < 1) requestAnimationFrame(step); else el.textContent = el.dataset.final;
+    }
+    requestAnimationFrame(step);
+  }
+  function countVisible(root) {
+    $(root).find('[data-count]').filter(':visible').each(function () { countUp(this); });
+  }
+  $(document).on('shown.bs.tab', function (event) {
+    var pane = document.querySelector(event.target.getAttribute('data-bs-target') || event.target.getAttribute('href'));
+    if (pane) countVisible(pane);
+  });
+
   // When a tab changes, start at the top so the answer is in view.
   $(document).on('shown.bs.tab', function () { window.scrollTo(0, 0); });
 

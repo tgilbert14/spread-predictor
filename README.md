@@ -97,6 +97,14 @@ market was, how often we picked the winner, and how the games went when we
 disagreed with the market by 3 or more points. It also grades all five rating
 systems on the same games.
 
+It reads as charts first: a scoreboard with our average miss next to the
+market's, rings for the hit rates, every system on one scale, and for any
+graded week the games where we or the market got closest. Tap a game for
+both lines and the final score. The tables are folded under each chart.
+The Model report tab works the same way.
+
+![The Scorecard: a scoreboard with our average miss against the market's, three rings for hit rates, a week by week chart and every rating system on one scale](docs/img/scorecard.png)
+
 > This app was made in collaboration with AI (Claude by Anthropic).
 
 ## Contents

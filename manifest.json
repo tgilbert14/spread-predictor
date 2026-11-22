@@ -2080,6 +2080,9 @@
     "R/cbb_model.R": {
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
+    "R/charts.R": {
+      "checksum": "f7270c314c92542febbab3913cf0b4f7"
+    },
     "R/committee.R": {
       "checksum": "9a168999ded7197028451509fa02ab7d"
     },
@@ -2111,10 +2114,10 @@
       "checksum": "4e9af9c95c3429e892ccba17f2c0bd20"
     },
     "R/mod_report.R": {
-      "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
+      "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
     },
     "R/mod_scorecard.R": {
-      "checksum": "1f063e2e5bb3968762cbf3848702e825"
+      "checksum": "804065a7be7ef6fa462d5eb53e33d27f"
     },
     "R/mod_slate.R": {
       "checksum": "3c7513a6ae8db10385295eb4592d5cf2"
@@ -2150,7 +2153,7 @@
       "checksum": "d8757db1b85b1c1f8f02627d21f3fe3b"
     },
     "www/app.js": {
-      "checksum": "c331f2411e23c16c8565ac8c7f82c0ad"
+      "checksum": "2cfbb0f85577fd9093556bf3bd56c02f"
     },
     "www/fonts/big-shoulders-display-latin-700-normal.woff2": {
       "checksum": "677f0a8821e508356d9c61a8d2c72627"
@@ -2174,7 +2177,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "808419fd7dce5e5936eb93b546608ebd"
+      "checksum": "6cc1ee303e47ffc1a74f1f9ca319dd98"
     }
   },
   "users": null

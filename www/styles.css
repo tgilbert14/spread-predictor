@@ -646,3 +646,242 @@ table.dataTable.rank-table th.rank-earned { border-left: 1px solid var(--rule); 
 .section-title { scroll-margin-top: 1rem; }
 
 .section-title[tabindex="-1"]:focus { outline: none; }
+
+/* Charts (R/charts.R) -------------------------------------------------------------
+   Plain HTML rows: a label, a track, the number. Ours is turquoise with an
+   ink edge, the market is slate. Everything animates in once, and holds
+   still for anyone who asks for reduced motion. */
+:root { --ours: #0b7a6e; --theirs: #8a93a8; --track: #e3e7ee; }
+.chart { display: grid; gap: 0.15rem; margin: 0.75rem 0 0.5rem; }
+.chart-row {
+  display: grid; grid-template-columns: minmax(5.5rem, 34%) 1fr auto; align-items: center;
+  gap: 0.75rem; padding: 0.5rem 0.4rem; border-radius: 6px; transition: background-color 0.15s;
+}
+.chart-row:hover { background: rgba(10, 19, 48, 0.045); }
+.chart-label { font-weight: 600; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+.chart-detail { display: block; font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+.chart-tag {
+  display: inline-block; margin-left: 0.4rem; padding: 0 0.4rem; border: 1px solid var(--ink);
+  border-radius: 4px; font-size: 0.7rem; font-weight: 700; vertical-align: 0.1em; white-space: nowrap;
+}
+.chart-value {
+  font-family: var(--display); font-weight: 900; font-size: 1.5rem; line-height: 1;
+  font-variant-numeric: tabular-nums; min-width: 2.6rem; text-align: right;
+}
+.chart-row.is-ours .chart-label, .chart-row.is-ours .chart-value { color: var(--ours); }
+.chart-track { position: relative; height: 1.5rem; }
+.chart-track::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4px; margin-top: -2px;
+  border-radius: 2px; background: var(--track);
+}
+.chart-ref { position: absolute; top: -0.6rem; bottom: -0.6rem; width: 0; border-left: 2px dashed var(--ink); opacity: 0.55; }
+.chart-dot {
+  position: absolute; top: 50%; left: var(--at); width: 1.05rem; height: 1.05rem; margin: -0.525rem 0 0 -0.525rem;
+  border-radius: 50%; background: var(--surface); border: 2.5px solid var(--ink);
+  animation: chart-slide 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.chart-row.is-ours .chart-dot, .chart-dot.is-ours { background: var(--accent); }
+.chart-row.is-benchmark .chart-dot { background: var(--ink); }
+.chart-dot.is-theirs { background: var(--theirs); border-color: var(--theirs); }
+.chart-link { position: absolute; top: 50%; height: 4px; margin-top: -2px; background: var(--ink); opacity: 0.35; border-radius: 2px; }
+.chart-row:hover .chart-dot { transform: scale(1.25); }
+.chart-dot { transition: transform 0.15s; }
+.chart-axis {
+  display: grid; grid-template-columns: minmax(5.5rem, 34%) 1fr auto; gap: 0.75rem; padding: 0 0.4rem;
+  font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+/* The low and high ends sit under the two ends of the track. */
+.chart-axis > :first-child { grid-column: 2; grid-row: 1; justify-self: start; }
+.chart-axis > :last-child { grid-column: 2; grid-row: 1; justify-self: end; }
+.chart-axis-note { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; padding: 0 2.2rem; }
+.chart-axis::after { content: ""; grid-column: 3; min-width: 2.6rem; }
+.chart-legend { display: flex; gap: 1.1rem; font-size: 0.85rem; font-weight: 600; padding: 0 0.4rem 0.2rem; }
+.chart-key { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; margin-right: 0.35rem; vertical-align: -0.08em; }
+.chart-key.is-ours { background: var(--accent); border: 2px solid var(--ink); }
+.chart-key.is-theirs { background: var(--theirs); }
+.chart-value-pair { display: flex; gap: 0.55rem; min-width: 0; }
+.chart-value-pair .is-ours { color: var(--ours); }
+.chart-value-pair .is-theirs { color: var(--muted); }
+.chart-subhead { margin: 1.1rem 0 0.4rem; font-size: 0.875rem; font-weight: 700; color: var(--muted); }
+@keyframes chart-slide { from { left: 0; opacity: 0; } }
+@keyframes chart-grow { from { width: 0; } }
+@keyframes chart-rise { from { opacity: 0; transform: translateY(8px); } }
+
+/* One bar, two sides. */
+.versus-list { display: grid; gap: 0.45rem; }
+.versus-row { display: grid; grid-template-columns: minmax(5.5rem, 34%) 1fr; gap: 0.75rem; align-items: center; padding: 0 0.4rem; }
+.versus-row.versus-total { grid-template-columns: 1fr; padding: 0; margin-top: 0.75rem; }
+.versus-bar { display: flex; height: 2.1rem; border-radius: 6px; overflow: hidden; background: var(--track); }
+.versus-total .versus-bar { height: 2.75rem; }
+.versus-part {
+  width: var(--share); display: flex; align-items: center; gap: 0.4rem; padding: 0 0.6rem; min-width: 0;
+  white-space: nowrap; overflow: hidden; font-size: 0.85rem; font-weight: 600;
+  animation: chart-grow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.versus-part.is-ours { background: var(--ours); color: #fff; }
+.versus-part.is-theirs { background: var(--theirs); color: var(--ink); justify-content: flex-end; flex-direction: row-reverse; }
+.versus-part.is-even { background: var(--track); color: var(--ink); justify-content: center; }
+.versus-count { font-family: var(--display); font-weight: 900; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+
+/* Rings. */
+.ring-row { display: grid; gap: 1.5rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin: 1.75rem 0 1rem; }
+.ring-stat { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; align-items: center; }
+.ring { position: relative; width: 6.5rem; height: 6.5rem; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring-track, .ring-fill { fill: none; stroke-width: 10; }
+.ring-track { stroke: var(--track); }
+.ring-fill {
+  stroke: var(--ours); stroke-linecap: round;
+  stroke-dasharray: var(--filled) var(--around);
+  animation: ring-draw 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes ring-draw { from { stroke-dasharray: 0 var(--around); } }
+.ring-value {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 900; font-size: 1.9rem; font-variant-numeric: tabular-nums;
+}
+.ring-text .stat-label { color: var(--ink); font-size: 1rem; font-weight: 700; }
+
+/* Who was closer, game by game: bars grow out from the middle. */
+.swing-chart .chart-row { grid-template-columns: minmax(6rem, 38%) 1fr 2.6rem; }
+.swing-heads {
+  display: grid; grid-template-columns: 1fr 1fr; margin-left: calc(38% + 1.15rem); margin-right: 3.75rem;
+  font-size: 0.78rem; font-weight: 700; color: var(--muted);
+}
+.swing-heads > :first-child { text-align: right; padding-right: 0.5rem; }
+.swing-heads > :last-child { padding-left: 0.5rem; color: var(--ours); }
+.swing-track { position: relative; height: 1.4rem; }
+.swing-track::before { content: ""; position: absolute; left: 50%; top: -0.5rem; bottom: -0.5rem; border-left: 1px solid var(--edge); }
+.swing-bar { position: absolute; top: 0; bottom: 0; width: var(--size); animation: chart-grow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.swing-row.is-ours .swing-bar { left: 50%; background: var(--ours); border-radius: 0 4px 4px 0; }
+.swing-row.is-theirs .swing-bar { right: 50%; background: var(--theirs); border-radius: 4px 0 0 4px; }
+.swing-row.is-theirs .chart-value { color: var(--muted); }
+.swing-chart .chart-label { font-weight: 600; font-size: 0.92rem; }
+
+/* How the blend is made up. */
+.share-strip { display: flex; gap: 3px; margin: 0.35rem 0 0.6rem; }
+.share-part {
+  width: var(--share); min-width: 0; padding: 0.45rem 0.5rem; background: var(--ink); color: #fff;
+  display: grid; line-height: 1.15; animation: chart-rise 0.5s both;
+}
+.share-part:first-child { border-radius: 6px 0 0 6px; }
+.share-part:last-child { border-radius: 0 6px 6px 0; }
+.share-part:nth-child(even) { background: #24305a; }
+.share-name { font-size: 0.8rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.share-value { font-family: var(--display); font-weight: 900; font-size: 1.35rem; color: var(--accent); }
+.stat-card-wide { grid-column: 1 / -1; }
+
+/* Is everything here? */
+.tile-grid { border-collapse: separate; border-spacing: 0.35rem; margin: 0.5rem 0 0.25rem -0.35rem; }
+.tile-grid th { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-align: center; padding: 0 0.3rem; }
+.tile-grid tbody th { text-align: left; color: var(--ink); white-space: nowrap; padding-right: 0.75rem; }
+.tile { display: block; width: 3rem; height: 1.6rem; border-radius: 4px; margin: 0 auto; animation: chart-rise 0.4s both; }
+.tile.is-ok { background: var(--ours); }
+.tile.is-missing { background: repeating-linear-gradient(45deg, #fff, #fff 4px, var(--danger) 4px, var(--danger) 6px); border: 2px solid var(--danger); }
+.tile:hover { filter: brightness(1.15); }
+
+/* The numbers behind a chart. */
+.chart-details { margin-top: 0.9rem; border-top: 1px solid var(--rule); }
+.chart-details > summary {
+  cursor: pointer; padding: 0.7rem 0; min-height: var(--tap); font-weight: 600; color: var(--ours);
+  list-style: none; display: flex; align-items: center; gap: 0.5rem;
+}
+.chart-details > summary::-webkit-details-marker { display: none; }
+.chart-details > summary::before {
+  content: ""; width: 0.5rem; height: 0.5rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg); transition: transform 0.2s;
+}
+.chart-details[open] > summary::before { transform: rotate(45deg); }
+.chart-details > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.chart-details[open] > :not(summary) { animation: chart-rise 0.3s both; }
+
+/* Scoreboard: the Scorecard's answer, set like stadium signage. */
+.scoreboard {
+  background: var(--ink); color: #fff; border-radius: 14px; padding: clamp(1.25rem, 4vw, 2.25rem);
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 10%);
+  box-shadow: 0 18px 40px rgba(10, 19, 48, 0.18);
+}
+.scoreboard-sides { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(0.75rem, 4vw, 2.5rem); }
+.score { display: grid; justify-items: center; text-align: center; animation: chart-rise 0.6s both; }
+.score.is-theirs { animation-delay: 0.12s; }
+.score-name { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c3cae0; }
+.score-num {
+  font-family: var(--display); font-weight: 900; line-height: 0.95; font-variant-numeric: tabular-nums;
+  font-size: clamp(3.5rem, 2rem + 9vw, 7.5rem);
+}
+.score.is-ours .score-num { color: var(--accent); }
+.score-unit { font-size: 0.9rem; color: #c3cae0; }
+.score-vs { font-family: var(--display); font-weight: 700; font-size: 1.5rem; color: #8f9abb; }
+.scoreboard-note { margin: 1.25rem auto 0; max-width: 62ch; text-align: center; color: #dfe4f2; font-size: 0.95rem; }
+.scoreboard-note strong { color: #fff; }
+
+/* Week picker: radio buttons drawn as pills. */
+.week-pills .shiny-input-container { width: auto; margin-bottom: 0.25rem; }
+.week-pills .control-label { font-size: 0.875rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; }
+.week-pills .shiny-options-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.week-pills .radio-inline, .week-pills .form-check-inline { margin: 0; padding: 0; position: relative; }
+.week-pills input[type="radio"] { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.week-pills input[type="radio"] + span, .week-pills input[type="radio"] + label {
+  display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 1.1rem; border-radius: 999px;
+  border: 2px solid var(--ink); font-weight: 700; background: transparent; cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+.week-pills input[type="radio"]:hover + span, .week-pills input[type="radio"]:hover + label { background: rgba(10, 19, 48, 0.07); }
+.week-pills input[type="radio"]:active + span, .week-pills input[type="radio"]:active + label { transform: scale(0.96); }
+.week-pills input[type="radio"]:checked + span, .week-pills input[type="radio"]:checked + label { background: var(--ink); color: var(--accent); }
+.week-pills input[type="radio"]:focus-visible + span, .week-pills input[type="radio"]:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* How the number is made: four steps. */
+.steps { list-style: none; padding: 0; margin: 0.25rem 0 0; display: grid; gap: 1rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.step { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; align-items: start; animation: chart-rise 0.5s both; }
+.step:nth-child(2) { animation-delay: 0.08s; }
+.step:nth-child(3) { animation-delay: 0.16s; }
+.step:nth-child(4) { animation-delay: 0.24s; }
+.step-number {
+  display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  background: var(--ink); color: var(--accent); font-family: var(--display); font-weight: 900; font-size: 1.4rem;
+}
+.step-title { margin: 0 0 0.15rem; font-weight: 700; }
+.step-text { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.prose p + p { margin-top: 0.75rem; }
+
+/* A little life everywhere: tabs ease in, cards and buttons answer a touch. */
+.tab-pane.active { animation: chart-rise 0.35s both; }
+.stat-card { transition: transform 0.2s, border-color 0.2s; }
+.stat-card:hover { transform: translateY(-3px); border-top-color: var(--ours); }
+.btn { transition: transform 0.1s, background-color 0.15s, color 0.15s, border-color 0.15s; }
+.btn:active { transform: scale(0.97); }
+.navbar .nav-link { transition: color 0.15s; }
+
+@media (max-width: 575.98px) {
+  .chart-row { grid-template-columns: minmax(4.5rem, 30%) 1fr auto; gap: 0.5rem; padding-inline: 0; }
+  .chart-axis { grid-template-columns: minmax(4.5rem, 30%) 1fr auto; gap: 0.5rem; padding-inline: 0; }
+  .chart-value { font-size: 1.25rem; min-width: 2.2rem; }
+  .chart-axis-note { display: none; }
+  .versus-row { grid-template-columns: minmax(4.5rem, 30%) 1fr; gap: 0.5rem; padding-inline: 0; }
+  .versus-name { display: none; }
+  .versus-total .versus-name { display: inline; font-size: 0.75rem; }
+  .swing-chart .chart-row { grid-template-columns: 1fr 2.4rem; row-gap: 0.2rem; }
+  .swing-chart .chart-label { grid-column: 1 / -1; }
+  .swing-heads { margin-left: 0; margin-right: 2.9rem; }
+  .ring-stat { grid-template-columns: 5rem 1fr; }
+  .ring { width: 5rem; height: 5rem; }
+  .ring-value { font-size: 1.45rem; }
+  .tile { width: 2.4rem; }
+  .score-name, .score-unit { font-size: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chart-dot, .versus-part, .ring-fill, .swing-bar, .share-part, .tile, .score, .step,
+  .tab-pane.active, .chart-details[open] > :not(summary) { animation: none; }
+  .stat-card:hover, .btn:active, .chart-row:hover .chart-dot { transform: none; }
+}
+
+/* Tappable game rows in the swing chart: the lines and final open under the bar. */
+button.swing-row { width: 100%; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+button.swing-row:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.swing-row .chart-value { text-align: right; }
+.swing-more { display: none; grid-column: 1 / -1; font-size: 0.88rem; color: var(--muted); padding: 0.1rem 0 0.3rem; }
+button.swing-row[aria-expanded="true"] { background: rgba(10, 19, 48, 0.06); }
+button.swing-row[aria-expanded="true"] .swing-more { display: block; animation: chart-rise 0.25s both; }
+.week-pills .radio-inline, .week-pills .form-check-inline { margin: 0 !important; padding: 0 !important; }
+@media (max-width: 575.98px) { .swing-track::before { top: -0.15rem; bottom: -0.15rem; } }
