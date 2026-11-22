@@ -62,10 +62,103 @@ mod_rankings_ui <- function(id, app_data) {
         shiny::uiOutput(ns("table_note"))
       )
     ),
+    forecast_section(ns("forecast-title"), app_data),
     htmltools::tags$section(
       class = "evidence", `aria-labelledby` = ns("committee-title"),
       htmltools::tags$h2(id = ns("committee-title"), class = "section-title", "Next to the committee"),
       shiny::uiOutput(ns("committee"))
+    )
+  )
+}
+
+# Predicting the committee ---------------------------------------------------------
+
+#' "Predicting the committee": our saved prediction of its next ranking,
+#' and how the earlier ones did. NULL when there is nothing to show.
+forecast_section <- function(title_id, app_data) {
+  record <- forecast_record(app_data$forecasts, app_data$polls)
+  upcoming <- upcoming_forecast(app_data)
+  if (is.null(upcoming) && nrow(record) == 0) return(NULL)
+  htmltools::tags$section(
+    class = "evidence", `aria-labelledby` = title_id,
+    htmltools::tags$h2(id = title_id, class = "section-title", "Predicting the committee"),
+    htmltools::p(
+      class = "section-lede",
+      "Each week, once every game is final, we save our prediction of the committee's next ranking.",
+      "It is never changed. When the real ranking comes out, we grade it."
+    ),
+    htmltools::div(
+      class = "committee-grid",
+      if (!is.null(upcoming)) upcoming_forecast_table(upcoming, app_data),
+      if (nrow(record) > 0) forecast_record_table(record)
+    )
+  )
+}
+
+#' Our prediction for a ranking the committee has not released yet, or NULL.
+#'
+#' @return list(week, saved, rows): the week, whether the prediction is the
+#'   saved one (FALSE while a game from the week before is still to finish),
+#'   and its top 25.
+upcoming_forecast <- function(app_data) {
+  week <- app_data$meta$forecast_week
+  if (is.null(week) || is.na(week)) return(NULL)
+  if (any(app_data$polls$poll == "cfp" & app_data$polls$week >= week)) return(NULL)
+  saved <- app_data$forecasts[app_data$forecasts$week == week, , drop = FALSE]
+  rows <- if (nrow(saved) > 0) saved else committee_forecast(app_data, week)
+  if (nrow(rows) == 0) return(NULL)
+  list(week = week, saved = nrow(saved) > 0, rows = utils::head(rows[order(rows$rank), , drop = FALSE], 25))
+}
+
+#' The predicted top 25, with where the committee had each team last time.
+upcoming_forecast_table <- function(upcoming, app_data) {
+  rows <- upcoming$rows
+  teams <- app_data$teams
+  record <- records_before(app_data$results, upcoming$week, rows$team_id)
+  table_rows <- data.frame(
+    rank = rows$rank,
+    team = vapply(seq_len(nrow(rows)), function(i) {
+      team <- teams[teams$team_id == rows$team_id[i], , drop = FALSE]
+      team_name_html(team, if (nrow(team) == 1) team$school else "Unknown")
+    }, character(1)),
+    record = record,
+    last = ifelse(is.na(rows$prev_cfp), "NR", as.character(rows$prev_cfp)),
+    move = format_move(ifelse(is.na(rows$prev_cfp), NA, rows$prev_cfp - rows$rank)),
+    stringsAsFactors = FALSE
+  )
+  first_time <- all(is.na(rows$prev_cfp))
+  simple_table(
+    table_rows,
+    headers = list("We predict", "Team", "Record", if (first_time) "" else "Last ranking", "Move"),
+    numeric = c(TRUE, FALSE, FALSE, TRUE, FALSE),
+    html = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+    caption = paste(
+      sprintf("Our prediction of the committee's week %d ranking.", upcoming$week),
+      if (upcoming$saved) "Saved before the release." else "Not saved yet: it is saved once every game from the week before is final.",
+      if (!first_time) "NR means the committee did not rank the team last time."
+    )
+  )
+}
+
+#' How each saved prediction did, one row per week.
+forecast_record_table <- function(record) {
+  rows <- data.frame(
+    week = record$week,
+    off = sprintf("%.1f", record$places_off),
+    exact = record$exact,
+    in_25 = sprintf("%d of 25", record$in_25),
+    top12 = sprintf("%d of 12", record$top12),
+    made = ifelse(record$made == "before", "Before", "After"),
+    stringsAsFactors = FALSE
+  )
+  simple_table(
+    rows,
+    headers = list("Week", "Places off", "Exactly right", "Their 25", "Their top 12", "Made"),
+    numeric = c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE),
+    caption = paste(
+      "Places off: across the committee's 25 teams, how far our prediction had them on average.",
+      "Made says whether the prediction was saved before the committee's release.",
+      "After means it was worked out later, from only what was known at the time, to fill in the weeks before we started saving them."
     )
   )
 }
@@ -205,8 +298,9 @@ committee_block <- function(ranking, teams, week) {
     htmltools::p(
       class = "section-lede",
       "The committee ranks what teams have earned so far.",
-      "Our CFP guess tries to predict its list: it scores each team's results the way the committee has rewarded them in past seasons.",
-      "That includes two things our own earned-it ranking leaves out on purpose: some credit for looking strong, and a bonus for power-conference teams."
+      "Our CFP guess tries to predict its list. Before the committee's first ranking it scores each team's results the way the committee has rewarded them in past seasons.",
+      "After that it starts from the committee's last ranking and moves teams for what has happened since.",
+      "It gives credit for two things our own earned-it ranking leaves out on purpose: looking strong, and playing in a power conference."
     ),
     htmltools::p(class = "closest-line", closest_sentence(similarity)),
     htmltools::div(

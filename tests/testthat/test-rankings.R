@@ -235,8 +235,10 @@ test_that("committee_style ranks every team that has played, from earlier weeks 
   played <- demo$results[demo$results$week < 10L, ]
   expect_setequal(style$team_id, unique(c(played$home_id, played$away_id)))
   expect_identical(sort(style$committee_style), seq_len(nrow(style)))
+  # The table's CFP guess is the forecast for that week, not this plain score.
+  guess <- committee_forecast(demo, 10L)
   expect_identical(ranking_table(demo, 10L)$committee_style,
-                   style$committee_style[match(ranking_table(demo, 10L)$team_id, style$team_id)])
+                   guess$rank[match(ranking_table(demo, 10L)$team_id, guess$team_id)])
 
   # Before any game there is nothing to judge.
   expect_identical(nrow(committee_style(demo, min(demo$results$week))), 0L)
@@ -285,4 +287,155 @@ test_that("rows can be numbered by either ranking, with the other beside it", {
   expect_identical(length(rankings_headers("earned")), length(rankings_headers("blend")))
   expect_s3_class(rankings_table(rows, "earned"), "datatables")
   expect_named(RANKING_KINDS, c("blend", "earned"))
+})
+
+# Predicting the committee ---------------------------------------------------------
+
+test_that("the next ranking is for the week after the last one fully played", {
+  now <- as.POSIXct("2026-11-22 14:00:00", tz = "UTC")
+  progress <- data.frame(week = 11:13, games = c(60L, 62L, 58L), completed = c(60L, 62L, 0L),
+                         last_open_kickoff = c(NA, NA, "2026-11-29T00:00:00.000Z"))
+  expect_identical(forecast_week(progress, now), 13L)
+  # One late game still open: week 12 is not in yet.
+  progress$completed[2] <- 61L
+  progress$last_open_kickoff[2] <- "2026-11-22T04:00:00.000Z"
+  expect_identical(forecast_week(progress, now), 12L)
+  # The same game still open two weeks on was cancelled, not delayed.
+  expect_identical(forecast_week(progress, now + 15 * 86400), 13L)
+  expect_identical(forecast_week(progress[3, ], now), NA_integer_)
+})
+
+test_that("before the committee's first ranking the forecast is the resume score", {
+  first <- min(demo$polls$week[demo$polls$poll == "cfp"])
+  forecast <- committee_forecast(demo, first)
+  expect_named(forecast, c("rank", "team_id", "score", "prev_cfp", "method"))
+  expect_true(all(forecast$method == "resume"))
+  expect_true(all(is.na(forecast$prev_cfp)))
+  expect_identical(forecast$rank, seq_len(nrow(forecast)))
+  resumes <- week_resumes(demo, first)
+  expect_equal(forecast$score[match(resumes$team_id, forecast$team_id)], committee_score(resumes))
+})
+
+test_that("after that it starts from the last ranking and what has happened since", {
+  forecast <- committee_forecast(demo, 11L)
+  expect_true(all(forecast$method == "update"))
+  last <- demo$polls[demo$polls$poll == "cfp" & demo$polls$week == 10L, ]
+  expect_identical(forecast$prev_cfp, last$rank[match(forecast$team_id, last$team_id)])
+
+  now <- week_resumes(demo, 11L)
+  then <- week_resumes(demo, 10L)
+  team <- forecast$team_id[1]
+  r <- now[now$team_id == team, ]
+  b <- then[then$team_id == team, ]
+  prev <- forecast$prev_cfp[1]
+  w <- COMMITTEE_UPDATE$weights
+  expected <- w[["losses"]] * r$losses + w[["record_strength"]] * r$record_strength +
+    w[["power"]] * r$power + w[["tier"]] * r$tier +
+    w[["prev_points"]] * (if (is.na(prev)) 0 else 26 - prev) + w[["was_ranked"]] * as.numeric(!is.na(prev)) +
+    w[["new_losses"]] * (r$losses - b$losses) + w[["strength_gain"]] * (r$record_strength - b$record_strength)
+  expect_equal(forecast$score[1], expected)
+
+  # It never looks at a ranking released that week or later.
+  peeking <- demo
+  peeking$polls <- demo$polls[demo$polls$week != 10L, ]
+  expect_identical(committee_forecast(peeking, 10L), committee_forecast(demo, 10L))
+  expect_identical(nrow(committee_forecast(demo, NA_integer_)), 0L)
+  expect_identical(nrow(committee_forecast(demo, 99L)), 0L)
+})
+
+test_that("a team the committee ranked last week starts ahead of one it did not", {
+  w <- COMMITTEE_UPDATE$weights
+  expect_named(w, c("losses", "record_strength", "power", "tier", "prev_points", "was_ranked",
+                    "new_losses", "strength_gain"))
+  expect_gt(w[["prev_points"]], 0)
+  expect_gt(w[["was_ranked"]], 0)
+  expect_lt(w[["new_losses"]], 0)
+  expect_gt(w[["strength_gain"]], 0)
+})
+
+test_that("a committee prediction is saved once, and never after the release", {
+  real <- demo
+  real$meta$is_demo <- FALSE
+  real$meta$forecast_week <- 12L
+  real$history <- rbind(demo$history, transform(demo$history[demo$history$week == 11L, ], week = 12L))
+  root <- withr::local_tempdir()
+  now <- as.POSIXct("2026-11-15 14:00:00", tz = "UTC")
+
+  expect_true(suppressMessages(freeze_committee_forecast(real, root, now)))
+  saved <- read_snapshot(forecast_path(2026L, 12L, root))
+  expect_equal(nrow(saved), min(FORECAST_SAVED, nrow(committee_forecast(real, 12L))))
+  expect_identical(saved$rank, seq_len(nrow(saved)))
+  expect_true(all(saved$made == "before"))
+  expect_identical(saved$saved_at[1], "2026-11-15T14:00:00Z")
+  expect_identical(saved$school[1], teams$school[teams$team_id == saved$team_id[1]])
+  expect_false(freeze_committee_forecast(real, root, now + 3600))  # never rewritten
+
+  loaded <- load_forecasts(root, 2026L)
+  expect_named(loaded, c("week", "rank", "team_id", "score", "prev_cfp", "method", "made"))
+  expect_identical(loaded$team_id, saved$team_id)
+  expect_identical(nrow(load_forecasts(root, 2025L)), 0L)
+  expect_named(load_forecasts(withr::local_tempdir(), 2026L), names(loaded))
+
+  # Week 11's ranking is already out, so a prediction of it would prove nothing.
+  late <- real
+  late$meta$forecast_week <- 11L
+  expect_false(suppressMessages(freeze_committee_forecast(late, withr::local_tempdir(), now)))
+  expect_false(freeze_committee_forecast(demo, withr::local_tempdir(), now))  # demo data
+  none <- real
+  none$meta$forecast_week <- NA_integer_
+  expect_false(freeze_committee_forecast(none, withr::local_tempdir(), now))
+})
+
+test_that("saved predictions are graded against the real ranking", {
+  polls <- data.frame(week = 12L, poll = "cfp", rank = 1:4, team_id = c(10L, 20L, 30L, 40L))
+  ours <- data.frame(week = 12L, rank = 1:4, team_id = c(20L, 10L, 30L, 50L), score = 4:1,
+                     prev_cfp = NA_integer_, method = "update", made = "before")
+  record <- forecast_record(ours, polls)
+  expect_named(record, c("week", "made", "method", "places_off", "exact", "in_25", "top12", "top4"))
+  # Off by 1, 1, 0, and team 40 is not on our list: one past its end, 5th, so off by 1.
+  expect_equal(record$places_off, 3 / 4)
+  expect_identical(record$exact, 1L)
+  expect_identical(record$in_25, 3L)
+  expect_identical(record$top4, 3L)
+  # A prediction with no release yet is not graded.
+  expect_identical(nrow(forecast_record(transform(ours, week = 13L), polls)), 0L)
+
+  demo_record <- forecast_record(demo$forecasts, demo$polls)
+  expect_identical(demo_record$week, 10:11)
+  expect_true(all(demo_record$made == "before"))
+})
+
+test_that("the prediction section shows the next ranking only until it is released", {
+  expect_null(upcoming_forecast(demo))  # week 11's ranking is out in the demo
+  ahead <- demo
+  ahead$meta$forecast_week <- 12L
+  ahead$history <- rbind(demo$history, transform(demo$history[demo$history$week == 11L, ], week = 12L))
+  upcoming <- upcoming_forecast(ahead)
+  expect_identical(upcoming$week, 12L)
+  expect_false(upcoming$saved)
+  expect_lte(nrow(upcoming$rows), 25L)
+  html <- as.character(upcoming_forecast_table(upcoming, ahead))
+  expect_match(html, "Not saved yet", fixed = TRUE)
+  expect_match(html, "Last ranking", fixed = TRUE)
+
+  ahead$forecasts <- rbind(demo$forecasts, cbind(week = 12L, committee_forecast(ahead, 12L), made = "before"))
+  expect_true(upcoming_forecast(ahead)$saved)
+  expect_match(as.character(upcoming_forecast_table(upcoming_forecast(ahead), ahead)), "Saved before the release", fixed = TRUE)
+
+  section <- as.character(forecast_section("t", demo))
+  expect_match(section, "Predicting the committee", fixed = TRUE)
+  expect_match(section, "Places off", fixed = TRUE)
+  empty <- demo
+  empty$forecasts <- demo$forecasts[0, ]
+  empty$meta$forecast_week <- NA_integer_
+  expect_null(forecast_section("t", empty))
+})
+
+test_that("ratings after the last games stand in for weeks past the schedule", {
+  power <- list(weekly = data.frame(team_id = c(1L, 2L, 1L, 2L), week = c(1L, 1L, 2L, 2L), power = 1:4),
+                current = data.frame(team_id = 1:2, power = c(9, 8)))
+  expect_identical(power_through(power, 1:2), power$weekly)
+  extended <- power_through(power, 1:3)
+  expect_equal(extended$power[extended$week == 3L], c(9, 8))
+  expect_identical(nrow(extended), 6L)
 })

@@ -569,8 +569,12 @@ pull_games_and_lines <- function(season, root, pulled_at, overwrite, allow_empty
 #' offseason nothing is pulled unless the season's games file is missing
 #' results.
 #'
+#' @param ratings FALSE refreshes results only and leaves the week's rating
+#'   snapshot for a later run. Used on Sunday and Monday, when the weekend's
+#'   games are in but the public rating systems may not have caught up: a
+#'   snapshot is saved once and never rewritten, so it must not be taken early.
 #' @return A named logical vector, one entry per step, TRUE if it worked.
-run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
+run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots, ratings = TRUE) {
   require_cfbd()
   reset_api_calls()
   log_api_key_info("start")
@@ -591,6 +595,10 @@ run_snapshot <- function(now = Sys.time(), root = PATHS$snapshots) {
   }
   if (!file.exists(games_file)) {
     message("No games file for ", season, ", so the week is unknown. No ratings snapshotted.")
+    return(ok)
+  }
+  if (!ratings) {
+    message("Results only: games, lines, game stats and polls refreshed. No ratings snapshotted.")
     return(ok)
   }
   upcoming <- snapshot_week(read_snapshot(games_file), now)

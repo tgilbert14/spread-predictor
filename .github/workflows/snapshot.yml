@@ -14,6 +14,14 @@
 #   Thursday, Friday 21:00 lines refreshed before the weekend, so the app shows
 #                          how far they have moved. Game notes are added to
 #                          data/notes.csv on these days by a separate check.
+#   Sunday, Monday 14:00   results only. The weekend's games are in, so our
+#                          prediction of the committee's next ranking is
+#                          saved (once, on the first of these that has every
+#                          game). No ratings snapshot: the public systems
+#                          may not have updated yet, and a snapshot is never
+#                          rewritten.
+#   Wednesday 14:00        results only. Picks up the committee's ranking
+#                          from Tuesday night, so the prediction is graded.
 # It can also be started by hand, with a choice of task.
 #
 # Basketball has its own daily run in season:
@@ -31,6 +39,9 @@ on:
     - cron: "0 18 * * 2"
     - cron: "0 21 * * 4"
     - cron: "0 21 * * 5"
+    - cron: "0 14 * * 0"   # results only
+    - cron: "0 14 * * 1"   # results only
+    - cron: "0 14 * * 3"   # results only
     - cron: "23 14 * 11,12,1,2,3,4 *"   # basketball, daily in season
   workflow_dispatch:
     inputs:
@@ -40,6 +51,7 @@ on:
         default: refresh
         options:
           - refresh    # snapshot, rebuild, save and grade predictions, audit
+          - results    # new results, lines and polls only: no ratings snapshot, no game predictions saved
           - extras     # research data: talent, returning production, efficiency stats
           - backfill   # history for every season in TRAINING_SEASONS, plus the research data
           - fit        # refit the model, rebuild the app data, rerun the backtest and the spread study
@@ -61,7 +73,7 @@ jobs:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
       # A manual run names its task. The daily basketball schedule runs the
       # basketball task. Every other schedule is the football refresh.
-      TASK: ${{ inputs.task || (github.event.schedule == '23 14 * 11,12,1,2,3,4 *' && 'basketball') || 'refresh' }}
+      TASK: ${{ inputs.task || (github.event.schedule == '23 14 * 11,12,1,2,3,4 *' && 'basketball') || ((github.event.schedule == '0 14 * * 0' || github.event.schedule == '0 14 * * 1' || github.event.schedule == '0 14 * * 3') && 'results') || 'refresh' }}
     steps:
       # fit and manifest work only with files already in the repo.
       - name: Check for the API key
@@ -110,6 +122,8 @@ jobs:
               Rscript scripts/write_manifest.R ;;
             basketball)
               Rscript scripts/cbb_refresh.R ;;
+            results)
+              Rscript scripts/refresh.R --results-only ;;
             *)
               Rscript scripts/refresh.R ;;
           esac

@@ -2048,10 +2048,10 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "ff5c5f709b52ce6dec2c818621a75ac7"
+      "checksum": "b9c3a5baa5f849570aa9894ab230d04b"
     },
     "data/basketball/app_data.rds": {
-      "checksum": "2fed454cdf0a5e76289545d466e4cc3d"
+      "checksum": "feeee7860ba41870ed9b778ab47e2159"
     },
     "data/notes.csv": {
       "checksum": "8e484544c5e7c95061a7f410563ae8f1"
@@ -2066,7 +2066,7 @@
       "checksum": "e252eb3525d640c8adb96d822dab871c"
     },
     "R/build_app_data.R": {
-      "checksum": "a0c3f952301d6191add4daf195ca448e"
+      "checksum": "e749d73057a70baa5eefa619b0753b60"
     },
     "R/build_db.R": {
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
@@ -2081,10 +2081,10 @@
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
     "R/config.R": {
-      "checksum": "eefcb367be9b9402803c995e5f856efb"
+      "checksum": "b73d52a94a442d339c4191aebb776fe6"
     },
     "R/demo_data.R": {
-      "checksum": "b2c43316402c85276249f37ba53c5a68"
+      "checksum": "f90b398270b5eed4fa6f6a92ef27dd39"
     },
     "R/disagreement.R": {
       "checksum": "f937d55781eaeef157bff5e4b8ca53f3"
@@ -2096,16 +2096,16 @@
       "checksum": "b48c34f941e91bcbd115007a1fe0be4b"
     },
     "R/ingest.R": {
-      "checksum": "c9528fee1ecfca6a5e8889ed98238749"
+      "checksum": "79efc4e8e08bc156c9defdb35d821558"
     },
     "R/mod_cbb.R": {
       "checksum": "711f8c4afe7349f47a2bfeb930a16e30"
     },
     "R/mod_matchup.R": {
-      "checksum": "f3d0a653ae55c8989cd6874163e54698"
+      "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
     },
     "R/mod_rankings.R": {
-      "checksum": "52952b559f6f9d84bdbb9ab42973d4e9"
+      "checksum": "e61c062b468a957963b063f93eb51457"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2129,7 +2129,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/rankings.R": {
-      "checksum": "2c9975a46d4bc8a400e71a7e60ab8a6a"
+      "checksum": "ed1697f487973c4cd063a7fda0a9fad1"
     },
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
@@ -2141,7 +2141,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "fc97894da6b65956b2227c20405a8304"
+      "checksum": "b685d54a3caed91357df182e5b47c341"
     },
     "www/app.js": {
       "checksum": "97696dddcd2f610cfa46ae52d37b298b"
