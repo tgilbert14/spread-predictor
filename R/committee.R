@@ -24,6 +24,19 @@ UPDATE_INPUTS <- c(RESUME_INPUTS, "prev_points", "was_ranked", "new_losses", "st
 # is strong. Tested from 3 to 100 on 2026's rankings with little difference.
 COMMITTEE_RIDGE <- 10
 
+# Two habits of the committee that a score per team cannot show, applied to
+# the order after scoring (committee_order()). Tested a season at a time on
+# 2018 to 2025 and 2026: the average miss went from 1.36 to 1.31 places and
+# no season got worse (docs/research-log.md, Nov. 22).
+COMMITTEE_RULES <- list(
+  # A ranked team that played and won since the last ranking drops at most
+  # this many places. Of 667 such teams since 2018, 9 dropped 2 or more.
+  max_drop_after_win = 1,
+  # A team goes above one it beat head to head when it is placed right
+  # below it and their scores are this close (about two places).
+  head_to_head_gap = 1
+)
+
 INPUT_LABELS <- c(
   losses = "total losses", record_strength = "strength of record", power = "how strong the team looks",
   tier = "playing in a power conference", prev_points = "its place in the last ranking",
@@ -63,15 +76,18 @@ committee_inputs <- function(app_data, week) {
   # Wins over teams in the committee's last ranking. When two close teams
   # never played each other, the committee says it looks at results against
   # ranked teams.
+  games <- app_data$results[app_data$results$week < week, , drop = FALSE]
+  home_won <- games$home_points > games$away_points
+  winner <- ifelse(home_won, games$home_id, games$away_id)
+  loser <- ifelse(home_won, games$away_id, games$home_id)
   if (is.null(before)) {
     out$ranked_wins <- 0
+    out$won_since <- 0
   } else {
-    games <- app_data$results[app_data$results$week < week, , drop = FALSE]
-    home_won <- games$home_points > games$away_points
-    winner <- ifelse(home_won, games$home_id, games$away_id)
-    loser <- ifelse(home_won, games$away_id, games$home_id)
     beat_ranked <- winner[loser %in% last$team_id]
     out$ranked_wins <- as.numeric(table(factor(beat_ranked, levels = out$team_id)))
+    # Not a fit input: committee_order() uses it to keep winners in place.
+    out$won_since <- as.numeric(out$team_id %in% winner[games$week >= previous])
   }
   out$prev_points <- ifelse(is.na(out$prev_cfp), 0, 26 - out$prev_cfp)
   out$was_ranked <- as.numeric(!is.na(out$prev_cfp))
@@ -83,6 +99,7 @@ committee_inputs <- function(app_data, week) {
   played <- app_data$results[app_data$results$week < week, , drop = FALSE]
   out$conf_champ <- as.numeric(out$team_id %in% conference_champions(played, app_data$teams)$team_id)
   attr(out, "previous") <- previous
+  attr(out, "beat") <- data.frame(winner = winner, loser = loser)
   out
 }
 
@@ -188,12 +205,45 @@ committee_forecast <- function(app_data, week = app_data$meta$forecast_week,
     score <- inputs$record_strength
     method <- "record"
   }
-  out <- data.frame(rank = as.integer(rank(-score, ties.method = "first")), team_id = inputs$team_id,
+  order <- if (method == "update") committee_order(inputs, score) else order(-score)
+  out <- data.frame(rank = match(seq_along(score), order), team_id = inputs$team_id,
                     score = score, prev_cfp = as.integer(inputs$prev_cfp), method = method,
                     stringsAsFactors = FALSE)
   out <- out[order(out$rank), , drop = FALSE]
   rownames(out) <- NULL
   out
+}
+
+#' The order of teams from their scores, with the committee's habits
+#' (COMMITTEE_RULES) applied: head-to-head between neighbors with close
+#' scores, then winners kept near where they were.
+#'
+#' @param inputs What committee_inputs() returns, with a previous ranking.
+#' @param score One score per row of `inputs`.
+#' @return Row numbers of `inputs`, best first.
+committee_order <- function(inputs, score, rules = COMMITTEE_RULES) {
+  order <- order(-score)
+  beat <- attr(inputs, "beat")
+  beat <- if (is.null(beat)) character() else paste(beat$winner, beat$loser)
+  ids <- inputs$team_id
+  for (pass in 1:3) {
+    for (i in seq_len(min(40, length(order)) - 1)) {
+      above <- order[i]
+      below <- order[i + 1]
+      below_won <- paste(ids[below], ids[above]) %in% beat && !paste(ids[above], ids[below]) %in% beat
+      if (below_won && score[above] - score[below] < rules$head_to_head_gap) order[c(i, i + 1)] <- c(below, above)
+    }
+  }
+  kept <- which(!is.na(inputs$prev_cfp) & inputs$new_losses == 0 & inputs$won_since == 1)
+  kept <- kept[order(inputs$prev_cfp[kept])]
+  for (pass in 1:3) {
+    for (k in kept) {
+      limit <- inputs$prev_cfp[k] + rules$max_drop_after_win
+      at <- which(order == k)
+      if (at > limit) order <- append(order[-at], k, after = limit - 1)
+    }
+  }
+  order
 }
 
 #' Our guess at the committee for one week: the one worked out when the app

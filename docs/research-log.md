@@ -528,3 +528,34 @@ With it, the week 13 prediction has USC 15 and Arizona 16, still close
 (about 56% USC). It also moved Texas above Miami, Texas Tech above
 Tennessee and Oregon above Iowa. The prediction was re-saved on Nov. 22,
 before the committee's release.
+
+## 2026-11-22: a pass over the week 13 top 25
+
+Went through the predicted top 25 team by team, looking for things the
+model misses. Each idea was tested a season at a time (2018 to 2025 and
+2026, update model, average places off for the committee's top 25).
+
+| Idea | Average | 2026 | Kept? |
+|---|---|---|---|
+| Model as it was (with ranked wins) | 1.358 | 1.36 | |
+| Input: ranked last time and no loss since | 1.371 | 1.46 | No |
+| Input: losses to unranked teams | 1.376 | 1.50 | No |
+| Input: new loss to an unranked team | 1.356 | 1.60 | No |
+| Rule: head-to-head swap for close neighbors | 1.344 | 1.32 | Yes |
+| Rule: winners drop at most 1 place | 1.322 | 1.40 | Changed |
+| Same, only for teams that played and won | 1.330 | 1.36 | |
+| Both rules, winners that played | 1.314 | 1.32 | Yes |
+
+What prompted it: Alabama was predicted to drop from 3 to 6 after beating
+an FCS team, because two of its old wins (Kentucky, South Carolina) lost
+value when those teams lost. The committee almost never does that: of 667
+ranked teams that did not lose, 7 dropped two or more places and 2 fell
+out. The one 2026 case was Indiana falling 4 to 9 on a bye, which is why
+the rule only covers teams that played and won.
+
+Week 13 now has Alabama 4th instead of 6th, with Texas and Miami each one
+place lower. The rest of the top 25
+held. Not added, but worth watching: Liberty (10-1, AP 22) is unranked in
+our prediction and Boise State (24th) holds the Group of Six spot after
+losing to San Diego State. If the committee swaps them, the playoff field
+changes.

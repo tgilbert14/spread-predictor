@@ -171,3 +171,17 @@ test_that("the info button lists the lessons", {
   single$polls <- demo$polls[demo$polls$week == 10L, ]
   expect_match(as.character(committee_rules_popover(single)), "Nothing learned yet", fixed = TRUE)
 })
+
+test_that("committee_order keeps winners near their place and honors close head-to-head results", {
+  inputs <- data.frame(team_id = 1:5, prev_cfp = c(1L, 2L, 3L, NA, NA), new_losses = c(0, 0, 1, 0, 0),
+                       won_since = c(1, 0, 0, 1, 1))
+  attr(inputs, "beat") <- data.frame(winner = 5L, loser = 4L)
+  # Team 1 won but scores 4th: it can only drop one place. Team 2 had a bye,
+  # so it can drop. Team 5 beat team 4 and is a hair behind it.
+  score <- c(5, 4, 10, 9, 8.5)
+  ord <- committee_order(inputs, score)
+  expect_identical(which(ord == 1L), 2L)
+  expect_identical(inputs$team_id[ord][c(3, 4)], c(5L, 4L))
+  # With a wide gap, the head-to-head result does not move them.
+  expect_identical(inputs$team_id[committee_order(inputs, c(5, 4, 10, 9, 6))][c(3, 4)], c(4L, 5L))
+})

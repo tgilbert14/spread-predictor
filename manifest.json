@@ -2048,7 +2048,7 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "31952cd6f7d3fcdbe268a5c5e46eceba"
+      "checksum": "fad992c8ef50b0ac1dd030b56655faa4"
     },
     "data/basketball/app_data.rds": {
       "checksum": "feeee7860ba41870ed9b778ab47e2159"
@@ -2081,7 +2081,7 @@
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
     "R/committee.R": {
-      "checksum": "638c1f78d8745f4b6efcb9f4100d454e"
+      "checksum": "6f412ace37e89fd0c0a441064480740d"
     },
     "R/config.R": {
       "checksum": "22764c423c39b38dbf3f9973473e1324"
