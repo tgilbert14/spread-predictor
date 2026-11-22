@@ -71,9 +71,10 @@ relying on any one detail.
 
 1. **A projected playoff field.** Built Nov. 22: the Rankings tab applies
    the bid rules to our predicted ranking (`R/playoff.R`).
-2. **A conference-champion input for Selection Day.** Championship games are
-   Dec. 5 and 6, right before the final ranking. The final ranking
-   historically moves the most, and the model has no input for it.
+2. **A conference-champion input for Selection Day.** Built Nov. 22. Title
+   games are found by date, the winners take the Power Four bids in the
+   projected field, and the committee model has a title-game input. Past
+   committees gave the title itself little credit beyond the win.
 3. **Plan for 24 teams next season.** The bid rules will change again. They
    live in one place, `PLAYOFF` in `R/config.R`.
 4. **Keep the "what the committee has done" lessons honest.** If the SEC gap

@@ -2048,7 +2048,7 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "af1551cfcbd0a133f81b3382adbbf6ff"
+      "checksum": "1dbd67e214cf53f02cd62ff8b64125cf"
     },
     "data/basketball/app_data.rds": {
       "checksum": "feeee7860ba41870ed9b778ab47e2159"
@@ -2081,7 +2081,7 @@
       "checksum": "b568d8579ca12c58e1c474e3ea8e3f11"
     },
     "R/committee.R": {
-      "checksum": "672272530e1f32c3f3f516a8f6011493"
+      "checksum": "279c02dc4f111806307100cdec95281e"
     },
     "R/config.R": {
       "checksum": "22764c423c39b38dbf3f9973473e1324"
@@ -2108,7 +2108,7 @@
       "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
     },
     "R/mod_rankings.R": {
-      "checksum": "d519f5dcd46f397aad9159e234aaa053"
+      "checksum": "a36ff635479d4dc324b6b5f7f4d66a41"
     },
     "R/mod_report.R": {
       "checksum": "0c64babe6c3f0d05695fbae73ecb1961"
@@ -2123,7 +2123,7 @@
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
     },
     "R/playoff.R": {
-      "checksum": "2e95882e9e6fe5e8896f6aacab523f33"
+      "checksum": "dc1e9859ce02a68faf898586847897d9"
     },
     "R/power_rating.R": {
       "checksum": "a536463398a411b72bb691a207c4410a"
@@ -2135,7 +2135,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/rankings.R": {
-      "checksum": "a9006206a897cd6aea9e82657cb1d133"
+      "checksum": "518e6b9b58504b648a7778ae263b6c4c"
     },
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"

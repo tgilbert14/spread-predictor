@@ -9,7 +9,7 @@ league <- data.frame(
 )
 by_rank <- function(ids) data.frame(rank = seq_along(ids), team_id = ids)
 
-test_that("champions, the best small-conference team and Notre Dame get in, then the best of the rest", {
+test_that("conference leaders, the best small-conference team and Notre Dame get in, then the best of the rest", {
   # SEC teams hold the top five; the Big 12's best is 15th; Notre Dame is 9th.
   ranking <- by_rank(c(2:6, 7, 8, 11, 1, 9, 12, 14, 10, 13, 15, 16, 17, 18, 19, 20))
   field <- playoff_field(ranking, league)
@@ -18,10 +18,10 @@ test_that("champions, the best small-conference team and Notre Dame get in, then
   expect_identical(field$seed, 1:12)
   expect_false(is.unsorted(field$rank))
   how <- stats::setNames(field$how, field$team_id)
-  expect_identical(unname(how["2"]), "SEC champion")
-  expect_identical(unname(how["7"]), "Big Ten champion")
-  expect_identical(unname(how["11"]), "ACC champion")
-  expect_identical(unname(how["14"]), "Big 12 champion")
+  expect_identical(unname(how["2"]), "SEC leader")
+  expect_identical(unname(how["7"]), "Big Ten leader")
+  expect_identical(unname(how["11"]), "ACC leader")
+  expect_identical(unname(how["14"]), "Big 12 leader")
   expect_identical(unname(how["1"]), "Notre Dame")
   # Team 17 (Sun Belt) is the best small-conference team, though 16th.
   expect_identical(unname(how["17"]), "Group of Six")
@@ -76,4 +76,42 @@ test_that("the field section needs a prediction with enough teams", {
   html <- as.character(playoff_section("t", demo))
   expect_match(html, "Projected playoff field", fixed = TRUE)
   expect_identical(lengths(regmatches(html, gregexpr("<tr", html))), 13L)
+})
+
+test_that("title games are the one same-conference game on the first December weekend", {
+  games <- data.frame(
+    start_date = c("2026-12-05T17:00:00.000Z",  # SEC title game
+                   "2026-12-06T01:00:00.000Z",  # Big Ten, Friday night out west
+                   "2026-11-28T20:00:00.000Z",  # SEC rivalry game, a week earlier
+                   "2026-12-12T20:00:00.000Z",  # Mountain West, a week later
+                   "2026-12-05T20:00:00.000Z"), # SEC v Big Ten, not a title game
+    neutral_site = c(TRUE, TRUE, FALSE, TRUE, TRUE),
+    week = c(14L, 14L, 13L, 15L, 14L),
+    home_id = c(2L, 7L, 3L, 18L, 4L), away_id = c(3L, 8L, 2L, 19L, 9L),
+    home_points = c(20, 10, 30, 21, 14), away_points = c(17, 24, 7, 14, 10)
+  )
+  champs <- conference_champions(games, league)
+  expect_setequal(champs$conference, c("SEC", "Big Ten"))
+  expect_identical(champs$team_id[champs$conference == "SEC"], 2L)
+  expect_identical(champs$team_id[champs$conference == "Big Ten"], 8L)
+  expect_identical(nrow(conference_champions(games[3, ], league)), 0L)
+  # A made-up game the same weekend: the neutral-site one is the title game.
+  makeup <- transform(games[1, ], neutral_site = FALSE, home_id = 4L, away_id = 5L)
+  champs <- conference_champions(rbind(games[1:2, ], makeup), league)
+  expect_identical(champs$team_id[champs$conference == "SEC"], 2L)
+})
+
+test_that("a real champion takes its conference's bid, even ranked low", {
+  ranking <- by_rank(c(2:6, 7, 8, 11, 1, 9, 12, 14, 10, 13, 15, 16, 17, 18, 19, 20))
+  champs <- data.frame(conference = "SEC", team_id = 20L, week = 14L)
+  field <- playoff_field(ranking, league, champs)
+  how <- stats::setNames(field$how, field$team_id)
+  expect_identical(unname(how["20"]), "SEC champion")
+  expect_identical(unname(how["2"]), "At-large")
+  expect_identical(unname(how["7"]), "Big Ten leader")
+  expect_equal(field$team_id[12], 20)
+  # A champion missing from the ranking is seeded last.
+  field <- playoff_field(ranking[ranking$team_id != 20, ], league, champs)
+  expect_equal(field$team_id[12], 20)
+  expect_true(is.na(field$rank[12]))
 })

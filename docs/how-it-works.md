@@ -399,16 +399,27 @@ example, the current weights, and how each prediction did. The same
 lessons are behind the info button on the Rankings tab. The committee's
 2026 rules and metrics are summarized in `docs/cfp-guidelines.md`.
 
-**What it cannot see.** Head-to-head results, common opponents, injuries
-and conference titles, which the committee says it weighs, and anything
-said in the room.
+**Conference titles.** Once the title games are played (the weekend before
+Selection Day), the update model has one more input: did the team win its
+conference title game. The data has no flag for title games, so
+`conference_champions()` in `R/playoff.R` finds them by date: each
+conference's one game against itself on the weekend of the first Saturday
+in December. That finds every champion from 2018 to 2025. Past committees
+gave the title itself very little extra credit (about a tenth of a place):
+the win over a good opponent already counts through strength of record, and
+a loss counts as a new loss. This season can learn otherwise.
+
+**What it cannot see.** Head-to-head results, common opponents and
+injuries, which the committee says it weighs, and anything said in the
+room.
 
 ### Projected playoff field
 
 `playoff_field()` in `R/playoff.R` applies the 2026-27 bid rules (`PLAYOFF`
 in `R/config.R`) to our prediction of the committee's next ranking: the
-best-ranked team in each Power Four conference (standing in for its
-champion until the title games), the best-ranked team from the other six
+real champion of each Power Four conference once its title game is played
+(before then, its best-ranked team stands in, labeled "leader"), the
+best-ranked team from the other six
 conferences, Notre Dame if it is in the top 12, then the best of the rest
 until there are 12. Seeds follow the ranking. The top four get byes, and 5
 hosts 12, 6 hosts 11, 7 hosts 10 and 8 hosts 9. The field grows to 24 in

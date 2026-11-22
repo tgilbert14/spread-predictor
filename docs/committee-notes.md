@@ -24,15 +24,16 @@ Learned from 2 rankings.
 
 | Input | Weight |
 |---|---|
-| total losses | -0.921 |
-| strength of record | +0.822 |
+| total losses | -0.920 |
+| strength of record | +0.823 |
 | how strong the team looks | +0.076 |
-| playing in a power conference | +1.995 |
-| its place in the last ranking | +0.466 |
+| playing in a power conference | +1.996 |
+| its place in the last ranking | +0.465 |
 | being ranked last time at all | +2.355 |
-| losing since the last ranking | -1.408 |
-| the quality of its wins since the last ranking | +3.616 |
-| being No. 1 last time and not losing since | +1.977 |
+| losing since the last ranking | -1.415 |
+| the quality of its wins since the last ranking | +3.606 |
+| being No. 1 last time and not losing since | +1.975 |
+| winning its conference title game | +0.059 |
 
 ### From resumes alone (before its first ranking)
 

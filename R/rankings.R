@@ -258,6 +258,7 @@ team_resumes <- function(played, power, tier, sigma, reference_rank = COMMITTEE_
 #'
 #' @param weights Named, one per input column used.
 committee_score <- function(resumes, weights) {
+  weights <- weights[names(weights) %in% names(resumes)]
   drop(as.matrix(resumes[names(weights)]) %*% weights)
 }
 

@@ -113,7 +113,8 @@ playoff_section <- function(title_id, app_data) {
   guess <- if (is.null(week) || is.na(week)) NULL else committee_guess(app_data, week)
   if (is.null(guess) || nrow(guess) < PLAYOFF$size) return(NULL)
   teams <- app_data$teams
-  field <- playoff_field(guess, teams)
+  played <- app_data$results[app_data$results$week < week, , drop = FALSE]
+  field <- playoff_field(guess, teams, conference_champions(played, teams))
   rows <- data.frame(
     seed = field$seed,
     team = vapply(field$team_id, function(id) {
@@ -132,7 +133,8 @@ playoff_section <- function(title_id, app_data) {
     htmltools::p(
       class = "section-lede",
       "The 2026 bid rules applied to our prediction of the committee's next ranking.",
-      "The four Power Four champions get in, plus the best team from the other six conferences,",
+      "The four Power Four champions get in (until a title game is played, its conference's leader stands in),",
+      "plus the best team from the other six conferences,",
       "Notre Dame if it is in the top 12, and the best of the rest. Seeds follow the ranking."
     ),
     simple_table(
