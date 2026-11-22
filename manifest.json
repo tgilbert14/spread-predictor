@@ -2150,7 +2150,7 @@
       "checksum": "d8757db1b85b1c1f8f02627d21f3fe3b"
     },
     "www/app.js": {
-      "checksum": "97696dddcd2f610cfa46ae52d37b298b"
+      "checksum": "eb7ed44c144eccf3d208a514233699ef"
     },
     "www/fonts/big-shoulders-display-latin-700-normal.woff2": {
       "checksum": "677f0a8821e508356d9c61a8d2c72627"
@@ -2174,7 +2174,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "b851bda14c5dcf62517c96a32c059432"
+      "checksum": "808419fd7dce5e5936eb93b546608ebd"
     }
   },
   "users": null

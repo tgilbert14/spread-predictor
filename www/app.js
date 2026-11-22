@@ -229,6 +229,20 @@
     Shiny.setInputValue(button.dataset.input, Number(button.dataset.gameId), { priority: 'event' });
   });
 
+  // Jump links. On Posit Connect the app sits in a frame, and on iPhones the
+  // frame is stretched to full height, so the outer page is what scrolls. A
+  // plain "#section" link only scrolls the frame and goes nowhere there.
+  // scrollIntoView scrolls every container it needs to, the outer page too.
+  $(document).on('click', '.jump-links a[href^="#"]', function (event) {
+    var target = document.getElementById(this.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Move keyboard and screen reader focus with the view.
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  });
+
   // When a tab changes, start at the top so the answer is in view.
   $(document).on('shown.bs.tab', function () { window.scrollTo(0, 0); });
 
