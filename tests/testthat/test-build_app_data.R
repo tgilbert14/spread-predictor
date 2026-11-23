@@ -17,7 +17,7 @@ app <- built$app
 
 test_that("app data has the shape in the data dictionary", {
   expect_named(app, c("meta", "teams", "params", "slate", "coverage", "scorecard",
-                      "history", "results", "polls", "forecasts", "committee_prior", "committee_guesses"))
+                      "history", "results", "upcoming", "polls", "forecasts", "committee_prior", "committee_guesses"))
   expect_named(app$meta, c("season", "week", "ratings_date", "built_at", "is_demo", "forecast_week"))
   # Week 10 is all played and week 11 is not, so week 11's ranking comes next.
   expect_identical(app$meta$forecast_week, FIXTURE_WEEK)
@@ -43,7 +43,7 @@ test_that("app data has the shape in the data dictionary", {
 
 test_that("column types match the demo data the app was built against", {
   demo <- demo_app_data()
-  for (element in c("teams", "slate", "coverage", "history", "results", "polls", "forecasts")) {
+  for (element in c("teams", "slate", "coverage", "history", "results", "upcoming", "polls", "forecasts")) {
     shared <- intersect(names(demo[[element]]), names(app[[element]]))
     expect_identical(vapply(app[[element]][shared], class, character(1)),
                      vapply(demo[[element]][shared], class, character(1)), label = element)

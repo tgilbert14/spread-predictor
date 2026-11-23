@@ -65,11 +65,12 @@ mod_rankings_ui <- function(id, app_data) {
           ),
           shiny::checkboxInput(ns("all"), "Show every team", value = FALSE)
         ),
+        ranking_view_input(ns("view")),
         htmltools::div(class = "rank-wrap", DT::DTOutput(ns("table"))),
         shiny::uiOutput(ns("table_note"))
       )
     ),
-    forecast_section(ns("forecast-title"), app_data),
+    forecast_section(ns("forecast-title"), app_data, ns),
     playoff_section(ns("playoff-title"), app_data),
     htmltools::tags$section(
       class = "evidence", `aria-labelledby` = ns("committee-title"),
@@ -83,7 +84,7 @@ mod_rankings_ui <- function(id, app_data) {
 
 #' "Predicting the committee": our saved prediction of its next ranking,
 #' and how the earlier ones did. NULL when there is nothing to show.
-forecast_section <- function(title_id, app_data) {
+forecast_section <- function(title_id, app_data, ns = NULL) {
   record <- forecast_record(app_data$forecasts, app_data$polls)
   upcoming <- upcoming_forecast(app_data)
   if (is.null(upcoming) && nrow(record) == 0) return(NULL)
@@ -100,7 +101,11 @@ forecast_section <- function(title_id, app_data) {
     ),
     htmltools::div(
       class = "committee-grid",
-      if (!is.null(upcoming)) upcoming_forecast_table(upcoming, app_data),
+      if (!is.null(upcoming)) {
+        # With a module id the table can switch views; without one it is fixed.
+        if (is.null(ns)) upcoming_forecast_table(upcoming, app_data) else
+          htmltools::div(ranking_view_input(ns("forecast_view")), shiny::uiOutput(ns("forecast_table")))
+      },
       if (nrow(record) > 0) forecast_record_table(record)
     )
   )
@@ -193,16 +198,31 @@ upcoming_forecast <- function(app_data) {
 }
 
 #' The predicted top 25, with where the committee had each team last time.
-upcoming_forecast_table <- function(upcoming, app_data) {
+#'
+#' @param view "ranks", or "last" or "next" to show each team's last result
+#'   or next game in place of the last ranking and the move.
+#' @param sides What football_team_games() returns; needed for those views.
+upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = NULL) {
   rows <- upcoming$rows
   teams <- app_data$teams
   record <- records_before(app_data$results, upcoming$week, rows$team_id)
+  team <- vapply(seq_len(nrow(rows)), function(i) {
+    team <- teams[teams$team_id == rows$team_id[i], , drop = FALSE]
+    team_name_html(team, if (nrow(team) == 1) team$school else "Unknown")
+  }, character(1))
+  if (view != "ranks" && !is.null(sides)) {
+    games <- football_games_column(app_data, sides, rows$team_id, upcoming$week, view)
+    return(simple_table(
+      data.frame(rank = rows$rank, team = team, record = record, games = games$html, stringsAsFactors = FALSE),
+      headers = list("We predict", "Team", "Record", games$header),
+      numeric = c(TRUE, FALSE, FALSE, FALSE), html = c(FALSE, TRUE, FALSE, TRUE),
+      caption = sprintf("Our prediction of the committee's week %d ranking, with each team's %s.",
+                        upcoming$week, if (view == "last") "last result" else "next game and our line for it")
+    ))
+  }
   table_rows <- data.frame(
     rank = rows$rank,
-    team = vapply(seq_len(nrow(rows)), function(i) {
-      team <- teams[teams$team_id == rows$team_id[i], , drop = FALSE]
-      team_name_html(team, if (nrow(team) == 1) team$school else "Unknown")
-    }, character(1)),
+    team = team,
     record = record,
     last = ifelse(is.na(rows$prev_cfp), "NR", as.character(rows$prev_cfp)),
     move = format_move(ifelse(is.na(rows$prev_cfp), NA, rows$prev_cfp - rows$rank)),
@@ -407,6 +427,56 @@ committee_block <- function(ranking, teams, week) {
   )
 }
 
+# Last game and next game ---------------------------------------------------------
+
+#' Every team's football games this season, played and still to come.
+football_team_games <- function(app_data) {
+  played <- app_data$results
+  ahead <- app_data$upcoming
+  played$when <- played$week
+  ahead$when <- ahead$week
+  ahead$home_points <- rep(NA_integer_, nrow(ahead))
+  ahead$away_points <- rep(NA_integer_, nrow(ahead))
+  shared <- function(df) {
+    for (name in c("home_team", "away_team")) if (!name %in% names(df)) df[[name]] <- rep(NA_character_, nrow(df))
+    df[c("home_id", "away_id", "home_team", "away_team", "neutral_site", "start_date", "when",
+         "home_points", "away_points")]
+  }
+  team_games(rbind(shared(played), shared(ahead)), app_data$teams)
+}
+
+#' The games column for a football table: each team's last result before a
+#' week, or its game that week (the next one, with our line, when the week
+#' is still to be played).
+#'
+#' @param view "last" or "next".
+#' @return list(html, header).
+football_games_column <- function(app_data, sides, team_ids, week, view) {
+  if (view == "last") {
+    return(list(html = result_html(last_games(sides, team_ids, before = week)), header = "Last game"))
+  }
+  games <- next_games(sides, team_ids, from = week)
+  # Ratings as they stood for that week; a week still ahead uses the latest.
+  teams <- snapshot_teams(app_data, min(week, app_data$meta$week))
+  line <- our_lines(games, teams, function(team, opponent, site) {
+    predict_matchup(team, opponent, site, teams, app_data$params, week = week)$spread
+  })
+  # Looking back at a week already played, "next" is that week's game.
+  played <- all(!is.na(games$points_for[!is.na(games$team_id)])) && any(!is.na(games$team_id))
+  list(html = upcoming_html(games, line), header = if (played) sprintf("Week %d game", week) else "Next game")
+}
+
+#' Which week splits "last game" from "next game" for a ranking as of `week`.
+#'
+#' An earlier week is a look back, so the split is that week. The latest
+#' ranking is the one people read as "now", and its week's games may already
+#' be over, so it splits at the first week still to be played.
+games_week <- function(app_data, week) {
+  if (week < app_data$meta$week) return(week)
+  ahead <- app_data$upcoming$week
+  max(week, app_data$meta$forecast_week, if (length(ahead) > 0) min(ahead), na.rm = TRUE)
+}
+
 # Server ------------------------------------------------------------------------
 
 #' @param app_data See docs/data-dictionary.md.
@@ -433,10 +503,25 @@ mod_rankings_server <- function(id, app_data) {
       kind <- tolower(RANKING_KINDS[[by()]])
       if (isTRUE(input$all)) sprintf("Every team: %s", kind) else sprintf("Top %d: %s", RANKINGS_SHOWN, kind)
     })
-    output$table <- DT::renderDT(rankings_table(ranking_rows(shown(), app_data$teams, by()), by()))
+    sides <- football_team_games(app_data)
+    output$table <- DT::renderDT({
+      view <- ranking_view(input$view)
+      rows <- ranking_rows(shown(), app_data$teams, by())
+      if (view == "ranks") return(rankings_table(rows, by()))
+      split <- games_week(app_data, week())
+      games <- football_games_column(app_data, sides, shown()$team_id, split, view)
+      # The record counts every game up to the ones shown.
+      record <- records_before(app_data$results, split, shown()$team_id)
+      games_view_table(rows$rank, rows$team, record, games$html, games$header)
+    })
+    output$forecast_table <- shiny::renderUI({
+      upcoming <- upcoming_forecast(app_data)
+      if (!is.null(upcoming)) upcoming_forecast_table(upcoming, app_data, ranking_view(input$forecast_view), sides)
+    })
     output$table_note <- shiny::renderUI({
       notes <- c(
-        "Record is going into that week's games.",
+        if (ranking_view(input$view) == "ranks") "Record is going into that week's games." else
+          "Record counts every game before the ones shown as next.",
         if (by() == "blend" && all(is.na(ranking()$change))) {
           "Move needs the week before to blend the same systems, so it is blank here."
         },

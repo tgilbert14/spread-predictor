@@ -50,7 +50,29 @@ report_section <- function(title, body, badge = NULL) {
 #' TRUE when a params table has rows to show.
 has_rows <- function(df) is.data.frame(df) && nrow(df) > 0
 
+#' The four steps from ratings to a win chance, each in a line, with the
+#' full explanation folded under them.
 how_it_works <- function() {
+  step <- function(n, title, text) {
+    htmltools::tags$li(
+      class = "step",
+      htmltools::span(class = "step-number", `aria-hidden` = "true", n),
+      htmltools::div(htmltools::p(class = "step-title", title), htmltools::p(class = "step-text", text))
+    )
+  }
+  htmltools::tagList(
+    htmltools::tags$ol(
+      class = "steps",
+      step(1, "Rate every team", "Five systems score each team: SP+, FPI, SRS, Elo and our own Power rating."),
+      step(2, "Turn gaps into points", "Each system's gap between two teams becomes a predicted margin."),
+      step(3, "Blend and add home field", "The five margins are averaged, plus a few points for the home team."),
+      step(4, "Margin to win chance", "Past results tell us how often a margin that size holds up.")
+    ),
+    chart_details("Read the full explanation", how_it_works_prose())
+  )
+}
+
+how_it_works_prose <- function() {
   htmltools::div(
     class = "prose",
     htmltools::p(
@@ -148,14 +170,25 @@ param_cards <- function(params) {
       paste("Week 1 points added to Elo and Power for a one standard deviation edge in roster",
             "talent or returning production. Fades to nothing by week 7.")
     ),
-    stat_card(
-      method,
-      htmltools::span(class = "weights", lapply(names(weights), function(m) {
-        htmltools::span(class = "weight-chip", MODEL_LABELS[[m]], htmltools::strong(format_weight(weights[[m]])))
-      })),
-      method_help
+    htmltools::div(
+      class = "card stat-card stat-card-wide",
+      htmltools::div(
+        class = "card-body",
+        htmltools::p(class = "stat-label", method),
+        share_strip(unname(MODEL_LABELS[names(weights)]), unname(weights)),
+        htmltools::p(class = "stat-help", method_help)
+      )
     )
   )
+}
+
+#' Average miss for each forecast on one scale, with the closing line as
+#' the line to beat. Best at the top.
+forecast_chart <- function(metrics) {
+  ranked <- metrics[order(metrics$mae), , drop = FALSE]
+  dot_chart(ranked$label, ranked$mae, highlight = ranked$model == "house",
+            benchmark = ranked$model == "line", note = "Average miss in points. Left is better.",
+            detail = sprintf("Picked %.0f%% of winners", ranked$win_rate * 100))
 }
 
 accuracy_block <- function(metrics) {
@@ -165,9 +198,12 @@ accuracy_block <- function(metrics) {
                  "Each past season is predicted by a fit on the other seasons, so no forecast saw its own games. ",
                  "The closing line is the benchmark. It is the betting market's final number and the ",
                  "hardest public forecast to beat, so getting close to it is the goal."),
-    forecast_table(metrics),
-    htmltools::p(class = "fine-print",
-                 "Avg miss: average gap between predicted and real margin. Brier: error in the win chances, lower is better.")
+    forecast_chart(metrics),
+    chart_details(
+      "See the numbers", forecast_table(metrics),
+      htmltools::p(class = "fine-print",
+                   "Avg miss: average gap between predicted and real margin. Brier: error in the win chances, lower is better.")
+    )
   )
 }
 
@@ -181,7 +217,8 @@ holdout_block <- function(params) {
                  sprintf("The %s games played so far, predicted with numbers fitted on %s only. ",
                          params$holdout_season, format_seasons(seasons)),
                  "The fit never saw these games, so this is the plainest test of how it does now."),
-    forecast_table(params$holdout)
+    forecast_chart(params$holdout),
+    chart_details("See the numbers", forecast_table(params$holdout))
   )
 }
 
@@ -254,11 +291,18 @@ folds_block <- function(folds) {
   )
   htmltools::tagList(
     htmltools::p(class = "section-lede",
-                 "Each row fits on every other season and tests on this one. Steady numbers mean the fit is not a fluke. ",
-                 "Power scale turns a Power rating gap into points, and avg miss is for the Elo and Power average."),
-    simple_table(rows, c("Held-out season", "Elo per point", "Conference edge", "Power scale",
-                         "Home field", "Typical miss", "Avg miss"),
-                 numeric = c(FALSE, rep(TRUE, 6)))
+                 "Each season is predicted by a fit on every other season. Dots close together mean the ",
+                 "fit is steady and not a fluke of one year."),
+    dot_chart(as.character(folds$season), folds$mae,
+              note = "Average miss in points for the Elo and Power average. Left is better."),
+    chart_details(
+      "See what each fit learned",
+      htmltools::p(class = "fine-print",
+                   "Power scale turns a Power rating gap into points. Avg miss is for the Elo and Power average."),
+      simple_table(rows, c("Held-out season", "Elo per point", "Conference edge", "Power scale",
+                           "Home field", "Typical miss", "Avg miss"),
+                   numeric = c(FALSE, rep(TRUE, 6)))
+    )
   )
 }
 
@@ -270,7 +314,9 @@ leaked_block <- function(leaked) {
     htmltools::p(class = "section-lede",
                  "These use end-of-season ratings that already know how every game turned out, so they look ",
                  "better than any real forecast can. We keep them only to catch bugs."),
-    simple_table(rows, c("Rating system", "Games", "Avg miss (pts)"), numeric = c(FALSE, TRUE, TRUE))
+    dot_chart(unname(label), leaked$mae, note = "Average miss in points"),
+    chart_details("See the numbers",
+                  simple_table(rows, c("Rating system", "Games", "Avg miss (pts)"), numeric = c(FALSE, TRUE, TRUE)))
   )
 }
 
@@ -309,21 +355,17 @@ coverage_block <- function(coverage) {
   if (!has_rows(coverage)) return(empty_state("No snapshots yet.", "Run the data refresh to start collecting them."))
   cov <- coverage_grid(coverage)
   any_missing <- any(cov$missing)
-  # Mark missing cells so they read as a problem, in words as well as color.
-  grid <- cov$grid
-  for (j in seq_along(RATING_SOURCES)) {
-    col <- RATING_SOURCES[j]
-    grid[[col]] <- lapply(seq_len(nrow(grid)), function(i) {
-      if (cov$missing[i, j]) htmltools::span(class = "pill pill-warn", "Missing") else grid[[col]][i]
-    })
-  }
+  hover <- as.matrix(cov$grid[RATING_SOURCES])
   htmltools::tagList(
     htmltools::p(class = "section-lede",
-                 if (any_missing) "Some weekly snapshots are missing. They are marked below."
+                 if (any_missing) "Some weekly snapshots are missing. They are the marked tiles below."
                  else "Every week has a snapshot from every published rating system."),
-    simple_table(grid, c("Season", "Week", unname(MODEL_LABELS[RATING_SOURCES])),
-                 numeric = c(FALSE, FALSE, rep(TRUE, length(RATING_SOURCES))),
-                 row_class = ifelse(rowSums(cov$missing) > 0, "has-missing", ""))
+    tile_grid(sprintf("%s, %s", cov$grid$season,
+                      ifelse(cov$grid$week == "Final", "final", paste("week", cov$grid$week))),
+              unname(MODEL_LABELS[RATING_SOURCES]), ok = !cov$missing, hover = hover),
+    htmltools::p(class = "fine-print",
+                 "A filled tile is a saved snapshot. Three of these systems publish no history, ",
+                 "so a missed week cannot be recovered.")
   )
 }
 

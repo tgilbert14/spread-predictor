@@ -1,8 +1,8 @@
-_Generated file: written by scripts/audit.R on 2026-11-22 from cfb.sqlite (1,320 teams, 8,658 games, 27,953 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats). Do not edit by hand; rerun the script._
+_Generated file: written by scripts/audit.R on 2026-11-23 from cfb.sqlite (1,320 teams, 8,658 games, 27,953 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats). Do not edit by hand; rerun the script._
 
 # Data audit
 
-Checked on 2026-11-22. Rows checked: 1,320 teams, 8,658 games, 27,953 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats.
+Checked on 2026-11-23. Rows checked: 1,320 teams, 8,658 games, 27,953 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats.
 
 No check that could corrupt the model found anything.
 6 other check(s) flagged rows worth a look.

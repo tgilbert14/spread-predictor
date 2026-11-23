@@ -131,6 +131,7 @@ mod_cbb_rankings_ui <- function(id, cbb) {
           ),
           shiny::checkboxInput(ns("all"), "Show every team", value = FALSE)
         ),
+        ranking_view_input(ns("view")),
         htmltools::div(class = "rank-wrap", DT::DTOutput(ns("table"))),
         htmltools::p(class = "fine-print",
                      "Early in the season a few games decide a lot, so the earned-it ranking moves fast.",
@@ -245,6 +246,32 @@ cbb_rankings_table <- function(rows, by = "blend") {
   )
 }
 
+#' Every team's basketball games: this season's results and the slate ahead.
+cbb_team_games <- function(cbb) {
+  shape <- function(df, played) {
+    data.frame(home_id = df$home_id, away_id = df$away_id, neutral_site = df$neutral_site,
+               start_date = if ("start_date" %in% names(df)) df$start_date else paste0(df$day, "T18:00:00Z"),
+               when = as.numeric(as.Date(df$day)),
+               home_points = if (played) df$home_points else rep(NA_integer_, nrow(df)),
+               away_points = if (played) df$away_points else rep(NA_integer_, nrow(df)),
+               stringsAsFactors = FALSE)
+  }
+  team_games(rbind(shape(cbb$results, TRUE), shape(cbb$slate, FALSE)), cbb$teams)
+}
+
+#' The games column for the basketball table: each team's last result, or
+#' its next game on the slate with our line.
+cbb_games_column <- function(cbb, sides, team_ids, view) {
+  if (view == "last") return(list(html = result_html(last_games(sides, team_ids)), header = "Last game"))
+  ahead <- sides[is.na(sides$points_for), , drop = FALSE]
+  games <- next_games(ahead, team_ids)
+  line <- our_lines(games, cbb$teams, function(team, opponent, site) {
+    cbb_predict(team, opponent, site, cbb$teams, cbb$params)$spread
+  })
+  # The slate only reaches a few days ahead.
+  list(html = upcoming_html(games, line, none = "None in the next few days"), header = "Next game")
+}
+
 # Server ------------------------------------------------------------------------
 
 #' @return list(load = function(matchup)): opens list(a, b, site) on the page.
@@ -322,6 +349,13 @@ mod_cbb_rankings_server <- function(id, cbb) {
       kind <- tolower(RANKING_KINDS[[by()]])
       if (isTRUE(input$all)) sprintf("Every team: %s", kind) else sprintf("Top %d: %s", RANKINGS_SHOWN, kind)
     })
-    output$table <- DT::renderDT(cbb_rankings_table(cbb_ranking_rows(shown(), cbb$teams, by()), by()))
+    sides <- cbb_team_games(cbb)
+    output$table <- DT::renderDT({
+      view <- ranking_view(input$view)
+      rows <- cbb_ranking_rows(shown(), cbb$teams, by())
+      if (view == "ranks") return(cbb_rankings_table(rows, by()))
+      games <- cbb_games_column(cbb, sides, shown()$team_id, view)
+      games_view_table(rows$rank, rows$team, rows$record, games$html, games$header)
+    })
   })
 }

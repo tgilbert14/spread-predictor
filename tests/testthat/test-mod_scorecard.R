@@ -56,7 +56,7 @@ test_that("the demo scorecard renders every section", {
   expect_match(html, "Off by [0-9.]+ points a game\\. The market: [0-9.]+\\.")
   for (text in c("Games graded", "Winners picked", "Closer than the market",
                  "When we disagreed by 3 or more", "Week by week", "All five systems, graded",
-                 "first honest look", "too little to judge a model", "Week 10 games")) {
+                 "first honest look", "too little to judge a model", "Game by game")) {
     expect_match(html, text, fixed = TRUE)
   }
   expect_false(grepl("—", html))  # no em dashes

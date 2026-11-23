@@ -1,7 +1,7 @@
 # Scorecard tab: how our saved predictions did once the games were played.
-# Answer first (the season's average miss next to the market's), then the
-# figures behind it, week by week, system by system, and the latest week's
-# games. Every number comes from app_data$scorecard (R/predictions.R).
+# Answer first (a scoreboard: our average miss next to the market's), then
+# charts for the figures behind it: week by week, system by system, and the
+# biggest calls of any graded week. Tables are folded under each chart. Every number comes from app_data$scorecard (R/predictions.R).
 
 # Hidden sort keys sit after the visible columns (0-based for DT).
 SCORECARD_VISIBLE <- c("Matchup", "Our line", "Market", "Final", "Closer")
@@ -27,36 +27,65 @@ mod_scorecard_ui <- function(id, app_data) {
     ))
   }
 
-  latest_week <- max(scorecard$weeks$week)
+  weeks <- sort(scorecard$weeks$week, decreasing = TRUE)
   htmltools::div(
     class = "page-wide",
     htmltools::tags$section(
-      class = "scorecard-summary", `aria-label` = "Season to date",
-      htmltools::tags$h2(
-        class = "scorecard-headline",
-        htmltools::span(class = "scorecard-answer", scorecard_headline(season)),
-        " ",
-        htmltools::span(class = "headline-context", scorecard_context(season, nrow(scorecard$weeks)))
-      ),
-      htmltools::p(class = "section-lede",
-                   "Miss is how many points our line landed from the final margin. ",
-                   "The market is the sportsbook line when our prediction was saved, before kickoff."),
-      report_grid(scorecard_stats(season), min_width = "200px"),
+      class = "scorecard-summary", `aria-labelledby` = ns("title"),
+      # The sentence is the heading for screen readers; the scoreboard shows
+      # the same two numbers large.
+      htmltools::tags$h2(id = ns("title"), class = "visually-hidden", scorecard_headline(season)),
+      scoreboard(season, nrow(scorecard$weeks)),
+      htmltools::div(class = "ring-row", scorecard_stats(season)),
       htmltools::p(class = "fine-print small-sample", SMALL_SAMPLE_NOTE)
     ),
-    report_section("Week by week",
-                   htmltools::div(class = "scorecard-weeks", scorecard_weeks_table(scorecard$weeks))),
-    report_section("All five systems, graded", htmltools::tagList(
-      htmltools::p(class = "section-lede",
-                   "The first honest look at all five systems: every line here was saved before ",
-                   "kickoff, so none of them had seen the result."),
-      scorecard_systems_table(scorecard$systems)
+    report_grid(list(
+      report_section("Week by week", scorecard_weeks_block(scorecard$weeks)),
+      report_section("All five systems, graded", scorecard_systems_block(scorecard$systems))
     )),
-    report_section(sprintf("Week %s games", latest_week), htmltools::tagList(
+    report_section("Game by game", htmltools::tagList(
       htmltools::p(class = "section-lede",
-                   sprintf("Every game we saved for week %s, and how it finished.", latest_week)),
-      htmltools::div(class = "slate-wrap", DT::DTOutput(ns("games")))
+                   "Pick a week. The chart shows the games where we and the market were furthest apart ",
+                   "in how close we got. Every game is in the table under it."),
+      htmltools::div(
+        class = "week-pills",
+        shiny::radioButtons(ns("week"), label = "Week", inline = TRUE, selected = weeks[1],
+                            choiceNames = paste("Week", weeks), choiceValues = weeks)
+      ),
+      shiny::uiOutput(ns("calls")),
+      chart_details("Every game that week",
+                    htmltools::div(class = "slate-wrap", DT::DTOutput(ns("games"))))
     ))
+  )
+}
+
+#' The season's answer as a scoreboard: our average miss against the
+#' market's, with who is ahead.
+scoreboard <- function(season, n_weeks) {
+  side <- function(class, name, miss) {
+    htmltools::div(
+      class = paste("score", class),
+      htmltools::span(class = "score-name", name),
+      htmltools::span(class = "score-num", `data-count` = if (!is.na(miss)) "",
+                      if (is.na(miss)) "No line" else sprintf("%.1f", miss)),
+      htmltools::span(class = "score-unit", "points off a game")
+    )
+  }
+  gap <- season$our_miss - season$market_miss
+  verdict <- if (is.na(gap)) NULL else if (abs(gap) < 0.05) "Dead even with the market." else
+    sprintf("%s by %.1f. Lower is better.", if (gap < 0) "We lead" else "The market leads", abs(gap))
+  htmltools::div(
+    class = "scoreboard", `aria-hidden` = "true",
+    htmltools::div(
+      class = "scoreboard-sides",
+      side("is-ours", "Our line", season$our_miss),
+      htmltools::span(class = "score-vs", "vs"),
+      side("is-theirs", "The market", season$market_miss)
+    ),
+    htmltools::p(class = "scoreboard-note",
+                 if (!is.null(verdict)) htmltools::strong(verdict), " ",
+                 scorecard_context(season, n_weeks),
+                 " The market is the sportsbook line when our prediction was saved, before kickoff.")
   )
 }
 
@@ -108,27 +137,69 @@ format_record <- function(wins, total) {
   ifelse(total == 0, "None", sprintf("%d of %d", as.integer(wins), as.integer(total)))
 }
 
-#' The row of figures under the headline.
+#' "46%", or "None" when there was nothing to count.
+format_share <- function(wins, total) if (total == 0) "None" else sprintf("%.0f%%", wins / total * 100)
+
+#' The row of rings under the scoreboard.
 scorecard_stats <- function(season) {
   market_closer <- season$market_games - season$closer - season$ties
+  share <- function(wins, total) if (total == 0) NA else wins / total
   list(
-    stat_card("Games graded", format(season$games, big.mark = ","),
-              "Every one was saved before kickoff."),
-    stat_card("Winners picked", sprintf("%.0f%%", season$winner_share * 100),
-              sprintf("%s games.", format_record(season$winners, season$games))),
-    stat_card("Closer than the market", format_record(season$closer, season$market_games),
-              sprintf("Games where our line landed nearer the final margin. The market was closer in %d%s.",
-                      market_closer, if (season$ties > 0) sprintf(", and %d were even", season$ties) else "")),
-    stat_card(sprintf("When we disagreed by %d or more", DISAGREE_POINTS),
-              format_record(season$disagree_our_side, season$disagree_games),
-              sprintf(paste("Games where our line and the market's were %d or more points apart",
-                            "and the result landed on our side of the market line. Pushes are left out."),
-                      DISAGREE_POINTS))
+    ring_stat("Winners picked", season$winner_share, sprintf("%.0f%%", season$winner_share * 100),
+              sprintf("%s games. Games graded: %s, every one saved before kickoff.",
+                      format_record(season$winners, season$games), format(season$games, big.mark = ","))),
+    ring_stat("Closer than the market", share(season$closer, season$market_games),
+              format_share(season$closer, season$market_games),
+              sprintf("Our line landed nearer the final margin in %s games. The market was closer in %d%s.",
+                      format_record(season$closer, season$market_games), market_closer,
+                      if (season$ties > 0) sprintf(", and %d were even" , season$ties) else "")),
+    ring_stat(sprintf("When we disagreed by %d or more", DISAGREE_POINTS),
+              share(season$disagree_our_side, season$disagree_games),
+              format_share(season$disagree_our_side, season$disagree_games),
+              sprintf(paste("%s games where our line and the market's were %d or more points apart",
+                            "landed on our side of the market line. Pushes are left out."),
+                      format_record(season$disagree_our_side, season$disagree_games), DISAGREE_POINTS))
   )
 }
 
 #' Average miss as shown in tables: one decimal, or "No line" when unknown.
 format_miss <- function(x) ifelse(is.na(x), "No line", sprintf("%.1f", x))
+
+#' Our miss against the market's, week by week, with the table behind it.
+scorecard_weeks_block <- function(weeks) {
+  weeks <- weeks[order(weeks$week), , drop = FALSE]
+  closer_market <- weeks$market_games - weeks$closer - weeks$ties
+  htmltools::tagList(
+    htmltools::p(class = "section-lede", "Average points off the final margin. Further left is better."),
+    dumbbell_chart(paste("Week", weeks$week), weeks$our_miss, weeks$market_miss,
+                   note = "Average miss in points"),
+    htmltools::p(class = "chart-subhead", "Games where each was closer"),
+    htmltools::div(class = "versus-list", lapply(seq_len(nrow(weeks)), function(i) {
+      htmltools::div(
+        class = "versus-row",
+        htmltools::span(class = "chart-label", paste("Week", weeks$week[i])),
+        versus_bar(weeks$closer[i], closer_market[i], weeks$ties[i])
+      )
+    })),
+    chart_details("See the numbers", htmltools::div(class = "scorecard-weeks", scorecard_weeks_table(weeks)))
+  )
+}
+
+#' Every system's average miss on one scale, best at the top.
+scorecard_systems_block <- function(systems) {
+  ranked <- systems[order(systems$avg_miss), , drop = FALSE]
+  htmltools::tagList(
+    htmltools::p(class = "section-lede",
+                 "The first honest look at all five systems: every line here was saved before ",
+                 "kickoff, so none of them had seen the result. Best at the top."),
+    dot_chart(ranked$label, ranked$avg_miss, highlight = ranked$system == "blend",
+              benchmark = ranked$system == "market", note = "Average miss in points. Left is better.",
+              benchmark_label = "Sportsbooks"),
+    htmltools::p(class = "fine-print",
+                 "Blend is the line the app shows. Market is the sportsbook line when we saved ours. ",
+                 sprintf("%s games each.", format(max(systems$games), big.mark = ",")))
+  )
+}
 
 scorecard_weeks_table <- function(weeks) {
   # No games column: the winners record ("9 of 12") already says how many,
@@ -248,13 +319,52 @@ scorecard_games_table <- function(rows) {
   )
 }
 
+#' The games of one week where we and the market differed most in how close
+#' we got: our best calls and theirs.
+#'
+#' @param games Graded games of one week (scorecard$games rows).
+#' @param each How many to show on each side.
+scorecard_calls <- function(games, each = 5) {
+  games <- games[!is.na(games$market_error), , drop = FALSE]
+  if (nrow(games) == 0) return(empty_state("No market line was saved for these games.",
+                                           "There is nothing to compare our line against."))
+  games$edge <- games$market_error - games$our_error  # positive: we were closer
+  ours <- games[games$edge > 0, , drop = FALSE]
+  theirs <- games[games$edge < 0, , drop = FALSE]
+  shown <- rbind(utils::head(ours[order(-ours$edge), , drop = FALSE], each),
+                 utils::head(theirs[order(theirs$edge), , drop = FALSE], each))
+  if (nrow(shown) == 0) return(empty_state("Even all week.", "Our line and the market's landed equally close."))
+  joiner <- ifelse(shown$neutral_site == 1, "vs", "at")
+  in_words <- function(home_margin, i) format_favorite(-home_margin, shown$away_team[i], shown$home_team[i])
+  hover <- vapply(seq_len(nrow(shown)), function(i) {
+    sprintf("Our line: %s. Market: %s. Final: %s.", in_words(shown$blend[i], i),
+            in_words(-shown$market_spread_home[i], i),
+            format_final(shown$home_team[i], shown$away_team[i], shown$home_points[i], shown$away_points[i]))
+  }, character(1))
+  htmltools::tagList(
+    htmltools::div(class = "versus-row versus-total",
+                   versus_bar(nrow(ours), nrow(theirs), sum(games$edge == 0), "We were closer", "Market was closer")),
+    htmltools::p(class = "chart-subhead", "The biggest swings each way, in points closer to the final margin"),
+    swing_chart(paste(shown$away_team, joiner, shown$home_team), shown$edge,
+                text = format_points(abs(shown$edge)), hover = hover),
+    htmltools::p(class = "fine-print", "Tap a game for both lines and the final score.")
+  )
+}
+
 #' @param app_data See docs/data-dictionary.md.
 mod_scorecard_server <- function(id, app_data) {
   shiny::moduleServer(id, function(input, output, session) {
     scorecard <- app_data$scorecard
     if (scorecard$season$games == 0) return(invisible(NULL))
     graded <- scorecard$games[!is.na(scorecard$games$final_margin), , drop = FALSE]
-    latest <- graded[graded$week == max(graded$week), , drop = FALSE]
-    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(latest, app_data$teams)))
+    picked <- shiny::reactive({
+      week <- suppressWarnings(as.integer(input$week))
+      if (length(week) != 1 || is.na(week) || !week %in% graded$week) week <- max(graded$week)
+      graded[graded$week == week, , drop = FALSE]
+    })
+    output$calls <- shiny::renderUI(scorecard_calls(picked()))
+    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(picked(), app_data$teams)))
+    # The table sits in a folded section; draw it anyway so it is there on opening.
+    shiny::outputOptions(output, "games", suspendWhenHidden = FALSE)
   })
 }
