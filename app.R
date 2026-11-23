@@ -79,6 +79,13 @@ server <- function(input, output, session) {
   }
   mod_slate_server("slate", app_data, notes, on_open = open_matchup)
   mod_rankings_server("rankings", app_data)
+
+  # Tapping a team's name in a ranking table opens its team page.
+  team_sides <- football_team_games(app_data)
+  observeEvent(input$team_open, {
+    dialog <- team_modal(app_data, suppressWarnings(as.integer(input$team_open)), team_sides)
+    if (!is.null(dialog)) showModal(dialog)
+  })
   mod_scorecard_server("scorecard", app_data)
   mod_report_server("report", app_data)
 

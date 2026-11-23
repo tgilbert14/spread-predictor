@@ -61,6 +61,20 @@ sportsbooks' line when we hold one). Each opponent shows its logo and
 ranking. Looking back at an earlier week, it shows that week's game and how
 it finished.
 
+**Team pages.** Tap a team's name in the Top 50, the committee prediction
+or the projected field to open its page: record, where it ranks in the
+polls and in our two rankings, its Power rating week by week, its poll
+history, and every game, with our line on the ones still to play.
+
+**Toss-ups and the Group of Six race.** In the committee prediction, two
+neighbors the model has nearly level are tagged as a toss-up. Under the
+projected field, the Group of Six race lists the teams in line for the one
+bid that goes to the best team from the six smaller conferences.
+
+**Share a game.** Each game on This week has a share button. On a phone it
+opens the share sheet; elsewhere it copies a sentence with our line and a
+link that opens the game.
+
 **Rankings beside names.** Wherever a team is named in a matchup (This
 week, the Matchup header, the Scorecard), a small number shows the playoff
 committee's latest ranking, or the AP poll before the committee starts.

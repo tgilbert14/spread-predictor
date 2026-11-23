@@ -192,7 +192,7 @@ cbb_slate_rows <- function(cbb, day, open_input_id, ranks = NULL) {
     pred <- tryCatch(cbb_predict(matchup$a, matchup$b, matchup$site, cbb$teams, cbb$params),
                      error = function(e) NULL)
     if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id, ranks = ranks)
+    slate_row(pred, game, open_input_id, ranks = ranks, share_link = FALSE)
   })
   do.call(rbind, rows)
 }

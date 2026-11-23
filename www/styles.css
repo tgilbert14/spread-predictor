@@ -974,3 +974,65 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
   .game-body { max-width: 11.25rem; }
   .game-opp .team-rank { margin-right: 0.15rem; }
 }
+
+/* Team names that open a team page. */
+.team-link {
+  border: 0; background: transparent; padding: 0; margin: 0; font: inherit; color: inherit; cursor: pointer;
+  text-align: left; border-radius: 4px;
+}
+.team-link .slate-team { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color 0.15s, color 0.15s; }
+.team-link:hover .slate-team { color: var(--ours); text-decoration-color: currentColor; }
+.team-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* A near-tie in the predicted ranking. */
+.tossup {
+  display: inline-block; margin-left: 0.5rem; padding: 0 0.45rem; border-radius: 999px; white-space: nowrap;
+  font-size: 0.72rem; font-weight: 700; color: var(--warn); border: 1px solid currentColor; vertical-align: 0.1em;
+}
+@media (max-width: 575.98px) { .tossup { display: table; margin: 0.15rem 0 0 0; } }
+
+/* Share one game. */
+.btn-share {
+  position: relative; display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0;
+  margin-right: 0.35rem; border: 1px solid var(--rule); border-radius: 50%; background: var(--surface);
+  color: var(--ink); vertical-align: middle;
+}
+.btn-share:hover { border-color: var(--ours); color: var(--ours); }
+.btn-share .icon { width: 1rem; height: 1rem; }
+.btn-share-done {
+  position: absolute; right: 0; bottom: calc(100% + 4px); padding: 0.1rem 0.45rem; border-radius: 4px;
+  background: var(--ink); color: #fff; font-size: 0.75rem; font-weight: 600; white-space: nowrap; pointer-events: none;
+}
+.btn-share-done:empty { display: none; }
+@media (max-width: 575.98px) { .btn-share { width: var(--tap); height: var(--tap); } }
+
+/* The Group of Six race, under the projected field. */
+.g6-race { margin-top: 2rem; max-width: 46rem; }
+.sub-title { font-family: var(--display); font-weight: 700; font-size: 1.35rem; margin: 0 0 0.3rem; }
+
+/* Team page (R/team_page.R), shown in a dialog. */
+.modal-content { border: 0; border-radius: 14px; box-shadow: 0 24px 60px rgba(10, 19, 48, 0.3); }
+.modal-body { padding: clamp(1rem, 4vw, 2rem); }
+.modal-footer { border-top: 1px solid var(--rule); }
+.team-page-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.team-page-name { font-family: var(--display); font-weight: 900; font-size: clamp(2rem, 1.4rem + 3vw, 3rem); line-height: 1; margin: 0; }
+.team-page-sub { margin: 0.2rem 0 0; color: var(--muted); }
+.team-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 0.9rem 1rem; padding: 1rem 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.team-fact { display: grid; }
+.team-fact-value { font-family: var(--display); font-weight: 900; font-size: 1.6rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.team-fact-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.team-trend { margin-top: 0.5rem; }
+.week-line { display: block; width: 100%; height: 5rem; overflow: visible; }
+.week-line polyline { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.week-line circle { fill: var(--accent); stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.poll-row { display: grid; gap: 0.3rem; margin-top: 0.9rem; }
+.poll-name { font-size: 0.875rem; font-weight: 700; color: var(--muted); }
+.poll-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.poll-chip {
+  display: grid; justify-items: center; min-width: 2.6rem; padding: 0.15rem 0.3rem; border-radius: 6px;
+  background: var(--ink); color: var(--accent); font-family: var(--display); font-weight: 900; font-size: 1.15rem; line-height: 1.1;
+}
+.poll-chip.is-unranked { background: var(--track); color: var(--muted); font-size: 0.9rem; }
+.poll-week { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.62rem; font-weight: 600; color: #c3cae0; }
+.poll-chip.is-unranked .poll-week { color: var(--muted); }
+.team-page .data-table td:first-child { width: 3.5rem; }

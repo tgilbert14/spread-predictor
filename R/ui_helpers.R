@@ -589,6 +589,7 @@ svg_icon <- function(name, class = NULL) {
     check   = "M4 12l5 5L20 6",
     info    = "M12 8h.01M11 12h1v5h1M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z",
     chevron = "M9 6l6 6-6 6",
+    share   = "M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13",
     alert   = "M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"
   )
   htmltools::tags$svg(
@@ -598,6 +599,19 @@ svg_icon <- function(name, class = NULL) {
     focusable = "false",
     htmltools::tags$path(d = paths[[name]])
   )
+}
+
+#' A small button that shares one game: the phone's share sheet where there
+#' is one, the clipboard otherwise (www/app.js).
+#'
+#' @param text The sentence to share.
+#' @param query "?a=...&b=..." to add a link that opens the game, or "".
+#' @param label What the button does, for screen readers.
+#' @return HTML text, for a table cell.
+share_button <- function(text, query = "", label = "Share this game") {
+  esc <- function(x) htmltools::htmlEscape(x, attribute = TRUE)
+  sprintf('<button type="button" class="btn btn-share" data-share="%s" data-query="%s" aria-label="%s" title="Share">%s<span class="btn-share-done" aria-live="polite"></span></button>',
+          esc(text), esc(query), esc(label), as.character(svg_icon("share")))
 }
 
 #' Plain-language notes, one per line, or nothing when there are none.

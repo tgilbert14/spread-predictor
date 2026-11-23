@@ -124,7 +124,7 @@ playoff_section <- function(title_id, app_data) {
     seed = field$seed,
     team = vapply(field$team_id, function(id) {
       team <- teams[teams$team_id == id, , drop = FALSE]
-      team_name_html(team, team$school)
+      team_link_html(team, team$school)
     }, character(1)),
     record = records_before(app_data$results, week, field$team_id),
     rank = field$rank,
@@ -153,7 +153,60 @@ playoff_section <- function(title_id, app_data) {
         "Conference champions are projected as each conference's best team in it until the title games are played.",
         "A champion ranked outside the top 12 still gets in, and pushes the last at-large team out."
       )
-    )
+    ),
+    group_of_six_race(guess, app_data, week)
+  )
+}
+
+#' Which rows of a predicted ranking are a toss-up with the row below.
+#'
+#' @param score The model's score per row, best first. NULL or NA where
+#'   there is none.
+#' @return For each row, the index of the row below it when their scores
+#'   are within COMMITTEE_TOSSUP of each other, else NA.
+tossups <- function(score) {
+  if (is.null(score) || length(score) < 2) return(rep(NA_integer_, length(score)))
+  gap <- abs(score[-length(score)] - score[-1])
+  c(ifelse(!is.na(gap) & gap < COMMITTEE_TOSSUP, seq_along(gap) + 1L, NA_integer_), NA_integer_)
+}
+
+#' "The Group of Six race": the teams in line for the one bid that goes to
+#' the best team from the six smaller conferences.
+#'
+#' @param guess Our predicted ranking of every team (committee_guess()).
+#' @return Tags, or NULL when fewer than two such teams are ranked.
+group_of_six_race <- function(guess, app_data, week, shown = 4) {
+  teams <- app_data$teams
+  guess <- guess[order(guess$rank), , drop = FALSE]
+  conference <- teams$conference[match(guess$team_id, teams$team_id)]
+  race <- utils::head(guess[conference %in% PLAYOFF$group_of_six, , drop = FALSE], shown)
+  if (nrow(race) < 2) return(NULL)
+  # How many ranking places of score separate each team from the leader.
+  per_place <- stats::median(abs(diff(utils::head(guess$score, 40))), na.rm = TRUE)
+  behind <- if (is.finite(per_place) && per_place > 0) (race$score[1] - race$score) / per_place else NA
+  rows <- data.frame(
+    rank = race$rank,
+    team = vapply(race$team_id, function(id) {
+      team <- teams[teams$team_id == id, , drop = FALSE]
+      sprintf('%s<span class="rank-conference">%s</span>', team_link_html(team, team$school),
+              htmltools::htmlEscape(team$conference))
+    }, character(1)),
+    record = records_before(app_data$results, week, race$team_id),
+    last = ifelse(is.na(race$prev_cfp), "NR", as.character(race$prev_cfp)),
+    behind = c("Leads", ifelse(is.na(behind[-1]), "", sprintf("About %.0f %s back", pmax(behind[-1], 1),
+                                                              ifelse(pmax(behind[-1], 1) < 1.5, "place", "places")))),
+    stringsAsFactors = FALSE
+  )
+  htmltools::div(
+    class = "g6-race",
+    htmltools::tags$h3(class = "sub-title", "The Group of Six race"),
+    htmltools::p(class = "section-lede",
+                 "One bid goes to the best-ranked team from the six smaller conferences. ",
+                 "These are the teams in line for it in our prediction."),
+    simple_table(rows, headers = list("We predict", "Team", "Record", "Last ranking", "The race"),
+                 numeric = c(TRUE, FALSE, FALSE, TRUE, FALSE), html = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+                 row_class = c("is-blend", rep("", nrow(rows) - 1)),
+                 caption = "Places back is how far behind the leader the model has each team, in ranking places.")
   )
 }
 
@@ -208,7 +261,7 @@ upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = 
   record <- records_before(app_data$results, upcoming$week, rows$team_id)
   team <- vapply(seq_len(nrow(rows)), function(i) {
     team <- teams[teams$team_id == rows$team_id[i], , drop = FALSE]
-    team_name_html(team, if (nrow(team) == 1) team$school else "Unknown")
+    team_link_html(team, if (nrow(team) == 1) team$school else "Unknown")
   }, character(1))
   if (view != "ranks" && !is.null(sides)) {
     games <- football_games_column(app_data, sides, rows$team_id, upcoming$week, view)
@@ -220,6 +273,11 @@ upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = 
                         upcoming$week, if (view == "last") "last result" else "next game and our line for it")
     ))
   }
+  # Two teams whose scores are nearly level could go either way.
+  close <- tossups(rows$score)
+  school <- teams$school[match(rows$team_id, teams$team_id)]
+  team <- paste0(team, ifelse(is.na(close), "", sprintf('<span class="tossup">Toss-up with %s</span>',
+                                                        htmltools::htmlEscape(school[close]))))
   table_rows <- data.frame(
     rank = rows$rank,
     team = team,
@@ -237,7 +295,8 @@ upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = 
     caption = paste(
       sprintf("Our prediction of the committee's week %d ranking.", upcoming$week),
       if (upcoming$saved) "Saved before the release." else "Not saved yet: it is saved once every game from the week before is final.",
-      if (!first_time) "NR means the committee did not rank the team last time."
+      if (!first_time) "NR means the committee did not rank the team last time.",
+      if (any(!is.na(close))) "Toss-up: the model has the two teams nearly level, so either order is likely."
     )
   )
 }
@@ -302,7 +361,7 @@ ranking_rows <- function(ranking, teams, by = "blend") {
   at <- match(ranking$team_id, teams$team_id)
   team <- vapply(seq_along(at), function(i) {
     row <- teams[at[i], , drop = FALSE]
-    sprintf('%s<span class="rank-conference">%s</span>', team_name_html(row, row$school),
+    sprintf('%s<span class="rank-conference">%s</span>', team_link_html(row, row$school),
             htmltools::htmlEscape(row$conference))
   }, character(1))
   rows <- data.frame(rank = ranking$rank, move = format_move(ranking$change), team = team,

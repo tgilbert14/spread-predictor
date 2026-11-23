@@ -104,7 +104,9 @@ slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slat
 #'
 #' @param n_notes How many game notes this game has, for its marker.
 #' @param ranks Ranks named by team id, shown beside the names, or NULL.
-slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL) {
+#' @param share_link Add a link that opens the game in Matchup to the shared
+#'   text. FALSE where the app cannot open a matchup from a link (basketball).
+slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE) {
   ranked <- function(team) if (is.null(ranks)) NA else rank_of(ranks, team$team_id)
   away <- pred$team_a$school
   home <- pred$team_b$school
@@ -132,9 +134,19 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL) {
     }),
     # The home team is the second name in the matchup, so the number is enough.
     prob = cell("Home win chance", format_prob(1 - pred$win_prob_a)),
-    open = sprintf(
-      '<button type="button" class="btn btn-open" data-game-id="%s" data-input="%s" aria-label="Open %s %s %s in Matchup">Open%s</button>',
-      game$game_id, open_input_id, esc(away), joiner, esc(home), as.character(svg_icon("chevron"))
+    open = paste0(
+      share_button(
+        sprintf("%s %s %s: our line is %s%s. %s win chance %s.", away, joiner, home,
+                format_favorite(pred$spread, away, home),
+                if (has_line) sprintf(", the market has %s", format_favorite(market, away, home)) else "",
+                home, format_prob(1 - pred$win_prob_a)),
+        query = if (share_link) matchup_query(pred) else "",
+        label = sprintf("Share %s %s %s", away, joiner, home)
+      ),
+      sprintf(
+        '<button type="button" class="btn btn-open" data-game-id="%s" data-input="%s" aria-label="Open %s %s %s in Matchup">Open%s</button>',
+        game$game_id, open_input_id, esc(away), joiner, esc(home), as.character(svg_icon("chevron"))
+      )
     ),
     our_key = abs(pred$spread),
     market_key = if (has_line) abs(market) else -1,
@@ -154,7 +166,9 @@ gap_side <- function(gap, away, home) {
 #' The DT widget, stripped down to a sortable list that matches the theme.
 #' @param by_gap Start sorted by the biggest gap to the market. FALSE keeps
 #'   the order given (kickoff order), for games with no market line yet.
-slate_table <- function(rows, by_gap = TRUE) {
+#' @param market FALSE hides the Market and Difference columns, for games
+#'   with no market line to show.
+slate_table <- function(rows, by_gap = TRUE, market = TRUE) {
   DT::datatable(
     rows,
     colnames = c(SLATE_VISIBLE, names(SLATE_KEYS)),
@@ -169,7 +183,7 @@ slate_table <- function(rows, by_gap = TRUE) {
       language = list(search = "", searchPlaceholder = "Find a team",
                       zeroRecords = "No games match that search."),
       columnDefs = list(
-        list(targets = unname(SLATE_KEYS), visible = FALSE, searchable = FALSE),
+        list(targets = c(unname(SLATE_KEYS), if (!market) c(2, 3)), visible = FALSE, searchable = FALSE),
         list(targets = 1, orderData = SLATE_KEYS[["our"]]),
         list(targets = 2, orderData = SLATE_KEYS[["market"]]),
         list(targets = 3, orderData = SLATE_KEYS[["gap"]], className = "dt-right"),
@@ -188,7 +202,8 @@ mod_slate_server <- function(id, app_data, notes, on_open) {
     shown <- shown_slate(app_data)
     if (nrow(shown$games) > 0) {
       output$table <- DT::renderDT(
-        slate_table(slate_rows(app_data, session$ns("open"), notes, shown$games), by_gap = !shown$ahead)
+        slate_table(slate_rows(app_data, session$ns("open"), notes, shown$games), by_gap = !shown$ahead,
+                    market = !shown$ahead)
       )
     }
 
