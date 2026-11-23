@@ -1036,3 +1036,28 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
 .poll-week { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.62rem; font-weight: 600; color: #c3cae0; }
 .poll-chip.is-unranked .poll-week { color: var(--muted); }
 .team-page .data-table td:first-child { width: 3.5rem; }
+
+/* Phones: the committee tables keep to the screen. The last ranking is
+   dropped (Move already says how far a team went), and names may wrap. */
+@media (max-width: 575.98px) {
+  [id$="forecast_table"] table:not(:has(.game-cell)) th:nth-child(4),
+  [id$="forecast_table"] table:not(:has(.game-cell)) td:nth-child(4),
+  .g6-race th:nth-child(4), .g6-race td:nth-child(4) { display: none; }
+  [id$="forecast_table"] .slate-team, .g6-race .slate-team { white-space: normal; }
+  .g6-race td:last-child { white-space: normal; min-width: 5.5rem; }
+  .g6-race .data-table th, .g6-race .data-table td { padding-inline: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  /* Projected field: seed, team, how it gets in and the first round fit a
+     phone once Record and Rank step aside (rank nearly always equals seed). */
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) th:nth-child(3),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) td:nth-child(3),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) th:nth-child(4),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) td:nth-child(4) { display: none; }
+  [aria-labelledby$="playoff-title"] .data-table td, [aria-labelledby$="playoff-title"] .slate-team { white-space: normal; }
+  [aria-labelledby$="playoff-title"] .data-table th, [aria-labelledby$="playoff-title"] .data-table td { padding-inline: 0.3rem; font-size: 0.9rem; }
+  .game-opp .team-rank { margin-right: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  .tossup { display: block; width: fit-content; margin: 0.2rem 0 0; padding: 0.05rem 0.5rem; border-radius: 999px; white-space: normal; }
+}
