@@ -261,7 +261,8 @@ format_closer <- function(closer, our_error, market_error) {
 #'
 #' @param teams The teams table, for the small logo beside each name. NULL
 #'   shows the names alone.
-scorecard_game_rows <- function(games, teams = NULL) {
+#' @param ranks Ranks named by team id, shown beside the names, or NULL.
+scorecard_game_rows <- function(games, teams = NULL, ranks = NULL) {
   esc <- htmltools::htmlEscape
   cell <- function(label, html) sprintf('<span class="cell-label">%s</span>%s', label, html)
   away <- games$away_team
@@ -277,7 +278,7 @@ scorecard_game_rows <- function(games, teams = NULL) {
   name_html <- function(team_id, school) {
     vapply(seq_along(school), function(i) {
       team <- if (is.null(teams)) NULL else teams[teams$team_id %in% team_id[i], , drop = FALSE]
-      team_name_html(team, school[i])
+      team_name_html(team, school[i], if (is.null(ranks)) NA else rank_of(ranks, team_id[i]))
     }, character(1))
   }
   data.frame(
@@ -324,7 +325,9 @@ scorecard_games_table <- function(rows) {
 #'
 #' @param games Graded games of one week (scorecard$games rows).
 #' @param each How many to show on each side.
-scorecard_calls <- function(games, each = 5) {
+#' @param teams,ranks For the logo and ranking beside each name; NULL for
+#'   names alone.
+scorecard_calls <- function(games, each = 5, teams = NULL, ranks = NULL) {
   games <- games[!is.na(games$market_error), , drop = FALSE]
   if (nrow(games) == 0) return(empty_state("No market line was saved for these games.",
                                            "There is nothing to compare our line against."))
@@ -345,9 +348,17 @@ scorecard_calls <- function(games, each = 5) {
     htmltools::div(class = "versus-row versus-total",
                    versus_bar(nrow(ours), nrow(theirs), sum(games$edge == 0), "We were closer", "Market was closer")),
     htmltools::p(class = "chart-subhead", "The biggest swings each way, in points closer to the final margin"),
-    swing_chart(paste(shown$away_team, joiner, shown$home_team), shown$edge,
+    swing_chart(lapply(seq_len(nrow(shown)), function(i) {
+      name <- function(id, school) {
+        team <- if (is.null(teams)) NULL else teams[teams$team_id %in% id, , drop = FALSE]
+        team_name_html(team, school, if (is.null(ranks)) NA else rank_of(ranks, id))
+      }
+      htmltools::HTML(sprintf('%s <span class="game-where">%s</span> %s', name(shown$away_id[i], shown$away_team[i]),
+                              joiner[i], name(shown$home_id[i], shown$home_team[i])))
+    }), shown$edge,
                 text = format_points(abs(shown$edge)), hover = hover),
-    htmltools::p(class = "fine-print", "Tap a game for both lines and the final score.")
+    htmltools::p(class = "fine-print", "Tap a game for both lines and the final score.",
+                 if (!is.null(ranks)) rank_note(ranks))
   )
 }
 
@@ -362,8 +373,10 @@ mod_scorecard_server <- function(id, app_data) {
       if (length(week) != 1 || is.na(week) || !week %in% graded$week) week <- max(graded$week)
       graded[graded$week == week, , drop = FALSE]
     })
-    output$calls <- shiny::renderUI(scorecard_calls(picked()))
-    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(picked(), app_data$teams)))
+    # Rankings as they stood going into that week's games.
+    ranks <- shiny::reactive(team_ranks(app_data, picked()$week[1]))
+    output$calls <- shiny::renderUI(scorecard_calls(picked(), teams = app_data$teams, ranks = ranks()))
+    output$games <- DT::renderDT(scorecard_games_table(scorecard_game_rows(picked(), app_data$teams, ranks())))
     # The table sits in a folded section; draw it anyway so it is there on opening.
     shiny::outputOptions(output, "games", suspendWhenHidden = FALSE)
   })

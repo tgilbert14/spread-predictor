@@ -915,3 +915,149 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
 }
 @media (max-width: 575.98px) { table.dataTable.games-view .slate-team { white-space: normal; } }
 @media (max-width: 575.98px) { table.dataTable.games-view td:last-child { min-width: 6.5rem; } }
+
+/* A team's ranking beside its name, and the pieces of a game cell. */
+.team-rank {
+  display: inline-block; margin-right: 0.3rem; font-size: 0.78em; font-weight: 700; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.band-school .team-rank { color: inherit; opacity: 0.75; }
+.game-body { display: grid; gap: 0.15rem; min-width: 0; }
+.game-line { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 0.35rem; }
+.game-line .slate-team { font-weight: 600; }
+.game-where { color: var(--muted); font-size: 0.9em; }
+.game-score { font-weight: 700; font-variant-numeric: tabular-nums; }
+.game-lines { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.15rem; }
+.line-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.1rem 0.5rem; border-radius: 999px;
+  font-size: 0.82rem; font-weight: 600; white-space: nowrap; border: 1px solid var(--rule); background: var(--surface);
+}
+.line-chip.is-ours { border-color: var(--ours); color: var(--ours); }
+.line-chip-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.8; }
+.swing-chart .chart-label .slate-team { font-weight: 600; }
+.swing-chart .chart-label .team-badge-xs { width: 1.15rem; height: 1.15rem; margin-right: 0.25rem; }
+@media (max-width: 575.98px) { table.dataTable.games-view .game-line .slate-team { white-space: nowrap; } }
+/* A game cell wraps in any table: score first, then the opponent as one piece. */
+.data-table td:has(.game-cell) { white-space: normal; }
+.game-opp { display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+.game-opp .slate-team { white-space: nowrap; }
+@media (max-width: 575.98px) {
+  .game-cell { gap: 0.4rem; }
+  .game-line { font-size: 0.92rem; }
+  .game-opp .team-badge-xs { width: 1.15rem; height: 1.15rem; margin-right: 0.2rem; }
+  .line-chip { font-size: 0.76rem; padding: 0.05rem 0.4rem; white-space: normal; }
+  .committee-grid .data-table th, .committee-grid .data-table td { padding-inline: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  /* Keep the games column narrow enough for four columns on a phone: the
+     opponent sits under the score and a long name may wrap. */
+  .game-body { max-width: 9.75rem; }
+  .game-line { flex-direction: column; align-items: flex-start; gap: 0.05rem; }
+  .game-opp { white-space: normal; flex-wrap: nowrap; }
+  .game-opp .slate-team, table.dataTable.games-view .game-line .slate-team { white-space: normal; }
+  .committee-grid .data-table .slate-team { white-space: normal; }
+}
+@media (max-width: 575.98px) {
+  /* On a phone the game views drop the Record column (it is in the Rankings
+     view), which gives the game cell room to stay on clean lines. */
+  table:has(.game-cell) th:nth-child(3), table:has(.game-cell) td:nth-child(3) { display: none; }
+  .game-body { max-width: 12.5rem; }
+  .game-opp, .game-opp .slate-team, table.dataTable.games-view .game-line .slate-team { white-space: nowrap; }
+  .line-chip { white-space: nowrap; }
+  .committee-grid .data-table .slate-team { white-space: nowrap; }
+  table.dataTable.games-view .slate-team { white-space: nowrap; }
+}
+@media (max-width: 575.98px) {
+  /* The ranked team's own name may wrap; the game cell stays on clean lines. */
+  table:has(.game-cell) td:nth-child(2), table:has(.game-cell) td:nth-child(2) .slate-team { white-space: normal; }
+  table:has(.game-cell) td:nth-child(2) .rank-conference { display: none; }
+  .game-body { max-width: 11.25rem; }
+  .game-opp .team-rank { margin-right: 0.15rem; }
+}
+
+/* Team names that open a team page. */
+.team-link {
+  border: 0; background: transparent; padding: 0; margin: 0; font: inherit; color: inherit; cursor: pointer;
+  text-align: left; border-radius: 4px;
+}
+.team-link .slate-team { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color 0.15s, color 0.15s; }
+.team-link:hover .slate-team { color: var(--ours); text-decoration-color: currentColor; }
+.team-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* A near-tie in the predicted ranking. */
+.tossup {
+  display: inline-block; margin-left: 0.5rem; padding: 0 0.45rem; border-radius: 999px; white-space: nowrap;
+  font-size: 0.72rem; font-weight: 700; color: var(--warn); border: 1px solid currentColor; vertical-align: 0.1em;
+}
+@media (max-width: 575.98px) { .tossup { display: table; margin: 0.15rem 0 0 0; } }
+
+/* Share one game. */
+.btn-share {
+  position: relative; display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0;
+  margin-right: 0.35rem; border: 1px solid var(--rule); border-radius: 50%; background: var(--surface);
+  color: var(--ink); vertical-align: middle;
+}
+.btn-share:hover { border-color: var(--ours); color: var(--ours); }
+.btn-share .icon { width: 1rem; height: 1rem; }
+.btn-share-done {
+  position: absolute; right: 0; bottom: calc(100% + 4px); padding: 0.1rem 0.45rem; border-radius: 4px;
+  background: var(--ink); color: #fff; font-size: 0.75rem; font-weight: 600; white-space: nowrap; pointer-events: none;
+}
+.btn-share-done:empty { display: none; }
+@media (max-width: 575.98px) { .btn-share { width: var(--tap); height: var(--tap); } }
+
+/* The Group of Six race, under the projected field. */
+.g6-race { margin-top: 2rem; max-width: 46rem; }
+.sub-title { font-family: var(--display); font-weight: 700; font-size: 1.35rem; margin: 0 0 0.3rem; }
+
+/* Team page (R/team_page.R), shown in a dialog. */
+.modal-content { border: 0; border-radius: 14px; box-shadow: 0 24px 60px rgba(10, 19, 48, 0.3); }
+.modal-body { padding: clamp(1rem, 4vw, 2rem); }
+.modal-footer { border-top: 1px solid var(--rule); }
+.team-page-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.team-page-name { font-family: var(--display); font-weight: 900; font-size: clamp(2rem, 1.4rem + 3vw, 3rem); line-height: 1; margin: 0; }
+.team-page-sub { margin: 0.2rem 0 0; color: var(--muted); }
+.team-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 0.9rem 1rem; padding: 1rem 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.team-fact { display: grid; }
+.team-fact-value { font-family: var(--display); font-weight: 900; font-size: 1.6rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.team-fact-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.team-trend { margin-top: 0.5rem; }
+.week-line { display: block; width: 100%; height: 5rem; overflow: visible; }
+.week-line polyline { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.week-line circle { fill: var(--accent); stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.poll-row { display: grid; gap: 0.3rem; margin-top: 0.9rem; }
+.poll-name { font-size: 0.875rem; font-weight: 700; color: var(--muted); }
+.poll-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.poll-chip {
+  display: grid; justify-items: center; min-width: 2.6rem; padding: 0.15rem 0.3rem; border-radius: 6px;
+  background: var(--ink); color: var(--accent); font-family: var(--display); font-weight: 900; font-size: 1.15rem; line-height: 1.1;
+}
+.poll-chip.is-unranked { background: var(--track); color: var(--muted); font-size: 0.9rem; }
+.poll-week { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.62rem; font-weight: 600; color: #c3cae0; }
+.poll-chip.is-unranked .poll-week { color: var(--muted); }
+.team-page .data-table td:first-child { width: 3.5rem; }
+
+/* Phones: the committee tables keep to the screen. The last ranking is
+   dropped (Move already says how far a team went), and names may wrap. */
+@media (max-width: 575.98px) {
+  [id$="forecast_table"] table:not(:has(.game-cell)) th:nth-child(4),
+  [id$="forecast_table"] table:not(:has(.game-cell)) td:nth-child(4),
+  .g6-race th:nth-child(4), .g6-race td:nth-child(4) { display: none; }
+  [id$="forecast_table"] .slate-team, .g6-race .slate-team { white-space: normal; }
+  .g6-race td:last-child { white-space: normal; min-width: 5.5rem; }
+  .g6-race .data-table th, .g6-race .data-table td { padding-inline: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  /* Projected field: seed, team, how it gets in and the first round fit a
+     phone once Record and Rank step aside (rank nearly always equals seed). */
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) th:nth-child(3),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) td:nth-child(3),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) th:nth-child(4),
+  [aria-labelledby$="playoff-title"] table:not(.g6-race *) td:nth-child(4) { display: none; }
+  [aria-labelledby$="playoff-title"] .data-table td, [aria-labelledby$="playoff-title"] .slate-team { white-space: normal; }
+  [aria-labelledby$="playoff-title"] .data-table th, [aria-labelledby$="playoff-title"] .data-table td { padding-inline: 0.3rem; font-size: 0.9rem; }
+  .game-opp .team-rank { margin-right: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  .tossup { display: block; width: fit-content; margin: 0.2rem 0 0; padding: 0.05rem 0.5rem; border-radius: 999px; white-space: normal; }
+}

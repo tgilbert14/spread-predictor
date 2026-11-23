@@ -27,6 +27,12 @@ COMMITTEE_RIDGE <- 10
 # Two habits of the committee that a score per team cannot show, applied to
 # the order after scoring (committee_order()). Tested a season at a time on
 # 2018 to 2025 and 2026: the average miss went from 1.36 to 1.31 places (docs/research-log.md, Nov. 22).
+# Two neighbors in a predicted ranking whose scores are this close are
+# marked as a toss-up: about a quarter of a ranking place, or under 56%
+# for the team placed ahead. At 0.5 nearly half the top 25 was marked,
+# which says nothing.
+COMMITTEE_TOSSUP <- 0.25
+
 COMMITTEE_RULES <- list(
   # A ranked team that played and won since the last ranking drops at most
   # this many places. Of 667 such teams since 2018, 9 dropped 2 or more.

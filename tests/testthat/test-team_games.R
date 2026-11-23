@@ -42,17 +42,20 @@ test_that("last and next pick the right game for each team, in the order asked",
 test_that("cells read as plain results and matchups", {
   html <- result_html(last_games(sides, c(1L, 2L)))
   expect_match(html[1], ">W<", fixed = TRUE)
-  expect_match(html[1], "31-17 vs Ironwood", fixed = TRUE)
+  plain <- gsub("<[^>]+>", "", html)
+  expect_match(plain[1], "31-17 vs Ironwood", fixed = TRUE)
   expect_match(html[2], ">L<", fixed = TRUE)
   expect_match(html[1], "Sat, Sep 5", fixed = TRUE)  # a US evening, not the next day in UTC
   expect_match(result_html(last_games(sides, 3L, before = 2)), "No game yet", fixed = TRUE)
 
   ahead <- next_games(sides, c(1L, 2L), from = 3)
   line <- our_lines(ahead, league, function(team, opponent, site) if (site == "a_home") 6.5 else NA)
-  expect_identical(line, c("Our line: Kofa by 6.5", ""))
+  expect_identical(line, c("Kofa by 6.5", ""))
   html <- upcoming_html(ahead, line, none = "None soon")
-  expect_match(html[1], "vs Saguaro", fixed = TRUE)
-  expect_match(html[1], "Our line: Kofa by 6.5", fixed = TRUE)
+  plain <- gsub("<[^>]+>", "", html)
+  expect_match(plain[1], "vs Saguaro", fixed = TRUE)
+  expect_match(plain[1], "Our lineKofa by 6.5", fixed = TRUE)
+  expect_match(html[1], "line-chip is-ours", fixed = TRUE)
   expect_match(html[2], "None soon", fixed = TRUE)
   # A game since played shows its result, and gets no line.
   expect_match(upcoming_html(next_games(sides, 1L, from = 1)), "31-17", fixed = TRUE)
@@ -74,7 +77,7 @@ test_that("the football tables switch between rankings, last game and next game"
   expect_length(last$html, 5)
   ahead <- football_games_column(demo, sides, ids, demo$meta$week, "next")
   expect_identical(ahead$header, "Next game")
-  expect_true(any(grepl("Our line:", ahead$html, fixed = TRUE)))
+  expect_true(any(grepl("line-chip is-ours", ahead$html, fixed = TRUE)))
   # A week already played is labeled as that week's game.
   back <- min(demo$results$week)
   expect_identical(football_games_column(demo, sides, unique(demo$results$home_id[demo$results$week == back]),
@@ -102,4 +105,101 @@ test_that("the latest ranking splits last from next at the first week still to p
   none$upcoming <- none$upcoming[0, ]
   none$meta$forecast_week <- NA_integer_
   expect_equal(games_week(none, none$meta$week), none$meta$week)
+})
+
+test_that("opponents carry their logo and ranking", {
+  marked <- cbind(league, logo = "logo.png", color = "#123456", abbreviation = "X", stringsAsFactors = FALSE)
+  ranks <- c(`2` = 8L)
+  html <- result_html(last_games(sides, 1L), marked, ranks)
+  expect_match(html, "team-logo", fixed = TRUE)
+  expect_match(html, '<span class="visually-hidden">Ranked </span>8</span>Ironwood', fixed = TRUE)
+  # An unranked or lower-division opponent gets its name alone.
+  tiny <- result_html(last_games(sides, 3L), marked, ranks)
+  expect_false(grepl("team-rank", tiny, fixed = TRUE))
+  expect_match(tiny, "Tiny Tech", fixed = TRUE)
+})
+
+test_that("the market line reads from the team's side, in our words", {
+  ahead <- next_games(sides, c(1L, 3L), from = 3)
+  ahead$game_id <- 7L
+  slate <- data.frame(game_id = 7L, home_id = 1L, market_spread_home = -4.5)
+  expect_identical(market_lines(ahead, league, slate), c("Kofa by 4.5", "Kofa by 4.5"))
+  expect_identical(market_lines(ahead, league, slate[0, ]), c("", ""))
+  html <- upcoming_html(ahead[1, ], "Kofa by 6.5", market = "Kofa by 4.5")
+  expect_match(gsub("<[^>]+>", "", html), "MarketKofa by 4.5", fixed = TRUE)
+})
+
+test_that("team ranks come from the committee, then the AP, as of a week", {
+  demo <- complete_app_data(demo_app_data())
+  ranks <- team_ranks(demo)
+  expect_identical(attr(ranks, "poll"), "cfp")
+  expect_length(ranks, sum(demo$polls$poll == "cfp" & demo$polls$week == max(demo$polls$week[demo$polls$poll == "cfp"])))
+  top <- names(ranks)[ranks == 1]
+  expect_identical(rank_of(ranks, as.integer(top)), 1L)
+  expect_true(is.na(rank_of(ranks, -1L)))
+  ap_only <- demo
+  ap_only$polls <- ap_only$polls[ap_only$polls$poll == "ap", ]
+  expect_identical(attr(team_ranks(ap_only), "poll"), if (nrow(ap_only$polls) > 0) "ap" else NA_character_)
+  none <- demo
+  none$polls <- none$polls[0, ]
+  expect_length(team_ranks(none), 0)
+  expect_null(rank_note(team_ranks(none)))
+  expect_match(rank_note(ranks), "playoff committee", fixed = TRUE)
+  # Before the first ranking of the season there is nothing to show.
+  expect_length(team_ranks(demo, min(demo$polls$week) - 1L), 0)
+})
+
+test_that("the app opens on This week when it has games, and on Matchup for a link or an empty slate", {
+  demo <- complete_app_data(demo_app_data())
+  expect_identical(default_tab("", demo), "slate")
+  expect_identical(default_tab(NULL, demo), "slate")
+  expect_identical(default_tab("?a=Kofa&b=Ironwood", demo), "matchup")
+  expect_identical(default_tab("?week=10", demo), "matchup")
+  quiet <- demo
+  quiet$slate <- quiet$slate[0, ]
+  expect_identical(default_tab("", quiet), "matchup")
+})
+
+test_that("a ranked team's name shows its number, and an unranked one does not", {
+  expect_match(team_name_html(NULL, "Kofa", 4L), ">4</span>Kofa", fixed = TRUE)
+  expect_false(grepl("team-rank", team_name_html(NULL, "Kofa"), fixed = TRUE))
+  expect_false(grepl("team-rank", team_name_html(NULL, "Kofa", NA), fixed = TRUE))
+})
+
+test_that("This week looks ahead to next week's games once its own are played", {
+  demo <- complete_app_data(demo_app_data())
+  now <- shown_slate(demo)
+  expect_false(now$ahead)
+  expect_identical(nrow(now$games), nrow(demo$slate))
+
+  done <- demo
+  done$slate <- done$slate[0, ]
+  ids <- done$teams$team_id
+  done$upcoming <- data.frame(
+    game_id = 1:4, week = c(12L, 12L, 13L, 12L),
+    start_date = c("2026-11-21T20:00:00Z", "2026-11-21T17:00:00Z", "2026-11-28T17:00:00Z", "2026-11-21T18:00:00Z"),
+    home_id = c(ids[1], ids[3], ids[1], ids[5]), away_id = c(ids[2], ids[4], ids[3], -9L),
+    home_team = "x", away_team = "y", neutral_site = c(FALSE, TRUE, FALSE, FALSE), stringsAsFactors = FALSE
+  )
+  ahead <- shown_slate(done)
+  expect_true(ahead$ahead)
+  expect_identical(ahead$week, 12L)
+  expect_identical(ahead$games$game_id, c(2L, 1L))  # the next week only, in kickoff order, rated teams only
+  expect_true(all(is.na(ahead$games$market_spread_home)))
+  expect_named(ahead$games, names(demo$slate), ignore.order = TRUE)
+
+  html <- as.character(mod_slate_ui("s", done))
+  expect_match(html, "Week 12 games", fixed = TRUE)
+  expect_match(html, "Look ahead", fixed = TRUE)
+  expect_match(html, "our lines alone", fixed = TRUE)
+  rows <- slate_rows(done, "open", slate = ahead$games)
+  expect_identical(nrow(rows), 2L)
+  expect_identical(default_tab("", done), "slate")
+
+  # Nothing ahead either: the empty state, and the app opens on Matchup.
+  none <- done
+  none$upcoming <- none$upcoming[0, ]
+  expect_identical(nrow(shown_slate(none)$games), 0L)
+  expect_match(as.character(mod_slate_ui("s", none)), "No games on this week", fixed = TRUE)
+  expect_identical(default_tab("", none), "matchup")
 })

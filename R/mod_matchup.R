@@ -222,7 +222,7 @@ BAND_MIN_SHARE <- 22
 
 #' The two teams' chances as one band in their colors, split where the odds
 #' fall. Names sit above it, percentages inside it.
-matchup_band <- function(pred, colors) {
+matchup_band <- function(pred, colors, ranks = NULL) {
   pct_a <- format_prob(pred$win_prob_a)
   pct_b <- format_prob(1 - pred$win_prob_a)
   share <- as.numeric(sub("%", "", pct_a))
@@ -231,8 +231,11 @@ matchup_band <- function(pred, colors) {
                    pred$team_a$school, pct_a, pred$team_b$school, pct_b)
 
   nameplate <- function(team, side) {
+    rank <- if (is.null(ranks)) NA else rank_of(ranks, team$team_id)
     htmltools::span(class = paste("band-name", paste0("band-name-", side)),
-                    team_badge(team, "md"), htmltools::span(class = "band-school", team$school))
+                    team_badge(team, "md"),
+                    htmltools::span(class = "band-school",
+                                    if (!is.na(rank)) htmltools::span(class = "team-rank", rank), team$school))
   }
   field <- function(pct, color, side) {
     htmltools::span(
@@ -477,7 +480,7 @@ mod_matchup_server <- function(id, app_data, notes) {
       htmltools::tagList(htmltools::span(class = "headline-answer", parts$answer),
                          " ", htmltools::span(class = "headline-context", parts$context))
     })
-    output$band <- shiny::renderUI(matchup_band(ok_pred(), colors()))
+    output$band <- shiny::renderUI(matchup_band(ok_pred(), colors(), team_ranks(app_data)))
     output$range <- shiny::renderText(format_interval(ok_pred()))
     # This week's market line. A snapshot shows how the game turned out instead.
     market <- shiny::reactive({

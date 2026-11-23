@@ -201,10 +201,49 @@ team_badge <- function(team, size = "md", decorative = FALSE) {
 #'
 #' @param team One-row data frame from the teams table, or one with no rows.
 #' @param school The name to show.
-team_name_html <- function(team, school) {
+#' @param rank The team's ranking, shown small before the name, or NA for none.
+team_name_html <- function(team, school, rank = NA) {
   name <- htmltools::htmlEscape(school)
   mark <- if (is.data.frame(team) && nrow(team) == 1) as.character(team_badge(team, "xs", decorative = TRUE)) else ""
-  sprintf('<span class="slate-team">%s%s</span>', mark, name)
+  number <- if (length(rank) == 1 && !is.na(rank)) {
+    sprintf('<span class="team-rank"><span class="visually-hidden">Ranked </span>%d</span>', as.integer(rank))
+  } else {
+    ""
+  }
+  sprintf('<span class="slate-team">%s%s%s</span>', mark, number, name)
+}
+
+#' The ranking shown beside team names around the app: the committee's
+#' latest, or the AP poll before the committee starts.
+#'
+#' @param week Use the latest ranking released for this week or earlier.
+#'   NULL for the newest there is.
+#' @return Ranks named by team id, with attribute "poll" ("cfp", "ap" or NA
+#'   when there is no ranking yet).
+team_ranks <- function(app_data, week = NULL) {
+  polls <- app_data$polls
+  if (!is.null(week)) polls <- polls[polls$week <= week, , drop = FALSE]
+  for (poll in c("cfp", "ap")) {
+    rows <- polls[polls$poll == poll, , drop = FALSE]
+    if (nrow(rows) == 0) next
+    rows <- rows[rows$week == max(rows$week), , drop = FALSE]
+    return(structure(stats::setNames(as.integer(rows$rank), rows$team_id), poll = poll))
+  }
+  structure(stats::setNames(integer(), character()), poll = NA_character_)
+}
+
+#' One team's rank from team_ranks(), or NA.
+rank_of <- function(ranks, team_id) {
+  rank <- ranks[as.character(team_id)]
+  if (length(rank) == 1 && !is.na(rank)) unname(rank) else NA_integer_
+}
+
+#' "Numbers beside team names are the playoff committee's latest ranking."
+rank_note <- function(ranks) {
+  poll <- attr(ranks, "poll")
+  if (is.null(poll) || is.na(poll)) return(NULL)
+  sprintf("Numbers beside team names are %s.",
+          if (poll == "cfp") "the playoff committee's latest ranking" else "the latest AP poll")
 }
 
 #' "Away at Home" for a table cell, one team per line so the logos line up
@@ -313,6 +352,20 @@ matchup_from_query <- function(query, teams, fallback) {
   if (is.na(b) || b == a) b <- if (a != fallback$b) fallback$b else fallback$a
   site <- if (isTRUE(params$site %in% SITE_CHOICES)) params$site else "neutral"
   list(a = a, b = b, site = site)
+}
+
+#' The tab the app opens on.
+#'
+#' This week's games are what most visits are for, so that tab comes first
+#' when it has games to show. A link that names a matchup or a week still
+#' opens the Matchup tab, and so does a visit between weeks, when the slate
+#' is empty.
+#'
+#' @return "slate" or "matchup".
+default_tab <- function(query, app_data) {
+  params <- if (is.null(query) || !nzchar(query)) list() else shiny::parseQueryString(query)
+  if (any(c("a", "b", "site", "week") %in% names(params))) return("matchup")
+  if (nrow(shown_slate(app_data)$games) > 0) "slate" else "matchup"
 }
 
 #' The slate game between two teams, in either order, or NULL.
@@ -536,6 +589,7 @@ svg_icon <- function(name, class = NULL) {
     check   = "M4 12l5 5L20 6",
     info    = "M12 8h.01M11 12h1v5h1M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z",
     chevron = "M9 6l6 6-6 6",
+    share   = "M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13",
     alert   = "M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"
   )
   htmltools::tags$svg(
@@ -545,6 +599,19 @@ svg_icon <- function(name, class = NULL) {
     focusable = "false",
     htmltools::tags$path(d = paths[[name]])
   )
+}
+
+#' A small button that shares one game: the phone's share sheet where there
+#' is one, the clipboard otherwise (www/app.js).
+#'
+#' @param text The sentence to share.
+#' @param query "?a=...&b=..." to add a link that opens the game, or "".
+#' @param label What the button does, for screen readers.
+#' @return HTML text, for a table cell.
+share_button <- function(text, query = "", label = "Share this game") {
+  esc <- function(x) htmltools::htmlEscape(x, attribute = TRUE)
+  sprintf('<button type="button" class="btn btn-share" data-share="%s" data-query="%s" aria-label="%s" title="Share">%s<span class="btn-share-done" aria-live="polite"></span></button>',
+          esc(text), esc(query), esc(label), as.character(svg_icon("share")))
 }
 
 #' Plain-language notes, one per line, or nothing when there are none.

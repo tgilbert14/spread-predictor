@@ -223,7 +223,34 @@
 
   // The whole row is clickable; the Open button inside it carries the game id
   // and keeps it reachable by keyboard.
-  $(document).on('click', '.slate-table tbody tr', function () {
+  // Share one game: the phone's share sheet where there is one, otherwise
+  // copy the sentence (and a link that opens the game) to the clipboard.
+  $(document).on('click', '.btn-share', function (event) {
+    event.stopPropagation();
+    var button = this;
+    var text = button.dataset.share || '';
+    var url = button.dataset.query ? window.location.origin + window.location.pathname + button.dataset.query : '';
+    var done = button.querySelector('.btn-share-done');
+    function say(word) {
+      if (!done) return;
+      done.textContent = word;
+      window.setTimeout(function () { done.textContent = ''; }, 2000);
+    }
+    if (navigator.share) {
+      navigator.share(url ? { text: text, url: url } : { text: text }).catch(function () {});
+      return;
+    }
+    copyText(url ? text + ' ' + url : text).then(function () { say('Copied'); }, function () { say('Could not copy'); });
+  });
+
+  // Team names in the ranking tables open that team's page.
+  $(document).on('click', '.team-link', function (event) {
+    event.stopPropagation();
+    if (window.Shiny) Shiny.setInputValue('team_open', Number(this.dataset.teamId), { priority: 'event' });
+  });
+
+  $(document).on('click', '.slate-table tbody tr', function (event) {
+    if ($(event.target).closest('.btn-share').length) return;
     var button = this.querySelector('[data-game-id]');
     if (!button || !window.Shiny) return;
     Shiny.setInputValue(button.dataset.input, Number(button.dataset.gameId), { priority: 'event' });

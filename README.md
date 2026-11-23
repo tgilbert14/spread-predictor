@@ -56,8 +56,34 @@ and **our CFP guess**, our prediction of the committee's ranking.
 
 **Last game and next game.** A switch above the Top 50, the committee
 prediction and the basketball Top 50 swaps the ranking columns for each
-team's last result, or its next game with our line for it. Looking back at
-an earlier week, it shows that week's game and how it finished.
+team's last result, or its next game with our line for it (and the
+sportsbooks' line when we hold one). Each opponent shows its logo and
+ranking. Looking back at an earlier week, it shows that week's game and how
+it finished.
+
+**Team pages.** Tap a team's name in the Top 50, the committee prediction
+or the projected field to open its page: record, where it ranks in the
+polls and in our two rankings, its Power rating week by week, its poll
+history, and every game, with our line on the ones still to play.
+
+**Toss-ups and the Group of Six race.** In the committee prediction, two
+neighbors the model has nearly level are tagged as a toss-up. Under the
+projected field, the Group of Six race lists the teams in line for the one
+bid that goes to the best team from the six smaller conferences.
+
+**Share a game.** Each game on This week has a share button. On a phone it
+opens the share sheet; elsewhere it copies a sentence with our line and a
+link that opens the game.
+
+**Rankings beside names.** Wherever a team is named in a matchup (This
+week, the Matchup header, the Scorecard), a small number shows the playoff
+committee's latest ranking, or the AP poll before the committee starts.
+Basketball has no poll in our data, so it shows our own top 25.
+
+**Where the app opens.** On This week, unless a link names a matchup. Once
+a week's games are all played, This week looks ahead to the next week's
+games with our lines alone, marked "Look ahead". The sportsbooks' lines
+join them at the next data refresh.
 
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.

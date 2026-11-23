@@ -2045,13 +2045,13 @@
       "checksum": "87f9d4ec0ffedff42d9aa1a7e04c6c96"
     },
     "app.R": {
-      "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
+      "checksum": "12fa0382f9030bb7811d555c515eac30"
     },
     "data/app_data.rds": {
-      "checksum": "62277dd2f7d1241b4987f4f8dede6f74"
+      "checksum": "cfa62ab4b7542bc622843edf125b9a3c"
     },
     "data/basketball/app_data.rds": {
-      "checksum": "feeee7860ba41870ed9b778ab47e2159"
+      "checksum": "7a2de023a6d0c9f96c691e5193d7a149"
     },
     "data/notes.csv": {
       "checksum": "8e484544c5e7c95061a7f410563ae8f1"
@@ -2084,7 +2084,7 @@
       "checksum": "f7270c314c92542febbab3913cf0b4f7"
     },
     "R/committee.R": {
-      "checksum": "9a168999ded7197028451509fa02ab7d"
+      "checksum": "ca7cccd1d0b1e2bfb735ebd89044a25a"
     },
     "R/config.R": {
       "checksum": "22764c423c39b38dbf3f9973473e1324"
@@ -2105,22 +2105,22 @@
       "checksum": "79efc4e8e08bc156c9defdb35d821558"
     },
     "R/mod_cbb.R": {
-      "checksum": "b2a4fbd3cffc80d9817c598a673e4984"
+      "checksum": "5e80e7885f587270166187a91dd0dd00"
     },
     "R/mod_matchup.R": {
-      "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
+      "checksum": "b7d487b2062999efcf9dc098b925766d"
     },
     "R/mod_rankings.R": {
-      "checksum": "2b3216311a1065fb0f6fe533682f8d6a"
+      "checksum": "54e4c687f31916c9701e46f162f9790f"
     },
     "R/mod_report.R": {
       "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
     },
     "R/mod_scorecard.R": {
-      "checksum": "804065a7be7ef6fa462d5eb53e33d27f"
+      "checksum": "83f614831ed28ec14b206bd0120ac042"
     },
     "R/mod_slate.R": {
-      "checksum": "3c7513a6ae8db10385295eb4592d5cf2"
+      "checksum": "e23dd86d914c70c217fc223c0373ab3d"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2144,7 +2144,10 @@
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
     },
     "R/team_games.R": {
-      "checksum": "bea08015e7bd841f82befb7b52f76bb6"
+      "checksum": "ca3d3a0a8a2d23e8dad0c43119f05640"
+    },
+    "R/team_page.R": {
+      "checksum": "639ebc35addaa89fd284aa1851c5c5b6"
     },
     "R/theme.R": {
       "checksum": "c9e4aae1cdf5a6c02bbaf95c6ece7e31"
@@ -2153,10 +2156,10 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "dbd310176c49d283cac5569047798546"
+      "checksum": "e7916a8e34715e70135f736f387970ca"
     },
     "www/app.js": {
-      "checksum": "2cfbb0f85577fd9093556bf3bd56c02f"
+      "checksum": "6f07f9d8d39bae6a53cf79c51a552067"
     },
     "www/fonts/big-shoulders-display-latin-700-normal.woff2": {
       "checksum": "677f0a8821e508356d9c61a8d2c72627"
@@ -2180,7 +2183,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "d7f801b9f84eae9ec279876e09fc0453"
+      "checksum": "e7925d39b9a583f685d59dfaa4765a69"
     }
   },
   "users": null
