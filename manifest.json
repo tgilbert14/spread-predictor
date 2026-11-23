@@ -2048,7 +2048,7 @@
       "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
     },
     "data/app_data.rds": {
-      "checksum": "78c91e9da9e19c5131a61a72ce86a38b"
+      "checksum": "62277dd2f7d1241b4987f4f8dede6f74"
     },
     "data/basketball/app_data.rds": {
       "checksum": "feeee7860ba41870ed9b778ab47e2159"
@@ -2066,7 +2066,7 @@
       "checksum": "e252eb3525d640c8adb96d822dab871c"
     },
     "R/build_app_data.R": {
-      "checksum": "8f99a87c6e8116eefbce70207a5a8360"
+      "checksum": "6ceb93e9cd3fd2c1572bacb229d5d631"
     },
     "R/build_db.R": {
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
@@ -2090,7 +2090,7 @@
       "checksum": "22764c423c39b38dbf3f9973473e1324"
     },
     "R/demo_data.R": {
-      "checksum": "f90b398270b5eed4fa6f6a92ef27dd39"
+      "checksum": "481977de647fe61df5131e1b60cf8ebb"
     },
     "R/disagreement.R": {
       "checksum": "f937d55781eaeef157bff5e4b8ca53f3"
@@ -2105,13 +2105,13 @@
       "checksum": "79efc4e8e08bc156c9defdb35d821558"
     },
     "R/mod_cbb.R": {
-      "checksum": "711f8c4afe7349f47a2bfeb930a16e30"
+      "checksum": "b2a4fbd3cffc80d9817c598a673e4984"
     },
     "R/mod_matchup.R": {
       "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
     },
     "R/mod_rankings.R": {
-      "checksum": "4e9af9c95c3429e892ccba17f2c0bd20"
+      "checksum": "2b3216311a1065fb0f6fe533682f8d6a"
     },
     "R/mod_report.R": {
       "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
@@ -2143,6 +2143,9 @@
     "R/snapshot.R": {
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
     },
+    "R/team_games.R": {
+      "checksum": "bea08015e7bd841f82befb7b52f76bb6"
+    },
     "R/theme.R": {
       "checksum": "c9e4aae1cdf5a6c02bbaf95c6ece7e31"
     },
@@ -2150,7 +2153,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "d8757db1b85b1c1f8f02627d21f3fe3b"
+      "checksum": "dbd310176c49d283cac5569047798546"
     },
     "www/app.js": {
       "checksum": "2cfbb0f85577fd9093556bf3bd56c02f"
@@ -2177,7 +2180,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "6cc1ee303e47ffc1a74f1f9ca319dd98"
+      "checksum": "d7f801b9f84eae9ec279876e09fc0453"
     }
   },
   "users": null

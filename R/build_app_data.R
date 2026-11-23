@@ -51,6 +51,7 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
     scorecard = build_scorecard(predictions, query_sql_file(con, "game_results.sql"), season),
     history = rating_history(con, season, history_weeks, teams$team_id, power_through(power, history_weeks)),
     results = season_results(con, season),
+    upcoming = upcoming_games(con, season),
     polls = load_polls(snapshots_root, season, teams),
     forecasts = load_forecasts(snapshots_root, season),
     committee_prior = committee_prior(learned_path, season)
@@ -224,6 +225,13 @@ season_results <- function(con, season) {
   results <- query_sql_file(con, "season_results.sql", list(season))
   results$neutral_site <- results$neutral_site == 1
   results
+}
+
+#' The season's games still to be played, for each team's next game.
+upcoming_games <- function(con, season) {
+  upcoming <- query_sql_file(con, "upcoming_games.sql", list(season))
+  upcoming$neutral_site <- upcoming$neutral_site == 1
+  upcoming
 }
 
 #' This week's unplayed FBS games, with the median sportsbook spread.

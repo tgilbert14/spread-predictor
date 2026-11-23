@@ -54,6 +54,11 @@ Each rating system's own rank sits beside them, with how far each team
 moved since last week. The last columns are the playoff committee, the AP,
 and **our CFP guess**, our prediction of the committee's ranking.
 
+**Last game and next game.** A switch above the Top 50, the committee
+prediction and the basketball Top 50 swaps the ranking columns for each
+team's last result, or its next game with our line for it. Looking back at
+an earlier week, it shows that week's game and how it finished.
+
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.
 Once the real ranking is out, the prediction is never changed: it is

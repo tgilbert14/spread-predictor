@@ -67,6 +67,11 @@ complete_app_data <- function(x) {
                             home_id = integer(), away_id = integer(), neutral_site = logical(),
                             home_points = integer(), away_points = integer())
   }
+  # App data built before the schedule was kept knows only this week's slate.
+  if (!is.data.frame(x$upcoming)) {
+    x$upcoming <- cbind(week = rep(as.integer(x$meta$week), nrow(x$slate)),
+                        x$slate[c("game_id", "start_date", "home_id", "away_id", "neutral_site")])
+  }
   if (!is.data.frame(x$polls)) {
     x$polls <- data.frame(week = integer(), poll = character(), rank = integer(), team_id = integer(),
                           stringsAsFactors = FALSE)

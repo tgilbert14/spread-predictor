@@ -1,7 +1,8 @@
 -- Finished regular-season games in one season, for showing how a past
 -- week's matchup turned out.
 -- Parameters: season.
-SELECT game_id, week, start_date, home_id, away_id, neutral_site, home_points, away_points
+SELECT game_id, week, start_date, home_id, away_id, home_team, away_team, neutral_site,
+       home_points, away_points
 FROM games
 WHERE season = ?
   AND season_type = 'regular'

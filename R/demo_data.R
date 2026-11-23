@@ -185,6 +185,13 @@ demo_app_data <- function(seed = 2026) {
     scorecard = scorecard,
     history = demo_history(teams, 11L, first_saved_week = 8L),
     results = demo_results(scorecard$games),
+    # The made-up league's only games ahead are this week's slate.
+    upcoming = data.frame(
+      game_id = slate$game_id, week = 11L, start_date = slate$start_date, home_id = slate$home_id,
+      away_id = slate$away_id, home_team = teams$school[match(slate$home_id, teams$team_id)],
+      away_team = teams$school[match(slate$away_id, teams$team_id)], neutral_site = slate$neutral_site,
+      stringsAsFactors = FALSE
+    ),
     polls = demo_polls(teams, weeks = 9:11)
   )
   # A prediction of each made-up committee ranking, as if saved beforehand.
