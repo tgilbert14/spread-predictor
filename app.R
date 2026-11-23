@@ -31,6 +31,7 @@ ui <- function(request) {
   page_navbar(
     title = "CFB Spread Predictor",
     id = "tabs",
+    selected = default_tab(request$QUERY_STRING, app_data),
     theme = app_theme(),
     fillable = FALSE,
     window_title = "CFB Spread Predictor",

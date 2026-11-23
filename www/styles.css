@@ -915,3 +915,62 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
 }
 @media (max-width: 575.98px) { table.dataTable.games-view .slate-team { white-space: normal; } }
 @media (max-width: 575.98px) { table.dataTable.games-view td:last-child { min-width: 6.5rem; } }
+
+/* A team's ranking beside its name, and the pieces of a game cell. */
+.team-rank {
+  display: inline-block; margin-right: 0.3rem; font-size: 0.78em; font-weight: 700; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.band-school .team-rank { color: inherit; opacity: 0.75; }
+.game-body { display: grid; gap: 0.15rem; min-width: 0; }
+.game-line { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 0.35rem; }
+.game-line .slate-team { font-weight: 600; }
+.game-where { color: var(--muted); font-size: 0.9em; }
+.game-score { font-weight: 700; font-variant-numeric: tabular-nums; }
+.game-lines { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.15rem; }
+.line-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.1rem 0.5rem; border-radius: 999px;
+  font-size: 0.82rem; font-weight: 600; white-space: nowrap; border: 1px solid var(--rule); background: var(--surface);
+}
+.line-chip.is-ours { border-color: var(--ours); color: var(--ours); }
+.line-chip-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.8; }
+.swing-chart .chart-label .slate-team { font-weight: 600; }
+.swing-chart .chart-label .team-badge-xs { width: 1.15rem; height: 1.15rem; margin-right: 0.25rem; }
+@media (max-width: 575.98px) { table.dataTable.games-view .game-line .slate-team { white-space: nowrap; } }
+/* A game cell wraps in any table: score first, then the opponent as one piece. */
+.data-table td:has(.game-cell) { white-space: normal; }
+.game-opp { display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+.game-opp .slate-team { white-space: nowrap; }
+@media (max-width: 575.98px) {
+  .game-cell { gap: 0.4rem; }
+  .game-line { font-size: 0.92rem; }
+  .game-opp .team-badge-xs { width: 1.15rem; height: 1.15rem; margin-right: 0.2rem; }
+  .line-chip { font-size: 0.76rem; padding: 0.05rem 0.4rem; white-space: normal; }
+  .committee-grid .data-table th, .committee-grid .data-table td { padding-inline: 0.3rem; }
+}
+@media (max-width: 575.98px) {
+  /* Keep the games column narrow enough for four columns on a phone: the
+     opponent sits under the score and a long name may wrap. */
+  .game-body { max-width: 9.75rem; }
+  .game-line { flex-direction: column; align-items: flex-start; gap: 0.05rem; }
+  .game-opp { white-space: normal; flex-wrap: nowrap; }
+  .game-opp .slate-team, table.dataTable.games-view .game-line .slate-team { white-space: normal; }
+  .committee-grid .data-table .slate-team { white-space: normal; }
+}
+@media (max-width: 575.98px) {
+  /* On a phone the game views drop the Record column (it is in the Rankings
+     view), which gives the game cell room to stay on clean lines. */
+  table:has(.game-cell) th:nth-child(3), table:has(.game-cell) td:nth-child(3) { display: none; }
+  .game-body { max-width: 12.5rem; }
+  .game-opp, .game-opp .slate-team, table.dataTable.games-view .game-line .slate-team { white-space: nowrap; }
+  .line-chip { white-space: nowrap; }
+  .committee-grid .data-table .slate-team { white-space: nowrap; }
+  table.dataTable.games-view .slate-team { white-space: nowrap; }
+}
+@media (max-width: 575.98px) {
+  /* The ranked team's own name may wrap; the game cell stays on clean lines. */
+  table:has(.game-cell) td:nth-child(2), table:has(.game-cell) td:nth-child(2) .slate-team { white-space: normal; }
+  table:has(.game-cell) td:nth-child(2) .rank-conference { display: none; }
+  .game-body { max-width: 11.25rem; }
+  .game-opp .team-rank { margin-right: 0.15rem; }
+}

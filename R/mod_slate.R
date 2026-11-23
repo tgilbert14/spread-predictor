@@ -49,6 +49,7 @@ mod_slate_ui <- function(id, app_data) {
 #' @param notes This week's game notes (app_notes()), counted per game.
 slate_rows <- function(app_data, open_input_id, notes = NULL) {
   slate <- app_data$slate
+  ranks <- team_ranks(app_data)
   rows <- lapply(seq_len(nrow(slate)), function(i) {
     game <- slate[i, , drop = FALSE]
     m <- slate_matchup(game)
@@ -56,7 +57,7 @@ slate_rows <- function(app_data, open_input_id, notes = NULL) {
                                      week = app_data$meta$week),
                      error = function(e) NULL)
     if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id, n_notes = sum(notes$game_id == game$game_id))
+    slate_row(pred, game, open_input_id, n_notes = sum(notes$game_id == game$game_id), ranks = ranks)
   })
   do.call(rbind, rows)
 }
@@ -64,7 +65,9 @@ slate_rows <- function(app_data, open_input_id, notes = NULL) {
 #' A single slate row. Team A is the away team and B the home team.
 #'
 #' @param n_notes How many game notes this game has, for its marker.
-slate_row <- function(pred, game, open_input_id, n_notes = 0) {
+#' @param ranks Ranks named by team id, shown beside the names, or NULL.
+slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL) {
+  ranked <- function(team) if (is.null(ranks)) NA else rank_of(ranks, team$team_id)
   away <- pred$team_a$school
   home <- pred$team_b$school
   esc <- htmltools::htmlEscape
@@ -77,7 +80,8 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0) {
   cell <- function(label, html) sprintf('<span class="cell-label">%s</span>%s', label, html)
   data.frame(
     matchup = paste0(
-      matchup_html(team_name_html(pred$team_a, away), joiner, team_name_html(pred$team_b, home)),
+      matchup_html(team_name_html(pred$team_a, away, ranked(pred$team_a)), joiner,
+                   team_name_html(pred$team_b, home, ranked(pred$team_b))),
       slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes)
     ),
     our = cell("Our line", esc(format_favorite(pred$spread, away, home))),

@@ -439,7 +439,7 @@ football_team_games <- function(app_data) {
   ahead$away_points <- rep(NA_integer_, nrow(ahead))
   shared <- function(df) {
     for (name in c("home_team", "away_team")) if (!name %in% names(df)) df[[name]] <- rep(NA_character_, nrow(df))
-    df[c("home_id", "away_id", "home_team", "away_team", "neutral_site", "start_date", "when",
+    df[c("game_id", "home_id", "away_id", "home_team", "away_team", "neutral_site", "start_date", "when",
          "home_points", "away_points")]
   }
   team_games(rbind(shared(played), shared(ahead)), app_data$teams)
@@ -452,8 +452,10 @@ football_team_games <- function(app_data) {
 #' @param view "last" or "next".
 #' @return list(html, header).
 football_games_column <- function(app_data, sides, team_ids, week, view) {
+  ranks <- team_ranks(app_data, week)
   if (view == "last") {
-    return(list(html = result_html(last_games(sides, team_ids, before = week)), header = "Last game"))
+    games <- last_games(sides, team_ids, before = week)
+    return(list(html = result_html(games, app_data$teams, ranks), header = "Last game"))
   }
   games <- next_games(sides, team_ids, from = week)
   # Ratings as they stood for that week; a week still ahead uses the latest.
@@ -463,7 +465,9 @@ football_games_column <- function(app_data, sides, team_ids, week, view) {
   })
   # Looking back at a week already played, "next" is that week's game.
   played <- all(!is.na(games$points_for[!is.na(games$team_id)])) && any(!is.na(games$team_id))
-  list(html = upcoming_html(games, line), header = if (played) sprintf("Week %d game", week) else "Next game")
+  list(html = upcoming_html(games, line, teams = app_data$teams, ranks = ranks,
+                            market = market_lines(games, app_data$teams, app_data$slate)),
+       header = if (played) sprintf("Week %d game", week) else "Next game")
 }
 
 #' Which week splits "last game" from "next game" for a ranking as of `week`.
@@ -521,7 +525,8 @@ mod_rankings_server <- function(id, app_data) {
     output$table_note <- shiny::renderUI({
       notes <- c(
         if (ranking_view(input$view) == "ranks") "Record is going into that week's games." else
-          "Record counts every game before the ones shown as next.",
+          paste("Record counts every game before the ones shown as next.",
+                rank_note(team_ranks(app_data, games_week(app_data, week())))),
         if (by() == "blend" && all(is.na(ranking()$change))) {
           "Move needs the week before to blend the same systems, so it is blank here."
         },

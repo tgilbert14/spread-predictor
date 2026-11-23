@@ -184,7 +184,7 @@ cbb_model_table <- function(pred) {
 }
 
 #' One display row per slate game on a day, with football's row builder.
-cbb_slate_rows <- function(cbb, day, open_input_id) {
+cbb_slate_rows <- function(cbb, day, open_input_id, ranks = NULL) {
   slate <- cbb$slate[cbb$slate$day == day, , drop = FALSE]
   rows <- lapply(seq_len(nrow(slate)), function(i) {
     game <- slate[i, , drop = FALSE]
@@ -192,7 +192,7 @@ cbb_slate_rows <- function(cbb, day, open_input_id) {
     pred <- tryCatch(cbb_predict(matchup$a, matchup$b, matchup$site, cbb$teams, cbb$params),
                      error = function(e) NULL)
     if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id)
+    slate_row(pred, game, open_input_id, ranks = ranks)
   })
   do.call(rbind, rows)
 }
@@ -249,7 +249,7 @@ cbb_rankings_table <- function(rows, by = "blend") {
 #' Every team's basketball games: this season's results and the slate ahead.
 cbb_team_games <- function(cbb) {
   shape <- function(df, played) {
-    data.frame(home_id = df$home_id, away_id = df$away_id, neutral_site = df$neutral_site,
+    data.frame(game_id = df$game_id, home_id = df$home_id, away_id = df$away_id, neutral_site = df$neutral_site,
                start_date = if ("start_date" %in% names(df)) df$start_date else paste0(df$day, "T18:00:00Z"),
                when = as.numeric(as.Date(df$day)),
                home_points = if (played) df$home_points else rep(NA_integer_, nrow(df)),
@@ -261,15 +261,26 @@ cbb_team_games <- function(cbb) {
 
 #' The games column for the basketball table: each team's last result, or
 #' its next game on the slate with our line.
-cbb_games_column <- function(cbb, sides, team_ids, view) {
-  if (view == "last") return(list(html = result_html(last_games(sides, team_ids)), header = "Last game"))
+cbb_games_column <- function(cbb, sides, team_ids, view, ranks = NULL) {
+  if (view == "last") {
+    return(list(html = result_html(last_games(sides, team_ids), cbb$teams, ranks), header = "Last game"))
+  }
   ahead <- sides[is.na(sides$points_for), , drop = FALSE]
   games <- next_games(ahead, team_ids)
   line <- our_lines(games, cbb$teams, function(team, opponent, site) {
     cbb_predict(team, opponent, site, cbb$teams, cbb$params)$spread
   })
   # The slate only reaches a few days ahead.
-  list(html = upcoming_html(games, line, none = "None in the next few days"), header = "Next game")
+  list(html = upcoming_html(games, line, none = "None in the next few days", teams = cbb$teams, ranks = ranks,
+                            market = market_lines(games, cbb$teams, cbb$slate)),
+       header = "Next game")
+}
+
+#' Our own top 25, for the numbers beside basketball team names. There is
+#' no poll in the basketball data.
+cbb_team_ranks <- function(ranking, top = 25) {
+  best <- ranking[!is.na(ranking$rank) & ranking$rank <= top, , drop = FALSE]
+  stats::setNames(as.integer(best$rank), best$team_id)
 }
 
 # Server ------------------------------------------------------------------------
@@ -301,7 +312,7 @@ mod_cbb_matchup_server <- function(id, cbb) {
       htmltools::tagList(htmltools::span(class = "headline-answer", parts$answer),
                          " ", htmltools::span(class = "headline-context", parts$context))
     })
-    output$band <- shiny::renderUI(matchup_band(ok_pred(), colors()))
+    output$band <- shiny::renderUI(matchup_band(ok_pred(), colors(), cbb_team_ranks(cbb_ranking_table(cbb))))
     output$range <- shiny::renderText(format_interval(ok_pred()))
     output$market <- shiny::renderUI(market_fact(market_view(ok_pred(), cbb$slate, cbb$params$sigma)))
     output$flags <- shiny::renderUI(flag_list(ok_pred()$flags))
@@ -323,7 +334,7 @@ mod_cbb_slate_server <- function(id, cbb, on_open) {
     if (nrow(cbb$slate) == 0) return(invisible(NULL))
     output$table <- DT::renderDT({
       shiny::req(input$day %in% cbb$slate$day)
-      slate_table(cbb_slate_rows(cbb, input$day, session$ns("open")))
+      slate_table(cbb_slate_rows(cbb, input$day, session$ns("open"), cbb_team_ranks(cbb_ranking_table(cbb))))
     })
     shiny::observeEvent(input$open, {
       game <- cbb$slate[cbb$slate$game_id == input$open, , drop = FALSE]
@@ -354,7 +365,7 @@ mod_cbb_rankings_server <- function(id, cbb) {
       view <- ranking_view(input$view)
       rows <- cbb_ranking_rows(shown(), cbb$teams, by())
       if (view == "ranks") return(cbb_rankings_table(rows, by()))
-      games <- cbb_games_column(cbb, sides, shown()$team_id, view)
+      games <- cbb_games_column(cbb, sides, shown()$team_id, view, cbb_team_ranks(ranking))
       games_view_table(rows$rank, rows$team, rows$record, games$html, games$header)
     })
   })

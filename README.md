@@ -56,8 +56,18 @@ and **our CFP guess**, our prediction of the committee's ranking.
 
 **Last game and next game.** A switch above the Top 50, the committee
 prediction and the basketball Top 50 swaps the ranking columns for each
-team's last result, or its next game with our line for it. Looking back at
-an earlier week, it shows that week's game and how it finished.
+team's last result, or its next game with our line for it (and the
+sportsbooks' line when we hold one). Each opponent shows its logo and
+ranking. Looking back at an earlier week, it shows that week's game and how
+it finished.
+
+**Rankings beside names.** Wherever a team is named in a matchup (This
+week, the Matchup header, the Scorecard), a small number shows the playoff
+committee's latest ranking, or the AP poll before the committee starts.
+Basketball has no poll in our data, so it shows our own top 25.
+
+**Where the app opens.** On This week when there are games on the slate,
+and on Matchup between weeks or when a link names a matchup.
 
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.

@@ -21,7 +21,7 @@ RANKING_VIEWS <- c(ranks = "Rankings", last = "Last game", `next` = "Next game")
 #'   prediction, with the team as team A: "a_home", "b_home" or "neutral"), when, start_date, points_for
 #'   and points_against (NA until played).
 team_games <- function(games, teams) {
-  empty <- data.frame(team_id = integer(), opponent_id = integer(), opponent = character(),
+  empty <- data.frame(game_id = integer(), team_id = integer(), opponent_id = integer(), opponent = character(),
                       where = character(), site = character(), when = numeric(), start_date = character(),
                       points_for = integer(), points_against = integer(), stringsAsFactors = FALSE)
   if (!is.data.frame(games) || nrow(games) == 0) return(empty)
@@ -32,7 +32,8 @@ team_games <- function(games, teams) {
     ifelse(is.na(school), ifelse(is.na(fallback), "a lower-division team", fallback), school)
   }
   side <- function(team, opponent, opponent_name, where, site, scored, allowed) {
-    data.frame(team_id = team, opponent_id = opponent, opponent = named(opponent, opponent_name),
+    data.frame(game_id = column("game_id", NA_integer_), team_id = team, opponent_id = opponent,
+               opponent = named(opponent, opponent_name),
                where = where, site = site, when = as.numeric(games$when), start_date = games$start_date,
                points_for = scored, points_against = allowed, stringsAsFactors = FALSE)
   }
@@ -71,42 +72,68 @@ game_day <- function(start_date) {
   ifelse(is.na(day), "", paste0(format(day, "%a"), ", ", short_date(day)))
 }
 
+#' "at (logo) 12 Kansas State": where the game is and who it is against,
+#' with the opponent's logo and ranking.
+#'
+#' @param teams The teams table, for logos. NULL shows names alone.
+#' @param ranks Ranks named by team id (team_ranks()), or NULL for none.
+opponent_html <- function(games, teams = NULL, ranks = NULL) {
+  vapply(seq_len(nrow(games)), function(i) {
+    team <- if (is.null(teams)) NULL else teams[teams$team_id %in% games$opponent_id[i], , drop = FALSE]
+    rank <- if (is.null(ranks)) NA else rank_of(ranks, games$opponent_id[i])
+    # Kept as one piece so "at", the logo and the name never split across lines.
+    sprintf('<span class="game-opp"><span class="game-where">%s</span> %s</span>', games$where[i],
+            team_name_html(team, games$opponent[i], rank))
+  }, character(1))
+}
+
 #' A finished game as table text: a W or L chip, the score, the opponent.
 #'
 #' @param games Rows from last_games() or next_games().
-#' @return HTML, one per row. A dash where there is no game.
-result_html <- function(games) {
+#' @return HTML, one per row. A note where there is no game.
+result_html <- function(games, teams = NULL, ranks = NULL) {
   won <- games$points_for > games$points_against
   ifelse(
     is.na(games$points_for), '<span class="muted">No game yet</span>',
-    sprintf('<span class="game-cell"><span class="result-chip %s">%s</span><span>%d-%d %s %s<span class="game-when">%s</span></span></span>',
+    sprintf(paste0('<span class="game-cell"><span class="result-chip %s">%s</span><span class="game-body">',
+                   '<span class="game-line"><span class="game-score">%d-%d</span> %s</span>',
+                   '<span class="game-when">%s</span></span></span>'),
             ifelse(won, "is-win", "is-loss"), ifelse(won, "W", "L"),
-            games$points_for, games$points_against, games$where, htmltools::htmlEscape(games$opponent),
+            games$points_for, games$points_against, opponent_html(games, teams, ranks),
             game_day(games$start_date))
   )
 }
 
-#' An upcoming game as table text: the opponent, the day, and our line.
+#' An upcoming game as table text: the opponent, the day, and the lines.
 #'
 #' A game that has since been played (an earlier week's view) shows its
 #' result instead.
 #'
-#' @param line One line of text per row ("Our line: Arizona by 3"), or NULL.
+#' @param line One line per row ("Arizona by 3"), "" for none, or NULL.
+#' @param market The sportsbooks' line per row, in the same words, or NULL.
 #' @param none What to say for a team with no game ahead.
-upcoming_html <- function(games, line = NULL, none = "Nothing scheduled") {
+upcoming_html <- function(games, line = NULL, none = "Nothing scheduled", teams = NULL, ranks = NULL,
+                          market = NULL) {
   if (is.null(line)) line <- rep("", nrow(games))
+  if (is.null(market)) market <- rep("", nrow(games))
+  chip <- function(label, text, class) {
+    ifelse(nzchar(text), sprintf('<span class="line-chip %s"><span class="line-chip-label">%s</span>%s</span>',
+                                 class, label, htmltools::htmlEscape(text)), "")
+  }
+  lines <- paste0(chip("Our line", line, "is-ours"), chip("Market", market, "is-market"))
   ifelse(
     is.na(games$team_id), sprintf('<span class="muted">%s</span>', none),
     ifelse(
-      !is.na(games$points_for), result_html(games),
-      sprintf('<span class="game-cell"><span>%s %s<span class="game-when">%s%s</span></span></span>',
-              games$where, htmltools::htmlEscape(games$opponent), game_day(games$start_date),
-              ifelse(nzchar(line), paste0(" · ", htmltools::htmlEscape(line)), ""))
+      !is.na(games$points_for), result_html(games, teams, ranks),
+      sprintf(paste0('<span class="game-cell"><span class="game-body"><span class="game-line">%s</span>',
+                     '<span class="game-when">%s</span>%s</span></span>'),
+              opponent_html(games, teams, ranks), game_day(games$start_date),
+              ifelse(nzchar(lines), sprintf('<span class="game-lines">%s</span>', lines), ""))
     )
   )
 }
 
-#' "Our line: Arizona by 3" for each upcoming game, or "" where we cannot
+#' "Arizona by 3" for each upcoming game, or "" where we cannot
 #' price it (a lower-division opponent, or a game already played).
 #'
 #' @param predict function(team_id, opponent_id, site) giving the predicted
@@ -117,7 +144,25 @@ our_lines <- function(games, teams, predict) {
     if (is.na(game$team_id) || !is.na(game$points_for) || !game$opponent_id %in% teams$team_id) return("")
     margin <- tryCatch(predict(game$team_id, game$opponent_id, game$site), error = function(e) NA_real_)
     if (is.na(margin)) return("")
-    paste("Our line:", format_favorite(margin, teams$school[match(game$team_id, teams$team_id)], game$opponent))
+    format_favorite(margin, teams$school[match(game$team_id, teams$team_id)], game$opponent)
+  }, character(1))
+}
+
+#' The sportsbooks' line for each upcoming game, in the same words as ours,
+#' or "" where we hold none.
+#'
+#' @param slate Games with game_id, home_id and market_spread_home (the
+#'   spread from the home team's side: negative means the home team is
+#'   favored).
+market_lines <- function(games, teams, slate) {
+  if (!is.data.frame(slate) || nrow(slate) == 0) return(rep("", nrow(games)))
+  at <- match(games$game_id, slate$game_id)
+  spread <- slate$market_spread_home[at]
+  home_margin <- -spread
+  margin <- ifelse(slate$home_id[at] == games$team_id, home_margin, -home_margin)
+  vapply(seq_len(nrow(games)), function(i) {
+    if (is.na(margin[i]) || !is.na(games$points_for[i])) return("")
+    format_favorite(margin[i], teams$school[match(games$team_id[i], teams$team_id)], games$opponent[i])
   }, character(1))
 }
 

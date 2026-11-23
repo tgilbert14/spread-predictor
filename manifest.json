@@ -2045,7 +2045,7 @@
       "checksum": "87f9d4ec0ffedff42d9aa1a7e04c6c96"
     },
     "app.R": {
-      "checksum": "a9080e97b8b359a0b13a89848f33d6f9"
+      "checksum": "d4481ef56eca64a3d046e8cff25f459e"
     },
     "data/app_data.rds": {
       "checksum": "62277dd2f7d1241b4987f4f8dede6f74"
@@ -2105,22 +2105,22 @@
       "checksum": "79efc4e8e08bc156c9defdb35d821558"
     },
     "R/mod_cbb.R": {
-      "checksum": "b2a4fbd3cffc80d9817c598a673e4984"
+      "checksum": "3ebe2d8cd99d0159be4aa5790d50d651"
     },
     "R/mod_matchup.R": {
-      "checksum": "4bcb17a9de133cd08c31f6e8a329fe05"
+      "checksum": "b7d487b2062999efcf9dc098b925766d"
     },
     "R/mod_rankings.R": {
-      "checksum": "2b3216311a1065fb0f6fe533682f8d6a"
+      "checksum": "5f876e75e4f9a10c5f855c4b357ca5db"
     },
     "R/mod_report.R": {
       "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
     },
     "R/mod_scorecard.R": {
-      "checksum": "804065a7be7ef6fa462d5eb53e33d27f"
+      "checksum": "83f614831ed28ec14b206bd0120ac042"
     },
     "R/mod_slate.R": {
-      "checksum": "3c7513a6ae8db10385295eb4592d5cf2"
+      "checksum": "7ba322460f8aa4cd2dd9b2b2d3d6b305"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2144,7 +2144,7 @@
       "checksum": "d6f25f44c1f2fd9fc562bbcc70202ff8"
     },
     "R/team_games.R": {
-      "checksum": "bea08015e7bd841f82befb7b52f76bb6"
+      "checksum": "ca3d3a0a8a2d23e8dad0c43119f05640"
     },
     "R/theme.R": {
       "checksum": "c9e4aae1cdf5a6c02bbaf95c6ece7e31"
@@ -2153,7 +2153,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "dbd310176c49d283cac5569047798546"
+      "checksum": "a7bcace2a3b8a57bf784952793d5f12f"
     },
     "www/app.js": {
       "checksum": "2cfbb0f85577fd9093556bf3bd56c02f"
@@ -2180,7 +2180,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "d7f801b9f84eae9ec279876e09fc0453"
+      "checksum": "07b3a6c343c5568a16bc67818fcbc34e"
     }
   },
   "users": null
