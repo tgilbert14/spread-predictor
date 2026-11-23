@@ -365,7 +365,7 @@ matchup_from_query <- function(query, teams, fallback) {
 default_tab <- function(query, app_data) {
   params <- if (is.null(query) || !nzchar(query)) list() else shiny::parseQueryString(query)
   if (any(c("a", "b", "site", "week") %in% names(params))) return("matchup")
-  if (is.data.frame(app_data$slate) && nrow(app_data$slate) > 0) "slate" else "matchup"
+  if (nrow(shown_slate(app_data)$games) > 0) "slate" else "matchup"
 }
 
 #' The slate game between two teams, in either order, or NULL.

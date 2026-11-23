@@ -66,8 +66,10 @@ week, the Matchup header, the Scorecard), a small number shows the playoff
 committee's latest ranking, or the AP poll before the committee starts.
 Basketball has no poll in our data, so it shows our own top 25.
 
-**Where the app opens.** On This week when there are games on the slate,
-and on Matchup between weeks or when a link names a matchup.
+**Where the app opens.** On This week, unless a link names a matchup. Once
+a week's games are all played, This week looks ahead to the next week's
+games with our lines alone, marked "Look ahead". The sportsbooks' lines
+join them at the next data refresh.
 
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.

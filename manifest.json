@@ -2120,7 +2120,7 @@
       "checksum": "83f614831ed28ec14b206bd0120ac042"
     },
     "R/mod_slate.R": {
-      "checksum": "7ba322460f8aa4cd2dd9b2b2d3d6b305"
+      "checksum": "aa3c6c83bb5813623f7b574cc736683d"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2153,7 +2153,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "a7bcace2a3b8a57bf784952793d5f12f"
+      "checksum": "91e9927eb289229fe833a773aff91319"
     },
     "www/app.js": {
       "checksum": "2cfbb0f85577fd9093556bf3bd56c02f"

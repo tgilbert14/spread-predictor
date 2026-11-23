@@ -5,16 +5,53 @@
 SLATE_VISIBLE <- c("Matchup", "Our line", "Market", "Difference", "Home win chance", "")
 SLATE_KEYS <- c(our = 6, market = 7, gap = 8, prob = 9)
 
+#' The games the This week tab shows.
+#'
+#' Normally that is this week's slate. Once every game on it has been
+#' played, the tab would sit empty until the next data refresh, so it looks
+#' ahead instead: the next week's games between teams we rate, from the
+#' schedule. Those have no sportsbook line yet, since lines are pulled with
+#' the weekly refresh.
+#'
+#' @return list(games, week, ahead): rows shaped like app_data$slate, the
+#'   week they belong to, and TRUE when they are next week's.
+shown_slate <- function(app_data) {
+  slate <- app_data$slate
+  week <- app_data$meta$week
+  if (nrow(slate) > 0) return(list(games = slate, week = week, ahead = FALSE))
+  ahead <- app_data$upcoming
+  if (is.data.frame(ahead) && nrow(ahead) > 0) {
+    rated <- ahead$home_id %in% app_data$teams$team_id & ahead$away_id %in% app_data$teams$team_id
+    ahead <- ahead[rated & (is.null(week) | ahead$week > week), , drop = FALSE]
+  }
+  if (!is.data.frame(ahead) || nrow(ahead) == 0) return(list(games = slate, week = week, ahead = FALSE))
+  ahead <- ahead[ahead$week == min(ahead$week), , drop = FALSE]
+  ahead <- ahead[order(ahead$start_date, ahead$game_id), , drop = FALSE]
+  games <- data.frame(game_id = ahead$game_id, start_date = ahead$start_date, home_id = ahead$home_id,
+                      away_id = ahead$away_id, neutral_site = ahead$neutral_site %in% c(TRUE, 1),
+                      market_spread_home = NA_real_, market_at_freeze = NA_real_, market_move = NA_real_)
+  list(games = games, week = as.integer(ahead$week[1]), ahead = TRUE)
+}
+
 #' @param app_data See docs/data-dictionary.md.
 mod_slate_ui <- function(id, app_data) {
   ns <- shiny::NS(id)
-  has_games <- nrow(app_data$slate) > 0
+  shown <- shown_slate(app_data)
+  has_games <- nrow(shown$games) > 0
 
   body <- if (has_games) {
     htmltools::tagList(
       htmltools::p(
         class = "section-lede",
-        "Biggest gaps between our line and the market come first. ",
+        if (shown$ahead) {
+          htmltools::tagList(
+            sprintf("Week %s is in the books, so this is a look ahead at week %s, in kickoff order. ",
+                    app_data$meta$week, shown$week),
+            "These are our lines alone: the sportsbooks' lines arrive with the next data refresh. "
+          )
+        } else {
+          "Biggest gaps between our line and the market come first. "
+        },
         htmltools::tags$strong("Tap any game"), " to open it in Matchup."
       ),
       htmltools::div(class = "slate-wrap", DT::DTOutput(ns("table")))
@@ -35,7 +72,8 @@ mod_slate_ui <- function(id, app_data) {
         class = "card-body",
         htmltools::tags$h2(
           id = ns("title"), class = "section-title",
-          if (is.null(app_data$meta$week)) "This week's games" else sprintf("Week %s games", app_data$meta$week)
+          if (is.null(shown$week)) "This week's games" else sprintf("Week %s games", shown$week),
+          if (shown$ahead) htmltools::span(class = "pill", "Look ahead")
         ),
         body
       )
@@ -47,8 +85,8 @@ mod_slate_ui <- function(id, app_data) {
 #' Games whose teams cannot be predicted are skipped rather than shown broken.
 #'
 #' @param notes This week's game notes (app_notes()), counted per game.
-slate_rows <- function(app_data, open_input_id, notes = NULL) {
-  slate <- app_data$slate
+#' @param slate The games to show: shown_slate()$games.
+slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slate(app_data)$games) {
   ranks <- team_ranks(app_data)
   rows <- lapply(seq_len(nrow(slate)), function(i) {
     game <- slate[i, , drop = FALSE]
@@ -114,7 +152,9 @@ gap_side <- function(gap, away, home) {
 }
 
 #' The DT widget, stripped down to a sortable list that matches the theme.
-slate_table <- function(rows) {
+#' @param by_gap Start sorted by the biggest gap to the market. FALSE keeps
+#'   the order given (kickoff order), for games with no market line yet.
+slate_table <- function(rows, by_gap = TRUE) {
   DT::datatable(
     rows,
     colnames = c(SLATE_VISIBLE, names(SLATE_KEYS)),
@@ -125,7 +165,7 @@ slate_table <- function(rows) {
     options = list(
       dom = "<'slate-search'f>t",
       paging = FALSE, info = FALSE, autoWidth = FALSE,
-      order = list(list(SLATE_KEYS[["gap"]], "desc")),
+      order = if (by_gap) list(list(SLATE_KEYS[["gap"]], "desc")) else list(),
       language = list(search = "", searchPlaceholder = "Find a team",
                       zeroRecords = "No games match that search."),
       columnDefs = list(
@@ -145,12 +185,15 @@ slate_table <- function(rows) {
 #'   with NULL to just switch to the Matchup tab.
 mod_slate_server <- function(id, app_data, notes, on_open) {
   shiny::moduleServer(id, function(input, output, session) {
-    if (nrow(app_data$slate) > 0) {
-      output$table <- DT::renderDT(slate_table(slate_rows(app_data, session$ns("open"), notes)))
+    shown <- shown_slate(app_data)
+    if (nrow(shown$games) > 0) {
+      output$table <- DT::renderDT(
+        slate_table(slate_rows(app_data, session$ns("open"), notes, shown$games), by_gap = !shown$ahead)
+      )
     }
 
     shiny::observeEvent(input$open, {
-      game <- app_data$slate[app_data$slate$game_id == input$open, , drop = FALSE]
+      game <- shown$games[shown$games$game_id == input$open, , drop = FALSE]
       shiny::req(nrow(game) == 1)
       on_open(slate_matchup(game))
     })
