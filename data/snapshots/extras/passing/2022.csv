@@ -1,0 +1,2567 @@
+"game_id","season","week","team","athlete_id","athlete","completions","attempts","yards"
+401403853,2022,1,"Hawai'i","4709977","Brayden Schager",18,35,161
+401403853,2022,1,"Hawai'i","4426360","Joey Yellen",10,20,89
+401403853,2022,1,"Vanderbilt","4433932","Mike Wright",13,21,146
+401403853,2022,1,"Vanderbilt","5081405","AJ Swann",3,7,51
+401403854,2022,1,"Alabama","4685720","Bryce Young",18,28,195
+401403854,2022,1,"Alabama","4432734","Jalen Milroe",8,10,76
+401403854,2022,1,"Alabama","4685522","Ty Simpson",1,2,10
+401403854,2022,1,"Utah State","4036473","Logan Bonner",3,9,39
+401403854,2022,1,"Utah State","4430033","Cooper Legas",3,8,3
+401403854,2022,1,"Utah State","4428890","Levi Williams",2,5,15
+401403855,2022,1,"Arkansas","4567149","KJ Jefferson",18,26,223
+401403855,2022,1,"Cincinnati","4360056","Ben Bryant",26,43,325
+401403856,2022,1,"Auburn","4431948","TJ Finley",9,14,112
+401403856,2022,1,"Auburn","4697512","Robby Ashford",4,7,100
+401403856,2022,1,"Mercer","4361033","Fred Payton",21,36,197
+401403857,2022,1,"Florida","4429084","Anthony Richardson",17,24,168
+401403857,2022,1,"Utah","4362075","Cameron Rising",22,32,216
+401403858,2022,1,"Georgia","4259553","Stetson Bennett",25,31,368
+401403858,2022,1,"Georgia","4430841","Carson Beck",5,6,71
+401403858,2022,1,"Oregon","4426338","Bo Nix",21,37,173
+401403859,2022,1,"Kentucky","4361418","Will Levis",21,32,303
+401403859,2022,1,"Miami (OH)","4427243","Brett Gabbert",20,28,166
+401403859,2022,1,"Miami (OH)","4576189","Aveon Smith",2,4,13
+401403860,2022,1,"Ole Miss","4689114","Jaxson Dart",18,27,154
+401403860,2022,1,"Ole Miss","4597679","Luke Altmyer",1,2,13
+401403860,2022,1,"Troy","4362723","Gunnar Watson",34,47,275
+401403860,2022,1,"Troy","4244029","Jarret Doege",1,1,11
+401403861,2022,1,"Memphis","4606194","Seth Henigan",19,30,165
+401403861,2022,1,"Mississippi State","102597","Will Rogers",38,49,450
+401403863,2022,1,"Georgia State","4369448","Darren Grainger",7,29,111
+401403863,2022,1,"South Carolina","4426339","Spencer Rattler",23,37,227
+401403864,2022,1,"Ball State","4361636","John Paddock",27,43,269
+401403864,2022,1,"Tennessee","4240858","Hendon Hooker",18,25,221
+401403864,2022,1,"Tennessee","4360698","Joe Milton",8,9,113
+401403864,2022,1,"Tennessee","4697122","Gaston Moore",1,1,17
+401403865,2022,1,"Sam Houston","4428961","Jordan Yates",14,28,91
+401403865,2022,1,"Texas A&M","4428993","Haynes King",20,31,364
+401403865,2022,1,"Texas A&M","4685740","Max Johnson",3,4,23
+401403866,2022,1,"Elon","4240096","Matt McKay",19,32,333
+401403866,2022,1,"Elon","4366857","Joey Baughman",1,2,10
+401403866,2022,1,"Vanderbilt","4433932","Mike Wright",18,29,245
+401403867,2022,1,"Florida State","4360799","Jordan Travis",20,33,260
+401403867,2022,1,"LSU","4426348","Jayden Daniels",25,34,209
+401403965,2022,1,"Arizona State","4360230","Emory Jones",13,18,152
+401403965,2022,1,"Northern Arizona","4876244","RJ Martinez",19,29,95
+401403965,2022,1,"Northern Arizona","4430718","Jeff Widener",1,1,2
+401403966,2022,1,"Colorado","4369839","JT Shrout",13,23,157
+401403966,2022,1,"Colorado","4429149","Brendon Lewis",13,18,78
+401403966,2022,1,"TCU","4692530","Chandler Morris",13,20,111
+401403966,2022,1,"TCU","4427105","Max Duggan",2,3,27
+401403967,2022,1,"Arizona","4697623","Jayden de Laura",22,35,299
+401403967,2022,1,"San Diego State","4242490","Braxton Burmeister",5,10,51
+401403967,2022,1,"San Diego State","4683386","William Haskell",2,6,11
+401403968,2022,1,"California","4361493","Jack Plummer",23,35,268
+401403968,2022,1,"UC Davis","4571293","Miles Hastings",32,50,242
+401403969,2022,1,"Boise State","4431325","Taylen Green",19,28,155
+401403969,2022,1,"Boise State","4426499","Hank Bachmeier",4,8,30
+401403969,2022,1,"Oregon State","4360824","Chance Nolan",14,23,251
+401403969,2022,1,"Oregon State","4570045","John Dunmore",1,1,41
+401403970,2022,1,"Colgate","4876662","Michael Brescia",9,19,57
+401403970,2022,1,"Colgate","4694240","Harry Kirk",1,1,2
+401403970,2022,1,"Stanford","4685201","Tanner McKee",22,27,308
+401403970,2022,1,"Stanford","4592531","Ari Patu",2,3,20
+401403971,2022,1,"Bowling Green","4239937","Matt McDonald",17,34,125
+401403971,2022,1,"Bowling Green","4239938","CJ Lewis",0,1,0
+401403971,2022,1,"Bowling Green","4577962","Camden Orth",0,1,0
+401403971,2022,1,"UCLA","4367178","Dorian Thompson-Robinson",32,43,298
+401403971,2022,1,"UCLA","4429068","Ethan Garbers",3,4,59
+401403973,2022,1,"Kent State","4428439","Collin Schlee",12,24,178
+401403973,2022,1,"Kent State","4685693","Devin Kargman",2,5,15
+401403973,2022,1,"Washington","4360423","Michael Penix Jr.",26,39,345
+401403973,2022,1,"Washington","4569598","Dylan Morris",3,5,48
+401403974,2022,1,"Idaho","4887446","Gevani McCoy",21,32,212
+401403974,2022,1,"Washington State","4688380","Cameron Ward",25,40,215
+401404052,2022,1,"Kansas","4596472","Jalon Daniels",15,18,189
+401404052,2022,1,"Kansas","4360900","Jason Bean",1,1,16
+401404052,2022,1,"Tennessee Tech","4249033","Jeremiah Oatsvall",10,18,76
+401404052,2022,1,"Tennessee Tech","4877480","Lem Wash",5,8,21
+401404055,2022,1,"Murray State","4697094","DJ Williams",8,16,207
+401404055,2022,1,"Murray State","4883169","Lucas Maue",1,7,1
+401404055,2022,1,"Texas Tech","4690977","Donovan Smith",14,16,221
+401404055,2022,1,"Texas Tech","4431465","Behren Morton",7,10,97
+401404055,2022,1,"Texas Tech","4360689","Tyler Shough",6,10,154
+401404056,2022,1,"Kansas State","4361182","Adrian Martinez",11,15,53
+401404056,2022,1,"Kansas State","4431535","Jake Rubley",4,4,42
+401404056,2022,1,"South Dakota","4695784","Carson Camp",18,34,139
+401404057,2022,1,"Iowa State","4565358","Hunter Dekkers",25,31,293
+401404057,2022,1,"Southeast Missouri State","5083757","Paxton DeLaurent",19,38,222
+401404059,2022,1,"Texas","4889929","Quinn Ewers",16,24,225
+401404059,2022,1,"Texas","4429032","Hudson Card",4,5,24
+401404059,2022,1,"UL Monroe","4887223","Chandler Rogers",14,19,108
+401404059,2022,1,"UL Monroe","4575755","Garrett Hable",2,4,59
+401404124,2022,1,"Notre Dame","4431513","Tyler Buchner",10,18,177
+401404124,2022,1,"Ohio State","4432577","C.J. Stroud",24,34,223
+401404134,2022,1,"Army","4577303","Cade Ballard",3,5,88
+401404134,2022,1,"Army","4373726","Tyhier Tyler",1,3,54
+401404134,2022,1,"Coastal Carolina","4427936","Grayson McCall",12,17,174
+401404146,2022,1,"UConn","4685697","Zion Turner",12,31,109
+401404146,2022,1,"UConn","4427313","Ta'Quan Roberson",1,2,10
+401404146,2022,1,"Utah State","4036473","Logan Bonner",20,29,281
+401404146,2022,1,"Utah State","4372041","Brian Cobbs",0,1,0
+401404146,2022,1,"Utah State","4428890","Levi Williams",0,1,0
+401404147,2022,1,"Central Connecticut","4371078","Romelo Williams",16,30,164
+401404147,2022,1,"UConn","4685697","Zion Turner",14,22,172
+401404147,2022,1,"UConn","4428001","Cale Millen",0,1,0
+401404157,2022,1,"Liberty","4426687","Johnathan Bennett",7,18,37
+401404157,2022,1,"Liberty","4432803","Kaidon Salter",8,13,148
+401404157,2022,1,"Liberty","4241222","Charlie Brewer",3,4,18
+401404157,2022,1,"Southern Miss","4431418","Ty Keyes",4,8,89
+401404157,2022,1,"Southern Miss","4429805","Frank Gore Jr.",1,4,48
+401404157,2022,1,"Southern Miss","4362211","Trey Lowe III",0,1,0
+401405058,2022,1,"Illinois","4240391","Tommy DeVito",27,37,194
+401405058,2022,1,"Illinois","4361530","Artur Sitkowski",3,3,23
+401405058,2022,1,"Wyoming","4361607","Andrew Peasley",5,20,30
+401405059,2022,1,"Nebraska","4362073","Casey Thompson",25,42,355
+401405059,2022,1,"Northwestern","4426657","Ryan Hilinski",27,38,314
+401405060,2022,1,"Minnesota","4240756","Tanner Morgan",13,19,174
+401405060,2022,1,"Minnesota","4427740","Cole Kramer",3,3,14
+401405060,2022,1,"Minnesota","4432722","Athan Kaliakmanis",0,1,0
+401405060,2022,1,"New Mexico State","4914368","Gavin Frakes",2,7,43
+401405060,2022,1,"New Mexico State","5084180","Diego Pavia",2,5,10
+401405061,2022,1,"Illinois","4240391","Tommy DeVito",21,35,235
+401405061,2022,1,"Illinois","4362238","Chase Brown",0,1,0
+401405061,2022,1,"Indiana","4426444","Connor Bazelak",28,52,330
+401405062,2022,1,"Iowa","4360480","Spencer Petras",11,25,109
+401405062,2022,1,"South Dakota State","4695400","Mark Gronowski",10,26,87
+401405063,2022,1,"Nebraska","4362073","Casey Thompson",14,21,193
+401405063,2022,1,"North Dakota","4579073","Tommy Schuster",24,37,131
+401405064,2022,1,"Penn State","4259592","Sean Clifford",20,37,282
+401405064,2022,1,"Penn State","4714771","Drew Allar",2,4,26
+401405064,2022,1,"Purdue","4260394","Aidan O'Connell",29,58,356
+401405065,2022,1,"Illinois State","4360936","Zack Annexstad",16,24,186
+401405065,2022,1,"Wisconsin","4426335","Graham Mertz",14,16,219
+401405066,2022,1,"Buffalo","4570057","Cole Snyder",18,35,160
+401405066,2022,1,"Maryland","4567097","Taulia Tagovailoa",24,34,290
+401405066,2022,1,"Maryland","4592532","Billy Edwards",1,1,7
+401405067,2022,1,"Colorado State","4432733","Clay Millen",16,20,137
+401405067,2022,1,"Michigan","4427455","Cade McNamara",9,18,136
+401405067,2022,1,"Michigan","4362159","Alan Bowman",5,6,40
+401405067,2022,1,"Michigan","4433970","J.J. McCarthy",4,4,30
+401405069,2022,1,"Boston College","4372768","Phil Jurkovec",23,41,283
+401405069,2022,1,"Rutgers","4431387","Evan Simon",8,12,63
+401405069,2022,1,"Rutgers","4893657","Gavin Wimsatt",5,9,47
+401405069,2022,1,"Rutgers","4361556","Aron Cruickshank",0,1,0
+401409235,2022,1,"Nevada","4429070","Shane Illingworth",7,12,51
+401409235,2022,1,"Nevada","4262162","Nate Cox",7,11,27
+401409235,2022,1,"New Mexico State","5084180","Diego Pavia",9,20,75
+401409235,2022,1,"New Mexico State","4914368","Gavin Frakes",9,13,143
+401411090,2022,1,"Duquesne","4362303","Joe Mischler",7,17,71
+401411090,2022,1,"Florida State","4360799","Jordan Travis",11,15,207
+401411090,2022,1,"Florida State","4433886","Tate Rodemaker",2,6,15
+401411090,2022,1,"Florida State","4685334","A.J. Duffy",1,1,10
+401411091,2022,1,"Florida A&M","4363640","Jeremy Moussa",28,38,279
+401411091,2022,1,"Florida A&M","4390274","Rasean Mckay",0,1,0
+401411091,2022,1,"North Carolina","4431452","Drake Maye",29,37,294
+401411092,2022,1,"Pittsburgh","4428512","Kedon Slovis",16,24,308
+401411092,2022,1,"West Virginia","4374303","JT Daniels",23,40,214
+401411093,2022,1,"VMI","4572934","Seth Morgan",13,27,79
+401411093,2022,1,"VMI","4432289","Collin Ironside",6,9,60
+401411093,2022,1,"Wake Forest","4433829","Mitch Griffis",21,29,288
+401411093,2022,1,"Wake Forest","4567031","Michael Kern",3,4,6
+401411094,2022,1,"Duke","4683423","Riley Leonard",24,30,328
+401411094,2022,1,"Temple","4427914","D'Wan Mathis",11,21,83
+401411094,2022,1,"Temple","4361959","Quincy Patterson II",3,8,31
+401411095,2022,1,"App State","4239994","Chase Brice",25,36,361
+401411095,2022,1,"North Carolina","4431452","Drake Maye",24,35,352
+401411096,2022,1,"East Carolina","4360131","Holton Ahlers",25,41,267
+401411096,2022,1,"NC State","4361653","Devin Leary",17,33,211
+401411097,2022,1,"Bethune-Cookman","5093144","Jalon Jones",11,20,243
+401411097,2022,1,"Bethune-Cookman","4877341","Tyrone Franklin Jr",1,4,-3
+401411097,2022,1,"Bethune-Cookman","4431565","Walter Simmons III",2,3,9
+401411097,2022,1,"Miami","4685186","Tyler Van Dyke",13,16,193
+401411097,2022,1,"Miami","4432703","Jake Garcia",7,7,88
+401411099,2022,1,"Louisville","4240069","Malik Cunningham",16,22,152
+401411099,2022,1,"Louisville","4686343","Braden Smith",1,1,45
+401411099,2022,1,"Syracuse","4426966","Garrett Shrader",18,25,237
+401411099,2022,1,"Syracuse","4432691","Carlos Del Rio-Wilson",1,1,5
+401411100,2022,1,"Richmond","4249295","Reece Udinski",23,34,160
+401411100,2022,1,"Virginia","4370775","Brennan Armstrong",21,33,246
+401411101,2022,1,"Clemson","4429020","D.J. Uiagalelei",19,32,210
+401411101,2022,1,"Clemson","4685413","Cade Klubnik",4,6,49
+401411101,2022,1,"Georgia Tech","4429066","Jeff Sims",23,36,164
+401413224,2022,1,"Cal Poly","4876109","Jaden Jones",20,38,211
+401413224,2022,1,"Fresno State","4243322","Jake Haener",36,42,377
+401413256,2022,1,"Idaho State","4695914","Hunter Hays",7,13,61
+401413256,2022,1,"Idaho State","4240351","Tyler Vander Waal",7,13,130
+401413256,2022,1,"Idaho State","4577841","Sagan Gronauer",0,1,0
+401413256,2022,1,"UNLV","4429516","Doug Brumfield",21,25,356
+401413256,2022,1,"UNLV","4429145","Harrison Bailey",3,8,26
+401413256,2022,1,"UNLV","4683451","Cameron Friel",2,2,23
+401414778,2022,1,"Massachusetts","4365660","Gino Campiotti",2,6,12
+401414778,2022,1,"Massachusetts","4683471","Brady Olson",2,5,5
+401414778,2022,1,"Tulane","4685039","Michael Pratt",12,20,164
+401414778,2022,1,"Tulane","4685040","Justin Ibieta",1,2,9
+401415015,2022,1,"Marshall","4259219","Henry Colombi",24,26,205
+401415015,2022,1,"Marshall","4700135","Cam Fancher",2,3,27
+401415015,2022,1,"Marshall","4715350","Peter Zamora",0,1,0
+401415015,2022,1,"Norfolk State","4695113","Otto Kuhns",3,10,30
+401415015,2022,1,"Norfolk State","4383193","Jaylan Adams",3,4,54
+401415209,2022,1,"Air Force","4693814","Haaziq Daniels",3,6,109
+401415209,2022,1,"Northern Iowa","4360846","Theo Day",20,32,286
+401415210,2022,1,"Maine","4429582","Joe Fagnano",12,27,96
+401415210,2022,1,"New Mexico","4360331","Miles Kendrick",14,17,170
+401415211,2022,1,"Tulsa","4362365","Davis Brin",30,52,460
+401415211,2022,1,"Wyoming","4361607","Andrew Peasley",20,30,256
+401415212,2022,1,"Nevada","4429070","Shane Illingworth",11,13,101
+401415212,2022,1,"Nevada","4262162","Nate Cox",5,7,43
+401415212,2022,1,"Texas State","4361222","Layne Hatcher",33,51,289
+401415213,2022,1,"Portland State","4426894","Dante Chachere",24,37,270
+401415213,2022,1,"San José State","4373934","Chevan Cordeiro",15,30,239
+401415610,2022,1,"South Carolina State","4384546","Cory Fields",5,15,42
+401415610,2022,1,"South Carolina State","4801305","Prometheus Franklin II",0,5,0
+401415610,2022,1,"South Carolina State","4251048","Tyrece Nick",2,3,14
+401415610,2022,1,"UCF","4426494","John Rhys Plumlee",20,31,308
+401415610,2022,1,"UCF","4773919","Thomas Castellanos",0,1,0
+401415611,2022,1,"Delaware","4248104","Nolan Henderson",20,32,189
+401415611,2022,1,"Navy","4686164","Tai Lavatai",5,13,135
+401415612,2022,1,"BYU","4373632","Jaren Hall",25,32,261
+401415612,2022,1,"South Florida","4362915","Gerry Bohannon",17,30,172
+401416568,2022,1,"Akron","4368768","DJ Irons",24,39,273
+401416568,2022,1,"Saint Francis","5088330","Cole Doyle",12,18,85
+401416568,2022,1,"Saint Francis","4373316","Justin Sliwoski",11,17,162
+401416568,2022,1,"Saint Francis","4576226","Hunter Brown",0,1,0
+401416569,2022,1,"Central Michigan","4570259","Daniel Richardson",36,49,424
+401416569,2022,1,"Oklahoma State","4361825","Spencer Sanders",28,41,406
+401416590,2022,1,"Eastern Kentucky","4368767","Parker McKinney",35,51,351
+401416590,2022,1,"Eastern Michigan","4241193","Taylor Powell",21,30,271
+401416591,2022,1,"Michigan State","4430590","Payton Thorne",12,24,233
+401416591,2022,1,"Western Michigan","4430699","Jack Salopek",21,36,193
+401416592,2022,1,"Eastern Illinois","4570840","Jonah O'Brien",25,34,276
+401416592,2022,1,"Northern Illinois","4241965","Rocky Lombardi",14,22,192
+401420777,2022,1,"Georgia Southern","4239714","Kyle Vantrease",29,46,367
+401420777,2022,1,"Morgan State","4361497","Carson Baker",10,21,78
+401420777,2022,1,"Morgan State","4887689","Duce Taylor",0,6,0
+401421116,2022,1,"Nicholls","4250842","Kohen Granier",15,27,106
+401421116,2022,1,"Nicholls","4698752","Leonard Kelly",0,1,0
+401421116,2022,1,"South Alabama","4362260","Carter Bradley",17,25,260
+401421116,2022,1,"South Alabama","4373851","Desmond Trotter",9,10,72
+401421121,2022,1,"Louisiana","4429595","Chandler Fields",13,20,173
+401421121,2022,1,"Louisiana","4373895","Ben Wooldridge",7,11,68
+401421121,2022,1,"SE Louisiana","4249400","Cephus Johnson",22,34,149
+401421121,2022,1,"SE Louisiana","4877203","Gage Larvadain",0,1,0
+401424416,2022,1,"Baylor","4565315","Blake Shapen",17,20,214
+401424416,2022,1,"Baylor","4678010","Kyron Drones",5,7,100
+401424416,2022,1,"UAlbany","4875866","Reese Poffenbarger",13,26,150
+401424416,2022,1,"UAlbany","4693900","Joey Carino",0,2,0
+401424416,2022,1,"UAlbany","4890365","Tyler Szalkowski",0,2,0
+401425418,2022,1,"Arkansas State","4240020","James Blackman",15,20,210
+401425418,2022,1,"Arkansas State","4363148","AJ Mayer",5,6,23
+401425418,2022,1,"Grambling","4801302","Julian Calvez",1,10,6
+401425418,2022,1,"Grambling","5089862","Quaterius Hawkins",3,7,46
+401425418,2022,1,"Grambling","4361937","Chance Amie",0,1,0
+401426330,2022,1,"Old Dominion","4430775","Hayden Wolff",14,35,165
+401426330,2022,1,"Virginia Tech","4430686","Grant Wells",21,36,193
+401426530,2022,1,"Charlotte","4259269","Chris Reynolds",14,19,196
+401426530,2022,1,"Charlotte","4372517","James Foster",2,9,21
+401426530,2022,1,"Florida Atlantic","4240628","N'Kosi Perry",16,22,256
+401426530,2022,1,"Florida Atlantic","4433917","Wilile Taggart Jr.",1,3,8
+401426531,2022,1,"North Texas","4360163","Austin Aune",16,29,236
+401426531,2022,1,"UTEP","4575668","Gavin Hardison",21,48,293
+401426532,2022,1,"Austin Peay","4689970","Mike Diliello",15,21,156
+401426532,2022,1,"Western Kentucky","4368343","Austin Reed",20,34,279
+401426533,2022,1,"Bryant","4876066","Zevi Eckhaus",18,22,243
+401426533,2022,1,"Bryant","4249578","Gage Moloney",11,19,106
+401426533,2022,1,"Florida International","4567707","Grayson James",16,31,207
+401426533,2022,1,"Florida International","4360403","Gunnar Holmberg",14,20,103
+401426534,2022,1,"Alabama A&M","4749280","Xaiver Lankford",12,22,115
+401426534,2022,1,"Alabama A&M","4426884","Quincy Casey",4,11,22
+401426534,2022,1,"UAB","4363410","Dylan Hopkins",13,18,191
+401426534,2022,1,"UAB","4426417","Jacob Zeno",5,9,56
+401426535,2022,1,"Charlotte","4698184","Xavier Williams",12,23,201
+401426535,2022,1,"Charlotte","4372517","James Foster",5,8,47
+401426535,2022,1,"William & Mary","4878151","Darius Wilson",12,18,237
+401426535,2022,1,"William & Mary","4427911","Hollis Mathis",1,1,19
+401426536,2022,1,"Florida Atlantic","4240628","N'Kosi Perry",24,42,364
+401426536,2022,1,"Ohio","4430431","Kurtis Rourke",27,34,345
+401426537,2022,1,"Louisiana Tech","4379400","Matthew Downing",20,35,194
+401426537,2022,1,"Louisiana Tech","4686137","Parker McNeil",7,11,142
+401426537,2022,1,"Missouri","4429435","Brady Cook",18,27,201
+401426537,2022,1,"Missouri","4040407","Jack Abraham",2,3,34
+401426538,2022,1,"James Madison","4243276","Todd Centeio",21,33,287
+401426538,2022,1,"Middle Tennessee","4291782","Chase Cunningham",18,32,110
+401426538,2022,1,"Middle Tennessee","4249970","Preston Rice",1,1,-3
+401426539,2022,1,"North Texas","4360163","Austin Aune",14,29,186
+401426539,2022,1,"North Texas","4427351","Grant Gunnell",2,5,34
+401426539,2022,1,"SMU","4360271","Tanner Mordecai",23,32,432
+401426539,2022,1,"SMU","4432767","Preston Stone",2,2,-6
+401426540,2022,1,"Rice","4362896","Tj McMahon",6,15,65
+401426540,2022,1,"Rice","4362528","Wiley Green",8,13,69
+401426540,2022,1,"USC","4431611","Caleb Williams",19,22,249
+401426540,2022,1,"USC","4431580","Miller Moss",6,7,81
+401426541,2022,1,"Oklahoma","4427238","Dillon Gabriel",15,23,233
+401426541,2022,1,"UTEP","4575668","Gavin Hardison",26,42,244
+401426541,2022,1,"UTEP","4362033","Calvin Brownholtz",5,8,44
+401426542,2022,1,"Houston","4360175","Clayton Tune",22,32,206
+401426542,2022,1,"UTSA","4245186","Frank Harris",28,43,337
+401426543,2022,1,"Hawai'i","4709977","Brayden Schager",22,33,230
+401426543,2022,1,"Hawai'i","4426360","Joey Yellen",4,11,36
+401426543,2022,1,"Western Kentucky","4368343","Austin Reed",22,31,271
+401441990,2022,1,"Long Island University","4360550","Derek Green",7,16,32
+401441990,2022,1,"Long Island University","4837195","Luca Stanzani",7,10,36
+401441990,2022,1,"Toledo","4427191","Dequan Finn",21,28,216
+401441990,2022,1,"Toledo","4429801","Tucker Gleason",1,1,0
+401403868,2022,2,"Alabama","4685720","Bryce Young",27,39,213
+401403868,2022,2,"Texas","4429032","Hudson Card",14,22,158
+401403868,2022,2,"Texas","4889929","Quinn Ewers",9,12,134
+401403869,2022,2,"Arkansas","4567149","KJ Jefferson",18,21,162
+401403869,2022,2,"South Carolina","4426339","Spencer Rattler",24,39,376
+401403870,2022,2,"Auburn","4431948","TJ Finley",13,20,167
+401403870,2022,2,"Auburn","4697512","Robby Ashford",1,3,1
+401403870,2022,2,"San José State","4373934","Chevan Cordeiro",24,40,275
+401403871,2022,2,"Florida","4429084","Anthony Richardson",14,35,143
+401403871,2022,2,"Kentucky","4361418","Will Levis",13,24,202
+401403872,2022,2,"Georgia","4259553","Stetson Bennett",24,35,300
+401403872,2022,2,"Georgia","4430841","Carson Beck",5,7,52
+401403872,2022,2,"Georgia","4432782","Brock Vandagriff",0,1,0
+401403872,2022,2,"Samford","5083905","Michael Hiers",13,21,62
+401403872,2022,2,"Samford","4877380","Quincy Crittendon",3,5,47
+401403873,2022,2,"LSU","4567747","Garrett Nussmeier",13,23,183
+401403873,2022,2,"LSU","4426348","Jayden Daniels",10,11,137
+401403873,2022,2,"Southern","5084435","Besean McCray",9,16,61
+401403873,2022,2,"Southern","4685041","Cornelius Dyson",0,1,0
+401403874,2022,2,"Central Arkansas","4384603","Will McElvain",13,27,126
+401403874,2022,2,"Central Arkansas","4427949","Clifton McDowell",1,4,5
+401403874,2022,2,"Ole Miss","4689114","Jaxson Dart",10,15,182
+401403874,2022,2,"Ole Miss","4597679","Luke Altmyer",6,13,90
+401403874,2022,2,"Ole Miss","4567241","Kinkead Dent",2,4,5
+401403875,2022,2,"Arizona","4697623","Jayden de Laura",23,45,220
+401403875,2022,2,"Arizona","4801717","Noah Fifita",4,8,56
+401403875,2022,2,"Arizona","4372597","Jamarye Joiner",0,1,0
+401403875,2022,2,"Mississippi State","102597","Will Rogers",39,49,313
+401403875,2022,2,"Mississippi State","4432759","Sawyer Robertson",1,1,7
+401403876,2022,2,"Kansas State","4361182","Adrian Martinez",9,20,101
+401403876,2022,2,"Missouri","4429435","Brady Cook",15,27,128
+401403876,2022,2,"Missouri","4040407","Jack Abraham",0,3,0
+401403877,2022,2,"Pittsburgh","4428512","Kedon Slovis",14,24,195
+401403877,2022,2,"Pittsburgh","4373314","Nick Patti",9,20,79
+401403877,2022,2,"Tennessee","4240858","Hendon Hooker",27,42,325
+401403878,2022,2,"App State","4239994","Chase Brice",15,30,134
+401403878,2022,2,"Texas A&M","4428993","Haynes King",13,20,97
+401403879,2022,2,"Vanderbilt","4433932","Mike Wright",8,15,35
+401403879,2022,2,"Vanderbilt","5081405","AJ Swann",8,11,146
+401403879,2022,2,"Wake Forest","4361994","Sam Hartman",18,27,300
+401403975,2022,2,"Arizona State","4360230","Emory Jones",12,23,223
+401403975,2022,2,"Oklahoma State","4361825","Spencer Sanders",21,38,268
+401403976,2022,2,"California","4361493","Jack Plummer",28,39,278
+401403976,2022,2,"UNLV","4429516","Doug Brumfield",18,33,206
+401403977,2022,2,"Air Force","4693814","Haaziq Daniels",1,5,8
+401403977,2022,2,"Colorado","4369839","JT Shrout",5,21,51
+401403978,2022,2,"Eastern Washington","4247187","Gunner Talkington",12,21,87
+401403978,2022,2,"Eastern Washington","4876140","Kekoa Visperas",0,2,0
+401403978,2022,2,"Oregon","4426338","Bo Nix",28,33,277
+401403978,2022,2,"Oregon","4432774","Ty Thompson",5,7,63
+401403978,2022,2,"Oregon","4430865","Jay Butterfield",1,1,1
+401403979,2022,2,"Fresno State","4243322","Jake Haener",29,45,360
+401403979,2022,2,"Oregon State","4360824","Chance Nolan",14,27,219
+401403980,2022,2,"Stanford","4685201","Tanner McKee",20,35,220
+401403980,2022,2,"USC","4431611","Caleb Williams",20,27,341
+401403981,2022,2,"Alabama State","4693861","Myles Crawley",16,27,177
+401403981,2022,2,"Alabama State","4693885","Joe Owens Jr.",1,3,1
+401403981,2022,2,"Alabama State","5089022","Nyqua Lett",1,2,45
+401403981,2022,2,"UCLA","4429068","Ethan Garbers",14,18,164
+401403981,2022,2,"UCLA","4367178","Dorian Thompson-Robinson",9,11,101
+401403981,2022,2,"UCLA","4427344","Chase Griffin",0,1,0
+401403982,2022,2,"Southern Utah","4571184","Justin Miller",11,21,42
+401403982,2022,2,"Southern Utah","4608823","Grady Robison",0,2,0
+401403982,2022,2,"Utah","4362075","Cameron Rising",17,23,254
+401403982,2022,2,"Utah","4695600","Bryson Barnes",6,6,98
+401403983,2022,2,"Portland State","4426894","Dante Chachere",6,17,50
+401403983,2022,2,"Portland State","4429175","Jaden Casey",1,3,0
+401403983,2022,2,"Washington","4360423","Michael Penix Jr.",20,27,337
+401403983,2022,2,"Washington","4569598","Dylan Morris",1,3,15
+401403983,2022,2,"Washington","4567748","Sam Huard",2,2,24
+401403984,2022,2,"Washington State","4688380","Cameron Ward",17,28,200
+401403984,2022,2,"Wisconsin","4426335","Graham Mertz",18,31,227
+401404062,2022,2,"Baylor","4565315","Blake Shapen",18,28,137
+401404062,2022,2,"BYU","4373632","Jaren Hall",23,39,261
+401404062,2022,2,"BYU","4714388","Chase Roberts",1,1,22
+401404063,2022,2,"Houston","4360175","Clayton Tune",20,39,266
+401404063,2022,2,"Texas Tech","4690977","Donovan Smith",36,58,351
+401404063,2022,2,"Texas Tech","4430656","Myles Price",0,1,0
+401404064,2022,2,"Iowa","4360480","Spencer Petras",12,26,92
+401404064,2022,2,"Iowa State","4565358","Hunter Dekkers",25,38,184
+401404065,2022,2,"Kansas","4596472","Jalon Daniels",18,29,219
+401404065,2022,2,"West Virginia","4374303","JT Daniels",28,40,355
+401404066,2022,2,"Kent State","4428439","Collin Schlee",11,19,131
+401404066,2022,2,"Kent State","4685693","Devin Kargman",0,2,0
+401404066,2022,2,"Oklahoma","4427238","Dillon Gabriel",21,28,296
+401404067,2022,2,"Tarleton State","4429209","Beau Allen",11,25,210
+401404067,2022,2,"Tarleton State","5100737","Alaka'I Yuen",0,1,0
+401404067,2022,2,"TCU","4427105","Max Duggan",23,29,390
+401404067,2022,2,"TCU","4874527","Sam Jackson",4,4,58
+401404067,2022,2,"TCU","4685401","Josh Hoover",1,1,2
+401404125,2022,2,"Marshall","4259219","Henry Colombi",16,21,145
+401404125,2022,2,"Notre Dame","4431513","Tyler Buchner",18,32,201
+401404125,2022,2,"Notre Dame","4429088","Drew Pyne",3,6,20
+401404148,2022,2,"Syracuse","4426966","Garrett Shrader",20,23,287
+401404148,2022,2,"Syracuse","4432691","Carlos Del Rio-Wilson",1,3,22
+401404148,2022,2,"UConn","4685697","Zion Turner",14,17,92
+401404148,2022,2,"UConn","4428001","Cale Millen",2,2,13
+401405070,2022,2,"Illinois","4240391","Tommy DeVito",17,25,196
+401405070,2022,2,"Virginia","4370775","Brennan Armstrong",13,32,180
+401405070,2022,2,"Virginia","4605835","Jay Woolfolk",0,3,0
+401405071,2022,2,"Minnesota","4240756","Tanner Morgan",14,18,287
+401405071,2022,2,"Minnesota","4427740","Cole Kramer",1,4,18
+401405071,2022,2,"Minnesota","4432722","Athan Kaliakmanis",3,3,67
+401405071,2022,2,"Western Illinois","4387702","Henry Ogala",8,17,34
+401405071,2022,2,"Western Illinois","4900273","Nick Davenport",8,15,125
+401405072,2022,2,"Georgia Southern","4239714","Kyle Vantrease",37,56,409
+401405072,2022,2,"Nebraska","4362073","Casey Thompson",23,34,318
+401405073,2022,2,"Duke","4683423","Riley Leonard",13,24,240
+401405073,2022,2,"Northwestern","4426657","Ryan Hilinski",36,60,435
+401405074,2022,2,"Indiana State","4430457","Gavin Screws",6,14,83
+401405074,2022,2,"Indiana State","4683792","Evan Olaes",3,6,11
+401405074,2022,2,"Purdue","4260394","Aidan O'Connell",17,19,211
+401405074,2022,2,"Purdue","4430829","Michael Alaimo",4,5,37
+401405074,2022,2,"Purdue","4242974","Austin Burton",3,3,33
+401405074,2022,2,"Purdue","4685691","Brady Allen",1,3,8
+401405075,2022,2,"Idaho","4887446","Gevani McCoy",13,23,204
+401405075,2022,2,"Indiana","4426444","Connor Bazelak",16,29,197
+401405077,2022,2,"Hawai'i","4426360","Joey Yellen",13,36,113
+401405077,2022,2,"Hawai'i","4875793","Nasjza Bryant",0,1,0
+401405077,2022,2,"Michigan","4433970","J.J. McCarthy",11,12,229
+401405077,2022,2,"Michigan","4427455","Cade McNamara",4,6,26
+401405077,2022,2,"Michigan","4878681","Davis Warren",2,4,65
+401405078,2022,2,"Akron","4366715","Jeff Undercuffler",11,22,80
+401405078,2022,2,"Akron","4368768","DJ Irons",9,13,123
+401405078,2022,2,"Michigan State","4430590","Payton Thorne",18,28,212
+401405078,2022,2,"Michigan State","4690158","Noah Kim",2,2,22
+401405078,2022,2,"Michigan State","4795295","Katin Houser",1,2,2
+401405079,2022,2,"Arkansas State","4240020","James Blackman",20,34,188
+401405079,2022,2,"Arkansas State","4363148","AJ Mayer",5,8,35
+401405079,2022,2,"Ohio State","4432577","C.J. Stroud",16,24,351
+401405079,2022,2,"Ohio State","4433971","Kyle McCord",3,4,19
+401405080,2022,2,"Ohio","4430431","Kurtis Rourke",14,30,119
+401405080,2022,2,"Ohio","4610131","Parker Navarro",2,7,28
+401405080,2022,2,"Ohio","4686788","CJ Harris",0,2,0
+401405080,2022,2,"Ohio","5083297","Jacoby Jones",1,1,17
+401405080,2022,2,"Penn State","4259592","Sean Clifford",19,27,213
+401405080,2022,2,"Penn State","4714771","Drew Allar",6,8,88
+401405080,2022,2,"Penn State","4432612","Christian Veilleux",6,7,37
+401405081,2022,2,"Rutgers","4431387","Evan Simon",10,13,156
+401405081,2022,2,"Rutgers","4893657","Gavin Wimsatt",4,11,63
+401405081,2022,2,"Rutgers","4360204","Johnny Langan",1,1,43
+401405081,2022,2,"Wagner","4427681","Nick Kargman",12,23,126
+401411102,2022,2,"Clemson","4429020","D.J. Uiagalelei",21,27,231
+401411102,2022,2,"Clemson","4685413","Cade Klubnik",1,4,-2
+401411102,2022,2,"Furman","4574356","Tyler Huff",30,39,256
+401411103,2022,2,"Georgia State","4369448","Darren Grainger",16,24,186
+401411103,2022,2,"North Carolina","4431452","Drake Maye",19,24,284
+401411104,2022,2,"Georgia Tech","4429066","Jeff Sims",8,17,100
+401411104,2022,2,"Western Carolina","4731981","Carlos Davis",18,27,233
+401411104,2022,2,"Western Carolina","5089540","Cole Gonzales",6,8,38
+401411105,2022,2,"Miami","4685186","Tyler Van Dyke",21,30,263
+401411105,2022,2,"Miami","4432703","Jake Garcia",2,2,15
+401411105,2022,2,"Southern Miss","4808719","Zach Wilcke",16,27,207
+401411106,2022,2,"Charleston Southern","4430066","Ross Malmgren",19,37,111
+401411106,2022,2,"Charleston Southern","4694178","Isaiah Bess",3,10,3
+401411106,2022,2,"NC State","4361653","Devin Leary",16,25,238
+401411106,2022,2,"NC State","4246097","Jack Chambers",5,11,45
+401411106,2022,2,"NC State","4685488","MJ Morris",2,4,38
+401411108,2022,2,"Boston College","4372768","Phil Jurkovec",15,28,135
+401411108,2022,2,"Boston College","4683501","Emmett Morehead",4,6,16
+401411108,2022,2,"Virginia Tech","4430686","Grant Wells",16,25,140
+401413257,2022,2,"Idaho State","4695914","Hunter Hays",18,30,140
+401413257,2022,2,"Idaho State","4240351","Tyler Vander Waal",2,5,84
+401413257,2022,2,"Idaho State","4577841","Sagan Gronauer",4,5,34
+401413257,2022,2,"San Diego State","4242490","Braxton Burmeister",15,26,108
+401414779,2022,2,"Massachusetts","4365660","Gino Campiotti",5,14,27
+401414779,2022,2,"Massachusetts","4683471","Brady Olson",2,3,21
+401414779,2022,2,"Toledo","4427191","Dequan Finn",12,26,177
+401415024,2022,2,"East Carolina","4360131","Holton Ahlers",25,39,270
+401415024,2022,2,"Old Dominion","4430775","Hayden Wolff",18,29,275
+401415177,2022,2,"Northern Colorado","4361091","Jacob Sirmon",12,27,91
+401415177,2022,2,"Northern Colorado","4258191","Dylan McCaffrey",3,8,35
+401415177,2022,2,"Northern Colorado","4362669","T.J. Graham",1,1,6
+401415177,2022,2,"Wyoming","4361607","Andrew Peasley",19,30,144
+401415214,2022,2,"Boise State","4426499","Hank Bachmeier",16,27,170
+401415214,2022,2,"New Mexico","4360331","Miles Kendrick",9,28,98
+401415215,2022,2,"Utah State","4036473","Logan Bonner",12,31,120
+401415215,2022,2,"Utah State","4430033","Cooper Legas",4,9,37
+401415215,2022,2,"Weber State","4697131","Bronson Barron",11,22,202
+401415216,2022,2,"Incarnate Word","4035430","Lindsey Scott Jr.",18,25,406
+401415216,2022,2,"Nevada","4262162","Nate Cox",22,43,302
+401415613,2022,2,"Louisville","4240069","Malik Cunningham",14,29,201
+401415613,2022,2,"UCF","4426494","John Rhys Plumlee",16,34,131
+401415614,2022,2,"Lafayette","5083846","Ryan Schuster",10,15,80
+401415614,2022,2,"Lafayette","4877782","Ah-Shaun Davis",2,2,3
+401415614,2022,2,"Temple","4916436","E.J. Warner",14,19,173
+401415614,2022,2,"Temple","4427914","D'Wan Mathis",3,8,42
+401415615,2022,2,"Alcorn State","4384187","Aaron Allen",3,10,15
+401415615,2022,2,"Alcorn State","4382645","Markevion Quinn",2,4,34
+401415615,2022,2,"Tulane","4685039","Michael Pratt",17,21,318
+401415615,2022,2,"Tulane","4685040","Justin Ibieta",7,9,72
+401415615,2022,2,"Tulane","4708067","Kai Horton",1,1,9
+401415616,2022,2,"Lamar","4431018","Michael Chandler II",10,25,127
+401415616,2022,2,"Lamar","5083596","Nick Yockey",3,7,21
+401415616,2022,2,"SMU","4360271","Tanner Mordecai",18,31,212
+401415616,2022,2,"SMU","4432767","Preston Stone",4,5,33
+401415617,2022,2,"Memphis","4606194","Seth Henigan",24,34,415
+401415617,2022,2,"Memphis","4567505","Gabriel Rogers",0,1,0
+401415617,2022,2,"Navy","4686164","Tai Lavatai",3,7,99
+401415617,2022,2,"Navy","4686167","Xavier Arline",0,3,0
+401415617,2022,2,"Navy","4880684","Maquel Haywood",0,1,0
+401415618,2022,2,"Howard","4579549","Quinton Williams",28,37,250
+401415618,2022,2,"South Florida","4362915","Gerry Bohannon",17,28,219
+401415619,2022,2,"Cincinnati","4360056","Ben Bryant",17,20,201
+401415619,2022,2,"Cincinnati","4431339","Evan Prater",4,5,92
+401415619,2022,2,"Kennesaw State","4430474","Xavier Shepherd",4,11,60
+401415619,2022,2,"Kennesaw State","4573878","Jonathan Murphy",3,4,51
+401415620,2022,2,"Northern Illinois","4241965","Rocky Lombardi",18,31,259
+401415620,2022,2,"Tulsa","4362365","Davis Brin",19,32,322
+401416594,2022,2,"Ball State","4361636","John Paddock",23,40,291
+401416594,2022,2,"Western Michigan","4430699","Jack Salopek",25,43,230
+401416595,2022,2,"Bowling Green","4239937","Matt McDonald",23,40,283
+401416595,2022,2,"Eastern Kentucky","4368767","Parker McKinney",33,47,324
+401416596,2022,2,"Buffalo","4570057","Cole Snyder",23,34,305
+401416596,2022,2,"Holy Cross","4695904","Matthew Sluka",13,21,238
+401416597,2022,2,"Central Michigan","4570259","Daniel Richardson",22,46,267
+401416597,2022,2,"South Alabama","4362260","Carter Bradley",26,41,354
+401416598,2022,2,"Eastern Michigan","4241193","Taylor Powell",32,51,320
+401416598,2022,2,"Eastern Michigan","4360492","Samson Evans",1,1,3
+401416598,2022,2,"Louisiana","4429595","Chandler Fields",10,21,141
+401416598,2022,2,"Louisiana","4373895","Ben Wooldridge",12,13,169
+401416599,2022,2,"Miami (OH)","4576189","Aveon Smith",14,21,155
+401416599,2022,2,"Miami (OH)","4701307","Henry Hesson",2,5,37
+401416599,2022,2,"Robert Morris","4775291","Anthony Chiccitt",10,16,138
+401416599,2022,2,"Robert Morris","4570245","Jake Simmons",8,13,41
+401420788,2022,2,"James Madison","4243276","Todd Centeio",12,17,165
+401420788,2022,2,"James Madison","4877811","Billy Atkins",6,7,48
+401420788,2022,2,"James Madison","4911929","Alonza Barnett",1,1,14
+401420788,2022,2,"Norfolk State","4695113","Otto Kuhns",9,20,203
+401420788,2022,2,"Norfolk State","4383193","Jaylan Adams",0,2,0
+401421117,2022,2,"Nicholls","4250842","Kohen Granier",26,42,231
+401421117,2022,2,"UL Monroe","4887223","Chandler Rogers",20,25,253
+401421117,2022,2,"UL Monroe","4575755","Garrett Hable",1,1,4
+401423439,2022,2,"Alabama A&M","4749280","Xaiver Lankford",16,32,182
+401423439,2022,2,"Alabama A&M","4426884","Quincy Casey",6,15,110
+401423439,2022,2,"Troy","4362723","Gunnar Watson",23,34,351
+401423439,2022,2,"Troy","4244029","Jarret Doege",5,11,113
+401426332,2022,2,"Coastal Carolina","4427936","Grayson McCall",22,30,308
+401426332,2022,2,"Gardner-Webb","4368908","Bailey Fisher",27,37,403
+401426332,2022,2,"Gardner-Webb","4876642","Maleek Huggins",1,1,45
+401426544,2022,2,"Florida International","4567707","Grayson James",30,47,196
+401426544,2022,2,"Florida International","4576127","Haden Carlson",5,9,55
+401426544,2022,2,"Texas State","4361222","Layne Hatcher",15,30,226
+401426545,2022,2,"Charlotte","4698184","Xavier Williams",19,35,191
+401426545,2022,2,"Charlotte","4689585","Trexler Ivey",9,16,101
+401426545,2022,2,"Charlotte","4879650","Grant DuBose",0,1,0
+401426545,2022,2,"Maryland","4567097","Taulia Tagovailoa",27,31,391
+401426545,2022,2,"Maryland","4592532","Billy Edwards",3,3,33
+401426546,2022,2,"Florida Atlantic","4240628","N'Kosi Perry",18,30,259
+401426546,2022,2,"Florida Atlantic","4433917","Wilile Taggart Jr.",1,1,6
+401426546,2022,2,"SE Louisiana","4696819","Eli Sawyer",12,20,116
+401426546,2022,2,"SE Louisiana","4249400","Cephus Johnson",5,13,86
+401426547,2022,2,"Louisiana Tech","4686137","Parker McNeil",11,23,197
+401426547,2022,2,"Louisiana Tech","4379400","Matthew Downing",1,3,3
+401426547,2022,2,"Louisiana Tech","4833635","Landy Lyddy",2,2,16
+401426547,2022,2,"Stephen F. Austin","4578878","Trae Self",9,22,82
+401426547,2022,2,"Stephen F. Austin","5091786","Brian Mauer",1,6,35
+401426547,2022,2,"Stephen F. Austin","4373013","Preston Weeks",1,3,44
+401426548,2022,2,"Colorado State","4432733","Clay Millen",20,30,256
+401426548,2022,2,"Middle Tennessee","4291782","Chase Cunningham",31,39,266
+401426549,2022,2,"North Texas","4360163","Austin Aune",11,20,218
+401426549,2022,2,"North Texas","4427351","Grant Gunnell",2,4,41
+401426549,2022,2,"Texas Southern","4887151","Andrew Body",19,29,239
+401426550,2022,2,"McNeese","4429950","Knox Kadum",5,12,65
+401426550,2022,2,"McNeese","4565189","Cam Ransom",3,9,26
+401426550,2022,2,"Rice","4362896","Tj McMahon",20,29,274
+401426550,2022,2,"Rice","4683983","Shawqui Itraish",1,2,4
+401426551,2022,2,"Liberty","4432803","Kaidon Salter",13,25,202
+401426551,2022,2,"UAB","4363410","Dylan Hopkins",10,15,114
+401426552,2022,2,"New Mexico State","5084180","Diego Pavia",7,20,100
+401426552,2022,2,"New Mexico State","4914368","Gavin Frakes",1,5,11
+401426552,2022,2,"UTEP","4575668","Gavin Hardison",13,27,166
+401426553,2022,2,"Army","4577303","Cade Ballard",11,15,221
+401426553,2022,2,"Army","4373726","Tyhier Tyler",1,2,77
+401426553,2022,2,"Army","4689825","Tyrell Robinson",1,1,6
+401426553,2022,2,"UTSA","4245186","Frank Harris",32,45,359
+401403880,2022,3,"Alabama","4685720","Bryce Young",13,18,236
+401403880,2022,3,"Alabama","4432734","Jalen Milroe",0,2,0
+401403880,2022,3,"UL Monroe","4887223","Chandler Rogers",11,21,96
+401403880,2022,3,"UL Monroe","4575755","Garrett Hable",1,3,-5
+401403881,2022,3,"Arkansas","4567149","KJ Jefferson",19,31,385
+401403881,2022,3,"Missouri State","4243258","Jason Shelley",24,43,357
+401403882,2022,3,"Auburn","4431948","TJ Finley",11,19,152
+401403882,2022,3,"Auburn","4697512","Robby Ashford",10,19,144
+401403882,2022,3,"Penn State","4259592","Sean Clifford",14,19,178
+401403882,2022,3,"Penn State","4714771","Drew Allar",2,2,29
+401403882,2022,3,"Penn State","4430870","Keandre Lambert",1,1,25
+401403882,2022,3,"Penn State","4432612","Christian Veilleux",0,1,0
+401403883,2022,3,"Florida","4429084","Anthony Richardson",10,18,112
+401403883,2022,3,"South Florida","4362915","Gerry Bohannon",12,28,116
+401403884,2022,3,"Kentucky","4361418","Will Levis",27,35,377
+401403884,2022,3,"Youngstown State","4430650","Demeatric Crenshaw",7,21,120
+401403884,2022,3,"Youngstown State","4368398","Mitch Davidson",2,3,14
+401403885,2022,3,"LSU","4426348","Jayden Daniels",22,37,210
+401403885,2022,3,"Mississippi State","102597","Will Rogers",24,42,214
+401403886,2022,3,"Georgia Tech","4429066","Jeff Sims",18,32,161
+401403886,2022,3,"Ole Miss","4689114","Jaxson Dart",10,16,207
+401403886,2022,3,"Ole Miss","4597679","Luke Altmyer",1,2,22
+401403886,2022,3,"Ole Miss","4567241","Kinkead Dent",1,1,2
+401403887,2022,3,"Abilene Christian","4427966","Maverick McIvor",19,32,199
+401403887,2022,3,"Missouri","4429435","Brady Cook",21,30,292
+401403888,2022,3,"Georgia","4259553","Stetson Bennett",16,23,284
+401403888,2022,3,"Georgia","4430841","Carson Beck",5,6,55
+401403888,2022,3,"Georgia","4432782","Brock Vandagriff",0,1,0
+401403888,2022,3,"South Carolina","4426339","Spencer Rattler",13,25,118
+401403888,2022,3,"South Carolina","4429079","Luke Doty",5,8,76
+401403888,2022,3,"South Carolina","4570033","Kai Kroeger",1,1,20
+401403889,2022,3,"Akron","4368768","DJ Irons",32,44,241
+401403889,2022,3,"Akron","4366715","Jeff Undercuffler",0,1,0
+401403889,2022,3,"Tennessee","4240858","Hendon Hooker",14,18,298
+401403889,2022,3,"Tennessee","4360698","Joe Milton",4,5,112
+401403889,2022,3,"Tennessee","4801307","Tayven Jackson",2,2,28
+401403890,2022,3,"Miami","4685186","Tyler Van Dyke",21,41,217
+401403890,2022,3,"Texas A&M","4685740","Max Johnson",10,20,140
+401403891,2022,3,"Northern Illinois","4618083","Ethan Hampton",12,19,124
+401403891,2022,3,"Northern Illinois","4241965","Rocky Lombardi",7,7,79
+401403891,2022,3,"Vanderbilt","5081405","AJ Swann",18,28,255
+401403985,2022,3,"Arizona","4697623","Jayden de Laura",20,28,229
+401403985,2022,3,"North Dakota State","4693331","Cam Miller",10,12,124
+401403986,2022,3,"Arizona State","4360230","Emory Jones",20,32,182
+401403986,2022,3,"Eastern Michigan","4241193","Taylor Powell",10,14,93
+401403986,2022,3,"Eastern Michigan","4597247","Austin Smith",4,8,60
+401403987,2022,3,"California","4361493","Jack Plummer",16,37,184
+401403987,2022,3,"Notre Dame","4429088","Drew Pyne",17,23,150
+401403988,2022,3,"Colorado","4369839","JT Shrout",4,11,24
+401403988,2022,3,"Colorado","4775136","Owen McCown",4,7,52
+401403988,2022,3,"Colorado","4429149","Brendon Lewis",2,6,14
+401403988,2022,3,"Minnesota","4240756","Tanner Morgan",11,16,157
+401403988,2022,3,"Minnesota","4427740","Cole Kramer",1,1,9
+401403988,2022,3,"Minnesota","4432722","Athan Kaliakmanis",0,1,0
+401403989,2022,3,"BYU","4373632","Jaren Hall",29,41,305
+401403989,2022,3,"Oregon","4426338","Bo Nix",13,18,222
+401403989,2022,3,"Oregon","4432774","Ty Thompson",1,2,5
+401403990,2022,3,"Montana State","4775196","Tommy Mellott",9,18,101
+401403990,2022,3,"Oregon State","4360824","Chance Nolan",19,25,276
+401403990,2022,3,"Oregon State","4431114","Ben Gulbranson",3,4,48
+401403991,2022,3,"South Alabama","4362260","Carter Bradley",26,36,237
+401403991,2022,3,"UCLA","4367178","Dorian Thompson-Robinson",20,30,263
+401403992,2022,3,"Fresno State","4243322","Jake Haener",10,18,117
+401403992,2022,3,"Fresno State","4605998","Logan Fife",11,12,140
+401403992,2022,3,"USC","4431611","Caleb Williams",25,37,284
+401403993,2022,3,"San Diego State","4912062","Kyle Crum",5,16,53
+401403993,2022,3,"San Diego State","4242490","Braxton Burmeister",1,4,6
+401403993,2022,3,"San Diego State","4683386","William Haskell",1,1,1
+401403993,2022,3,"Utah","4362075","Cameron Rising",18,30,224
+401403994,2022,3,"Michigan State","4430590","Payton Thorne",30,42,323
+401403994,2022,3,"Washington","4360423","Michael Penix Jr.",24,40,397
+401403995,2022,3,"Colorado State","4432733","Clay Millen",25,35,212
+401403995,2022,3,"Washington State","4688380","Cameron Ward",24,34,299
+401404068,2022,3,"Houston","4360175","Clayton Tune",22,31,272
+401404068,2022,3,"Kansas","4596472","Jalon Daniels",14,23,158
+401404069,2022,3,"Iowa State","4565358","Hunter Dekkers",28,36,268
+401404069,2022,3,"Iowa State","4874464","Ashton Cook",4,4,32
+401404069,2022,3,"Iowa State","4801299","Rocco Becht",0,2,0
+401404069,2022,3,"Ohio","4430431","Kurtis Rourke",20,33,194
+401404069,2022,3,"Ohio","4610131","Parker Navarro",3,5,15
+401404069,2022,3,"Ohio","4686788","CJ Harris",0,2,0
+401404070,2022,3,"Nebraska","4362073","Casey Thompson",14,20,129
+401404070,2022,3,"Nebraska","4430836","Chubba Purdy",7,11,35
+401404070,2022,3,"Oklahoma","4427238","Dillon Gabriel",16,27,230
+401404070,2022,3,"Oklahoma","4428887","Davis Beville",2,2,14
+401404070,2022,3,"Oklahoma","4360290","Brayden Willis",1,1,24
+401404071,2022,3,"Baylor","4565315","Blake Shapen",15,26,184
+401404071,2022,3,"Baylor","4678010","Kyron Drones",2,2,24
+401404071,2022,3,"Texas State","4361222","Layne Hatcher",24,36,186
+401404072,2022,3,"NC State","4361653","Devin Leary",15,23,121
+401404072,2022,3,"NC State","4240121","Thayer Thomas",1,1,38
+401404072,2022,3,"Texas Tech","4690977","Donovan Smith",21,36,214
+401404072,2022,3,"Texas Tech","4431465","Behren Morton",4,7,85
+401404073,2022,3,"Towson","4036210","Tyrrell Pigrome",7,14,59
+401404073,2022,3,"Towson","4694939","Nathan Kent",3,5,39
+401404073,2022,3,"Towson","4878134","Scott Smith III",0,4,0
+401404073,2022,3,"West Virginia","4374303","JT Daniels",16,24,174
+401404073,2022,3,"West Virginia","4431633","Will Crowder",6,6,57
+401404073,2022,3,"West Virginia","4429847","Garrett Greene",3,6,45
+401404073,2022,3,"West Virginia","4685459","Nicco Marchiol",2,4,32
+401404074,2022,3,"Kansas State","4361182","Adrian Martinez",21,31,150
+401404074,2022,3,"Tulane","4685039","Michael Pratt",13,26,176
+401404075,2022,3,"Arkansas-Pine Bluff","4383504","Skyler Perry",11,27,70
+401404075,2022,3,"Arkansas-Pine Bluff","4884086","Jalen Macon",5,13,79
+401404075,2022,3,"Arkansas-Pine Bluff","5084304","Chancellor Edwards",0,1,0
+401404075,2022,3,"Oklahoma State","4874519","Gunnar Gundy",12,20,128
+401404075,2022,3,"Oklahoma State","4361825","Spencer Sanders",13,16,242
+401404075,2022,3,"Oklahoma State","4685521","Garret Rangel",0,2,0
+401404136,2022,3,"Army","4577303","Cade Ballard",0,1,0
+401404136,2022,3,"Villanova","4428805","Connor Watkins",12,21,74
+401404136,2022,3,"Villanova","4574106","Matt O'Connor",0,1,0
+401404149,2022,3,"Michigan","4433970","J.J. McCarthy",15,18,214
+401404149,2022,3,"Michigan","4878681","Davis Warren",1,2,5
+401404149,2022,3,"Michigan","4362159","Alan Bowman",1,1,20
+401404149,2022,3,"Michigan","4427455","Cade McNamara",1,1,18
+401404149,2022,3,"Michigan","4896390","Brandon Mann",1,1,7
+401404149,2022,3,"Michigan","4685495","Alex Orji",1,1,5
+401404149,2022,3,"Michigan","4427857","Andy Maddox",1,1,4
+401404149,2022,3,"UConn","4685697","Zion Turner",4,16,17
+401404149,2022,3,"UConn","4428001","Cale Millen",1,4,7
+401404159,2022,3,"Liberty","4432803","Kaidon Salter",19,34,256
+401404159,2022,3,"Liberty","4426687","Johnathan Bennett",0,3,0
+401404159,2022,3,"Wake Forest","4361994","Sam Hartman",26,44,325
+401405082,2022,3,"Iowa","4360480","Spencer Petras",14,26,175
+401405082,2022,3,"Nevada","4429070","Shane Illingworth",14,28,82
+401405083,2022,3,"Northwestern","4426657","Ryan Hilinski",27,43,213
+401405083,2022,3,"Southern Illinois","4368348","Nic Baker",23,34,241
+401405083,2022,3,"Southern Illinois","4368344","Javon Williams Jr.",1,2,12
+401405083,2022,3,"Southern Illinois","4572712","Zach Zebrowski",1,1,8
+401405084,2022,3,"Purdue","4260394","Aidan O'Connell",39,55,424
+401405084,2022,3,"Syracuse","4426966","Garrett Shrader",13,29,181
+401405084,2022,3,"Syracuse","4911851","Lequint Allen",0,1,0
+401405085,2022,3,"New Mexico State","5084180","Diego Pavia",6,19,52
+401405085,2022,3,"New Mexico State","4914368","Gavin Frakes",3,10,66
+401405085,2022,3,"New Mexico State","4427125","Weston Eget",1,1,6
+401405085,2022,3,"Wisconsin","4426335","Graham Mertz",12,15,251
+401405085,2022,3,"Wisconsin","4714009","Myles Burkett",4,5,84
+401405087,2022,3,"Maryland","4567097","Taulia Tagovailoa",17,23,214
+401405087,2022,3,"SMU","4360271","Tanner Mordecai",29,54,369
+401405088,2022,3,"Ohio State","4432577","C.J. Stroud",22,27,367
+401405088,2022,3,"Ohio State","4433971","Kyle McCord",5,7,115
+401405088,2022,3,"Toledo","4427191","Dequan Finn",10,19,153
+401405088,2022,3,"Toledo","4429801","Tucker Gleason",2,4,30
+401405089,2022,3,"Rutgers","4431387","Evan Simon",9,15,52
+401405089,2022,3,"Rutgers","4893657","Gavin Wimsatt",1,2,7
+401405089,2022,3,"Temple","4916436","E.J. Warner",19,32,215
+401411109,2022,3,"Florida State","4360799","Jordan Travis",13,17,157
+401411109,2022,3,"Florida State","4433886","Tate Rodemaker",6,10,109
+401411109,2022,3,"Louisville","4240069","Malik Cunningham",21,34,243
+401411110,2022,3,"Boston College","4372768","Phil Jurkovec",25,37,320
+401411110,2022,3,"Maine","4429582","Joe Fagnano",21,43,289
+401411112,2022,3,"Duke","4683423","Riley Leonard",11,12,155
+401411112,2022,3,"Duke","4685252","Henry Belin IV",5,6,43
+401411112,2022,3,"North Carolina A&T","4248639","Jalen Fowler",8,14,89
+401411112,2022,3,"North Carolina A&T","5086920","Eli Brickhandler",5,8,48
+401411113,2022,3,"Old Dominion","4430775","Hayden Wolff",23,37,235
+401411113,2022,3,"Virginia","4370775","Brennan Armstrong",20,37,284
+401411114,2022,3,"Virginia Tech","4430686","Grant Wells",26,35,314
+401411114,2022,3,"Virginia Tech","4248558","Jason Brown",2,3,28
+401411114,2022,3,"Wofford","4370163","Jimmy Weirick",14,20,161
+401411115,2022,3,"Pittsburgh","4683182","Nate Yarnell",9,12,179
+401411115,2022,3,"Western Michigan","4430699","Jack Salopek",6,18,99
+401411115,2022,3,"Western Michigan","4565361","Anthony Sambucci",1,1,31
+401413216,2022,3,"Jacksonville State","4249638","Zion Webb",3,9,32
+401413216,2022,3,"Jacksonville State","5085258","Aaron McLaughlin",3,6,47
+401413216,2022,3,"Jacksonville State","4819240","Te'Sean Smoot",1,2,8
+401413216,2022,3,"Tulsa","4362365","Davis Brin",27,35,424
+401413216,2022,3,"Tulsa","4600403","Braylon Braxton",4,5,26
+401413216,2022,3,"Tulsa","4575909","Roman Fuller",1,1,7
+401414780,2022,3,"Massachusetts","4365660","Gino Campiotti",10,15,90
+401414780,2022,3,"Massachusetts","4683471","Brady Olson",2,4,15
+401414780,2022,3,"Stony Brook","4878118","Daron Bryden",15,31,186
+401414780,2022,3,"Stony Brook","4367064","Joshua Zamot",1,3,20
+401415029,2022,3,"Bowling Green","4239937","Matt McDonald",27,45,282
+401415029,2022,3,"Bowling Green","4239938","CJ Lewis",1,1,15
+401415029,2022,3,"Bowling Green","4577962","Camden Orth",1,1,3
+401415029,2022,3,"Marshall","4259219","Henry Colombi",23,34,338
+401415029,2022,3,"Marshall","4700135","Cam Fancher",3,4,18
+401415032,2022,3,"Northwestern State","4573600","Zachary Clement",16,33,214
+401415032,2022,3,"Northwestern State","4241299","Miles Fallin",2,5,4
+401415032,2022,3,"Southern Miss","4808719","Zach Wilcke",9,18,102
+401415032,2022,3,"Southern Miss","4431418","Ty Keyes",6,9,192
+401415032,2022,3,"Southern Miss","4362211","Trey Lowe III",2,2,79
+401415032,2022,3,"Southern Miss","4689993","Jake Lange",1,1,27
+401415217,2022,3,"Air Force","4693814","Haaziq Daniels",7,14,101
+401415217,2022,3,"Wyoming","4361607","Andrew Peasley",18,23,162
+401415218,2022,3,"Boise State","4426499","Hank Bachmeier",18,25,204
+401415218,2022,3,"UT Martin","4250970","Dresser Winn",13,23,104
+401415218,2022,3,"UT Martin","4568411","Cornelious Brown",2,5,22
+401415219,2022,3,"Duquesne","4362303","Joe Mischler",16,30,133
+401415219,2022,3,"Duquesne","4573455","Darius Perrantes",6,13,97
+401415219,2022,3,"Hawai'i","4426360","Joey Yellen",13,20,86
+401415219,2022,3,"Hawai'i","4709977","Brayden Schager",1,1,7
+401415621,2022,3,"Campbell","4571364","Hajj-Malik Williams",23,38,300
+401415621,2022,3,"East Carolina","4360131","Holton Ahlers",17,20,263
+401415621,2022,3,"East Carolina","4432138","Mason Garcia",5,7,39
+401415622,2022,3,"Arkansas State","4240020","James Blackman",25,34,275
+401415622,2022,3,"Memphis","4606194","Seth Henigan",19,28,360
+401415623,2022,3,"Cincinnati","4360056","Ben Bryant",26,35,337
+401415623,2022,3,"Cincinnati","4431339","Evan Prater",1,1,4
+401415623,2022,3,"Miami (OH)","4576189","Aveon Smith",9,20,116
+401416600,2022,3,"Ball State","4361636","John Paddock",27,44,227
+401416600,2022,3,"Murray State","5089480","Isaac McNamee",7,22,57
+401416600,2022,3,"Murray State","4368863","LaMartez Brooks",1,1,11
+401416601,2022,3,"Buffalo","4570057","Cole Snyder",29,48,264
+401416601,2022,3,"Buffalo","4429454","Ron Cook Jr.",1,1,14
+401416601,2022,3,"Coastal Carolina","4427936","Grayson McCall",16,24,251
+401416601,2022,3,"Coastal Carolina","4427354","Jarrett Guest",1,1,32
+401416602,2022,3,"Bucknell","4876610","Ethan Grady",11,24,96
+401416602,2022,3,"Bucknell","4429270","Tyler Beverett",6,12,57
+401416602,2022,3,"Central Michigan","4570259","Daniel Richardson",15,32,198
+401416602,2022,3,"Central Michigan","4709012","Jase Bauer",1,1,44
+401416603,2022,3,"Kent State","4428439","Collin Schlee",10,12,199
+401416603,2022,3,"Kent State","4685693","Devin Kargman",1,1,4
+401416603,2022,3,"Long Island University","4360550","Derek Green",14,18,172
+401416603,2022,3,"Long Island University","4837195","Luca Stanzani",2,8,23
+401426333,2022,3,"App State","4239994","Chase Brice",22,34,278
+401426333,2022,3,"App State","4427037","Dashaun Davis",1,1,17
+401426333,2022,3,"Troy","4362723","Gunnar Watson",23,37,302
+401426554,2022,3,"Charlotte","4259269","Chris Reynolds",31,43,401
+401426554,2022,3,"Georgia State","4369448","Darren Grainger",22,34,343
+401426555,2022,3,"Florida Atlantic","4240628","N'Kosi Perry",13,29,108
+401426555,2022,3,"UCF","4426494","John Rhys Plumlee",25,36,339
+401426556,2022,3,"Clemson","4429020","D.J. Uiagalelei",17,29,221
+401426556,2022,3,"Clemson","4685413","Cade Klubnik",2,5,19
+401426556,2022,3,"Clemson","4239998","Hunter Johnson",1,1,1
+401426556,2022,3,"Louisiana Tech","4686137","Parker McNeil",23,42,311
+401426556,2022,3,"Louisiana Tech","4686612","Tre Harris",0,1,0
+401426557,2022,3,"Middle Tennessee","4291782","Chase Cunningham",20,24,216
+401426557,2022,3,"Middle Tennessee","4686519","Stone Frost",1,1,-4
+401426557,2022,3,"Tennessee State","4688717","Draylen Ellis",12,18,96
+401426557,2022,3,"Tennessee State","4432157","Chayil Garnett",6,10,53
+401426557,2022,3,"Tennessee State","4431355","Edwin Rhodes",0,1,0
+401426558,2022,3,"North Texas","4360163","Austin Aune",17,29,305
+401426558,2022,3,"UNLV","4429516","Doug Brumfield",21,27,211
+401426559,2022,3,"Louisiana","4373895","Ben Wooldridge",6,14,76
+401426559,2022,3,"Louisiana","4429595","Chandler Fields",7,14,38
+401426559,2022,3,"Rice","4362896","Tj McMahon",25,36,303
+401426560,2022,3,"Georgia Southern","4239714","Kyle Vantrease",24,50,204
+401426560,2022,3,"UAB","4363410","Dylan Hopkins",12,19,125
+401426560,2022,3,"UAB","4570132","Ryan Davis",0,1,0
+401426561,2022,3,"New Mexico","4360331","Miles Kendrick",13,19,111
+401426561,2022,3,"UTEP","4575668","Gavin Hardison",20,45,299
+401426561,2022,3,"UTEP","4362033","Calvin Brownholtz",0,1,0
+401426562,2022,3,"Texas","4429032","Hudson Card",15,23,161
+401426562,2022,3,"UTSA","4245186","Frank Harris",24,35,222
+401426562,2022,3,"UTSA","4683012","Eddie Lee Marburger",1,4,12
+401426562,2022,3,"UTSA","4362985","Brenden Brady",1,1,35
+401426563,2022,3,"Indiana","4426444","Connor Bazelak",33,55,364
+401426563,2022,3,"Western Kentucky","4368343","Austin Reed",33,43,329
+401403892,2022,4,"Alabama","4685720","Bryce Young",25,36,385
+401403892,2022,4,"Alabama","4432734","Jalen Milroe",4,6,10
+401403892,2022,4,"Alabama","4685522","Ty Simpson",1,1,5
+401403892,2022,4,"Vanderbilt","5081405","AJ Swann",13,26,115
+401403893,2022,4,"Arkansas","4567149","KJ Jefferson",12,19,171
+401403893,2022,4,"Texas A&M","4685740","Max Johnson",11,21,151
+401403894,2022,4,"Auburn","4697512","Robby Ashford",12,18,127
+401403894,2022,4,"Auburn","4714300","Holden Geriner",2,3,8
+401403894,2022,4,"Missouri","4429435","Brady Cook",14,24,179
+401403895,2022,4,"Georgia","4259553","Stetson Bennett",27,36,272
+401403895,2022,4,"Kent State","4428439","Collin Schlee",14,21,174
+401403895,2022,4,"Kent State","4686312","Josh Smith",1,1,14
+401403896,2022,4,"Kentucky","4361418","Will Levis",18,26,303
+401403896,2022,4,"Northern Illinois","4618083","Ethan Hampton",13,25,196
+401403896,2022,4,"Northern Illinois","4374272","Shemar Thornton",1,1,3
+401403897,2022,4,"LSU","4426348","Jayden Daniels",24,29,279
+401403897,2022,4,"LSU","4567747","Garrett Nussmeier",9,10,135
+401403897,2022,4,"New Mexico","4360331","Miles Kendrick",5,7,47
+401403898,2022,4,"Ole Miss","4689114","Jaxson Dart",13,24,154
+401403898,2022,4,"Tulsa","4600403","Braylon Braxton",9,22,83
+401403898,2022,4,"Tulsa","4362365","Davis Brin",7,13,112
+401403899,2022,4,"Bowling Green","4577962","Camden Orth",17,28,172
+401403899,2022,4,"Mississippi State","102597","Will Rogers",39,50,409
+401403899,2022,4,"Mississippi State","4432759","Sawyer Robertson",3,4,11
+401403901,2022,4,"Florida","4429084","Anthony Richardson",24,44,453
+401403901,2022,4,"Tennessee","4240858","Hendon Hooker",22,28,349
+401403996,2022,4,"Arizona","4697623","Jayden de Laura",27,45,401
+401403996,2022,4,"California","4361493","Jack Plummer",18,28,245
+401403997,2022,4,"Arizona State","4360230","Emory Jones",21,36,261
+401403997,2022,4,"Utah","4362075","Cameron Rising",19,29,260
+401403998,2022,4,"Colorado","4775136","Owen McCown",26,42,258
+401403998,2022,4,"UCLA","4367178","Dorian Thompson-Robinson",19,23,234
+401403998,2022,4,"UCLA","4429068","Ethan Garbers",3,6,32
+401403999,2022,4,"Oregon","4426338","Bo Nix",33,44,428
+401403999,2022,4,"Oregon","4596448","Mar'Keise Irving",1,1,18
+401403999,2022,4,"Washington State","4688380","Cameron Ward",37,48,375
+401404000,2022,4,"Oregon State","4360824","Chance Nolan",17,29,167
+401404000,2022,4,"USC","4431611","Caleb Williams",16,36,180
+401404001,2022,4,"Stanford","4685201","Tanner McKee",17,26,286
+401404001,2022,4,"Washington","4360423","Michael Penix Jr.",22,37,309
+401404078,2022,4,"SMU","4360271","Tanner Mordecai",27,49,372
+401404078,2022,4,"TCU","4427105","Max Duggan",22,29,278
+401404078,2022,4,"TCU","4362430","Taye Barber",1,1,18
+401404079,2022,4,"Duke","4683423","Riley Leonard",24,35,324
+401404079,2022,4,"Kansas","4596472","Jalon Daniels",19,23,324
+401404080,2022,4,"Baylor","4565315","Blake Shapen",19,26,238
+401404080,2022,4,"Iowa State","4565358","Hunter Dekkers",23,36,284
+401404081,2022,4,"Kansas State","4361182","Adrian Martinez",21,34,234
+401404081,2022,4,"Oklahoma","4427238","Dillon Gabriel",26,39,330
+401404082,2022,4,"Texas","4429032","Hudson Card",20,30,277
+401404082,2022,4,"Texas Tech","4690977","Donovan Smith",38,56,331
+401404126,2022,4,"North Carolina","4431452","Drake Maye",17,32,301
+401404126,2022,4,"Notre Dame","4429088","Drew Pyne",24,34,289
+401404150,2022,4,"NC State","4361653","Devin Leary",32,44,320
+401404150,2022,4,"NC State","4246097","Jack Chambers",1,2,3
+401404150,2022,4,"UConn","4685697","Zion Turner",10,12,39
+401404150,2022,4,"UConn","4428001","Cale Millen",0,3,0
+401404160,2022,4,"Akron","4368768","DJ Irons",29,52,269
+401404160,2022,4,"Liberty","4426687","Johnathan Bennett",13,27,152
+401404160,2022,4,"Liberty","4602968","Nate Hampton",0,1,0
+401405091,2022,4,"Iowa","4360480","Spencer Petras",11,17,148
+401405091,2022,4,"Rutgers","4431387","Evan Simon",28,49,300
+401405091,2022,4,"Rutgers","4360204","Johnny Langan",1,1,0
+401405092,2022,4,"Michigan State","4430590","Payton Thorne",17,24,132
+401405092,2022,4,"Michigan State","4690158","Noah Kim",6,7,70
+401405092,2022,4,"Minnesota","4240756","Tanner Morgan",23,26,268
+401405093,2022,4,"Miami (OH)","4576189","Aveon Smith",7,19,62
+401405093,2022,4,"Northwestern","4426657","Ryan Hilinski",24,42,232
+401405093,2022,4,"Northwestern","4687475","Cam Porter",2,2,25
+401405095,2022,4,"Ohio State","4432577","C.J. Stroud",17,27,281
+401405095,2022,4,"Wisconsin","4426335","Graham Mertz",11,20,94
+401405095,2022,4,"Wisconsin","4685247","Braelon Allen",1,1,10
+401405096,2022,4,"Cincinnati","4360056","Ben Bryant",24,40,354
+401405096,2022,4,"Indiana","4426444","Connor Bazelak",31,66,280
+401405097,2022,4,"Maryland","4567097","Taulia Tagovailoa",20,30,207
+401405097,2022,4,"Maryland","4592532","Billy Edwards",5,9,62
+401405097,2022,4,"Michigan","4433970","J.J. McCarthy",18,26,220
+401405098,2022,4,"Central Michigan","4570259","Daniel Richardson",26,45,235
+401405098,2022,4,"Central Michigan","4709012","Jase Bauer",3,7,40
+401405098,2022,4,"Penn State","4259592","Sean Clifford",22,34,217
+401405098,2022,4,"Penn State","4714771","Drew Allar",2,5,20
+401409237,2022,4,"Hawai'i","4709977","Brayden Schager",22,39,261
+401409237,2022,4,"New Mexico State","4914368","Gavin Frakes",8,14,81
+401409237,2022,4,"New Mexico State","5084180","Diego Pavia",0,1,0
+401411116,2022,4,"Virginia Tech","4430686","Grant Wells",16,35,193
+401411116,2022,4,"West Virginia","4374303","JT Daniels",20,30,203
+401411117,2022,4,"Syracuse","4426966","Garrett Shrader",22,33,277
+401411117,2022,4,"Virginia","4370775","Brennan Armstrong",19,38,138
+401411118,2022,4,"Boston College","4372768","Phil Jurkovec",15,23,105
+401411118,2022,4,"Boston College","4683501","Emmett Morehead",3,6,35
+401411118,2022,4,"Florida State","4360799","Jordan Travis",16,26,321
+401411118,2022,4,"Florida State","4433886","Tate Rodemaker",3,3,29
+401411118,2022,4,"Florida State","4685334","A.J. Duffy",0,2,0
+401411119,2022,4,"Louisville","4240069","Malik Cunningham",14,22,186
+401411119,2022,4,"Louisville","4571339","Brock Domann",5,8,73
+401411119,2022,4,"South Florida","4362915","Gerry Bohannon",9,17,62
+401411119,2022,4,"South Florida","4565303","Katravis Marsh",4,11,48
+401411121,2022,4,"Pittsburgh","4428512","Kedon Slovis",20,27,189
+401411121,2022,4,"Rhode Island","4241937","Kasim Hill",17,30,223
+401411122,2022,4,"Georgia Tech","4429066","Jeff Sims",21,32,314
+401411122,2022,4,"UCF","4426494","John Rhys Plumlee",8,16,49
+401411122,2022,4,"UCF","4568992","Ryan O'Keefe",0,1,0
+401411123,2022,4,"Clemson","4429020","D.J. Uiagalelei",26,41,371
+401411123,2022,4,"Wake Forest","4361994","Sam Hartman",20,29,337
+401414781,2022,4,"Massachusetts","4365660","Gino Campiotti",7,14,36
+401414781,2022,4,"Massachusetts","4683666","Zamar Wise",3,7,35
+401414781,2022,4,"Massachusetts","4683471","Brady Olson",1,5,9
+401414781,2022,4,"Temple","4916436","E.J. Warner",11,22,173
+401414781,2022,4,"Temple","4361959","Quincy Patterson II",3,3,33
+401415037,2022,4,"App State","4239994","Chase Brice",17,28,235
+401415037,2022,4,"James Madison","4243276","Todd Centeio",16,28,204
+401415040,2022,4,"Southern Miss","4808719","Zach Wilcke",17,25,194
+401415040,2022,4,"Tulane","4685039","Michael Pratt",19,29,247
+401415220,2022,4,"Air Force","4693814","Haaziq Daniels",0,2,0
+401415220,2022,4,"Air Force","4693813","Ben Brittain",1,1,80
+401415220,2022,4,"Nevada","4262162","Nate Cox",12,20,130
+401415221,2022,4,"Colorado State","4833597","Brayden Fowler-Nicolosi",6,15,116
+401415221,2022,4,"Colorado State","4432733","Clay Millen",7,7,62
+401415221,2022,4,"Sacramento State","4280496","Jake Dunniway",12,23,164
+401415221,2022,4,"Sacramento State","4374350","Asher O'Hara",10,10,71
+401415222,2022,4,"UNLV","4429516","Doug Brumfield",21,31,217
+401415222,2022,4,"Utah State","4036473","Logan Bonner",27,41,313
+401415222,2022,4,"Utah State","4606179","Stephen Kotsanlee",1,1,12
+401415223,2022,4,"BYU","4373632","Jaren Hall",26,32,337
+401415223,2022,4,"Wyoming","4361607","Andrew Peasley",14,27,154
+401415224,2022,4,"San Diego State","4242490","Braxton Burmeister",13,24,65
+401415224,2022,4,"Toledo","4427191","Dequan Finn",21,34,240
+401415224,2022,4,"Toledo","4429801","Tucker Gleason",1,6,14
+401415225,2022,4,"San José State","4373934","Chevan Cordeiro",17,28,250
+401415225,2022,4,"San José State","4241588","Elijah Cooks",1,1,19
+401415225,2022,4,"Western Michigan","4683561","Mareyohn Hrabowski",4,8,56
+401415225,2022,4,"Western Michigan","4567106","Stone Hollenbach",4,5,15
+401415624,2022,4,"East Carolina","4360131","Holton Ahlers",22,34,267
+401415624,2022,4,"Navy","4686164","Tai Lavatai",7,10,152
+401416604,2022,4,"Buffalo","4570057","Cole Snyder",20,29,297
+401416604,2022,4,"Eastern Michigan","4597247","Austin Smith",12,19,190
+401416605,2022,4,"Ball State","4361636","John Paddock",33,47,338
+401416605,2022,4,"Georgia Southern","4239714","Kyle Vantrease",26,39,310
+401416605,2022,4,"Georgia Southern","4838269","OJ Arnold",0,1,0
+401416606,2022,4,"Fordham","4367790","Tim DeMorat",27,35,503
+401416606,2022,4,"Ohio","4430431","Kurtis Rourke",41,50,537
+401418793,2022,4,"Houston Christian","4429620","Justin Fomby",23,36,103
+401418793,2022,4,"Texas State","4361222","Layne Hatcher",27,41,362
+401421129,2022,4,"Chattanooga","4244804","Preston Hutchinson",6,18,49
+401421129,2022,4,"Chattanooga","4247262","Cole Copeland",0,1,0
+401421129,2022,4,"Illinois","4240391","Tommy DeVito",23,31,329
+401421129,2022,4,"Illinois","4361530","Artur Sitkowski",2,3,6
+401426334,2022,4,"Coastal Carolina","4427936","Grayson McCall",19,27,268
+401426334,2022,4,"Coastal Carolina","4361032","Bryce Carpenter",1,3,0
+401426334,2022,4,"Coastal Carolina","4427354","Jarrett Guest",0,1,0
+401426334,2022,4,"Georgia State","4369448","Darren Grainger",14,25,231
+401426335,2022,4,"Arkansas State","4240020","James Blackman",23,35,287
+401426335,2022,4,"Old Dominion","4430775","Hayden Wolff",19,31,279
+401426336,2022,4,"Louisiana","4429595","Chandler Fields",20,34,231
+401426336,2022,4,"Louisiana","4373895","Ben Wooldridge",5,7,37
+401426336,2022,4,"UL Monroe","4887223","Chandler Rogers",14,26,192
+401426393,2022,4,"Marshall","4259219","Henry Colombi",8,13,49
+401426393,2022,4,"Marshall","4700135","Cam Fancher",3,7,29
+401426393,2022,4,"Troy","4362723","Gunnar Watson",15,25,321
+401426564,2022,4,"Charlotte","4259269","Chris Reynolds",16,28,143
+401426564,2022,4,"Charlotte","4372517","James Foster",3,5,69
+401426564,2022,4,"Charlotte","4698184","Xavier Williams",1,2,1
+401426564,2022,4,"South Carolina","4426339","Spencer Rattler",17,23,187
+401426564,2022,4,"South Carolina","4429079","Luke Doty",2,3,63
+401426565,2022,4,"Florida International","4567707","Grayson James",13,22,85
+401426565,2022,4,"Florida International","4576127","Haden Carlson",6,13,39
+401426565,2022,4,"Western Kentucky","4368343","Austin Reed",30,35,381
+401426565,2022,4,"Western Kentucky","4605866","Darius Ocean",3,6,72
+401426565,2022,4,"Western Kentucky","4869991","Caden Veltkamp",4,4,25
+401426566,2022,4,"Florida Atlantic","4240628","N'Kosi Perry",18,30,230
+401426566,2022,4,"Purdue","4242974","Austin Burton",21,29,166
+401426566,2022,4,"Purdue","4430829","Michael Alaimo",1,2,0
+401426567,2022,4,"Louisiana Tech","4686137","Parker McNeil",19,34,251
+401426567,2022,4,"South Alabama","4362260","Carter Bradley",14,21,178
+401426567,2022,4,"South Alabama","4373851","Desmond Trotter",3,4,36
+401426568,2022,4,"Miami","4685186","Tyler Van Dyke",16,32,138
+401426568,2022,4,"Miami","4432703","Jake Garcia",10,19,169
+401426568,2022,4,"Middle Tennessee","4291782","Chase Cunningham",16,25,408
+401426569,2022,4,"Memphis","4606194","Seth Henigan",19,29,141
+401426569,2022,4,"North Texas","4360163","Austin Aune",27,49,371
+401426570,2022,4,"Houston","4360175","Clayton Tune",19,26,249
+401426570,2022,4,"Rice","4362896","Tj McMahon",25,39,334
+401426571,2022,4,"Boise State","4426499","Hank Bachmeier",13,34,93
+401426571,2022,4,"UTEP","4575668","Gavin Hardison",10,11,123
+401426572,2022,4,"Texas Southern","4887151","Andrew Body",17,32,229
+401426572,2022,4,"UTSA","4245186","Frank Harris",20,31,392
+401426572,2022,4,"UTSA","4683012","Eddie Lee Marburger",3,3,49
+401403902,2022,5,"Alabama","4685720","Bryce Young",7,13,173
+401403902,2022,5,"Alabama","4432734","Jalen Milroe",4,9,65
+401403902,2022,5,"Arkansas","4567149","KJ Jefferson",13,24,155
+401403902,2022,5,"Arkansas","4361573","Cade Fortin",4,10,35
+401403903,2022,5,"Auburn","4697512","Robby Ashford",19,38,337
+401403903,2022,5,"Auburn","4431277","Koy Moore",0,1,0
+401403903,2022,5,"LSU","4426348","Jayden Daniels",8,20,80
+401403903,2022,5,"LSU","4567747","Garrett Nussmeier",2,6,5
+401403904,2022,5,"Eastern Washington","4247187","Gunner Talkington",24,37,250
+401403904,2022,5,"Eastern Washington","4876140","Kekoa Visperas",1,3,8
+401403904,2022,5,"Florida","4565187","Jalen Kitna",8,12,152
+401403904,2022,5,"Florida","4429084","Anthony Richardson",8,10,240
+401403905,2022,5,"Kentucky","4361418","Will Levis",18,24,220
+401403905,2022,5,"Ole Miss","4689114","Jaxson Dart",15,29,213
+401403906,2022,5,"Mississippi State","102597","Will Rogers",31,45,329
+401403906,2022,5,"Texas A&M","4685740","Max Johnson",19,26,203
+401403906,2022,5,"Texas A&M","4428993","Haynes King",6,13,49
+401403907,2022,5,"Georgia","4259553","Stetson Bennett",24,43,312
+401403907,2022,5,"Missouri","4429435","Brady Cook",20,32,192
+401403908,2022,5,"South Carolina","4426339","Spencer Rattler",21,27,212
+401403908,2022,5,"South Carolina","4429079","Luke Doty",3,3,7
+401403908,2022,5,"South Carolina State","4384546","Cory Fields",4,13,12
+401403908,2022,5,"South Carolina State","4251048","Tyrece Nick",3,5,63
+401404002,2022,5,"Arizona","4697623","Jayden de Laura",33,46,484
+401404002,2022,5,"Arizona","4685472","Tetairoa Mcmillan",1,1,11
+401404002,2022,5,"Colorado","4775136","Owen McCown",14,30,186
+401404003,2022,5,"Arizona State","4360230","Emory Jones",23,32,243
+401404003,2022,5,"USC","4431611","Caleb Williams",27,37,348
+401404004,2022,5,"California","4361493","Jack Plummer",23,33,273
+401404004,2022,5,"California","4643625","Kai Millner",1,4,7
+401404004,2022,5,"Washington State","4688380","Cameron Ward",27,40,343
+401404005,2022,5,"Oregon","4426338","Bo Nix",16,29,161
+401404005,2022,5,"Oregon","4432774","Ty Thompson",1,5,3
+401404005,2022,5,"Stanford","4685201","Tanner McKee",19,33,166
+401404005,2022,5,"Stanford","4592531","Ari Patu",3,5,39
+401404006,2022,5,"Oregon State","4431114","Ben Gulbranson",12,21,177
+401404006,2022,5,"Oregon State","4360824","Chance Nolan",2,7,26
+401404006,2022,5,"Oregon State","4240801","Tyjon Lindsey",1,1,27
+401404006,2022,5,"Oregon State","4360705","Jack Colletto",1,1,16
+401404006,2022,5,"Utah","4362075","Cameron Rising",19,25,199
+401404007,2022,5,"UCLA","4367178","Dorian Thompson-Robinson",24,33,315
+401404007,2022,5,"Washington","4360423","Michael Penix Jr.",33,48,345
+401404083,2022,5,"Baylor","4565315","Blake Shapen",28,40,345
+401404083,2022,5,"Oklahoma State","4361825","Spencer Sanders",20,29,181
+401404083,2022,5,"Oklahoma State","4685183","John Paul Richardson",1,1,32
+401404084,2022,5,"Iowa State","4565358","Hunter Dekkers",30,48,287
+401404084,2022,5,"Kansas","4596472","Jalon Daniels",7,14,93
+401404084,2022,5,"Kansas","4360900","Jason Bean",1,1,8
+401404085,2022,5,"Kansas State","4361182","Adrian Martinez",12,19,116
+401404085,2022,5,"Texas Tech","4690977","Donovan Smith",34,48,359
+401404086,2022,5,"Oklahoma","4427238","Dillon Gabriel",7,16,126
+401404086,2022,5,"Oklahoma","4428887","Davis Beville",7,16,50
+401404086,2022,5,"TCU","4427105","Max Duggan",23,33,302
+401404086,2022,5,"TCU","4874527","Sam Jackson",1,1,5
+401404087,2022,5,"Texas","4429032","Hudson Card",21,27,303
+401404087,2022,5,"Texas","4683062","Xavier Worthy",1,1,33
+401404087,2022,5,"West Virginia","4374303","JT Daniels",29,48,253
+401404137,2022,5,"Army","4577303","Cade Ballard",1,7,11
+401404137,2022,5,"Army","4373726","Tyhier Tyler",0,1,0
+401404137,2022,5,"Georgia State","4369448","Darren Grainger",8,12,157
+401404151,2022,5,"Fresno State","4605998","Logan Fife",16,22,157
+401404151,2022,5,"UConn","4685697","Zion Turner",8,15,130
+401404151,2022,5,"UConn","4428001","Cale Millen",0,1,0
+401404161,2022,5,"Liberty","4432803","Kaidon Salter",10,19,170
+401404161,2022,5,"Liberty","4426687","Johnathan Bennett",7,9,98
+401404161,2022,5,"Old Dominion","4430775","Hayden Wolff",27,46,297
+401405099,2022,5,"Illinois","4240391","Tommy DeVito",18,24,167
+401405099,2022,5,"Wisconsin","4426335","Graham Mertz",17,32,206
+401405099,2022,5,"Wisconsin","4685247","Braelon Allen",0,1,0
+401405100,2022,5,"Iowa","4360480","Spencer Petras",21,31,246
+401405100,2022,5,"Michigan","4433970","J.J. McCarthy",18,24,155
+401405101,2022,5,"Minnesota","4240756","Tanner Morgan",18,33,257
+401405101,2022,5,"Purdue","4260394","Aidan O'Connell",27,40,199
+401405102,2022,5,"Indiana","4426444","Connor Bazelak",22,44,223
+401405102,2022,5,"Nebraska","4362073","Casey Thompson",18,27,270
+401405103,2022,5,"Maryland","4567097","Taulia Tagovailoa",32,41,314
+401405103,2022,5,"Michigan State","4430590","Payton Thorne",27,44,221
+401405104,2022,5,"Ohio State","4432577","C.J. Stroud",13,22,154
+401405104,2022,5,"Ohio State","4433971","Kyle McCord",2,3,7
+401405104,2022,5,"Rutgers","4431387","Evan Simon",10,19,74
+401405104,2022,5,"Rutgers","4361556","Aron Cruickshank",1,1,6
+401405105,2022,5,"Northwestern","4426657","Ryan Hilinski",15,37,210
+401405105,2022,5,"Penn State","4259592","Sean Clifford",10,20,140
+401411124,2022,5,"Boston College","4372768","Phil Jurkovec",18,21,304
+401411124,2022,5,"Louisville","4240069","Malik Cunningham",19,28,186
+401411124,2022,5,"Louisville","4571339","Brock Domann",1,8,19
+401411125,2022,5,"Clemson","4429020","D.J. Uiagalelei",21,30,209
+401411125,2022,5,"NC State","4361653","Devin Leary",28,47,245
+401411125,2022,5,"NC State","4568316","DeMarcus Jones II",0,1,0
+401411126,2022,5,"Duke","4683423","Riley Leonard",18,24,129
+401411126,2022,5,"Virginia","4370775","Brennan Armstrong",19,37,202
+401411127,2022,5,"Florida State","4360799","Jordan Travis",23,35,281
+401411127,2022,5,"Wake Forest","4361994","Sam Hartman",22,34,234
+401411128,2022,5,"North Carolina","4431452","Drake Maye",26,36,363
+401411128,2022,5,"North Carolina","4429463","Jacolby Criswell",1,4,4
+401411128,2022,5,"North Carolina","4431505","Kobe Paysour",0,1,0
+401411128,2022,5,"Virginia Tech","4430686","Grant Wells",16,26,139
+401411128,2022,5,"Virginia Tech","4248558","Jason Brown",4,9,35
+401411129,2022,5,"Georgia Tech","4429066","Jeff Sims",11,26,102
+401411129,2022,5,"Georgia Tech","4432387","Nate Mccollum",0,1,0
+401411129,2022,5,"Pittsburgh","4428512","Kedon Slovis",26,45,305
+401411130,2022,5,"Syracuse","4426966","Garrett Shrader",17,17,238
+401411130,2022,5,"Syracuse","4432691","Carlos Del Rio-Wilson",1,1,5
+401411130,2022,5,"Wagner","5089244","Ryan Kraft",2,6,19
+401414782,2022,5,"Eastern Michigan","4597247","Austin Smith",13,24,122
+401414782,2022,5,"Massachusetts","4365660","Gino Campiotti",8,18,87
+401415226,2022,5,"BYU","4373632","Jaren Hall",17,27,274
+401415226,2022,5,"BYU","4569948","Keanu Hill",1,1,6
+401415226,2022,5,"Utah State","4430033","Cooper Legas",19,31,188
+401415227,2022,5,"Air Force","4693814","Haaziq Daniels",6,8,156
+401415227,2022,5,"Navy","4686164","Tai Lavatai",11,20,129
+401415228,2022,5,"Boise State","4683311","Sam Vidlak",9,12,86
+401415228,2022,5,"Boise State","4431325","Taylen Green",5,10,48
+401415228,2022,5,"San Diego State","4242490","Braxton Burmeister",2,8,33
+401415228,2022,5,"San Diego State","4801298","Liu Aumavae",0,7,0
+401415228,2022,5,"San Diego State","4912062","Kyle Crum",0,1,0
+401415229,2022,5,"New Mexico","4360331","Miles Kendrick",13,25,163
+401415229,2022,5,"New Mexico","4710001","CJ Montes",0,1,0
+401415229,2022,5,"UNLV","4429516","Doug Brumfield",24,33,233
+401415230,2022,5,"San José State","4373934","Chevan Cordeiro",21,37,314
+401415230,2022,5,"Wyoming","4361607","Andrew Peasley",6,20,85
+401415230,2022,5,"Wyoming","4426939","Jayden Clemons",2,2,25
+401415625,2022,5,"Houston","4360175","Clayton Tune",22,33,208
+401415625,2022,5,"Tulane","4708067","Kai Horton",11,21,132
+401415625,2022,5,"Tulane","4685040","Justin Ibieta",5,5,57
+401415626,2022,5,"East Carolina","4360131","Holton Ahlers",31,41,465
+401415626,2022,5,"South Florida","4362915","Gerry Bohannon",18,28,253
+401415627,2022,5,"Cincinnati","4360056","Ben Bryant",15,27,166
+401415627,2022,5,"Tulsa","4362365","Davis Brin",18,36,237
+401415627,2022,5,"Tulsa","4600403","Braylon Braxton",1,2,12
+401415628,2022,5,"Memphis","4606194","Seth Henigan",24,45,195
+401415628,2022,5,"Temple","4916436","E.J. Warner",18,37,245
+401416607,2022,5,"Central Michigan","4570259","Daniel Richardson",25,46,252
+401416607,2022,5,"Toledo","4427191","Dequan Finn",13,23,186
+401416608,2022,5,"Ball State","4361636","John Paddock",40,58,403
+401416608,2022,5,"Northern Illinois","4618083","Ethan Hampton",17,29,194
+401416609,2022,5,"Akron","4368768","DJ Irons",20,33,224
+401416609,2022,5,"Bowling Green","4239937","Matt McDonald",18,29,247
+401416610,2022,5,"Buffalo","4570057","Cole Snyder",19,35,188
+401416610,2022,5,"Miami (OH)","4576189","Aveon Smith",14,26,119
+401416611,2022,5,"Kent State","4428439","Collin Schlee",24,37,398
+401416611,2022,5,"Ohio","4430431","Kurtis Rourke",25,39,322
+401416612,2022,5,"New Hampshire","4573398","Max Brosmer",22,34,161
+401416612,2022,5,"Western Michigan","4430699","Jack Salopek",13,23,252
+401421140,2022,5,"App State","4239994","Chase Brice",12,18,265
+401421140,2022,5,"App State","4371730","Brady McBride",2,3,33
+401421140,2022,5,"The Citadel","4240999","Peyton Derrick",2,7,45
+401421140,2022,5,"The Citadel","4877040","Ahmad Green",1,1,6
+401426337,2022,5,"Coastal Carolina","4427936","Grayson McCall",23,34,335
+401426337,2022,5,"Georgia Southern","4239714","Kyle Vantrease",26,43,284
+401426338,2022,5,"James Madison","4243276","Todd Centeio",15,25,257
+401426338,2022,5,"Texas State","4361222","Layne Hatcher",13,27,140
+401426339,2022,5,"Gardner-Webb","4368908","Bailey Fisher",9,28,114
+401426339,2022,5,"Gardner-Webb","4877717","Matthew Caldwell",2,2,10
+401426339,2022,5,"Gardner-Webb","5095077","Ephraim Floyd",0,2,0
+401426339,2022,5,"Marshall","4259219","Henry Colombi",13,20,138
+401426339,2022,5,"Marshall","4700135","Cam Fancher",8,13,47
+401426340,2022,5,"Arkansas State","4240020","James Blackman",25,32,254
+401426340,2022,5,"Arkansas State","4363148","AJ Mayer",0,1,0
+401426340,2022,5,"UL Monroe","4887223","Chandler Rogers",12,20,138
+401426341,2022,5,"Louisiana","4373895","Ben Wooldridge",18,29,90
+401426341,2022,5,"Louisiana","4429595","Chandler Fields",4,7,25
+401426341,2022,5,"South Alabama","4362260","Carter Bradley",18,41,245
+401426573,2022,5,"Charlotte","4259269","Chris Reynolds",21,37,349
+401426573,2022,5,"Charlotte","4372517","James Foster",0,1,0
+401426573,2022,5,"UTEP","4575668","Gavin Hardison",10,14,173
+401426574,2022,5,"Florida International","4567707","Grayson James",13,19,175
+401426574,2022,5,"Florida International","4875613","Dean Patterson",1,1,7
+401426574,2022,5,"New Mexico State","5084180","Diego Pavia",8,14,85
+401426574,2022,5,"New Mexico State","4914368","Gavin Frakes",5,13,54
+401426575,2022,5,"Florida Atlantic","4240628","N'Kosi Perry",26,50,295
+401426575,2022,5,"North Texas","4360163","Austin Aune",14,20,180
+401426575,2022,5,"North Texas","4691272","Stone Earle",1,1,1
+401426576,2022,5,"Middle Tennessee","4291782","Chase Cunningham",35,56,368
+401426576,2022,5,"UTSA","4245186","Frank Harris",27,36,414
+401426576,2022,5,"UTSA","4426893","Joshua Cephus",1,1,9
+401426577,2022,5,"Rice","4362896","Tj McMahon",11,17,104
+401426577,2022,5,"UAB","4363410","Dylan Hopkins",15,21,231
+401426577,2022,5,"UAB","4426417","Jacob Zeno",1,3,7
+401426578,2022,5,"Troy","4362723","Gunnar Watson",15,28,202
+401426578,2022,5,"Troy","4244029","Jarret Doege",7,8,71
+401426578,2022,5,"Troy","4608810","Tez Johnson",1,1,7
+401426578,2022,5,"Western Kentucky","4368343","Austin Reed",39,56,406
+401403909,2022,6,"Alabama","4432734","Jalen Milroe",12,19,111
+401403909,2022,6,"Texas A&M","4428993","Haynes King",25,46,253
+401403910,2022,6,"Florida","4429084","Anthony Richardson",8,14,66
+401403910,2022,6,"Missouri","4429435","Brady Cook",22,30,220
+401403911,2022,6,"Auburn","4697512","Robby Ashford",13,38,165
+401403911,2022,6,"Georgia","4259553","Stetson Bennett",22,32,208
+401403912,2022,6,"Kentucky","4682688","Kaiya Sheron",15,27,178
+401403912,2022,6,"South Carolina","4426339","Spencer Rattler",14,19,177
+401403913,2022,6,"LSU","4426348","Jayden Daniels",32,45,300
+401403913,2022,6,"Tennessee","4240858","Hendon Hooker",17,27,239
+401403914,2022,6,"Arkansas","4429133","Malik Hornsby",8,17,234
+401403914,2022,6,"Arkansas","4361573","Cade Fortin",2,6,8
+401403914,2022,6,"Mississippi State","102597","Will Rogers",31,48,395
+401403915,2022,6,"Ole Miss","4689114","Jaxson Dart",25,32,448
+401403915,2022,6,"Vanderbilt","5081405","AJ Swann",27,38,281
+401404008,2022,6,"Arizona","4697623","Jayden de Laura",24,42,241
+401404008,2022,6,"Oregon","4426338","Bo Nix",20,25,265
+401404008,2022,6,"Oregon","4432774","Ty Thompson",3,4,9
+401404009,2022,6,"Arizona State","4569184","Trenton Bourguet",15,21,182
+401404009,2022,6,"Arizona State","4360230","Emory Jones",7,9,59
+401404009,2022,6,"Washington","4360423","Michael Penix Jr.",33,53,311
+401404009,2022,6,"Washington","4569598","Dylan Morris",1,1,13
+401404010,2022,6,"Oregon State","4431114","Ben Gulbranson",20,29,250
+401404010,2022,6,"Stanford","4685201","Tanner McKee",20,33,269
+401404011,2022,6,"UCLA","4367178","Dorian Thompson-Robinson",18,23,299
+401404011,2022,6,"Utah","4362075","Cameron Rising",23,32,287
+401404012,2022,6,"USC","4431611","Caleb Williams",15,29,188
+401404012,2022,6,"Washington State","4688380","Cameron Ward",19,32,172
+401404088,2022,6,"Iowa State","4565358","Hunter Dekkers",22,38,198
+401404088,2022,6,"Kansas State","4361182","Adrian Martinez",12,19,246
+401404088,2022,6,"Kansas State","4373077","Malik Knowles",1,1,11
+401404089,2022,6,"Kansas","4360900","Jason Bean",16,24,262
+401404089,2022,6,"Kansas","4596472","Jalon Daniels",5,10,89
+401404089,2022,6,"TCU","4427105","Max Duggan",23,33,308
+401404090,2022,6,"Oklahoma","4428887","Davis Beville",6,12,38
+401404090,2022,6,"Oklahoma","4570561","Eric Gray",1,2,0
+401404090,2022,6,"Oklahoma","4247781","Michael Turk",1,1,3
+401404090,2022,6,"Oklahoma","4755664","Nick Evers",0,1,0
+401404090,2022,6,"Oklahoma","4426484","Marcus Major",1,1,-2
+401404090,2022,6,"Texas","4889929","Quinn Ewers",21,31,289
+401404091,2022,6,"Oklahoma State","4361825","Spencer Sanders",22,45,297
+401404091,2022,6,"Texas Tech","4431465","Behren Morton",39,62,379
+401404091,2022,6,"Texas Tech","4690977","Donovan Smith",0,1,0
+401404127,2022,6,"BYU","4373632","Jaren Hall",9,17,120
+401404127,2022,6,"Notre Dame","4429088","Drew Pyne",22,28,262
+401404138,2022,6,"Army","4577305","Jemel Jones",4,9,100
+401404138,2022,6,"Army","4577303","Cade Ballard",3,7,15
+401404138,2022,6,"Army","4373726","Tyhier Tyler",3,5,67
+401404138,2022,6,"Wake Forest","4361994","Sam Hartman",13,19,246
+401404138,2022,6,"Wake Forest","4433829","Mitch Griffis",2,3,21
+401404164,2022,6,"Liberty","4426687","Johnathan Bennett",9,18,183
+401404164,2022,6,"Liberty","4602968","Nate Hampton",3,5,76
+401404164,2022,6,"Massachusetts","4427118","Garrett Dzuro",5,7,83
+401404164,2022,6,"Massachusetts","4365660","Gino Campiotti",1,7,5
+401405106,2022,6,"Illinois","4361530","Artur Sitkowski",13,19,74
+401405106,2022,6,"Illinois","4240391","Tommy DeVito",6,11,42
+401405106,2022,6,"Iowa","4360480","Spencer Petras",18,36,170
+401405107,2022,6,"Northwestern","4426657","Ryan Hilinski",10,22,147
+401405107,2022,6,"Northwestern","4683058","Brendan Sullivan",11,17,114
+401405107,2022,6,"Northwestern","4609049","Carl Richardson",1,2,2
+401405107,2022,6,"Wisconsin","4426335","Graham Mertz",20,29,299
+401405107,2022,6,"Wisconsin","4685247","Braelon Allen",1,1,23
+401405108,2022,6,"Indiana","4426444","Connor Bazelak",25,49,203
+401405108,2022,6,"Michigan","4433970","J.J. McCarthy",28,36,304
+401405109,2022,6,"Maryland","4567097","Taulia Tagovailoa",26,38,315
+401405109,2022,6,"Purdue","4260394","Aidan O'Connell",30,41,360
+401405110,2022,6,"Michigan State","4430590","Payton Thorne",11,18,113
+401405110,2022,6,"Michigan State","4690158","Noah Kim",6,10,82
+401405110,2022,6,"Ohio State","4432577","C.J. Stroud",21,26,361
+401405110,2022,6,"Ohio State","4433971","Kyle McCord",2,2,16
+401405111,2022,6,"Nebraska","4362073","Casey Thompson",24,36,232
+401405111,2022,6,"Nebraska","4430836","Chubba Purdy",0,1,0
+401405111,2022,6,"Rutgers","4243539","Noah Vedral",6,15,133
+401405111,2022,6,"Rutgers","4431387","Evan Simon",6,15,100
+401411131,2022,6,"Boston College","4372768","Phil Jurkovec",19,40,188
+401411131,2022,6,"Boston College","4683501","Emmett Morehead",1,2,32
+401411131,2022,6,"Clemson","4429020","D.J. Uiagalelei",18,31,220
+401411132,2022,6,"Duke","4683423","Riley Leonard",20,41,136
+401411132,2022,6,"Georgia Tech","4429066","Jeff Sims",23,34,227
+401411132,2022,6,"Georgia Tech","4568336","Zach Gibson",1,2,5
+401411133,2022,6,"Miami","4685186","Tyler Van Dyke",42,57,496
+401411133,2022,6,"North Carolina","4431452","Drake Maye",19,28,309
+401411134,2022,6,"Florida State","4360799","Jordan Travis",15,30,181
+401411134,2022,6,"NC State","4361653","Devin Leary",10,21,130
+401411134,2022,6,"NC State","4246097","Jack Chambers",0,1,0
+401411134,2022,6,"NC State","4240121","Thayer Thomas",1,1,-5
+401411135,2022,6,"Pittsburgh","4428512","Kedon Slovis",15,28,170
+401411135,2022,6,"Virginia Tech","4430686","Grant Wells",25,47,277
+401411136,2022,6,"Louisville","4571339","Brock Domann",17,30,275
+401411136,2022,6,"Virginia","4370775","Brennan Armstrong",24,34,313
+401415231,2022,6,"Air Force","4693814","Haaziq Daniels",5,12,95
+401415231,2022,6,"Utah State","4430033","Cooper Legas",18,23,215
+401415232,2022,6,"Boise State","4431325","Taylen Green",10,18,127
+401415232,2022,6,"Fresno State","4605998","Logan Fife",14,25,134
+401415233,2022,6,"Colorado State","4833597","Brayden Fowler-Nicolosi",11,22,78
+401415233,2022,6,"Nevada","4262162","Nate Cox",20,42,244
+401415234,2022,6,"New Mexico","4360331","Miles Kendrick",11,17,107
+401415234,2022,6,"New Mexico","5092306","Justin Holaday",1,4,15
+401415234,2022,6,"New Mexico","4374062","Trae Hall",0,1,0
+401415234,2022,6,"Wyoming","4361607","Andrew Peasley",10,21,174
+401415235,2022,6,"Hawai'i","4709977","Brayden Schager",20,34,196
+401415235,2022,6,"San Diego State","4362894","Jalen Mayden",24,36,322
+401415236,2022,6,"San José State","4373934","Chevan Cordeiro",18,27,230
+401415236,2022,6,"UNLV","4683451","Cameron Friel",15,22,153
+401415236,2022,6,"UNLV","4429516","Doug Brumfield",1,6,8
+401415629,2022,6,"SMU","4360271","Tanner Mordecai",28,45,295
+401415629,2022,6,"SMU","4432767","Preston Stone",5,9,68
+401415629,2022,6,"UCF","4426494","John Rhys Plumlee",20,29,316
+401415629,2022,6,"UCF","4773919","Thomas Castellanos",1,1,8
+401415629,2022,6,"UCF","4361264","Isaiah Bowser",1,1,0
+401415630,2022,6,"Houston","4360175","Clayton Tune",36,57,366
+401415630,2022,6,"Memphis","4606194","Seth Henigan",21,32,241
+401415630,2022,6,"Memphis","4567505","Gabriel Rogers",1,2,41
+401415631,2022,6,"East Carolina","4360131","Holton Ahlers",32,51,288
+401415631,2022,6,"Tulane","4685039","Michael Pratt",27,34,326
+401415631,2022,6,"Tulane","4708067","Kai Horton",1,1,24
+401415632,2022,6,"Navy","4686164","Tai Lavatai",1,6,9
+401415632,2022,6,"Navy","4686175","Kai Puailoa Rojas",1,1,26
+401415632,2022,6,"Tulsa","4362365","Davis Brin",20,31,284
+401415632,2022,6,"Tulsa","4600403","Braylon Braxton",0,2,0
+401415633,2022,6,"Cincinnati","4360056","Ben Bryant",15,21,178
+401415633,2022,6,"Cincinnati","4431339","Evan Prater",1,2,15
+401415633,2022,6,"South Florida","4362915","Gerry Bohannon",11,21,139
+401416613,2022,6,"Ball State","4361636","John Paddock",15,27,122
+401416613,2022,6,"Central Michigan","4570259","Daniel Richardson",19,40,210
+401416614,2022,6,"Eastern Michigan","4241193","Taylor Powell",20,30,293
+401416614,2022,6,"Western Michigan","4430699","Jack Salopek",15,40,208
+401416615,2022,6,"Northern Illinois","4618083","Ethan Hampton",30,49,284
+401416615,2022,6,"Toledo","4427191","Dequan Finn",13,19,167
+401416615,2022,6,"Toledo","4429801","Tucker Gleason",2,2,23
+401416616,2022,6,"Akron","4368768","DJ Irons",43,54,413
+401416616,2022,6,"Ohio","4430431","Kurtis Rourke",24,27,427
+401416617,2022,6,"Bowling Green","4239937","Matt McDonald",21,42,281
+401416617,2022,6,"Bowling Green","4577962","Camden Orth",0,1,0
+401416617,2022,6,"Buffalo","4570057","Cole Snyder",12,19,171
+401416617,2022,6,"Buffalo","4244833","Quian Williams",1,1,15
+401416618,2022,6,"Kent State","4428439","Collin Schlee",23,40,306
+401416618,2022,6,"Miami (OH)","4576189","Aveon Smith",9,14,179
+401426342,2022,6,"Georgia Southern","4239714","Kyle Vantrease",30,49,357
+401426342,2022,6,"Georgia State","4369448","Darren Grainger",16,25,186
+401426343,2022,6,"Arkansas State","4240020","James Blackman",16,26,247
+401426343,2022,6,"James Madison","4243276","Todd Centeio",28,37,394
+401426344,2022,6,"Coastal Carolina","4427936","Grayson McCall",19,28,246
+401426344,2022,6,"UL Monroe","4887223","Chandler Rogers",27,30,279
+401426345,2022,6,"App State","4239994","Chase Brice",40,53,395
+401426345,2022,6,"Texas State","4361222","Layne Hatcher",26,35,281
+401426346,2022,6,"Southern Miss","4808719","Zach Wilcke",19,35,157
+401426346,2022,6,"Troy","4244029","Jarret Doege",17,23,237
+401426579,2022,6,"Florida International","4567707","Grayson James",28,43,256
+401426579,2022,6,"UConn","4685697","Zion Turner",14,19,102
+401426579,2022,6,"UConn","4428001","Cale Millen",1,1,5
+401426580,2022,6,"Louisiana Tech","4686137","Parker McNeil",18,27,266
+401426580,2022,6,"UTEP","4575668","Gavin Hardison",23,51,320
+401426581,2022,6,"Middle Tennessee","4291782","Chase Cunningham",26,43,196
+401426581,2022,6,"UAB","4363410","Dylan Hopkins",17,27,278
+401426582,2022,6,"UTSA","4245186","Frank Harris",24,35,273
+401426582,2022,6,"Western Kentucky","4368343","Austin Reed",35,49,373
+401403916,2022,7,"Arkansas","4567149","KJ Jefferson",29,40,367
+401403916,2022,7,"BYU","4373632","Jaren Hall",26,41,356
+401403917,2022,7,"Florida","4429084","Anthony Richardson",15,25,185
+401403917,2022,7,"Florida","4684625","Montrell Johnson",0,1,0
+401403917,2022,7,"LSU","4426348","Jayden Daniels",23,32,349
+401403918,2022,7,"Georgia","4259553","Stetson Bennett",24,30,289
+401403918,2022,7,"Georgia","4430841","Carson Beck",8,11,98
+401403918,2022,7,"Vanderbilt","5081405","AJ Swann",12,23,105
+401403918,2022,7,"Vanderbilt","4433932","Mike Wright",0,1,0
+401403919,2022,7,"Kentucky","4361418","Will Levis",17,23,230
+401403919,2022,7,"Kentucky","4682688","Kaiya Sheron",2,2,9
+401403919,2022,7,"Mississippi State","102597","Will Rogers",25,37,203
+401403920,2022,7,"Auburn","4697512","Robby Ashford",8,17,140
+401403920,2022,7,"Ole Miss","4689114","Jaxson Dart",9,19,130
+401403921,2022,7,"Alabama","4685720","Bryce Young",35,52,455
+401403921,2022,7,"Tennessee","4240858","Hendon Hooker",21,30,385
+401403921,2022,7,"Tennessee","4360698","Joe Milton",0,1,0
+401404013,2022,7,"Arizona","4697623","Jayden de Laura",25,34,400
+401404013,2022,7,"Arizona","4801717","Noah Fifita",0,1,0
+401404013,2022,7,"Washington","4360423","Michael Penix Jr.",36,44,516
+401404014,2022,7,"California","4361493","Jack Plummer",29,52,262
+401404014,2022,7,"Colorado","4775136","Owen McCown",13,21,104
+401404014,2022,7,"Colorado","4369839","JT Shrout",8,12,69
+401404014,2022,7,"Colorado","4880281","Jordyn Tyson",1,1,37
+401404015,2022,7,"Oregon State","4431114","Ben Gulbranson",12,24,141
+401404015,2022,7,"Washington State","4688380","Cameron Ward",25,54,345
+401404016,2022,7,"Notre Dame","4429088","Drew Pyne",13,27,151
+401404016,2022,7,"Stanford","4685201","Tanner McKee",26,38,288
+401404017,2022,7,"USC","4431611","Caleb Williams",25,42,381
+401404017,2022,7,"Utah","4362075","Cameron Rising",30,44,415
+401404017,2022,7,"Utah","4569559","Devaughn Vele",1,1,9
+401404092,2022,7,"Baylor","4565315","Blake Shapen",14,22,326
+401404092,2022,7,"Baylor","4678010","Kyron Drones",7,14,95
+401404092,2022,7,"Baylor","4833625","Jordan Nabors",0,1,0
+401404092,2022,7,"West Virginia","4374303","JT Daniels",24,37,283
+401404093,2022,7,"Iowa State","4565358","Hunter Dekkers",25,36,329
+401404093,2022,7,"Texas","4889929","Quinn Ewers",17,26,172
+401404094,2022,7,"Kansas","4360900","Jason Bean",16,27,265
+401404094,2022,7,"Oklahoma","4427238","Dillon Gabriel",29,42,403
+401404095,2022,7,"Oklahoma State","4361825","Spencer Sanders",16,36,245
+401404095,2022,7,"TCU","4427105","Max Duggan",23,40,286
+401404139,2022,7,"Army","4577305","Jemel Jones",0,2,0
+401404139,2022,7,"Army","4879928","Bryson Daily",0,1,0
+401404139,2022,7,"Colgate","4876662","Michael Brescia",16,25,129
+401404139,2022,7,"Colgate","4694240","Harry Kirk",2,4,20
+401404139,2022,7,"Colgate","4694237","Max Hurleman",0,1,0
+401404139,2022,7,"Colgate","5085942","Treyvohn Saunders",0,1,0
+401404153,2022,7,"Ball State","4361636","John Paddock",19,39,147
+401404153,2022,7,"UConn","4685697","Zion Turner",18,22,129
+401404162,2022,7,"Gardner-Webb","4368908","Bailey Fisher",23,43,239
+401404162,2022,7,"Gardner-Webb","5095077","Ephraim Floyd",0,1,0
+401404162,2022,7,"Liberty","4426687","Johnathan Bennett",17,30,222
+401404162,2022,7,"Liberty","4602968","Nate Hampton",0,2,0
+401405112,2022,7,"Illinois","4240391","Tommy DeVito",25,32,252
+401405112,2022,7,"Minnesota","4240756","Tanner Morgan",4,12,21
+401405112,2022,7,"Minnesota","4432722","Athan Kaliakmanis",2,6,17
+401405113,2022,7,"Nebraska","4362073","Casey Thompson",16,29,354
+401405113,2022,7,"Purdue","4260394","Aidan O'Connell",35,54,391
+401405114,2022,7,"Indiana","4426444","Connor Bazelak",29,42,292
+401405114,2022,7,"Indiana","4596347","Donaven McCulley",1,1,23
+401405114,2022,7,"Maryland","4567097","Taulia Tagovailoa",25,39,270
+401405114,2022,7,"Maryland","4592532","Billy Edwards",0,3,0
+401405115,2022,7,"Michigan","4433970","J.J. McCarthy",17,24,145
+401405115,2022,7,"Penn State","4259592","Sean Clifford",7,19,120
+401405115,2022,7,"Penn State","4714771","Drew Allar",5,10,37
+401405116,2022,7,"Michigan State","4430590","Payton Thorne",21,28,265
+401405116,2022,7,"Michigan State","4362249","Jayden Reed",1,1,25
+401405116,2022,7,"Michigan State","4393519","Bryce Baringer",0,1,0
+401405116,2022,7,"Wisconsin","4426335","Graham Mertz",14,24,131
+401409239,2022,7,"New Mexico","4360331","Miles Kendrick",19,30,160
+401409239,2022,7,"New Mexico State","4914368","Gavin Frakes",10,17,119
+401411137,2022,7,"Duke","4683423","Riley Leonard",20,31,245
+401411137,2022,7,"North Carolina","4431452","Drake Maye",28,38,380
+401411138,2022,7,"Clemson","4429020","D.J. Uiagalelei",15,23,203
+401411138,2022,7,"Florida State","4360799","Jordan Travis",24,42,254
+401411139,2022,7,"NC State","4246097","Jack Chambers",18,30,160
+401411139,2022,7,"NC State","4685488","MJ Morris",0,1,0
+401411139,2022,7,"Syracuse","4426966","Garrett Shrader",16,25,210
+401411140,2022,7,"Miami","4685186","Tyler Van Dyke",29,46,351
+401411140,2022,7,"Virginia Tech","4430686","Grant Wells",21,33,179
+401414783,2022,7,"Buffalo","4570057","Cole Snyder",20,31,277
+401414783,2022,7,"Massachusetts","4427118","Garrett Dzuro",7,14,99
+401414783,2022,7,"Massachusetts","4683666","Zamar Wise",1,5,9
+401415237,2022,7,"Air Force","4693814","Haaziq Daniels",1,2,14
+401415237,2022,7,"Air Force","4708478","Jensen Jones",0,1,0
+401415237,2022,7,"UNLV","4683451","Cameron Friel",8,10,108
+401415237,2022,7,"UNLV","4429145","Harrison Bailey",2,5,10
+401415238,2022,7,"Colorado State","4880252","Giles Pooler",11,32,144
+401415238,2022,7,"Colorado State","4597703","Tory Horton",1,1,19
+401415238,2022,7,"Utah State","4430033","Cooper Legas",9,12,85
+401415238,2022,7,"Utah State","4869553","Bishop Davenport",3,9,41
+401415238,2022,7,"Utah State","4428890","Levi Williams",2,9,12
+401415238,2022,7,"Utah State","5082614","Terrell Vaughn",0,1,0
+401415239,2022,7,"Fresno State","4605998","Logan Fife",22,32,230
+401415239,2022,7,"San José State","4373934","Chevan Cordeiro",22,44,294
+401415239,2022,7,"San José State","4694149","Walker Eget",0,1,0
+401415240,2022,7,"Hawai'i","4709977","Brayden Schager",13,25,173
+401415240,2022,7,"Nevada","4262162","Nate Cox",22,37,188
+401415634,2022,7,"Temple","4916436","E.J. Warner",24,43,234
+401415634,2022,7,"Temple","4427914","D'Wan Mathis",0,1,0
+401415634,2022,7,"UCF","4426494","John Rhys Plumlee",18,22,373
+401415634,2022,7,"UCF","4773919","Thomas Castellanos",6,6,60
+401415635,2022,7,"Navy","4686164","Tai Lavatai",9,21,138
+401415635,2022,7,"SMU","4360271","Tanner Mordecai",20,27,336
+401415636,2022,7,"South Florida","4565303","Katravis Marsh",7,15,150
+401415636,2022,7,"South Florida","4362915","Gerry Bohannon",7,8,109
+401415636,2022,7,"Tulane","4685039","Michael Pratt",23,35,329
+401415637,2022,7,"East Carolina","4360131","Holton Ahlers",26,34,304
+401415637,2022,7,"Memphis","4606194","Seth Henigan",27,37,407
+401416619,2022,7,"Akron","4368768","DJ Irons",25,38,255
+401416619,2022,7,"Akron","4366715","Jeff Undercuffler",1,1,12
+401416619,2022,7,"Central Michigan","4570259","Daniel Richardson",13,21,138
+401416620,2022,7,"Eastern Michigan","4241193","Taylor Powell",11,23,197
+401416620,2022,7,"Northern Illinois","4241965","Rocky Lombardi",11,15,115
+401416620,2022,7,"Northern Illinois","4683282","Justin Lynch",1,1,8
+401416621,2022,7,"Kent State","4428439","Collin Schlee",13,26,162
+401416621,2022,7,"Toledo","4427191","Dequan Finn",16,22,263
+401416622,2022,7,"Bowling Green","4239937","Matt McDonald",16,29,149
+401416622,2022,7,"Miami (OH)","4576189","Aveon Smith",9,17,91
+401416623,2022,7,"Ohio","4430431","Kurtis Rourke",22,34,264
+401416623,2022,7,"Western Michigan","4430699","Jack Salopek",17,31,249
+401426347,2022,7,"Louisiana","4373895","Ben Wooldridge",17,29,230
+401426347,2022,7,"Marshall","4259219","Henry Colombi",9,13,68
+401426347,2022,7,"Marshall","4700135","Cam Fancher",7,9,69
+401426348,2022,7,"Coastal Carolina","4427936","Grayson McCall",26,34,358
+401426348,2022,7,"Coastal Carolina","4427354","Jarrett Guest",1,4,8
+401426348,2022,7,"Old Dominion","4430775","Hayden Wolff",12,16,180
+401426348,2022,7,"Old Dominion","4243535","D.J. Mack Jr.",1,1,21
+401426349,2022,7,"Georgia Southern","4239714","Kyle Vantrease",38,64,578
+401426349,2022,7,"James Madison","4243276","Todd Centeio",28,48,468
+401426350,2022,7,"South Alabama","4362260","Carter Bradley",25,33,420
+401426350,2022,7,"UL Monroe","4570554","Chandler Rogers",20,27,371
+401426351,2022,7,"Arkansas State","4240020","James Blackman",25,34,236
+401426351,2022,7,"Southern Miss","4808719","Zach Wilcke",11,20,132
+401426351,2022,7,"Southern Miss","4689993","Jake Lange",6,12,45
+401426352,2022,7,"Texas State","4361222","Layne Hatcher",21,32,207
+401426352,2022,7,"Troy","4362723","Gunnar Watson",12,22,240
+401426352,2022,7,"Troy","4244029","Jarret Doege",4,6,59
+401426583,2022,7,"Charlotte","4259269","Chris Reynolds",15,26,214
+401426583,2022,7,"UAB","4363410","Dylan Hopkins",15,23,231
+401426584,2022,7,"Florida International","4567707","Grayson James",18,36,174
+401426584,2022,7,"Florida International","4576127","Haden Carlson",2,3,12
+401426584,2022,7,"UTSA","4245186","Frank Harris",24,35,303
+401426584,2022,7,"UTSA","4683012","Eddie Lee Marburger",0,4,0
+401426585,2022,7,"Florida Atlantic","4240628","N'Kosi Perry",14,26,126
+401426585,2022,7,"Rice","4362896","Tj McMahon",10,28,197
+401426586,2022,7,"Louisiana Tech","4686137","Parker McNeil",26,37,424
+401426586,2022,7,"North Texas","4360163","Austin Aune",11,20,196
+401426586,2022,7,"North Texas","4428784","Damon Ward Jr.",0,1,0
+401426587,2022,7,"Middle Tennessee","4291782","Chase Cunningham",32,51,228
+401426587,2022,7,"Western Kentucky","4368343","Austin Reed",32,49,278
+401403922,2022,8,"Alabama","4685720","Bryce Young",21,35,249
+401403922,2022,8,"Alabama","4432734","Jalen Milroe",1,2,12
+401403922,2022,8,"Mississippi State","102597","Will Rogers",30,60,231
+401403923,2022,8,"LSU","4426348","Jayden Daniels",21,28,248
+401403923,2022,8,"Ole Miss","4689114","Jaxson Dart",19,34,284
+401403923,2022,8,"Ole Miss","4431466","Jordan Watkins",1,1,4
+401403924,2022,8,"Missouri","4429435","Brady Cook",17,25,211
+401403924,2022,8,"Vanderbilt","5081405","AJ Swann",13,30,115
+401403924,2022,8,"Vanderbilt","4433932","Mike Wright",9,15,127
+401403925,2022,8,"South Carolina","4426339","Spencer Rattler",12,25,168
+401403925,2022,8,"Texas A&M","4428993","Haynes King",17,32,178
+401403925,2022,8,"Texas A&M","4685574","Conner Weigman",8,15,91
+401403926,2022,8,"Tennessee","4240858","Hendon Hooker",18,24,276
+401403926,2022,8,"Tennessee","4360698","Joe Milton",4,7,135
+401403926,2022,8,"Tennessee","4697122","Gaston Moore",2,3,9
+401403926,2022,8,"Tennessee","4801307","Tayven Jackson",1,2,9
+401403926,2022,8,"Tennessee","4242442","Princeton Fant",1,1,66
+401403926,2022,8,"UT Martin","4250970","Dresser Winn",26,45,301
+401403926,2022,8,"UT Martin","4568411","Cornelious Brown",2,2,15
+401404018,2022,8,"Arizona State","4360230","Emory Jones",14,25,227
+401404018,2022,8,"Stanford","4685201","Tanner McKee",33,57,320
+401404019,2022,8,"California","4361493","Jack Plummer",21,34,245
+401404019,2022,8,"Washington","4360423","Michael Penix Jr.",36,51,374
+401404020,2022,8,"Colorado","4369839","JT Shrout",13,29,206
+401404020,2022,8,"Oregon State","4431114","Ben Gulbranson",14,22,202
+401404021,2022,8,"Oregon","4426338","Bo Nix",22,28,283
+401404021,2022,8,"UCLA","4367178","Dorian Thompson-Robinson",27,39,262
+401404096,2022,8,"Baylor","4565315","Blake Shapen",17,26,164
+401404096,2022,8,"Kansas","4360900","Jason Bean",16,27,232
+401404097,2022,8,"Kansas State","4429955","Will Howard",13,20,225
+401404097,2022,8,"Kansas State","4361182","Adrian Martinez",1,2,7
+401404097,2022,8,"Kansas State","4431535","Jake Rubley",0,1,0
+401404097,2022,8,"TCU","4427105","Max Duggan",17,26,280
+401404098,2022,8,"Oklahoma State","4361825","Spencer Sanders",34,57,391
+401404098,2022,8,"Oklahoma State","4683165","Jaden Nixon",1,1,2
+401404098,2022,8,"Texas","4889929","Quinn Ewers",19,49,319
+401404099,2022,8,"Texas Tech","4431465","Behren Morton",28,45,325
+401404099,2022,8,"Texas Tech","4690977","Donovan Smith",4,4,30
+401404099,2022,8,"West Virginia","4374303","JT Daniels",23,36,194
+401404099,2022,8,"West Virginia","4429847","Garrett Greene",1,4,15
+401404128,2022,8,"Notre Dame","4429088","Drew Pyne",14,28,205
+401404128,2022,8,"UNLV","4429145","Harrison Bailey",9,18,73
+401404128,2022,8,"UNLV","4683451","Cameron Friel",8,15,80
+401404140,2022,8,"Army","4577305","Jemel Jones",2,4,41
+401404140,2022,8,"UL Monroe","4570554","Chandler Rogers",21,28,164
+401404163,2022,8,"BYU","4373632","Jaren Hall",16,34,187
+401404163,2022,8,"Liberty","4426687","Johnathan Bennett",24,29,247
+401405117,2022,8,"Purdue","4260394","Aidan O'Connell",31,46,320
+401405117,2022,8,"Wisconsin","4426335","Graham Mertz",13,21,203
+401405118,2022,8,"Maryland","4592532","Billy Edwards",18,28,166
+401405118,2022,8,"Northwestern","4683058","Brendan Sullivan",18,24,143
+401405119,2022,8,"Iowa","4360480","Spencer Petras",6,14,49
+401405119,2022,8,"Iowa","4428186","Alex Padilla",5,10,32
+401405119,2022,8,"Ohio State","4432577","C.J. Stroud",20,30,286
+401405119,2022,8,"Ohio State","4433971","Kyle McCord",2,2,8
+401405120,2022,8,"Minnesota","4432722","Athan Kaliakmanis",9,22,175
+401405120,2022,8,"Penn State","4259592","Sean Clifford",23,31,295
+401405120,2022,8,"Penn State","4714771","Drew Allar",1,2,9
+401405121,2022,8,"Indiana","4426444","Connor Bazelak",23,41,210
+401405121,2022,8,"Rutgers","4243539","Noah Vedral",12,24,113
+401411141,2022,8,"Georgia Tech","4568336","Zach Gibson",10,25,99
+401411141,2022,8,"Georgia Tech","4429066","Jeff Sims",6,11,47
+401411141,2022,8,"Virginia","4370775","Brennan Armstrong",20,35,255
+401411142,2022,8,"Clemson","4429020","D.J. Uiagalelei",13,21,138
+401411142,2022,8,"Clemson","4685413","Cade Klubnik",2,4,19
+401411142,2022,8,"Syracuse","4426966","Garrett Shrader",18,26,167
+401411143,2022,8,"Louisville","4240069","Malik Cunningham",10,21,122
+401411143,2022,8,"Louisville","4571339","Brock Domann",2,5,35
+401411143,2022,8,"Louisville","4686343","Braden Smith",1,1,33
+401411143,2022,8,"Pittsburgh","4428512","Kedon Slovis",16,29,158
+401411144,2022,8,"Duke","4683423","Riley Leonard",13,25,136
+401411144,2022,8,"Miami","4432703","Jake Garcia",13,21,198
+401411144,2022,8,"Miami","4685186","Tyler Van Dyke",11,16,81
+401411145,2022,8,"Boston College","4372768","Phil Jurkovec",20,38,221
+401411145,2022,8,"Boston College","4683501","Emmett Morehead",4,7,38
+401411145,2022,8,"Wake Forest","4361994","Sam Hartman",25,40,313
+401415241,2022,8,"Air Force","4693814","Haaziq Daniels",4,8,96
+401415241,2022,8,"Air Force","4693813","Ben Brittain",0,1,0
+401415241,2022,8,"Boise State","4431325","Taylen Green",16,24,207
+401415242,2022,8,"Colorado State","4432733","Clay Millen",17,24,177
+401415242,2022,8,"Hawai'i","4709977","Brayden Schager",18,30,173
+401415243,2022,8,"Fresno State","4605998","Logan Fife",19,29,225
+401415243,2022,8,"New Mexico","5092306","Justin Holaday",8,16,37
+401415243,2022,8,"New Mexico","4360331","Miles Kendrick",1,1,14
+401415244,2022,8,"Utah State","4869553","Bishop Davenport",17,26,104
+401415244,2022,8,"Wyoming","4361607","Andrew Peasley",13,26,199
+401415245,2022,8,"Nevada","4429070","Shane Illingworth",21,33,181
+401415245,2022,8,"Nevada","4262162","Nate Cox",2,8,11
+401415245,2022,8,"San Diego State","4362894","Jalen Mayden",12,25,156
+401415638,2022,8,"Temple","4916436","E.J. Warner",23,48,196
+401415638,2022,8,"Tulsa","4362365","Davis Brin",15,22,155
+401415639,2022,8,"Memphis","4606194","Seth Henigan",26,41,312
+401415639,2022,8,"Tulane","4685039","Michael Pratt",20,29,158
+401415640,2022,8,"Houston","4360175","Clayton Tune",21,30,261
+401415640,2022,8,"Navy","4686164","Tai Lavatai",6,13,125
+401415641,2022,8,"Cincinnati","4360056","Ben Bryant",18,35,200
+401415641,2022,8,"SMU","4360271","Tanner Mordecai",15,25,105
+401415641,2022,8,"SMU","4432767","Preston Stone",6,15,74
+401415642,2022,8,"East Carolina","4360131","Holton Ahlers",30,36,311
+401415642,2022,8,"UCF","4426494","John Rhys Plumlee",25,37,296
+401416624,2022,8,"Ball State","4361636","John Paddock",15,26,178
+401416624,2022,8,"Eastern Michigan","4597247","Austin Smith",20,34,197
+401416625,2022,8,"Northern Illinois","4683282","Justin Lynch",9,18,110
+401416625,2022,8,"Ohio","4430431","Kurtis Rourke",14,26,200
+401416626,2022,8,"Buffalo","4570057","Cole Snyder",22,39,245
+401416626,2022,8,"Toledo","4427191","Dequan Finn",25,47,240
+401416627,2022,8,"Miami (OH)","4427243","Brett Gabbert",21,38,222
+401416627,2022,8,"Western Michigan","4688540","Treyson Bourguet",16,33,123
+401416628,2022,8,"Akron","4368768","DJ Irons",32,43,383
+401416628,2022,8,"Kent State","4685693","Devin Kargman",14,25,213
+401416629,2022,8,"Bowling Green","4239937","Matt McDonald",18,21,253
+401416629,2022,8,"Central Michigan","4709012","Jase Bauer",18,25,185
+401416629,2022,8,"Central Michigan","4570259","Daniel Richardson",3,5,19
+401426353,2022,8,"App State","4239994","Chase Brice",7,17,62
+401426353,2022,8,"Georgia State","4369448","Darren Grainger",9,23,73
+401426354,2022,8,"South Alabama","4362260","Carter Bradley",29,40,224
+401426354,2022,8,"Troy","4244029","Jarret Doege",10,15,84
+401426354,2022,8,"Troy","4362723","Gunnar Watson",4,4,54
+401426355,2022,8,"James Madison","4877811","Billy Atkins",13,35,164
+401426355,2022,8,"Marshall","4700135","Cam Fancher",15,31,159
+401426356,2022,8,"Georgia Southern","4239714","Kyle Vantrease",22,27,192
+401426356,2022,8,"Old Dominion","4430775","Hayden Wolff",23,40,328
+401426356,2022,8,"Old Dominion","4243535","D.J. Mack Jr.",0,2,0
+401426357,2022,8,"Arkansas State","4363148","AJ Mayer",8,23,155
+401426357,2022,8,"Arkansas State","4826635","Jaxon Dailey",5,9,34
+401426357,2022,8,"Louisiana","4373895","Ben Wooldridge",21,34,316
+401426357,2022,8,"Louisiana","4870518","Zeon Chriss",0,3,0
+401426358,2022,8,"Southern Miss","4808719","Zach Wilcke",18,25,187
+401426358,2022,8,"Southern Miss","4689993","Jake Lange",0,1,0
+401426358,2022,8,"Texas State","4361222","Layne Hatcher",25,42,254
+401426358,2022,8,"Texas State","4608607","Lincoln Pare",1,1,-5
+401426588,2022,8,"Charlotte","4259269","Chris Reynolds",23,38,244
+401426588,2022,8,"Charlotte","4372517","James Foster",2,5,33
+401426588,2022,8,"Florida International","4567707","Grayson James",26,34,306
+401426589,2022,8,"Florida Atlantic","4240628","N'Kosi Perry",12,20,164
+401426589,2022,8,"UTEP","4575668","Gavin Hardison",16,26,178
+401426590,2022,8,"Louisiana Tech","4379400","Matthew Downing",12,24,159
+401426590,2022,8,"Louisiana Tech","4686137","Parker McNeil",5,7,32
+401426590,2022,8,"Louisiana Tech","4833635","Landy Lyddy",3,6,38
+401426590,2022,8,"Rice","4362896","Tj McMahon",16,27,208
+401426591,2022,8,"North Texas","4360163","Austin Aune",15,31,325
+401426591,2022,8,"UTSA","4245186","Frank Harris",27,39,238
+401426591,2022,8,"UTSA","4427225","Zakhari Franklin",0,1,0
+401426592,2022,8,"UAB","4426417","Jacob Zeno",3,10,33
+401426592,2022,8,"UAB","4363410","Dylan Hopkins",2,2,63
+401426592,2022,8,"Western Kentucky","4368343","Austin Reed",14,23,128
+401403927,2022,9,"Arkansas","4567149","KJ Jefferson",16,24,234
+401403927,2022,9,"Auburn","4697512","Robby Ashford",24,33,285
+401403928,2022,9,"Florida","4429084","Anthony Richardson",18,37,271
+401403928,2022,9,"Georgia","4259553","Stetson Bennett",19,38,316
+401403929,2022,9,"Missouri","4429435","Brady Cook",17,26,224
+401403929,2022,9,"South Carolina","4426339","Spencer Rattler",20,30,171
+401403930,2022,9,"Kentucky","4361418","Will Levis",16,27,98
+401403930,2022,9,"Tennessee","4240858","Hendon Hooker",19,25,245
+401403931,2022,9,"Ole Miss","4689114","Jaxson Dart",13,20,140
+401403931,2022,9,"Texas A&M","4685574","Conner Weigman",28,44,338
+401404022,2022,9,"Arizona","4697623","Jayden de Laura",26,43,380
+401404022,2022,9,"USC","4431611","Caleb Williams",31,45,411
+401404023,2022,9,"Arizona State","4569184","Trenton Bourguet",32,43,435
+401404023,2022,9,"Colorado","4369839","JT Shrout",13,34,222
+401404024,2022,9,"California","4361493","Jack Plummer",20,33,214
+401404024,2022,9,"California","4643625","Kai Millner",8,11,114
+401404024,2022,9,"Oregon","4426338","Bo Nix",27,35,412
+401404025,2022,9,"Stanford","4685201","Tanner McKee",13,29,115
+401404025,2022,9,"Stanford","4592531","Ari Patu",1,1,6
+401404025,2022,9,"Stanford","4838679","Ashton Daniels",1,1,4
+401404025,2022,9,"UCLA","4367178","Dorian Thompson-Robinson",18,29,199
+401404026,2022,9,"Utah","4695600","Bryson Barnes",17,27,175
+401404026,2022,9,"Washington State","4688380","Cameron Ward",27,31,222
+401404100,2022,9,"Iowa State","4565358","Hunter Dekkers",37,57,308
+401404100,2022,9,"Oklahoma","4427238","Dillon Gabriel",15,26,148
+401404100,2022,9,"Oklahoma","4247781","Michael Turk",1,1,2
+401404101,2022,9,"Baylor","4565315","Blake Shapen",19,30,211
+401404101,2022,9,"Texas Tech","4431465","Behren Morton",11,34,152
+401404101,2022,9,"Texas Tech","4360689","Tyler Shough",1,2,7
+401404101,2022,9,"Texas Tech","4690977","Donovan Smith",0,2,0
+401404102,2022,9,"Kansas State","4429955","Will Howard",21,37,296
+401404102,2022,9,"Oklahoma State","4361825","Spencer Sanders",13,26,147
+401404102,2022,9,"Oklahoma State","4874519","Gunnar Gundy",2,7,16
+401404103,2022,9,"TCU","4427105","Max Duggan",16,28,341
+401404103,2022,9,"West Virginia","4374303","JT Daniels",23,39,275
+401404129,2022,9,"Notre Dame","4429088","Drew Pyne",9,19,116
+401404129,2022,9,"Syracuse","4432691","Carlos Del Rio-Wilson",11,22,190
+401404129,2022,9,"Syracuse","4426966","Garrett Shrader",5,14,35
+401404154,2022,9,"Boston College","4372768","Phil Jurkovec",12,19,155
+401404154,2022,9,"Boston College","4683501","Emmett Morehead",9,18,104
+401404154,2022,9,"UConn","4685697","Zion Turner",11,19,173
+401405122,2022,9,"Iowa","4360480","Spencer Petras",21,30,220
+401405122,2022,9,"Northwestern","4683058","Brendan Sullivan",23,30,159
+401405123,2022,9,"Minnesota","4240756","Tanner Morgan",14,21,122
+401405123,2022,9,"Rutgers","4893657","Gavin Wimsatt",6,17,68
+401405123,2022,9,"Rutgers","4243539","Noah Vedral",3,7,18
+401405124,2022,9,"Illinois","4240391","Tommy DeVito",20,22,179
+401405124,2022,9,"Nebraska","4362073","Casey Thompson",7,15,172
+401405124,2022,9,"Nebraska","4430836","Chubba Purdy",3,8,15
+401405124,2022,9,"Nebraska","4431397","Logan Smothers",1,1,1
+401405125,2022,9,"Michigan","4433970","J.J. McCarthy",15,25,167
+401405125,2022,9,"Michigan","4372063","Ronnie Bell",0,1,0
+401405125,2022,9,"Michigan State","4430590","Payton Thorne",17,30,215
+401405126,2022,9,"Ohio State","4432577","C.J. Stroud",26,33,354
+401405126,2022,9,"Penn State","4259592","Sean Clifford",32,47,371
+401409242,2022,9,"Massachusetts","4683471","Brady Olson",15,28,97
+401409242,2022,9,"New Mexico State","4914368","Gavin Frakes",7,13,29
+401409242,2022,9,"New Mexico State","5084180","Diego Pavia",7,12,194
+401411146,2022,9,"NC State","4685488","MJ Morris",20,29,265
+401411146,2022,9,"NC State","4246097","Jack Chambers",6,13,31
+401411146,2022,9,"Virginia Tech","4430686","Grant Wells",11,22,243
+401411147,2022,9,"Florida State","4360799","Jordan Travis",24,38,396
+401411147,2022,9,"Georgia Tech","4746127","Zach Pyron",18,28,198
+401411147,2022,9,"Georgia Tech","4568336","Zach Gibson",2,3,0
+401411148,2022,9,"Louisville","4240069","Malik Cunningham",15,23,164
+401411148,2022,9,"Louisville","4571339","Brock Domann",2,3,7
+401411148,2022,9,"Louisville","4686343","Braden Smith",1,1,28
+401411148,2022,9,"Wake Forest","4361994","Sam Hartman",20,35,271
+401411148,2022,9,"Wake Forest","4433829","Mitch Griffis",6,9,39
+401411149,2022,9,"North Carolina","4431452","Drake Maye",34,44,388
+401411149,2022,9,"North Carolina","4429463","Jacolby Criswell",0,1,0
+401411149,2022,9,"Pittsburgh","4428512","Kedon Slovis",14,31,236
+401411150,2022,9,"Miami","4432703","Jake Garcia",15,29,125
+401411150,2022,9,"Miami","4685291","Jacurri Brown",0,3,0
+401411150,2022,9,"Virginia","4370775","Brennan Armstrong",15,25,208
+401411150,2022,9,"Virginia","4242243","Keytaon Thompson",0,1,0
+401415246,2022,9,"Boise State","4431325","Taylen Green",24,30,305
+401415246,2022,9,"Boise State","4683311","Sam Vidlak",0,1,0
+401415246,2022,9,"Colorado State","4432733","Clay Millen",13,20,161
+401415246,2022,9,"Colorado State","4836471","Jackson Stratton",1,6,6
+401415247,2022,9,"Hawai'i","4709977","Brayden Schager",23,45,205
+401415247,2022,9,"Hawai'i","4693808","Dior Scott",0,1,0
+401415247,2022,9,"Wyoming","4361607","Andrew Peasley",7,15,76
+401415248,2022,9,"Fresno State","4243322","Jake Haener",34,45,394
+401415248,2022,9,"San Diego State","4362894","Jalen Mayden",19,24,291
+401415249,2022,9,"Nevada","4429070","Shane Illingworth",18,29,223
+401415249,2022,9,"San José State","4373934","Chevan Cordeiro",33,45,340
+401415643,2022,9,"Houston","4360175","Clayton Tune",31,37,380
+401415643,2022,9,"Houston","4680017","Lucas Coley",2,2,7
+401415643,2022,9,"South Florida","4565303","Katravis Marsh",24,34,275
+401415644,2022,9,"Cincinnati","4360056","Ben Bryant",25,45,298
+401415644,2022,9,"UCF","4597499","Mikey Keene",15,21,176
+401415644,2022,9,"UCF","4426494","John Rhys Plumlee",7,11,71
+401415645,2022,9,"BYU","4373632","Jaren Hall",18,25,144
+401415645,2022,9,"East Carolina","4360131","Holton Ahlers",15,22,197
+401415646,2022,9,"Navy","4686164","Tai Lavatai",0,1,0
+401415646,2022,9,"Navy","4686167","Xavier Arline",0,1,0
+401415646,2022,9,"Temple","4916436","E.J. Warner",24,48,268
+401415647,2022,9,"SMU","4432767","Preston Stone",11,17,219
+401415647,2022,9,"SMU","5084084","Kevin Jennings",8,11,91
+401415647,2022,9,"Tulsa","4362365","Davis Brin",7,16,96
+401415647,2022,9,"Tulsa","4600403","Braylon Braxton",8,14,120
+401416630,2022,9,"Eastern Michigan","4241193","Taylor Powell",9,17,61
+401416630,2022,9,"Eastern Michigan","4597247","Austin Smith",3,6,15
+401416630,2022,9,"Eastern Michigan","4363551","Dylan Drummond",1,1,23
+401416630,2022,9,"Toledo","4429801","Tucker Gleason",15,27,238
+401416631,2022,9,"Akron","4368768","DJ Irons",31,49,316
+401416631,2022,9,"Miami (OH)","4427243","Brett Gabbert",13,23,184
+401426359,2022,9,"Louisiana","4373895","Ben Wooldridge",21,46,336
+401426359,2022,9,"Southern Miss","4808719","Zach Wilcke",8,17,137
+401426359,2022,9,"Southern Miss","4429805","Frank Gore Jr.",1,1,52
+401426360,2022,9,"App State","4239994","Chase Brice",17,23,185
+401426360,2022,9,"App State","4799987","Ryan Burger",4,6,40
+401426360,2022,9,"Robert Morris","4775291","Anthony Chiccitt",10,27,70
+401426360,2022,9,"Robert Morris","4576094","Jake Kupchella",0,2,0
+401426360,2022,9,"Robert Morris","4878766","Jamal Hill",0,1,0
+401426361,2022,9,"Georgia State","4369448","Darren Grainger",14,20,195
+401426361,2022,9,"Old Dominion","4430775","Hayden Wolff",19,34,257
+401426362,2022,9,"Coastal Carolina","4427936","Grayson McCall",13,24,121
+401426362,2022,9,"Marshall","4700135","Cam Fancher",19,36,320
+401426363,2022,9,"Arkansas State","4240020","James Blackman",22,39,177
+401426363,2022,9,"South Alabama","4362260","Carter Bradley",17,24,179
+401426593,2022,9,"Charlotte","4259269","Chris Reynolds",16,19,254
+401426593,2022,9,"Charlotte","4710761","Bailey Rice",1,1,21
+401426593,2022,9,"Rice","4362896","Tj McMahon",18,33,218
+401426594,2022,9,"Florida International","4567707","Grayson James",31,48,321
+401426594,2022,9,"Louisiana Tech","4833635","Landy Lyddy",28,40,256
+401426595,2022,9,"Florida Atlantic","4240628","N'Kosi Perry",14,25,187
+401426595,2022,9,"UAB","4426417","Jacob Zeno",18,32,192
+401426596,2022,9,"Middle Tennessee","4291782","Chase Cunningham",21,27,265
+401426596,2022,9,"UTEP","4575668","Gavin Hardison",19,34,177
+401426596,2022,9,"UTEP","4362033","Calvin Brownholtz",1,1,14
+401426597,2022,9,"North Texas","4360163","Austin Aune",20,28,322
+401426597,2022,9,"North Texas","4691272","Stone Earle",2,2,23
+401426597,2022,9,"Western Kentucky","4368343","Austin Reed",29,49,320
+401403932,2022,10,"Arkansas","4567149","KJ Jefferson",23,37,284
+401403932,2022,10,"Liberty","4426687","Johnathan Bennett",15,25,224
+401403933,2022,10,"Georgia","4259553","Stetson Bennett",17,25,257
+401403933,2022,10,"Tennessee","4240858","Hendon Hooker",23,33,195
+401403934,2022,10,"Alabama","4685720","Bryce Young",25,51,328
+401403934,2022,10,"LSU","4426348","Jayden Daniels",22,32,182
+401403935,2022,10,"Auburn","4697512","Robby Ashford",7,22,75
+401403935,2022,10,"Mississippi State","102597","Will Rogers",42,59,357
+401403936,2022,10,"Kentucky","4361418","Will Levis",13,19,170
+401403936,2022,10,"Missouri","4429435","Brady Cook",18,26,143
+401403937,2022,10,"Florida","4429084","Anthony Richardson",17,28,201
+401403937,2022,10,"Texas A&M","4428993","Haynes King",23,45,279
+401403938,2022,10,"South Carolina","4426339","Spencer Rattler",16,23,186
+401403938,2022,10,"South Carolina","4362852","Dakereon Joyner",3,4,82
+401403938,2022,10,"South Carolina","4570033","Kai Kroeger",1,1,16
+401403938,2022,10,"Vanderbilt","5081405","AJ Swann",10,18,127
+401403938,2022,10,"Vanderbilt","4433932","Mike Wright",8,15,101
+401404027,2022,10,"Arizona","4697623","Jayden de Laura",10,20,159
+401404027,2022,10,"Arizona","4801717","Noah Fifita",5,10,72
+401404027,2022,10,"Utah","4362075","Cameron Rising",13,25,151
+401404028,2022,10,"Arizona State","4569184","Trenton Bourguet",38,49,349
+401404028,2022,10,"UCLA","4367178","Dorian Thompson-Robinson",13,20,169
+401404029,2022,10,"California","4361493","Jack Plummer",35,49,406
+401404029,2022,10,"USC","4431611","Caleb Williams",26,41,360
+401404030,2022,10,"Colorado","4369839","JT Shrout",17,34,247
+401404030,2022,10,"Oregon","4426338","Bo Nix",20,24,274
+401404030,2022,10,"Oregon","4432774","Ty Thompson",1,2,-8
+401404030,2022,10,"Oregon","4596448","Mar'Keise Irving",1,1,18
+401404031,2022,10,"Oregon State","4431114","Ben Gulbranson",12,19,87
+401404031,2022,10,"Washington","4360423","Michael Penix Jr.",30,52,298
+401404032,2022,10,"Stanford","4685201","Tanner McKee",23,40,236
+401404032,2022,10,"Stanford","4838679","Ashton Daniels",2,2,30
+401404032,2022,10,"Washington State","4688380","Cameron Ward",16,32,176
+401404032,2022,10,"Washington State","4915980","John Mateer",2,2,32
+401404104,2022,10,"Baylor","4565315","Blake Shapen",14,23,132
+401404104,2022,10,"Oklahoma","4427238","Dillon Gabriel",22,34,261
+401404105,2022,10,"Iowa State","4565358","Hunter Dekkers",24,36,219
+401404105,2022,10,"West Virginia","4374303","JT Daniels",8,22,81
+401404105,2022,10,"West Virginia","4429847","Garrett Greene",4,5,43
+401404106,2022,10,"Kansas","4360900","Jason Bean",18,23,203
+401404106,2022,10,"Oklahoma State","4685521","Garret Rangel",27,40,304
+401404107,2022,10,"Kansas State","4361182","Adrian Martinez",24,36,329
+401404107,2022,10,"Texas","4889929","Quinn Ewers",18,31,197
+401404108,2022,10,"TCU","4427105","Max Duggan",12,23,195
+401404108,2022,10,"Texas Tech","4360689","Tyler Shough",9,22,78
+401404108,2022,10,"Texas Tech","4431465","Behren Morton",7,10,79
+401404130,2022,10,"Clemson","4429020","D.J. Uiagalelei",27,39,191
+401404130,2022,10,"Clemson","4685413","Cade Klubnik",0,1,0
+401404130,2022,10,"Notre Dame","4429088","Drew Pyne",9,17,85
+401404141,2022,10,"Air Force","4693814","Haaziq Daniels",6,13,98
+401404141,2022,10,"Army","4577305","Jemel Jones",4,14,67
+401404155,2022,10,"Massachusetts","4683471","Brady Olson",19,34,266
+401404155,2022,10,"UConn","4685697","Zion Turner",6,13,60
+401405127,2022,10,"Illinois","4240391","Tommy DeVito",25,37,288
+401405127,2022,10,"Michigan State","4430590","Payton Thorne",19,29,182
+401405128,2022,10,"Minnesota","4432722","Athan Kaliakmanis",6,12,137
+401405128,2022,10,"Minnesota","4240756","Tanner Morgan",6,8,38
+401405128,2022,10,"Nebraska","4430836","Chubba Purdy",6,16,41
+401405128,2022,10,"Nebraska","4431397","Logan Smothers",5,10,80
+401405129,2022,10,"Northwestern","4683058","Brendan Sullivan",10,14,79
+401405129,2022,10,"Northwestern","4426657","Ryan Hilinski",0,3,0
+401405129,2022,10,"Ohio State","4432577","C.J. Stroud",10,26,76
+401405130,2022,10,"Iowa","4360480","Spencer Petras",13,23,192
+401405130,2022,10,"Purdue","4260394","Aidan O'Connell",20,43,168
+401405131,2022,10,"Maryland","4567097","Taulia Tagovailoa",10,23,77
+401405131,2022,10,"Wisconsin","4426335","Graham Mertz",5,18,77
+401405132,2022,10,"Indiana","4361025","Jack Tuttle",9,12,82
+401405132,2022,10,"Indiana","4565355","Dexter Williams II",4,11,41
+401405132,2022,10,"Indiana","4899046","Brendan Sorsby",3,6,8
+401405132,2022,10,"Penn State","4259592","Sean Clifford",15,23,229
+401405132,2022,10,"Penn State","4714771","Drew Allar",9,12,75
+401405133,2022,10,"Michigan","4433970","J.J. McCarthy",13,27,151
+401405133,2022,10,"Rutgers","4893657","Gavin Wimsatt",14,29,166
+401411151,2022,10,"Boston College","4683501","Emmett Morehead",27,45,330
+401411151,2022,10,"Duke","4683423","Riley Leonard",16,24,158
+401411152,2022,10,"James Madison","4243276","Todd Centeio",4,15,52
+401411152,2022,10,"Louisville","4240069","Malik Cunningham",14,20,223
+401411153,2022,10,"Florida State","4360799","Jordan Travis",10,12,202
+401411153,2022,10,"Florida State","4433886","Tate Rodemaker",3,4,23
+401411153,2022,10,"Miami","4685291","Jacurri Brown",5,9,37
+401411153,2022,10,"Miami","4685186","Tyler Van Dyke",4,8,24
+401411153,2022,10,"Miami","4432703","Jake Garcia",1,2,1
+401411154,2022,10,"NC State","4685488","MJ Morris",18,28,210
+401411154,2022,10,"Wake Forest","4361994","Sam Hartman",29,48,397
+401411155,2022,10,"Pittsburgh","4428512","Kedon Slovis",16,23,176
+401411155,2022,10,"Pittsburgh","4430681","Jared Wayne",0,1,0
+401411155,2022,10,"Syracuse","4432691","Carlos Del Rio-Wilson",8,23,120
+401411156,2022,10,"North Carolina","4431452","Drake Maye",26,37,293
+401411156,2022,10,"Virginia","4370775","Brennan Armstrong",17,35,232
+401411157,2022,10,"Georgia Tech","4746127","Zach Pyron",19,32,253
+401411157,2022,10,"Virginia Tech","4430686","Grant Wells",14,25,164
+401411157,2022,10,"Virginia Tech","4248558","Jason Brown",1,1,2
+401411157,2022,10,"Virginia Tech","4683530","Chance Black",0,1,0
+401415250,2022,10,"Boise State","4431325","Taylen Green",17,23,220
+401415250,2022,10,"BYU","4373632","Jaren Hall",29,42,377
+401415251,2022,10,"Colorado State","4432733","Clay Millen",15,24,261
+401415251,2022,10,"Colorado State","4836471","Jackson Stratton",3,10,72
+401415251,2022,10,"San José State","4373934","Chevan Cordeiro",27,42,274
+401415252,2022,10,"New Mexico","5092306","Justin Holaday",7,18,42
+401415252,2022,10,"Utah State","4430033","Cooper Legas",13,27,149
+401415253,2022,10,"Fresno State","4243322","Jake Haener",24,29,327
+401415253,2022,10,"Hawai'i","4709977","Brayden Schager",20,40,204
+401415254,2022,10,"San Diego State","4362894","Jalen Mayden",19,31,216
+401415254,2022,10,"UNLV","4429516","Doug Brumfield",17,27,207
+401415648,2022,10,"South Florida","4565303","Katravis Marsh",11,22,176
+401415648,2022,10,"South Florida","4427111","Michel Dukes",3,3,14
+401415648,2022,10,"South Florida","4880272","Byrum Brown",0,2,0
+401415648,2022,10,"Temple","4916436","E.J. Warner",27,36,344
+401415649,2022,10,"Tulane","4685039","Michael Pratt",11,19,125
+401415649,2022,10,"Tulsa","4600403","Braylon Braxton",13,25,146
+401415650,2022,10,"Cincinnati","4360056","Ben Bryant",25,35,299
+401415650,2022,10,"Navy","4568526","Maasai Maynor",3,5,81
+401415650,2022,10,"Navy","4686167","Xavier Arline",1,1,3
+401415651,2022,10,"Memphis","4606194","Seth Henigan",26,39,284
+401415651,2022,10,"UCF","4597499","Mikey Keene",22,28,219
+401415651,2022,10,"UCF","4361264","Isaiah Bowser",1,1,4
+401415652,2022,10,"Houston","4360175","Clayton Tune",36,53,527
+401415652,2022,10,"Houston","4680017","Lucas Coley",1,1,1
+401415652,2022,10,"SMU","4360271","Tanner Mordecai",28,37,379
+401416632,2022,10,"Ball State","4361636","John Paddock",26,41,254
+401416632,2022,10,"Kent State","4428439","Collin Schlee",25,41,183
+401416633,2022,10,"Buffalo","4570057","Cole Snyder",25,49,238
+401416633,2022,10,"Ohio","4430431","Kurtis Rourke",20,29,317
+401416634,2022,10,"Central Michigan","4570259","Daniel Richardson",13,22,150
+401416634,2022,10,"Central Michigan","4709012","Jase Bauer",3,4,36
+401416634,2022,10,"Central Michigan","4427146","Luke Elzinga",1,1,20
+401416634,2022,10,"Northern Illinois","4917421","Nevan Cremascoli",13,33,158
+401416635,2022,10,"Bowling Green","4239937","Matt McDonald",23,31,161
+401416635,2022,10,"Western Michigan","4688540","Treyson Bourguet",16,27,191
+401426364,2022,10,"App State","4239994","Chase Brice",19,28,279
+401426364,2022,10,"Coastal Carolina","4427936","Grayson McCall",18,26,253
+401426364,2022,10,"Coastal Carolina","4361032","Bryce Carpenter",1,1,31
+401426365,2022,10,"Georgia Southern","4239714","Kyle Vantrease",26,45,278
+401426365,2022,10,"South Alabama","4362260","Carter Bradley",16,27,193
+401426366,2022,10,"Marshall","4700135","Cam Fancher",13,25,89
+401426366,2022,10,"Old Dominion","4430775","Hayden Wolff",24,46,198
+401426367,2022,10,"Louisiana","4373895","Ben Wooldridge",13,29,112
+401426367,2022,10,"Troy","4362723","Gunnar Watson",21,35,223
+401426368,2022,10,"Texas State","4361222","Layne Hatcher",29,41,237
+401426368,2022,10,"UL Monroe","4570554","Chandler Rogers",28,40,310
+401426368,2022,10,"UL Monroe","4575767","Will Derrick",1,1,3
+401426369,2022,10,"Georgia State","4369448","Darren Grainger",15,23,133
+401426369,2022,10,"Southern Miss","4362211","Trey Lowe III",6,14,84
+401426369,2022,10,"Southern Miss","4808719","Zach Wilcke",3,9,47
+401426369,2022,10,"Southern Miss","4689993","Jake Lange",4,7,38
+401426369,2022,10,"Southern Miss","4429805","Frank Gore Jr.",0,2,0
+401426598,2022,10,"Charlotte","4259269","Chris Reynolds",17,27,196
+401426598,2022,10,"Charlotte","4698184","Xavier Williams",2,7,27
+401426598,2022,10,"Western Kentucky","4368343","Austin Reed",23,38,409
+401426598,2022,10,"Western Kentucky","4605866","Darius Ocean",2,3,52
+401426599,2022,10,"Florida International","4567707","Grayson James",19,35,130
+401426599,2022,10,"Florida International","4576127","Haden Carlson",3,4,15
+401426599,2022,10,"North Texas","4360163","Austin Aune",25,34,414
+401426599,2022,10,"North Texas","4691272","Stone Earle",0,1,0
+401426600,2022,10,"Louisiana Tech","4686137","Parker McNeil",14,33,285
+401426600,2022,10,"Louisiana Tech","4833635","Landy Lyddy",3,4,26
+401426600,2022,10,"Middle Tennessee","4291782","Chase Cunningham",15,27,136
+401426600,2022,10,"Middle Tennessee","4682518","Nick Vattiato",8,17,90
+401426601,2022,10,"Rice","4362896","Tj McMahon",21,31,334
+401426601,2022,10,"UTEP","4575668","Gavin Hardison",8,18,103
+401426601,2022,10,"UTEP","4362033","Calvin Brownholtz",7,10,56
+401426602,2022,10,"UAB","4426417","Jacob Zeno",27,38,332
+401426602,2022,10,"UTSA","4245186","Frank Harris",22,31,285
+401403939,2022,11,"Arkansas","4361573","Cade Fortin",8,13,92
+401403939,2022,11,"Arkansas","4429133","Malik Hornsby",4,9,24
+401403939,2022,11,"LSU","4426348","Jayden Daniels",8,15,86
+401403940,2022,11,"Auburn","4697512","Robby Ashford",6,13,60
+401403940,2022,11,"Texas A&M","4685574","Conner Weigman",14,36,121
+401403941,2022,11,"Florida","4429084","Anthony Richardson",11,23,112
+401403941,2022,11,"Florida","4565187","Jalen Kitna",2,2,29
+401403941,2022,11,"South Carolina","4426339","Spencer Rattler",18,26,145
+401403941,2022,11,"South Carolina","4570033","Kai Kroeger",1,1,48
+401403942,2022,11,"Kentucky","4361418","Will Levis",11,23,109
+401403942,2022,11,"Vanderbilt","4433932","Mike Wright",12,23,184
+401403943,2022,11,"Alabama","4685720","Bryce Young",21,33,209
+401403943,2022,11,"Ole Miss","4689114","Jaxson Dart",18,31,212
+401403943,2022,11,"Ole Miss","4428763","Dayton Wade",0,1,0
+401403944,2022,11,"Georgia","4259553","Stetson Bennett",25,37,289
+401403944,2022,11,"Mississippi State","102597","Will Rogers",29,51,261
+401403945,2022,11,"Missouri","4429435","Brady Cook",19,32,217
+401403945,2022,11,"Tennessee","4240858","Hendon Hooker",25,35,355
+401403945,2022,11,"Tennessee","4360698","Joe Milton",3,3,105
+401404033,2022,11,"Colorado","4369839","JT Shrout",11,21,124
+401404033,2022,11,"USC","4431611","Caleb Williams",14,26,268
+401404033,2022,11,"USC","4431580","Miller Moss",6,7,78
+401404034,2022,11,"Arizona","4697623","Jayden de Laura",22,28,315
+401404034,2022,11,"Arizona","4685472","Tetairoa Mcmillan",1,1,-3
+401404034,2022,11,"UCLA","4367178","Dorian Thompson-Robinson",26,39,245
+401404035,2022,11,"Arizona State","4360230","Emory Jones",15,23,186
+401404035,2022,11,"Arizona State","4569184","Trenton Bourguet",3,10,26
+401404035,2022,11,"Washington State","4688380","Cameron Ward",22,37,219
+401404036,2022,11,"California","4361493","Jack Plummer",22,34,147
+401404036,2022,11,"Oregon State","4431114","Ben Gulbranson",15,23,137
+401404036,2022,11,"Oregon State","4240796","Tristan Gebbia",2,2,22
+401404036,2022,11,"Oregon State","4360705","Jack Colletto",1,1,37
+401404036,2022,11,"Oregon State","4429709","Jamious Griffin",0,1,0
+401404037,2022,11,"Oregon","4426338","Bo Nix",19,27,280
+401404037,2022,11,"Oregon","4432774","Ty Thompson",0,1,0
+401404037,2022,11,"Washington","4360423","Michael Penix Jr.",26,35,408
+401404038,2022,11,"Stanford","4685201","Tanner McKee",11,23,155
+401404038,2022,11,"Stanford","4838679","Ashton Daniels",1,2,0
+401404038,2022,11,"Utah","4362075","Cameron Rising",20,33,219
+401404038,2022,11,"Utah","4868300","Nate Johnson",1,1,16
+401404109,2022,11,"Baylor","4565315","Blake Shapen",22,38,203
+401404109,2022,11,"Kansas State","4429955","Will Howard",19,27,196
+401404109,2022,11,"Kansas State","4361182","Adrian Martinez",7,8,25
+401404110,2022,11,"Iowa State","4565358","Hunter Dekkers",28,42,274
+401404110,2022,11,"Oklahoma State","4361825","Spencer Sanders",9,13,84
+401404110,2022,11,"Oklahoma State","4874519","Gunnar Gundy",5,12,103
+401404111,2022,11,"Kansas","4360900","Jason Bean",17,28,270
+401404111,2022,11,"Kansas","4832918","Ethan Vasko",3,5,13
+401404111,2022,11,"Texas Tech","4360689","Tyler Shough",20,33,246
+401404111,2022,11,"Texas Tech","4690977","Donovan Smith",0,1,0
+401404112,2022,11,"Oklahoma","4427238","Dillon Gabriel",17,28,190
+401404112,2022,11,"West Virginia","4429847","Garrett Greene",12,22,138
+401404112,2022,11,"West Virginia","4374303","JT Daniels",7,12,65
+401404113,2022,11,"TCU","4427105","Max Duggan",19,29,124
+401404113,2022,11,"Texas","4889929","Quinn Ewers",17,39,171
+401404131,2022,11,"Navy","4568526","Maasai Maynor",4,7,51
+401404131,2022,11,"Navy","4686167","Xavier Arline",2,4,57
+401404131,2022,11,"Navy","4686175","Kai Puailoa Rojas",0,1,0
+401404131,2022,11,"Notre Dame","4429088","Drew Pyne",17,21,269
+401404142,2022,11,"Army","4373726","Tyhier Tyler",2,5,52
+401404142,2022,11,"Army","4577305","Jemel Jones",2,4,30
+401404142,2022,11,"Troy","4362723","Gunnar Watson",15,31,192
+401404156,2022,11,"Liberty","4426687","Johnathan Bennett",22,36,201
+401404156,2022,11,"Liberty","4432803","Kaidon Salter",1,3,6
+401404156,2022,11,"UConn","4685697","Zion Turner",15,21,103
+401404156,2022,11,"UConn","4613059","Devontae Houston",1,1,7
+401405134,2022,11,"Illinois","4240391","Tommy DeVito",18,32,201
+401405134,2022,11,"Purdue","4260394","Aidan O'Connell",25,40,237
+401405135,2022,11,"Iowa","4360480","Spencer Petras",14,23,94
+401405135,2022,11,"Wisconsin","4426335","Graham Mertz",16,35,176
+401405136,2022,11,"Minnesota","4432722","Athan Kaliakmanis",7,13,64
+401405136,2022,11,"Northwestern","4683058","Brendan Sullivan",9,11,94
+401405136,2022,11,"Northwestern","4426657","Ryan Hilinski",3,11,68
+401405136,2022,11,"Northwestern","4609049","Carl Richardson",2,7,37
+401405136,2022,11,"Northwestern","4875352","Cole Freeman",1,3,7
+401405137,2022,11,"Michigan","4433970","J.J. McCarthy",8,17,129
+401405137,2022,11,"Michigan","4878681","Davis Warren",2,3,19
+401405137,2022,11,"Nebraska","4430836","Chubba Purdy",6,11,56
+401405137,2022,11,"Nebraska","4431397","Logan Smothers",4,8,15
+401405138,2022,11,"Michigan State","4430590","Payton Thorne",19,35,256
+401405138,2022,11,"Rutgers","4893657","Gavin Wimsatt",20,34,236
+401405138,2022,11,"Rutgers","4360204","Johnny Langan",0,1,0
+401405139,2022,11,"Indiana","4565355","Dexter Williams II",6,19,107
+401405139,2022,11,"Indiana","4426444","Connor Bazelak",3,5,12
+401405139,2022,11,"Ohio State","4432577","C.J. Stroud",17,28,297
+401405139,2022,11,"Ohio State","4433971","Kyle McCord",2,2,25
+401405140,2022,11,"Maryland","4567097","Taulia Tagovailoa",11,22,74
+401405140,2022,11,"Maryland","4592532","Billy Edwards",0,1,0
+401405140,2022,11,"Penn State","4259592","Sean Clifford",12,23,139
+401405140,2022,11,"Penn State","4714771","Drew Allar",3,6,18
+401405140,2022,11,"Penn State","4432612","Christian Veilleux",1,1,7
+401409241,2022,11,"Lamar","4431018","Michael Chandler II",4,14,33
+401409241,2022,11,"Lamar","5083596","Nick Yockey",7,13,89
+401409241,2022,11,"New Mexico State","5084180","Diego Pavia",13,18,146
+401409241,2022,11,"New Mexico State","4914368","Gavin Frakes",3,4,93
+401409241,2022,11,"New Mexico State","4427125","Weston Eget",1,2,-1
+401409241,2022,11,"New Mexico State","5084178","Jamoni Jones",1,1,8
+401411158,2022,11,"Clemson","4429020","D.J. Uiagalelei",19,27,185
+401411158,2022,11,"Clemson","5081432","Antonio Williams",1,1,6
+401411158,2022,11,"Louisville","4571339","Brock Domann",13,23,175
+401411158,2022,11,"Louisville","4240069","Malik Cunningham",10,13,75
+401411158,2022,11,"Louisville","4686343","Braden Smith",0,1,0
+401411159,2022,11,"Duke","4683423","Riley Leonard",19,31,262
+401411159,2022,11,"Virginia Tech","4430686","Grant Wells",16,28,177
+401411160,2022,11,"Georgia Tech","4746127","Zach Pyron",12,22,114
+401411160,2022,11,"Georgia Tech","4568336","Zach Gibson",12,21,120
+401411160,2022,11,"Miami","4685291","Jacurri Brown",14,19,136
+401411161,2022,11,"Boston College","4683501","Emmett Morehead",29,48,330
+401411161,2022,11,"NC State","4685488","MJ Morris",12,24,135
+401411162,2022,11,"Florida State","4360799","Jordan Travis",21,23,155
+401411162,2022,11,"Florida State","4433886","Tate Rodemaker",3,7,33
+401411162,2022,11,"Florida State","4362233","Wyatt Rector",1,1,2
+401411162,2022,11,"Syracuse","4426966","Garrett Shrader",6,16,65
+401411162,2022,11,"Syracuse","4432691","Carlos Del Rio-Wilson",0,1,0
+401411163,2022,11,"Pittsburgh","4428512","Kedon Slovis",14,24,208
+401411163,2022,11,"Virginia","4370775","Brennan Armstrong",17,32,152
+401411164,2022,11,"North Carolina","4431452","Drake Maye",31,49,448
+401411164,2022,11,"Wake Forest","4361994","Sam Hartman",18,31,320
+401414784,2022,11,"Arkansas State","4240020","James Blackman",10,18,142
+401414784,2022,11,"Massachusetts","4683471","Brady Olson",14,28,178
+401414784,2022,11,"Massachusetts","4427118","Garrett Dzuro",10,14,129
+401414784,2022,11,"Massachusetts","4572040","George Johnson",0,1,0
+401415255,2022,11,"Boise State","4431325","Taylen Green",11,22,218
+401415255,2022,11,"Boise State","4870513","Maddux Madsen",3,4,43
+401415255,2022,11,"Boise State","4683311","Sam Vidlak",0,1,0
+401415255,2022,11,"Nevada","4429070","Shane Illingworth",13,30,123
+401415255,2022,11,"Nevada","4262162","Nate Cox",0,1,0
+401415256,2022,11,"Air Force","4693814","Haaziq Daniels",2,2,42
+401415256,2022,11,"New Mexico","5092306","Justin Holaday",10,21,128
+401415257,2022,11,"Hawai'i","4709977","Brayden Schager",23,46,306
+401415257,2022,11,"Utah State","4430033","Cooper Legas",16,24,238
+401415258,2022,11,"Colorado State","4432733","Clay Millen",18,26,251
+401415258,2022,11,"Wyoming","4426939","Jayden Clemons",7,11,90
+401415258,2022,11,"Wyoming","4361607","Andrew Peasley",2,4,4
+401415259,2022,11,"Fresno State","4243322","Jake Haener",28,34,313
+401415259,2022,11,"UNLV","4429516","Doug Brumfield",18,33,172
+401415260,2022,11,"San Diego State","4362894","Jalen Mayden",17,22,268
+401415260,2022,11,"San Diego State","4374141","Jordan Byrd",0,1,0
+401415260,2022,11,"San José State","4373934","Chevan Cordeiro",19,33,195
+401415653,2022,11,"Memphis","4606194","Seth Henigan",20,34,262
+401415653,2022,11,"Tulsa","4600403","Braylon Braxton",12,24,128
+401415653,2022,11,"Tulsa","4362365","Davis Brin",5,13,48
+401415654,2022,11,"Cincinnati","4360056","Ben Bryant",14,30,244
+401415654,2022,11,"Cincinnati","4431339","Evan Prater",0,1,0
+401415654,2022,11,"East Carolina","4360131","Holton Ahlers",26,46,280
+401415655,2022,11,"Houston","4360175","Clayton Tune",29,40,289
+401415655,2022,11,"Temple","4916436","E.J. Warner",42,59,486
+401415656,2022,11,"SMU","4360271","Tanner Mordecai",19,27,280
+401415656,2022,11,"South Florida","4565303","Katravis Marsh",12,31,178
+401415656,2022,11,"South Florida","4880272","Byrum Brown",2,3,24
+401415657,2022,11,"Tulane","4685039","Michael Pratt",23,39,236
+401415657,2022,11,"UCF","4426494","John Rhys Plumlee",17,30,132
+401416636,2022,11,"Ball State","4361636","John Paddock",13,35,94
+401416636,2022,11,"Toledo","4427191","Dequan Finn",21,38,301
+401416637,2022,11,"Akron","4366715","Jeff Undercuffler",8,18,133
+401416637,2022,11,"Akron","4368768","DJ Irons",10,16,90
+401416637,2022,11,"Eastern Michigan","4597247","Austin Smith",16,28,190
+401416638,2022,11,"Miami (OH)","4427243","Brett Gabbert",20,26,244
+401416638,2022,11,"Ohio","4430431","Kurtis Rourke",25,35,362
+401416639,2022,11,"Northern Illinois","4917421","Nevan Cremascoli",8,17,133
+401416639,2022,11,"Northern Illinois","4683282","Justin Lynch",0,1,0
+401416639,2022,11,"Western Michigan","4688540","Treyson Bourguet",15,30,185
+401416640,2022,11,"Buffalo","4570057","Cole Snyder",19,32,191
+401416640,2022,11,"Central Michigan","4570259","Daniel Richardson",7,14,95
+401416640,2022,11,"Central Michigan","4916888","Bert Emanuel Jr.",1,3,22
+401416641,2022,11,"Bowling Green","4239937","Matt McDonald",31,40,246
+401416641,2022,11,"Bowling Green","4577962","Camden Orth",0,1,0
+401416641,2022,11,"Bowling Green","5083076","Harold Fannin",0,1,0
+401416641,2022,11,"Kent State","4428439","Collin Schlee",17,30,214
+401426370,2022,11,"Georgia Southern","4239714","Kyle Vantrease",28,49,325
+401426370,2022,11,"Georgia Southern","4613155","Connor Cigelske",1,3,1
+401426370,2022,11,"Georgia Southern","4838269","OJ Arnold",1,1,32
+401426370,2022,11,"Louisiana","4373895","Ben Wooldridge",17,31,193
+401426370,2022,11,"Louisiana","4426454","Lance LeGendre",0,1,0
+401426371,2022,11,"Coastal Carolina","4427354","Jarrett Guest",7,14,163
+401426371,2022,11,"Coastal Carolina","4361032","Bryce Carpenter",1,1,28
+401426371,2022,11,"Southern Miss","4362211","Trey Lowe III",19,36,295
+401426371,2022,11,"Southern Miss","4429805","Frank Gore Jr.",1,2,18
+401426372,2022,11,"Georgia State","4369448","Darren Grainger",25,40,349
+401426372,2022,11,"UL Monroe","4570554","Chandler Rogers",15,28,225
+401426373,2022,11,"App State","4239994","Chase Brice",15,34,177
+401426373,2022,11,"Marshall","4700135","Cam Fancher",16,28,225
+401426373,2022,11,"Marshall","4259219","Henry Colombi",1,1,-5
+401426374,2022,11,"James Madison","4243276","Todd Centeio",18,21,304
+401426374,2022,11,"James Madison","4877811","Billy Atkins",0,1,0
+401426374,2022,11,"Old Dominion","4430775","Hayden Wolff",12,22,112
+401426374,2022,11,"Old Dominion","4429413","Brendon Clark",2,4,37
+401426375,2022,11,"South Alabama","4362260","Carter Bradley",20,34,274
+401426375,2022,11,"Texas State","4361222","Layne Hatcher",24,42,143
+401426603,2022,11,"Charlotte","4259269","Chris Reynolds",28,49,277
+401426603,2022,11,"Middle Tennessee","4682518","Nick Vattiato",22,29,203
+401426604,2022,11,"Florida Atlantic","4240628","N'Kosi Perry",14,21,104
+401426604,2022,11,"Florida Atlantic","4433917","Wilile Taggart Jr.",0,2,0
+401426604,2022,11,"Florida International","4567707","Grayson James",9,26,56
+401426604,2022,11,"Florida International","4576127","Haden Carlson",2,2,18
+401426605,2022,11,"Louisiana Tech","4833635","Landy Lyddy",14,26,138
+401426605,2022,11,"Louisiana Tech","5092781","Jack Turner",1,4,9
+401426605,2022,11,"Louisiana Tech","4687499","Austin McCready",0,1,0
+401426605,2022,11,"UTSA","4245186","Frank Harris",18,26,216
+401426605,2022,11,"UTSA","4683012","Eddie Lee Marburger",2,4,10
+401426606,2022,11,"North Texas","4360163","Austin Aune",15,32,159
+401426606,2022,11,"UAB","4363410","Dylan Hopkins",15,23,234
+401426607,2022,11,"Rice","4683983","Shawqui Itraish",11,18,96
+401426607,2022,11,"Rice","4362896","Tj McMahon",8,11,65
+401426607,2022,11,"Western Kentucky","4368343","Austin Reed",23,33,377
+401403946,2022,12,"Alabama","4685720","Bryce Young",18,24,221
+401403946,2022,12,"Alabama","4432734","Jalen Milroe",2,4,23
+401403946,2022,12,"Alabama","4685522","Ty Simpson",2,2,20
+401403946,2022,12,"Austin Peay","4689970","Mike Diliello",20,32,147
+401403946,2022,12,"Austin Peay","4879298","Trey Goodman",0,1,0
+401403947,2022,12,"Arkansas","4567149","KJ Jefferson",17,22,168
+401403947,2022,12,"Ole Miss","4689114","Jaxson Dart",21,36,240
+401403949,2022,12,"Georgia","4259553","Stetson Bennett",13,19,116
+401403949,2022,12,"Kentucky","4361418","Will Levis",20,31,206
+401403951,2022,12,"East Tennessee State","4577478","Tyler Riddell",5,11,47
+401403951,2022,12,"East Tennessee State","4431246","Baron May",0,6,0
+401403951,2022,12,"East Tennessee State","4577497","Noah West",1,1,-4
+401403951,2022,12,"Mississippi State","102597","Will Rogers",30,37,301
+401403951,2022,12,"Mississippi State","4685975","Chance Lovertich",6,6,36
+401403951,2022,12,"Mississippi State","4432759","Sawyer Robertson",2,6,5
+401403952,2022,12,"Missouri","4429435","Brady Cook",19,27,251
+401403952,2022,12,"Missouri","4040407","Jack Abraham",1,2,10
+401403952,2022,12,"Missouri","4685404","Sam Horn",0,2,0
+401403952,2022,12,"New Mexico State","5084180","Diego Pavia",6,17,76
+401403952,2022,12,"New Mexico State","4914368","Gavin Frakes",2,4,39
+401403953,2022,12,"South Carolina","4426339","Spencer Rattler",30,37,438
+401403953,2022,12,"South Carolina","4362852","Dakereon Joyner",1,1,15
+401403953,2022,12,"Tennessee","4240858","Hendon Hooker",25,42,247
+401403953,2022,12,"Tennessee","4360698","Joe Milton",4,8,108
+401403954,2022,12,"Massachusetts","4683471","Brady Olson",9,22,55
+401403954,2022,12,"Massachusetts","4571420","Isaac Ross",0,1,0
+401403954,2022,12,"Texas A&M","4685574","Conner Weigman",11,19,191
+401403955,2022,12,"Florida","4429084","Anthony Richardson",25,42,400
+401403955,2022,12,"Vanderbilt","4433932","Mike Wright",10,16,108
+401404039,2022,12,"Arizona","4697623","Jayden de Laura",28,46,357
+401404039,2022,12,"Washington State","4688380","Cameron Ward",25,36,193
+401404040,2022,12,"Arizona State","4569184","Trenton Bourguet",20,32,122
+401404040,2022,12,"Oregon State","4431114","Ben Gulbranson",15,21,188
+401404040,2022,12,"Oregon State","4240796","Tristan Gebbia",3,3,33
+401404041,2022,12,"California","4361493","Jack Plummer",23,43,280
+401404041,2022,12,"Stanford","4685201","Tanner McKee",29,45,271
+401404042,2022,12,"Colorado","4369839","JT Shrout",6,18,120
+401404042,2022,12,"Colorado","4600603","Drew Carter",1,4,3
+401404042,2022,12,"Washington","4360423","Michael Penix Jr.",19,31,229
+401404042,2022,12,"Washington","4569598","Dylan Morris",4,7,66
+401404043,2022,12,"Oregon","4426338","Bo Nix",25,37,287
+401404043,2022,12,"Utah","4362075","Cameron Rising",21,38,170
+401404044,2022,12,"UCLA","4367178","Dorian Thompson-Robinson",23,38,309
+401404044,2022,12,"USC","4431611","Caleb Williams",32,43,470
+401404114,2022,12,"Baylor","4565315","Blake Shapen",21,30,269
+401404114,2022,12,"TCU","4427105","Max Duggan",24,35,327
+401404115,2022,12,"Iowa State","4565358","Hunter Dekkers",23,35,294
+401404115,2022,12,"Iowa State","4686422","Xavier Hutchinson",0,1,0
+401404115,2022,12,"Texas Tech","4360689","Tyler Shough",15,21,141
+401404116,2022,12,"Kansas","4596472","Jalon Daniels",17,26,230
+401404116,2022,12,"Kansas","4360900","Jason Bean",1,3,12
+401404116,2022,12,"Texas","4889929","Quinn Ewers",12,21,107
+401404116,2022,12,"Texas","4429032","Hudson Card",1,1,5
+401404117,2022,12,"Kansas State","4429955","Will Howard",19,27,294
+401404117,2022,12,"West Virginia","4429847","Garrett Greene",15,27,204
+401404117,2022,12,"West Virginia","4362208","Sam James",1,1,12
+401404118,2022,12,"Oklahoma","4427238","Dillon Gabriel",20,40,259
+401404118,2022,12,"Oklahoma State","4361825","Spencer Sanders",36,67,381
+401404132,2022,12,"Boston College","4683501","Emmett Morehead",9,22,117
+401404132,2022,12,"Notre Dame","4429088","Drew Pyne",13,25,156
+401404143,2022,12,"Army","4373726","Tyhier Tyler",0,1,0
+401404143,2022,12,"UConn","4685697","Zion Turner",14,24,116
+401404165,2022,12,"Liberty","4432803","Kaidon Salter",12,18,119
+401404165,2022,12,"Liberty","4426687","Johnathan Bennett",8,15,98
+401404165,2022,12,"Virginia Tech","4430686","Grant Wells",14,20,148
+401405141,2022,12,"Iowa","4360480","Spencer Petras",15,24,221
+401405141,2022,12,"Minnesota","4432722","Athan Kaliakmanis",7,15,87
+401405142,2022,12,"Nebraska","4362073","Casey Thompson",12,20,106
+401405142,2022,12,"Wisconsin","4426335","Graham Mertz",8,18,83
+401405143,2022,12,"Northwestern","4875352","Cole Freeman",9,20,78
+401405143,2022,12,"Purdue","4260394","Aidan O'Connell",16,25,159
+401405144,2022,12,"Maryland","4567097","Taulia Tagovailoa",26,36,293
+401405144,2022,12,"Maryland","4428091","Eric Najarian",1,1,25
+401405144,2022,12,"Ohio State","4432577","C.J. Stroud",18,30,241
+401405145,2022,12,"Illinois","4240391","Tommy DeVito",21,30,178
+401405145,2022,12,"Michigan","4433970","J.J. McCarthy",18,34,208
+401405146,2022,12,"Indiana","4565355","Dexter Williams II",2,7,31
+401405146,2022,12,"Michigan State","4430590","Payton Thorne",27,42,298
+401405147,2022,12,"Penn State","4259592","Sean Clifford",17,26,157
+401405147,2022,12,"Penn State","4714771","Drew Allar",5,10,42
+401405147,2022,12,"Rutgers","4893657","Gavin Wimsatt",10,29,122
+401405147,2022,12,"Rutgers","4431387","Evan Simon",5,5,13
+401411165,2022,12,"Clemson","4429020","D.J. Uiagalelei",22,34,227
+401411165,2022,12,"Clemson","4685413","Cade Klubnik",2,2,13
+401411165,2022,12,"Miami","4685291","Jacurri Brown",6,13,53
+401411165,2022,12,"Miami","4432703","Jake Garcia",3,5,15
+401411166,2022,12,"Florida State","4360799","Jordan Travis",9,14,112
+401411166,2022,12,"Florida State","4685334","A.J. Duffy",1,4,16
+401411166,2022,12,"Florida State","4577580","Gino English",2,2,16
+401411166,2022,12,"Florida State","4433886","Tate Rodemaker",1,1,45
+401411166,2022,12,"Louisiana","4429595","Chandler Fields",19,36,159
+401411167,2022,12,"Louisville","4571339","Brock Domann",12,25,153
+401411167,2022,12,"NC State","4431091","Ben Finley",16,35,201
+401411167,2022,12,"NC State","4246097","Jack Chambers",2,7,13
+401411168,2022,12,"Georgia Tech","4568336","Zach Gibson",13,18,174
+401411168,2022,12,"Georgia Tech","4426430","Taisun Phommachanh",2,5,13
+401411168,2022,12,"North Carolina","4431452","Drake Maye",16,30,202
+401411169,2022,12,"Duke","4683423","Riley Leonard",24,45,290
+401411169,2022,12,"Pittsburgh","4428512","Kedon Slovis",15,32,190
+401411171,2022,12,"Syracuse","4426966","Garrett Shrader",17,31,324
+401411171,2022,12,"Syracuse","4911851","Lequint Allen",1,1,33
+401411171,2022,12,"Wake Forest","4361994","Sam Hartman",30,43,331
+401415261,2022,12,"Boise State","4431325","Taylen Green",20,34,211
+401415261,2022,12,"Wyoming","4426939","Jayden Clemons",3,16,30
+401415262,2022,12,"Air Force","4693814","Haaziq Daniels",0,2,0
+401415262,2022,12,"Colorado State","4432733","Clay Millen",19,24,179
+401415263,2022,12,"Fresno State","4243322","Jake Haener",29,42,361
+401415263,2022,12,"Nevada","4262162","Nate Cox",16,38,243
+401415264,2022,12,"New Mexico","4710001","CJ Montes",15,23,112
+401415264,2022,12,"San Diego State","4362894","Jalen Mayden",15,25,280
+401415264,2022,12,"San Diego State","4801298","Liu Aumavae",1,1,2
+401415265,2022,12,"San José State","4373934","Chevan Cordeiro",20,30,257
+401415265,2022,12,"Utah State","4430033","Cooper Legas",23,35,244
+401415266,2022,12,"Hawai'i","4709977","Brayden Schager",16,27,202
+401415266,2022,12,"UNLV","4429516","Doug Brumfield",23,37,288
+401415658,2022,12,"SMU","4360271","Tanner Mordecai",32,49,298
+401415658,2022,12,"SMU","5084084","Kevin Jennings",3,3,31
+401415658,2022,12,"Tulane","4685039","Michael Pratt",9,14,141
+401415659,2022,12,"South Florida","4880272","Byrum Brown",21,25,240
+401415659,2022,12,"Tulsa","4600403","Braylon Braxton",20,27,302
+401415660,2022,12,"East Carolina","4360131","Holton Ahlers",15,30,182
+401415660,2022,12,"East Carolina","4432138","Mason Garcia",2,5,15
+401415660,2022,12,"Houston","4360175","Clayton Tune",32,44,435
+401415661,2022,12,"Navy","4686167","Xavier Arline",0,1,0
+401415661,2022,12,"UCF","4426494","John Rhys Plumlee",11,18,107
+401415661,2022,12,"UCF","4597499","Mikey Keene",8,15,123
+401415662,2022,12,"Memphis","4606194","Seth Henigan",14,24,218
+401415662,2022,12,"Memphis","4248250","Ryan Glover",4,5,29
+401415662,2022,12,"North Alabama","5093185","Noah Walters",6,19,24
+401415663,2022,12,"Cincinnati","4360056","Ben Bryant",9,18,130
+401415663,2022,12,"Cincinnati","4431339","Evan Prater",12,17,127
+401415663,2022,12,"Temple","4916436","E.J. Warner",21,36,167
+401416642,2022,12,"Bowling Green","4239937","Matt McDonald",20,36,395
+401416642,2022,12,"Toledo","4429801","Tucker Gleason",22,40,329
+401416643,2022,12,"Ball State","4361636","John Paddock",29,48,273
+401416643,2022,12,"Ohio","4430431","Kurtis Rourke",12,16,169
+401416643,2022,12,"Ohio","4686788","CJ Harris",5,8,34
+401416644,2022,12,"Eastern Michigan","4241193","Taylor Powell",30,39,315
+401416644,2022,12,"Eastern Michigan","4708847","Mitchell Tomasek",0,1,0
+401416644,2022,12,"Kent State","4685693","Devin Kargman",7,19,91
+401416644,2022,12,"Kent State","4428439","Collin Schlee",6,12,150
+401416645,2022,12,"Central Michigan","4709012","Jase Bauer",3,7,62
+401416645,2022,12,"Central Michigan","4916888","Bert Emanuel Jr.",3,3,32
+401416645,2022,12,"Western Michigan","4688540","Treyson Bourguet",7,19,102
+401416646,2022,12,"Miami (OH)","4576189","Aveon Smith",11,23,185
+401416646,2022,12,"Northern Illinois","4917421","Nevan Cremascoli",14,22,165
+401420863,2022,12,"BYU","4373632","Jaren Hall",23,35,456
+401420863,2022,12,"Utah Tech","4697625","Victor Gabalis",25,50,340
+401426376,2022,12,"App State","4239994","Chase Brice",15,21,291
+401426376,2022,12,"Old Dominion","4430775","Hayden Wolff",22,37,308
+401426377,2022,12,"Georgia Southern","4239714","Kyle Vantrease",22,39,205
+401426377,2022,12,"Georgia Southern","4907573","Dalen Cobb",0,1,0
+401426377,2022,12,"Marshall","4700135","Cam Fancher",17,32,274
+401426378,2022,12,"Georgia State","4369448","Darren Grainger",8,15,176
+401426378,2022,12,"James Madison","4243276","Todd Centeio",21,27,274
+401426379,2022,12,"South Alabama","4362260","Carter Bradley",15,22,238
+401426379,2022,12,"South Alabama","4373851","Desmond Trotter",2,4,19
+401426379,2022,12,"Southern Miss","4362211","Trey Lowe III",18,33,167
+401426379,2022,12,"Southern Miss","4429805","Frank Gore Jr.",1,1,29
+401426380,2022,12,"Arkansas State","4240020","James Blackman",22,40,237
+401426380,2022,12,"Texas State","4361222","Layne Hatcher",23,36,196
+401426381,2022,12,"Troy","4362723","Gunnar Watson",10,17,78
+401426381,2022,12,"UL Monroe","4570554","Chandler Rogers",17,28,145
+401426608,2022,12,"Charlotte","4259269","Chris Reynolds",20,30,268
+401426608,2022,12,"Louisiana Tech","4833635","Landy Lyddy",23,31,213
+401426609,2022,12,"Florida International","4567707","Grayson James",6,16,56
+401426609,2022,12,"Florida International","4576127","Haden Carlson",0,5,0
+401426609,2022,12,"UTEP","4362033","Calvin Brownholtz",12,18,190
+401426610,2022,12,"Florida Atlantic","4240628","N'Kosi Perry",19,36,325
+401426610,2022,12,"Florida Atlantic","4433917","Wilile Taggart Jr.",0,1,0
+401426610,2022,12,"Middle Tennessee","4291782","Chase Cunningham",40,54,448
+401426611,2022,12,"Rice","4683983","Shawqui Itraish",9,19,89
+401426611,2022,12,"Rice","4869321","AJ Padgett",7,18,110
+401426611,2022,12,"Rice","4362528","Wiley Green",4,5,26
+401426611,2022,12,"UTSA","4245186","Frank Harris",11,14,103
+401426611,2022,12,"UTSA","4683012","Eddie Lee Marburger",4,8,29
+401426611,2022,12,"UTSA","4431318","Cam Peters",0,1,0
+401426612,2022,12,"LSU","4426348","Jayden Daniels",22,29,297
+401426612,2022,12,"LSU","4567747","Garrett Nussmeier",1,2,2
+401426612,2022,12,"UAB","4363410","Dylan Hopkins",14,29,158
+401426612,2022,12,"UAB","4426417","Jacob Zeno",3,6,53
+401426613,2022,12,"Auburn","4697512","Robby Ashford",8,19,102
+401426613,2022,12,"Auburn","4710341","Jarquez Hunter",1,1,20
+401426613,2022,12,"Western Kentucky","4368343","Austin Reed",26,55,289
+401426613,2022,12,"Western Kentucky","4605866","Darius Ocean",2,3,11
+401426613,2022,12,"Western Kentucky","4428527","Dalvin Smith",0,1,0
+401403956,2022,13,"Mississippi State","102597","Will Rogers",27,39,239
+401403956,2022,13,"Ole Miss","4689114","Jaxson Dart",30,38,250
+401403956,2022,13,"Ole Miss","4685702","Quinshon Judkins",1,1,7
+401403957,2022,13,"Alabama","4685720","Bryce Young",20,30,343
+401403957,2022,13,"Auburn","4697512","Robby Ashford",11,23,77
+401403958,2022,13,"Florida","4429084","Anthony Richardson",9,27,198
+401403958,2022,13,"Florida State","4360799","Jordan Travis",13,30,270
+401403959,2022,13,"Georgia","4259553","Stetson Bennett",10,18,140
+401403959,2022,13,"Georgia","4430841","Carson Beck",1,2,3
+401403959,2022,13,"Georgia Tech","4568336","Zach Gibson",19,35,191
+401403959,2022,13,"Georgia Tech","4360589","Dontae Smith",1,1,24
+401403960,2022,13,"Kentucky","4361418","Will Levis",11,19,188
+401403960,2022,13,"Louisville","4571339","Brock Domann",14,21,129
+401403960,2022,13,"Louisville","4240069","Malik Cunningham",3,6,16
+401403961,2022,13,"Arkansas","4567149","KJ Jefferson",20,27,212
+401403961,2022,13,"Missouri","4429435","Brady Cook",16,26,242
+401403962,2022,13,"Clemson","4429020","D.J. Uiagalelei",8,29,99
+401403962,2022,13,"South Carolina","4426339","Spencer Rattler",25,39,360
+401403963,2022,13,"LSU","4426348","Jayden Daniels",21,35,189
+401403963,2022,13,"LSU","4567747","Garrett Nussmeier",1,1,8
+401403963,2022,13,"Texas A&M","4685574","Conner Weigman",12,18,155
+401403964,2022,13,"Tennessee","4360698","Joe Milton",11,21,147
+401403964,2022,13,"Tennessee","4697122","Gaston Moore",1,1,4
+401403964,2022,13,"Vanderbilt","5081405","AJ Swann",11,17,79
+401403964,2022,13,"Vanderbilt","4433932","Mike Wright",7,13,28
+401404045,2022,13,"Arizona","4697623","Jayden de Laura",12,23,200
+401404045,2022,13,"Arizona State","4569184","Trenton Bourguet",37,49,376
+401404046,2022,13,"California","4361493","Jack Plummer",24,34,294
+401404046,2022,13,"UCLA","4367178","Dorian Thompson-Robinson",21,30,189
+401404047,2022,13,"Oregon","4426338","Bo Nix",27,41,327
+401404047,2022,13,"Oregon State","4431114","Ben Gulbranson",6,13,60
+401404048,2022,13,"Colorado","4691966","Maddox Kopp",15,28,123
+401404048,2022,13,"Utah","4362075","Cameron Rising",17,19,234
+401404048,2022,13,"Utah","4695600","Bryson Barnes",4,5,45
+401404049,2022,13,"BYU","4373632","Jaren Hall",7,11,93
+401404049,2022,13,"BYU","4696561","Jacob Conover",0,1,0
+401404049,2022,13,"Stanford","4685201","Tanner McKee",31,40,313
+401404049,2022,13,"Stanford","4838679","Ashton Daniels",1,1,5
+401404051,2022,13,"Washington","4360423","Michael Penix Jr.",25,43,485
+401404051,2022,13,"Washington State","4688380","Cameron Ward",33,52,322
+401404051,2022,13,"Washington State","4683849","Nick Haberer",1,1,36
+401404119,2022,13,"Baylor","4565315","Blake Shapen",18,36,179
+401404119,2022,13,"Texas","4889929","Quinn Ewers",12,16,194
+401404120,2022,13,"Iowa State","4565358","Hunter Dekkers",12,24,106
+401404120,2022,13,"Iowa State","4801299","Rocco Becht",7,13,65
+401404120,2022,13,"Iowa State","4586312","Jaylin Noel",0,1,0
+401404120,2022,13,"TCU","4427105","Max Duggan",17,24,212
+401404120,2022,13,"TCU","4692530","Chandler Morris",5,6,34
+401404121,2022,13,"Kansas","4596472","Jalon Daniels",20,32,168
+401404121,2022,13,"Kansas","4360900","Jason Bean",1,1,12
+401404121,2022,13,"Kansas State","4429955","Will Howard",11,21,213
+401404122,2022,13,"Oklahoma","4427238","Dillon Gabriel",28,40,449
+401404122,2022,13,"Oklahoma","4360282","Drake Stoops",1,1,13
+401404122,2022,13,"Oklahoma","4247781","Michael Turk",0,1,0
+401404122,2022,13,"Texas Tech","4360689","Tyler Shough",31,50,436
+401404123,2022,13,"Oklahoma State","4685521","Garret Rangel",18,42,178
+401404123,2022,13,"West Virginia","4429847","Garrett Greene",8,14,48
+401404123,2022,13,"West Virginia","4685459","Nicco Marchiol",2,9,29
+401404133,2022,13,"Notre Dame","4429088","Drew Pyne",23,26,318
+401404133,2022,13,"USC","4431611","Caleb Williams",18,22,232
+401404144,2022,13,"Army","4373726","Tyhier Tyler",2,2,67
+401404144,2022,13,"Army","4577305","Jemel Jones",0,2,0
+401404144,2022,13,"Army","4577303","Cade Ballard",0,1,0
+401404144,2022,13,"Massachusetts","4683471","Brady Olson",13,24,145
+401404144,2022,13,"Massachusetts","4427118","Garrett Dzuro",0,1,0
+401404166,2022,13,"Liberty","4432803","Kaidon Salter",12,17,101
+401404166,2022,13,"Liberty","4426687","Johnathan Bennett",8,13,72
+401404166,2022,13,"Liberty","4241222","Charlie Brewer",5,9,34
+401404166,2022,13,"New Mexico State","5084180","Diego Pavia",16,21,214
+401405148,2022,13,"Iowa","4428186","Alex Padilla",16,33,141
+401405148,2022,13,"Iowa","4360480","Spencer Petras",1,6,9
+401405148,2022,13,"Nebraska","4362073","Casey Thompson",20,30,278
+401405149,2022,13,"Illinois","4240391","Tommy DeVito",12,18,136
+401405149,2022,13,"Northwestern","4875352","Cole Freeman",12,22,93
+401405149,2022,13,"Northwestern","4911961","Jack Lausch",4,8,68
+401405149,2022,13,"Northwestern","4569603","Malik Washington",1,1,6
+401405150,2022,13,"Minnesota","4432722","Athan Kaliakmanis",19,29,319
+401405150,2022,13,"Wisconsin","4426335","Graham Mertz",16,27,170
+401405150,2022,13,"Wisconsin","4372559","Chase Wolf",2,6,21
+401405151,2022,13,"Indiana","4426444","Connor Bazelak",24,42,201
+401405151,2022,13,"Indiana","4565355","Dexter Williams II",1,1,5
+401405151,2022,13,"Purdue","4260394","Aidan O'Connell",18,29,290
+401405152,2022,13,"Maryland","4567097","Taulia Tagovailoa",25,37,342
+401405152,2022,13,"Maryland","4428091","Eric Najarian",3,8,37
+401405152,2022,13,"Rutgers","4893657","Gavin Wimsatt",5,13,48
+401405152,2022,13,"Rutgers","4431387","Evan Simon",3,9,24
+401405153,2022,13,"Michigan","4433970","J.J. McCarthy",12,24,263
+401405153,2022,13,"Michigan","4429121","Kalel Mullings",1,1,15
+401405153,2022,13,"Ohio State","4432577","C.J. Stroud",31,48,349
+401405154,2022,13,"Michigan State","4430590","Payton Thorne",24,43,229
+401405154,2022,13,"Penn State","4259592","Sean Clifford",19,24,202
+401405154,2022,13,"Penn State","4430870","Keandre Lambert",1,1,48
+401411172,2022,13,"NC State","4431091","Ben Finley",27,40,271
+401411172,2022,13,"North Carolina","4431452","Drake Maye",29,49,233
+401411173,2022,13,"Boston College","4683501","Emmett Morehead",29,38,252
+401411173,2022,13,"Syracuse","4426966","Garrett Shrader",21,27,285
+401411174,2022,13,"Duke","4683423","Riley Leonard",29,41,391
+401411174,2022,13,"Wake Forest","4361994","Sam Hartman",26,42,347
+401411175,2022,13,"Miami","4432703","Jake Garcia",17,27,192
+401411175,2022,13,"Miami","4685186","Tyler Van Dyke",4,8,83
+401411175,2022,13,"Miami","4685291","Jacurri Brown",2,3,4
+401411175,2022,13,"Pittsburgh","4428512","Kedon Slovis",18,28,256
+401415267,2022,13,"Air Force","4693814","Haaziq Daniels",1,2,14
+401415267,2022,13,"San Diego State","4362894","Jalen Mayden",16,31,188
+401415268,2022,13,"Colorado State","4432733","Clay Millen",19,24,214
+401415268,2022,13,"Colorado State","4597703","Tory Horton",1,1,16
+401415268,2022,13,"Colorado State","4836471","Jackson Stratton",0,1,0
+401415268,2022,13,"New Mexico","4710001","CJ Montes",12,27,62
+401415269,2022,13,"Boise State","4431325","Taylen Green",14,23,220
+401415269,2022,13,"Utah State","4430033","Cooper Legas",23,40,306
+401415269,2022,13,"Utah State","4372041","Brian Cobbs",0,1,0
+401415269,2022,13,"Utah State","5082614","Terrell Vaughn",0,1,0
+401415270,2022,13,"Fresno State","4243322","Jake Haener",21,32,183
+401415270,2022,13,"Wyoming","4361607","Andrew Peasley",12,29,104
+401415271,2022,13,"Hawai'i","4709977","Brayden Schager",25,45,230
+401415271,2022,13,"San José State","4373934","Chevan Cordeiro",17,26,208
+401415272,2022,13,"Nevada","4262162","Nate Cox",27,44,278
+401415272,2022,13,"Nevada","4361444","Toa Taua",0,1,0
+401415272,2022,13,"UNLV","4429145","Harrison Bailey",16,27,209
+401415272,2022,13,"UNLV","4429516","Doug Brumfield",0,2,0
+401415664,2022,13,"East Carolina","4360131","Holton Ahlers",25,37,314
+401415664,2022,13,"Temple","4916436","E.J. Warner",45,63,527
+401415665,2022,13,"Cincinnati","4431339","Evan Prater",10,26,102
+401415665,2022,13,"Tulane","4685039","Michael Pratt",13,22,162
+401415666,2022,13,"Memphis","4606194","Seth Henigan",27,44,287
+401415666,2022,13,"SMU","4360271","Tanner Mordecai",22,30,228
+401415666,2022,13,"SMU","5084084","Kevin Jennings",6,8,83
+401415667,2022,13,"South Florida","4880272","Byrum Brown",13,20,140
+401415667,2022,13,"UCF","4597499","Mikey Keene",15,19,129
+401415667,2022,13,"UCF","4426494","John Rhys Plumlee",9,9,73
+401415668,2022,13,"Houston","4360175","Clayton Tune",26,47,386
+401415668,2022,13,"Tulsa","4600403","Braylon Braxton",25,43,316
+401416648,2022,13,"Ball State","4361636","John Paddock",19,32,119
+401416648,2022,13,"Ball State","4431416","Kiael Kelly",1,1,23
+401416648,2022,13,"Miami (OH)","4576189","Aveon Smith",18,46,217
+401416649,2022,13,"Bowling Green","4239937","Matt McDonald",16,29,217
+401416649,2022,13,"Bowling Green","4577962","Camden Orth",2,3,12
+401416649,2022,13,"Ohio","4686788","CJ Harris",10,21,196
+401416650,2022,13,"Central Michigan","4709012","Jase Bauer",7,15,68
+401416650,2022,13,"Central Michigan","4916888","Bert Emanuel Jr.",0,2,0
+401416650,2022,13,"Eastern Michigan","4241193","Taylor Powell",24,36,266
+401416651,2022,13,"Toledo","4429801","Tucker Gleason",13,38,200
+401416651,2022,13,"Toledo","4427191","Dequan Finn",5,11,35
+401416651,2022,13,"Western Michigan","4430699","Jack Salopek",7,21,54
+401416652,2022,13,"Akron","4366715","Jeff Undercuffler",21,32,312
+401416652,2022,13,"Northern Illinois","4917421","Nevan Cremascoli",14,30,144
+401416652,2022,13,"Northern Illinois","4683282","Justin Lynch",3,8,28
+401416653,2022,13,"Buffalo","4570057","Cole Snyder",20,28,165
+401416653,2022,13,"Kent State","4685693","Devin Kargman",5,18,25
+401416653,2022,13,"Kent State","5082965","Tommy Ulatowski",6,11,102
+401416653,2022,13,"Kent State","4428439","Collin Schlee",2,4,14
+401416653,2022,13,"Kent State","4430468","Marquez Cooper",1,1,9
+401426382,2022,13,"App State","4239994","Chase Brice",15,26,253
+401426382,2022,13,"Georgia Southern","4239714","Kyle Vantrease",34,51,385
+401426383,2022,13,"Coastal Carolina","4427354","Jarrett Guest",10,23,99
+401426383,2022,13,"Coastal Carolina","4806463","Bryce Archie",0,2,0
+401426383,2022,13,"Coastal Carolina","4361032","Bryce Carpenter",1,1,-6
+401426383,2022,13,"James Madison","4243276","Todd Centeio",17,32,287
+401426384,2022,13,"Arkansas State","4240020","James Blackman",20,35,220
+401426384,2022,13,"Arkansas State","4363148","AJ Mayer",1,1,1
+401426384,2022,13,"Arkansas State","4826635","Jaxon Dailey",0,1,0
+401426384,2022,13,"Troy","4362723","Gunnar Watson",9,15,144
+401426385,2022,13,"Southern Miss","4362211","Trey Lowe III",10,16,170
+401426385,2022,13,"Southern Miss","4429805","Frank Gore Jr.",1,1,13
+401426385,2022,13,"UL Monroe","4570554","Chandler Rogers",17,27,122
+401426386,2022,13,"Louisiana","4429595","Chandler Fields",16,26,187
+401426386,2022,13,"Louisiana","4870518","Zeon Chriss",5,6,84
+401426386,2022,13,"Texas State","4361222","Layne Hatcher",13,27,133
+401426389,2022,13,"Old Dominion","4430775","Hayden Wolff",21,36,285
+401426389,2022,13,"South Alabama","4362260","Carter Bradley",17,29,190
+401426390,2022,13,"Georgia State","4369448","Darren Grainger",19,26,291
+401426390,2022,13,"Marshall","4700135","Cam Fancher",18,28,208
+401426614,2022,13,"Florida International","4576127","Haden Carlson",29,52,414
+401426614,2022,13,"Middle Tennessee","4291782","Chase Cunningham",29,42,279
+401426615,2022,13,"Florida Atlantic","4240628","N'Kosi Perry",27,39,283
+401426615,2022,13,"Western Kentucky","4368343","Austin Reed",28,52,410
+401426616,2022,13,"Louisiana Tech","5092781","Jack Turner",15,25,167
+401426616,2022,13,"Louisiana Tech","4833635","Landy Lyddy",9,17,80
+401426616,2022,13,"Louisiana Tech","4687499","Austin McCready",0,1,0
+401426616,2022,13,"UAB","4363410","Dylan Hopkins",7,14,91
+401426617,2022,13,"North Texas","4360163","Austin Aune",16,29,203
+401426617,2022,13,"Rice","4869321","AJ Padgett",13,22,229
+401426618,2022,13,"UTEP","4362033","Calvin Brownholtz",11,24,189
+401426618,2022,13,"UTEP","4875687","Tyrin Smith",1,1,56
+401426618,2022,13,"UTSA","4245186","Frank Harris",16,22,382
+401426618,2022,13,"UTSA","4683012","Eddie Lee Marburger",0,2,0
+401437008,2022,14,"Tulane","4685039","Michael Pratt",20,33,394
+401437008,2022,14,"UCF","4426494","John Rhys Plumlee",21,39,209
+401437008,2022,14,"UCF","4773919","Thomas Castellanos",2,8,7
+401437008,2022,14,"UCF","4568490","RJ Harvey",1,1,49
+401437009,2022,14,"Clemson","4685413","Cade Klubnik",20,24,279
+401437009,2022,14,"Clemson","4429020","D.J. Uiagalelei",2,5,10
+401437009,2022,14,"Clemson","4239998","Hunter Johnson",5,5,9
+401437009,2022,14,"Clemson","4431562","Phil Mafah",1,1,19
+401437009,2022,14,"North Carolina","4431452","Drake Maye",26,42,268
+401437009,2022,14,"North Carolina","4429463","Jacolby Criswell",1,1,5
+401437030,2022,14,"Kansas State","4429955","Will Howard",18,31,199
+401437030,2022,14,"TCU","4427105","Max Duggan",18,36,251
+401437031,2022,14,"Michigan","4433970","J.J. McCarthy",11,17,161
+401437031,2022,14,"Purdue","4260394","Aidan O'Connell",32,47,366
+401437032,2022,14,"North Texas","4360163","Austin Aune",14,28,194
+401437032,2022,14,"North Texas","4583940","Kaylon Horton",0,1,0
+401437032,2022,14,"UTSA","4245186","Frank Harris",32,37,341
+401437032,2022,14,"UTSA","4426893","Joshua Cephus",1,1,3
+401437033,2022,14,"Ohio","4686788","CJ Harris",17,31,163
+401437033,2022,14,"Toledo","4427191","Dequan Finn",16,25,154
+401437034,2022,14,"Boise State","4431325","Taylen Green",17,38,175
+401437034,2022,14,"Fresno State","4243322","Jake Haener",17,27,184
+401437035,2022,14,"USC","4431611","Caleb Williams",28,41,363
+401437035,2022,14,"Utah","4362075","Cameron Rising",22,34,310
+401437036,2022,14,"Georgia","4259553","Stetson Bennett",23,29,274
+401437036,2022,14,"LSU","4567747","Garrett Nussmeier",15,27,294
+401437036,2022,14,"LSU","4426348","Jayden Daniels",16,24,208
+401437037,2022,14,"Coastal Carolina","4427936","Grayson McCall",29,41,319
+401437037,2022,14,"Troy","4362723","Gunnar Watson",12,17,319
+401507088,2022,14,"New Mexico State","5084180","Diego Pavia",9,13,323
+401507088,2022,14,"New Mexico State","4914368","Gavin Frakes",5,10,58
+401507088,2022,14,"New Mexico State","4427125","Weston Eget",1,1,8
+401507088,2022,14,"Valparaiso","4879147","Michael Appel Jr.",12,25,92
+401507088,2022,14,"Valparaiso","4698651","Jeffrey Jackson",5,12,54
+401404145,2022,15,"Army","4577303","Cade Ballard",2,10,28
+401404145,2022,15,"Army","4373726","Tyhier Tyler",0,2,0
+401404145,2022,15,"Navy","4568526","Maasai Maynor",0,2,0
+401404145,2022,15,"Navy","4686167","Xavier Arline",1,1,25
