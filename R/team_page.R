@@ -107,7 +107,7 @@ team_page <- function(app_data, team_id, sides = football_team_games(app_data)) 
   schedule <- data.frame(
     week = games$when,
     game = upcoming_html(games, line, teams = teams, ranks = ranks,
-                         market = market_lines(games, teams, app_data$slate)),
+                         market = market_lines(games, teams, market_table(app_data))),
     stringsAsFactors = FALSE
   )
   left <- sum(is.na(games$points_for))

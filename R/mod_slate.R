@@ -10,8 +10,7 @@ SLATE_KEYS <- c(our = 6, market = 7, gap = 8, prob = 9)
 #' Normally that is this week's slate. Once every game on it has been
 #' played, the tab would sit empty until the next data refresh, so it looks
 #' ahead instead: the next week's games between teams we rate, from the
-#' schedule. Those have no sportsbook line yet, since lines are pulled with
-#' the weekly refresh.
+#' schedule, with the sportsbook line for each game that has one.
 #'
 #' @return list(games, week, ahead): rows shaped like app_data$slate, the
 #'   week they belong to, and TRUE when they are next week's.
@@ -29,7 +28,12 @@ shown_slate <- function(app_data) {
   ahead <- ahead[order(ahead$start_date, ahead$game_id), , drop = FALSE]
   games <- data.frame(game_id = ahead$game_id, start_date = ahead$start_date, home_id = ahead$home_id,
                       away_id = ahead$away_id, neutral_site = ahead$neutral_site %in% c(TRUE, 1),
-                      market_spread_home = NA_real_, market_at_freeze = NA_real_, market_move = NA_real_)
+                      market_spread_home = if ("market_spread_home" %in% names(ahead)) {
+                        as.numeric(ahead$market_spread_home)
+                      } else {
+                        NA_real_
+                      },
+                      market_at_freeze = NA_real_, market_move = NA_real_)
   list(games = games, week = as.integer(ahead$week[1]), ahead = TRUE)
 }
 
@@ -38,19 +42,19 @@ mod_slate_ui <- function(id, app_data) {
   ns <- shiny::NS(id)
   shown <- shown_slate(app_data)
   has_games <- nrow(shown$games) > 0
+  has_market <- any(!is.na(shown$games$market_spread_home))
 
   body <- if (has_games) {
     htmltools::tagList(
       htmltools::p(
         class = "section-lede",
         if (shown$ahead) {
-          htmltools::tagList(
-            sprintf("Week %s is in the books, so this is a look ahead at week %s, in kickoff order. ",
-                    app_data$meta$week, shown$week),
-            "These are our lines alone: the sportsbooks' lines arrive with the next data refresh. "
-          )
-        } else {
+          sprintf("Week %s is in the books, so this is a look ahead at week %s. ", app_data$meta$week, shown$week)
+        },
+        if (has_market) {
           "Biggest gaps between our line and the market come first. "
+        } else {
+          "These are our lines alone, in kickoff order: the sportsbooks' lines arrive with the next data refresh. "
         },
         htmltools::tags$strong("Tap any game"), " to open it in Matchup."
       ),
@@ -201,9 +205,10 @@ mod_slate_server <- function(id, app_data, notes, on_open) {
   shiny::moduleServer(id, function(input, output, session) {
     shown <- shown_slate(app_data)
     if (nrow(shown$games) > 0) {
+      has_market <- any(!is.na(shown$games$market_spread_home))
       output$table <- DT::renderDT(
-        slate_table(slate_rows(app_data, session$ns("open"), notes, shown$games), by_gap = !shown$ahead,
-                    market = !shown$ahead)
+        slate_table(slate_rows(app_data, session$ns("open"), notes, shown$games), by_gap = has_market,
+                    market = has_market)
       )
     }
 

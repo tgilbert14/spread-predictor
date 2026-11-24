@@ -2048,7 +2048,7 @@
       "checksum": "12fa0382f9030bb7811d555c515eac30"
     },
     "data/app_data.rds": {
-      "checksum": "cfa62ab4b7542bc622843edf125b9a3c"
+      "checksum": "8f034baa3da9d5455a946c0c3780bc45"
     },
     "data/basketball/app_data.rds": {
       "checksum": "7a2de023a6d0c9f96c691e5193d7a149"
@@ -2066,7 +2066,7 @@
       "checksum": "e252eb3525d640c8adb96d822dab871c"
     },
     "R/build_app_data.R": {
-      "checksum": "6ceb93e9cd3fd2c1572bacb229d5d631"
+      "checksum": "16e77daac5111a82c28295941ee3cc32"
     },
     "R/build_db.R": {
       "checksum": "07d5203415b293b5f1d0671cf4d26688"
@@ -2108,10 +2108,10 @@
       "checksum": "5e80e7885f587270166187a91dd0dd00"
     },
     "R/mod_matchup.R": {
-      "checksum": "b7d487b2062999efcf9dc098b925766d"
+      "checksum": "ce046fbecfe0b356beb42cadfc2aaef2"
     },
     "R/mod_rankings.R": {
-      "checksum": "54e4c687f31916c9701e46f162f9790f"
+      "checksum": "815d8ca39c0cb1e957f3282a1f48e63d"
     },
     "R/mod_report.R": {
       "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
@@ -2120,7 +2120,7 @@
       "checksum": "83f614831ed28ec14b206bd0120ac042"
     },
     "R/mod_slate.R": {
-      "checksum": "e23dd86d914c70c217fc223c0373ab3d"
+      "checksum": "e1b646884e43565188f85908293d97d9"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2147,7 +2147,7 @@
       "checksum": "ca3d3a0a8a2d23e8dad0c43119f05640"
     },
     "R/team_page.R": {
-      "checksum": "639ebc35addaa89fd284aa1851c5c5b6"
+      "checksum": "82410653d7136ed13c63b2f37ae716fb"
     },
     "R/theme.R": {
       "checksum": "c9e4aae1cdf5a6c02bbaf95c6ece7e31"
@@ -2156,7 +2156,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "e7916a8e34715e70135f736f387970ca"
+      "checksum": "0aea81ce0b368fc5dceaa04fc032fcd7"
     },
     "www/app.js": {
       "checksum": "6f07f9d8d39bae6a53cf79c51a552067"

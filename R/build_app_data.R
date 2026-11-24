@@ -227,10 +227,13 @@ season_results <- function(con, season) {
   results
 }
 
-#' The season's games still to be played, for each team's next game.
+#' The season's games still to be played, for each team's next game, with
+#' the median sportsbook spread where we hold one.
 upcoming_games <- function(con, season) {
   upcoming <- query_sql_file(con, "upcoming_games.sql", list(season))
   upcoming$neutral_site <- upcoming$neutral_site == 1
+  lines <- median_spread(query_sql_file(con, "upcoming_lines.sql", list(season)))
+  upcoming$market_spread_home <- as.numeric(lines$spread[match(upcoming$game_id, lines$game_id)])
   upcoming
 }
 

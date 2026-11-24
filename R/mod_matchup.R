@@ -463,11 +463,14 @@ mod_matchup_server <- function(id, app_data, notes) {
       p
     })
     colors <- shiny::reactive(pick_team_colors(ok_pred()$team_a, ok_pred()$team_b))
+    # The games on the This week tab: this week's, or next week's once this
+    # week is played. Their market lines show here too.
+    shown_games <- shown_slate(app_data)$games
     # The real game between these two teams this week, or NULL. A snapshot
     # is about an earlier week, so this week's game does not apply to it.
     slate_game <- shiny::reactive({
       if (is_snapshot()) return(NULL)
-      find_slate_game(app_data$slate, ok_pred()$team_a$team_id, ok_pred()$team_b$team_id)
+      find_slate_game(shown_games, ok_pred()$team_a$team_id, ok_pred()$team_b$team_id)
     })
 
     output$headline <- shiny::renderUI({
@@ -485,7 +488,7 @@ mod_matchup_server <- function(id, app_data, notes) {
     # This week's market line. A snapshot shows how the game turned out instead.
     market <- shiny::reactive({
       if (is_snapshot()) return(NULL)
-      market_view(ok_pred(), app_data$slate, app_data$params$sigma)
+      market_view(ok_pred(), shown_games, app_data$params$sigma)
     })
     record <- market_record(app_data$params$metrics)
     output$market <- shiny::renderUI({

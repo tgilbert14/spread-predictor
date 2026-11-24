@@ -72,6 +72,10 @@ complete_app_data <- function(x) {
     x$upcoming <- cbind(week = rep(as.integer(x$meta$week), nrow(x$slate)),
                         x$slate[c("game_id", "start_date", "home_id", "away_id", "neutral_site")])
   }
+  # App data built before lines were kept for games beyond this week.
+  if (!"market_spread_home" %in% names(x$upcoming)) {
+    x$upcoming$market_spread_home <- x$slate$market_spread_home[match(x$upcoming$game_id, x$slate$game_id)]
+  }
   if (!is.data.frame(x$polls)) {
     x$polls <- data.frame(week = integer(), poll = character(), rank = integer(), team_id = integer(),
                           stringsAsFactors = FALSE)
@@ -230,6 +234,17 @@ team_ranks <- function(app_data, week = NULL) {
     return(structure(stats::setNames(as.integer(rows$rank), rows$team_id), poll = poll))
   }
   structure(stats::setNames(integer(), character()), poll = NA_character_)
+}
+
+#' Every sportsbook line the app holds for a game not yet played: this
+#' week's slate, then the rest of the schedule.
+#'
+#' @return Rows of game_id, home_id and market_spread_home, one per game.
+market_table <- function(app_data) {
+  columns <- c("game_id", "home_id", "market_spread_home")
+  held <- rbind(app_data$slate[columns], app_data$upcoming[columns])
+  held <- held[!is.na(held$market_spread_home), , drop = FALSE]
+  held[!duplicated(held$game_id), , drop = FALSE]
 }
 
 #' One team's rank from team_ranks(), or NA.

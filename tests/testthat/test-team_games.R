@@ -196,10 +196,36 @@ test_that("This week looks ahead to next week's games once its own are played", 
   expect_identical(nrow(rows), 2L)
   expect_identical(default_tab("", done), "slate")
 
+  # With sportsbook lines for those games, the market columns are back and
+  # the biggest gaps lead.
+  lined <- done
+  lined$upcoming$market_spread_home <- c(-3, 6.5, NA, NA)
+  with_lines <- shown_slate(lined)
+  expect_identical(with_lines$games$market_spread_home, c(6.5, -3))
+  html <- as.character(mod_slate_ui("s", lined))
+  expect_match(html, "Biggest gaps between our line and the market", fixed = TRUE)
+  expect_match(html, "look ahead at week 12", fixed = TRUE)
+  expect_false(grepl("our lines alone", html, fixed = TRUE))
+  rows <- slate_rows(lined, "open", slate = with_lines$games)
+  expect_false(any(grepl("No line", rows$market, fixed = TRUE)))
+
   # Nothing ahead either: the empty state, and the app opens on Matchup.
   none <- done
   none$upcoming <- none$upcoming[0, ]
   expect_identical(nrow(shown_slate(none)$games), 0L)
   expect_match(as.character(mod_slate_ui("s", none)), "No games on this week", fixed = TRUE)
   expect_identical(default_tab("", none), "matchup")
+})
+
+test_that("the market table holds every line we have, slate first", {
+  demo <- complete_app_data(demo_app_data())
+  expect_true("market_spread_home" %in% names(demo$upcoming))
+  app <- demo
+  app$slate <- app$slate[1:2, ]
+  app$slate$market_spread_home <- c(-7, NA)
+  app$upcoming <- data.frame(game_id = c(app$slate$game_id[1], 900L, 901L), home_id = c(1L, 2L, 3L),
+                             market_spread_home = c(-1, 4, NA))
+  held <- market_table(app)
+  expect_identical(held$game_id, c(app$slate$game_id[1], 900L))
+  expect_identical(held$market_spread_home, c(-7, 4))  # the slate's line wins for a game in both
 })

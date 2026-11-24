@@ -245,7 +245,7 @@ without `polls` loads with no committee or AP rankings.
 | `committee_guesses` | data frame | Our guess at the committee for every week so far, each learned only from rankings before it: `week`, `rank`, `team_id`, `score`, `prev_cfp`, `method`. Worked out once at build time. |
 | `forecasts` | data frame | Our saved predictions of the committee's rankings this season: `week`, `rank`, `team_id`, `score`, `prev_cfp` (the team's place in the committee's ranking before, `NA` if unranked), `method` (`"record"` with nothing learned yet, `"resume"` after the committee's first ranking, `"update"` once there is a previous ranking to start from), `made` (`"before"` the release, or `"after"` for ones worked out later to fill in earlier weeks) |
 | `results` | data frame | This season's finished regular-season games, so a snapshot can show how a game turned out: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `home_team`, `away_team` (names, since a lower-division opponent is not in `teams`), `neutral_site` (logical), `home_points`, `away_points` |
-| `upcoming` | data frame | This season's regular-season games still to be played, for each team's next game on the Rankings tab: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `home_team`, `away_team`, `neutral_site` (logical) |
+| `upcoming` | data frame | This season's regular-season games still to be played, for each team's next game on the Rankings tab: `game_id`, `week`, `start_date`, `home_id`, `away_id`, `home_team`, `away_team`, `neutral_site` (logical), `market_spread_home` (the median sportsbook spread from the home team's side, NA when we hold no line) |
 
 ### Scorecard (`app_data$scorecard`)
 
