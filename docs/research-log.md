@@ -743,3 +743,41 @@ Nothing reads it for the line yet. After a season of it, test whether
 "N starters out" moves games by more than the market already shows. Until
 then the app only marks a team with 4 or more starters out
 (`STARTERS_OUT_FLAG`), so This week stays readable.
+
+## 2026-11-24: do missing starters, other than the quarterback, move games?
+
+There is no history of injury reports, so absences were read off the box
+scores, like the quarterback study. `scripts/research/pull_box_scores.R`
+saved who carried, caught and tackled in every game since 2017 (150 API
+calls, files in `data/research/box/`). Going into a game, a team's core
+players are its top rusher, top 3 receivers and top 6 tacklers so far that
+season. A core player is out when he has no carry, catch or tackle in the
+game. 11,404 team-games, run with `scripts/research/starters_out.R`.
+
+| Factor | Points worse than our line | Cross-validated change | Holdout | |
+|---|---|---|---|---|
+| Each core player out | 0.56 | -0.012 [-0.032, +0.008] | -0.004 | rejected |
+| Top rusher out | 1.06 | -0.004 [-0.014, +0.005] | -0.003 | rejected |
+| Each top-3 receiver out | 0.61 | +0.002 [-0.010, +0.013] | -0.003 | rejected |
+| Each top-6 tackler out | 0.49 | -0.003 [-0.018, +0.010] | +0.005 | rejected |
+| 2 or more top tacklers out | 0.54 | -0.002 [-0.007, +0.004] | +0.000 | rejected |
+| 3 or more core players out | none | +0.002 [-0.001, +0.006] | -0.001 | rejected |
+| Missed the last game (known before kickoff) | 0.40 | -0.001 [-0.015, +0.011] | -0.005 | rejected |
+
+Scaling by how much of the team's production the missing players stood for
+does no better.
+
+What it says: the direction is right. A team missing a core player does
+about half a point worse than our line, and about a point without its top
+rusher. But that is small next to a typical miss of 12 points, and it does
+not improve the predictions. A quarterback is worth 3.5. No other single
+position comes close, and stacking absences ("3 or more out") shows
+nothing.
+
+Limits: a receiver who played and caught nothing counts as out, which
+waters the receiver number down. Offensive linemen do not appear in a box
+score at all. Both are reasons to keep the availability record going, since
+reports name linemen and say who is truly out.
+
+Decision: no adjustment for other positions. The "4 or more starters out"
+marker stays as a note for the reader, not a change to the line.
