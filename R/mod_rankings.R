@@ -525,7 +525,7 @@ football_games_column <- function(app_data, sides, team_ids, week, view) {
   # Looking back at a week already played, "next" is that week's game.
   played <- all(!is.na(games$points_for[!is.na(games$team_id)])) && any(!is.na(games$team_id))
   list(html = upcoming_html(games, line, teams = app_data$teams, ranks = ranks,
-                            market = market_lines(games, app_data$teams, app_data$slate)),
+                            market = market_lines(games, app_data$teams, market_table(app_data))),
        header = if (played) sprintf("Week %d game", week) else "Next game")
 }
 

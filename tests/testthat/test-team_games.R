@@ -196,10 +196,61 @@ test_that("This week looks ahead to next week's games once its own are played", 
   expect_identical(nrow(rows), 2L)
   expect_identical(default_tab("", done), "slate")
 
+  # With sportsbook lines for those games, the market columns are back and
+  # the biggest gaps lead.
+  lined <- done
+  lined$upcoming$market_spread_home <- c(-3, 6.5, NA, NA)
+  with_lines <- shown_slate(lined)
+  expect_identical(with_lines$games$market_spread_home, c(6.5, -3))
+  html <- as.character(mod_slate_ui("s", lined))
+  expect_match(html, "Biggest gaps between our line and the market", fixed = TRUE)
+  expect_match(html, "look ahead at week 12", fixed = TRUE)
+  expect_false(grepl("our lines alone", html, fixed = TRUE))
+  rows <- slate_rows(lined, "open", slate = with_lines$games)
+  expect_false(any(grepl("No line", rows$market, fixed = TRUE)))
+
   # Nothing ahead either: the empty state, and the app opens on Matchup.
   none <- done
   none$upcoming <- none$upcoming[0, ]
   expect_identical(nrow(shown_slate(none)$games), 0L)
   expect_match(as.character(mod_slate_ui("s", none)), "No games on this week", fixed = TRUE)
   expect_identical(default_tab("", none), "matchup")
+})
+
+test_that("the market table holds every line we have, slate first", {
+  demo <- complete_app_data(demo_app_data())
+  expect_true("market_spread_home" %in% names(demo$upcoming))
+  app <- demo
+  app$slate <- app$slate[1:2, ]
+  app$slate$market_spread_home <- c(-7, NA)
+  app$upcoming <- data.frame(game_id = c(app$slate$game_id[1], 900L, 901L), home_id = c(1L, 2L, 3L),
+                             market_spread_home = c(-1, 4, NA))
+  held <- market_table(app)
+  expect_identical(held$game_id, c(app$slate$game_id[1], 900L))
+  expect_identical(held$market_spread_home, c(-7, 4))  # the slate's line wins for a game in both
+})
+
+test_that("the line track puts both lines on one scale, away to the left", {
+  expect_identical(line_track(3, NA, 14, "KOF", "IRN"), "")
+  expect_identical(line_track(3, 2, NA, "KOF", "IRN"), "")
+  html <- line_track(7, -7, 14, "KOF", "IRN")  # we like the away team, the market the home team
+  expect_match(html, 'is-ours" style="left:25.0%', fixed = TRUE)
+  expect_match(html, 'is-market" style="left:75.0%', fixed = TRUE)
+  expect_match(html, "left:25.0%;width:50.0%", fixed = TRUE)
+  expect_match(html, 'aria-label="Our line KOF by 7, the market IRN by 7."', fixed = TRUE)
+  # A line bigger than the scale stays on the track.
+  expect_match(line_track(60, 0, 14, "KOF", "IRN"), 'is-ours" style="left:3.0%', fixed = TRUE)
+})
+
+test_that("the scale covers the biggest line on the page and marks big gaps", {
+  demo <- complete_app_data(demo_app_data())
+  preds <- list(list(spread = 3), NULL, list(spread = -20))
+  expect_identical(line_scale(preds, data.frame(market_spread_home = c(1, NA, 9))), 21)
+  expect_identical(line_scale(list(list(spread = 1)), data.frame(market_spread_home = NA_real_)), 7)
+  expect_identical(line_scale(list(list(spread = 90)), data.frame(market_spread_home = 0)), 40)
+  expect_true(is.na(line_scale(list(NULL), data.frame(market_spread_home = NA_real_))))
+  rows <- slate_rows(demo, "open")
+  lined <- !is.na(demo$slate$market_spread_home[seq_len(nrow(rows))])
+  expect_true(all(grepl("line-track", rows$gap[rows$market_key >= 0], fixed = TRUE)))
+  expect_identical(grepl("is-big", rows$gap, fixed = TRUE), rows$gap_key >= DISAGREE_POINTS)
 })
