@@ -660,3 +660,52 @@ quarterback, so no adjustment applied, as the study says it should not.
 **To revisit.** The size is a constant in `R/config.R`. Once a season of
 graded games exists, refit it, and drop the adjustment if it has not
 helped.
+
+## 2026-11-24: do matchups matter beyond the ratings?
+
+A rating says how good a team is overall. The question was whether it also
+matters how two teams fit: a passing offense against a defense that is weak
+against the pass, or a top offense against a top defense.
+
+Each team's four units (pass offense, rush offense, pass defense, rush
+defense) are its points added per play so far that season, from games
+already played, set against the rest of the country
+(`scripts/research/matchups.R`). 4,913 games had units for both teams.
+
+| Candidate | CV change | Holdout | Verdict |
+|---|---|---|---|
+| Style fit: pass-leaning offense against a pass-soft defense | -0.001 [-0.012, +0.011] | -0.020 | rejected |
+| Passing: offense's edge over the defense it faces | +0.008 [-0.009, +0.026] | -0.027 | rejected |
+| Rushing: offense's edge over the defense it faces | -0.001 [-0.019, +0.019] | -0.017 | rejected |
+| Top offense against top defense | -0.010 [-0.024, +0.004] | -0.021 | rejected |
+| Each team's weakest unit | +0.003 [-0.018, +0.024] | -0.002 | rejected |
+
+Nothing passes. Top offense against top defense is the closest. Two limits
+on this test: the units are not adjusted for the opponents each team has
+faced, and the unit numbers are noisy early in a season.
+
+**Injuries to other positions** (a top defense missing its best safety)
+cannot be tested yet. We have no measure of what one defender is worth, and
+no history of availability reports to learn from. The availability check
+would have to record every starter listed out for a season first.
+
+## 2026-11-24: does the committee drop a team whose quarterback is out?
+
+The committee's protocol lets it weigh a key player's absence. Added an
+input to the week-to-week model: the team's established starter missed its
+latest game. Each season predicted from the others, as before.
+
+| | Average places off | 2026 |
+|---|---|---|
+| Model as it is | 1.305 | 1.24 |
+| + starter out | 1.320 | 1.28 |
+| + starter newly out | 1.307 | 1.24 |
+
+The learned weight points the right way (about a quarter to half a place
+down) but the prediction gets no better. It is rare: 30 ranked team-weeks
+since 2018. Ranked teams that kept winning moved up 1.1 places with the
+starter out and 1.2 with him in. Where it has clearly mattered is the
+playoff cut on Selection Day (Florida State in 2023), which is one case.
+
+Decision: not scored. The committee prediction flags the team instead
+("QB out" or "QB missed last game"), so the reader can weigh it.
