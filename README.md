@@ -75,6 +75,20 @@ bid that goes to the best team from the six smaller conferences.
 opens the share sheet; elsewhere it copies a sentence with our line and a
 link that opens the game.
 
+**Quarterbacks.** Each week the refresh saves who threw the passes in
+every game. A team's page says who its quarterback is now and, if that
+changed, when the opening starter last played.
+
+**A line adjusted for a quarterback who is out.** A study of 2018 to 2026
+found that when an established starter is out, his team does about 3.5
+points worse than our line (`docs/research-log.md`). The Thursday and
+Friday availability check records each quarterback's reported status.
+When the one listed out is the team's established starter, This week and
+Matchup show a second line with those points taken off, and the Scorecard
+grades it beside ours and the market's. Our own line stays as it is. Games
+where we and the sportsbooks differ by 7 or more are marked "Big gap:
+check for news".
+
 **Rankings beside names.** Wherever a team is named in a matchup (This
 week, the Matchup header, the Scorecard), a small number shows the playoff
 committee's latest ranking, or the AP poll before the committee starts.

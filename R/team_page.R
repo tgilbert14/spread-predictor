@@ -123,6 +123,13 @@ team_page <- function(app_data, team_id, sides = football_team_games(app_data)) 
       )
     ),
     htmltools::div(class = "team-facts", facts),
+    {
+      sentence <- quarterback_sentence(app_data$quarterbacks[app_data$quarterbacks$team_id %in% team$team_id, , drop = FALSE])
+      if (!is.null(sentence)) {
+        htmltools::p(class = "team-qb", htmltools::tags$strong("Quarterback. "), sentence,
+                     htmltools::span(class = "fine-print", " From the box scores."))
+      }
+    },
     if (!is.null(power)) {
       htmltools::div(
         class = "team-trend",

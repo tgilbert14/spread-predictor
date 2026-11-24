@@ -417,6 +417,26 @@ slate_line_note <- function(game, app_data) {
   line_move_note(game, school(game$home_id), school(game$away_id), frozen_at)
 }
 
+#' A note when a team in this week's game has its established starting
+#' quarterback listed out: who, and what our line would be with the usual
+#' cost of that taken off. NULL when it does not apply.
+#'
+#' @param game The slate game between the two teams, or NULL.
+qb_out_note <- function(pred, game, app_data) {
+  if (is.null(game)) return(NULL)
+  out <- qb_out_teams(app_data, shown_slate(app_data)$week)
+  a_out <- pred$team_a$team_id %in% out$team_id
+  b_out <- pred$team_b$team_id %in% out$team_id
+  if (!a_out && !b_out) return(NULL)
+  who <- function(team) sprintf("%s's starting quarterback, %s,", team$school, out$athlete[match(team$team_id, out$team_id)])
+  listed <- paste(c(if (a_out) who(pred$team_a), if (b_out) who(pred$team_b)), collapse = " and ")
+  adjusted <- pred$spread + QB_OUT_POINTS * (as.numeric(b_out) - as.numeric(a_out))
+  sprintf(paste("%s %s listed out. Teams in that spot have done about %s points worse than our line,",
+                "which would make this %s. Our line above does not include it."),
+          listed, if (a_out && b_out) "are" else "is", format_points(QB_OUT_POINTS),
+          format_favorite(adjusted, pred$team_a$school, pred$team_b$school))
+}
+
 #' The address-bar query for a prediction, using school names so links read well.
 #'
 #' @param week The snapshot week, or NULL for this week (left out of the link).
@@ -498,7 +518,8 @@ mod_matchup_server <- function(id, app_data, notes) {
     })
     output$flags <- shiny::renderUI({
       if (is_snapshot()) return(flag_list(snapshot_flags(ok_pred(), app_data$history, week())))
-      flag_list(c(ok_pred()$flags, slate_line_note(slate_game(), app_data), data_flags))
+      flag_list(c(ok_pred()$flags, qb_out_note(ok_pred(), slate_game(), app_data),
+                  slate_line_note(slate_game(), app_data), data_flags))
     })
     output$snapshot_banner <- shiny::renderUI({
       if (is_snapshot()) snapshot_banner(session$ns, week())

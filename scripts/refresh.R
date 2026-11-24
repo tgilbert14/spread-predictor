@@ -28,6 +28,19 @@ if (!offline) {
   if (!all(ok)) {
     message("Some snapshot steps failed (see above). Continuing with the files on disk.")
   }
+  # Who threw the passes last weekend: one API call for each week not saved
+  # yet, plus the latest week again in case a game was not final last time.
+  # A failure here never stops the refresh.
+  tryCatch({
+    season <- latest_snapshot_season()
+    games <- read_snapshot(file.path(PATHS$snapshots, "games", sprintf("%d.csv", season)))
+    played <- games[games$season_type == "regular" & games$completed %in% c(TRUE, "TRUE", 1), , drop = FALSE]
+    if (nrow(played) > 0) {
+      weeks <- sort(unique(played$week))
+      pulled <- pull_passing(season, weeks, refresh = max(weeks))
+      message("Passing box scores: pulled ", pulled, " week(s).")
+    }
+  }, error = function(e) message("Could not pull passing box scores: ", conditionMessage(e)))
 }
 
 build_db()

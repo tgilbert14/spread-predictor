@@ -102,8 +102,11 @@ mod_slate_ui <- function(id, app_data) {
 #'
 #' @param notes This week's game notes (app_notes()), counted per game.
 #' @param slate The games to show: shown_slate()$games.
-slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slate(app_data)$games) {
+#' @param week The week those games belong to, for quarterback reports.
+slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slate(app_data)$games,
+                       week = shown_slate(app_data)$week) {
   ranks <- team_ranks(app_data)
+  qb_out <- qb_out_teams(app_data, week)
   preds <- lapply(seq_len(nrow(slate)), function(i) {
     m <- slate_matchup(slate[i, , drop = FALSE])
     tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params, week = app_data$meta$week),
@@ -114,7 +117,8 @@ slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slat
     if (is.null(preds[[i]])) return(NULL)
     game <- slate[i, , drop = FALSE]
     slate_row(preds[[i]], game, open_input_id, n_notes = sum(notes$game_id == game$game_id), ranks = ranks,
-              scale = scale)
+              scale = scale, qb_out = c(away = game$away_id %in% qb_out$team_id,
+                                        home = game$home_id %in% qb_out$team_id))
   })
   do.call(rbind, rows)
 }
@@ -164,7 +168,15 @@ line_track <- function(ours, market, scale, away, home) {
 #'   text. FALSE where the app cannot open a matchup from a link (basketball).
 #' @param scale What line_scale() returns, to draw the line track. NULL
 #'   leaves the track out.
-slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE, scale = NULL) {
+#' @param qb_out c(away = , home = ): TRUE where that team's established
+#'   starting quarterback is listed out. The row then shows the line
+#'   adjusted for it under our line.
+slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE, scale = NULL,
+                      qb_out = c(away = FALSE, home = FALSE)) {
+  # The adjustment from the away team's side: it loses points when its own
+  # quarterback is out and gains them when the home team's is.
+  qb_adjust <- -qb_home_adjustment(qb_out[["home"]], qb_out[["away"]])
+  qb_teams <- c(if (qb_out[["away"]]) pred$team_a$school, if (qb_out[["home"]]) pred$team_b$school)
   ranked <- function(team) if (is.null(ranks)) NA else rank_of(ranks, team$team_id)
   away <- pred$team_a$school
   home <- pred$team_b$school
@@ -180,9 +192,14 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, shar
     matchup = paste0(
       matchup_html(team_name_html(pred$team_a, away, ranked(pred$team_a)), joiner,
                    team_name_html(pred$team_b, home, ranked(pred$team_b))),
-      slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes)
+      slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes,
+                    gap = if (has_line) gap else NA, qb_out = qb_teams)
     ),
-    our = cell("Our line", esc(format_favorite(pred$spread, away, home))),
+    our = cell("Our line", paste0(
+      esc(format_favorite(pred$spread, away, home)),
+      if (qb_adjust != 0) sprintf('<span class="adj-line"><span class="adj-line-label">With QB out</span>%s</span>',
+                                  esc(format_favorite(pred$spread + qb_adjust, away, home)))
+    )),
     market = cell("Market", if (has_line) esc(format_favorite(market, away, home)) else '<span class="muted">No line</span>'),
     gap = cell("Difference", if (has_line) {
       # A gap of DISAGREE_POINTS or more is the kind the Scorecard tracks.

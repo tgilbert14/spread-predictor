@@ -43,6 +43,7 @@ mod_scorecard_ui <- function(id, app_data) {
       report_section("Week by week", scorecard_weeks_block(scorecard$weeks)),
       report_section("All five systems, graded", scorecard_systems_block(scorecard$systems))
     )),
+    scorecard_qb_section(app_data),
     report_section("Game by game", htmltools::tagList(
       htmltools::p(class = "section-lede",
                    "Pick a week. The chart shows the games where we and the market were furthest apart ",
@@ -183,6 +184,43 @@ scorecard_weeks_block <- function(weeks) {
     })),
     chart_details("See the numbers", htmltools::div(class = "scorecard-weeks", scorecard_weeks_table(weeks)))
   )
+}
+
+#' "Quarterback adjustments, graded": how the line adjusted for a starter
+#' listed out did against ours and the market's. NULL until a game has one.
+scorecard_qb_section <- function(app_data) {
+  games <- app_data$scorecard$games
+  graded <- grade_qb_adjustment(games[!is.na(games$final_margin), , drop = FALSE], app_data$qb_games,
+                                app_data$qb_status, app_data$teams)
+  if (nrow(graded) == 0) return(NULL)
+  n <- nrow(graded)
+  rows <- data.frame(
+    week = graded$week,
+    game = paste(graded$away_team, "at", graded$home_team),
+    out = graded$out,
+    ours = format_miss(graded$our_miss),
+    adjusted = format_miss(graded$adjusted_miss),
+    market = format_miss(graded$market_miss),
+    stringsAsFactors = FALSE
+  )
+  lined <- !is.na(graded$market_miss)
+  report_section("Quarterback adjustments, graded", htmltools::tagList(
+    htmltools::p(
+      class = "section-lede",
+      sprintf("When a report lists an established starting quarterback out before kickoff, we also show a line with %s points taken off his team.",
+              format_points(QB_OUT_POINTS)),
+      sprintf("This grades that adjusted line on the %d %s it has applied to. It is far too few to judge yet.",
+              n, if (n == 1) "game" else "games")
+    ),
+    dot_chart(c("Our line", "Adjusted for the QB", "Market"),
+              c(mean(graded$our_miss), mean(graded$adjusted_miss),
+                if (any(lined)) mean(graded$market_miss[lined]) else mean(graded$our_miss)),
+              highlight = c(FALSE, TRUE, FALSE), benchmark = c(FALSE, FALSE, any(lined)),
+              note = "Average miss in points on these games. Left is better.", benchmark_label = "Sportsbooks"),
+    chart_details("See the games",
+                  simple_table(rows, headers = list("Week", "Game", "Starter out", "Our miss", "Adjusted miss", "Market miss"),
+                               numeric = c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE)))
+  ))
 }
 
 #' Every system's average miss on one scale, best at the top.
