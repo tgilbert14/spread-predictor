@@ -82,7 +82,10 @@ changed, when the opening starter last played.
 **A line adjusted for a quarterback who is out.** A study of 2018 to 2026
 found that when an established starter is out, his team does about 3.5
 points worse than our line (`docs/research-log.md`). The Thursday and
-Friday availability check records each quarterback's reported status.
+Friday availability check records each quarterback's reported status. It also
+records every other starter listed out, in `data/availability.csv`. The line
+does not use those yet. They are being collected so the idea can be tested
+after a season, and This week only marks a team with 4 or more starters out.
 When the one listed out is the team's established starter, This week and
 Matchup show a second line with those points taken off, and the Scorecard
 grades it beside ours and the market's. Our own line stays as it is. Games

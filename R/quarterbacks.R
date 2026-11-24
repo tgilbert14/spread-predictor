@@ -318,3 +318,55 @@ qb_flagged_teams <- function(app_data, week) {
   }
   out
 }
+
+# ---- Other starters listed out -------------------------------------------------
+
+# data/availability.csv: every starter, other than a quarterback, that a
+# report lists out or doubtful. Nothing in the model reads it yet. It is
+# being collected so the cost of losing other starters can be tested once
+# there is a season of it (docs/research-log.md, Nov. 24). The app only
+# marks a team that has STARTERS_OUT_FLAG or more out.
+AVAILABILITY_COLUMNS <- c("season", "week", "team", "athlete", "position", "status", "source", "source_url",
+                          "checked_at")
+
+#' One season of starters listed out, other than quarterbacks.
+#'
+#' Tolerates a missing or empty file and missing columns, like
+#' load_qb_status().
+load_availability <- function(path = PATHS$availability, season) {
+  empty <- as.data.frame(stats::setNames(replicate(length(AVAILABILITY_COLUMNS), character(), simplify = FALSE),
+                                         AVAILABILITY_COLUMNS), stringsAsFactors = FALSE)
+  empty$season <- integer()
+  empty$week <- integer()
+  if (!file.exists(path)) return(empty)
+  raw <- tryCatch(utils::read.csv(path, stringsAsFactors = FALSE, colClasses = "character"),
+                  error = function(e) NULL)
+  if (is.null(raw) || nrow(raw) == 0) return(empty)
+  for (column in setdiff(AVAILABILITY_COLUMNS, names(raw))) raw[[column]] <- NA_character_
+  raw <- raw[AVAILABILITY_COLUMNS]
+  raw$season <- suppressWarnings(as.integer(raw$season))
+  raw$week <- suppressWarnings(as.integer(raw$week))
+  raw$status <- tolower(trimws(gsub("[ -]+", "_", raw$status)))
+  keep <- raw$season %in% season & !is.na(raw$week) & nzchar(trimws(raw$team)) & nzchar(trimws(raw$athlete)) &
+    !is.na(raw$status) & nzchar(raw$status)
+  raw <- raw[keep & !is.na(keep), , drop = FALSE]
+  rownames(raw) <- NULL
+  raw
+}
+
+#' How many starters each team has listed out for a week.
+#'
+#' The newest report for a player wins, and "out for the season" carries to
+#' later weeks, as with quarterbacks.
+#'
+#' @return Counts named by team (the school). Teams with none are left out.
+starters_out <- function(availability, week) {
+  rows <- availability[availability$week == week |
+                         (availability$status == "out_for_season" & availability$week < week), , drop = FALSE]
+  if (nrow(rows) == 0) return(stats::setNames(integer(), character()))
+  rows <- rows[order(rows$week, rows$checked_at, decreasing = TRUE), , drop = FALSE]
+  latest <- rows[!duplicated(paste(rows$team, tolower(rows$athlete))), , drop = FALSE]
+  out <- latest[latest$status %in% QB_OUT_STATUSES, , drop = FALSE]
+  counts <- table(out$team)
+  stats::setNames(as.integer(counts), names(counts))
+}

@@ -200,3 +200,37 @@ test_that("the committee prediction flags a team whose starter is out", {
   expect_identical(qb_flagged_teams(demo, upcoming$week)$why, "listed out")
   expect_match(as.character(upcoming_forecast_table(upcoming, demo)), ">QB out<", fixed = TRUE)
 })
+
+test_that("starters listed out are counted per team, newest report first", {
+  row <- function(week, team, athlete, status, at = "2026-11-19T02:00:00Z") {
+    data.frame(season = 2026L, week = week, team = team, athlete = athlete, position = "S", status = status,
+               source = "Report", source_url = "", checked_at = at, stringsAsFactors = FALSE)
+  }
+  listed <- rbind(row(12L, "Kofa", "A One", "out"), row(12L, "Kofa", "B Two", "doubtful"),
+                  row(12L, "Kofa", "C Three", "out"), row(12L, "Kofa", "C Three", "probable", "2026-11-20T02:00:00Z"),
+                  row(10L, "Kofa", "D Four", "out_for_season"), row(11L, "Kofa", "E Five", "out"),
+                  row(12L, "Ironwood", "F Six", "out"))
+  counts <- starters_out(listed, 12L)
+  # Kofa: A One (out) and D Four (out for the season). Doubtful, a later
+  # "probable", and last week's "out" do not count.
+  expect_identical(counts[["Kofa"]], 2L)
+  expect_identical(counts[["Ironwood"]], 1L)
+  expect_length(starters_out(listed[0, ], 12L), 0)
+})
+
+test_that("the availability file loads safely, and only a crowd of absences is marked", {
+  expect_identical(nrow(load_availability(tempfile(), 2026L)), 0L)
+  expect_named(load_availability(tempfile(), 2026L), AVAILABILITY_COLUMNS)
+  expect_identical(nrow(load_availability(file.path(project_root, "data", "availability.csv"), 2026L)), 0L)
+
+  demo <- complete_app_data(demo_app_data())
+  home <- demo$teams$school[match(demo$slate$home_id[1], demo$teams$team_id)]
+  many <- data.frame(season = 2026L, week = demo$meta$week, team = home, athlete = paste("Player", 1:5),
+                     position = "LB", status = "out", source = "Report", source_url = "",
+                     checked_at = "2026-11-19T02:00:00Z", stringsAsFactors = FALSE)
+  demo$availability <- many
+  rows <- slate_rows(demo, "open")
+  expect_match(rows$matchup[1], paste0(home, ": 5 starters out"), fixed = TRUE)
+  demo$availability <- many[1:(STARTERS_OUT_FLAG - 1), ]
+  expect_false(grepl("starters out", slate_rows(demo, "open")$matchup[1], fixed = TRUE))
+})

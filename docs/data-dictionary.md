@@ -321,3 +321,16 @@ grading, only rows with `checked_at` before kickoff count.
 |---|---|---|
 | `qb_games` | data frame | Who the main quarterback was going into each game played this season: `game_id`, `team_id`, `main_name`, `established` |
 | `qb_status` | data frame | The rows of this file for the season, read when the app starts |
+| `availability` | data frame | The rows of `data/availability.csv` for the season |
+
+## Other starters listed out: `data/availability.csv`
+
+One row each time a report lists a starter other than a quarterback as out
+or doubtful. Same columns as the quarterback file, plus `position` (`S`,
+`LT`, `WR` and so on). The availability check appends to it.
+
+The line does not use it. It is being collected so the cost of missing
+starters can be tested after a full season (research log, Nov. 24). The app
+counts each team's starters listed `out` or `out_for_season` for the week
+and marks the game on This week when a team has 4 or more
+(`STARTERS_OUT_FLAG` in `R/config.R`).

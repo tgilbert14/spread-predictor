@@ -63,6 +63,7 @@ app_files <- c(
   file.path("data", "app_data.rds"),
   file.path("data", "notes.csv"),
   file.path("data", "qb_status.csv"),
+  file.path("data", "availability.csv"),
   # Basketball's own data file, when it has been built.
   Filter(file.exists, file.path("data", "basketball", "app_data.rds"))
 )

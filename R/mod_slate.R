@@ -107,6 +107,10 @@ slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slat
                        week = shown_slate(app_data)$week) {
   ranks <- team_ranks(app_data)
   qb_out <- qb_out_teams(app_data, week)
+  # Only a team with many starters out is marked, to keep the page clear.
+  sitting <- starters_out(app_data$availability, week)
+  sitting <- sitting[sitting >= STARTERS_OUT_FLAG]
+  school <- function(team_id) app_data$teams$school[match(team_id, app_data$teams$team_id)]
   preds <- lapply(seq_len(nrow(slate)), function(i) {
     m <- slate_matchup(slate[i, , drop = FALSE])
     tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params, week = app_data$meta$week),
@@ -118,7 +122,10 @@ slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slat
     game <- slate[i, , drop = FALSE]
     slate_row(preds[[i]], game, open_input_id, n_notes = sum(notes$game_id == game$game_id), ranks = ranks,
               scale = scale, qb_out = c(away = game$away_id %in% qb_out$team_id,
-                                        home = game$home_id %in% qb_out$team_id))
+                                        home = game$home_id %in% qb_out$team_id),
+              starters_out = unlist(lapply(c(school(game$away_id), school(game$home_id)), function(team) {
+                if (team %in% names(sitting)) sprintf("%s: %d starters out", team, sitting[[team]])
+              })))
   })
   do.call(rbind, rows)
 }
@@ -171,8 +178,9 @@ line_track <- function(ours, market, scale, away, home) {
 #' @param qb_out c(away = , home = ): TRUE where that team's established
 #'   starting quarterback is listed out. The row then shows the line
 #'   adjusted for it under our line.
+#' @param starters_out Ready-made markers such as "Kofa: 5 starters out".
 slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE, scale = NULL,
-                      qb_out = c(away = FALSE, home = FALSE)) {
+                      qb_out = c(away = FALSE, home = FALSE), starters_out = character()) {
   # The adjustment from the away team's side: it loses points when its own
   # quarterback is out and gains them when the home team's is.
   qb_adjust <- -qb_home_adjustment(qb_out[["home"]], qb_out[["away"]])
@@ -193,7 +201,7 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, shar
       matchup_html(team_name_html(pred$team_a, away, ranked(pred$team_a)), joiner,
                    team_name_html(pred$team_b, home, ranked(pred$team_b))),
       slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes,
-                    gap = if (has_line) gap else NA, qb_out = qb_teams)
+                    gap = if (has_line) gap else NA, qb_out = qb_teams, starters_out = starters_out)
     ),
     our = cell("Our line", paste0(
       esc(format_favorite(pred$spread, away, home)),
