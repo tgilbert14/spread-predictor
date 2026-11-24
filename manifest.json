@@ -2048,7 +2048,7 @@
       "checksum": "12fa0382f9030bb7811d555c515eac30"
     },
     "data/app_data.rds": {
-      "checksum": "6bf7c3005c554e500c07271f13ad1568"
+      "checksum": "4da846aab292ee40ea6f6000a1879853"
     },
     "data/basketball/app_data.rds": {
       "checksum": "fabbda4a5544ef97e7429f3f7f124128"
@@ -2114,7 +2114,7 @@
       "checksum": "bfe165e5e9efa9529143df4962b7027b"
     },
     "R/mod_rankings.R": {
-      "checksum": "815d8ca39c0cb1e957f3282a1f48e63d"
+      "checksum": "4db69644933ab0baf6b06f4ffb7b4c78"
     },
     "R/mod_report.R": {
       "checksum": "62319d9f8aa46094f86ec74cf98d9c94"
@@ -2144,7 +2144,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/quarterbacks.R": {
-      "checksum": "77451413b271771901838a7fddd7ff0e"
+      "checksum": "2ac8f6221854a1f500dcafb442d45a55"
     },
     "R/rankings.R": {
       "checksum": "518e6b9b58504b648a7778ae263b6c4c"
@@ -2192,7 +2192,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "2a79daf1877c6407b1bbcefa5a15c3b6"
+      "checksum": "d4306e4d08f776fd97fa1868bcc4ed3b"
     }
   },
   "users": null

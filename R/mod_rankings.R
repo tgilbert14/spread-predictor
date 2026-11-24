@@ -273,6 +273,13 @@ upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = 
                         upcoming$week, if (view == "last") "last result" else "next game and our line for it")
     ))
   }
+  # A starting quarterback who is out is something the committee may weigh.
+  flagged <- qb_flagged_teams(app_data, upcoming$week)
+  hurt <- match(rows$team_id, flagged$team_id)
+  team <- paste0(team, ifelse(is.na(hurt), "", sprintf(
+    '<span class="tossup qb-flag" title="%s">QB %s</span>',
+    htmltools::htmlEscape(paste(flagged$athlete[hurt], flagged$why[hurt]), attribute = TRUE),
+    ifelse(flagged$why[hurt] == "listed out", "out", "missed last game"))))
   # Two teams whose scores are nearly level could go either way.
   close <- tossups(rows$score)
   school <- teams$school[match(rows$team_id, teams$team_id)]
@@ -296,7 +303,11 @@ upcoming_forecast_table <- function(upcoming, app_data, view = "ranks", sides = 
       sprintf("Our prediction of the committee's week %d ranking.", upcoming$week),
       if (upcoming$saved) "Saved before the release." else "Not saved yet: it is saved once every game from the week before is final.",
       if (!first_time) "NR means the committee did not rank the team last time.",
-      if (any(!is.na(close))) "Toss-up: the model has the two teams nearly level, so either order is likely."
+      if (any(!is.na(close))) "Toss-up: the model has the two teams nearly level, so either order is likely.",
+      if (any(!is.na(hurt))) paste(
+        "QB out: the team's starting quarterback is listed out or missed its last game.",
+        "The committee may weigh that, most of all on Selection Day. It is too rare to put a number on, so it is flagged and not scored."
+      )
     )
   )
 }

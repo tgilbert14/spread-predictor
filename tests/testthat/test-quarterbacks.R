@@ -173,3 +173,30 @@ test_that("the slate shows the adjusted line and a marker when a starter is out"
   expect_identical(nrow(qb_out_teams(demo, demo$meta$week)), 0L)
   expect_null(scorecard_qb_section(demo))
 })
+
+test_that("the summary notices an established starter who missed the latest game", {
+  out_now <- rbind(box(1L, 1L, "A", 30L), box(2L, 2L, "A", 30L), box(3L, 3L, "A", 30L), box(4L, 4L, "B", 20L))
+  expect_true(quarterback_summary(out_now)$missed_last)
+  expect_false(quarterback_summary(out_now[1:3, ])$missed_last)
+  # Not established yet: nothing to flag.
+  expect_false(quarterback_summary(rbind(box(1L, 1L, "A", 30L), box(2L, 2L, "B", 20L)))$missed_last)
+})
+
+test_that("the committee prediction flags a team whose starter is out", {
+  demo <- complete_app_data(demo_app_data())
+  upcoming <- upcoming_forecast(demo)
+  skip_if(is.null(upcoming))
+  team <- demo$teams[demo$teams$team_id == upcoming$rows$team_id[2], ]
+  demo$quarterbacks <- data.frame(team_id = team$team_id, starter = "QB B", starts = 1L, opener = "QB A",
+                                  opener_last_week = 9L, changed = TRUE, main = "QB A", established = 1L,
+                                  missed_last = TRUE, stringsAsFactors = FALSE)
+  flagged <- qb_flagged_teams(demo, upcoming$week)
+  expect_identical(flagged$why, "missed the last game")
+  html <- as.character(upcoming_forecast_table(upcoming, demo))
+  expect_match(html, "QB missed last game", fixed = TRUE)
+  expect_match(html, "flagged and not scored", fixed = TRUE)
+  # A report that he is out says so in fewer words.
+  demo$qb_status <- report(upcoming$week, team$school, "QB A", "out")
+  expect_identical(qb_flagged_teams(demo, upcoming$week)$why, "listed out")
+  expect_match(as.character(upcoming_forecast_table(upcoming, demo)), ">QB out<", fixed = TRUE)
+})

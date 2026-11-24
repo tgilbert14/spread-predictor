@@ -105,12 +105,14 @@ quarterback_games <- function(passing) {
 #'   (who led in the season's first game), opener_last_week (the last week
 #'   the opener threw a pass), changed (TRUE when the starter is not the
 #'   opener), main (the most passes all season: the main quarterback going
-#'   into the next game) and established (1 when he is an established
-#'   starter). No rows when there is no passing data.
+#'   into the next game), established (1 when he is an established
+#'   starter) and missed_last (TRUE when an established main quarterback
+#'   threw no passes in the latest game). No rows when there is no passing
+#'   data.
 quarterback_summary <- function(passing) {
   empty <- data.frame(team_id = integer(), starter = character(), starts = integer(), opener = character(),
                       opener_last_week = integer(), changed = logical(), main = character(),
-                      established = integer(), stringsAsFactors = FALSE)
+                      established = integer(), missed_last = logical(), stringsAsFactors = FALSE)
   if (is.null(passing) || nrow(passing) == 0) return(empty)
   passing <- passing[order(passing$team_id, passing$start_date, passing$game_id, -passing$attempts), , drop = FALSE]
   rows <- lapply(split(passing, passing$team_id), function(team) {
@@ -127,6 +129,9 @@ quarterback_summary <- function(passing) {
                main = team$athlete[match(main, team$athlete_id)],
                established = as.integer(totals[[main]] >= QB_MIN_ATTEMPTS &&
                                           totals[[main]] / sum(totals) >= QB_ESTABLISHED_SHARE),
+               missed_last = totals[[main]] >= QB_MIN_ATTEMPTS &&
+                 totals[[main]] / sum(totals) >= QB_ESTABLISHED_SHARE &&
+                 !any(team$athlete_id == main & team$attempts > 0 & team$game_id == leaders$game_id[nrow(leaders)]),
                stringsAsFactors = FALSE)
   })
   out <- do.call(rbind, rows)
@@ -289,5 +294,27 @@ grade_qb_adjustment <- function(games, qb_games, status, teams) {
     market_miss = abs(games$final_margin + games$market_spread_home), stringsAsFactors = FALSE
   )[hit, , drop = FALSE]
   rownames(out) <- NULL
+  out
+}
+
+#' Teams whose established starting quarterback is out or may be: listed
+#' out in a report for the week, or absent from the latest game.
+#'
+#' Used to flag teams in the committee prediction. The committee may weigh
+#' a key player's absence, but it is too rare to learn a size for (30 ranked
+#' team-weeks since 2018), so it is shown, not scored.
+#'
+#' @return team_id, athlete and why ("listed out" or "missed the last game").
+qb_flagged_teams <- function(app_data, week) {
+  listed <- qb_out_teams(app_data, week)
+  now <- app_data$quarterbacks
+  missed <- if (is.data.frame(now) && "missed_last" %in% names(now)) now[now$missed_last %in% TRUE, , drop = FALSE] else NULL
+  out <- data.frame(team_id = listed$team_id, athlete = listed$athlete,
+                    why = rep("listed out", nrow(listed)), stringsAsFactors = FALSE)
+  if (!is.null(missed) && nrow(missed) > 0) {
+    extra <- missed[!missed$team_id %in% out$team_id, , drop = FALSE]
+    out <- rbind(out, data.frame(team_id = extra$team_id, athlete = extra$main,
+                                 why = rep("missed the last game", nrow(extra)), stringsAsFactors = FALSE))
+  }
   out
 }
