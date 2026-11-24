@@ -115,6 +115,11 @@ preseason_fade <- function(week, season_type = "regular") {
 # smallest gap that says the two forecasts really see the game differently.
 DISAGREE_POINTS <- 3
 
+# A gap to the market this large is flagged as "check for news". When we
+# and the market differ by 7 or more, the market's line has missed by 12.9
+# points on average and ours by 15.2.
+BIG_GAP_POINTS <- 7
+
 # A market line that has moved this many points since our prediction was
 # saved is flagged in the app. Lines rarely move that far on betting alone;
 # a big move usually means news, such as a quarterback ruled out, that the

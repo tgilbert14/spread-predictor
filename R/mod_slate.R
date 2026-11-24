@@ -180,7 +180,8 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, shar
     matchup = paste0(
       matchup_html(team_name_html(pred$team_a, away, ranked(pred$team_a)), joiner,
                    team_name_html(pred$team_b, home, ranked(pred$team_b))),
-      slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes)
+      slate_markers(if (is.null(game$market_move)) NA else game$market_move, n_notes,
+                    gap = if (has_line) gap else NA)
     ),
     our = cell("Our line", esc(format_favorite(pred$spread, away, home))),
     market = cell("Market", if (has_line) esc(format_favorite(market, away, home)) else '<span class="muted">No line</span>'),

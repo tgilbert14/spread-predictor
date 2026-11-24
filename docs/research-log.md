@@ -585,3 +585,60 @@ not proof. Kept.
 Week 13 change: Tennessee (beat Alabama, close in score) moves above
 Alabama, then the keep-winners rule puts Alabama back at 4. Net: Tennessee
 7th, Texas Tech 8th. Both won, Tennessee was 3 places ahead last time.
+
+## 2026-11-24: does a missing quarterback explain our misses?
+
+**What prompted it.** USC at UCLA in week 13: we had UCLA by 4.5, the
+sportsbooks USC by 7. Our line is built from ratings only and knows
+nothing about who is on the field.
+
+**Data.** Who threw the passes in every game, 2018 to 2026, from the box
+scores (`scripts/pull_passing.R`, 135 API calls once, one a week after
+that). The main quarterback is whoever has thrown the most passes for the
+team so far that season. He is out when he threw none in a game. An
+established starter has at least 75% of the team's passes over at least 60
+attempts, which leaves out early-season quarterback battles.
+
+**How teams did against our line** (fit seasons, `scripts/research/qb_out.R`):
+
+| Situation | Games | Points worse than our line | Worse than the market |
+|---|---|---|---|
+| Main QB out, any | 1,239 | 1.4 | -0.5 |
+| Established starter out | 482 | 3.5 | 1.4 |
+| ...the first game he misses | 359 | 4.0 | 1.8 |
+| ...a later game | 133 | 2.0 | 0.2 |
+| Established starter missed the last game | 240 | 0.9 | -0.4 |
+
+**Keep rule** (same as every other factor):
+
+| Factor | CV change | Holdout | Verdict |
+|---|---|---|---|
+| Established starter out | -0.026 [-0.053, -0.001] | -0.065 | kept |
+| ...the first game he misses | -0.024 [-0.050, +0.003] | -0.011 | rejected |
+| Established starter missed the last game | +0.000 [-0.005, +0.005] | -0.024 | rejected |
+| Out, scaled by how good he was | -0.001 [-0.014, +0.014] | -0.036 | rejected |
+| Main QB out, any | -0.004 [-0.023, +0.014] | -0.054 | rejected |
+
+**What it means.**
+- An established starter being out is worth about 3.5 points, and it
+  passes, narrowly: the top of the interval is -0.001. The size is steady
+  from 2021 on (3.1 to 6.0 by season) after two flat seasons.
+- Scaling by the quarterback's yards per attempt did not help.
+- "He missed the last game" does not pass on its own, because many come
+  back. Alabama's starter sat out a 47-0 win over an FCS team in week 12.
+  So the box scores can say who to watch, but the adjustment needs a
+  report that he is out this week.
+- After two missed games the effect is gone: the ratings have caught up.
+
+**And USC at UCLA?** Not explained by this. UCLA's starter went out in week
+6 and the backup has started six games (5-1), so he is now the main
+quarterback by our own rule and the ratings mostly reflect him. The market
+line is real (most books USC by 6.5 to 7) and at least one other
+ratings-based model also likes UCLA. The market is doubting UCLA for
+reasons a ratings model does not see.
+
+**Built so far.** The passing pull (weekly), each team's quarterback
+situation on its team page, and a "Big gap: check for news" marker on
+games where we and the market differ by 7 or more. Not built yet: the
+adjusted line, which needs the Thursday and Friday availability check to
+record "starter out" in a form the model can read.

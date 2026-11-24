@@ -1115,3 +1115,6 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
   table.dataTable.slate-table tbody td:nth-child(3) { min-width: 6.25rem; }
   table.dataTable.slate-table tbody td:first-child { min-width: 8.5rem; }
 }
+
+/* Team page: the quarterback line. */
+.team-qb { margin: 0.9rem 0 0; max-width: 62ch; }

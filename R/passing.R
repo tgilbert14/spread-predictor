@@ -93,6 +93,12 @@ pull_passing <- function(season, weeks, root = PATHS$snapshots, refresh = intege
   length(todo)
 }
 
+#' The newest season with a saved games file.
+latest_snapshot_season <- function(root = PATHS$snapshots) {
+  files <- list.files(file.path(root, "games"), pattern = "^[0-9]{4}\\.csv$")
+  max(as.integer(sub("\\.csv$", "", files)))
+}
+
 #' Every saved season of passing, as one table.
 load_passing <- function(root = PATHS$snapshots, seasons = NULL) {
   files <- list.files(file.path(root, "extras", "passing"), pattern = "^[0-9]{4}\\.csv$", full.names = TRUE)

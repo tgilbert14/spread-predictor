@@ -75,6 +75,14 @@ bid that goes to the best team from the six smaller conferences.
 opens the share sheet; elsewhere it copies a sentence with our line and a
 link that opens the game.
 
+**Quarterbacks.** Each week the refresh saves who threw the passes in
+every game. A team's page says who its quarterback is now and, if that
+changed, when the opening starter last played. Our line does not adjust
+for injuries yet: a study of 2018 to 2026 found a missing established
+starter is worth about 3.5 points (`docs/research-log.md`), and games where
+we and the sportsbooks differ by 7 or more are marked "Big gap: check for
+news".
+
 **Rankings beside names.** Wherever a team is named in a matchup (This
 week, the Matchup header, the Scorecard), a small number shows the playoff
 committee's latest ranking, or the AP poll before the committee starts.

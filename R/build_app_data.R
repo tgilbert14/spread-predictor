@@ -52,6 +52,7 @@ build_app_data <- function(db_path = PATHS$database, params_path = PATHS$params,
     history = rating_history(con, season, history_weeks, teams$team_id, power_through(power, history_weeks)),
     results = season_results(con, season),
     upcoming = upcoming_games(con, season),
+    quarterbacks = season_quarterbacks(snapshots_root, season),
     polls = load_polls(snapshots_root, season, teams),
     forecasts = load_forecasts(snapshots_root, season),
     committee_prior = committee_prior(learned_path, season)
@@ -225,6 +226,15 @@ season_results <- function(con, season) {
   results <- query_sql_file(con, "season_results.sql", list(season))
   results$neutral_site <- results$neutral_site == 1
   results
+}
+
+#' Where every team's quarterback job stands, from the saved box scores.
+#' No rows when no passing has been pulled for the season.
+season_quarterbacks <- function(snapshots_root, season) {
+  passing <- load_passing(snapshots_root, season)
+  games_path <- file.path(snapshots_root, "games", sprintf("%d.csv", as.integer(season)))
+  if (is.null(passing) || !file.exists(games_path)) return(quarterback_summary(NULL))
+  quarterback_summary(passing_with_teams(passing, read_snapshot(games_path)))
 }
 
 #' The season's games still to be played, for each team's next game, with
