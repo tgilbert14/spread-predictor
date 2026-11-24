@@ -83,6 +83,10 @@ complete_app_data <- function(x) {
   }
   # Reports of quarterbacks listed out are read when the app starts, like
   # the game notes, so a new report shows without rebuilding the app data.
+  if (!is.data.frame(x$availability)) {
+    x$availability <- if (isTRUE(x$meta$is_demo)) load_availability(tempfile(), x$meta$season) else
+      load_availability(PATHS$availability, x$meta$season)
+  }
   if (!is.data.frame(x$qb_status)) {
     x$qb_status <- if (isTRUE(x$meta$is_demo)) load_qb_status(tempfile(), x$meta$season) else
       load_qb_status(PATHS$qb_status, x$meta$season)
@@ -528,9 +532,10 @@ line_move_note <- function(game, home_name, away_name, frozen_at = NA) {
 
 #' Compact text markers for a slate row, such as "Line moved 3" and "2 notes".
 #' Returns HTML for the DT cell, or "" when there is nothing to mark.
-slate_markers <- function(move, n_notes, gap = NA, qb_out = character()) {
+slate_markers <- function(move, n_notes, gap = NA, qb_out = character(), starters_out = character()) {
   parts <- c(
     if (length(qb_out) > 0) sprintf("%s QB out", paste(qb_out, collapse = " and ")),
+    starters_out,
     # A gap this size has nearly always meant the market knows something
     # our ratings do not (docs/research-log.md), so say so beside the game.
     if (!is.na(gap) && abs(gap) >= BIG_GAP_POINTS) "Big gap: check for news",

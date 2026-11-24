@@ -2059,6 +2059,9 @@
     "data/qb_status.csv": {
       "checksum": "fb39d91ad7018c27bbee4140455134b1"
     },
+    "data/availability.csv": {
+      "checksum": "922242982c03d95fe3dd0c717a4239f1"
+    },
     "DESCRIPTION": {
       "checksum": "eaf69815ec96ae26941c0f29b4577c25"
     },
@@ -2090,7 +2093,7 @@
       "checksum": "ca7cccd1d0b1e2bfb735ebd89044a25a"
     },
     "R/config.R": {
-      "checksum": "3f5ee89a69e248b85c8eda170ee2c8be"
+      "checksum": "4b97915a066646015ea63a0007ad803b"
     },
     "R/demo_data.R": {
       "checksum": "481977de647fe61df5131e1b60cf8ebb"
@@ -2123,7 +2126,7 @@
       "checksum": "19cb3431a6a16e8c8c12c6a91104231f"
     },
     "R/mod_slate.R": {
-      "checksum": "732e2bac3d901a70cfa11c824998fe81"
+      "checksum": "193849d39c6a8ac58da55da7b94cf6bd"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2144,7 +2147,7 @@
       "checksum": "c6ca98fb625871ca9d6775d1038da568"
     },
     "R/quarterbacks.R": {
-      "checksum": "2ac8f6221854a1f500dcafb442d45a55"
+      "checksum": "f49d3cd233dd80463a1bee8429261061"
     },
     "R/rankings.R": {
       "checksum": "518e6b9b58504b648a7778ae263b6c4c"
@@ -2165,7 +2168,7 @@
       "checksum": "1384279f4218222b30260fa39b84402d"
     },
     "R/ui_helpers.R": {
-      "checksum": "edfb67a85720dafaea29d199d824bb47"
+      "checksum": "cff248683a46ca573183c62d7967de9d"
     },
     "www/app.js": {
       "checksum": "6f07f9d8d39bae6a53cf79c51a552067"

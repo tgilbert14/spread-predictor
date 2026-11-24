@@ -37,6 +37,12 @@ qb$est_known <- qb$out_known * qb$established
 qb$est_prev <- qb$out_prev * qb$established
 qb$est_out_good <- qb$est_out * pmax(qb$quality, 0)
 
+# Two sizes instead of one: the first game he misses costs more than later ones.
+qb$est_tiered <- qb$est_first * 4 / 3.5 + qb$est_known * 2 / 3.5
+# Box scores alone, no report needed: he missed the last game, at a discount
+# for the ones who come back.
+qb$est_prev_only <- qb$est_prev
+
 flags <- c(
   out_now = "Main QB out (known only from a report, or afterwards)",
   out_first = "  ...the first game he misses",
@@ -48,7 +54,8 @@ flags <- c(
   est_first = "  ...the first game he misses",
   est_known = "  ...a later game",
   est_prev = "Established starter missed the last game",
-  est_out_good = "Established starter out, scaled by how good he was"
+  est_out_good = "Established starter out, scaled by how good he was",
+  est_tiered = "Established starter out: first game 4, later games 2"
 )
 side <- function(id_column, flag) {
   at <- match(paste(games$game_id, games[[id_column]]), paste(qb$game_id, qb$team_id))

@@ -709,3 +709,37 @@ playoff cut on Selection Day (Florida State in 2023), which is one case.
 
 Decision: not scored. The committee prediction flags the team instead
 ("QB out" or "QB missed last game"), so the reader can weigh it.
+
+## 2026-11-24: three more tries at accuracy, none kept
+
+Run with `scripts/research/qb_out.R`, `matchups.R` and `luck.R`. Same keep
+rule as always: the cross-validated change must sit wholly below zero and
+the held-out seasons must improve too.
+
+**A bigger adjustment for a first missed game.** Tried 4 points when the
+starter is newly out and 2 once the backup has played, in place of a flat
+3.5. Cross-validated change -0.027 [-0.055, +0.000], holdout -0.043. No
+better than the flat number and it fails the rule by a hair. The flat 3.5
+stays.
+
+**Matchups, adjusted for opponents.** The earlier matchup test used raw
+unit numbers. This pass adjusts each offense and defense for who it has
+played (`matchups.R`, or `--raw` for the old version). All five candidates
+are still rejected. The ratings already carry most of what a unit matchup
+would add.
+
+**Luck.** Three ideas: teams that outscored what their yardage says they
+should have, teams with a lopsided record in one-score games, and the same
+over the last four games. None passes. Luck in one half of a season says
+almost nothing about the other half (correlation 0.04), and the blend
+already leans on points rather than wins, so there is little left to
+correct.
+
+**What this leaves.** The one thing the model does not see is who is on
+the field. The quarterback adjustment covers the biggest case. For the
+rest we need a record, so the Thursday and Friday availability check now
+writes every starter listed out or doubtful to `data/availability.csv`.
+Nothing reads it for the line yet. After a season of it, test whether
+"N starters out" moves games by more than the market already shows. Until
+then the app only marks a team with 4 or more starters out
+(`STARTERS_OUT_FLAG`), so This week stays readable.

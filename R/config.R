@@ -9,7 +9,8 @@ PATHS <- list(
   app_data  = file.path("data", "app_data.rds"),
   overrides = file.path("data", "overrides"),
   notes     = file.path("data", "notes.csv"),
-  qb_status = file.path("data", "qb_status.csv")
+  qb_status = file.path("data", "qb_status.csv"),
+  availability = file.path("data", "availability.csv")
 )
 
 # Seasons to backfill from the API. More history means tighter answers when
@@ -120,6 +121,10 @@ DISAGREE_POINTS <- 3
 # how much worse than our line such teams did over 482 games, 2018 to 2025
 # (scripts/research/qb_out.R prints it; docs/research-log.md, Nov. 24).
 QB_OUT_POINTS <- 3.5
+
+# A team with this many starters listed out for a game gets a marker on
+# This week. Fewer than that is normal wear and would crowd the page.
+STARTERS_OUT_FLAG <- 4
 
 # A gap to the market this large is flagged as "check for news". When we
 # and the market differ by 7 or more, the market's line has missed by 12.9

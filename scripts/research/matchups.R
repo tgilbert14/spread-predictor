@@ -9,7 +9,8 @@
 # needs MIN_GAMES behind it before its units count.
 #
 # Run from the project root:
-#   Rscript scripts/research/matchups.R
+#   Rscript scripts/research/matchups.R         # units adjusted for opponents
+#   Rscript scripts/research/matchups.R --raw   # units as played
 
 source(file.path("scripts", "research", "common.R"))
 data <- load_research_data()
@@ -38,6 +39,28 @@ for (unit in units) {
   before <- stats::ave(value, key, FUN = cumsum) - value
   stats[[paste0(unit, "_before")]] <- ifelse(played >= MIN_GAMES, before / played, NA)
 }
+# Second pass: adjust each game for the opponent. A passing day against a
+# defense that gives up a lot of passing counts for less. Each game's number
+# has the opponent's own average (before that game, against the country)
+# taken off, then the team's adjusted games are averaged the same way.
+ADJUST <- !("--raw" %in% commandArgs(trailingOnly = TRUE))
+if (ADJUST) {
+  other <- match(paste(stats$game_id, stats$team_id),
+                 paste(stats$game_id, stats::ave(stats$team_id, stats$game_id, FUN = function(x) rev(x))))
+  facing <- c(pass_off = "pass_def", rush_off = "rush_def", pass_def = "pass_off", rush_def = "rush_off")
+  adjusted <- list()
+  for (unit in units) {
+    opponent <- stats[[paste0(facing[[unit]], "_before")]][other]
+    usual <- stats::ave(opponent, stats$season, FUN = function(x) mean(x, na.rm = TRUE))
+    adjusted[[unit]] <- stats[[unit]] - ifelse(is.na(opponent), 0, opponent - usual)
+  }
+  for (unit in units) {
+    value <- ifelse(is.na(adjusted[[unit]]), 0, adjusted[[unit]])
+    before <- stats::ave(value, key, FUN = cumsum) - value
+    stats[[paste0(unit, "_before")]] <- ifelse(played >= MIN_GAMES, before / played, NA)
+  }
+}
+
 # Against the country that season. Defense is flipped so higher is better.
 for (unit in units) {
   column <- paste0(unit, "_before")
@@ -77,6 +100,7 @@ candidates <- c(
   strength_clash = "Top offense against top defense",
   weak_link = "Each team's weakest unit"
 )
+cat(if (ADJUST) "Units adjusted for the opponents faced.\n" else "Units as played, not adjusted for opponents.\n")
 cat("Games with units for both teams:", sum(!is.na(h("off_z")) & !is.na(a("off_z"))), "of", nrow(games), "\n\n")
 cat("Candidate: correlation with what our line missed (fit seasons)\n")
 fit <- games[games$season %in% FIT_SEASONS, ]
