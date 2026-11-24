@@ -1,8 +1,8 @@
-_Generated file: written by scripts/audit.R on 2026-11-24 from cfb.sqlite (1,320 teams, 8,658 games, 28,050 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats). Do not edit by hand; rerun the script._
+_Generated file: written by scripts/audit.R on 2026-11-24 from cfb.sqlite (1,320 teams, 8,658 games, 28,050 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats). Do not edit by hand; rerun the script._
 
 # Data audit
 
-Checked on 2026-11-24. Rows checked: 1,320 teams, 8,658 games, 28,050 lines, 5,777 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats.
+Checked on 2026-11-24. Rows checked: 1,320 teams, 8,658 games, 28,050 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,140 game_stats.
 
 No check that could corrupt the model found anything.
 6 other check(s) flagged rows worth a look.
@@ -350,7 +350,7 @@ Showing the first 25 of 55 rows.
 ### ratings_rows_by_snapshot (info)
 
 Rows per snapshot next to the number of FBS teams that season.
-Showing the first 25 of 44 rows.
+Showing the first 25 of 48 rows.
 
 | source | season | week | is_final | n_rows | n_distinct_teams | n_fbs_teams |
 |---|---|---|---|---|---|---|
@@ -365,6 +365,7 @@ Showing the first 25 of 44 rows.
 | elo | 2025 |  | 1 | 136 | 136 | 136 |
 | elo | 2026 | 11 | 0 | 138 | 138 | 138 |
 | elo | 2026 | 12 | 0 | 138 | 138 | 138 |
+| elo | 2026 | 13 | 0 | 138 | 138 | 138 |
 | fpi | 2017 |  | 1 | 130 | 130 | 130 |
 | fpi | 2018 |  | 1 | 130 | 130 | 130 |
 | fpi | 2019 |  | 1 | 130 | 130 | 130 |
@@ -376,9 +377,8 @@ Showing the first 25 of 44 rows.
 | fpi | 2025 |  | 1 | 136 | 136 | 136 |
 | fpi | 2026 | 11 | 0 | 138 | 138 | 138 |
 | fpi | 2026 | 12 | 0 | 138 | 138 | 138 |
+| fpi | 2026 | 13 | 0 | 138 | 138 | 138 |
 | sp | 2017 |  | 1 | 128 | 128 | 130 |
-| sp | 2018 |  | 1 | 130 | 130 | 130 |
-| sp | 2019 |  | 1 | 130 | 130 | 130 |
 
 ### teams_conference_change (info)
 
