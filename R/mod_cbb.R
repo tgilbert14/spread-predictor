@@ -186,13 +186,15 @@ cbb_model_table <- function(pred) {
 #' One display row per slate game on a day, with football's row builder.
 cbb_slate_rows <- function(cbb, day, open_input_id, ranks = NULL) {
   slate <- cbb$slate[cbb$slate$day == day, , drop = FALSE]
+  preds <- lapply(seq_len(nrow(slate)), function(i) {
+    matchup <- slate_matchup(slate[i, , drop = FALSE])
+    tryCatch(cbb_predict(matchup$a, matchup$b, matchup$site, cbb$teams, cbb$params), error = function(e) NULL)
+  })
+  scale <- line_scale(preds, slate)
   rows <- lapply(seq_len(nrow(slate)), function(i) {
-    game <- slate[i, , drop = FALSE]
-    matchup <- slate_matchup(game)
-    pred <- tryCatch(cbb_predict(matchup$a, matchup$b, matchup$site, cbb$teams, cbb$params),
-                     error = function(e) NULL)
-    if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id, ranks = ranks, share_link = FALSE)
+    if (is.null(preds[[i]])) return(NULL)
+    slate_row(preds[[i]], slate[i, , drop = FALSE], open_input_id, ranks = ranks, share_link = FALSE,
+              scale = scale)
   })
   do.call(rbind, rows)
 }

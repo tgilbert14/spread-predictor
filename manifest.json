@@ -2105,7 +2105,7 @@
       "checksum": "79efc4e8e08bc156c9defdb35d821558"
     },
     "R/mod_cbb.R": {
-      "checksum": "5e80e7885f587270166187a91dd0dd00"
+      "checksum": "002cb5a767e4a220f7e24a78bd74c131"
     },
     "R/mod_matchup.R": {
       "checksum": "ce046fbecfe0b356beb42cadfc2aaef2"
@@ -2120,7 +2120,7 @@
       "checksum": "83f614831ed28ec14b206bd0120ac042"
     },
     "R/mod_slate.R": {
-      "checksum": "e1b646884e43565188f85908293d97d9"
+      "checksum": "947202e82de04f48d58da6b1cba52846"
     },
     "R/notes.R": {
       "checksum": "43ef3b25ec0730fb6bf01c181e24b90f"
@@ -2183,7 +2183,7 @@
       "checksum": "05fb8baeaf52702a1daa024734966d30"
     },
     "www/styles.css": {
-      "checksum": "e7925d39b9a583f685d59dfaa4765a69"
+      "checksum": "801a421cb8ef1dcb649a0d5efa216aff"
     }
   },
   "users": null

@@ -88,6 +88,9 @@ games, marked "Look ahead".
 shows it next to our line: on This week (including the look-ahead), in the
 Next game view of the rankings, on team pages and on the Matchup tab. The
 data refresh saves lines for every unplayed game, not only this week's.
+On This week, each game has a small track with both lines on it (left
+favors the away team, right the home team), and a gap of 3 points or more
+is marked.
 
 **Predicting the committee.** Every week, as soon as the weekend's games
 are final, the app saves its prediction of the committee's next ranking.

@@ -37,6 +37,9 @@ shown_slate <- function(app_data) {
   list(games = games, week = as.integer(ahead$week[1]), ahead = TRUE)
 }
 
+#' `a` unless it is missing, NULL or empty, then `b`.
+`%|na|%` <- function(a, b) if (is.null(a) || length(a) != 1 || is.na(a) || !nzchar(a)) b else a
+
 #' @param app_data See docs/data-dictionary.md.
 mod_slate_ui <- function(id, app_data) {
   ns <- shiny::NS(id)
@@ -58,6 +61,15 @@ mod_slate_ui <- function(id, app_data) {
         },
         htmltools::tags$strong("Tap any game"), " to open it in Matchup."
       ),
+      if (has_market) {
+        htmltools::div(
+          class = "line-key",
+          chart_legend("Our line", "Market"),
+          htmltools::span(class = "line-key-note",
+                          "On each track, left favors the away team and right the home team. ",
+                          sprintf("A gap of %d or more is marked.", DISAGREE_POINTS))
+        )
+      },
       htmltools::div(class = "slate-wrap", DT::DTOutput(ns("table")))
     )
   } else {
@@ -92,16 +104,56 @@ mod_slate_ui <- function(id, app_data) {
 #' @param slate The games to show: shown_slate()$games.
 slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slate(app_data)$games) {
   ranks <- team_ranks(app_data)
+  preds <- lapply(seq_len(nrow(slate)), function(i) {
+    m <- slate_matchup(slate[i, , drop = FALSE])
+    tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params, week = app_data$meta$week),
+             error = function(e) NULL)
+  })
+  scale <- line_scale(preds, slate)
   rows <- lapply(seq_len(nrow(slate)), function(i) {
+    if (is.null(preds[[i]])) return(NULL)
     game <- slate[i, , drop = FALSE]
-    m <- slate_matchup(game)
-    pred <- tryCatch(predict_matchup(m$a, m$b, m$site, app_data$teams, app_data$params,
-                                     week = app_data$meta$week),
-                     error = function(e) NULL)
-    if (is.null(pred)) return(NULL)
-    slate_row(pred, game, open_input_id, n_notes = sum(notes$game_id == game$game_id), ranks = ranks)
+    slate_row(preds[[i]], game, open_input_id, n_notes = sum(notes$game_id == game$game_id), ranks = ranks,
+              scale = scale)
   })
   do.call(rbind, rows)
+}
+
+#' How many points the ends of the line tracks stand for: the biggest line
+#' on the page, ours or the market's, so every row shares one scale.
+#'
+#' @param preds One prediction per slate game (NULL where there is none).
+#' @return A number of points, at least 7 and at most 40.
+line_scale <- function(preds, slate) {
+  ours <- vapply(preds, function(p) if (is.null(p)) NA_real_ else abs(p$spread), numeric(1))
+  biggest <- suppressWarnings(max(c(ours, abs(slate$market_spread_home)), na.rm = TRUE))
+  if (!is.finite(biggest)) return(NA_real_)
+  min(max(ceiling(biggest / 7) * 7, 7), 40)
+}
+
+#' Our line and the market's on one small track, for a table cell.
+#'
+#' The middle is a pick'em. Left favors the away team, right the home team.
+#' A line past the end of the track is drawn at the end.
+#'
+#' @param ours,market Predicted margins for the away team (positive means
+#'   the away team is favored).
+#' @param scale What line_scale() returns.
+#' @return HTML text, or "" when there is no market line or no scale.
+line_track <- function(ours, market, scale, away, home) {
+  if (is.na(market) || is.null(scale) || is.na(scale)) return("")
+  at <- function(margin) min(max(50 - margin / scale * 50, 3), 97)
+  left <- min(at(ours), at(market))
+  sprintf(paste0(
+    '<span class="line-track" role="img" aria-label="Our line %s, the market %s.">',
+    '<span class="line-track-link" style="left:%.1f%%;width:%.1f%%"></span>',
+    '<span class="line-track-dot is-market" style="left:%.1f%%"></span>',
+    '<span class="line-track-dot is-ours" style="left:%.1f%%"></span>',
+    '<span class="line-track-ends" aria-hidden="true"><span>%s</span><span>%s</span></span></span>'),
+    htmltools::htmlEscape(format_favorite(ours, away, home), attribute = TRUE),
+    htmltools::htmlEscape(format_favorite(market, away, home), attribute = TRUE),
+    left, abs(at(ours) - at(market)), at(market), at(ours),
+    htmltools::htmlEscape(away), htmltools::htmlEscape(home))
 }
 
 #' A single slate row. Team A is the away team and B the home team.
@@ -110,7 +162,9 @@ slate_rows <- function(app_data, open_input_id, notes = NULL, slate = shown_slat
 #' @param ranks Ranks named by team id, shown beside the names, or NULL.
 #' @param share_link Add a link that opens the game in Matchup to the shared
 #'   text. FALSE where the app cannot open a matchup from a link (basketball).
-slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE) {
+#' @param scale What line_scale() returns, to draw the line track. NULL
+#'   leaves the track out.
+slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, share_link = TRUE, scale = NULL) {
   ranked <- function(team) if (is.null(ranks)) NA else rank_of(ranks, team$team_id)
   away <- pred$team_a$school
   home <- pred$team_b$school
@@ -131,7 +185,11 @@ slate_row <- function(pred, game, open_input_id, n_notes = 0, ranks = NULL, shar
     our = cell("Our line", esc(format_favorite(pred$spread, away, home))),
     market = cell("Market", if (has_line) esc(format_favorite(market, away, home)) else '<span class="muted">No line</span>'),
     gap = cell("Difference", if (has_line) {
-      sprintf('<span class="gap-points">%s</span><span class="gap-side">%s</span>',
+      # A gap of DISAGREE_POINTS or more is the kind the Scorecard tracks.
+      sprintf('<span class="gap-cell">%s<span class="gap-text"><span class="gap-points%s">%s</span><span class="gap-side">%s</span></span></span>',
+              line_track(pred$spread, market, scale, pred$team_a$abbreviation %|na|% away,
+                         pred$team_b$abbreviation %|na|% home),
+              if (abs(round_half(gap)) >= DISAGREE_POINTS) " is-big" else "",
               format_points(gap), esc(gap_side(gap, away, home)))
     } else {
       '<span class="muted">No line</span>'
@@ -191,7 +249,7 @@ slate_table <- function(rows, by_gap = TRUE, market = TRUE) {
         list(targets = 1, orderData = SLATE_KEYS[["our"]]),
         list(targets = 2, orderData = SLATE_KEYS[["market"]]),
         list(targets = 3, orderData = SLATE_KEYS[["gap"]], className = "dt-right"),
-        list(targets = 4, orderData = SLATE_KEYS[["prob"]], className = "dt-right"),
+        list(targets = 4, orderData = SLATE_KEYS[["prob"]], className = "dt-right slate-prob"),
         list(targets = 5, orderable = FALSE, searchable = FALSE, className = "dt-right")
       )
     )
