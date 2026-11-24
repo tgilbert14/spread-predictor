@@ -85,3 +85,91 @@ test_that("a big gap to the market is flagged beside the game", {
   expect_identical(slate_markers(NA, 0, gap = 6.5), "")
   expect_identical(slate_markers(NA, 0), "")
 })
+
+# ---- Reports of quarterbacks listed out ---------------------------------------
+
+report <- function(week, team, athlete, status, at = "2026-11-19T02:00:00Z") {
+  data.frame(season = 2026L, week = week, team = team, athlete = athlete, status = status, source = "Report",
+             source_url = "https://example.com", checked_at = at, stringsAsFactors = FALSE)
+}
+
+test_that("names match across spellings, and different players do not", {
+  expect_true(same_player("Billy Edwards Jr.", "Billy Edwards"))
+  expect_true(same_player("nico iamaleava", "Nico Iamaleava"))
+  expect_true(same_player("J. Sagapolutele", "Jaron-Keawe Sagapolutele"))
+  expect_false(same_player("Nico Iamaleava", "Madden Iamaleava"))
+  expect_false(same_player("", "Nico Iamaleava"))
+})
+
+test_that("only an established starter who is listed out counts", {
+  status <- rbind(report(12L, "Kofa", "Sam Stone", "out"), report(12L, "Ironwood", "Al Reed", "questionable"),
+                  report(11L, "Saguaro", "Bo Lake", "out_for_season"), report(12L, "Rincon", "Cy Hale", "out"))
+  mains <- data.frame(team = c("Kofa", "Ironwood", "Saguaro", "Rincon", "Kofa"), week = 12L,
+                      main_name = c("Sam Stone", "Al Reed", "Bo Lake", "Dee Park", "Sam Stone"),
+                      established = c(1, 1, 1, 1, 0), stringsAsFactors = FALSE)
+  # Kofa: out. Ironwood: only questionable. Saguaro: out for the season since week 11.
+  # Rincon: the player listed is not the main quarterback. Last row: not established.
+  expect_identical(starter_out(status, mains), c(TRUE, FALSE, TRUE, FALSE, FALSE))
+  expect_identical(starter_out(status, mains[0, ]), logical())
+})
+
+test_that("a later report wins, and one filed after kickoff does not count", {
+  status <- rbind(report(12L, "Kofa", "Sam Stone", "out", "2026-11-19T02:00:00Z"),
+                  report(12L, "Kofa", "Sam Stone", "probable", "2026-11-20T02:00:00Z"))
+  main <- data.frame(team = "Kofa", week = 12L, main_name = "Sam Stone", established = 1, stringsAsFactors = FALSE)
+  expect_false(starter_out(status, main))
+  expect_true(starter_out(status[1, ], main))
+  expect_false(starter_out(status[1, ], cbind(main, before = "2026-11-18T00:00:00Z")))
+  expect_true(starter_out(status[1, ], cbind(main, before = "2026-11-21T20:00:00Z")))
+})
+
+test_that("the adjustment moves the line against the team whose quarterback is out", {
+  expect_identical(qb_home_adjustment(TRUE, FALSE), -QB_OUT_POINTS)
+  expect_identical(qb_home_adjustment(FALSE, TRUE), QB_OUT_POINTS)
+  expect_identical(qb_home_adjustment(TRUE, TRUE), 0)
+  expect_identical(qb_home_adjustment(FALSE, FALSE), 0)
+})
+
+test_that("the status file loads safely whatever shape it is in", {
+  expect_identical(nrow(load_qb_status(tempfile(), 2026L)), 0L)
+  path <- tempfile(fileext = ".csv")
+  writeLines(c("season,week,team,athlete,status", "2026,12,Kofa,Sam Stone,Out for season", "2025,12,Kofa,Old Guy,out",
+               "2026,,Kofa,No Week,out", "2026,12,,No Team,out"), path)
+  loaded <- load_qb_status(path, 2026L)
+  expect_identical(nrow(loaded), 1L)
+  expect_identical(loaded$status, "out_for_season")
+  expect_named(loaded, QB_STATUS_COLUMNS)
+})
+
+test_that("grading uses the main quarterback going into each game and only reports before kickoff", {
+  games <- data.frame(game_id = 1:2, week = 12L, start_date = "2026-11-21T20:00:00Z", home_id = c(1L, 3L),
+                      away_id = c(2L, 4L), home_team = c("Kofa", "Saguaro"), away_team = c("Ironwood", "Rincon"),
+                      blend = c(7, -3), market_spread_home = c(-4, NA), final_margin = c(2, -10),
+                      stringsAsFactors = FALSE)
+  qb_games <- data.frame(game_id = c(1L, 1L, 2L, 2L), team_id = 1:4,
+                         main_name = c("Sam Stone", "Al Reed", "Bo Lake", "Cy Hale"), established = 1L,
+                         stringsAsFactors = FALSE)
+  status <- rbind(report(12L, "Kofa", "Sam Stone", "out"), report(12L, "Rincon", "Cy Hale", "out", "2026-11-22T02:00:00Z"))
+  graded <- grade_qb_adjustment(games, qb_games, status, NULL)
+  expect_identical(graded$game_id, 1L)                       # Rincon's report came after kickoff
+  expect_equal(graded$adjusted, 7 - QB_OUT_POINTS)
+  expect_equal(c(graded$our_miss, graded$adjusted_miss, graded$market_miss), c(5, 1.5, 2))
+  expect_match(graded$out, "Sam Stone (Kofa)", fixed = TRUE)
+  expect_identical(nrow(grade_qb_adjustment(games, qb_games, status[0, ], NULL)), 0L)
+})
+
+test_that("the slate shows the adjusted line and a marker when a starter is out", {
+  demo <- complete_app_data(demo_app_data())
+  game <- demo$slate[1, ]
+  pred <- predict_matchup(game$away_id, game$home_id, "b_home", demo$teams, demo$params, week = demo$meta$week)
+  plain <- slate_row(pred, game, "open")
+  expect_false(grepl("adj-line", plain$our, fixed = TRUE))
+  hit <- slate_row(pred, game, "open", qb_out = c(away = FALSE, home = TRUE))
+  expect_match(hit$our, "With QB out", fixed = TRUE)
+  expect_match(hit$matchup, paste(pred$team_b$school, "QB out"), fixed = TRUE)
+  expect_match(hit$our, htmltools::htmlEscape(format_favorite(pred$spread + QB_OUT_POINTS, pred$team_a$school, pred$team_b$school)),
+               fixed = TRUE)
+  # With no reports the demo's slate is unchanged.
+  expect_identical(nrow(qb_out_teams(demo, demo$meta$week)), 0L)
+  expect_null(scorecard_qb_section(demo))
+})

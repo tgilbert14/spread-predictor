@@ -295,3 +295,29 @@ list. `week` is the regular-season week; the app passes `meta$week`. With
 | `interval` | `low` and `high`: the middle 80% of likely margins |
 | `models` | One row per rating system: `model`, `label`, `rating_a`, `rank_a`, `rating_b`, `rank_b`, `weight`, `margin`. Early in the season the Elo and Power margins include preseason points. |
 | `flags` | Plain-language notes, possibly none |
+
+## Quarterback statuses: `data/qb_status.csv`
+
+One row each time a report gives a quarterback's status for a week. The
+Thursday and Friday availability check appends to it, and the app reads it
+when it starts. Rows are never rewritten.
+
+| Column | Meaning |
+|---|---|
+| `season`, `week` | The season and week the status is for |
+| `team` | The school, spelled as in the predictions file |
+| `athlete` | The quarterback's full name |
+| `status` | Exactly one of `out`, `doubtful`, `questionable`, `probable`, `out_for_season` |
+| `source`, `source_url` | Who published it, and the page it was read on |
+| `checked_at` | When it was read, UTC, like `2026-11-20T02:00:45Z` |
+
+How it is used: a team's line is adjusted only when the quarterback listed
+`out` (or `out_for_season`, which carries to later weeks) is its
+established starter by the box scores (`R/quarterbacks.R`). The newest row
+for a player wins, so a later `probable` clears an earlier `out`. When
+grading, only rows with `checked_at` before kickoff count.
+
+| App data | Type | Meaning |
+|---|---|---|
+| `qb_games` | data frame | Who the main quarterback was going into each game played this season: `game_id`, `team_id`, `main_name`, `established` |
+| `qb_status` | data frame | The rows of this file for the season, read when the app starts |

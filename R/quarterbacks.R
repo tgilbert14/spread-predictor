@@ -103,11 +103,14 @@ quarterback_games <- function(passing) {
 #' @return One row per team: team_id, starter (who threw the most passes in
 #'   the latest game), starts (how many games in a row he has led), opener
 #'   (who led in the season's first game), opener_last_week (the last week
-#'   the opener threw a pass) and changed (TRUE when the starter is not the
-#'   opener). No rows when there is no passing data.
+#'   the opener threw a pass), changed (TRUE when the starter is not the
+#'   opener), main (the most passes all season: the main quarterback going
+#'   into the next game) and established (1 when he is an established
+#'   starter). No rows when there is no passing data.
 quarterback_summary <- function(passing) {
   empty <- data.frame(team_id = integer(), starter = character(), starts = integer(), opener = character(),
-                      opener_last_week = integer(), changed = logical(), stringsAsFactors = FALSE)
+                      opener_last_week = integer(), changed = logical(), main = character(),
+                      established = integer(), stringsAsFactors = FALSE)
   if (is.null(passing) || nrow(passing) == 0) return(empty)
   passing <- passing[order(passing$team_id, passing$start_date, passing$game_id, -passing$attempts), , drop = FALSE]
   rows <- lapply(split(passing, passing$team_id), function(team) {
@@ -116,9 +119,14 @@ quarterback_summary <- function(passing) {
     run <- rle(rev(leaders$athlete_id == current))
     opener <- leaders$athlete_id[1]
     threw <- team[team$athlete_id == opener & team$attempts > 0, , drop = FALSE]
+    totals <- tapply(team$attempts, team$athlete_id, sum)
+    main <- names(totals)[which.max(totals)]
     data.frame(team_id = team$team_id[1], starter = leaders$athlete[nrow(leaders)],
                starts = as.integer(run$lengths[1]), opener = leaders$athlete[1],
                opener_last_week = as.integer(max(threw$week)), changed = current != opener,
+               main = team$athlete[match(main, team$athlete_id)],
+               established = as.integer(totals[[main]] >= QB_MIN_ATTEMPTS &&
+                                          totals[[main]] / sum(totals) >= QB_ESTABLISHED_SHARE),
                stringsAsFactors = FALSE)
   })
   out <- do.call(rbind, rows)
@@ -135,4 +143,151 @@ quarterback_sentence <- function(status) {
   if (!status$changed) return(sprintf("%s has been the quarterback all season.", status$starter))
   sprintf("%s has started %s. %s, who opened the season as the starter, last played in week %d.",
           status$starter, games(status$starts), status$opener, status$opener_last_week)
+}
+
+# ---- Quarterbacks listed out, and what that does to a line ---------------------
+
+# data/qb_status.csv: one row each time a report gives a quarterback's
+# status. The Thursday and Friday availability check adds to it.
+QB_STATUS_COLUMNS <- c("season", "week", "team", "athlete", "status", "source", "source_url", "checked_at")
+# The statuses that count as not playing.
+QB_OUT_STATUSES <- c("out", "out_for_season")
+
+#' One season of reported quarterback statuses.
+#'
+#' Tolerates a missing or empty file and missing columns. Rows with no team,
+#' athlete or status are dropped.
+#'
+#' @return A data frame with QB_STATUS_COLUMNS (zero rows when there is nothing).
+load_qb_status <- function(path = PATHS$qb_status, season) {
+  empty <- data.frame(season = integer(), week = integer(), team = character(), athlete = character(),
+                      status = character(), source = character(), source_url = character(),
+                      checked_at = character(), stringsAsFactors = FALSE)
+  if (!file.exists(path)) return(empty)
+  raw <- tryCatch(utils::read.csv(path, stringsAsFactors = FALSE, colClasses = "character"),
+                  error = function(e) NULL)
+  if (is.null(raw) || nrow(raw) == 0) return(empty)
+  for (column in setdiff(QB_STATUS_COLUMNS, names(raw))) raw[[column]] <- NA_character_
+  raw <- raw[QB_STATUS_COLUMNS]
+  raw$season <- suppressWarnings(as.integer(raw$season))
+  raw$week <- suppressWarnings(as.integer(raw$week))
+  raw$status <- tolower(trimws(gsub("[ -]+", "_", raw$status)))
+  keep <- raw$season %in% season & !is.na(raw$week) & nzchar(trimws(raw$team)) & nzchar(trimws(raw$athlete)) &
+    !is.na(raw$status) & nzchar(raw$status)
+  raw <- raw[keep & !is.na(keep), , drop = FALSE]
+  rownames(raw) <- NULL
+  raw
+}
+
+#' TRUE where two spellings name the same player: the same last name and
+#' first initial, ignoring case, punctuation and a Jr. or III on the end.
+same_player <- function(a, b) {
+  key <- function(name) {
+    name <- tolower(gsub("[^A-Za-z ]", "", name))
+    words <- strsplit(trimws(name), " +")
+    vapply(words, function(w) {
+      w <- w[!w %in% c("jr", "sr", "ii", "iii", "iv")]
+      if (length(w) == 0) return(NA_character_)
+      paste(substr(w[1], 1, 1), w[length(w)])
+    }, character(1))
+  }
+  ka <- key(a)
+  kb <- key(b)
+  !is.na(ka) & !is.na(kb) & ka == kb
+}
+
+#' Which teams have their established starting quarterback listed out.
+#'
+#' A report counts for the week it was filed for. "Out for the season"
+#' counts for every week after it too. The newest report for a player
+#' wins, so a later "probable" clears an earlier "out".
+#'
+#' @param status Rows of load_qb_status().
+#' @param mains One row per team to check: team (the school, as reports
+#'   spell it), week, main_name (its main quarterback going into that
+#'   week's game), established (1 or TRUE when he is an established
+#'   starter) and, optionally, before (only reports filed before this UTC
+#'   time count: the kickoff).
+#' @return One logical per row of `mains`.
+starter_out <- function(status, mains) {
+  if (nrow(mains) == 0) return(logical())
+  before <- if ("before" %in% names(mains)) mains$before else rep(NA_character_, nrow(mains))
+  vapply(seq_len(nrow(mains)), function(i) {
+    if (is.na(mains$main_name[i]) || !mains$established[i] %in% c(1, TRUE)) return(FALSE)
+    rows <- status[status$team == mains$team[i] & same_player(status$athlete, mains$main_name[i]) &
+                     (status$week == mains$week[i] | (status$status == "out_for_season" & status$week < mains$week[i])),
+                   , drop = FALSE]
+    if (!is.na(before[i])) rows <- rows[!is.na(rows$checked_at) & rows$checked_at < before[i], , drop = FALSE]
+    if (nrow(rows) == 0) return(FALSE)
+    rows$status[order(rows$week, rows$checked_at, decreasing = TRUE)][1] %in% QB_OUT_STATUSES
+  }, logical(1))
+}
+
+#' Points to add to the home team's margin for quarterbacks listed out.
+qb_home_adjustment <- function(home_out, away_out, points = QB_OUT_POINTS) {
+  points * (as.numeric(away_out) - as.numeric(home_out))
+}
+
+#' The teams whose established starter is listed out for an upcoming week.
+#'
+#' @param app_data With `quarterbacks` (where each job stands now) and
+#'   `qb_status` (the reports).
+#' @return A data frame of team_id and athlete. No rows when none.
+qb_out_teams <- function(app_data, week) {
+  none <- data.frame(team_id = integer(), athlete = character(), stringsAsFactors = FALSE)
+  status <- app_data$qb_status
+  now <- app_data$quarterbacks
+  if (!is.data.frame(status) || nrow(status) == 0 || !is.data.frame(now) || nrow(now) == 0 ||
+      !"main" %in% names(now)) return(none)
+  school <- app_data$teams$school[match(now$team_id, app_data$teams$team_id)]
+  mains <- data.frame(team = school, week = week, main_name = now$main, established = now$established,
+                      stringsAsFactors = FALSE)
+  out <- !is.na(school) & starter_out(status, mains)
+  data.frame(team_id = now$team_id[out], athlete = now$main[out], stringsAsFactors = FALSE)
+}
+
+#' Grade the quarterback adjustment on games already played.
+#'
+#' For each graded game, the adjusted line is our saved line plus the
+#' adjustment for any established starter a report had listed out before
+#' kickoff. Only reports filed before kickoff count, so this is what the
+#' adjusted line would have said at the time.
+#'
+#' @param games Graded games (scorecard$games rows with a final margin).
+#' @param qb_games The season's quarterback_games(): who the main
+#'   quarterback was going into each game.
+#' @return The adjusted games only: game_id, week, home_team, away_team,
+#'   out (who was out), blend, adjusted, market (home margins, market may
+#'   be NA), final_margin and the three misses.
+grade_qb_adjustment <- function(games, qb_games, status, teams) {
+  none <- data.frame(game_id = integer(), week = integer(), home_team = character(), away_team = character(),
+                     out = character(), blend = numeric(), adjusted = numeric(), market = numeric(),
+                     final_margin = numeric(), our_miss = numeric(), adjusted_miss = numeric(),
+                     market_miss = numeric(), stringsAsFactors = FALSE)
+  if (!is.data.frame(games) || nrow(games) == 0 || !is.data.frame(qb_games) || nrow(qb_games) == 0 ||
+      !is.data.frame(status) || nrow(status) == 0) return(none)
+  side <- function(id_column, name_column) {
+    at <- match(paste(games$game_id, games[[id_column]]), paste(qb_games$game_id, qb_games$team_id))
+    mains <- data.frame(team = games[[name_column]], week = games$week, main_name = qb_games$main_name[at],
+                        established = qb_games$established[at], before = games$start_date,
+                        stringsAsFactors = FALSE)
+    list(out = starter_out(status, mains), name = qb_games$main_name[at])
+  }
+  home <- side("home_id", "home_team")
+  away <- side("away_id", "away_team")
+  hit <- home$out | away$out
+  if (!any(hit)) return(none)
+  adjusted <- games$blend + qb_home_adjustment(home$out, away$out)
+  who <- ifelse(home$out & away$out, paste(home$name, "and", away$name),
+                ifelse(home$out, paste0(home$name, " (", games$home_team, ")"),
+                       paste0(away$name, " (", games$away_team, ")")))
+  out <- data.frame(
+    game_id = games$game_id, week = games$week, home_team = games$home_team, away_team = games$away_team,
+    out = who, blend = games$blend, adjusted = adjusted, market = -games$market_spread_home,
+    final_margin = games$final_margin, our_miss = abs(games$final_margin - games$blend),
+    adjusted_miss = abs(games$final_margin - adjusted),
+    market_miss = abs(games$final_margin + games$market_spread_home), stringsAsFactors = FALSE
+  )[hit, , drop = FALSE]
+  rownames(out) <- NULL
+  out
 }

@@ -8,7 +8,8 @@ PATHS <- list(
   params    = file.path("data", "params.json"),
   app_data  = file.path("data", "app_data.rds"),
   overrides = file.path("data", "overrides"),
-  notes     = file.path("data", "notes.csv")
+  notes     = file.path("data", "notes.csv"),
+  qb_status = file.path("data", "qb_status.csv")
 )
 
 # Seasons to backfill from the API. More history means tighter answers when
@@ -114,6 +115,11 @@ preseason_fade <- function(week, season_type = "regular") {
 # Smaller gaps are mostly rounding and noise; 3 points is a field goal, the
 # smallest gap that says the two forecasts really see the game differently.
 DISAGREE_POINTS <- 3
+
+# Points a team loses when its established starting quarterback is out:
+# how much worse than our line such teams did over 482 games, 2018 to 2025
+# (scripts/research/qb_out.R prints it; docs/research-log.md, Nov. 24).
+QB_OUT_POINTS <- 3.5
 
 # A gap to the market this large is flagged as "check for news". When we
 # and the market differ by 7 or more, the market's line has missed by 12.9

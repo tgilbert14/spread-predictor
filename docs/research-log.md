@@ -637,8 +637,26 @@ line is real (most books USC by 6.5 to 7) and at least one other
 ratings-based model also likes UCLA. The market is doubting UCLA for
 reasons a ratings model does not see.
 
-**Built so far.** The passing pull (weekly), each team's quarterback
-situation on its team page, and a "Big gap: check for news" marker on
-games where we and the market differ by 7 or more. Not built yet: the
-adjusted line, which needs the Thursday and Friday availability check to
-record "starter out" in a form the model can read.
+**Built from it.**
+- The passing pull, weekly, and each team's quarterback situation on its
+  team page.
+- A "Big gap: check for news" marker on games where we and the market
+  differ by 7 or more.
+- The adjusted line. The Thursday and Friday availability check records
+  each quarterback's status in `data/qb_status.csv`. When the player
+  listed out is the team's established starter by the box scores, This
+  week and Matchup show a second line with `QB_OUT_POINTS` (3.5) taken off
+  his team. Our own line is left as it is, so the two can be compared.
+- The Scorecard grades the adjusted line beside ours and the market's,
+  using only reports filed before kickoff.
+
+**First grades.** Seeded from this season's notes, the adjustment applied
+to two week 12 games. It helped one (Northwestern at Minnesota: our miss
+10.9, adjusted 7.4) and hurt the other (New Mexico at Wyoming: 4.9 to
+8.4). Two games say nothing yet. Ohio State, Oregon and UCLA were listed
+out too, but their backups had already taken over as the main
+quarterback, so no adjustment applied, as the study says it should not.
+
+**To revisit.** The size is a constant in `R/config.R`. Once a season of
+graded games exists, refit it, and drop the adjustment if it has not
+helped.

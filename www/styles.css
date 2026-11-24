@@ -1118,3 +1118,7 @@ table.dataTable.games-view td:last-child { white-space: normal; min-width: 9.5re
 
 /* Team page: the quarterback line. */
 .team-qb { margin: 0.9rem 0 0; max-width: 62ch; }
+
+/* The line with a quarterback's absence taken off, under our own line. */
+.adj-line { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--warn); }
+.adj-line-label { display: inline-block; margin-right: 0.35rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
