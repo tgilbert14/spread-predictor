@@ -1,29 +1,29 @@
 {
   "season": 2026,
-  "written": "2026-11-24",
+  "written": "2026-11-25",
   "rankings_used": {
-    "resume": 3,
-    "update": 2
+    "resume": 4,
+    "update": 3
   },
   "learned": {
     "resume": {
-      "losses": -1.1728,
-      "record_strength": 2.52724,
-      "power": 0.22787,
-      "tier": 2.69664
+      "losses": -1.16741,
+      "record_strength": 2.3603,
+      "power": 0.2233,
+      "tier": 3.01408
     },
     "update": {
-      "losses": -1.22674,
-      "record_strength": 0.59838,
-      "power": 0.08107,
-      "tier": 2.03556,
-      "prev_points": 0.44596,
-      "was_ranked": 2.41081,
-      "new_losses": -1.46217,
-      "strength_gain": 3.23576,
-      "held_top": 1.92735,
+      "losses": -1.18624,
+      "record_strength": 0.57558,
+      "power": 0.09348,
+      "tier": 2.36981,
+      "prev_points": 0.44834,
+      "was_ranked": 2.30757,
+      "new_losses": -1.68094,
+      "strength_gain": 3.40865,
+      "held_top": 1.95053,
       "conf_champ": -0.13596,
-      "ranked_wins": 0.43962
+      "ranked_wins": 0.46262
     }
   },
   "prior": {

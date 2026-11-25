@@ -821,8 +821,8 @@
 401856870,2026,12,"regular","2026-11-22T03:15:00.000Z",TRUE,FALSE,9,"Arizona State","fbs",27,1500,197,"Oklahoma State","fbs",30,1557
 401860919,2026,12,"regular","2026-11-22T03:30:00.000Z",TRUE,FALSE,204,"Oregon State","fbs",31,1526,328,"Utah State","fbs",24,1358
 401864541,2026,12,"regular","2026-11-22T03:30:00.000Z",TRUE,FALSE,2440,"Nevada","fbs",16,1385,62,"Hawai'i","fbs",8,1401
-401866470,2026,13,"regular","2026-11-25T00:00:00.000Z",FALSE,FALSE,2199,"Eastern Michigan","fbs",,1159,2309,"Kent State","fbs",,969
-401866471,2026,13,"regular","2026-11-25T00:00:00.000Z",FALSE,FALSE,2711,"Western Michigan","fbs",,1487,193,"Miami (OH)","fbs",,1319
+401866470,2026,13,"regular","2026-11-25T00:00:00.000Z",TRUE,FALSE,2199,"Eastern Michigan","fbs",17,1159,2309,"Kent State","fbs",12,969
+401866471,2026,13,"regular","2026-11-25T00:00:00.000Z",TRUE,FALSE,2711,"Western Michigan","fbs",24,1487,193,"Miami (OH)","fbs",28,1319
 401856879,2026,13,"regular","2026-11-27T01:00:00.000Z",FALSE,FALSE,2641,"Texas Tech","fbs",,1867,2628,"TCU","fbs",,1598
 401856762,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,145,"Ole Miss","fbs",,1860,344,"Mississippi State","fbs",,1441
 401858536,2026,13,"regular","2026-11-27T17:00:00.000Z",FALSE,FALSE,2294,"Iowa","fbs",,1935,158,"Nebraska","fbs",,1761
