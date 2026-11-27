@@ -1,8 +1,8 @@
-_Generated file: written by scripts/audit.R on 2026-11-26 from cfb.sqlite (1,320 teams, 8,658 games, 28,050 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,144 game_stats). Do not edit by hand; rerun the script._
+_Generated file: written by scripts/audit.R on 2026-11-27 from cfb.sqlite (1,320 teams, 8,659 games, 28,051 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,156 game_stats). Do not edit by hand; rerun the script._
 
 # Data audit
 
-Checked on 2026-11-26. Rows checked: 1,320 teams, 8,658 games, 28,050 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,144 game_stats.
+Checked on 2026-11-27. Rows checked: 1,320 teams, 8,659 games, 28,051 lines, 6,329 ratings, 1,318 talent, 1,307 returning_production, 17,156 game_stats.
 
 No check that could corrupt the model found anything.
 6 other check(s) flagged rows worth a look.
@@ -132,7 +132,7 @@ Neutral-site games per season, so a sudden change stands out.
 | 2024 | regular | 28 | 874 |
 | 2025 | postseason | 41 | 46 |
 | 2025 | regular | 23 | 888 |
-| 2026 | regular | 12 | 895 |
+| 2026 | regular | 13 | 896 |
 
 ### lines_null_spread (info)
 
@@ -303,9 +303,9 @@ Average miss of each provider against the final margin, next to the median-of-pr
 | provider | n_games | mae | consensus_mae | vs_consensus |
 |---|---|---|---|---|
 | Caesars Sportsbook (Colorado) | 33 | 11.7 | 11.67 | 0.03 |
-| DraftKings | 2972 | 11.92 | 11.9 | 0.02 |
+| DraftKings | 2978 | 11.91 | 11.89 | 0.02 |
 | ESPN Bet | 1838 | 12.06 | 12.04 | 0.03 |
-| Bovada | 5461 | 12.15 | 12.14 | 0.01 |
+| Bovada | 5467 | 12.15 | 12.14 | 0.01 |
 | William Hill (New Jersey) | 2049 | 12.15 | 12.15 | 0 |
 | consensus | 4334 | 12.37 | 12.36 | 0 |
 | teamrankings | 4401 | 12.37 | 12.37 | 0 |

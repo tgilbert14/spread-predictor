@@ -1,4 +1,4 @@
-_Generated file: written by scripts/refresh.R on 2026-11-26. Do not edit by hand; it is rewritten on every refresh._
+_Generated file: written by scripts/refresh.R on 2026-11-27. Do not edit by hand; it is rewritten on every refresh._
 
 # What we have learned about the playoff committee
 
