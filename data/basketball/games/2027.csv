@@ -1455,147 +1455,148 @@
 375353,2027,"regular","2026-11-27T03:30:00.000Z","final",1,221,"Omaha",225,"Pacific",62,71,1378,1898,,,8
 378721,2027,"regular","2026-11-27T04:53:00.000Z","final",1,20,"Baylor",102,"Gonzaga",64,72,1947,1887,1910,1924,3.5
 378720,2027,"regular","2026-11-27T04:57:00.000Z","final",1,223,"Oregon",298,"Texas Tech",59,62,1709,1910,,,10
-372953,2027,"regular","2026-11-27T05:00:00.000Z","scheduled",1,307,"UC Davis",225,"Pacific",0,0,1571,1860,,,4.5
-375374,2027,"regular","2026-11-27T16:00:00.000Z","scheduled",1,339,"Virginia",359,"Xavier",0,0,1991,1770,,,-7
-375367,2027,"regular","2026-11-27T17:00:00.000Z","scheduled",1,280,"St. Thomas-Minnesota",142,"Liberty",0,0,1909,1672,,,-1.5
-375362,2027,"regular","2026-11-27T18:00:00.000Z","scheduled",1,166,"Merrimack",337,"Vermont",0,0,1450,1657,,,2.5
-375368,2027,"regular","2026-11-27T18:00:00.000Z","scheduled",0,361,"Youngstown State",1541,"Bryant & Stratton (Ohio)",0,0,1335,1500,,,
-375376,2027,"regular","2026-11-27T18:00:00.000Z","scheduled",1,318,"UMass Lowell",106,"Hampton",0,0,1681,1497,,,-2.5
-378733,2027,"regular","2026-11-27T18:00:00.000Z","scheduled",1,279,"St. John's",125,"Iowa State",0,0,1957,1756,,,-3.5
-378725,2027,"regular","2026-11-27T18:30:00.000Z","scheduled",1,163,"Memphis",342,"Wake Forest",0,0,1724,1841,,,-1.75
-375365,2027,"regular","2026-11-27T19:00:00.000Z","scheduled",0,336,"Vanderbilt",274,"Southern",0,0,1934,1387,,,-37.5
-375377,2027,"regular","2026-11-27T19:00:00.000Z","scheduled",0,83,"Fairfield",187,"Navy",0,0,1455,1446,,,-4.5
-375378,2027,"regular","2026-11-27T19:00:00.000Z","scheduled",1,140,"Le Moyne",154,"Maine",0,0,1548,1316,,,1.5
-378127,2027,"regular","2026-11-27T19:00:00.000Z","scheduled",0,269,"South Dakota",1556,"Clarke",0,0,1584,1342,,,
-378129,2027,"regular","2026-11-27T19:00:00.000Z","scheduled",1,92,"Fresno State",265,"South Alabama",0,0,1562,1664,,,1.25
-378728,2027,"regular","2026-11-27T19:30:00.000Z","scheduled",1,97,"Georgetown",1217,"TBD",0,0,1770,1500,,,
-372958,2027,"regular","2026-11-27T20:00:00.000Z","scheduled",0,34,"Butler",21,"Bellarmine",0,0,1687,1611,,,-18.5
-375363,2027,"regular","2026-11-27T20:00:00.000Z","scheduled",0,321,"UNC Wilmington",234,"Princeton",0,0,1912,1648,,,-7.75
-375372,2027,"regular","2026-11-27T20:00:00.000Z","scheduled",0,305,"UAB",684,"Auburn-Montgomery",0,0,1602,1500,,,
-378130,2027,"regular","2026-11-27T20:00:00.000Z","scheduled",0,149,"Louisiana Tech",297,"Texas State",0,0,1658,1911,,,4.25
-378730,2027,"regular","2026-11-27T20:00:00.000Z","scheduled",1,20,"Baylor",287,"TCU",0,0,,1860,,,-5
-375379,2027,"regular","2026-11-27T20:30:00.000Z","scheduled",1,32,"Bucknell",137,"La Salle",0,0,1292,1614,,,9
-375380,2027,"regular","2026-11-27T20:30:00.000Z","scheduled",0,110,"Hofstra",55,"Colgate",0,0,1545,1777,,,-3.5
-378727,2027,"regular","2026-11-27T20:30:00.000Z","scheduled",1,160,"Maryland",223,"Oregon",0,0,1744,,,,-2.5
-372955,2027,"regular","2026-11-27T21:00:00.000Z","scheduled",0,96,"George Washington",317,"UMBC",0,0,1844,1440,,,-21.5
-372959,2027,"regular","2026-11-27T21:00:00.000Z","scheduled",0,8,"American University",239,"Radford",0,0,1592,1628,,,-7.5
-375366,2027,"regular","2026-11-27T21:00:00.000Z","scheduled",0,177,"Missouri",14,"Arkansas-Pine Bluff",0,0,1962,787,,,-49
-375361,2027,"regular","2026-11-27T21:30:00.000Z","scheduled",0,138,"Lafayette",194,"Niagara",0,0,1655,1360,,,-5
-377907,2027,"regular","2026-11-27T21:30:00.000Z","scheduled",1,26,"Boston College",51,"Cincinnati",,,1730,1851,,,8.75
-372957,2027,"regular","2026-11-27T22:00:00.000Z","scheduled",0,131,"Kansas",338,"Villanova",0,0,1904,1683,,,-12
-375370,2027,"regular","2026-11-27T22:00:00.000Z","scheduled",0,340,"Virginia Tech",219,"Old Dominion",0,0,1713,1711,,,-18.25
-375381,2027,"regular","2026-11-27T22:00:00.000Z","scheduled",1,293,"Texas A&M",157,"Marquette",0,0,1933,1887,,,-1.5
-378729,2027,"regular","2026-11-27T22:00:00.000Z","scheduled",1,295,"Texas",1217,"TBD",0,0,2030,1500,,,
-378128,2027,"regular","2026-11-27T22:30:00.000Z","scheduled",1,25,"Boise State",70,"Drake",0,0,1652,1746,,,-5.5
-378731,2027,"regular","2026-11-27T22:30:00.000Z","scheduled",1,132,"Kansas State",170,"Michigan",0,0,1471,1580,,,8
-372951,2027,"regular","2026-11-27T23:00:00.000Z","scheduled",0,118,"Illinois",350,"Western Kentucky",0,0,2262,1871,,,-27.5
-372956,2027,"regular","2026-11-27T23:00:00.000Z","scheduled",0,121,"Indiana",28,"Bowling Green",0,0,1778,1528,,,-22.25
-375382,2027,"regular","2026-11-27T23:00:00.000Z","scheduled",0,227,"Pennsylvania",301,"Towson",0,0,1615,1561,,,-3.75
-378680,2027,"regular","2026-11-27T23:00:00.000Z","scheduled",0,268,"South Carolina Upstate",691,"Southern Wesleyan",0,0,1403,1256,,,
-372952,2027,"regular","2026-11-28T00:00:00.000Z","scheduled",1,200,"North Carolina",347,"West Virginia",0,0,1798,1744,,,2.75
-372954,2027,"regular","2026-11-28T00:00:00.000Z","scheduled",0,75,"East Tennessee State",47,"Charleston Southern",0,0,1715,1527,,,-10.5
-375373,2027,"regular","2026-11-28T00:00:00.000Z","scheduled",0,74,"East Carolina",519,"NC Wesleyan",0,0,1530,1500,,,
-378131,2027,"regular","2026-11-28T00:00:00.000Z","scheduled",1,312,"UCF",98,"Georgia",0,0,1601,1832,,,5.5
-378132,2027,"regular","2026-11-28T00:00:00.000Z","scheduled",1,311,"UC Santa Barbara",141,"Lehigh",0,0,1920,1667,,,-15
-375360,2027,"regular","2026-11-28T00:30:00.000Z","scheduled",0,113,"Houston",214,"Oakland",0,0,1997,1181,,,-36.25
-378726,2027,"regular","2026-11-28T00:30:00.000Z","scheduled",1,226,"Penn State",174,"Mississippi State",0,0,1663,1757,,,6.5
-375359,2027,"regular","2026-11-28T01:00:00.000Z","scheduled",1,204,"North Texas",202,"North Dakota State",0,0,1734,1604,,,-6.25
-375364,2027,"regular","2026-11-28T01:00:00.000Z","scheduled",0,344,"Washington State",117,"Idaho",0,0,1700,1721,,,-10.75
-375369,2027,"regular","2026-11-28T01:00:00.000Z","scheduled",0,212,"Northwestern",205,"Northeastern",0,0,1612,1298,,,-12.5
-378133,2027,"regular","2026-11-28T01:00:00.000Z","scheduled",0,144,"Little Rock",706,"Lane College",0,0,1573,1314,,,
-378134,2027,"regular","2026-11-28T01:00:00.000Z","scheduled",0,222,"Oral Roberts",176,"Missouri State",0,0,1794,1689,,,-4
-378734,2027,"regular","2026-11-28T01:30:00.000Z","scheduled",1,5,"Alabama",168,"Miami",0,0,1806,2010,,,2.5
-375371,2027,"regular","2026-11-28T02:00:00.000Z","scheduled",0,135,"Kentucky",352,"Wichita State",0,0,1595,1897,,,-4.25
-378732,2027,"regular","2026-11-28T02:00:00.000Z","scheduled",1,150,"Louisville",292,"Tennessee",0,0,1762,1873,,,0
-378135,2027,"regular","2026-11-28T03:30:00.000Z","scheduled",1,221,"Omaha",128,"Jacksonville State",0,0,1416,1634,,,5.75
-378735,2027,"regular","2026-11-28T04:00:00.000Z","scheduled",1,102,"Gonzaga",61,"Creighton",0,0,,,,,-6
-378736,2027,"regular","2026-11-28T04:30:00.000Z","scheduled",1,257,"San Diego State",298,"Texas Tech",0,0,,,,,7.5
+375374,2027,"regular","2026-11-27T16:00:00.000Z","final",1,339,"Virginia",359,"Xavier",83,71,1991,1770,,,-7
+375367,2027,"regular","2026-11-27T17:00:00.000Z","final",1,280,"St. Thomas-Minnesota",142,"Liberty",67,76,1909,1672,,,-1.5
+375362,2027,"regular","2026-11-27T18:00:00.000Z","final",1,166,"Merrimack",337,"Vermont",75,57,1450,1657,1576,1531,2
+375368,2027,"regular","2026-11-27T18:00:00.000Z","final",0,361,"Youngstown State",1541,"Bryant & Stratton (Ohio)",96,66,1335,1500,1486,1349,
+375376,2027,"regular","2026-11-27T18:00:00.000Z","final",1,318,"UMass Lowell",106,"Hampton",72,55,1681,1497,1724,1454,-2
+378733,2027,"regular","2026-11-27T18:00:00.000Z","final",1,279,"St. John's",125,"Iowa State",80,75,1957,1756,1948,1764,-3
+378725,2027,"regular","2026-11-27T18:30:00.000Z","final",1,163,"Memphis",342,"Wake Forest",88,85,1724,1841,1742,1824,-1.75
+375365,2027,"regular","2026-11-27T19:00:00.000Z","final",0,336,"Vanderbilt",274,"Southern",111,56,1934,1387,2068,1253,-38
+375377,2027,"regular","2026-11-27T19:00:00.000Z","final",0,83,"Fairfield",187,"Navy",75,59,1455,1446,1502,1398,-5
+375378,2027,"regular","2026-11-27T19:00:00.000Z","final",1,140,"Le Moyne",154,"Maine",86,90,1548,1316,1511,1352,0
+378127,2027,"regular","2026-11-27T19:00:00.000Z","final",0,269,"South Dakota",1556,"Clarke",99,47,1584,1342,1762,1163,
+378129,2027,"regular","2026-11-27T19:00:00.000Z","final",1,92,"Fresno State",265,"South Alabama",81,61,1562,1664,1678,1548,1.25
+378728,2027,"regular","2026-11-27T19:30:00.000Z","in_progress",1,97,"Georgetown",1217,"TBD",0,0,1770,1500,,,
+372958,2027,"regular","2026-11-27T20:00:00.000Z","final",0,34,"Butler",21,"Bellarmine",92,56,1687,1611,1770,1528,-19
+375363,2027,"regular","2026-11-27T20:00:00.000Z","final",0,321,"UNC Wilmington",234,"Princeton",68,66,1912,1648,,,-7.75
+375372,2027,"regular","2026-11-27T20:00:00.000Z","final",0,305,"UAB",684,"Auburn-Montgomery",102,62,1602,1500,1750,1353,
+378130,2027,"regular","2026-11-27T20:00:00.000Z","final",0,149,"Louisiana Tech",297,"Texas State",70,78,1658,1911,1647,1921,4.75
+378730,2027,"regular","2026-11-27T20:00:00.000Z","final",1,20,"Baylor",287,"TCU",69,88,1910,1860,1809,1961,-4.5
+375379,2027,"regular","2026-11-27T20:30:00.000Z","final",1,32,"Bucknell",137,"La Salle",86,89,1292,1614,1312,1594,9.5
+375380,2027,"regular","2026-11-27T20:30:00.000Z","final",0,110,"Hofstra",55,"Colgate",49,75,1545,1777,1440,1882,-2.5
+378727,2027,"regular","2026-11-27T20:30:00.000Z","final",1,160,"Maryland",223,"Oregon",73,88,1744,1719,1673,1791,-3.5
+372955,2027,"regular","2026-11-27T21:00:00.000Z","final",0,96,"George Washington",317,"UMBC",91,51,1844,1440,1900,1384,-21.5
+372959,2027,"regular","2026-11-27T21:00:00.000Z","final",0,8,"American University",239,"Radford",64,62,1592,1628,1588,1631,-7
+375366,2027,"regular","2026-11-27T21:00:00.000Z","final",0,177,"Missouri",14,"Arkansas-Pine Bluff",97,61,1962,787,1890,860,-48.5
+375361,2027,"regular","2026-11-27T21:30:00.000Z","final",0,138,"Lafayette",194,"Niagara",82,54,1655,1360,1708,1307,-5
+377907,2027,"regular","2026-11-27T21:30:00.000Z","final",1,26,"Boston College",51,"Cincinnati",59,70,1730,1851,1707,1875,8.75
+372957,2027,"regular","2026-11-27T22:00:00.000Z","final",0,131,"Kansas",338,"Villanova",65,50,1904,1683,1908,1679,-11.5
+375370,2027,"regular","2026-11-27T22:00:00.000Z","final",0,340,"Virginia Tech",219,"Old Dominion",70,61,1713,1711,1727,1697,-17.75
+375381,2027,"regular","2026-11-27T22:00:00.000Z","final",1,293,"Texas A&M",157,"Marquette",78,76,1933,1887,1934,1887,0
+378729,2027,"regular","2026-11-27T22:00:00.000Z","in_progress",1,295,"Texas",1217,"TBD",0,0,2030,1500,,,
+378128,2027,"regular","2026-11-27T22:30:00.000Z","final",1,25,"Boise State",70,"Drake",88,71,1652,1746,1750,1647,-6
+378731,2027,"regular","2026-11-27T22:41:00.000Z","final",1,132,"Kansas State",170,"Michigan",69,98,1471,1580,1353,1698,9
+372951,2027,"regular","2026-11-27T23:00:00.000Z","final",0,118,"Illinois",350,"Western Kentucky",116,76,2262,1871,,,-27
+372956,2027,"regular","2026-11-27T23:00:00.000Z","final",0,121,"Indiana",28,"Bowling Green",93,57,1778,1528,,,-22.25
+378680,2027,"regular","2026-11-27T23:00:00.000Z","final",0,268,"South Carolina Upstate",691,"Southern Wesleyan",87,78,1403,1256,,,
+375382,2027,"regular","2026-11-27T23:40:00.000Z","final",0,227,"Pennsylvania",301,"Towson",61,72,1615,1561,,,-3.75
+372952,2027,"regular","2026-11-28T00:00:00.000Z","final",1,200,"North Carolina",347,"West Virginia",59,72,1798,1744,1733,1809,3.25
+372954,2027,"regular","2026-11-28T00:00:00.000Z","final",0,75,"East Tennessee State",47,"Charleston Southern",67,76,1715,1527,1631,1611,-10
+375373,2027,"regular","2026-11-28T00:00:00.000Z","final",0,74,"East Carolina",519,"NC Wesleyan",92,43,1530,1500,1734,1296,
+378131,2027,"regular","2026-11-28T00:00:00.000Z","final",1,312,"UCF",98,"Georgia",88,76,1601,1832,,,5.5
+378132,2027,"regular","2026-11-28T00:00:00.000Z","final",1,311,"UC Santa Barbara",141,"Lehigh",75,43,1920,1667,2025,1562,-14.5
+375360,2027,"regular","2026-11-28T00:30:00.000Z","final",0,113,"Houston",214,"Oakland",77,46,1997,1181,1966,1212,-36.25
+378726,2027,"regular","2026-11-28T00:30:00.000Z","final",1,226,"Penn State",174,"Mississippi State",68,63,1663,1757,1689,1731,6.5
+372953,2027,"regular","2026-11-28T01:00:00.000Z","final",1,307,"UC Davis",225,"Pacific",61,78,1571,1860,1547,1883,4.5
+375359,2027,"regular","2026-11-28T01:00:00.000Z","final",1,204,"North Texas",202,"North Dakota State",75,73,1734,1604,1729,1610,-5.75
+375364,2027,"regular","2026-11-28T01:00:00.000Z","final",0,344,"Washington State",117,"Idaho",69,61,1700,1721,1713,1708,-11.25
+375369,2027,"regular","2026-11-28T01:00:00.000Z","final",0,212,"Northwestern",205,"Northeastern",65,61,1612,1298,1579,1331,-12.5
+378133,2027,"regular","2026-11-28T01:00:00.000Z","final",0,144,"Little Rock",706,"Lane College",88,58,1573,1314,1642,1245,
+378134,2027,"regular","2026-11-28T01:00:00.000Z","final",0,222,"Oral Roberts",176,"Missouri State",72,66,1794,1689,1784,1700,-4
+378734,2027,"regular","2026-11-28T01:30:00.000Z","final",1,5,"Alabama",168,"Miami",81,87,1806,2010,1812,2003,2
+375371,2027,"regular","2026-11-28T02:00:00.000Z","final",0,135,"Kentucky",352,"Wichita State",71,73,1595,1897,,,-4.25
+378732,2027,"regular","2026-11-28T02:00:00.000Z","final",1,150,"Louisville",292,"Tennessee",84,64,1762,1873,,,-1
+378135,2027,"regular","2026-11-28T03:30:00.000Z","final",1,221,"Omaha",128,"Jacksonville State",78,69,1416,1634,,,5.75
+378735,2027,"regular","2026-11-28T04:15:00.000Z","final",1,102,"Gonzaga",61,"Creighton",89,97,1924,1862,1886,1900,-6
+378736,2027,"regular","2026-11-28T04:30:00.000Z","final",1,257,"San Diego State",298,"Texas Tech",75,78,1734,1900,1741,1892,8.5
 372961,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,189,"Nevada",1234,"Humboldt State",0,0,1766,1500,,,
-372963,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",1,47,"Charleston Southern",181,"Morehead State",0,0,1527,1440,,,
-372964,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,242,"Richmond",334,"VMI",0,0,1693,1586,,,
-372966,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,301,"Towson",33,"Buffalo",0,0,1561,1828,,,
-375386,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,73,"Duquesne",267,"South Carolina State",0,0,1538,1469,,,
-375392,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,259,"San Francisco",23,"Bethune-Cookman",0,0,1520,1480,,,
-375394,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,273,"Southern Illinois",231,"Portland State",0,0,1728,1838,,,
-375396,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,285,"Stony Brook",66,"Delaware",0,0,1820,1648,,,
+372963,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",1,47,"Charleston Southern",181,"Morehead State",0,0,1611,1440,,,-2.5
+372964,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,242,"Richmond",334,"VMI",0,0,1693,1586,,,-15.5
+372966,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,301,"Towson",33,"Buffalo",0,0,1635,1828,,,-2.5
+375386,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,73,"Duquesne",267,"South Carolina State",0,0,1538,1469,,,-20.5
+375392,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,259,"San Francisco",23,"Bethune-Cookman",0,0,1520,1480,,,-9.5
+375394,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,273,"Southern Illinois",231,"Portland State",0,0,1728,1838,,,-7.5
+375396,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,285,"Stony Brook",66,"Delaware",0,0,1820,1648,,,-6.5
 375398,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,127,"Jacksonville",521,"Trinity Baptist",0,0,1355,1314,,,
-375403,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,178,"Monmouth",251,"Saint Joseph's",0,0,1347,1797,,,
-375405,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,213,"Notre Dame",284,"Stonehill",0,0,1802,1572,,,
+375403,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,178,"Monmouth",251,"Saint Joseph's",0,0,1347,1797,,,2.5
+375405,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,213,"Notre Dame",284,"Stonehill",0,0,1802,1572,,,-30.5
 375409,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,1,"Abilene Christian",554,"Dallas",0,0,1784,1500,,,
-375410,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,93,"Furman",17,"Austin Peay",0,0,1918,1665,,,
-375411,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,261,"Santa Clara",330,"Utah Tech",0,0,1576,1595,,,
-375412,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,258,"San Diego",207,"Northern Colorado",0,0,1782,1442,,,
+375410,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,93,"Furman",17,"Austin Peay",0,0,1918,1665,,,-7.5
+375411,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,261,"Santa Clara",330,"Utah Tech",0,0,1576,1595,,,-17.5
+375412,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,258,"San Diego",207,"Northern Colorado",0,0,1782,1442,,,-13.5
 378137,2027,"regular","2026-11-28T05:00:00.000Z","scheduled",0,171,"Middle Tennessee",577,"Toccoa Falls",0,0,1611,1500,,,
-375397,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",0,263,"Seton Hall",264,"Siena",0,0,1887,1526,,,
-375400,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",1,280,"St. Thomas-Minnesota",234,"Princeton",0,0,1909,1648,,,
-375408,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",0,185,"NC State",81,"Elon",0,0,1791,1596,,,
-372962,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,94,"Gardner-Webb",199,"North Carolina Central",0,0,1264,1704,,,
-372968,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,15,"Army",243,"Rider",0,0,1610,1211,,,
-375391,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",1,239,"Radford",106,"Hampton",0,0,1628,1497,,,
-375402,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,101,"Georgia Tech",7,"Alcorn State",0,0,1550,990,,,
-375414,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,237,"Purdue Fort Wayne",356,"Wofford",0,0,1719,1561,,,
-375415,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",1,55,"Colgate",337,"Vermont",0,0,1777,1657,,,
-378138,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,209,"Northern Iowa",244,"Robert Morris",0,0,1388,1491,,,
+375397,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",0,263,"Seton Hall",264,"Siena",0,0,1887,1526,,,-17
+375400,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",1,280,"St. Thomas-Minnesota",234,"Princeton",0,0,1864,1670,,,-1.5
+375408,2027,"regular","2026-11-28T17:00:00.000Z","scheduled",0,185,"NC State",81,"Elon",0,0,1791,1596,,,-20.5
+372962,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,94,"Gardner-Webb",199,"North Carolina Central",0,0,1264,1704,,,-1.5
+372968,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,15,"Army",243,"Rider",0,0,1610,1211,,,-8.5
+375391,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",1,239,"Radford",106,"Hampton",0,0,1631,1454,,,-1.5
+375402,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,101,"Georgia Tech",7,"Alcorn State",0,0,1550,990,,,-27
+375414,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,237,"Purdue Fort Wayne",356,"Wofford",0,0,1719,1561,,,-2.5
+375415,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",1,55,"Colgate",337,"Vermont",0,0,1882,1531,,,-2.5
+378138,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,209,"Northern Iowa",244,"Robert Morris",0,0,1388,1491,,,-5.75
 378141,2027,"regular","2026-11-28T18:00:00.000Z","scheduled",0,122,"Indiana State",492,"IU Columbus",0,0,1666,1500,,,
-378140,2027,"regular","2026-11-28T18:30:00.000Z","scheduled",1,228,"Pepperdine",141,"Lehigh",0,0,1988,1667,,,
-372965,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,107,"Harvard",91,"Fordham",0,0,1521,1820,,,
-372967,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,365,"Southern Indiana",19,"Ball State",0,0,1542,1762,,,
+378140,2027,"regular","2026-11-28T18:30:00.000Z","scheduled",1,228,"Pepperdine",141,"Lehigh",0,0,1988,1562,,,-10.5
+372965,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,107,"Harvard",91,"Fordham",0,0,1521,1820,,,3
+372967,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,365,"Southern Indiana",19,"Ball State",0,0,1542,1762,,,3.25
 375387,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,354,"Winthrop",995,"Clinton College",0,0,1361,1391,,,
-375390,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,58,"Columbia",203,"North Florida",0,0,1834,1573,,,
-375401,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,124,"Iowa",232,"Prairie View A&M",0,0,1952,1366,,,
-375404,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,95,"George Mason",156,"Marist",0,0,1873,1518,,,
-375406,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",1,140,"Le Moyne",194,"Niagara",0,0,1548,1360,,,
-375407,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,29,"Bradley",50,"Chicago State",0,0,1569,1238,,,
-375416,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,182,"Morgan State",155,"Manhattan",0,0,1464,1278,,,
+375390,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,58,"Columbia",203,"North Florida",0,0,1834,1573,,,-14.5
+375399,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,158,"Marshall",76,"East Texas A&M",0,0,1502,1467,,,-8.5
+375401,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,124,"Iowa",232,"Prairie View A&M",0,0,1952,1366,,,-33
+375404,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,95,"George Mason",156,"Marist",0,0,1873,1518,,,-20.25
+375406,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",1,140,"Le Moyne",194,"Niagara",0,0,1511,1307,,,-1.5
+375407,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,29,"Bradley",50,"Chicago State",0,0,1569,1238,,,-15
+375416,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,182,"Morgan State",155,"Manhattan",0,0,1464,1278,,,-2.5
 375417,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,283,"Stetson",528,"New College (FL)",0,0,1370,1274,,,
-375418,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",1,187,"Navy",44,"Central Connecticut",0,0,1446,1638,,,
-375419,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,198,"North Carolina A&T",67,"Delaware State",0,0,1584,1445,,,
-375420,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,319,"UNC Asheville",99,"Georgia Southern",0,0,1383,1464,,,
-375421,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,49,"Chattanooga",302,"Troy",0,0,1615,1486,,,
-375422,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,109,"High Point",299,"The Citadel",0,0,1827,1657,,,
-375423,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,233,"Presbyterian",249,"Sacramento State",0,0,1717,1430,,,
+375418,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",1,187,"Navy",44,"Central Connecticut",0,0,1398,1638,,,1.5
+375419,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,198,"North Carolina A&T",67,"Delaware State",0,0,1584,1445,,,-10.5
+375420,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,319,"UNC Asheville",99,"Georgia Southern",0,0,1383,1464,,,1.5
+375421,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,49,"Chattanooga",302,"Troy",0,0,1615,1486,,,-4.25
+375422,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,109,"High Point",299,"The Citadel",0,0,1827,1657,,,-26.5
+375423,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,233,"Presbyterian",249,"Sacramento State",0,0,1717,1430,,,-2
 375424,2027,"regular","2026-11-28T19:00:00.000Z","scheduled",0,43,"Central Arkansas",804,"Southwestern Christian",0,0,1717,1179,,,
-372969,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,2,"Air Force",30,"Brown",0,0,1516,1689,,,
-375388,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,322,"UNLV",326,"UT Rio Grande Valley",0,0,1533,1801,,,
-375393,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,130,"Kansas City",272,"Southeast Missouri State",0,0,1466,1602,,,
-375395,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,77,"Eastern Illinois",208,"Northern Illinois",0,0,1308,1744,,,
-375426,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,192,"New Mexico State",68,"Denver",0,0,1320,1613,,,
-378142,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,54,"Coastal Carolina",349,"Western Illinois",0,0,1383,1560,,,
-378143,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,335,"Valparaiso",300,"Toledo",0,0,1712,1496,,,
-378144,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,321,"UNC Wilmington",142,"Liberty",0,0,1912,1672,,,
+372969,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,2,"Air Force",30,"Brown",0,0,1516,1689,,,-2.5
+375388,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,322,"UNLV",326,"UT Rio Grande Valley",0,0,1533,1801,,,-10.5
+375393,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,130,"Kansas City",272,"Southeast Missouri State",0,0,1466,1602,,,-2.5
+375395,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,77,"Eastern Illinois",208,"Northern Illinois",0,0,1308,1744,,,11.25
+375426,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,192,"New Mexico State",68,"Denver",0,0,1320,1613,,,-3.75
+378142,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,54,"Coastal Carolina",349,"Western Illinois",0,0,1383,1560,,,-11
+378143,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,335,"Valparaiso",300,"Toledo",0,0,1712,1496,,,-3.75
+378144,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,321,"UNC Wilmington",142,"Liberty",0,0,1889,1718,,,-5.5
 378145,2027,"regular","2026-11-28T20:00:00.000Z","scheduled",0,325,"UT Martin",590,"Kentucky Christian",0,0,1907,1280,,,
-375389,2027,"regular","2026-11-28T20:30:00.000Z","scheduled",0,110,"Hofstra",166,"Merrimack",0,0,1545,1450,,,
-378136,2027,"regular","2026-11-28T20:30:00.000Z","scheduled",1,25,"Boise State",204,"North Texas",0,0,1652,1734,,,
+375389,2027,"regular","2026-11-28T20:30:00.000Z","scheduled",0,110,"Hofstra",166,"Merrimack",0,0,1440,1576,,,-1.75
+378136,2027,"regular","2026-11-28T20:30:00.000Z","scheduled",1,25,"Boise State",204,"North Texas",0,0,1750,1729,,,-4.5
 378146,2027,"regular","2026-11-28T20:30:00.000Z","scheduled",0,255,"Sam Houston",550,"Paul Quinn",0,0,1704,1424,,,
-372970,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,8,"American University",318,"UMass Lowell",0,0,1592,1681,,,
-375383,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,78,"Eastern Kentucky",291,"Tennessee Tech",0,0,1823,2031,,,
-375399,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,158,"Marshall",76,"East Texas A&M",0,0,1502,1467,,,
-375427,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,148,"Louisiana",162,"McNeese",0,0,1635,1721,,,
+372970,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,8,"American University",318,"UMass Lowell",0,0,1588,1724,,,-5.5
+375383,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,78,"Eastern Kentucky",291,"Tennessee Tech",0,0,1823,2031,,,4.5
+375427,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,148,"Louisiana",162,"McNeese",0,0,1635,1721,,,7.5
 375428,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,116,"Idaho State",1563,"Azusa Pacific",0,0,1462,1500,,,
-375429,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,183,"Mount St. Mary's",71,"Drexel",0,0,1244,1440,,,
-375430,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,332,"Utah Valley",260,"San José State",0,0,1683,1547,,,
-375431,2027,"regular","2026-11-28T21:30:00.000Z","scheduled",0,138,"Lafayette",154,"Maine",0,0,1655,1316,,,
-375413,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,262,"Seattle U",308,"UC Irvine",0,0,1722,1712,,,
-375432,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,37,"Cal State Fullerton",345,"Weber State",0,0,1732,1224,,,
-375433,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,36,"Cal State Bakersfield",206,"Northern Arizona",0,0,1710,1389,,,
-378147,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",1,202,"North Dakota State",70,"Drake",0,0,1604,1746,,,
+375429,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,183,"Mount St. Mary's",71,"Drexel",0,0,1244,1440,,,5
+375430,2027,"regular","2026-11-28T21:00:00.000Z","scheduled",0,332,"Utah Valley",260,"San José State",0,0,1683,1547,,,-5.75
+375431,2027,"regular","2026-11-28T21:30:00.000Z","scheduled",0,138,"Lafayette",154,"Maine",0,0,1708,1352,,,-6.5
+375413,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,262,"Seattle U",308,"UC Irvine",0,0,1722,1712,,,-4.5
+375432,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,37,"Cal State Fullerton",345,"Weber State",0,0,1732,1224,,,-10.5
+375433,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,36,"Cal State Bakersfield",206,"Northern Arizona",0,0,1710,1389,,,-6.5
+378147,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",1,202,"North Dakota State",70,"Drake",0,0,1610,1647,,,4.75
 378148,2027,"regular","2026-11-28T22:00:00.000Z","scheduled",0,309,"UC Riverside",754,"Lincoln University (CA)",0,0,1650,972,,,
-375434,2027,"regular","2026-11-28T23:00:00.000Z","scheduled",0,227,"Pennsylvania",32,"Bucknell",0,0,1615,1292,,,
-378149,2027,"regular","2026-11-28T23:00:00.000Z","scheduled",1,270,"South Dakota State",265,"South Alabama",0,0,1714,1664,,,
+375434,2027,"regular","2026-11-28T23:00:00.000Z","scheduled",0,227,"Pennsylvania",32,"Bucknell",0,0,1541,1312,,,-15.5
+378149,2027,"regular","2026-11-28T23:00:00.000Z","scheduled",1,270,"South Dakota State",265,"South Alabama",0,0,1714,1548,,,-1.25
 375435,2027,"regular","2026-11-29T00:00:00.000Z","scheduled",0,60,"Cornell",1564,"St. Lawrence",0,0,1698,1500,,,
-372960,2027,"regular","2026-11-29T01:00:00.000Z","scheduled",1,173,"Minnesota",40,"California",0,0,1901,1759,,,
-375436,2027,"regular","2026-11-29T03:00:00.000Z","scheduled",0,310,"UC San Diego",153,"Loyola Marymount",0,0,1369,1685,,,
-375385,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",1,204,"North Texas",70,"Drake",0,0,1734,1746,,,
+372960,2027,"regular","2026-11-29T01:00:00.000Z","scheduled",1,173,"Minnesota",40,"California",0,0,1901,1759,,,-7.25
+375436,2027,"regular","2026-11-29T03:00:00.000Z","scheduled",0,310,"UC San Diego",153,"Loyola Marymount",0,0,1369,1685,,,-1.75
+378737,2027,"regular","2026-11-29T03:30:00.000Z","scheduled",1,150,"Louisville",61,"Creighton",0,0,1879,1900,,,-4.5
+375385,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",1,204,"North Texas",70,"Drake",0,0,1729,1647,,,
 375437,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,247,"SIU Edwardsville",328,"UTSA",0,0,1528,1476,,,
-375442,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,297,"Texas State",195,"Nicholls",0,0,1911,1461,,,
-375445,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,113,"Houston",362,"Queens University",0,0,1997,1375,,,
+375442,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,297,"Texas State",195,"Nicholls",0,0,1921,1461,,,
+375445,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,113,"Houston",362,"Queens University",0,0,1966,1375,,,
 375446,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,193,"New Orleans",88,"Florida Gulf Coast",0,0,1391,1684,,,
-375449,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,75,"East Tennessee State",181,"Morehead State",0,0,1715,1440,,,
-375450,2027,"regular","2026-11-29T17:00:00.000Z","scheduled",1,55,"Colgate",166,"Merrimack",0,0,1777,1450,,,
-375457,2027,"regular","2026-11-29T17:00:00.000Z","scheduled",1,154,"Maine",194,"Niagara",0,0,1316,1360,,,
-372973,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",1,163,"Memphis",64,"Dayton",0,0,1724,1481,,,
+375449,2027,"regular","2026-11-29T05:00:00.000Z","scheduled",0,75,"East Tennessee State",181,"Morehead State",0,0,1631,1440,,,
+375450,2027,"regular","2026-11-29T17:00:00.000Z","scheduled",1,55,"Colgate",166,"Merrimack",0,0,1882,1576,,,
+375457,2027,"regular","2026-11-29T17:00:00.000Z","scheduled",1,154,"Maine",194,"Niagara",0,0,1352,1307,,,
+372973,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",1,163,"Memphis",64,"Dayton",0,0,1742,1481,,,
 375452,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",0,9,"App State",62,"Dartmouth",0,0,1768,1744,,,
-375458,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",1,318,"UMass Lowell",239,"Radford",0,0,1681,1628,,,
+375458,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",1,318,"UMass Lowell",239,"Radford",0,0,1724,1631,,,
 378152,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",0,1507,"New Haven",694,"Mitchell College",0,0,1585,1500,,,
 378153,2027,"regular","2026-11-29T18:00:00.000Z","scheduled",0,161,"Massachusetts",151,"Loyola Chicago",0,0,1625,1634,,,
 375459,2027,"regular","2026-11-29T18:30:00.000Z","scheduled",0,315,"UIC",42,"Canisius",0,0,1555,1328,,,
@@ -1603,18 +1604,18 @@
 375443,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,191,"New Mexico",329,"Utah State",0,0,1675,2117,,,
 375447,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,111,"Holy Cross",190,"New Hampshire",0,0,1276,1557,,,
 375448,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,13,"Arkansas State",241,"Rice",0,0,1661,1701,,,
-375456,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,268,"South Carolina Upstate",346,"West Georgia",0,0,1403,1580,,,
-375460,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,83,"Fairfield",44,"Central Connecticut",0,0,1455,1638,,,
+375456,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,268,"South Carolina Upstate",346,"West Georgia",0,0,1395,1580,,,
+375460,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,83,"Fairfield",44,"Central Connecticut",0,0,1502,1638,,,
 375461,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,360,"Yale",238,"Quinnipiac",0,0,1670,1526,,,
 375462,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,86,"Florida Atlantic",63,"Davidson",0,0,1608,1801,,,
 375463,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,250,"Sacred Heart",186,"NJIT",0,0,1504,1132,,,
 375464,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,303,"Tulane",316,"UL Monroe",0,0,1451,1410,,,
 378139,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,46,"Charleston",114,"Howard",0,,1802,1566,,,
-378151,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,224,"Oregon State",172,"Milwaukee",0,0,1849,1533,,,
 378154,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,164,"Mercer",1576,"Georgia Southern-East Georgia",0,0,1520,1500,,,
 378155,2027,"regular","2026-11-29T19:00:00.000Z","scheduled",0,105,"Green Bay",201,"North Dakota",0,0,1599,1458,,,
-375453,2027,"regular","2026-11-29T19:30:00.000Z","scheduled",0,138,"Lafayette",140,"Le Moyne",0,0,1655,1548,,,
-375465,2027,"regular","2026-11-29T19:30:00.000Z","scheduled",0,110,"Hofstra",337,"Vermont",0,0,1545,1657,,,
+375453,2027,"regular","2026-11-29T19:30:00.000Z","scheduled",0,138,"Lafayette",140,"Le Moyne",0,0,1708,1511,,,
+375465,2027,"regular","2026-11-29T19:30:00.000Z","scheduled",0,110,"Hofstra",337,"Vermont",0,0,1440,1531,,,
+378151,2027,"regular","2026-11-29T19:30:00.000Z","scheduled",0,224,"Oregon State",172,"Milwaukee",0,0,1849,1533,,,
 375441,2027,"regular","2026-11-29T20:00:00.000Z","scheduled",0,48,"Charlotte",348,"Western Carolina",0,0,1675,1688,,,
 375444,2027,"regular","2026-11-29T20:00:00.000Z","scheduled",1,90,"Florida State",1073,"West Florida",0,0,1905,1706,,,
 375451,2027,"regular","2026-11-29T20:00:00.000Z","scheduled",0,358,"Wyoming",80,"Eastern Washington",0,0,1798,1506,,,
@@ -1622,8 +1623,8 @@
 375466,2027,"regular","2026-11-29T20:00:00.000Z","scheduled",0,147,"Longwood",159,"Maryland Eastern Shore",0,0,1625,1318,,,
 378156,2027,"regular","2026-11-29T20:00:00.000Z","scheduled",0,134,"Kent State",837,"Malone",0,0,1640,1507,,,
 372972,2027,"regular","2026-11-29T20:30:00.000Z","scheduled",1,252,"Saint Louis",271,"South Florida",0,0,1741,1794,,,
-372974,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,8,"American University",106,"Hampton",0,0,1592,1497,,,
-375440,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",1,25,"Boise State",202,"North Dakota State",0,,1652,1604,,,
+372974,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,8,"American University",106,"Hampton",0,0,1588,1454,,,
+375440,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",1,25,"Boise State",202,"North Dakota State",0,,1750,1610,,,
 375455,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,129,"James Madison",353,"William & Mary",0,0,1918,1698,,,
 375467,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,6,"Alabama State",1186,"Arkansas-Monticello",0,0,1306,1245,,,
 375468,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,31,"Bryant",123,"Iona",0,0,1456,1403,,,
@@ -1632,7 +1633,7 @@
 378157,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,275,"Southern Miss",103,"Grambling",0,0,1618,1616,,,
 378158,2027,"regular","2026-11-29T21:00:00.000Z","scheduled",0,256,"Samford",591,"Point University",0,0,1609,1500,,,
 372971,2027,"regular","2026-11-29T22:30:00.000Z","scheduled",0,216,"Ohio State",143,"Lipscomb",0,0,1766,1439,,,
-378159,2027,"regular","2026-11-29T22:30:00.000Z","scheduled",1,92,"Fresno State",270,"South Dakota State",0,0,1562,1714,,,
+378159,2027,"regular","2026-11-29T22:30:00.000Z","scheduled",1,92,"Fresno State",270,"South Dakota State",0,0,1678,1714,,,
 375438,2027,"regular","2026-11-30T00:30:00.000Z","scheduled",0,343,"Washington",196,"Norfolk State",0,0,1685,1351,,,
 372975,2027,"regular","2026-11-30T01:00:00.000Z","scheduled",0,104,"Grand Canyon",120,"Incarnate Word",0,0,1797,1532,,,
 375477,2027,"regular","2026-11-30T17:00:00.000Z","scheduled",0,294,"Texas A&M-Corpus Christi",783,"Southwestern Adventist",0,0,1593,1479,,,
@@ -1641,140 +1642,140 @@
 375472,2027,"regular","2026-12-01T00:00:00.000Z","scheduled",0,152,"Loyola Maryland",1100,"Hartwick",0,0,1394,1500,,,
 375478,2027,"regular","2026-12-01T00:00:00.000Z","scheduled",0,59,"Coppin State",729,"Central Penn",0,0,1334,1223,,,
 378161,2027,"regular","2026-12-01T00:00:00.000Z","scheduled",0,133,"Kennesaw State",85,"Florida A&M",0,0,1736,1113,,,
-375476,2027,"regular","2026-12-01T00:30:00.000Z","scheduled",0,352,"Wichita State",272,"Southeast Missouri State",0,0,1897,1602,,,
+375476,2027,"regular","2026-12-01T00:30:00.000Z","scheduled",0,352,"Wichita State",272,"Southeast Missouri State",0,0,1889,1602,,,
 378162,2027,"regular","2026-12-01T00:30:00.000Z","scheduled",0,162,"McNeese",557,"Champion Christian",0,0,1721,1252,,,
-375470,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,269,"South Dakota",180,"Montana State",0,0,1584,1809,,,
+375470,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,269,"South Dakota",180,"Montana State",0,0,1762,1809,,,
 375473,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,130,"Kansas City",1039,"Peru State",0,0,1466,1500,,,
 375475,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,82,"Evansville",50,"Chicago State",0,0,1537,1238,,,
 375479,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,112,"Houston Christian",349,"Western Illinois",0,0,1830,1560,,,
-378160,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,184,"Murray State",344,"Washington State",0,0,1803,1700,,,
-378163,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,176,"Missouri State",366,"Lindenwood",0,0,1689,1632,,,
+378160,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,184,"Murray State",344,"Washington State",0,0,1803,1713,,,
+378163,2027,"regular","2026-12-01T01:00:00.000Z","scheduled",0,176,"Missouri State",366,"Lindenwood",0,0,1700,1632,,,
 375471,2027,"regular","2026-12-01T02:00:00.000Z","scheduled",0,10,"Arizona State",179,"Montana",0,0,1753,1620,,,
 375503,2027,"regular","2026-12-01T16:00:00.000Z","scheduled",0,346,"West Georgia",365,"Southern Indiana",0,0,1580,1542,,,
-378167,2027,"regular","2026-12-01T17:00:00.000Z","scheduled",0,274,"Southern",557,"Champion Christian",0,0,1387,1252,,,
+378167,2027,"regular","2026-12-01T17:00:00.000Z","scheduled",0,274,"Southern",557,"Champion Christian",0,0,1253,1252,,,
 375506,2027,"regular","2026-12-01T21:00:00.000Z","scheduled",0,198,"North Carolina A&T",830,"Washington Adventist",0,0,1584,1500,,,
-372996,2027,"regular","2026-12-01T22:00:00.000Z","scheduled",0,98,"Georgia",26,"Boston College",0,0,1832,1730,,,
+372996,2027,"regular","2026-12-01T22:00:00.000Z","scheduled",0,98,"Georgia",26,"Boston College",0,0,1740,1707,,,
 372978,2027,"regular","2026-12-01T23:00:00.000Z","scheduled",0,334,"VMI",320,"UNC Greensboro",0,0,1586,1611,,,
-375504,2027,"regular","2026-12-01T23:00:00.000Z","scheduled",0,154,"Maine",735,"Maine-Augusta",0,0,1316,1307,,,
+375504,2027,"regular","2026-12-01T23:00:00.000Z","scheduled",0,154,"Maine",735,"Maine-Augusta",0,0,1352,1307,,,
 378168,2027,"regular","2026-12-01T23:00:00.000Z","scheduled",0,31,"Bryant",841,"Vassar",0,0,1456,1500,,,
 375486,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,211,"Northwestern State",668,"Ecclesia",0,0,1547,613,,,
-375491,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,289,"Temple",338,"Villanova",0,0,1580,1683,,,
-375494,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,279,"St. John's",58,"Columbia",0,0,1957,1834,,,
+375491,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,289,"Temple",338,"Villanova",0,0,1580,1679,,,
+375494,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,279,"St. John's",58,"Columbia",0,0,1948,1834,,,
 378171,2027,"regular","2026-12-01T23:30:00.000Z","scheduled",0,9,"App State",646,"Carolina University",0,0,1768,1229,,,
 372980,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,240,"Rhode Island",30,"Brown",0,0,1732,1689,,,
-372981,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,74,"East Carolina",242,"Richmond",0,0,1530,1693,,,
-372982,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,96,"George Washington",246,"SE Louisiana",0,0,1844,1340,,,
+372981,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,74,"East Carolina",242,"Richmond",0,0,1734,1693,,,
+372982,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,96,"George Washington",246,"SE Louisiana",0,0,1900,1340,,,
 372983,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,91,"Fordham",27,"Boston University",0,0,1820,1679,,,
-372988,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,177,"Missouri",229,"Pittsburgh",0,0,1962,1890,,,
+372988,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,177,"Missouri",229,"Pittsburgh",0,0,1890,1890,,,
 372989,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,235,"Providence",284,"Stonehill",0,0,1673,1572,,,
-372994,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,292,"Tennessee",90,"Florida State",0,0,1873,1905,,,
-372998,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,47,"Charleston Southern",299,"The Citadel",0,0,1527,1657,,,
+372994,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,292,"Tennessee",90,"Florida State",0,0,1756,1905,,,
+372998,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,47,"Charleston Southern",299,"The Citadel",0,0,1611,1657,,,
 375481,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,302,"Troy",93,"Furman",0,0,1486,1918,,,
-375482,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,75,"East Tennessee State",584,"Virginia-Lynchburg",0,0,1715,353,,,
-375483,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,137,"La Salle",356,"Wofford",0,0,1614,1561,,,
+375482,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,75,"East Tennessee State",584,"Virginia-Lynchburg",0,0,1631,353,,,
+375483,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,137,"La Salle",356,"Wofford",0,0,1594,1561,,,
 375489,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,236,"Purdue",124,"Iowa",0,0,1739,1952,,,
-375492,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,312,"UCF",127,"Jacksonville",0,0,1601,1355,,,
-375495,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,347,"West Virginia",165,"Mercyhurst",0,0,1744,1632,,,
+375492,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,312,"UCF",127,"Jacksonville",0,0,1694,1355,,,
+375495,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,347,"West Virginia",165,"Mercyhurst",0,0,1809,1632,,,
 375497,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,353,"William & Mary",1248,"Winston-Salem",0,0,1698,1500,,,
-375502,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,226,"Penn State",306,"UAlbany",0,0,1663,1387,,,
-375505,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,227,"Pennsylvania",1565,"Kutztown",0,0,1615,1500,,,
+375502,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,226,"Penn State",306,"UAlbany",0,0,1689,1387,,,
+375505,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,227,"Pennsylvania",1565,"Kutztown",0,0,1541,1500,,,
 375507,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,49,"Chattanooga",4,"Alabama A&M",0,0,1615,1660,,,
 375508,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,185,"NC State",266,"South Carolina",0,0,1791,1736,,,
 375509,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,52,"Clemson",16,"Auburn",0,0,1658,1815,,,
 378164,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,100,"Georgia State",164,"Mercer",0,0,1702,1520,,,
-378169,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,219,"Old Dominion",71,"Drexel",0,0,1711,1440,,,
-378170,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,128,"Jacksonville State",144,"Little Rock",0,0,1634,1573,,,
-372977,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,200,"North Carolina",12,"Arkansas",0,0,1798,1797,,,
+378169,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,219,"Old Dominion",71,"Drexel",0,0,1697,1440,,,
+378170,2027,"regular","2026-12-02T00:00:00.000Z","scheduled",0,128,"Jacksonville State",144,"Little Rock",0,0,1591,1642,,,
+372977,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,200,"North Carolina",12,"Arkansas",0,0,1733,1797,,,
 372990,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,157,"Marquette",341,"Wagner",0,0,1887,1717,,,
 375480,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,171,"Middle Tennessee",291,"Tennessee Tech",0,0,1611,2031,,,
-375493,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,350,"Western Kentucky",22,"Belmont",0,0,1871,1701,,,
+375493,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,350,"Western Kentucky",22,"Belmont",0,0,1779,1701,,,
 378166,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,67,"Delaware State",1507,"New Haven",0,0,1445,1585,,,
 378172,2027,"regular","2026-12-02T00:30:00.000Z","scheduled",0,199,"North Carolina Central",577,"Toccoa Falls",0,0,1704,1500,,,
-372984,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,131,"Kansas",209,"Northern Iowa",0,0,1904,1388,,,
+372984,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,131,"Kansas",209,"Northern Iowa",0,0,1908,1388,,,
 372991,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,65,"DePaul",197,"North Alabama",0,0,1931,1514,,,
-372992,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,61,"Creighton",222,"Oral Roberts",0,0,1862,1794,,,
-375484,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,170,"Michigan",175,"Mississippi Valley State",0,0,1580,1211,,,
-375485,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,125,"Iowa State",7,"Alcorn State",0,0,1756,990,,,
-375490,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,121,"Indiana",245,"Rutgers",0,0,1778,1833,,,
+372992,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,61,"Creighton",222,"Oral Roberts",0,0,1900,1784,,,
+375484,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,170,"Michigan",175,"Mississippi Valley State",0,0,1698,1211,,,
+375485,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,125,"Iowa State",7,"Alcorn State",0,0,1764,990,,,
+375490,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,121,"Indiana",245,"Rutgers",0,0,1878,1833,,,
 375496,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,248,"SMU",282,"Stephen F. Austin",0,0,1815,1868,,,
 375498,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,1,"Abilene Christian",228,"Pepperdine",0,0,1784,1988,,,
 378173,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,201,"North Dakota",811,"Waldorf College",0,0,1458,1500,,,
-378174,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,221,"Omaha",628,"Mount Marty College",0,0,1416,1343,,,
+378174,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,221,"Omaha",628,"Mount Marty College",0,0,1460,1343,,,
 378175,2027,"regular","2026-12-02T01:00:00.000Z","scheduled",0,29,"Bradley",885,"Loras",0,0,1569,1500,,,
-372979,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,307,"UC Davis",230,"Portland",0,0,1571,1522,,,
+372979,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,307,"UC Davis",230,"Portland",0,0,1547,1522,,,
 372985,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,56,"Colorado",327,"UTEP",0,0,1595,1789,,,
 372986,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,11,"Arizona",193,"New Orleans",0,0,1919,1391,,,
-372987,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,136,"LSU",342,"Wake Forest",0,0,1946,1841,,,
-372993,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,150,"Louisville",295,"Texas",0,0,1762,2030,,,
+372987,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,136,"LSU",342,"Wake Forest",0,0,1946,1824,,,
+372993,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,150,"Louisville",295,"Texas",0,0,1879,2030,,,
 372995,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,217,"Oklahoma",286,"Syracuse",0,0,1648,1707,,,
 372999,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,2,"Air Force",68,"Denver",0,0,1516,1613,,,
-375487,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,212,"Northwestern",355,"Wisconsin",0,0,1612,1729,,,
-375510,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,340,"Virginia Tech",220,"Ole Miss",0,0,1713,1954,,,
+375487,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,212,"Northwestern",355,"Wisconsin",0,0,1579,1729,,,
+375510,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,340,"Virginia Tech",220,"Ole Miss",0,0,1727,1954,,,
 378165,2027,"regular","2026-12-02T02:00:00.000Z","scheduled",0,57,"Colorado State",324,"UT Arlington",0,0,1530,1693,,,
 372997,2027,"regular","2026-12-02T02:30:00.000Z","scheduled",0,87,"Florida",72,"Duke",0,0,1835,1887,,,
 375499,2027,"regular","2026-12-02T02:30:00.000Z","scheduled",0,258,"San Diego",108,"Hawai'i",0,0,1782,1617,,,
-375500,2027,"regular","2026-12-02T02:30:00.000Z","scheduled",0,253,"Saint Mary's",110,"Hofstra",0,0,1957,1545,,,
-375488,2027,"regular","2026-12-02T03:00:00.000Z","scheduled",0,313,"UCLA",223,"Oregon",0,0,1963,1709,,,
+375500,2027,"regular","2026-12-02T02:30:00.000Z","scheduled",0,253,"Saint Mary's",110,"Hofstra",0,0,1957,1440,,,
+375488,2027,"regular","2026-12-02T03:00:00.000Z","scheduled",0,313,"UCLA",223,"Oregon",0,0,1963,1791,,,
 375501,2027,"regular","2026-12-02T03:00:00.000Z","scheduled",0,262,"Seattle U",196,"Norfolk State",0,0,1722,1351,,,
-373001,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,189,"Nevada",225,"Pacific",0,0,1766,1860,,,
+373001,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,189,"Nevada",225,"Pacific",0,0,1766,1883,,,
 373002,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,218,"Oklahoma State",104,"Grand Canyon",0,0,1956,1797,,,
-373004,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,252,"Saint Louis",14,"Arkansas-Pine Bluff",0,0,1741,787,,,
+373004,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,252,"Saint Louis",14,"Arkansas-Pine Bluff",0,0,1741,860,,,
 373009,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,167,"Miami (OH)",45,"Central Michigan",0,0,1767,1504,,,
 375513,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,304,"Tulsa",680,"Haskell",0,0,1671,1500,,,
 375515,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,48,"Charlotte",46,"Charleston",0,0,1675,1802,,,
 375516,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,267,"South Carolina State",354,"Winthrop",0,0,1469,1361,,,
 375524,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,259,"San Francisco",322,"UNLV",0,0,1520,1533,,,
-375526,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,181,"Morehead State",21,"Bellarmine",0,0,1440,1611,,,
+375526,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,181,"Morehead State",21,"Bellarmine",0,0,1440,1528,,,
 375530,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,184,"Murray State",50,"Chicago State",0,0,1803,1238,,,
-375533,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,305,"UAB",256,"Samford",0,0,1602,1609,,,
+375533,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,305,"UAB",256,"Samford",0,0,1750,1609,,,
 375535,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,271,"South Florida",1073,"West Florida",0,0,1794,1706,,,
 375538,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,139,"Lamar",316,"UL Monroe",0,0,2019,1410,,,
-375540,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,113,"Houston",43,"Central Arkansas",0,0,1997,1717,,,
-375541,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,261,"Santa Clara",92,"Fresno State",0,0,1576,1562,,,
-378176,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,102,"Gonzaga",822,"Eastern Oregon",0,0,1924,1500,,,
-378177,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,297,"Texas State",149,"Louisiana Tech",0,0,1911,1658,,,
+375540,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,113,"Houston",43,"Central Arkansas",0,0,1966,1717,,,
+375541,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,261,"Santa Clara",92,"Fresno State",0,0,1576,1678,,,
+378176,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,102,"Gonzaga",822,"Eastern Oregon",0,0,1886,1500,,,
+378177,2027,"regular","2026-12-02T05:00:00.000Z","scheduled",0,297,"Texas State",149,"Louisiana Tech",0,0,1921,1647,,,
 373003,2027,"regular","2026-12-02T16:00:00.000Z","scheduled",0,94,"Gardner-Webb",533,"Bob Jones",0,0,1264,1000,,,
-373017,2027,"regular","2026-12-02T16:00:00.000Z","scheduled",0,15,"Army",317,"UMBC",0,0,1610,1440,,,
-375536,2027,"regular","2026-12-02T17:00:00.000Z","scheduled",0,163,"Memphis",126,"Jackson State",0,0,1724,1225,,,
+373017,2027,"regular","2026-12-02T16:00:00.000Z","scheduled",0,15,"Army",317,"UMBC",0,0,1610,1384,,,
+375536,2027,"regular","2026-12-02T17:00:00.000Z","scheduled",0,163,"Memphis",126,"Jackson State",0,0,1742,1225,,,
 375511,2027,"regular","2026-12-02T23:00:00.000Z","scheduled",0,348,"Western Carolina",503,"Piedmont",0,0,1688,1500,,,
 375542,2027,"regular","2026-12-02T23:00:00.000Z","scheduled",0,190,"New Hampshire",107,"Harvard",0,0,1557,1521,,,
 373006,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,79,"Eastern Michigan",161,"Massachusetts",0,0,1677,1625,,,
-373013,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,97,"Georgetown",318,"UMass Lowell",0,0,1770,1681,,,
+373013,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,97,"Georgetown",318,"UMass Lowell",0,0,1770,1724,,,
 375514,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,285,"Stony Brook",159,"Maryland Eastern Shore",0,0,1820,1318,,,
 375521,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,169,"Michigan State",173,"Minnesota",0,0,1771,1901,,,
 375543,2027,"regular","2026-12-02T23:30:00.000Z","scheduled",0,115,"IU Indianapolis",244,"Robert Morris",0,0,1660,1491,,,
-373000,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,160,"Maryland",8,"American University",0,0,1744,1592,,,
+373000,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,160,"Maryland",8,"American University",0,0,1673,1588,,,
 373005,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,215,"Ohio",300,"Toledo",0,0,1539,1496,,,
 373007,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,351,"Western Michigan",33,"Buffalo",0,0,2025,1828,,,
-373008,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,134,"Kent State",28,"Bowling Green",0,0,1640,1528,,,
+373008,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,134,"Kent State",28,"Bowling Green",0,0,1640,1428,,,
 373010,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,3,"Akron",19,"Ball State",0,0,1862,1762,,,
-373012,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,359,"Xavier",296,"Texas Southern",0,0,1770,1219,,,
-373016,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,34,"Butler",233,"Presbyterian",0,0,1687,1717,,,
+373012,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,359,"Xavier",296,"Texas Southern",0,0,1757,1219,,,
+373016,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,34,"Butler",233,"Presbyterian",0,0,1770,1717,,,
 375517,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,89,"Florida International",86,"Florida Atlantic",0,0,1666,1608,,,
 375518,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,315,"UIC",335,"Valparaiso",0,0,1555,1712,,,
-375522,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,51,"Cincinnati",178,"Monmouth",0,0,1851,1347,,,
+375522,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,51,"Cincinnati",178,"Monmouth",0,0,1875,1347,,,
 375523,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,64,"Dayton",152,"Loyola Maryland",0,0,1481,1394,,,
-375525,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,268,"South Carolina Upstate",99,"Georgia Southern",0,0,1403,1464,,,
-375527,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,158,"Marshall",321,"UNC Wilmington",0,0,1502,1912,,,
-375528,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,205,"Northeastern",111,"Holy Cross",0,0,1298,1276,,,
+375525,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,268,"South Carolina Upstate",99,"Georgia Southern",0,0,1395,1464,,,
+375527,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,158,"Marshall",321,"UNC Wilmington",0,0,1502,1889,,,
+375528,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,205,"Northeastern",111,"Holy Cross",0,0,1331,1276,,,
 375529,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,146,"Long Island University",60,"Cornell",0,0,1328,1698,,,
 375531,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,237,"Purdue Fort Wayne",69,"Detroit Mercy",0,0,1719,1169,,,
-375532,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,214,"Oakland",210,"Northern Kentucky",0,0,1181,1403,,,
+375532,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,214,"Oakland",210,"Northern Kentucky",0,0,1212,1403,,,
 375544,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,122,"Indiana State",247,"SIU Edwardsville",0,0,1666,1528,,,
 375545,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,155,"Manhattan",254,"Saint Peter's",0,0,1278,1343,,,
 375546,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,283,"Stetson",521,"Trinity Baptist",0,0,1370,1314,,,
 375547,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,362,"Queens University",54,"Coastal Carolina",0,0,1375,1383,,,
-375548,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,66,"Delaware",32,"Bucknell",0,0,1648,1292,,,
-375549,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,186,"NJIT",187,"Navy",0,0,1132,1446,,,
+375548,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,66,"Delaware",32,"Bucknell",0,0,1648,1312,,,
+375549,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,186,"NJIT",187,"Navy",0,0,1132,1398,,,
 375550,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,147,"Longwood",41,"Campbell",0,0,1625,1596,,,
 375551,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,63,"Davidson",62,"Dartmouth",0,0,1801,1744,,,
 375552,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,109,"High Point",95,"George Mason",0,0,1827,1873,,,
-375553,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,53,"Cleveland State",361,"Youngstown State",0,0,1582,1335,,,
-378178,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,301,"Towson",496,"Penn State-York",0,0,1561,1500,,,
-378179,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,141,"Lehigh",799,"Penn State Scranton",0,0,1667,1500,,,
+375553,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,53,"Cleveland State",361,"Youngstown State",0,0,1582,1486,,,
+378178,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,301,"Towson",496,"Penn State-York",0,0,1635,1500,,,
+378179,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,141,"Lehigh",799,"Penn State Scranton",0,0,1562,1500,,,
 378180,2027,"regular","2026-12-03T00:00:00.000Z","scheduled",0,78,"Eastern Kentucky",325,"UT Martin",0,0,1823,1907,,,
-375554,2027,"regular","2026-12-03T00:15:00.000Z","scheduled",0,213,"Notre Dame",336,"Vanderbilt",0,0,1802,1934,,,
-375555,2027,"regular","2026-12-03T00:15:00.000Z","scheduled",0,339,"Virginia",135,"Kentucky",0,0,1991,1595,,,
+375554,2027,"regular","2026-12-03T00:15:00.000Z","scheduled",0,213,"Notre Dame",336,"Vanderbilt",0,0,1802,2068,,,
+375555,2027,"regular","2026-12-03T00:15:00.000Z","scheduled",0,339,"Virginia",135,"Kentucky",0,0,2003,1603,,,
 375556,2027,"regular","2026-12-03T01:00:00.000Z","scheduled",0,77,"Eastern Illinois",119,"Illinois State",0,0,1308,1872,,,
 375557,2027,"regular","2026-12-03T01:00:00.000Z","scheduled",0,148,"Louisiana",112,"Houston Christian",0,0,1635,1830,,,
 375558,2027,"regular","2026-12-03T01:00:00.000Z","scheduled",0,143,"Lipscomb",319,"UNC Asheville",0,0,1439,1383,,,
@@ -1783,18 +1784,53 @@
 375534,2027,"regular","2026-12-03T01:30:00.000Z","scheduled",0,275,"Southern Miss",303,"Tulane",0,0,1618,1451,,,
 375537,2027,"regular","2026-12-03T02:00:00.000Z","scheduled",0,331,"Utah",40,"California",0,0,1466,1759,,,
 375539,2027,"regular","2026-12-03T02:00:00.000Z","scheduled",0,358,"Wyoming",17,"Austin Peay",0,0,1798,1665,,,
-373014,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,174,"Mississippi State",101,"Georgia Tech",0,0,1757,1550,,,
-373015,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,168,"Miami",5,"Alabama",0,0,2010,1806,,,
-375559,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,293,"Texas A&M",281,"Stanford",0,0,1933,1615,,,
+373014,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,174,"Mississippi State",101,"Georgia Tech",0,0,1731,1550,,,
+373015,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,168,"Miami",5,"Alabama",0,0,2003,1812,,,
+375559,2027,"regular","2026-12-03T02:15:00.000Z","scheduled",0,293,"Texas A&M",281,"Stanford",0,0,1934,1615,,,
 375519,2027,"regular","2026-12-03T03:30:00.000Z","scheduled",0,323,"USC",343,"Washington",0,0,1993,1685,,,
 373020,2027,"regular","2026-12-03T05:00:00.000Z","scheduled",0,206,"Northern Arizona",179,"Montana",0,0,1389,1620,,,
-373022,2027,"regular","2026-12-03T05:00:00.000Z","scheduled",0,207,"Northern Colorado",117,"Idaho",0,0,1442,1721,,,
-373018,2027,"regular","2026-12-03T23:00:00.000Z","scheduled",0,121,"Indiana",349,"Western Illinois",0,0,1778,1560,,,
-375568,2027,"regular","2026-12-03T23:00:00.000Z","scheduled",0,337,"Vermont",234,"Princeton",0,0,1657,1648,,,
-373025,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,140,"Le Moyne",24,"Binghamton",0,0,1548,1661,,,
+373022,2027,"regular","2026-12-03T05:00:00.000Z","scheduled",0,207,"Northern Colorado",117,"Idaho",0,0,1442,1708,,,
+373018,2027,"regular","2026-12-03T23:00:00.000Z","scheduled",0,121,"Indiana",349,"Western Illinois",0,0,1878,1560,,,
+375568,2027,"regular","2026-12-03T23:00:00.000Z","scheduled",0,337,"Vermont",234,"Princeton",0,0,1531,1670,,,
+373025,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,140,"Le Moyne",24,"Binghamton",0,0,1511,1661,,,
 373026,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,91,"Fordham",545,"St. Francis (IL)",0,0,1820,1290,,,
 375561,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,44,"Central Connecticut",694,"Mitchell College",0,0,1638,1500,,,
-375563,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,203,"North Florida",269,"South Dakota",0,0,1573,1584,,,
-375564,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,239,"Radford",584,"Virginia-Lynchburg",0,0,1628,353,,,
+375563,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,203,"North Florida",269,"South Dakota",0,0,1573,1762,,,
+375564,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,239,"Radford",584,"Virginia-Lynchburg",0,0,1631,353,,,
 375565,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,81,"Elon",129,"James Madison",0,0,1596,1918,,,
 375569,2027,"regular","2026-12-04T00:00:00.000Z","scheduled",0,333,"VCU",59,"Coppin State",0,0,1655,1334,,,
+375560,2027,"regular","2026-12-04T00:30:00.000Z","scheduled",0,272,"Southeast Missouri State",1338,"Baptist Bible",0,0,1602,1500,,,
+375570,2027,"regular","2026-12-04T00:30:00.000Z","scheduled",0,105,"Green Bay",208,"Northern Illinois",0,0,1599,1744,,,
+373024,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,202,"North Dakota State",307,"UC Davis",0,0,1610,1547,,,
+375562,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,195,"Nicholls",326,"UT Rio Grande Valley",0,0,1461,1801,,,
+375566,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,172,"Milwaukee",357,"Wright State",0,0,1533,1811,,,
+375571,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,273,"Southern Illinois",344,"Washington State",0,0,1728,1713,,,
+375572,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,280,"St. Thomas-Minnesota",562,"North Central (MN)",0,0,1864,1500,,,
+378182,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,13,"Arkansas State",176,"Missouri State",0,0,1661,1700,,,
+378183,2027,"regular","2026-12-04T01:00:00.000Z","scheduled",0,114,"Howard",103,"Grambling",0,0,1566,1616,,,
+373021,2027,"regular","2026-12-04T01:30:00.000Z","scheduled",0,276,"Southern Utah",116,"Idaho State",0,0,1576,1462,,,
+373019,2027,"regular","2026-12-04T02:00:00.000Z","scheduled",0,330,"Utah Tech",345,"Weber State",0,0,1595,1224,,,
+375573,2027,"regular","2026-12-04T02:30:00.000Z","scheduled",0,36,"Cal State Bakersfield",311,"UC Santa Barbara",0,0,1710,2025,,,
+373023,2027,"regular","2026-12-04T03:00:00.000Z","scheduled",0,231,"Portland State",80,"Eastern Washington",0,0,1838,1506,,,
+375567,2027,"regular","2026-12-04T03:00:00.000Z","scheduled",0,308,"UC Irvine",309,"UC Riverside",0,0,1712,1650,,,
+375574,2027,"regular","2026-12-04T03:00:00.000Z","scheduled",0,38,"Cal State Northridge",35,"Cal Poly",0,0,1595,1396,,,
+375575,2027,"regular","2026-12-04T03:00:00.000Z","scheduled",0,145,"Long Beach State",332,"Utah Valley",0,0,1354,1683,,,
+375576,2027,"regular","2026-12-04T03:00:00.000Z","scheduled",0,37,"Cal State Fullerton",249,"Sacramento State",0,0,1732,1430,,,
+375577,2027,"regular","2026-12-04T03:30:00.000Z","scheduled",0,310,"UC San Diego",39,"California Baptist",0,0,1369,1270,,,
+373027,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",1,314,"UConn",118,"Illinois",0,0,1734,2354,,,
+373028,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,31,"Bryant",30,"Brown",0,0,1456,1689,,,
+375578,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",1,85,"Florida A&M",196,"Norfolk State",0,0,1113,1351,,,
+375579,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,204,"North Texas",29,"Bradley",0,0,1729,1569,,,
+375580,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,264,"Siena",166,"Merrimack",0,0,1526,1576,,,
+375581,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,194,"Niagara",183,"Mount St. Mary's",0,0,1307,1244,,,
+375582,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,84,"Fairleigh Dickinson",138,"Lafayette",0,0,1702,1708,,,
+378184,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,151,"Loyola Chicago",1273,"Augustana (IL)",0,0,1634,1500,,,
+378185,2027,"regular","2026-12-04T05:00:00.000Z","scheduled",0,209,"Northern Iowa",989,"Wartburg",0,0,1388,1500,,,
+375583,2027,"regular","2026-12-04T23:00:00.000Z","scheduled",0,1507,"New Haven",58,"Columbia",0,0,1585,1834,,,
+373029,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,263,"Seton Hall",132,"Kansas State",0,0,1887,1353,,,
+373030,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,72,"Duke",107,"Harvard",0,0,1887,1521,,,
+375584,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,156,"Marist",250,"Sacred Heart",0,0,1518,1504,,,
+375585,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,83,"Fairfield",155,"Manhattan",0,0,1502,1278,,,
+375586,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,123,"Iona",238,"Quinnipiac",0,0,1403,1526,,,
+375587,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,109,"High Point",341,"Wagner",0,0,1827,1717,,,
+375588,2027,"regular","2026-12-05T00:00:00.000Z","scheduled",0,42,"Canisius",243,"Rider",0,0,1328,1211,,,
